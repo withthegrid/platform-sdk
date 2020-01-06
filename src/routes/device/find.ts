@@ -1,0 +1,80 @@
+import Joi from '@hapi/joi';
+import { ControllerGeneratorOptions } from '../../comms/controller';
+
+import { schema as environmentSchema, Environment } from '../../models/environment';
+import { schema as deviceSchema, Device } from '../../models/device';
+import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
+import { schema as deviceSoftwareVersionSchema, DeviceSoftwareVersion } from '../../models/device-software-version';
+import { schema as deviceMobileIdentitySchema, DeviceMobileIdentity } from '../../models/device-mobile-identity';
+
+import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
+
+
+interface Query extends TableQuery {
+  allEnvironments?: boolean;
+}
+
+interface Request {
+  query: Query;
+}
+
+interface EffectiveQuery extends EffectiveTableQuery {
+  allEnvironments: boolean;
+}
+
+interface EffectiveRequest {
+  query: EffectiveQuery;
+}
+
+interface ResponseRow {
+  device: Device;
+  environment: Environment | null;
+  pinGroup: PinGroup | null;
+  softwareVersion: DeviceSoftwareVersion | null;
+  mobileIdentity: DeviceMobileIdentity | null;
+}
+
+interface Response {
+  rows: ResponseRow[];
+}
+
+
+const controllerGeneratorOptions: ControllerGeneratorOptions = {
+  method: 'get',
+  path: '/',
+  query: Joi.object().keys({
+    allEnvironments: Joi.boolean().default(false),
+    sortBy: Joi.string().valid('hashId').default('hashId'),
+    descending: Joi.boolean().default(true),
+    rowsPerPage: Joi.number()
+      .integer()
+      .min(1)
+      .max(100)
+      .default(10),
+    search: Joi.string().allow('').default(''),
+    lastValueSortColumn: Joi.any(),
+    lastValueHashId: Joi.string(),
+  })
+    .with('lastValueSortColumn', 'lastValueHashId')
+    .default(),
+  right: 'READ',
+  response: Joi.object().keys({
+    rows: Joi.array().items(Joi.object().keys({
+      device: deviceSchema.required(),
+      environment: environmentSchema.allow(null).required(),
+      pinGroup: pinGroupSchema.allow(null).required(),
+      softwareVersion: deviceSoftwareVersionSchema.allow(null).required(),
+      mobileIdentity: deviceMobileIdentitySchema.allow(null).required(),
+    })).required(),
+  }),
+  description: 'Search through devices',
+};
+
+export {
+  controllerGeneratorOptions,
+  Request,
+  EffectiveRequest,
+  Response,
+  Query,
+  ResponseRow,
+};

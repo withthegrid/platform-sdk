@@ -1,0 +1,27 @@
+import Joi from '@hapi/joi';
+import { ControllerGeneratorOptions } from '../../comms/controller';
+
+interface Request {
+  params: {
+    hashId: string;
+  };
+}
+
+type Response = void;
+
+const controllerGeneratorOptions: ControllerGeneratorOptions = {
+  method: 'delete',
+  path: '/:hashId',
+  params: Joi.object().keys({
+    hashId: Joi.string().required().example('ga9741s'),
+  }).required(),
+  right: 'SENSORS',
+  description: 'Delete a command. Will raise an error if the command cannot be canceled because the device has already executed it or because the device will not be reached in time to let it know that it should ignore the command.',
+};
+
+export {
+  controllerGeneratorOptions,
+  Request,
+  Request as EffectiveRequest,
+  Response,
+};

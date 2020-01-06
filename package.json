@@ -1,0 +1,47 @@
+{
+  "name": "@withthegrid/platform-sdk",
+  "version": "9.5.0",
+  "description": "SDK for withthegrid platform",
+  "license": "UNLICENSED",
+  "files": [
+    "/esm",
+    "/cjs"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/withthegrid/platform-sdk.git"
+  },
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "scripts": {
+    "start": "npm run watch-ts",
+    "build": "npm run build:esm && npm run build:cjs",
+    "build:cjs": "rm -rf cjs/ && tsc",
+    "build:esm": "rm -rf esm/ && tsc -m es6 --outDir esm",
+    "prepare": "npm run build",
+    "watch-ts": "rm -rf esm/ && tsc -w",
+    "lint": "npm run build:cjs && eslint \"src/*.{js,ts}\"",
+    "test": "jest --forceExit --coverage --verbose",
+    "watch-test": "npm run test -- --watchAll"
+  },
+  "author": "Rob Everhardt <rob@withthegrid.com>",
+  "dependencies": {
+    "@hapi/joi": "^16.1.8",
+    "@types/hapi__joi": "^16.0.4",
+    "@types/node": "^12.12.14",
+    "@types/qs": "^6.9.0",
+    "axios": "^0.19.0",
+    "qs": "^6.9.1"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.10.0",
+    "@typescript-eslint/parser": "^2.10.0",
+    "eslint": "^6.7.2",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "typescript": "^3.7.2"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  }
+}
