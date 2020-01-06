@@ -2,7 +2,7 @@
   "name": "@withthegrid/platform-sdk",
   "version": "9.6.1",
   "description": "SDK for withthegrid platform",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "files": [
     "/esm",
     "/cjs"
