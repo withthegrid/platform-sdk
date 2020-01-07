@@ -94,7 +94,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
           report: Joi.object().keys({
             hashId: Joi.string().required().example('qoa978'),
             deviceHashId: Joi.string().allow(null).required().example('j1iha9'),
-            environmentHashId: Joi.string().allow(null).required().example('f1a4w1'),
+            clientHashId: Joi.string().allow(null).required().example('f1a4w1'),
             generatedAt: Joi.date().required().example('2019-12-31T15:23Z'),
             typeKey: Joi.string().required().example('cp-pole'),
             version: Joi.number().integer().required().example(1),
