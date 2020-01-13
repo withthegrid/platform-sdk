@@ -23,6 +23,7 @@ module.exports = {
     'import/no-extraneous-dependencies': ['error', {
       'optionalDependencies': ['test/unit/index.js']
     }],
+    'import/extensions': 0,
     'prefer-destructuring': [
       'error',
       {
