@@ -10,6 +10,13 @@ const schema = Joi.object().keys({
     name: Joi.string().required().example('My map layer'),
     key: Joi.string().invalid('nodes').required().example('myLayer'),
   })).min(1).required(),
+  boundingBox: Joi.object().keys({
+    type: Joi.string().valid('LineString').required().example('LineString'),
+    coordinates: Joi.array().length(2).items(Joi.array().length(2).items(Joi.number())).required()
+      .example([[3.3135576, 47.9747658], [5.1288442202798, 51.8145997]]),
+  }).allow(null)
+    .required()
+    .description('All pin groups and edges in this environment are contained in the rectangle described by this linestring. If null, no pinGroups or edges are present'),
   fieldConfigurations: Joi.object().keys({
     pinGroups: Joi.array().items(fieldConfigurationSchema).required(),
     edges: Joi.array().items(fieldConfigurationSchema).required(),
@@ -28,6 +35,10 @@ interface Environment {
   hashId: string;
   name: string;
   mapLayers: { name: string; key: string }[];
+  boundingBox: {
+    type: 'LineString';
+    coordinates: [[number, number], [number, number]];
+  } | null;
   fieldConfigurations: {
     pinGroups: FieldConfiguration[];
     edges: FieldConfiguration[];
