@@ -55,7 +55,8 @@ module.exports = {
     'import/resolver': {
       'node': {
         'extensions': [".js", ".jsx", ".ts", ".tsx"]
-      }
+      },
+      typescript: {} // this loads <rootdir>/tsconfig.json to eslint
     }
   },
 };
