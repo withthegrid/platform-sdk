@@ -8,7 +8,6 @@ interface Request {
     pinGroupHashId: string;
   };
   body: {
-    name?: string;
     fields: Record<string, string>;
     typeKey?: string | null;
   };
