@@ -3,6 +3,7 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 
 interface Request {
   body: {
+    generatedAt?: Date;
     measurements: {
       pinHashId: string;
       quantityHashId: string;
@@ -24,6 +25,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'post',
   path: '/',
   body: Joi.object().keys({
+    generatedAt: Joi.date().example('2019-12-31T15:23Z').description('The timestamp of the report itself. If not provided, the timestamp of the most recent measurement is taken. If no measurements are present, the existing generatedAt of the report is used.'),
     measurements: Joi.array().items(Joi.object().keys({
       pinHashId: Joi.string().required().example('e13d57'),
       quantityHashId: Joi.string().required().example('sajia1'),

@@ -23,6 +23,7 @@ interface Request {
     hashId: string;
   };
   body: {
+    generatedAt?: Date;
     fields?: Record<string, string>;
     measurements: ReportUpdate[];
   };
@@ -37,6 +38,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     hashId: Joi.string().required().example('qoa978'),
   }).required(),
   body: Joi.object().keys({
+    generatedAt: Joi.date().example('2019-12-31T15:23Z').description('The timestamp of the report itself. If not provided, the timestamp of the most recent measurement is taken. If no measurements are present, the existing generatedAt of the report is used.'),
     measurements: Joi.array().items(Joi.alternatives().try(
       Joi.object().keys({
         measurementHashId: Joi.string().required().example('po177'),
