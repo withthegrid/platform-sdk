@@ -47,6 +47,7 @@ interface Environment {
     pins: FieldConfiguration[];
   };
   locale: string;
+  expiresAt: Date | null;
   createdAt: Date;
 }
 
