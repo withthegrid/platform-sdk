@@ -94,7 +94,8 @@ export default <RequestImplementation extends Request, EffectiveRequestImplement
       cancelToken,
     )
       .then((response) => {
-        if (options.response !== undefined) {
+        // Axios response will be an empty string if there is no response
+        if (response !== '' && options.response !== undefined) {
           let responseSchema: Joi.AnySchema;
           if (typeof options.response === 'function') {
             responseSchema = options.response(comms.apiVersion);
