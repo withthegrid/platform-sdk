@@ -22,7 +22,7 @@ const schema = Joi.object().keys({
     null,
   )
     .required()
-    .description('Schedule where every [interval] seconds measurements are taken. Starts at Thursday midnight UTC.')
+    .description('Schedule where every [interval] seconds measurements are taken. Starts at Thursday midnight UTC + offset')
     .example(86400),
   fixed: Joi
     .array()
@@ -30,9 +30,12 @@ const schema = Joi.object().keys({
     .min(1)
     .max(5)
     .allow(null)
-    .required()
+    .default(null)
     .description('If not null, represents a schedule where measurements are taken at the provided numbers, in seconds after midgnight UTC')
     .example(null),
+  offset: Joi.number().integer().default(0).min(0)
+    .description('In seconds. Should be ignored when interval is null')
+    .example(0),
 })
   .description('The pattern in which a device should take measurements')
   .tag('measurementCycle');
@@ -41,6 +44,7 @@ const schema = Joi.object().keys({
 interface MeasurementCycle {
   interval: number | null;
   fixed: number[] | null;
+  offset: number;
 }
 
 export { schema, MeasurementCycle };
