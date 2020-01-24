@@ -16,12 +16,13 @@ interface Response {
   hashId: string;
   observations: {
     measurement: Measurement;
-    quantity: Quantity;
+    quantityHashId: string;
   }[];
   deviceTypeKey: string | null;
   deviceHashId: string | null;
   fields: Record<string, string>;
   type: ReportType;
+  quantities: Quantity[];
   pinGroupHashId: string | null;
   userName: string | null;
   generatedAt: Date | null;
@@ -76,9 +77,10 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       fields: Joi.object().required().example({ id: 'My report' }),
       observations: Joi.array().items(Joi.object().keys({
         measurement: measurementSchema(apiVersion).required(),
-        quantity: quantitySchema.required(),
+        quantityHashId: Joi.string().required().example('sajia1'),
       })).required(),
       type: reportTypeSchema.required(),
+      quantities: Joi.array().items(quantitySchema).required(),
     });
   },
   description: 'Get a specific report identified by its hashId',
