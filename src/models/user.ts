@@ -2,8 +2,9 @@ import Joi from '@hapi/joi';
 
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('b45zo0'),
-  isHuman: Joi.boolean().required().example(true),
-  email: Joi.string().email({ tlds: false }).required().example('info@acme.com'),
+  email: Joi.string().email({ tlds: false }).allow(null).required()
+    .example('info@acme.com')
+    .description('Is null for machine accounts'),
   name: Joi.string().required().example('John Doe'),
   timezone: Joi.string().required().example('Europe/Amsterdam').description('A IANA zone or a fixed-offset name of the form \'UTC+3\', or the strings \'utc\'.'),
   locale: Joi.string().valid('nl', 'en').default('en'),
@@ -17,8 +18,7 @@ const schema = Joi.object().keys({
 
 interface User {
   hashId: string;
-  isHuman: boolean;
-  email: string;
+  email: string | null;
   name: string;
   timezone: string;
   locale: 'en' | 'nl';
