@@ -54,67 +54,19 @@ class Routes {
   download: DownloadRoute;
 
 
-  constructor(readonly comms: Comms, routeClassesOverride: RouteClasses = {}) {
-    if (routeClassesOverride.Issue !== undefined) {
-      this.issue = new routeClassesOverride.Issue(comms);
-    } else {
-      this.issue = new IssueRoute(comms);
-    }
-    if (routeClassesOverride.Authentication !== undefined) {
-      this.authentication = new routeClassesOverride.Authentication(comms);
-    } else {
-      this.authentication = new AuthenticationRoute(comms);
-    }
-    if (routeClassesOverride.Autocomplete !== undefined) {
-      this.autocomplete = new routeClassesOverride.Autocomplete(comms);
-    } else {
-      this.autocomplete = new AutocompleteRoute(comms);
-    }
-    if (routeClassesOverride.Command !== undefined) {
-      this.command = new routeClassesOverride.Command(comms);
-    } else {
-      this.command = new CommandRoute(comms);
-    }
-    if (routeClassesOverride.Device !== undefined) {
-      this.device = new routeClassesOverride.Device(comms);
-    } else {
-      this.device = new DeviceRoute(comms);
-    }
-    if (routeClassesOverride.Environment !== undefined) {
-      this.environment = new routeClassesOverride.Environment(comms);
-    } else {
-      this.environment = new EnvironmentRoute(comms);
-    }
-    if (routeClassesOverride.Graph !== undefined) {
-      this.graph = new routeClassesOverride.Graph(comms);
-    } else {
-      this.graph = new GraphRoute(comms);
-    }
-    if (routeClassesOverride.Report !== undefined) {
-      this.report = new routeClassesOverride.Report(comms);
-    } else {
-      this.report = new ReportRoute(comms);
-    }
-    if (routeClassesOverride.ReportType !== undefined) {
-      this.reportType = new routeClassesOverride.ReportType(comms);
-    } else {
-      this.reportType = new ReportTypeRoute(comms);
-    }
-    if (routeClassesOverride.Settings !== undefined) {
-      this.settings = new routeClassesOverride.Settings(comms);
-    } else {
-      this.settings = new SettingsRoute(comms);
-    }
-    if (routeClassesOverride.User !== undefined) {
-      this.user = new routeClassesOverride.User(comms);
-    } else {
-      this.user = new UserRoute(comms);
-    }
-    if (routeClassesOverride.Download !== undefined) {
-      this.download = new routeClassesOverride.Download(comms);
-    } else {
-      this.download = new DownloadRoute(comms);
-    }
+  constructor(readonly comms: Comms) {
+    this.issue = new IssueRoute(comms);
+    this.authentication = new AuthenticationRoute(comms);
+    this.autocomplete = new AutocompleteRoute(comms);
+    this.command = new CommandRoute(comms);
+    this.device = new DeviceRoute(comms);
+    this.environment = new EnvironmentRoute(comms);
+    this.graph = new GraphRoute(comms);
+    this.report = new ReportRoute(comms);
+    this.reportType = new ReportTypeRoute(comms);
+    this.settings = new SettingsRoute(comms);
+    this.user = new UserRoute(comms);
+    this.download = new DownloadRoute(comms);
   }
 }
 

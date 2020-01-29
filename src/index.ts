@@ -14,9 +14,11 @@ class PlatformSdk {
 
   routes: Routes;
 
-  constructor(baseURL = 'https://api.withthegrid.com', RoutesClass: typeof Routes = Routes) {
+  constructor(baseURL = 'https://api.withthegrid.com', initRoutes = true) {
     this.comms = new Comms(baseURL, PlatformSdk.apiVersion);
-    this.routes = new RoutesClass(this.comms);
+    if (initRoutes) {
+      this.routes = new Routes(this.comms);
+    }
   }
 
   async machineLogin(assertion: string): Promise<MachineLoginResponse> {
