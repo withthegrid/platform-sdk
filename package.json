@@ -19,6 +19,7 @@
     "build:cjs": "rm -rf cjs/ && tsc",
     "build:esm": "rm -rf esm/ && tsc -m es6 --outDir esm",
     "prepare": "npm run build",
+    "postpublish": "npm publish --ignore-scripts --@withthegrid:registry='https://npm.pkg.github.com'",
     "watch-ts": "rm -rf esm/ && tsc -w",
     "lint": "npm run build:cjs && eslint \"src/*.{js,ts}\"",
     "test": "jest --forceExit --coverage --verbose",
