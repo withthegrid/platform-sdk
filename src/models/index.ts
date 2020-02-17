@@ -9,6 +9,7 @@ import * as exportRequest from './export-request';
 import * as grid from './grid';
 import * as issueComment from './issue-comment';
 import * as issue from './issue';
+import * as label from './label';
 import * as log from './log';
 import * as measurementCycle from './measurement-cycle';
 import * as measurement from './measurement';
@@ -37,6 +38,7 @@ export {
   grid,
   issueComment,
   issue,
+  label,
   log,
   measurementCycle,
   measurement,

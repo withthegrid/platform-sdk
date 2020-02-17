@@ -20,9 +20,12 @@ type EffectiveRequest = {
 }
 
 type Response = {
-  comment: IssueComment;
-  userName: string | null;
-}[];
+  newComments: {
+    comment: IssueComment;
+    userName: string | null;
+  }[];
+  mentionedUsers: { hashId: string; name: string }[];
+};
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'post',
@@ -36,10 +39,16 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     closeIssue: Joi.boolean().default(false),
   }).required(),
   right: 'ISSUES',
-  response: Joi.array().items(Joi.object().keys({
-    comment: issueCommentSchema.required(),
-    userName: Joi.string().allow(null).required().example('John Doe'),
-  })).required(),
+  response: Joi.object().keys({
+    newComments: Joi.array().items(Joi.object().keys({
+      comment: issueCommentSchema.required(),
+      userName: Joi.string().allow(null).required().example('John Doe'),
+    })).required().description('A list of additional comments created by this call. Includes the comment that was posted and might include an additional comment created by the system'),
+    mentionedUsers: Joi.array().items(Joi.object().keys({
+      hashId: Joi.string().required().example('ba5qq1'),
+      name: Joi.string().required().example('Jane Doe'),
+    })).required().description('Mentioned users in returned comments'),
+  }),
   description: 'Add a comment to a specific issue',
 };
 

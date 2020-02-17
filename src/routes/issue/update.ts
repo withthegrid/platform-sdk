@@ -12,7 +12,9 @@ interface Request {
     title?: string;
     pinGroupHashId?: string;
     pinHashId?: string | null;
+    assignedUserHashId?: string | null;
     quantityHashIds?: string[];
+    labelHashIds?: string[];
     level?: 0 | 1 | 2;
     typeKey?: 'missing' | 'incorrect' | 'unexpected' | 'unrelated';
     startAt?: Date;
@@ -23,6 +25,7 @@ interface Request {
 type Response = {
   newComment: IssueComment;
   newCommentUserName: string | null;
+  newCommentMentionedUsers: { hashId: string; name: string }[];
 } | void;
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
@@ -34,8 +37,10 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   body: Joi.object().keys({
     title: Joi.string().max(100).example('Temperature is too high'),
     pinGroupHashId: Joi.string(),
+    assignedUserHashId: Joi.string().allow(null),
     pinHashId: Joi.string().allow(null),
     quantityHashIds: Joi.array().items(Joi.string()).max(10),
+    labelHashIds: Joi.array().items(Joi.string()).max(10),
     level: Joi.number().valid(0, 1, 2),
     typeKey: Joi.string().valid('missing', 'incorrect', 'unexpected', 'unrelated'),
     startAt: Joi.date(),
@@ -45,7 +50,11 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   response: Joi.object().keys({
     newComment: issueCommentSchema,
     newCommentUserName: Joi.string().allow(null).required().example('John Doe'),
-  }),
+    newCommentMentionedUsers: Joi.array().items(Joi.object().keys({
+      hashId: Joi.string().required().example('ba5qq1'),
+      name: Joi.string().required().example('Jane Doe'),
+    })).required(),
+  }).description('An update might cause a new comment to be created. Current functionality only triggers a possible additional comment from the system'),
   description: 'Change the settings of a specific issue',
 };
 

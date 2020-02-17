@@ -13,10 +13,10 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'delete',
   path: '/:hashId',
   params: Joi.object().keys({
-    hashId: Joi.string().required().example('l19a7s'),
+    hashId: Joi.string().required().example('a9hhi0'),
   }).required(),
-  right: 'ENVIRONMENT_ADMIN',
-  description: 'Delete a report type.',
+  right: 'ISSUES',
+  description: 'Delete a comment on an issue (if it is yours).',
 };
 
 export {
