@@ -4,8 +4,10 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 
 interface Request {
   body: {
-    pinGroupHashId: string;
-    pinHashId?: string | null;
+    links: {
+      pinGroupHashId: string;
+      pinHashId: string | null;
+    }[];
     assignedUserHashId?: string | null;
     title: string;
     level: 0 | 1 | 2;
@@ -31,8 +33,11 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'post',
   path: '/',
   body: Joi.object().keys({
-    pinGroupHashId: Joi.string().required().example('dao97'),
-    pinHashId: Joi.string().allow(null).default(null),
+    links: Joi.array().min(1).max(20).items(Joi.object().keys({
+      pinGroupHashId: Joi.string().required().example('dao97'),
+      pinHashId: Joi.string().allow(null).required().example(null),
+    }))
+      .required(),
     assignedUserHashId: Joi.string().allow(null).default(null),
     title: Joi.string().max(100).required().example('Temperature is too high'),
     level: Joi.number().valid(0, 1, 2).required().example(0),

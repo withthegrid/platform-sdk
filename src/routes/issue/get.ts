@@ -5,6 +5,8 @@ import { schema as issueSchema, Issue } from '../../models/issue';
 import { schema as issueCommentSchema, IssueComment } from '../../models/issue-comment';
 import { schema as quantitySchema, Quantity } from '../../models/quantity';
 import { schema as labelSchema, Label } from '../../models/label';
+import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
+import { schema as pinSchema, Pin } from '../../models/pin';
 
 interface Request {
   params: {
@@ -24,6 +26,10 @@ interface Response {
     userName: string | null;
   }[];
   subscribed: boolean;
+  links: {
+    pinGroup: PinGroup;
+    pin: Pin | null;
+  }[];
 }
 
 
@@ -49,6 +55,10 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       userName: Joi.string().allow(null).required().example('John Doe'),
     })).required(),
     subscribed: Joi.boolean().required().example(false),
+    links: Joi.array().items(Joi.object().keys({
+      pinGroup: pinGroupSchema.required(),
+      pin: pinSchema.allow(null).required(),
+    })).required(),
   }),
   description: 'Get a specific issue identified by its hashId',
 };

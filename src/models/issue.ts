@@ -2,8 +2,6 @@ import Joi from '@hapi/joi';
 
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('c19aid'),
-  pinGroupHashId: Joi.string().required().example('dao97'),
-  pinHashId: Joi.string().allow(null).required().example('e13d57'),
   userHashId: Joi.string().allow(null).required().example('b45zo0'),
   assignedUserHashId: Joi.string().allow(null).required().example(null),
   title: Joi.string().required().example('Temperature is too high'),
@@ -25,8 +23,6 @@ const schema = Joi.object().keys({
 
 interface Issue {
   hashId: string;
-  pinGroupHashId: string;
-  pinHashId: string | null;
   userHashId: string | null;
   assignedUserHashId: string | null;
   title: string;

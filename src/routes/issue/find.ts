@@ -1,9 +1,9 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
-import { schema as environmentSchema, Environment } from '../../models/environment';
 import { schema as issueSchema, Issue } from '../../models/issue';
 import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
+import { schema as pinSchema, Pin } from '../../models/pin';
 
 import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
 
@@ -12,7 +12,6 @@ interface Query extends TableQuery {
   pinGroupHashId?: string | null;
   edgeHashId?: string | null;
   gridHashId?: string | null;
-  allEnvironments?: boolean;
 }
 
 interface Request {
@@ -23,7 +22,6 @@ interface EffectiveQuery extends EffectiveTableQuery {
   pinGroupHashId: string | null;
   edgeHashId: string | null;
   gridHashId: string | null;
-  allEnvironments: boolean;
 }
 
 interface EffectiveRequest {
@@ -32,8 +30,13 @@ interface EffectiveRequest {
 
 interface ResponseRow {
   issue: Issue;
-  pinGroup: PinGroup;
-  environment: Environment;
+  userName: string | null;
+  assignedUserName: string | null;
+  subscribed: boolean;
+  links: {
+    pinGroup: PinGroup;
+    pin: Pin | null;
+  }[];
 }
 
 interface Response {
@@ -47,7 +50,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     pinGroupHashId: Joi.string().allow(null).default(null),
     edgeHashId: Joi.string().allow(null).default(null),
     gridHashId: Joi.string().allow(null).default(null),
-    allEnvironments: Joi.boolean().default(false),
     sortBy: Joi.string().valid('level', 'createdAt').default('createdAt'),
     descending: Joi.boolean().default(true),
     rowsPerPage: Joi.number()
@@ -65,8 +67,13 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   response: Joi.object().keys({
     rows: Joi.array().items(Joi.object().keys({
       issue: issueSchema.required(),
-      pinGroup: pinGroupSchema.required(),
-      environment: environmentSchema.required(),
+      userName: Joi.string().allow(null).required().example('John Doe'),
+      assignedUserName: Joi.string().allow(null).required().example(null),
+      subscribed: Joi.boolean().required().example(false),
+      links: Joi.array().min(1).items(Joi.object().keys({
+        pinGroup: pinGroupSchema.required(),
+        pin: pinSchema.allow(null).required(),
+      })).required(),
     })).required(),
   }).required(),
   description: 'Search through issues',

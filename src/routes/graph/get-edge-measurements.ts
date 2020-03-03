@@ -1,7 +1,6 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
-import { schema as issueSchema, Issue } from '../../models/issue';
 import { schema as measurementSchema, Measurement } from '../../models/measurement';
 import { schema as quantitySchema, Quantity } from '../../models/quantity';
 
@@ -21,9 +20,7 @@ interface Response {
     measurement: Measurement;
     quantity: Quantity;
   }[];
-  issues: Issue[];
   moreMeasurementsAvailable: boolean;
-  moreIssuesAvailable: boolean;
   lowerbound: Date | null;
   upperbound: Date | null;
 }
@@ -43,9 +40,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   right: 'READ',
   response: (apiVersion: number): Joi.ObjectSchema => {
     const base = Joi.object().keys({
-      issues: Joi.array().items(issueSchema).required(),
       moreMeasurementsAvailable: Joi.boolean().required().example(false).description('Whether there are more than 310 measurements available'),
-      moreIssuesAvailable: Joi.boolean().required().example(false),
       lowerbound: Joi.date().allow(null).required().example('2019-12-01T00:00Z'),
       upperbound: Joi.date().allow(null).required().example('2019-12-01T00:00Z'),
     }).required();

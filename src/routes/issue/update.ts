@@ -10,8 +10,10 @@ interface Request {
   };
   body: {
     title?: string;
-    pinGroupHashId?: string;
-    pinHashId?: string | null;
+    links?: {
+      pinGroupHashId: string;
+      pinHashId: string | null;
+    }[];
     assignedUserHashId?: string | null;
     quantityHashIds?: string[];
     labelHashIds?: string[];
@@ -35,6 +37,10 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     hashId: Joi.string().required().example('c19aid'),
   }).required(),
   body: Joi.object().keys({
+    links: Joi.array().min(1).max(20).items(Joi.object().keys({
+      pinGroupHashId: Joi.string().required().example('dao97'),
+      pinHashId: Joi.string().allow(null).required().example(null),
+    })),
     title: Joi.string().max(100).example('Temperature is too high'),
     pinGroupHashId: Joi.string(),
     assignedUserHashId: Joi.string().allow(null),
