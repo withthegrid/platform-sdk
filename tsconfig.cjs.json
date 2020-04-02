@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "es6",
+    "module": "commonjs",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "target": "es6",
@@ -11,7 +11,7 @@
     "declaration": true,
     "moduleResolution": "node",
     "sourceMap": true,
-    "outDir": "esm",
+    "outDir": "cjs",
     "baseUrl": ".",
     "paths": {
       "*": [
