@@ -30,7 +30,7 @@
   "dependencies": {
     "@hapi/joi": "^17.1.1",
     "@types/hapi__joi": "^16.0.12",
-    "@types/node": "^13.9.8",
+    "@types/node": "^13.11.0",
     "@types/qs": "^6.9.1",
     "axios": "^0.19.2",
     "qs": "^6.9.3"
