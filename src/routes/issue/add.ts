@@ -42,7 +42,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     title: Joi.string().max(100).required().example('Temperature is too high'),
     level: Joi.number().valid(0, 1, 2).required().example(0),
     typeKey: Joi.string().valid('missing', 'incorrect', 'unexpected', 'unrelated').required().example('missing'),
-    comment: Joi.string().max(65536).required().example('This looks serious.'),
+    comment: Joi.string().max(65536).allow('').required()
+      .example('This looks serious.'),
     quantityHashIds: Joi.array().items(Joi.string()).max(10).required()
       .example(['sajia1']),
     labelHashIds: Joi.array().items(Joi.string()).max(10).default([])
