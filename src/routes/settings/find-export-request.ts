@@ -45,7 +45,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   })
     .with('lastValueSortColumn', 'lastValueHashId')
     .default(),
-  right: 'EXPORT',
+  right: { environment: 'EXPORT' },
   response: Joi.object().keys({
     rows: Joi.array().items(Joi.object().keys({
       exportRequest: exportRequestSchema.required(),

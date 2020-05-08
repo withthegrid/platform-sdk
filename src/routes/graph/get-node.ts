@@ -22,7 +22,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   params: Joi.object().keys({
     hashId: Joi.string().required().example('qp111a'),
   }).required(),
-  right: 'READ',
+  right: { environment: 'READ' },
   response: Joi.object().keys({
     node: nodeSchema.required(),
     edges: Joi.array().items(edgeSchema).required(),

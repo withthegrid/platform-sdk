@@ -15,7 +15,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   params: Joi.object().keys({
     hashId: Joi.string().required().example('qoa978'),
   }).required(),
-  right: 'REPORTS',
+  right: { environment: 'REPORTS' },
   description: 'Delete a report.',
 };
 

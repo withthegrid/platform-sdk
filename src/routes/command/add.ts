@@ -1,15 +1,17 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
+import { fieldsSchema, Fields } from '../../models/field-configuration';
 
 
 interface Request {
   body: {
-    objectType: 'device' | 'pinGroup' | 'grid';
-    instruction: string;
+    objectType: 'device' | 'pinGroup';
     objectHashIds: string[];
-    settings: Record<string, any>;
-    startAt?: Date | null;
-    endAt?: Date | null;
+    commandTypeHashId: string;
+    fields: Fields;
+    startAt: Date | null;
+    delay: number;
+    endAt: Date | null;
     email: string[];
   };
 }
@@ -24,17 +26,19 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'post',
   path: '/',
   body: Joi.object().keys({
-    objectType: Joi.string().valid('device', 'pinGroup', 'grid').required().example('device')
-      .description('When grid is chosen, the command is sent to all devices connected to pinGroups in that grid'),
+    objectType: Joi.string().valid('device', 'pinGroup').required().example('device'),
     objectHashIds: Joi.array().items(Joi.string().example('j1iha9')).min(1).required(),
-    instruction: Joi.string().required().example('set-cycle'),
-    settings: Joi.object().required().example({ interval: 86400, fixed: null }),
-    startAt: Joi.date().allow(null).default(null).description('If null, is executed as soon as possible'),
-    endAt: Joi.date().allow(null).default(null),
+    commandTypeHashId: Joi.string().required().example('x18a92'),
+    fields: fieldsSchema.required().example({ interval: 86400 }),
+    startAt: Joi.date().allow(null).default(null).example('2019-12-31T15:23Z')
+      .description('Timestamp the device should execute the command. The system tries to share the command with the device before that time. If null, the device should execute it at time of receival + command.delay. It depends on the commandType whether startAt can be null'),
+    delay: Joi.number().default(0).description('In seconds. Only relevant when startAt is null. The command should then be executed by the device at time of receival + delay'),
+    endAt: Joi.date().allow(null).default(null).example(null)
+      .description('Timestamp the device should stop execution of the command.'),
     email: Joi.array().items(Joi.string().email({ tlds: false })).required().example([])
       .description('An email will be sent to all provided email addresses when the command is executed by the sensor'),
   }).required(),
-  right: 'SENSORS',
+  right: { environment: 'SENSORS', supplier: 'ENVIRONMENT_ADMIN' },
   description: 'Add a command that should be sent to a specific device',
 };
 

@@ -19,7 +19,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   body: Joi.object().keys({
     name: Joi.string().required().example('My environment'),
   }).required(),
-  right: null, // everyone can add an environment
+  right: {}, // everyone can add an environment
   response: Joi.object().keys({
     environment: environmentSchema.required(),
     environmentRights: Joi.array().items(Joi.string()).required().example(['STATIC', 'USERS'])

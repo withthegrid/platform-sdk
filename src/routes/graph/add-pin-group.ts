@@ -1,6 +1,6 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
-
+import { fieldsSchema, Fields } from '../../models/field-configuration';
 
 interface Request {
   body: {
@@ -9,7 +9,7 @@ interface Request {
       type: 'Point';
       coordinates: [number, number];
     };
-    fields: Record<string, string>;
+    fields: Fields;
     mapLayer?: string;
     gridHashId?: string | null;
     gridName?: string | null;
@@ -32,13 +32,13 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
         .description('[lon, lat] in WGS84')
         .example([4.884707950517225, 52.37502141913572]),
     }).required(),
-    fields: Joi.object().required().example({ id: 'My measurement location' }),
+    fields: fieldsSchema.required().example({ id: 'My measurement location' }),
     mapLayer: Joi.string().invalid('nodes').description('If not provided, the first available one is chosen'),
     gridHashId: Joi.string().allow(null),
     gridName: Joi.string().allow(null).description('If multiple grids exist with the same name, one is chosen at random'),
     photo: Joi.string().description('Should be a dataurl'),
   }).required().nand('gridHashId', 'gridName'),
-  right: 'STATIC',
+  right: { environment: 'STATIC' },
   response: Joi.object().keys({
     hashId: Joi.string().required().example('dao97'),
   }).required(),

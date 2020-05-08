@@ -5,7 +5,11 @@ import { schema as fieldConfigurationSchema, FieldConfiguration } from './field-
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('l19a7s'),
   name: Joi.string().required().example('Temperature and inclination'),
-  fieldConfigurations: Joi.array().items(fieldConfigurationSchema).required()
+  fieldConfigurations: Joi.object().keys({
+    pinGroup: Joi.array().items(fieldConfigurationSchema).required(),
+    pin: Joi.array().items(fieldConfigurationSchema).required(),
+    measurement: Joi.array().items(fieldConfigurationSchema).required(),
+  }).required()
     .description('See the chapter on open fields on how to use this'),
   deletedAt: Joi.date().allow(null).required().example(null),
 })
@@ -16,7 +20,11 @@ const schema = Joi.object().keys({
 interface ReportType {
   hashId: string;
   name: string;
-  fieldConfigurations: FieldConfiguration[];
+  fieldConfigurations: {
+    pinGroup: FieldConfiguration[];
+    pin: FieldConfiguration[];
+    measurement: FieldConfiguration[];
+  };
   deletedAt: Date | null;
 }
 

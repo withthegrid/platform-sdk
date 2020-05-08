@@ -16,7 +16,7 @@ type Response = void;
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
   path: '/:hashId',
-  right: null,
+  right: {},
   params: Joi.object().keys({
     hashId: Joi.string().required().example('maay1'),
   }).required(),

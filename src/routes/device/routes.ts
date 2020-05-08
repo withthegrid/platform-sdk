@@ -1,11 +1,21 @@
+import * as claim from './claim';
+import * as deleteRoute from './delete';
 import * as find from './find';
-import * as link from './link';
-import * as unlink from './unlink';
+import * as getClaimToken from './get-claim-token';
 import * as get from './get';
+import * as link from './link';
+import * as unclaim from './unclaim';
+import * as unlink from './unlink';
+import * as update from './update';
 
 export {
+  claim,
+  deleteRoute,
   find,
-  link,
-  unlink,
+  getClaimToken,
   get,
+  link,
+  unclaim,
+  unlink,
+  update,
 };

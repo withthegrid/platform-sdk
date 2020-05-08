@@ -15,7 +15,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   params: Joi.object().keys({
     hashId: Joi.string().required().example('e13d57'),
   }).required(),
-  right: 'STATIC',
+  right: { environment: 'STATIC' },
   description: 'Delete a pin.',
 };
 

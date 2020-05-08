@@ -1,7 +1,6 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
-import { schema as environmentSchema, Environment } from '../../models/environment';
 import { schema as deviceSchema, Device } from '../../models/device';
 import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
 import { schema as deviceSoftwareVersionSchema, DeviceSoftwareVersion } from '../../models/device-software-version';
@@ -15,7 +14,6 @@ interface Request {
 
 interface Response {
   device: Device;
-  environment: Environment | null;
   pinGroup: PinGroup | null;
   softwareVersion: DeviceSoftwareVersion | null;
   mobileIdentity: DeviceMobileIdentity | null;
@@ -28,11 +26,10 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   params: Joi.object().keys({
     hashId: Joi.string().required().example('j1iha9'),
   }).required(),
-  right: 'READ',
+  right: { environment: 'READ', supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
     device: deviceSchema.required(),
-    environment: environmentSchema.allow(null).required(),
-    pinGroup: pinGroupSchema.allow(null).required(),
+    pinGroup: pinGroupSchema.allow(null).required().description('Will be null when queried from supplier'),
     softwareVersion: deviceSoftwareVersionSchema.allow(null).required(),
     mobileIdentity: deviceMobileIdentitySchema.allow(null).required(),
   }),

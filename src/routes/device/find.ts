@@ -1,7 +1,6 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
-import { schema as environmentSchema, Environment } from '../../models/environment';
 import { schema as deviceSchema, Device } from '../../models/device';
 import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
 import { schema as deviceSoftwareVersionSchema, DeviceSoftwareVersion } from '../../models/device-software-version';
@@ -18,9 +17,7 @@ interface Request {
   query: Query;
 }
 
-interface EffectiveQuery extends EffectiveTableQuery {
-  allEnvironments: boolean;
-}
+type EffectiveQuery = EffectiveTableQuery;
 
 interface EffectiveRequest {
   query: EffectiveQuery;
@@ -28,7 +25,6 @@ interface EffectiveRequest {
 
 interface ResponseRow {
   device: Device;
-  environment: Environment | null;
   pinGroup: PinGroup | null;
   softwareVersion: DeviceSoftwareVersion | null;
   mobileIdentity: DeviceMobileIdentity | null;
@@ -43,7 +39,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
   path: '/',
   query: Joi.object().keys({
-    allEnvironments: Joi.boolean().default(false),
     sortBy: Joi.string().valid('hashId').default('hashId'),
     descending: Joi.boolean().default(true),
     rowsPerPage: Joi.number()
@@ -57,12 +52,11 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   })
     .with('lastValueSortColumn', 'lastValueHashId')
     .default(),
-  right: 'READ',
+  right: { environment: 'READ', supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
     rows: Joi.array().items(Joi.object().keys({
       device: deviceSchema.required(),
-      environment: environmentSchema.allow(null).required(),
-      pinGroup: pinGroupSchema.allow(null).required(),
+      pinGroup: pinGroupSchema.allow(null).required().description('Will be null when queried from supplier'),
       softwareVersion: deviceSoftwareVersionSchema.allow(null).required(),
       mobileIdentity: deviceMobileIdentitySchema.allow(null).required(),
     })).required(),

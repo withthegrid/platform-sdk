@@ -15,8 +15,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   params: Joi.object().keys({
     hashId: Joi.string().required().example('b45zo0'),
   }).required(),
-  right: 'USERS',
-  description: 'Delete a user from an environment.',
+  right: { environment: 'USERS', supplier: 'ENVIRONMENT_ADMIN' },
+  description: 'Delete a user from an environment or supplier.',
 };
 
 export {

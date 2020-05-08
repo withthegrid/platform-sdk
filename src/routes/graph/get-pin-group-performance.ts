@@ -43,7 +43,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     interval: Joi.valid('day', 'isoweek', 'month', 'year', 'years').default('month')
       .description('\'day\': returns 24 elements of 1 hour, \'month\' or \'isoweek\': 1 month of elements of 1 day, \'year\': 12 elements of 1 month, \'years\': 10 elements of 1 year'),
   }).required(),
-  right: 'READ',
+  right: { environment: 'READ' },
   response: Joi.array().items(Joi.object().keys({
     startAt: Joi.date().required().example('2019-12-01T00:00Z'),
     endAt: Joi.date().required().example('2020-01-01T00:00Z'),

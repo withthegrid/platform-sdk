@@ -1,5 +1,7 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
+import { fieldsSchema, Fields } from '../../models/field-configuration';
+
 
 interface Request {
   params: {
@@ -10,7 +12,7 @@ interface Request {
       type: 'Point';
       coordinates: [number, number];
     };
-    fields?: Record<string, string>;
+    fields?: Fields;
   };
 }
 
@@ -31,9 +33,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       type: 'Point',
       coordinates: [4.884707950517225, 52.37502141913572],
     }),
-    fields: Joi.object(),
+    fields: fieldsSchema,
   }).required(),
-  right: 'STATIC',
+  right: { environment: 'STATIC' },
   description: 'Updates a specific node',
 };
 

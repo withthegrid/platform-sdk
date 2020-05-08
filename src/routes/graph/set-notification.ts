@@ -24,7 +24,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       .example(0)
       .description('Subscribe to every issue created on a pin group in this grid (0), when the issue gets serious (1) or when the issue gets critical (2). If you do not want to receive any notifications, set to null'),
   }).required(),
-  right: 'READ',
+  right: { environment: 'READ' },
   description: 'Subscribe to or unsubscribe from new issues created on pin groups in this specific grid',
 };
 

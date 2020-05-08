@@ -35,7 +35,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   params: Joi.object().keys({
     hashId: Joi.string().required().example('ka08d'),
   }).required(),
-  right: 'READ',
+  right: { environment: 'READ' },
   response: Joi.object().keys({
     edge: edgeSchema.required(),
     pins: Joi.array().items(pinSchema).required(),

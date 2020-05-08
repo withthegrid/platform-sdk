@@ -39,7 +39,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   params: Joi.object().keys({
     hashId: Joi.string().required().example('c19aid'),
   }).required(),
-  right: 'READ',
+  right: { environment: 'READ' },
   response: Joi.object().keys({
     issue: issueSchema.required(),
     userName: Joi.string().allow(null).required().example('John Doe'),

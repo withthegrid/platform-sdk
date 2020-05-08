@@ -8,6 +8,7 @@ import * as routes from './routes/routes';
 
 import { Response as MachineLoginResponse } from './routes/authentication/machine-login';
 
+const apiVersion = 2;
 
 class PlatformSdk {
   protected comms: Comms;
@@ -28,12 +29,17 @@ class PlatformSdk {
     return response;
   }
 
-  changeEnvironment(environmentHashId?: string): void {
-    this.comms.changeEnvironment(environmentHashId);
+
+  get environment(): { type: string; hashId: string } | undefined {
+    return this.comms.environment;
   }
 
-  resumeSession(jwt: string, environmentHashId?: string): void {
-    this.comms.login(jwt, environmentHashId);
+  changeEnvironment(environmentHashId?: string, type = 'environment'): void {
+    this.comms.changeEnvironment(environmentHashId, type);
+  }
+
+  resumeSession(jwt: string, environmentHashId?: string, type = 'environment'): void {
+    this.comms.login(jwt, environmentHashId, type);
   }
 
   logout(): void {
@@ -45,7 +51,7 @@ class PlatformSdk {
   }
 
   static get apiVersion(): number {
-    return 2;
+    return apiVersion;
   }
 }
 
@@ -56,7 +62,6 @@ export { default as TableController, TableQuery, EffectiveTableQuery } from './c
 export { default as Comms } from './comms';
 export { default as controllerGenerator, Result } from './comms/controller';
 
-export { default as instances } from './instances';
 export { default as errors } from './errors';
 
 export {
@@ -65,4 +70,5 @@ export {
   Routes,
   IndividualRoutes,
   Joi,
+  apiVersion,
 };

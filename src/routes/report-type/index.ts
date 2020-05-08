@@ -1,6 +1,5 @@
 import * as add from './add';
 import * as deleteRoute from './delete';
-import * as findQuantity from './find-quantity';
 import * as find from './find';
 import * as get from './get';
 
@@ -29,36 +28,6 @@ class ReportTypeRoute {
       this.comms,
     )(parameters);
 
-  findQuantity = (parameters: findQuantity.Request):
-    Result<findQuantity.EffectiveRequest, findQuantity.Response> => controllerGenerator<
-      findQuantity.Request,
-      findQuantity.EffectiveRequest,
-      findQuantity.Response
-    >(
-      findQuantity.controllerGeneratorOptions,
-      ReportTypeRoute.routerPath,
-      ReportTypeRoute.auth,
-      this.comms,
-    )(parameters);
-
-
-  findQuantityTableController = (parameters: findQuantity.Query):
-    TableController<findQuantity.ResponseRow> => new TableController<findQuantity.ResponseRow>(
-      this.findQuantity,
-      (row: findQuantity.ResponseRow, sortBy: string) => {
-        let lastValueSortColumn;
-        if (sortBy === 'name') {
-          lastValueSortColumn = row.quantity.name;
-        } else {
-          lastValueSortColumn = row.quantity.hashId;
-        }
-        return {
-          lastValueSortColumn,
-          lastValueHashId: row.quantity.hashId,
-        };
-      },
-      parameters,
-    );
 
   delete = (parameters: deleteRoute.Request):
     Result<deleteRoute.EffectiveRequest, deleteRoute.Response> => controllerGenerator<

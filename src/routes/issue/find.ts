@@ -63,7 +63,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   })
     .with('lastValueSortColumn', 'lastValueHashId')
     .default(),
-  right: 'READ',
+  right: { environment: 'READ' },
   response: Joi.object().keys({
     rows: Joi.array().items(Joi.object().keys({
       issue: issueSchema.required(),

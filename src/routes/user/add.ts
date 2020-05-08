@@ -22,11 +22,11 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     rights: Joi.array().items(Joi.string()).required().example(['STATIC', 'USERS'])
       .description('See the getting started section about rights'),
   }).required(),
-  right: 'USERS',
+  right: { environment: 'USERS', supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
     hashId: Joi.string().required().example('b45zo0'),
   }).required(),
-  description: 'Add a user to an environment.',
+  description: 'Add a user to an environment or supplier.',
 };
 
 export {

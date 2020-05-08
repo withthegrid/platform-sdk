@@ -15,7 +15,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   params: Joi.object().keys({
     hashId: Joi.string().required().example('a9hhi0'),
   }).required(),
-  right: 'ISSUES',
+  right: { environment: 'ISSUES' },
   description: 'Delete a comment on an issue (if it is yours).',
 };
 

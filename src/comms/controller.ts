@@ -12,13 +12,13 @@ interface ResponseSchemaFunction {
 
 interface ControllerGeneratorOptions {
   description?: string;
-  method: 'get' | 'post' | 'put' | 'delete';
+  method: 'get' | 'post' | 'put' | 'delete' | 'all';
   path: string;
   params?: Joi.ObjectSchema;
   query?: Joi.ObjectSchema;
   body?: Joi.AnySchema;
   response?: Joi.AnySchema | ResponseSchemaFunction;
-  right: string | null;
+  right: { supplier?: string; environment?: string };
 }
 
 type RequestParams = Record<string, string | number>;
@@ -87,7 +87,7 @@ export default <RequestImplementation extends Request, EffectiveRequestImplement
 
   const responsePromise = new Promise((resolve, reject) => {
     comms.request(
-      options.method,
+      options.method === 'all' ? 'post' : options.method,
       path,
       validatedQuery,
       validatedBody,

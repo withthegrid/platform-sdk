@@ -1,4 +1,5 @@
 import Joi from '@hapi/joi';
+import { fieldsSchema, Fields } from './field-configuration';
 
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('dao97'),
@@ -11,9 +12,8 @@ const schema = Joi.object().keys({
   }).required(),
   name: Joi.string().required().example('My measurement location'),
   symbolKey: Joi.string().required().example('cp-pole'),
-  environmentHashId: Joi.string().required().example('f1a4w1'),
-  properties: Joi.object().default({}),
-  fields: Joi.object().example({ id: 'My measurement location' })
+  deviceFields: fieldsSchema.default({}),
+  fields: fieldsSchema.required().example({ id: 'My measurement location' })
     .description('The list of keys for an environment can be obtained by requesting the environment model (returned at login)'),
   deviceLinkHashId: Joi.string().allow(null).required()
     .description('In null, there is no sensor installed at this measurement location')
@@ -43,9 +43,8 @@ interface PinGroup {
   };
   name: string;
   symbolKey: string;
-  environmentHashId: string;
-  properties: Record<string, string | number>;
-  fields: Record<string, string>;
+  deviceFields: Fields;
+  fields: Fields;
   deviceLinkHashId: string | null;
   gridOrder: number | null;
   gridOrderUnlinked: number | null;

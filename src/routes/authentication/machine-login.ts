@@ -26,7 +26,7 @@ type ResponsesIncludingDeprecated = Response | {
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'post',
   path: '/machine-login',
-  right: null,
+  right: {},
   description: 'Acquire a JSON web token that can be used to perform authenticated requests. The jwt expiration is typically 30 days.',
   body: Joi.object().keys({
     assertion: Joi.string().required().example('12as:7d6a4123').description('Is provided when you create a machine account (also called an API account)'),

@@ -1,6 +1,6 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
-
+import { fieldsSchema, Fields } from '../../models/field-configuration';
 
 interface Request {
   body: {
@@ -8,7 +8,7 @@ interface Request {
       type: 'Point';
       coordinates: [number, number];
     };
-    fields: Record<string, string>;
+    fields: Fields;
   };
 }
 
@@ -26,9 +26,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
         .description('[lon, lat] in WGS84')
         .example([4.884707950517225, 52.37502141913572]),
     }).required(),
-    fields: Joi.object().required().example({ id: 'My node' }),
+    fields: fieldsSchema.required().example({ id: 'My node' }),
   }).required(),
-  right: 'STATIC',
+  right: { environment: 'STATIC' },
   response: Joi.object().keys({
     hashId: Joi.string().required().example('qp111a'),
   }).required(),

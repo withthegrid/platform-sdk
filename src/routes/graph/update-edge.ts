@@ -1,10 +1,9 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
-
+import { fieldsSchema, Fields } from '../../models/field-configuration';
 
 interface EffectiveLineStringBody {
-  fields?: Record<string, string>;
-  properties?: Record<string, string | number>;
+  fields?: Fields;
   mapLayer?: string;
   nodeHashIds?: [string, string];
   geometry?: { type: 'LineString'; coordinates: [number, number][] };
@@ -12,8 +11,7 @@ interface EffectiveLineStringBody {
 }
 
 interface EffectiveMultiLineStringBody {
-  fields?: Record<string, string>;
-  properties?: Record<string, string | number>;
+  fields?: Fields;
   mapLayer?: string;
   geometry: { type: 'MultiLineString'; coordinates: [number, number][][] };
   photo?: string | null;
@@ -38,8 +36,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   }).required(),
   body: Joi.alternatives().try(
     Joi.object().keys({
-      fields: Joi.object(),
-      properties: Joi.object(),
+      fields: fieldsSchema,
       mapLayer: Joi.string().invalid('nodes').example('myOtherLayer'),
       nodeHashIds: Joi.array().length(2).items(Joi.string().required())
         .example(['qp111a', 'qa222b'])
@@ -53,8 +50,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       photo: Joi.string().allow(null).description('Should be a dataurl. Null clears the photo'),
     }).required(),
     Joi.object().keys({
-      fields: Joi.object(),
-      properties: Joi.object(),
+      fields: fieldsSchema,
       mapLayer: Joi.string().invalid('nodes'),
       geometry: Joi.object().keys({
         type: Joi.string().valid('MultiLineString').required(),
@@ -69,7 +65,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   response: Joi.object().keys({
     name: Joi.string().required().example('Test segment'),
   }).required(),
-  right: 'STATIC',
+  right: { environment: 'STATIC' },
   description: 'Updates a specific edge',
 };
 

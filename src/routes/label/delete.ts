@@ -15,7 +15,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   params: Joi.object().keys({
     hashId: Joi.string().required().example('u98a24'),
   }).required(),
-  right: 'ISSUES',
+  right: { environment: 'ISSUES' },
   description: 'Delete a label.',
 };
 

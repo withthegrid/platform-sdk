@@ -26,7 +26,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     nodeHashId: Joi.string().allow(null).description('If supplied, should be one of the two endpoints of the provided edge hashId or null. If not supplied, the closest is chosen. Ignored for edges with geometry.type MultiLineString').example(null),
   }).required(),
   response: pinLinkSchema.required(),
-  right: 'STATIC',
+  right: { environment: 'STATIC' },
   description: 'Connects a pin to an edge. All measurements on that pin (also in the past) are also accessible on the edge. Pins can be connected to multiple edges and edges can be connected to multiple pins.',
 };
 

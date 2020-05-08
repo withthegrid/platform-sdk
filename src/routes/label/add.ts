@@ -20,7 +20,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     color: Joi.string().pattern(/^#[a-fA-F\d]{6}$/).required().description('#, followed by six hexadecimal characters')
       .example('#ff0000'),
   }).required(),
-  right: 'ISSUES',
+  right: { environment: 'ISSUES' },
   response: Joi.object().keys({
     hashId: Joi.string().required().example('u98a24'),
   }).required(),

@@ -36,7 +36,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     from: Joi.date().iso().required().example('2019-12-01T00:00Z'),
     to: Joi.date().iso().required().example('2020-01-01T00:00Z'),
   }).required(),
-  right: 'READ',
+  right: { environment: 'READ' },
   response: (apiVersion: number): Joi.ObjectSchema => {
     const base = Joi.object().keys({
       moreMeasurementsAvailable: Joi.boolean().required().example(false).description('Whether there are more than 310 measurements available'),

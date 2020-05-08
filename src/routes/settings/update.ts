@@ -27,7 +27,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     phone: Joi.string().allow(null),
     company: Joi.string().allow(null),
   }).required(),
-  right: null,
+  right: {},
   description: 'Update the settings of this user',
 };
 

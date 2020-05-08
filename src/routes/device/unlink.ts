@@ -16,7 +16,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   params: Joi.object().keys({
     deviceHashId: Joi.string().required().example('j1iha9'),
   }).required(),
-  right: 'SENSORS',
+  right: { environment: 'SENSORS' },
   description: 'Disconnect a device from a pin group. Future measurement reports from this device will no longer be registered on the pin group it was connected to.',
 };
 

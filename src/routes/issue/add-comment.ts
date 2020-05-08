@@ -38,7 +38,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       .example('This looks serious.'),
     closeIssue: Joi.boolean().default(false),
   }).required(),
-  right: 'ISSUES',
+  right: { environment: 'ISSUES' },
   response: Joi.object().keys({
     newComments: Joi.array().items(Joi.object().keys({
       comment: issueCommentSchema.required(),

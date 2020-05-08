@@ -12,7 +12,7 @@ type Response = Release[];
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
   path: '/releases',
-  right: null,
+  right: {},
   response: Joi.array().items(releaseSchema).required(),
   description: 'Get a list of recent changes to the platform',
 };

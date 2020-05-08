@@ -4,7 +4,8 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 import { schema as measurementSchema, Measurement, MeasurementV1 } from '../../models/measurement';
 import { schema as quantitySchema, Quantity } from '../../models/quantity';
 import { schema as reportTypeSchema, ReportType } from '../../models/report-type';
-
+import { schema as supplierReportTypeSchema, SupplierReportType } from '../../models/supplier-report-type';
+import { fieldsSchema, Fields } from '../../models/field-configuration';
 
 interface Request {
   params: {
@@ -20,8 +21,8 @@ interface Response {
   }[];
   deviceTypeKey: string | null;
   deviceHashId: string | null;
-  fields: Record<string, string>;
-  type: ReportType;
+  fields: Fields;
+  type: ReportType | SupplierReportType;
   quantities: Quantity[];
   pinGroupHashId: string | null;
   userName: string | null;
@@ -50,7 +51,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   params: Joi.object().keys({
     hashId: Joi.string().required().example('qoa978'),
   }).required(),
-  right: 'READ',
+  right: { environment: 'READ' },
   response: (apiVersion: number): Joi.ObjectSchema => {
     const base = Joi.object().keys({
       deviceTypeKey: Joi.string().allow(null).required().example('cp-pole'),
@@ -74,12 +75,12 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     return base.keys({
       pinGroupHashId: Joi.string().allow(null).required().example('dao97'),
       hashId: Joi.string().required().example('qoa978'),
-      fields: Joi.object().required().example({ id: 'My report' }),
+      fields: fieldsSchema.required().example({ id: 'My report' }),
       observations: Joi.array().items(Joi.object().keys({
         measurement: measurementSchema(apiVersion).required(),
         quantityHashId: Joi.string().required().example('sajia1'),
       })).required(),
-      type: reportTypeSchema.required(),
+      type: Joi.alternatives().try(reportTypeSchema, supplierReportTypeSchema).required(),
       quantities: Joi.array().items(quantitySchema).required(),
     });
   },

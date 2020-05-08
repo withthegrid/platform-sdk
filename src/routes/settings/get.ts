@@ -17,7 +17,7 @@ interface Response {
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
   path: '/',
-  right: null,
+  right: {},
   response: Joi.object().keys({
     environment: environmentSchema.description('A random environment this user has access to'),
     environmentRights: Joi.array().items(Joi.string()).example(['STATIC', 'USERS'])

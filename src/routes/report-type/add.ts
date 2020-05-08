@@ -12,7 +12,11 @@ type RequestQuantity = {
 interface Request {
   body: {
     name: string;
-    fieldConfigurations: FieldConfiguration[];
+    fieldConfigurations: {
+      pinGroup: FieldConfiguration[];
+      pin: FieldConfiguration[];
+      measurement: FieldConfiguration[];
+    };
     quantities: RequestQuantity[];
   };
 }
@@ -26,7 +30,11 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   path: '/',
   body: Joi.object().keys({
     name: Joi.string().required().example('Temperature'),
-    fieldConfigurations: Joi.array().items(fieldConfigurationSchema).required()
+    fieldConfigurations: Joi.object().keys({
+      pinGroup: Joi.array().items(fieldConfigurationSchema).required(),
+      pin: Joi.array().items(fieldConfigurationSchema).required(),
+      measurement: Joi.array().items(fieldConfigurationSchema).required(),
+    }).required()
       .description('See the chapter on open fields on how to use this'),
     quantities: Joi.array().items(Joi.alternatives().try(
       Joi.object().keys({
@@ -38,7 +46,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       }),
     )).required(),
   }).required(),
-  right: 'ENVIRONMENT_ADMIN',
+  right: { environment: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
     hashId: Joi.string().required().example('l19a7s'),
   }).required(),

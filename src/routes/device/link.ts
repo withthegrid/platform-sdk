@@ -39,8 +39,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     deviceTypeKey: Joi.string().required().allow(null).example('cp-pole'),
     measurementCycle: measurementCycleSchema.allow(null).required(),
   }).required(),
-  right: 'SENSORS',
-  description: 'Connect a device to a pin group (and its channels to the pin group\'s pins. Future measurement reports from this device will also be available on this pin group.',
+  right: { environment: 'SENSORS' },
+  description: 'Connect a device to a pin group (and its channels to the pin group\'s pins. Future measurement reports from this device will also be available on this pin group. A claim token for this device will be invalidated',
 };
 
 export {

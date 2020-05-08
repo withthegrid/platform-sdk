@@ -23,7 +23,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   params: Joi.object().keys({
     hashId: Joi.string().required().example('l19a7s'),
   }).required(),
-  right: 'READ',
+  right: { environment: 'READ' },
   response: Joi.object().keys({
     reportType: reportTypeSchema.required(),
     quantities: Joi.array().items(quantitySchema).required(),

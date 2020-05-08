@@ -32,7 +32,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   query: Joi.object().keys({
     mapLayers: Joi.array().items(Joi.string()).default(['default']),
   }).default(),
-  right: 'READ',
+  right: { environment: 'READ' },
   response: Joi.any().required().description('A protobuf encoded mapbox vector tile'),
   description: 'Get a mapbox vector tile of the edges, nodes and pin groups within the provided bounding box.',
 };

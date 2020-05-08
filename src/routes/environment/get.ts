@@ -22,7 +22,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   params: Joi.object().keys({
     hashId: Joi.string().required().example('f1a4w1'),
   }).required(),
-  right: null, // environmentHashId in header is irrelevant
+  right: {}, // environmentHashId in header is irrelevant
   response: Joi.object().keys({
     environment: environmentSchema.required(),
     environmentRights: Joi.array().items(Joi.string()).required().example(['STATIC', 'USERS'])

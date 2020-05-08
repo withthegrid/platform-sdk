@@ -52,7 +52,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     startAt: Joi.date(),
     endAt: Joi.date().allow(null),
   }).and('pinGroupHashId', 'pinHashId').required(),
-  right: 'ISSUES',
+  right: { environment: 'ISSUES' },
   response: Joi.object().keys({
     newComment: issueCommentSchema,
     newCommentUserName: Joi.string().allow(null).required().example('John Doe'),

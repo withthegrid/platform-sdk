@@ -1,10 +1,11 @@
 import Joi from '@hapi/joi';
+import { fieldsSchema, Fields } from './field-configuration';
 
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('e13d57'),
   pinGroupHashId: Joi.string().required().example('dao97'),
   name: Joi.string().required().example('My connecting point'),
-  fields: Joi.object().example({ id: 'My connecting point' })
+  fields: fieldsSchema.required().example({ id: 'My connecting point' })
     .description('The list of keys for an environment can be obtained by requesting the environment model (returned at login)'),
   level: Joi.number().integer().valid(0, 1, 2).required()
     .description('0: no serious or critical open issues, 1: one or more serious open issues an no critical open issues, 2: one or more critical open issues')
@@ -19,7 +20,7 @@ interface Pin {
   hashId: string;
   pinGroupHashId: string;
   name: string;
-  fields: Record<string, string>;
+  fields: Fields;
   level: 0 | 1 | 2;
   typeKey: string | null;
   deletedAt: Date | null;

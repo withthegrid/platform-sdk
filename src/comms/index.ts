@@ -35,18 +35,31 @@ class Comms {
     this.axios = axios;
   }
 
-  login(jwt: string, environmentHashId?: string): void {
+  login(jwt: string, environmentHashId?: string, type = 'environment'): void {
     this.axios.defaults.headers.common.Authorization = `Bearer ${jwt}`;
-    this.changeEnvironment(environmentHashId);
+    this.changeEnvironment(environmentHashId, type);
     this.loggedIn = true;
   }
 
-  changeEnvironment(environmentHashId?: string): void {
+  changeEnvironment(environmentHashId?: string, type = 'environment'): void {
     if (environmentHashId === undefined) {
       delete this.axios.defaults.headers.common['Environment-Hash-Id'];
-    } else {
+    } else if (type === 'environment') {
       this.axios.defaults.headers.common['Environment-Hash-Id'] = environmentHashId;
+    } else {
+      this.axios.defaults.headers.common['Environment-Hash-Id'] = `${type}:${environmentHashId}`;
     }
+  }
+
+  get environment(): { type: string; hashId: string } | undefined {
+    if (this.axios.defaults.headers.common['Environment-Hash-Id'] === undefined) {
+      return undefined;
+    }
+    const parts = this.axios.defaults.headers.common['Environment-Hash-Id'].split(':', 2);
+    if (parts.length === 1) {
+      return { type: 'environment', hashId: parts[0] };
+    }
+    return { type: parts[0], hashId: parts[1] };
   }
 
   logout(): void {
@@ -54,6 +67,7 @@ class Comms {
     delete this.axios.defaults.headers.common['Environment-Hash-Id'];
     this.loggedIn = false;
   }
+
 
   static getCancelToken(): CancelTokenSource {
     return Axios.CancelToken.source();

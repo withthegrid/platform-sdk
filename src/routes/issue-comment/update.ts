@@ -29,7 +29,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     comment: Joi.string().max(65536).allow('').required()
       .example('This looks serious.'),
   }).required(),
-  right: 'ISSUES',
+  right: { environment: 'ISSUES' },
   response: Joi.array().items(Joi.object().keys({
     comment: issueCommentSchema.required(),
     userName: Joi.string().allow(null).required().example('John Doe'),

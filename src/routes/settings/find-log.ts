@@ -50,7 +50,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     lastValueSortColumn: Joi.any(),
     lastValueHashId: Joi.string(),
   }).with('lastValueSortColumn', 'lastValueHashId').required(),
-  right: 'AUDIT_TRAIL',
+  right: { environment: 'AUDIT_TRAIL' },
   response: Joi.object().keys({
     rows: Joi.array().items(Joi.object().keys({
       log: logSchema.required(),

@@ -51,7 +51,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     startAt: Joi.date().required().example('2019-12-31T15:23Z'),
     endAt: Joi.date().allow(null).default(null),
   }).required(),
-  right: 'ISSUES',
+  right: { environment: 'ISSUES' },
   response: Joi.object().keys({
     hashId: Joi.string().required().example('c19aid'),
     mentionedUsers: Joi.array().items(Joi.object().keys({

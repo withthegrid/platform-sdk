@@ -15,7 +15,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   params: Joi.object().keys({
     hashId: Joi.string().required().example('ga9741s'),
   }).required(),
-  right: 'SENSORS',
+  right: { environment: 'SENSORS', supplier: 'ENVIRONMENT_ADMIN' },
   description: 'Delete a command. Will raise an error if the command cannot be canceled because the device has already executed it or because the device will not be reached in time to let it know that it should ignore the command.',
 };
 

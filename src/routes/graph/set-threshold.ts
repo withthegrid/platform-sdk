@@ -33,7 +33,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       criticallyHigh: siNumberSchema.allow(null).required().description('If null, incoming measurements are not checked against this value'),
     }).required(),
   }).required(),
-  right: 'ISSUES',
+  right: { environment: 'ISSUES' },
   response: Joi.object().keys({
     hashId: Joi.string().required().example('tap192'),
   }).required(),

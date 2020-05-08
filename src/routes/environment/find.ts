@@ -27,7 +27,7 @@ interface Response {
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
   path: '/',
-  right: null, // everyone can find an environment
+  right: {}, // everyone can find an environment
   query: Joi.object().keys({
     sortBy: Joi.string().valid('name', 'hashId').default('hashId'),
     descending: Joi.boolean().default(true),

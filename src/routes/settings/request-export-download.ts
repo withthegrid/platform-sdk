@@ -19,7 +19,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   params: Joi.object().keys({
     hashId: Joi.string().required().example('maay1'),
   }).required(),
-  right: 'EXPORT',
+  right: { environment: 'EXPORT' },
   response: Joi.object().keys({
     token: Joi.string().required().example('1as71562gg'),
   }).required(),

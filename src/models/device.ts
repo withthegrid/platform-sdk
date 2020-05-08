@@ -1,24 +1,14 @@
 import Joi from '@hapi/joi';
 
 import { schema as measurementCycleSchema, MeasurementCycle } from './measurement-cycle';
+import { fieldsSchema, Fields } from './field-configuration';
 
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('j1iha9'),
-  mcuId: Joi.string().required().description('The microchip identifier of the sensor').example('390044000351352237353037'),
-  environmentHashId: Joi.string().allow(null).required().example('f1a4w1'),
-  typeKey: Joi.string().valid(
-    'cp-pole',
-    'cp-pole-2',
-    'cp-pole-coupon',
-    'cp-rect',
-    'cp-rect-modbus',
-    'cp-rect-analog',
-    'dh-home',
-    'dh-leak-1',
-    'dh-leak-2',
-    'dh-station',
-  ).required().example('cp-pole'),
-  properties: Joi.object().required().example({}),
+  supplierHashId: Joi.string().required().example('f1a4w1'),
+  supplierDeviceIdentifier: Joi.string().required().example('390044000351352237353037').description('Should be unique within the supplier'),
+  deviceTypeHashId: Joi.string().required().example('wasd2'),
+  fields: fieldsSchema.required().example({}),
   measurementCycle: measurementCycleSchema,
   lastOnlineAt: Joi.date().allow(null).required().example('2019-12-31T15:23Z'),
   validated: Joi.boolean().required().example(true),
@@ -29,10 +19,10 @@ const schema = Joi.object().keys({
 
 interface Device {
   hashId: string;
-  mcuId: string;
-  environmentHashId: string | null;
-  typeKey: string;
-  properties: Record<string, string | number>;
+  supplierHashId: string;
+  supplierDeviceIdentifier: string;
+  deviceTypeHashId: string;
+  fields: Fields;
   measurementCycle: MeasurementCycle;
   lastOnlineAt: Date | null;
   validated: boolean;

@@ -12,7 +12,7 @@ interface Request {
 
 interface Response {
   user: User;
-  environmentRights: string[];
+  rights: string[];
 }
 
 
@@ -22,10 +22,10 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   params: Joi.object().keys({
     hashId: Joi.string().required().example('b45zo0'),
   }).required(),
-  right: 'USERS',
+  right: { environment: 'USERS', supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
     user: userSchema.required(),
-    environmentRights: Joi.array().items(Joi.string()).required().example(['STATIC', 'USERS'])
+    rights: Joi.array().items(Joi.string()).required().example(['STATIC', 'USERS'])
       .description('See the getting started section about rights'),
   }).required(),
   description: 'Get a specific user identified by its hashId',

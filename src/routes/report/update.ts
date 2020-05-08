@@ -1,5 +1,6 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
+import { fieldsSchema, Fields } from '../../models/field-configuration';
 
 interface NewMeasurement {
   pinHashId: string;
@@ -24,7 +25,7 @@ interface Request {
   };
   body: {
     generatedAt?: Date;
-    fields?: Record<string, string>;
+    fields?: Fields;
     measurements: ReportUpdate[];
   };
 }
@@ -64,9 +65,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
           .description('The measured value is significand * 10 ^ orderOfMagnitude. It has as many significant figures as the significand has (except when the significand is 0, then the number of significant figures is not defined)'),
       }),
     )).required(),
-    fields: Joi.object(),
+    fields: fieldsSchema,
   }).required(),
-  right: 'REPORTS',
+  right: { environment: 'REPORTS' },
 };
 
 export {

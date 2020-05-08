@@ -26,7 +26,7 @@ interface Response {
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
   path: '/quantities',
-  right: 'READ',
+  right: { environment: 'READ', supplier: 'ENVIRONMENT_ADMIN' },
   query: Joi.object().keys({
     sortBy: Joi.string().valid('name', 'hashId').default('hashId'),
     descending: Joi.boolean().default(true),

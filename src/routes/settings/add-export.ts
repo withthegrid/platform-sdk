@@ -29,7 +29,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     delimiter: Joi.string().valid(',', ';').required().example(','),
     rowDelimiter: Joi.string().valid('\n', '\r\n').required().example('\n'),
   }).required(),
-  right: 'EXPORT',
+  right: { environment: 'EXPORT' },
   response: Joi.object().keys({
     hashId: Joi.string().required().example('maay1'),
   }).required(),

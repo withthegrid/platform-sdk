@@ -23,7 +23,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   params: Joi.object().keys({
     hashId: Joi.string().required().example('ga9741s'),
   }).required(),
-  right: 'READ',
+  right: { environment: 'READ', supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
     command: commandSchema.required(),
     pinGroup: pinGroupSchema.allow(null).required(),

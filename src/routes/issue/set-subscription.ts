@@ -21,7 +21,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   body: Joi.object().keys({
     subscribed: Joi.boolean().required().example(true),
   }).required(),
-  right: 'READ',
+  right: { environment: 'READ' },
   description: 'Subscribe to or unsubscribe from a specific issue',
 };
 

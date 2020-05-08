@@ -15,7 +15,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   params: Joi.object().keys({
     hashId: Joi.string().required().example('ka08d'),
   }).required(),
-  right: 'STATIC',
+  right: { environment: 'STATIC' },
   description: 'Delete an edge.',
 };
 

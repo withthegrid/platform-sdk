@@ -1,5 +1,6 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
+import { fieldsSchema, Fields } from '../../models/field-configuration';
 
 interface Request {
   body: {
@@ -13,7 +14,7 @@ interface Request {
     }[];
     reportTypeHashId: string;
     pinGroupHashId: string;
-    fields?: Record<string, string>;
+    fields?: Fields;
   };
 }
 
@@ -41,9 +42,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     })).required(),
     reportTypeHashId: Joi.string().required().example('l19a7s'),
     pinGroupHashId: Joi.string().required().example('dao97'),
-    fields: Joi.object(),
+    fields: fieldsSchema,
   }).required(),
-  right: 'REPORTS',
+  right: { environment: 'REPORTS' },
   response: Joi.object().keys({
     hashId: Joi.string().required().example('qoa978'),
   }).required(),

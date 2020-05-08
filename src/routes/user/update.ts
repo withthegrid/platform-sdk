@@ -10,11 +10,6 @@ interface Request {
   };
 }
 
-type EffectiveRequest = {
-  params: Required<Request['params']>;
-  body: Required<Request['body']>;
-}
-
 type Response = void;
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
@@ -27,13 +22,13 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     rights: Joi.array().items(Joi.string()).required().example(['STATIC', 'USERS'])
       .description('See the getting started section about rights'),
   }).required(),
-  right: 'USERS',
-  description: 'Update the rights of a user for this environment.',
+  right: { environment: 'USERS', supplier: 'ENVIRONMENT_ADMIN' },
+  description: 'Update the rights of a user for this environment or supplier.',
 };
 
 export {
   controllerGeneratorOptions,
   Request,
-  EffectiveRequest,
+  Request as EffectiveRequest,
   Response,
 };

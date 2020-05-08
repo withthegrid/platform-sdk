@@ -7,7 +7,6 @@ const schema = Joi.object().keys({
   objectHashId: Joi.string().allow(null).required().example('ga9741s'),
   subObjectType: Joi.string().allow(null).required().example(null),
   subObjectHashId: Joi.string().allow(null).required().example(null),
-  environmentHashId: Joi.string().allow(null).required().example('f1a4w1'),
   action: Joi.string().max(32).required().example('delete'),
   diff: Joi.object().keys({
     old: Joi.any(),
@@ -28,7 +27,6 @@ interface Log {
   objectHashId: string | null;
   subObjectType: string | null;
   subObjectHashId: string | null;
-  environmentHashId: string | null;
   action: string;
   diff: {
     old: any;

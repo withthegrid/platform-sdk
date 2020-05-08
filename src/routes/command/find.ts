@@ -1,7 +1,6 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
-import { schema as environmentSchema, Environment } from '../../models/environment';
 import { schema as commandSchema, Command } from '../../models/command';
 import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
 
@@ -12,7 +11,6 @@ interface Query extends TableQuery {
   pinGroupHashId?: string | null;
   edgeHashId?: string | null;
   gridHashId?: string | null;
-  allEnvironments?: boolean;
 }
 
 interface Request {
@@ -23,7 +21,6 @@ interface EffectiveQuery extends EffectiveTableQuery {
   pinGroupHashId: string | null;
   edgeHashId: string | null;
   gridHashId: string | null;
-  allEnvironments: boolean;
 }
 
 interface EffectiveRequest {
@@ -33,7 +30,6 @@ interface EffectiveRequest {
 interface ResponseRow {
   command: Command;
   pinGroup: PinGroup | null;
-  environment: Environment | null;
 }
 
 interface Response {
@@ -48,7 +44,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     pinGroupHashId: Joi.string().allow(null).default(null),
     edgeHashId: Joi.string().allow(null).default(null),
     gridHashId: Joi.string().allow(null).default(null),
-    allEnvironments: Joi.boolean().default(false),
     sortBy: Joi.string().valid('hashId').default('hashId'),
     descending: Joi.boolean().default(true),
     rowsPerPage: Joi.number()
@@ -62,12 +57,11 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   })
     .with('lastValueSortColumn', 'lastValueHashId')
     .default(),
-  right: 'READ',
+  right: { environment: 'READ', supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
     rows: Joi.array().items(Joi.object().keys({
       command: commandSchema.required(),
       pinGroup: pinGroupSchema.allow(null).required(),
-      environment: environmentSchema.allow(null).required(),
     })).required(),
   }),
   description: 'Search through commands',

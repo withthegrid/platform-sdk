@@ -15,7 +15,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   params: Joi.object().keys({
     hashId: Joi.string().required().example('naud51'),
   }).required(),
-  right: 'STATIC',
+  right: { environment: 'STATIC' },
   description: 'Delete a grid.',
 };
 

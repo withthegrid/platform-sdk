@@ -8,7 +8,7 @@ type Response = void;
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'delete',
   path: '/',
-  right: 'ENVIRONMENT_ADMIN',
+  right: { environment: 'ENVIRONMENT_ADMIN' },
   description: 'Delete an environment. No user can access it afterwards.',
 };
 

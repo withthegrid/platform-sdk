@@ -17,7 +17,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     pinHashId: Joi.string().required().example('e13d57'),
     edgeHashId: Joi.string().required().example('ka08d'),
   }).required(),
-  right: 'STATIC',
+  right: { environment: 'STATIC' },
   description: 'Disconnect an edge from a pin. Measurements on the pin (also historic ones) will not be accessible anymore from the edge.',
 };
 

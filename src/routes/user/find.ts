@@ -21,7 +21,7 @@ interface EffectiveRequest {
 
 interface ResponseRow {
   user: User;
-  environmentRights: string[];
+  rights: string[];
 }
 
 interface Response {
@@ -45,15 +45,15 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   })
     .with('lastValueSortColumn', 'lastValueHashId')
     .default(),
-  right: 'USERS',
+  right: { environment: 'USERS', supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
     rows: Joi.array().items(Joi.object().keys({
       user: userSchema.required(),
-      environmentRights: Joi.array().items(Joi.string()).example(['STATIC', 'USERS'])
+      rights: Joi.array().items(Joi.string()).example(['STATIC', 'USERS'])
         .description('See the getting started section about rights'),
     })).required(),
   }),
-  description: 'Search through users',
+  description: 'Search through users wihtin an environment or supplier',
 };
 
 export {
