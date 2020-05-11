@@ -7,8 +7,6 @@ interface Request {
   };
   body: {
     supplierOnly?: boolean;
-    encoder?: string | null;
-    decoder?: string | null;
   };
 }
 
@@ -23,8 +21,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   }).required(),
   body: Joi.object().keys({
     supplierOnly: Joi.boolean().description('If true, this type of command can not be created from an environment'),
-    encoder: Joi.string().allow(null).description('A javascript function that encodes the field values to a settings object. If null, fields will be used. See [add link]'),
-    decoder: Joi.string().allow(null).description('A javascript function that decodes a settings object into field values. If null, settings will be used. See [add link]'),
   }).required(),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
   description: 'Update a command type.',

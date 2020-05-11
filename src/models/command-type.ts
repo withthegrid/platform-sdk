@@ -3,26 +3,6 @@ import Joi from '@hapi/joi';
 import { schema as fieldConfigurationSchema, FieldConfiguration } from './field-configuration';
 
 
-const encoderExample = `function (command) {
-  return JSON.stringify({
-    hashId: command.hashId,
-    commandTypeHashId: command.commandTypeHashId,
-    startAt: command.startAt,
-    endAt: command.endAt,
-    settings: command.settings,
-  });
-}`;
-
-const decoderExample = `function (command) {
-  return JSON.stringify({
-    hashId: command.hashId,
-    commandTypeHashId: command.commandTypeHashId,
-    startAt: command.startAt,
-    endAt: command.endAt,
-    settings: command.settings,
-  });
-}`;
-
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('x18a92'),
   name: Joi.string().required().example('Measurement cycle'),
@@ -33,10 +13,6 @@ const schema = Joi.object().keys({
   supplierOnly: Joi.boolean().required().example(false).description('If true, this type of command can not be created from an environment'),
   fieldConfigurations: Joi.array().items(fieldConfigurationSchema).required()
     .description('See the chapter on open fields on how to use this'),
-  encoder: Joi.string().allow(null).required().example(encoderExample)
-    .description('A javascript function that encodes the field values to a settings object. If null, fields will be used. See [add link]'),
-  decoder: Joi.string().allow(null).required().example(decoderExample)
-    .description('A javascript function that decodes a settings object into field values. If null, settings will be used. See [add link]'),
 })
   .description('An object defining what a command type should look like: the template for commands sent to devices')
   .tag('commandType');
@@ -49,10 +25,8 @@ interface CommandType {
   end: 'required' | 'optional' | 'disabled';
   supplierOnly: boolean;
   fieldConfigurations: FieldConfiguration[];
-  encoder: string | null;
-  decoder: string | null;
 }
 
 export {
-  schema, CommandType, encoderExample, decoderExample,
+  schema, CommandType,
 };

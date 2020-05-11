@@ -1,7 +1,6 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 import { schema as fieldConfigurationSchema, FieldConfiguration } from '../../models/field-configuration';
-import { encoderExample, decoderExample } from '../../models/command-type';
 
 
 interface Request {
@@ -11,8 +10,6 @@ interface Request {
     end?: 'required' | 'optional' | 'disabled';
     supplierOnly?: boolean;
     fieldConfigurations: FieldConfiguration[];
-    encoder?: string | null;
-    decoder?: string | null;
   };
 }
 
@@ -35,10 +32,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     supplierOnly: Joi.boolean().default(false).description('If true, this type of command can not be created from an environment'),
     fieldConfigurations: Joi.array().items(fieldConfigurationSchema).required()
       .description('See the chapter on open fields on how to use this'),
-    encoder: Joi.string().allow(null).default(null).example(encoderExample)
-      .description('A javascript function that encodes the field values to a settings object. If null, fields will be used. See [add link]'),
-    decoder: Joi.string().allow(null).default(null).example(decoderExample)
-      .description('A javascript function that decodes a settings object into field values. If null, settings will be used. See [add link]'),
   }).required(),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
