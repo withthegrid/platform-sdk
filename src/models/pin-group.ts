@@ -12,7 +12,7 @@ const schema = Joi.object().keys({
   }).required(),
   name: Joi.string().required().example('My measurement location'),
   symbolKey: Joi.string().required().example('cp-pole'),
-  deviceFields: fieldsSchema.default({}),
+  deviceFields: fieldsSchema.required().example({}),
   fields: fieldsSchema.required().example({ id: 'My measurement location' })
     .description('The list of keys for an environment can be obtained by requesting the environment model (returned at login)'),
   deviceLinkHashId: Joi.string().allow(null).required()

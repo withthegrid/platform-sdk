@@ -7,7 +7,8 @@ interface Request {
     hashId: string;
   };
   body: {
-    fields: Fields;
+    deviceFields?: Fields;
+    fields?: Fields;
   };
 }
 
@@ -22,7 +23,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     hashId: Joi.string().required().example('e13d57'),
   }).required(),
   body: Joi.object().keys({
-    fields: fieldsSchema.required().example({ id: 'My connecting point' }),
+    deviceFields: fieldsSchema,
+    fields: fieldsSchema.example({ id: 'My connecting point' }),
   }).required(),
   response: Joi.object().keys({
     name: Joi.string().required().example('My connecting point'),
