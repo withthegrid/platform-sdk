@@ -15,8 +15,6 @@ interface Request {
 interface Response {
   device: Device;
   pinGroup: PinGroup | null;
-  softwareVersion: DeviceSoftwareVersion | null;
-  mobileIdentity: DeviceMobileIdentity | null;
 }
 
 
@@ -30,8 +28,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   response: Joi.object().keys({
     device: deviceSchema.required(),
     pinGroup: pinGroupSchema.allow(null).required().description('Will be null when queried from supplier'),
-    softwareVersion: deviceSoftwareVersionSchema.allow(null).required(),
-    mobileIdentity: deviceMobileIdentitySchema.allow(null).required(),
   }),
   description: 'Get a specific device identified by its hashId',
 };

@@ -26,8 +26,6 @@ interface EffectiveRequest {
 interface ResponseRow {
   device: Device;
   pinGroup: PinGroup | null;
-  softwareVersion: DeviceSoftwareVersion | null;
-  mobileIdentity: DeviceMobileIdentity | null;
 }
 
 interface Response {
@@ -57,8 +55,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     rows: Joi.array().items(Joi.object().keys({
       device: deviceSchema.required(),
       pinGroup: pinGroupSchema.allow(null).required().description('Will be null when queried from supplier'),
-      softwareVersion: deviceSoftwareVersionSchema.allow(null).required(),
-      mobileIdentity: deviceMobileIdentitySchema.allow(null).required(),
     })).required(),
   }),
   description: 'Search through devices',
