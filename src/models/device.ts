@@ -9,7 +9,7 @@ const schema = Joi.object().keys({
   supplierDeviceIdentifier: Joi.string().required().example('390044000351352237353037').description('Should be unique within the supplier'),
   deviceTypeHashId: Joi.string().required().example('wasd2'),
   fields: fieldsSchema.required().example({}),
-  measurementCycle: measurementCycleSchema,
+  measurementCycle: measurementCycleSchema.allow(null).required(),
   lastOnlineAt: Joi.date().allow(null).required().example('2019-12-31T15:23Z'),
   validated: Joi.boolean().required().example(true),
 })
@@ -23,7 +23,7 @@ interface Device {
   supplierDeviceIdentifier: string;
   deviceTypeHashId: string;
   fields: Fields;
-  measurementCycle: MeasurementCycle;
+  measurementCycle: MeasurementCycle | null;
   lastOnlineAt: Date | null;
   validated: boolean;
 }
