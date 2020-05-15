@@ -1,6 +1,6 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
-import { fieldsSchema, Fields } from '../../models/field-configuration';
+import { fieldsToServerUpdateSchema, FieldsToServerUpdate } from '../../models/field-configuration';
 
 interface Request {
   params: {
@@ -12,11 +12,11 @@ interface Request {
       type: 'Point';
       coordinates: [number, number];
     };
-    fields?: Fields;
+    fields?: FieldsToServerUpdate;
     gridHashId?: string | null;
     mapLayer?: string;
     gridName?: string | null;
-    deviceFields?: Fields;
+    deviceFields?: FieldsToServerUpdate;
     photo?: string | null;
   };
 }
@@ -37,11 +37,11 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       type: Joi.string().valid('Point').required(),
       coordinates: Joi.array().length(2).items(Joi.number()),
     }),
-    fields: fieldsSchema,
+    fields: fieldsToServerUpdateSchema,
     gridHashId: Joi.string().allow(null),
     mapLayer: Joi.string().invalid('nodes'),
     gridName: Joi.string().allow(null).description('If multiple grids exist with the same name, one is chosen at random'),
-    deviceFields: fieldsSchema,
+    deviceFields: fieldsToServerUpdateSchema,
     photo: Joi.string().allow(null).description('Should be a dataurl. Null clears the photo'),
   }).required().nand('gridHashId', 'gridName'),
   response: Joi.object().keys({

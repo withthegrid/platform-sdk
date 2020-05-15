@@ -1,17 +1,17 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
-import { fieldsSchema, Fields } from '../../models/field-configuration';
+import { fieldsToServerFullSchema, FieldsToServerFull } from '../../models/field-configuration';
 
 interface Request {
   body: {
     nodeHashIds: [string | null] | [string | null, string | null];
     geometry: { type: 'LineString'; coordinates: [number, number][] };
-    fields: Fields;
+    fields: FieldsToServerFull;
     mapLayer?: string;
     photo?: string;
   } | {
     geometry: { type: 'MultiLineString'; coordinates: [number, number][][] };
-    fields: Fields;
+    fields: FieldsToServerFull;
     mapLayer?: string;
     photo?: string;
   };
@@ -20,14 +20,14 @@ interface Request {
 interface EffectiveLineStringBody {
   nodeHashIds: [string | null] | [string | null, string | null];
   geometry: { type: 'LineString'; coordinates: [number, number][] };
-  fields: Fields;
+  fields: FieldsToServerFull;
   mapLayer?: string;
   photo?: string;
 }
 
 interface EffectiveMultiLineStringBody {
   geometry: { type: 'MultiLineString'; coordinates: [number, number][][] };
-  fields: Fields;
+  fields: FieldsToServerFull;
   mapLayer?: string;
   photo?: string;
 }
@@ -60,7 +60,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
             [4.924301064507517, 52.364277347881085],
           ]),
       }).required(),
-      fields: fieldsSchema.required().example({ id: 'My segment' }),
+      fields: fieldsToServerFullSchema.required().example({ id: 'My segment' }),
       mapLayer: Joi.string().invalid('nodes').example('myLayer'),
       photo: Joi.string().description('Should be a dataurl'),
     }).required(),
@@ -72,7 +72,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
             .items(Joi.array().length(2).items(Joi.number()).description('[lon, lat] in WGS84')))
           .required(),
       }).required(),
-      fields: fieldsSchema.required().example({ id: 'My segment' }),
+      fields: fieldsToServerFullSchema.required().example({ id: 'My segment' }),
       mapLayer: Joi.string().invalid('nodes'),
       photo: Joi.string().description('Should be a dataurl'),
     }).required(),

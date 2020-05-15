@@ -3,6 +3,7 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as commandSchema, Command } from '../../models/command';
 import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
+import { schema as fileFromServerSchema, FileFromServer } from '../../models/file-from-server';
 
 
 interface Request {
@@ -14,6 +15,7 @@ interface Request {
 interface Response {
   command: Command;
   pinGroup: PinGroup | null;
+  files: FileFromServer[];
 }
 
 
@@ -27,6 +29,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   response: Joi.object().keys({
     command: commandSchema.required(),
     pinGroup: pinGroupSchema.allow(null).required(),
+    files: Joi.array().items(fileFromServerSchema).required(),
   }).required(),
   description: 'Get a specific command identified by its hashId',
 };

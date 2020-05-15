@@ -1,13 +1,13 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
-import { fieldsSchema, Fields } from '../../models/field-configuration';
+import { fieldsToServerUpdateSchema, FieldsToServerUpdate } from '../../models/field-configuration';
 
 interface Request {
   params: {
     hashId: string;
   };
   body: {
-    fields?: Fields;
+    fields?: FieldsToServerUpdate;
     photo?: string | null;
   };
 }
@@ -23,7 +23,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     hashId: Joi.string().required().example('naud51'),
   }).required(),
   body: Joi.object().keys({
-    fields: fieldsSchema.example({ id: 'My grid' }),
+    fields: fieldsToServerUpdateSchema.example({ id: 'My grid' }),
     photo: Joi.string().allow(null).description('Should be a dataurl. Null clears the photo'),
   }).required(),
   response: Joi.object().keys({

@@ -3,8 +3,6 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as deviceSchema, Device } from '../../models/device';
 import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
-import { schema as deviceSoftwareVersionSchema, DeviceSoftwareVersion } from '../../models/device-software-version';
-import { schema as deviceMobileIdentitySchema, DeviceMobileIdentity } from '../../models/device-mobile-identity';
 
 import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
 

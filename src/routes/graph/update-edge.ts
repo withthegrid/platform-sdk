@@ -1,9 +1,9 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
-import { fieldsSchema, Fields } from '../../models/field-configuration';
+import { fieldsToServerUpdateSchema, FieldsToServerUpdate } from '../../models/field-configuration';
 
 interface EffectiveLineStringBody {
-  fields?: Fields;
+  fields?: FieldsToServerUpdate;
   mapLayer?: string;
   nodeHashIds?: [string, string];
   geometry?: { type: 'LineString'; coordinates: [number, number][] };
@@ -11,7 +11,7 @@ interface EffectiveLineStringBody {
 }
 
 interface EffectiveMultiLineStringBody {
-  fields?: Fields;
+  fields?: FieldsToServerUpdate;
   mapLayer?: string;
   geometry: { type: 'MultiLineString'; coordinates: [number, number][][] };
   photo?: string | null;
@@ -36,7 +36,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   }).required(),
   body: Joi.alternatives().try(
     Joi.object().keys({
-      fields: fieldsSchema,
+      fields: fieldsToServerUpdateSchema,
       mapLayer: Joi.string().invalid('nodes').example('myOtherLayer'),
       nodeHashIds: Joi.array().length(2).items(Joi.string().required())
         .example(['qp111a', 'qa222b'])
@@ -50,7 +50,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       photo: Joi.string().allow(null).description('Should be a dataurl. Null clears the photo'),
     }).required(),
     Joi.object().keys({
-      fields: fieldsSchema,
+      fields: fieldsToServerUpdateSchema,
       mapLayer: Joi.string().invalid('nodes'),
       geometry: Joi.object().keys({
         type: Joi.string().valid('MultiLineString').required(),

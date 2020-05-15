@@ -5,7 +5,8 @@ import { schema as measurementSchema, Measurement, MeasurementV1 } from '../../m
 import { schema as quantitySchema, Quantity } from '../../models/quantity';
 import { schema as reportTypeSchema, ReportType } from '../../models/report-type';
 import { schema as supplierReportTypeSchema, SupplierReportType } from '../../models/supplier-report-type';
-import { fieldsSchema, Fields } from '../../models/field-configuration';
+import { fieldsFromServerSchema, FieldsFromServer } from '../../models/field-configuration';
+import { schema as fileFromServerSchema, FileFromServer } from '../../models/file-from-server';
 
 interface Request {
   params: {
@@ -21,13 +22,14 @@ interface Response {
   }[];
   deviceTypeKey: string | null;
   deviceHashId: string | null;
-  fields: Fields;
+  fields: FieldsFromServer;
   type: ReportType | SupplierReportType;
   quantities: Quantity[];
   pinGroupHashId: string | null;
   userName: string | null;
   generatedAt: Date | null;
   createdAt: Date;
+  files: FileFromServer[];
 }
 
 type ResponsesIncludingDeprecated = Response | {
@@ -75,13 +77,14 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     return base.keys({
       pinGroupHashId: Joi.string().allow(null).required().example('dao97'),
       hashId: Joi.string().required().example('qoa978'),
-      fields: fieldsSchema.required().example({ id: 'My report' }),
+      fields: fieldsFromServerSchema.required().example({ id: 'My report' }),
       observations: Joi.array().items(Joi.object().keys({
         measurement: measurementSchema(apiVersion).required(),
         quantityHashId: Joi.string().required().example('sajia1'),
       })).required(),
       type: Joi.alternatives().try(reportTypeSchema, supplierReportTypeSchema).required(),
       quantities: Joi.array().items(quantitySchema).required(),
+      files: Joi.array().items(fileFromServerSchema).required(),
     });
   },
   description: 'Get a specific report identified by its hashId',

@@ -5,6 +5,7 @@ import { schema as pinSchema, Pin } from '../../models/pin';
 import { schema as edgeSchema, Edge } from '../../models/edge';
 import { schema as thresholdSchema, Threshold } from '../../models/threshold';
 import { schema as quantitySchema, Quantity } from '../../models/quantity';
+import { schema as fileFromServerSchema, FileFromServer } from '../../models/file-from-server';
 
 interface Request {
   params: {
@@ -19,6 +20,7 @@ interface Response {
     value: Threshold;
     quantity: Quantity;
   }[];
+  files: FileFromServer[];
 }
 
 
@@ -36,6 +38,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       value: thresholdSchema.required(),
       quantity: quantitySchema.required(),
     })).required(),
+    files: Joi.array().items(fileFromServerSchema).required(),
   }).required(),
   description: 'Get a specific pin identified by its hashId',
 };

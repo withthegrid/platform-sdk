@@ -1,14 +1,14 @@
 import Joi from '@hapi/joi';
 
-import { Fields, fieldsSchema } from '../field-configuration';
+import { fieldsToFieldConfigurationUdfSchema, FieldsToFieldConfigurationUdf } from '../field-configuration';
 import { schemaConstructor as supplierActivityConstructor, SupplierActivity } from './base';
 
 
 interface SetDeviceFields extends SupplierActivity<'setDeviceFields'> {
   triggerData: {
     diff?: {
-      old: Fields;
-      new: Fields;
+      old: FieldsToFieldConfigurationUdf;
+      new: FieldsToFieldConfigurationUdf;
     };
   };
 }
@@ -17,8 +17,8 @@ const schema = supplierActivityConstructor(
   'setDeviceFields',
   Joi.object().keys({
     diff: Joi.object().keys({
-      old: fieldsSchema.required(),
-      new: fieldsSchema.required(),
+      old: fieldsToFieldConfigurationUdfSchema.required(),
+      new: fieldsToFieldConfigurationUdfSchema.required(),
     }).example({ old: { version: '1.1' }, new: { version: '1.2' } }),
   }).required(),
 )

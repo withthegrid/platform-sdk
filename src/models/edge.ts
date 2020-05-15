@@ -1,5 +1,5 @@
 import Joi from '@hapi/joi';
-import { fieldsSchema, Fields } from './field-configuration';
+import { fieldsFromServerSchema, FieldsFromServer } from './field-configuration';
 
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('ka08d'),
@@ -25,7 +25,7 @@ const schema = Joi.object().keys({
     }).required(),
   ),
   name: Joi.string().required().example('My segment'),
-  fields: fieldsSchema.required().example({ id: 'My segment' })
+  fields: fieldsFromServerSchema.required().example({ id: 'My segment' })
     .description('The list of keys for an environment can be obtained by requesting the environment model (returned at login)'),
   level: Joi.number().integer().valid(0, 1, 2).required()
     .description('0: no serious or critical open issues, 1: one or more serious open issues an no critical open issues, 2: one or more critical open issues')
@@ -42,7 +42,7 @@ interface Edge {
   node2HashId: string | null;
   geometry: { type: 'LineString'; coordinates: [number, number][] } | { type: 'MultiLineString'; coordinates: [number, number][][] };
   name: string;
-  fields: Fields;
+  fields: FieldsFromServer;
   level: 0 | 1 | 2;
   mapLayer: string;
   deletedAt: Date | null;

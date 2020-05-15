@@ -1,6 +1,6 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
-import { fieldsSchema, Fields } from '../../models/field-configuration';
+import { fieldsToServerFullSchema, FieldsToServerFull } from '../../models/field-configuration';
 
 
 interface Request {
@@ -8,7 +8,7 @@ interface Request {
     objectType: 'device' | 'pinGroup';
     objectHashIds: string[];
     commandTypeHashId: string;
-    fields: Fields;
+    fields: FieldsToServerFull;
     startAt: Date | null;
     delay: number;
     endAt: Date | null;
@@ -29,7 +29,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     objectType: Joi.string().valid('device', 'pinGroup').required().example('device'),
     objectHashIds: Joi.array().items(Joi.string().example('j1iha9')).min(1).required(),
     commandTypeHashId: Joi.string().required().example('x18a92'),
-    fields: fieldsSchema.required().example({ interval: 86400 }),
+    fields: fieldsToServerFullSchema.required().example({ interval: 86400 }),
     startAt: Joi.date().allow(null).default(null).example('2019-12-31T15:23Z')
       .description('Timestamp the device should execute the command. The system tries to share the command with the device before that time. If null, the device should execute it at time of receival + command.delay. It depends on the commandType whether startAt can be null'),
     delay: Joi.number().default(0).description('In seconds. Only relevant when startAt is null. The command should then be executed by the device at time of receival + delay'),

@@ -1,12 +1,13 @@
 import * as command from './command';
 import * as commandType from './command-type';
-import * as deviceMobileIdentity from './device-mobile-identity';
-import * as deviceSoftwareVersion from './device-software-version';
 import * as deviceType from './device-type';
 import * as device from './device';
 import * as edge from './edge';
 import * as environment from './environment';
 import * as exportRequest from './export-request';
+import * as fileFromServer from './file-from-server';
+import * as fileToFieldConfigurationUdf from './file-to-field-configuration-udf';
+import * as fileToServer from './file-to-server';
 import * as grid from './grid';
 import * as issueComment from './issue-comment';
 import * as issue from './issue';
@@ -50,13 +51,14 @@ import * as user from './user';
 export {
   command,
   commandType,
-  deviceMobileIdentity,
-  deviceSoftwareVersion,
   deviceType,
   device,
   edge,
   environment,
   exportRequest,
+  fileFromServer,
+  fileToFieldConfigurationUdf,
+  fileToServer,
   grid,
   issueComment,
   issue,
