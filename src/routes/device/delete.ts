@@ -13,7 +13,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'post',
   path: '/delete',
   body: Joi.object().keys({
-    hashIds: Joi.array().items(Joi.string().required()).required().example(['aklasjkl13a23']),
+    hashIds: Joi.array().items(Joi.string().required()).min(1).required()
+      .example(['aklasjkl13a23']),
   }).required(),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
   description: 'Delete one or more devices. If a device is claimed by an environment, it cannot be deleted.',

@@ -16,7 +16,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'post',
   path: '/claim',
   body: Joi.object().keys({
-    claimTokens: Joi.array().items(Joi.string().required()).required().example(['aklasjkl13a23']),
+    claimTokens: Joi.array().min(1).items(Joi.string().required()).required()
+      .example(['aklasjkl13a23']),
   }).required(),
   right: { environment: 'SENSORS' },
   response: Joi.object().keys({
