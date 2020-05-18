@@ -32,8 +32,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
   path: '/',
   query: Joi.object().keys({
-    sortBy: Joi.string().valid('hashId').default('hashId'),
-    descending: Joi.boolean().default(true),
+    sortBy: Joi.string().valid('hashId', 'name', 'email').default('name'),
+    descending: Joi.boolean().default(false),
     rowsPerPage: Joi.number()
       .integer()
       .min(1)

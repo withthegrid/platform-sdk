@@ -7,6 +7,7 @@ import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
 
 interface Query extends TableQuery {
   includeDeleted?: boolean;
+  type?: 'pinGroup' | 'node';
 }
 
 interface Request {
@@ -15,6 +16,7 @@ interface Request {
 
 interface EffectiveQuery extends EffectiveTableQuery {
   includeDeleted: boolean;
+  type?: 'pinGroup' | 'node';
 }
 
 interface EffectiveRequest {
@@ -34,7 +36,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   path: '/grid',
   query: Joi.object().keys({
     includeDeleted: Joi.boolean().default(false),
-    sortBy: Joi.string().valid('hashId').default('hashId'),
+    type: Joi.string().valid('node', 'pinGroup'),
+    sortBy: Joi.string().valid('hashId', 'name').default('hashId'),
     descending: Joi.boolean().default(true),
     rowsPerPage: Joi.number()
       .integer()

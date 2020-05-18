@@ -37,7 +37,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   path: '/edge',
   query: Joi.object().keys({
     includeDeleted: Joi.boolean().default(false),
-    sortBy: Joi.string().valid('hashId').default('hashId'),
+    sortBy: Joi.string().valid('hashId', 'name').default('hashId'),
     descending: Joi.boolean().default(true),
     rowsPerPage: Joi.number()
       .integer()
