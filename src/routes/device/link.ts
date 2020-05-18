@@ -4,6 +4,7 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 import { schema as measurementCycleSchema, MeasurementCycle } from '../../models/measurement-cycle';
 import { schema as deviceSchema, Device } from '../../models/device';
 import { schema as deviceTypeSchema, DeviceType } from '../../models/device-type';
+import { fieldsToServerUpdateSchema, FieldsToServerUpdate } from '../../models/field-configuration';
 
 interface Request {
   params: {
@@ -14,6 +15,7 @@ interface Request {
     channelMapping: {
       channel: number;
       pinHashId: string;
+      deviceFields?: FieldsToServerUpdate;
     }[];
   };
 }
@@ -36,6 +38,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     channelMapping: Joi.array().items(Joi.object().keys({
       channel: Joi.number().integer().required().example(0),
       pinHashId: Joi.string().required().example('e13d57'),
+      deviceFields: fieldsToServerUpdateSchema,
     })).required(),
   }).required(),
   response: Joi.object().keys({

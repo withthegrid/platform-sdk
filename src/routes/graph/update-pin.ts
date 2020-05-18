@@ -7,7 +7,6 @@ interface Request {
     hashId: string;
   };
   body: {
-    deviceFields?: FieldsToServerUpdate;
     fields?: FieldsToServerUpdate;
   };
 }
@@ -23,7 +22,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     hashId: Joi.string().required().example('e13d57'),
   }).required(),
   body: Joi.object().keys({
-    deviceFields: fieldsToServerUpdateSchema,
     fields: fieldsToServerUpdateSchema.example({ id: 'My connecting point' }),
   }).required(),
   response: Joi.object().keys({
