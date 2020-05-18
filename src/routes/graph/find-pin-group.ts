@@ -1,7 +1,6 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
-import { schema as environmentSchema, Environment } from '../../models/environment';
 import { schema as deviceSchema, Device } from '../../models/device';
 import { schema as gridSchema, Grid } from '../../models/grid';
 import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
@@ -11,7 +10,6 @@ import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
 
 interface Query extends TableQuery {
   includeDeleted?: boolean;
-  allEnvironments?: boolean;
 }
 
 interface Request {
@@ -20,7 +18,6 @@ interface Request {
 
 interface EffectiveQuery extends EffectiveTableQuery {
   includeDeleted: boolean;
-  allEnvironments: boolean;
 }
 
 interface EffectiveRequest {
@@ -28,7 +25,6 @@ interface EffectiveRequest {
 }
 
 interface ResponseRow {
-  environment: Environment;
   pinGroup: PinGroup;
   device: Device | null;
   grid: Grid | null;
@@ -43,7 +39,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   path: '/pin-group',
   query: Joi.object().keys({
     includeDeleted: Joi.boolean().default(false),
-    allEnvironments: Joi.boolean().default(false),
     sortBy: Joi.string().valid('hashId', 'name').default('hashId'),
     descending: Joi.boolean().default(true),
     rowsPerPage: Joi.number()
@@ -60,7 +55,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   right: { environment: 'READ' },
   response: Joi.object().keys({
     rows: Joi.array().items(Joi.object().keys({
-      environment: environmentSchema.required(),
       pinGroup: pinGroupSchema.required(),
       device: deviceSchema.allow(null).required(),
       grid: gridSchema.allow(null).required(),

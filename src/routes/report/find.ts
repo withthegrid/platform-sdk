@@ -1,7 +1,6 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
-import { schema as environmentSchema, Environment } from '../../models/environment';
 import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
 
 import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
@@ -11,7 +10,6 @@ interface Query extends TableQuery {
   pinGroupHashId?: string | null;
   edgeHashId?: string | null;
   gridHashId?: string | null;
-  allEnvironments?: boolean;
 }
 
 interface Request {
@@ -22,7 +20,6 @@ interface EffectiveQuery extends EffectiveTableQuery {
   pinGroupHashId: string | null;
   edgeHashId: string | null;
   gridHashId: string | null;
-  allEnvironments: boolean;
 }
 
 interface EffectiveRequest {
@@ -33,11 +30,9 @@ interface ResponseRow {
   report: {
     hashId: string;
     deviceHashId: string | null;
-    environmentHashId: string | null;
     generatedAt: Date;
   };
   pinGroup: PinGroup | null;
-  environment: Environment | null;
   reportTypeName: string;
 }
 
@@ -49,7 +44,6 @@ interface DeprecatedResponseRow {
   report: {
     hashId: string;
     deviceHashId: string | null;
-    clientHashId: string | null;
     generatedAt: Date;
     typeKey: string;
     version: number;
@@ -58,7 +52,6 @@ interface DeprecatedResponseRow {
     viewable: boolean;
   };
   nodeGroup: PinGroup | null;
-  client: Environment | null;
 }
 
 type ResponsesIncludingDeprecated = {
@@ -72,7 +65,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     pinGroupHashId: Joi.string().allow(null).default(null),
     edgeHashId: Joi.string().allow(null).default(null),
     gridHashId: Joi.string().allow(null).default(null),
-    allEnvironments: Joi.boolean().default(false),
     sortBy: Joi.string().valid('generatedAt').default('generatedAt'),
     descending: Joi.boolean().default(true),
     rowsPerPage: Joi.number()
@@ -94,7 +86,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
           report: Joi.object().keys({
             hashId: Joi.string().required().example('qoa978'),
             deviceHashId: Joi.string().allow(null).required().example('j1iha9'),
-            clientHashId: Joi.string().allow(null).required().example('f1a4w1'),
             generatedAt: Joi.date().required().example('2019-12-31T15:23Z'),
             typeKey: Joi.string().required().example('cp-pole'),
             version: Joi.number().integer().required().example(1),
@@ -103,7 +94,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
             viewable: Joi.boolean().required().example(true),
           }).required(),
           nodeGroup: pinGroupSchema.allow(null).required(),
-          client: environmentSchema.allow(null).required(),
         })).required(),
       }).required();
     }
@@ -113,11 +103,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
         report: Joi.object().keys({
           hashId: Joi.string().required().example('qoa978'),
           deviceHashId: Joi.string().allow(null).required().example('j1iha9'),
-          environmentHashId: Joi.string().allow(null).required().example('f1a4w1'),
           generatedAt: Joi.date().required().example('2019-12-31T15:23Z'),
         }).required(),
         pinGroup: pinGroupSchema.allow(null).required(),
-        environment: environmentSchema.allow(null).required(),
         reportTypeName: Joi.string().required().example('Temperature and inclination'),
       })).required(),
     }).required();
@@ -132,5 +120,6 @@ export {
   Response,
   Query,
   ResponseRow,
+  DeprecatedResponseRow,
   ResponsesIncludingDeprecated,
 };
