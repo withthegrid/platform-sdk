@@ -24,8 +24,6 @@ interface Response {
     value: Threshold;
     quantity: Quantity;
   }[];
-  linkedDeviceHashIds: Array<string | null>;
-  deviceTypeKeys: Array<string | null>;
   photo: string | null;
   files: FileFromServer[];
 }
@@ -47,8 +45,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       value: thresholdSchema.required(),
       quantity: quantitySchema.required(),
     })).required(),
-    linkedDeviceHashIds: Joi.array().items(Joi.string().allow(null).example('j1iha9')).required(),
-    deviceTypeKeys: Joi.array().items(Joi.string().allow(null).example('cp-pole')).required(),
     photo: Joi.string().allow(null).required().description('base64 encoded string')
       .example('iVBORw0KGgoAAAANSUhEUgAAB9AAAAhwCAYAAAB1bKV...'),
     files: Joi.array().items(fileFromServerSchema).required(),

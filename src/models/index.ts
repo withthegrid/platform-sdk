@@ -26,7 +26,6 @@ import * as reportType from './report-type';
 import * as webRequest from './web-request';
 import * as siNumber from './si-number';
 import * as supplier from './supplier';
-
 import * as supplierActivityDropCommand from './supplier-activities/drop-command';
 import * as supplierActivityHandleCommandDue from './supplier-activities/handle-command-due';
 import * as supplierActivityHandleDeletedCommand from './supplier-activities/handle-deleted-command';
@@ -43,6 +42,7 @@ import * as supplierActivitySendRequest from './supplier-activities/send-request
 import * as supplierActivitySetDeviceFields from './supplier-activities/set-device-fields';
 import * as supplierActivitySetReportingFrequency from './supplier-activities/set-reporting-frequency';
 import * as supplierCertificate from './supplier-certificate';
+import * as supplierDeviceType from './supplier-device-type';
 import * as supplierReportType from './supplier-report-type';
 import * as supplierWebhook from './supplier-webhook';
 import * as threshold from './threshold';
@@ -92,6 +92,7 @@ export {
   supplierActivitySetDeviceFields,
   supplierActivitySetReportingFrequency,
   supplierCertificate,
+  supplierDeviceType,
   supplierReportType,
   supplierWebhook,
   threshold,

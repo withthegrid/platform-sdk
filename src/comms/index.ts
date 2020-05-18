@@ -76,7 +76,7 @@ class Comms {
   async request(
     method: Method,
     path: string,
-    params?: object,
+    params?: any,
     data?: any,
     cancelToken?: CancelTokenSource,
   ): Promise<any> {

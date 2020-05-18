@@ -1,7 +1,7 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 import { schema as fieldConfigurationSchema, FieldConfiguration } from '../../models/field-configuration';
-import { eventHandlerExample } from '../../models/device-type';
+import { eventHandlerExample } from '../../models/supplier-device-type';
 
 interface Request {
   body: {

@@ -1,21 +1,9 @@
 import Joi from '@hapi/joi';
 import { schema as fieldConfigurationSchema, FieldConfiguration } from './field-configuration';
 
-const eventHandlerExample = `function (command) {
-  return JSON.stringify({
-    hashId: command.hashId,
-    commandTypeHashId: command.commandTypeHashId,
-    startAt: command.startAt,
-    endAt: command.endAt,
-    settings: command.settings,
-  });
-}`;
-
-
-const schema = Joi.object().keys({
+const baseSchema = Joi.object().keys({
   hashId: Joi.string().required().example('wasd2'),
   name: Joi.string().required().example('Cathodic protection sensor'),
-  eventHandler: Joi.string().required().example(eventHandlerExample).description('A javascript function that handles an events. See [add link]'),
   fieldConfigurations: Joi.array().items(fieldConfigurationSchema).required()
     .description('See the chapter on open fields on how to use this'),
   pinGroupFieldConfigurations: Joi.array().items(fieldConfigurationSchema).required()
@@ -27,7 +15,9 @@ const schema = Joi.object().keys({
     defaultPinName: Joi.string().example('Anode').description('If undefined, the channel cannot be linked to a pin'),
   })).required(),
   commandTypeHashIds: Joi.array().items(Joi.string().required().example('x18a92')).required().description('The hashIds of the command types a user can schedule for this device'),
-})
+});
+
+const schema = baseSchema
   .tag('deviceType')
   .description('Information about the type of device');
 
@@ -35,7 +25,6 @@ const schema = Joi.object().keys({
 interface DeviceType {
   hashId: string;
   name: string;
-  eventHandler: string;
   fieldConfigurations: FieldConfiguration[];
   pinGroupFieldConfigurations: FieldConfiguration[];
   channels: {
@@ -47,5 +36,5 @@ interface DeviceType {
 }
 
 export {
-  schema, DeviceType, eventHandlerExample,
+  schema, baseSchema, DeviceType,
 };

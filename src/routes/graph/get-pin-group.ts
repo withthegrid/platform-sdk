@@ -6,6 +6,8 @@ import { schema as pinSchema, Pin } from '../../models/pin';
 import { schema as pinLinkSchema, PinLink } from '../../models/pin-link';
 import { schema as edgeSchema, Edge } from '../../models/edge';
 import { schema as gridSchema, Grid } from '../../models/grid';
+import { schema as deviceSchema, Device } from '../../models/device';
+import { schema as deviceTypeSchema, DeviceType } from '../../models/device-type';
 import { schema as measurementCycleSchema, MeasurementCycle } from '../../models/measurement-cycle';
 import { schema as thresholdSchema, Threshold } from '../../models/threshold';
 import { schema as quantitySchema, Quantity } from '../../models/quantity';
@@ -23,8 +25,8 @@ interface Response {
   pinLinks: PinLink[];
   edges: Edge[];
   grid: Grid | null;
-  linkedDeviceHashId: string | null;
-  deviceTypeKey: string | null;
+  device: Device | null;
+  deviceType: DeviceType | null;
   channelMapping: {
     channel: number;
     pinHashId: string | null;
@@ -52,8 +54,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     pinLinks: Joi.array().items(pinLinkSchema).required(),
     edges: Joi.array().items(edgeSchema).required(),
     grid: gridSchema.allow(null).required(),
-    linkedDeviceHashId: Joi.string().required().allow(null).example('j1iha9'),
-    deviceTypeKey: Joi.string().required().allow(null).example('cp-pole'),
+    device: deviceSchema.allow(null).required(),
+    deviceType: deviceTypeSchema.allow(null).required(),
     channelMapping: Joi.array().items(Joi.object().keys({
       channel: Joi.number().integer().required().example(0),
       pinHashId: Joi.string().allow(null).default(null),

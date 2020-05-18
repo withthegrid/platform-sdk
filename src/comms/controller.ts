@@ -49,7 +49,7 @@ export default <RequestImplementation extends Request, EffectiveRequestImplement
 
   // validate parameters
   let validatedSubPath = options.path;
-  let validatedParams: object | undefined;
+  let validatedParams: Record<string, string | number | boolean | null> | undefined;
   if (options.params !== undefined) {
     const validation = options.params.validate(parameters.params, { abortEarly: false });
     if (validation.error !== undefined) {
@@ -58,12 +58,12 @@ export default <RequestImplementation extends Request, EffectiveRequestImplement
     validatedParams = validation.value;
     if (validatedParams !== undefined) {
       Object.entries(validatedParams).forEach(([key, value]) => {
-        validatedSubPath = validatedSubPath.replace(`:${key}`, value);
+        validatedSubPath = validatedSubPath.replace(`:${key}`, `${value}`);
       });
     }
   }
 
-  let validatedQuery: object | undefined;
+  let validatedQuery: any;
   if (options.query !== undefined) {
     const validation = options.query.validate(parameters.query, { abortEarly: false });
     if (validation.error !== undefined) {

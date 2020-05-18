@@ -7,7 +7,7 @@ class CommsResponseError extends BaseError {
     readonly headers: any,
     readonly requestMethod: string,
     readonly requestPath: string,
-    readonly requestParams?: object,
+    readonly requestParams?: any,
     readonly requestData?: any,
   ) {
     super('comms_response', 'The request was made and the server responded with a status code that falls out of the range of 2xx');

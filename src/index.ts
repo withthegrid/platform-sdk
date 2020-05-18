@@ -46,7 +46,7 @@ class PlatformSdk {
     this.comms.logout();
   }
 
-  get headers(): object {
+  get headers(): Record<string, string> {
     return JSON.parse(JSON.stringify(this.comms.axios.defaults.headers.common));
   }
 

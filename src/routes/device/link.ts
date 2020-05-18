@@ -2,6 +2,8 @@ import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as measurementCycleSchema, MeasurementCycle } from '../../models/measurement-cycle';
+import { schema as deviceSchema, Device } from '../../models/device';
+import { schema as deviceTypeSchema, DeviceType } from '../../models/device-type';
 
 interface Request {
   params: {
@@ -17,7 +19,8 @@ interface Request {
 }
 
 interface Response {
-  deviceTypeKey: string | null;
+  device: Device | null;
+  deviceType: DeviceType | null;
   measurementCycle: MeasurementCycle | null;
 }
 
@@ -36,7 +39,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     })).required(),
   }).required(),
   response: Joi.object().keys({
-    deviceTypeKey: Joi.string().required().allow(null).example('cp-pole'),
+    device: deviceSchema.required(),
+    deviceType: deviceTypeSchema.required(),
     measurementCycle: measurementCycleSchema.allow(null).required(),
   }).required(),
   right: { environment: 'SENSORS' },

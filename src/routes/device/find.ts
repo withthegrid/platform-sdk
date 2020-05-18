@@ -3,6 +3,7 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as deviceSchema, Device } from '../../models/device';
 import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
+import { schema as deviceTypeSchema, DeviceType } from '../../models/device-type';
 
 import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
 
@@ -23,6 +24,7 @@ interface EffectiveRequest {
 
 interface ResponseRow {
   device: Device;
+  deviceType: DeviceType;
   pinGroup: PinGroup | null;
 }
 
@@ -52,6 +54,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   response: Joi.object().keys({
     rows: Joi.array().items(Joi.object().keys({
       device: deviceSchema.required(),
+      deviceType: deviceTypeSchema.required(),
       pinGroup: pinGroupSchema.allow(null).required().description('Will be null when queried from supplier'),
     })).required(),
   }),
