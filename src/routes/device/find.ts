@@ -8,9 +8,7 @@ import { schema as deviceTypeSchema, DeviceType } from '../../models/device-type
 import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
 
 
-interface Query extends TableQuery {
-  allEnvironments?: boolean;
-}
+type Query = TableQuery;
 
 interface Request {
   query: Query;
@@ -25,6 +23,8 @@ interface EffectiveRequest {
 interface ResponseRow {
   device: Device;
   deviceType: DeviceType;
+  environmentName: string | null;
+  environmentHashId: string | null;
   pinGroup: PinGroup | null;
 }
 
@@ -55,6 +55,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     rows: Joi.array().items(Joi.object().keys({
       device: deviceSchema.required(),
       deviceType: deviceTypeSchema.required(),
+      environmentName: Joi.string().allow(null).required(),
+      environmentHashId: Joi.string().allow(null).required(),
       pinGroup: pinGroupSchema.allow(null).required().description('Will be null when queried from supplier'),
     })).required(),
   }),
