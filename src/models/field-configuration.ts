@@ -26,7 +26,7 @@ type FieldsToFieldConfigurationUdf = Record<string, FieldToFieldConfigurationUdf
 const baseFieldSchema = Joi.alternatives().try(
   Joi.boolean().required(),
   Joi.number().required(),
-  Joi.string().required(),
+  Joi.string().allow('').required(),
   Joi.any().valid(null).required(),
 );
 
@@ -42,7 +42,7 @@ const fileFieldFromServerSchema = Joi.object().keys({
 const fieldFromServerSchema = Joi.alternatives().try(
   Joi.boolean().required(),
   Joi.number().required(),
-  Joi.string().required(),
+  Joi.string().allow('').required(),
   fileFieldFromServerSchema.required(),
   Joi.array().items(fileFieldFromServerSchema.required()).required(),
   Joi.any().valid(null).required(),
@@ -56,7 +56,7 @@ const fieldsFromServerSchema = Joi.object().pattern(
 const fieldToServerFullSchema = Joi.alternatives().try(
   Joi.boolean().required(),
   Joi.number().required(),
-  Joi.string().required(),
+  Joi.string().allow('').required(),
   fileToServerSchema.required(),
   Joi.array().items(fileToServerSchema).required(),
   Joi.any().valid(null).required(),
@@ -93,7 +93,7 @@ const fieldsToServerUpdateSchema = Joi.alternatives().try(
 const fieldToFieldConfigurationUdfSchema = Joi.alternatives().try(
   Joi.boolean().required(),
   Joi.number().required(),
-  Joi.string().required(),
+  Joi.string().allow('').required(),
   fileToFieldConfigurationUdfSchema.required(),
   Joi.array().items(fileToFieldConfigurationUdfSchema).required(),
   Joi.any().valid(null).required(),
