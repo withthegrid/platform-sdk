@@ -21,7 +21,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   params: Joi.object().keys({
     hashId: Joi.string().required().example('x18a92'),
   }).required(),
-  right: { supplier: 'ENVIRONMENT_ADMIN' },
+  right: { environment: 'READ', supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
     commandType: commandTypeSchema.required(),
   }).required(),

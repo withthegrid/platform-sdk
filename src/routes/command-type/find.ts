@@ -41,7 +41,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   })
     .with('lastValueSortColumn', 'lastValueHashId')
     .default(),
-  right: { supplier: 'ENVIRONMENT_ADMIN' },
+  right: { environment: 'READ', supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
     rows: Joi.array().items(Joi.object().keys({
       commandType: commandTypeSchema.required(),
