@@ -10,7 +10,7 @@ const baseSchema = Joi.object().keys({
     .description('Defines deviceFields on the pinGroup the device is connected to. Can be used in report type functions. See the chapter on open fields on how to use this'),
   channels: Joi.array().items(Joi.object().keys({
     name: Joi.string().required().example('Red wire'),
-    fieldConfigurations: Joi.array().items(fieldConfigurationSchema).required()
+    pinFieldConfigurations: Joi.array().items(fieldConfigurationSchema).required()
       .description('Defines deviceFields on the pin the channel is connected to. Can be used in report type functions. See the chapter on open fields on how to use this'),
     defaultPinName: Joi.string().example('Anode').description('If undefined, the channel cannot be linked to a pin'),
   })).required(),
@@ -29,7 +29,7 @@ interface DeviceType {
   pinGroupFieldConfigurations: FieldConfiguration[];
   channels: {
     name: string;
-    fieldConfigurations: FieldConfiguration[];
+    pinFieldConfigurations: FieldConfiguration[];
     defaultPinName: string;
   }[];
   commandTypeHashIds: string[];
