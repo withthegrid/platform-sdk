@@ -44,7 +44,7 @@ const fieldFromServerSchema = Joi.alternatives().try(
   Joi.number().required(),
   Joi.string().allow('').required(),
   fileFieldFromServerSchema.required(),
-  Joi.array().items(fileFieldFromServerSchema.required()).required(),
+  Joi.array().items(fileFieldFromServerSchema).required(),
   Joi.any().valid(null).required(),
 );
 

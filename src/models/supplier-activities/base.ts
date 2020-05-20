@@ -28,7 +28,7 @@ function schemaConstructor(
       message: Joi.string().required(),
       lineNumber: Joi.number(),
       columnNumber: Joi.number(),
-    }).required()).required(),
+    })).required(),
   }).required();
 
   if (triggerData !== undefined) {
