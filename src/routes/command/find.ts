@@ -3,6 +3,7 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as commandSchema, Command } from '../../models/command';
 import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
+import { schema as commandTypeSchema, CommandType } from '../../models/command-type';
 
 import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
 
@@ -29,6 +30,7 @@ interface EffectiveRequest {
 
 interface ResponseRow {
   command: Command;
+  commandType: CommandType;
   pinGroup: PinGroup | null;
 }
 
@@ -61,6 +63,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   response: Joi.object().keys({
     rows: Joi.array().items(Joi.object().keys({
       command: commandSchema.required(),
+      commandType: commandTypeSchema.required(),
       pinGroup: pinGroupSchema.allow(null).required(),
     })).required(),
   }),
