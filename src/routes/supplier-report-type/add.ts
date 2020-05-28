@@ -1,7 +1,6 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 import { schema as fieldConfigurationSchema, FieldConfiguration } from '../../models/field-configuration';
-import { parserExample } from '../../models/supplier-report-type';
 
 
 interface Request {
@@ -31,7 +30,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       measurement: Joi.array().items(fieldConfigurationSchema).required(),
     }).required()
       .description('See the chapter on open fields on how to use this'),
-    parser: Joi.string().required().example(parserExample).description('A javascript function that parses an incoming report. See [add link]'),
+    parser: Joi.string().required().example('[omitted]').description('A javascript function that parses an incoming report. See [add link]'),
   }).required(),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({

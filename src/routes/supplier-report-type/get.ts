@@ -1,7 +1,7 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
-import { schema as supplierReportTypeSchema, SupplierReportType } from '../../models/supplier-report-type';
+import { schema as reportTypeSchema, ReportType } from '../../models/report-type';
 
 
 interface Request {
@@ -11,7 +11,8 @@ interface Request {
 }
 
 interface Response {
-  supplierReportType: SupplierReportType;
+  reportType: ReportType;
+  parser: string;
 }
 
 
@@ -23,7 +24,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   }).required(),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
-    reportType: supplierReportTypeSchema.required(),
+    reportType: reportTypeSchema.required(),
+    parser: Joi.string().required().example('[omitted]').description('A javascript function that parses an incoming report. See [add link]'),
   }).required(),
   description: 'Get a specific device report type identified by its hashId',
 };

@@ -1,7 +1,7 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
-import { schema as supplierReportTypeSchema, SupplierReportType } from '../../models/supplier-report-type';
+import { schema as reportTypeSchema, ReportType } from '../../models/report-type';
 
 import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
 
@@ -17,7 +17,7 @@ interface EffectiveRequest {
 }
 
 interface ResponseRow {
-  supplierReportType: SupplierReportType;
+  reportType: ReportType;
 }
 
 interface Response {
@@ -44,7 +44,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   right: { supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
     rows: Joi.array().items(Joi.object().keys({
-      supplierReportType: supplierReportTypeSchema.required(),
+      reportType: reportTypeSchema.required(),
     })).required(),
   }),
   description: 'Search through device report types',

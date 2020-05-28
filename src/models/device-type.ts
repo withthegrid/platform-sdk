@@ -30,7 +30,7 @@ interface DeviceType {
   channels: {
     name: string;
     pinFieldConfigurations: FieldConfiguration[];
-    defaultPinName: string;
+    defaultPinName?: string;
   }[];
   commandTypeHashIds: string[];
 }

@@ -1,7 +1,6 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 import { schema as fieldConfigurationSchema, FieldConfiguration } from '../../models/field-configuration';
-import { eventHandlerExample } from '../../models/supplier-device-type';
 
 interface Request {
   body: {
@@ -27,7 +26,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   path: '/',
   body: Joi.object().keys({
     name: Joi.string().required().example('Cathodic protection sensor').description('This name is also visible in environments. To get a uniform user experience, please provide the name in English'),
-    eventHandler: Joi.string().required().example(eventHandlerExample).description('A javascript function that handles events. See [add link]'),
+    eventHandler: Joi.string().required().example('[omitted]').description('A javascript function that handles events. See [add link]'),
     fieldConfigurations: Joi.array().items(fieldConfigurationSchema).required()
       .description('See the chapter on open fields on how to use this'),
     pinGroupFieldConfigurations: Joi.array().items(fieldConfigurationSchema).required()

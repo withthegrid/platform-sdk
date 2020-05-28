@@ -1,6 +1,5 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
-import { parserExample } from '../../models/supplier-report-type';
 
 interface Request {
   params: {
@@ -22,7 +21,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     hashId: Joi.string().required().example('y124as'),
   }).required(),
   body: Joi.object().keys({
-    parser: Joi.string().required().example(parserExample).description('A javascript function that parses an incoming report. See [add link]'),
+    parser: Joi.string().required().example('[omitted]').description('A javascript function that parses an incoming report. See [add link]'),
     retryFailedSince: Joi.date().description('If supplied, all incoming reports of this type that failed to decode since the provided date will be reparsed.'),
   }).required(),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
