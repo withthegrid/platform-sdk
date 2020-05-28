@@ -1,7 +1,8 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
-import { schema as deviceTypeSchema, DeviceType } from '../../models/device-type';
+import { schema as supplierDeviceTypeSchema, SupplierDeviceType } from '../../models/supplier-device-type';
+import { schema as commandTypeSchema, CommandType } from '../../models/command-type';
 
 
 interface Request {
@@ -11,7 +12,8 @@ interface Request {
 }
 
 interface Response {
-  deviceType: DeviceType;
+  deviceType: SupplierDeviceType;
+  commandTypes: CommandType[];
 }
 
 
@@ -23,7 +25,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   }).required(),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
-    deviceType: deviceTypeSchema.required(),
+    deviceType: supplierDeviceTypeSchema.required(),
+    commandTypes: Joi.array().items(commandTypeSchema).required(),
   }).required(),
   description: 'Get a specific device type identified by its hashId',
 };
