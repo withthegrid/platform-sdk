@@ -76,8 +76,8 @@ class Comms {
   async request(
     method: Method,
     path: string,
-    params?: any,
-    data?: any,
+    params?: AxiosRequestConfig['params'],
+    data?: AxiosRequestConfig['data'],
     cancelToken?: CancelTokenSource,
   ): Promise<any> {
     let response;
@@ -102,11 +102,9 @@ class Comms {
       }
       if (e.response !== undefined) {
         if (e.response.status === 401) {
-          this.loggedIn = false;
           throw new AuthenticationError(e.response.data.key, e.response.data.message);
         }
         if (e.response.status === 403 && e.response.data.key === 'outdated_client_error') {
-          this.loggedIn = false;
           throw new OutdatedClientError();
         }
         if (e.response.status === 402) {
