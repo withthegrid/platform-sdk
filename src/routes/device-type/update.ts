@@ -29,7 +29,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   body: Joi.object().keys({
     eventHandler: Joi.string().description('A javascript function that handles events. See [add link]'),
     fieldConfigurations: Joi.array().items(updatableFieldConfigurationSchema),
-    commandTypeHashIds: Joi.array().items(Joi.string().required()).description('The hashIds of the command types a user can schedule for this device'),
+    commandTypeHashIds: Joi.array().items(Joi.string()).description('The hashIds of the command types a user can schedule for this device'),
   }).required(),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
   description: 'Update the settings of a device type.',

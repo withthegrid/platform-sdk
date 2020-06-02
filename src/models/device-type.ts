@@ -14,7 +14,7 @@ const baseSchema = Joi.object().keys({
       .description('Defines deviceFields on the pin the channel is connected to. Can be used in report type functions. See the chapter on open fields on how to use this'),
     defaultPinName: Joi.string().example('Anode').description('If undefined, the channel cannot be linked to a pin'),
   })).required(),
-  commandTypeHashIds: Joi.array().items(Joi.string().required().example('x18a92')).required().description('The hashIds of the command types a user can schedule for this device'),
+  commandTypeHashIds: Joi.array().items(Joi.string().example('x18a92')).required().description('The hashIds of the command types a user can schedule for this device'),
 });
 
 const schema = baseSchema
