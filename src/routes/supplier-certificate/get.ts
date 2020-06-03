@@ -1,7 +1,7 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
-import { schema as supplierCertificateSchema, SupplierCertificate } from '../../models/supplier-certificate';
+import { schema as supplierCertificateSchema, SupplierCertificate, identifierExample } from '../../models/supplier-certificate';
 
 
 interface Request {
@@ -12,6 +12,7 @@ interface Request {
 
 interface Response {
   certificate: SupplierCertificate;
+  identifier: string;
 }
 
 
@@ -24,6 +25,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   right: {}, // supplierHashId in header is irrelevant
   response: Joi.object().keys({
     certificate: supplierCertificateSchema.required(),
+    identifier: Joi.string().required().example(identifierExample).description('A javascript function that parses the incoming request into a device identifier and report type hashId. See [add link]'),
   }).required(),
   description: 'Get a specific supplier certificate identified by its hashId',
 };

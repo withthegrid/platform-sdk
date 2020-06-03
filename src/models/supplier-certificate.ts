@@ -14,7 +14,6 @@ const identifierExample = `function (command) {
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('v19a12'),
   name: Joi.string().required().example('My certificate'),
-  identifier: Joi.string().required().example(identifierExample).description('A javascript function that returns deviceType and identifier. See [add link]'),
   certificate: Joi.string().required()
     .example(`-----BEGIN CERTIFICATE-----
     MIIBNzCB3gIBATAKBggqhkjOPQQDAjAkMREwDwYDVQQKDAhzdXBwbGllcjEPMA0G
@@ -36,7 +35,6 @@ const schema = Joi.object().keys({
 interface SupplierCertificate {
   hashId: string;
   name: string;
-  identifier: string;
   certificate: string;
   createdAt: Date;
 }
