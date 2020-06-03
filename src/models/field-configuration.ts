@@ -80,9 +80,8 @@ const fieldToServerPartialSchema = Joi.alternatives().try(
 ).required();
 
 
-const fieldsToServerPartialSchema = Joi.object().pattern(
-  Joi.string().required(),
-  fieldToServerFullSchema,
+const fieldsToServerPartialSchema = Joi.array().items(
+  fieldToServerPartialSchema,
 );
 
 const fieldsToServerUpdateSchema = Joi.alternatives().try(
