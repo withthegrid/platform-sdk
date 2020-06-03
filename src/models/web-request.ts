@@ -42,11 +42,11 @@ const schema = Joi.object().keys({
       subjects: Joi.array().items(Joi.array().items(Joi.object().keys({
         key: Joi.object().keys({
           encoding: Joi.string().valid('utf8', 'hex').required().example('utf8'),
-          value: Joi.string().required().example('cn'),
+          value: Joi.string().allow('').required().example('cn'),
         }).required(),
         value: Joi.object().keys({
           encoding: Joi.string().valid('utf8', 'hex').required().example('utf8'),
-          value: Joi.string().required().example('common name'),
+          value: Joi.string().allow('').required().example('common name'),
         }).required(),
       }))).required(),
       serial: Joi.number().required().example(10),
