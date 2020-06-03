@@ -21,13 +21,12 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   body: Joi.object().keys({
     name: Joi.string().required().example('My certificate'),
     csr: Joi.string().required().example(`-----BEGIN CERTIFICATE REQUEST-----
-    MIHhMIGHAgEAMCUxEjAQBgNVBAoMCWRldmVsb3BlcjEPMA0GA1UEAwwGeGQycmQ0
-    MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEyHDE7farWQdLw/HDgOcbt9BU8ba6
-    fEvEY79Z47ozYQ6LAt6wYEW/4Aq4Eir1kSCw/DtououtnpaQokZQkGYf2aAAMAoG
-    CCqGSM49BAMCA0kAMEYCIQCHf/bilJwxF+7V/0mifsXK4U0PUHDe0YNBorb2dBzc
-    KAIhAK59odu1i8oxIJg237EOLKbf0k/Rhub/CKPrsQ50t0lK
-    -----END CERTIFICATE REQUEST-----
-    `).description('A Base64 encoded PKCS#10 certificate signing request with O=supplier and CN=[supplierHashId]'),
+MIHhMIGHAgEAMCUxEjAQBgNVBAoMCWRldmVsb3BlcjEPMA0GA1UEAwwGeGQycmQ0
+MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEyHDE7farWQdLw/HDgOcbt9BU8ba6
+fEvEY79Z47ozYQ6LAt6wYEW/4Aq4Eir1kSCw/DtououtnpaQokZQkGYf2aAAMAoG
+CCqGSM49BAMCA0kAMEYCIQCHf/bilJwxF+7V/0mifsXK4U0PUHDe0YNBorb2dBzc
+KAIhAK59odu1i8oxIJg237EOLKbf0k/Rhub/CKPrsQ50t0lK
+-----END CERTIFICATE REQUEST-----`).description('A Base64 encoded PKCS#10 certificate signing request'),
     identifier: Joi.string().required().example(identifierExample).description('A javascript function that returns deviceType and identifier. See [add link]'),
   }).required(),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
