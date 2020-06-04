@@ -1,16 +1,16 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
-import { schema as fieldConfigurationSchema, FieldConfiguration } from '../../models/field-configuration';
+import { fieldConfigurationToServerSchema, FieldConfigurationToServer } from '../../models/field-configuration';
 
 interface Request {
   body: {
     name: string;
     eventHandler: string;
-    fieldConfigurations: FieldConfiguration[];
-    pinGroupFieldConfigurations: FieldConfiguration[];
+    fieldConfigurations: FieldConfigurationToServer[];
+    pinGroupFieldConfigurations: FieldConfigurationToServer[];
     channels: {
       name: string;
-      pinFieldConfigurations: FieldConfiguration[];
+      pinFieldConfigurations: FieldConfigurationToServer[];
       defaultPinName?: string;
     }[];
     commandTypeHashIds: string[];
@@ -27,13 +27,13 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   body: Joi.object().keys({
     name: Joi.string().required().example('Cathodic protection sensor').description('This name is also visible in environments. To get a uniform user experience, please provide the name in English'),
     eventHandler: Joi.string().required().example('[omitted]').description('A javascript function that handles events. See [add link]'),
-    fieldConfigurations: Joi.array().items(fieldConfigurationSchema).required()
+    fieldConfigurations: Joi.array().items(fieldConfigurationToServerSchema).required()
       .description('See the chapter on open fields on how to use this'),
-    pinGroupFieldConfigurations: Joi.array().items(fieldConfigurationSchema).required()
+    pinGroupFieldConfigurations: Joi.array().items(fieldConfigurationToServerSchema).required()
       .description('Defines deviceFields on the pinGroup the device is connected to. Can be used in report type functions. See the chapter on open fields on how to use this'),
     channels: Joi.array().items(Joi.object().keys({
       name: Joi.string().required().example('Red wire').description('This name is also visible in environments. To get a uniform user experience, please provide the name in English'),
-      pinFieldConfigurations: Joi.array().items(fieldConfigurationSchema).required()
+      pinFieldConfigurations: Joi.array().items(fieldConfigurationToServerSchema).required()
         .description('Defines deviceFields on the pin the channel is connected to. Can be used in report type functions. See the chapter on open fields on how to use this'),
       defaultPinName: Joi.string().example('Anode').description('If undefined, the channel cannot be linked to a pin'),
     })).required().description('All measurements are registered on a channel. When a device is installed at a pinGroup, its channels are connected to the pins of the pinGroup.'),

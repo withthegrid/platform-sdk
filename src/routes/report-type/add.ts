@@ -1,6 +1,6 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
-import { schema as fieldConfigurationSchema, FieldConfiguration } from '../../models/field-configuration';
+import { fieldConfigurationToServerSchema, FieldConfigurationToServer } from '../../models/field-configuration';
 
 type RequestQuantity = {
   name: string;
@@ -13,9 +13,9 @@ interface Request {
   body: {
     name: string;
     fieldConfigurations: {
-      pinGroup: FieldConfiguration[];
-      pin: FieldConfiguration[];
-      measurement: FieldConfiguration[];
+      pinGroup: FieldConfigurationToServer[];
+      pin: FieldConfigurationToServer[];
+      measurement: FieldConfigurationToServer[];
     };
     quantities: RequestQuantity[];
   };
@@ -31,9 +31,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   body: Joi.object().keys({
     name: Joi.string().required().example('Temperature'),
     fieldConfigurations: Joi.object().keys({
-      pinGroup: Joi.array().items(fieldConfigurationSchema).required(),
-      pin: Joi.array().items(fieldConfigurationSchema).required(),
-      measurement: Joi.array().items(fieldConfigurationSchema).required(),
+      pinGroup: Joi.array().items(fieldConfigurationToServerSchema).required(),
+      pin: Joi.array().items(fieldConfigurationToServerSchema).required(),
+      measurement: Joi.array().items(fieldConfigurationToServerSchema).required(),
     }).required()
       .description('See the chapter on open fields on how to use this'),
     quantities: Joi.array().items(Joi.alternatives().try(

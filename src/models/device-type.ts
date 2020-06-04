@@ -1,16 +1,16 @@
 import Joi from '@hapi/joi';
-import { schema as fieldConfigurationSchema, FieldConfiguration } from './field-configuration';
+import { fieldConfigurationFromServerSchema, FieldConfigurationFromServer } from './field-configuration';
 
 const baseSchema = Joi.object().keys({
   hashId: Joi.string().required().example('wasd2'),
   name: Joi.string().required().example('Cathodic protection sensor'),
-  fieldConfigurations: Joi.array().items(fieldConfigurationSchema).required()
+  fieldConfigurations: Joi.array().items(fieldConfigurationFromServerSchema).required()
     .description('See the chapter on open fields on how to use this'),
-  pinGroupFieldConfigurations: Joi.array().items(fieldConfigurationSchema).required()
+  pinGroupFieldConfigurations: Joi.array().items(fieldConfigurationFromServerSchema).required()
     .description('Defines deviceFields on the pinGroup the device is connected to. Can be used in report type functions. See the chapter on open fields on how to use this'),
   channels: Joi.array().items(Joi.object().keys({
     name: Joi.string().required().example('Red wire'),
-    pinFieldConfigurations: Joi.array().items(fieldConfigurationSchema).required()
+    pinFieldConfigurations: Joi.array().items(fieldConfigurationFromServerSchema).required()
       .description('Defines deviceFields on the pin the channel is connected to. Can be used in report type functions. See the chapter on open fields on how to use this'),
     defaultPinName: Joi.string().example('Anode').description('If undefined, the channel cannot be linked to a pin'),
   })).required(),
@@ -25,11 +25,11 @@ const schema = baseSchema
 interface DeviceType {
   hashId: string;
   name: string;
-  fieldConfigurations: FieldConfiguration[];
-  pinGroupFieldConfigurations: FieldConfiguration[];
+  fieldConfigurations: FieldConfigurationFromServer[];
+  pinGroupFieldConfigurations: FieldConfigurationFromServer[];
   channels: {
     name: string;
-    pinFieldConfigurations: FieldConfiguration[];
+    pinFieldConfigurations: FieldConfigurationFromServer[];
     defaultPinName?: string;
   }[];
   commandTypeHashIds: string[];

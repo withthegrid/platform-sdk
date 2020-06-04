@@ -1,6 +1,6 @@
 import Joi from '@hapi/joi';
 
-import { schema as fieldConfigurationSchema, FieldConfiguration } from './field-configuration';
+import { fieldConfigurationFromServerSchema, FieldConfigurationFromServer } from './field-configuration';
 
 
 const schema = Joi.object().keys({
@@ -18,11 +18,11 @@ const schema = Joi.object().keys({
     .required()
     .description('All pin groups and edges in this environment are contained in the rectangle described by this linestring. If null, no pinGroups or edges are present'),
   fieldConfigurations: Joi.object().keys({
-    pinGroups: Joi.array().items(fieldConfigurationSchema).required(),
-    edges: Joi.array().items(fieldConfigurationSchema).required(),
-    grids: Joi.array().items(fieldConfigurationSchema).required(),
-    nodes: Joi.array().items(fieldConfigurationSchema).required(),
-    pins: Joi.array().items(fieldConfigurationSchema).required(),
+    pinGroups: Joi.array().items(fieldConfigurationFromServerSchema).required(),
+    edges: Joi.array().items(fieldConfigurationFromServerSchema).required(),
+    grids: Joi.array().items(fieldConfigurationFromServerSchema).required(),
+    nodes: Joi.array().items(fieldConfigurationFromServerSchema).required(),
+    pins: Joi.array().items(fieldConfigurationFromServerSchema).required(),
   }).required().description('See the chapter on open fields on how to use this'),
   locale: Joi.string().required().example('en'),
   expiresAt: Joi.date().allow(null).required().example(null),
@@ -40,11 +40,11 @@ interface Environment {
     coordinates: [[number, number], [number, number]];
   } | null;
   fieldConfigurations: {
-    pinGroups: FieldConfiguration[];
-    edges: FieldConfiguration[];
-    grids: FieldConfiguration[];
-    nodes: FieldConfiguration[];
-    pins: FieldConfiguration[];
+    pinGroups: FieldConfigurationFromServer[];
+    edges: FieldConfigurationFromServer[];
+    grids: FieldConfigurationFromServer[];
+    nodes: FieldConfigurationFromServer[];
+    pins: FieldConfigurationFromServer[];
   };
   locale: string;
   expiresAt: Date | null;

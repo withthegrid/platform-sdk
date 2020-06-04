@@ -1,6 +1,6 @@
 import Joi from '@hapi/joi';
 
-import { schema as fieldConfigurationSchema, FieldConfiguration } from './field-configuration';
+import { fieldConfigurationFromServerSchema, FieldConfigurationFromServer } from './field-configuration';
 
 
 const schema = Joi.object().keys({
@@ -11,7 +11,7 @@ const schema = Joi.object().keys({
   end: Joi.string().allow('required', 'optional', 'disabled').required().example('disabled')
     .description('\'required\': user must provide command.endAt. \'optional\': user can provide command.endAt. \'disabled\': user cannot provide command.endAt.'),
   supplierOnly: Joi.boolean().required().example(false).description('If true, this type of command can not be created from an environment'),
-  fieldConfigurations: Joi.array().items(fieldConfigurationSchema).required()
+  fieldConfigurations: Joi.array().items(fieldConfigurationFromServerSchema).required()
     .description('See the chapter on open fields on how to use this'),
 })
   .description('An object defining what a command type should look like: the template for commands sent to devices')
@@ -24,7 +24,7 @@ interface CommandType {
   start: 'required' | 'optional' | 'disabled';
   end: 'required' | 'optional' | 'disabled';
   supplierOnly: boolean;
-  fieldConfigurations: FieldConfiguration[];
+  fieldConfigurations: FieldConfigurationFromServer[];
 }
 
 export {
