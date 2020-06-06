@@ -5,7 +5,7 @@ import { schema as environmentSchema, Environment } from '../../models/environme
 import { schema as userSchema, User } from '../../models/user';
 
 
-type Request = {};
+type Request = Record<string, undefined>;
 
 interface Response {
   environment?: Environment;

@@ -4,7 +4,7 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 import { schema as releaseSchema, Release } from '../../models/release';
 
 
-type Request = {};
+type Request = Record<string, undefined>;
 
 type Response = Release[];
 

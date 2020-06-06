@@ -1,7 +1,7 @@
 // import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
-type Request = {};
+type Request = Record<string, undefined>;
 
 type Response = void;
 
