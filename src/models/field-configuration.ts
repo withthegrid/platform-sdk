@@ -107,21 +107,21 @@ const baseFieldConfigurationSchema = Joi.object().keys({
   key: Joi.string().pattern(/^[a-z][a-zA-Z\d]*$/).required().example('id'),
   name: Joi.string().required().example('ID as used in our geographic information system'),
   inputType: Joi.valid('text', 'textarea', 'select', 'radio', 'switch', 'checkbox', 'file', 'files')
-    .description('The UI component to show. When \'file\' or \'files\' is selected, it is not passed through parser.'),
+    .description('The UI component to show.'),
   valueOptions: Joi.array().items(Joi.object().keys({
     text: Joi.string().required(),
     value: baseFieldSchema.required().description('Will be passed through parser'),
   })).allow(null)
     .description('If null, inputType should not be select or radio. If not null, input type should be select or radio'),
-  parserTs: Joi.string().description('Parses the input string. Valid TypeScript function with signature ({ raw: Record<string, string>, object: [tbd]) => boolean | number | string | null'),
+  parserTs: Joi.string().description('Parses the input string. Valid TypeScript function with signature ({ raw: Record<string, string>, object: [tbd]) => boolean | number | string | null. Not available for inputTypes \'file\' and \'files\''),
   validatorTs: Joi.string().description('Validates the parsed input. Valid TypeScript function with signature ({ parsed: string, boolean | number | string | null | FileToFieldConfigurationUdf | FileToFieldConfigurationUdf[], values: Record<string, boolean | number | string | null | FileToFieldConfigurationUdf  | FileToFieldConfigurationUdf[]>, additionalData: Record<string,any>}) => true | string. When true is returned, input is valid. When a string is returned, input is invalid and the string is shown as error.'),
   showTs: Joi.string().description('Determines whether this field should be shown. Valid TypeScript function with signature (value: Record<string, { value: boolean | number | string | null | FileToFieldConfigurationUdf  | FileToFieldConfigurationUdf[], validationResult: true | string }, object: [tbd]) => \'always\' | \'never\' | \'optional\'. Optional fields are hidden when they have no data'),
   headerTs: Joi.string().description('Adds a header before this field (only if this field is shown). Valid TypeScript function with signature (value: Record<string, { value: boolean | number | string | null | FileToFieldConfigurationUdf | FileToFieldConfigurationUdf[], validationResult: true | string }, object: [tbd]) => string | false'),
-  unparserTs: Joi.string().description('Converts the stored value back to what should be shown in the input field. Is also an opportunity to provide a default value. Valid TypeScript function with signature (value: Record<string, { value: boolean | number | string | null | FileToFieldConfigurationUdf | FileToFieldConfigurationUdf[] }, object: [tbd]) => string'),
+  unparserTs: Joi.string().description('Converts the stored value back to what should be shown in the input field. Is also an opportunity to provide a default value. Valid TypeScript function with signature (value: Record<string, { value: boolean | number | string | null | FileToFieldConfigurationUdf | FileToFieldConfigurationUdf[] }, object: [tbd]) => string. Not available for inputTypes \'file\' and \'files\''),
   prefix: Joi.string().description('Not available for inputTypes \'radio\', \'switch\', \'checkbox\', \'file\' and \'files\''),
   suffix: Joi.string().description('Not available for inputTypes \'radio\', \'switch\', \'checkbox\', \'file\' and \'files\''),
   hint: Joi.string().allow('').description('As shown near the input field'),
-  store: Joi.boolean().default(true).description('If false, the field will not be stored. This is useful to make more elaborate UI\'s where for example a (non-stored) switch determines which other fields to show'),
+  store: Joi.boolean().default(true).description('If false, the field will not be stored. This is useful to make more elaborate UI\'s where for example a (non-stored) switch determines which other fields to show. Not available for inputTypes \'file\' and \'files\''),
 });
 
 const fieldConfigurationToServerSchema = baseFieldConfigurationSchema
