@@ -80,7 +80,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       activity: Joi.object().keys({
         hashId: Joi.string().example('2ad91p').required(),
         createdAt: Joi.date().required().example('2019-12-31T15:23Z'),
-        deviceHashId: Joi.string().example('j1iha9').required(),
         triggerType: Joi.string().required().example('handleIncomingRequest'),
         failed: Joi.boolean().required().example(false),
       }).required(),
