@@ -27,7 +27,7 @@ const schema = (apiVersion: number): Joi.AnySchema => Joi.alternatives().try(
   sendRequestSchema,
   setDeviceFieldsSchema,
   setReportingFrequencySchema,
-).required();
+);
 
 
 export { schema, DeviceTypeHandlerActivity };
