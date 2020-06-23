@@ -26,7 +26,7 @@ interface Request {
 
 interface Response {
   pinGroup: PinGroup;
-  grid: Grid;
+  grid: Grid | null;
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
@@ -50,7 +50,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   }).required().nand('gridHashId', 'gridName'),
   response: Joi.object().keys({
     pinGroup: pinGroupSchema.required(),
-    grid: gridSchema.required(),
+    grid: gridSchema.allow(null).required(),
   }).required(),
   right: { environment: 'STATIC' },
   description: 'Updates a specific pin group',
