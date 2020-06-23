@@ -2,6 +2,7 @@ import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 import { fieldsToServerUpdateSchema, FieldsToServerUpdate } from '../../models/field-configuration';
 
+import { schema as nodeSchema, Node } from '../../models/node';
 
 interface Request {
   params: {
@@ -16,7 +17,9 @@ interface Request {
   };
 }
 
-type Response = void;
+interface Response {
+  node: Node;
+}
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'post',
@@ -34,6 +37,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       coordinates: [4.884707950517225, 52.37502141913572],
     }),
     fields: fieldsToServerUpdateSchema,
+  }).required(),
+  response: Joi.object().keys({
+    node: nodeSchema.required(),
   }).required(),
   right: { environment: 'STATIC' },
   description: 'Updates a specific node',

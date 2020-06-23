@@ -1,6 +1,8 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
-import { fieldsToServerFullSchema, FieldsToServerFull } from '../../models/field-configuration';
+import {
+  fieldsToServerFullSchema, FieldsToServerFull, fieldsFromServerSchema, FieldsFromServer,
+} from '../../models/field-configuration';
 
 interface Request {
   body: {
@@ -20,6 +22,7 @@ interface Request {
 
 interface Response {
   hashId: string;
+  fields: FieldsFromServer;
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
@@ -47,6 +50,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   right: { environment: 'REPORTS' },
   response: Joi.object().keys({
     hashId: Joi.string().required().example('qoa978'),
+    fields: fieldsFromServerSchema.required().example({ id: 'My report' }),
   }).required(),
 };
 

@@ -3,7 +3,6 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as gridSchema, Grid } from '../../models/grid';
 import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
-import { schema as fileFromServerSchema, FileFromServer } from '../../models/file-from-server';
 
 
 interface Request {
@@ -17,7 +16,6 @@ interface Response {
   pinGroups: PinGroup[];
   notificationLevel: 0 | 1 | 2 | null;
   photo: string | null;
-  files: FileFromServer[];
 }
 
 
@@ -36,7 +34,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       .description('Subscribe to every issue created on a pinGroup in this grid (0), when the issue gets serious (1) or when the issue gets critical (2). If you do not want to receive any notifications, set to null'),
     photo: Joi.string().allow(null).required().description('base64 encoded string')
       .example('iVBORw0KGgoAAAANSUhEUgAAB9AAAAhwCAYAAAB1bKV...'),
-    files: Joi.array().items(fileFromServerSchema).required(),
   }).required(),
   description: 'Get a specific grid identified by its hashId',
 };

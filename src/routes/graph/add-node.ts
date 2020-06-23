@@ -2,6 +2,8 @@ import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 import { fieldsToServerFullSchema, FieldsToServerFull } from '../../models/field-configuration';
 
+import { schema as nodeSchema, Node } from '../../models/node';
+
 interface Request {
   body: {
     geometry: {
@@ -14,6 +16,7 @@ interface Request {
 
 interface Response {
   hashId: string;
+  node: Node;
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
@@ -31,6 +34,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   right: { environment: 'STATIC' },
   response: Joi.object().keys({
     hashId: Joi.string().required().example('qp111a'),
+    node: nodeSchema.required(),
   }).required(),
   description: 'Create a node',
 };

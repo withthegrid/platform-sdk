@@ -1,6 +1,8 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
-import { fieldsToServerUpdateSchema, FieldsToServerUpdate } from '../../models/field-configuration';
+import {
+  fieldsToServerUpdateSchema, FieldsToServerUpdate, fieldsFromServerSchema, FieldsFromServer,
+} from '../../models/field-configuration';
 
 interface NewMeasurement {
   pinHashId: string;
@@ -30,7 +32,9 @@ interface Request {
   };
 }
 
-type Response = void;
+type Response = {
+  fields: FieldsFromServer;
+};
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'post',
@@ -68,6 +72,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     fields: fieldsToServerUpdateSchema,
   }).required(),
   right: { environment: 'REPORTS' },
+  response: Joi.object().keys({
+    fields: fieldsFromServerSchema.required().example({ id: 'My report' }),
+  }).required(),
 };
 
 export {

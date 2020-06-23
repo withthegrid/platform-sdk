@@ -11,7 +11,6 @@ import { schema as deviceTypeSchema, DeviceType } from '../../models/device-type
 import { schema as measurementCycleSchema, MeasurementCycle } from '../../models/measurement-cycle';
 import { schema as thresholdSchema, Threshold } from '../../models/threshold';
 import { schema as quantitySchema, Quantity } from '../../models/quantity';
-import { schema as fileFromServerSchema, FileFromServer } from '../../models/file-from-server';
 
 interface Request {
   params: {
@@ -37,7 +36,6 @@ interface Response {
     quantity: Quantity;
   }[];
   photo: string | null;
-  files: FileFromServer[];
 }
 
 
@@ -67,7 +65,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     })).required(),
     photo: Joi.string().allow(null).required().description('base64 encoded string')
       .example('iVBORw0KGgoAAAANSUhEUgAAB9AAAAhwCAYAAAB1bKV...'),
-    files: Joi.array().items(fileFromServerSchema).required(),
   }).required(),
   description: 'Get a specific pin group identified by its hashId',
 };

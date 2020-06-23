@@ -1,6 +1,7 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 import { fieldsToServerUpdateSchema, FieldsToServerUpdate } from '../../models/field-configuration';
+import { schema as deviceSchema, Device } from '../../models/device';
 
 interface Request {
   params: {
@@ -11,8 +12,9 @@ interface Request {
   };
 }
 
-type Response = void;
-
+interface Response {
+  device: Device;
+}
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'post',
   path: '/:hashId',
@@ -23,6 +25,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     fields: fieldsToServerUpdateSchema.required().example({}),
   }).required(),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
+  response: Joi.object().keys({
+    device: deviceSchema.required(),
+  }),
   description: 'Update a device.',
 };
 

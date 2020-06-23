@@ -2,6 +2,8 @@ import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 import { fieldsToServerUpdateSchema, FieldsToServerUpdate } from '../../models/field-configuration';
 
+import { schema as edgeSchema, Edge } from '../../models/edge';
+
 interface EffectiveLineStringBody {
   fields?: FieldsToServerUpdate;
   mapLayer?: string;
@@ -25,7 +27,7 @@ interface Request {
 }
 
 interface Response {
-  name: string;
+  edge: Edge;
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
@@ -63,7 +65,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     }).required(),
   ),
   response: Joi.object().keys({
-    name: Joi.string().required().example('Test segment'),
+    edge: edgeSchema.required(),
   }).required(),
   right: { environment: 'STATIC' },
   description: 'Updates a specific edge',

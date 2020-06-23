@@ -2,6 +2,8 @@ import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 import { fieldsToServerUpdateSchema, FieldsToServerUpdate } from '../../models/field-configuration';
 
+import { schema as gridSchema, Grid } from '../../models/grid';
+
 interface Request {
   params: {
     hashId: string;
@@ -13,7 +15,7 @@ interface Request {
 }
 
 interface Response {
-  name: string;
+  grid: Grid;
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
@@ -27,7 +29,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     photo: Joi.string().allow(null).description('Should be a dataurl. Null clears the photo'),
   }).required(),
   response: Joi.object().keys({
-    name: Joi.string().required().example('My grid'),
+    grid: gridSchema.required(),
   }).required(),
   right: { environment: 'STATIC' },
   description: 'Updates a specific grid',

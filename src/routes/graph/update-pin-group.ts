@@ -2,6 +2,9 @@ import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 import { fieldsToServerUpdateSchema, FieldsToServerUpdate } from '../../models/field-configuration';
 
+import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
+import { schema as gridSchema, Grid } from '../../models/grid';
+
 interface Request {
   params: {
     hashId: string;
@@ -22,7 +25,8 @@ interface Request {
 }
 
 interface Response {
-  name: string;
+  pinGroup: PinGroup;
+  grid: Grid;
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
@@ -45,7 +49,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     photo: Joi.string().allow(null).description('Should be a dataurl. Null clears the photo'),
   }).required().nand('gridHashId', 'gridName'),
   response: Joi.object().keys({
-    name: Joi.string().required().example('My measurement location'),
+    pinGroup: pinGroupSchema.required(),
+    grid: gridSchema.required(),
   }).required(),
   right: { environment: 'STATIC' },
   description: 'Updates a specific pin group',

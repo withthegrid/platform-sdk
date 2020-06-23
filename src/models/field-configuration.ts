@@ -1,13 +1,12 @@
 import Joi from '@hapi/joi';
 import { schema as fileToServerSchema, FileToServer } from './file-to-server';
+import { schema as fileFromServerSchema, FileFromServer } from './file-from-server';
 import { schema as fileToFieldConfigurationUdfSchema, FileToFieldConfigurationUdf } from './file-to-field-configuration-udf';
 
 type BaseField = boolean | number | string | null | undefined;
 type BaseFields = Record<string, BaseField>;
 
-type FileFieldFromServer = { fileHashId: string };
-
-type FieldFromServer = BaseField | FileFieldFromServer | FileFieldFromServer[];
+type FieldFromServer = BaseField | FileFromServer | FileFromServer[];
 type FieldsFromServer = Record<string, FieldFromServer>;
 
 type FieldToServerFull = BaseField | FileToServer | FileToServer[];
@@ -23,10 +22,11 @@ type FieldToFieldConfigurationUdf = BaseField | FileToFieldConfigurationUdf
   | FileToFieldConfigurationUdf[];
 type FieldsToFieldConfigurationUdf = Record<string, FieldToFieldConfigurationUdf>;
 
+// strict(): do not do casting here, otherwise for example a string might end up as a number
 const baseFieldSchema = Joi.alternatives().try(
-  Joi.boolean().required(),
-  Joi.number().required(),
-  Joi.string().allow('').required(),
+  Joi.boolean().strict().required(),
+  Joi.number().strict().required(),
+  Joi.string().strict().allow('').required(),
   Joi.any().valid(null).required(),
 );
 
@@ -35,16 +35,13 @@ const baseFieldsSchema = Joi.object().pattern(
   baseFieldSchema,
 );
 
-const fileFieldFromServerSchema = Joi.object().keys({
-  fileHashId: Joi.string().required(),
-});
-
+// strict(): do not do casting here, otherwise for example a string might end up as a number
 const fieldFromServerSchema = Joi.alternatives().try(
-  Joi.boolean().required(),
-  Joi.number().required(),
-  Joi.string().allow('').required(),
-  fileFieldFromServerSchema.required(),
-  Joi.array().items(fileFieldFromServerSchema).required(),
+  Joi.boolean().strict().required(),
+  Joi.number().strict().required(),
+  Joi.string().strict().allow('').required(),
+  fileFromServerSchema.required(),
+  Joi.array().items(fileFromServerSchema).required(),
   Joi.any().valid(null).required(),
 );
 
@@ -53,10 +50,11 @@ const fieldsFromServerSchema = Joi.object().pattern(
   fieldFromServerSchema,
 );
 
+// strict(): do not do casting here, otherwise for example a string might end up as a number
 const fieldToServerFullSchema = Joi.alternatives().try(
-  Joi.boolean().required(),
-  Joi.number().required(),
-  Joi.string().allow('').required(),
+  Joi.boolean().strict().required(),
+  Joi.number().strict().required(),
+  Joi.string().strict().allow('').required(),
   fileToServerSchema.required(),
   Joi.array().items(fileToServerSchema).required(),
   Joi.any().valid(null).required(),
@@ -89,10 +87,11 @@ const fieldsToServerUpdateSchema = Joi.alternatives().try(
   fieldsToServerPartialSchema.required(),
 );
 
+// strict(): do not do casting here, otherwise for example a string might end up as a number
 const fieldToFieldConfigurationUdfSchema = Joi.alternatives().try(
-  Joi.boolean().required(),
-  Joi.number().required(),
-  Joi.string().allow('').required(),
+  Joi.boolean().strict().required(),
+  Joi.number().strict().required(),
+  Joi.string().strict().allow('').required(),
   fileToFieldConfigurationUdfSchema.required(),
   Joi.array().items(fileToFieldConfigurationUdfSchema).required(),
   Joi.any().valid(null).required(),
@@ -113,11 +112,11 @@ const baseFieldConfigurationSchema = Joi.object().keys({
     value: baseFieldSchema.required().description('Will be passed through parser'),
   })).allow(null)
     .description('If null, inputType should not be select or radio. If not null, input type should be select or radio'),
-  parserTs: Joi.string().description('Parses the input string. Valid TypeScript function with signature ({ raw: Record<string, string>, object: [tbd]) => boolean | number | string | null. Not available for inputTypes \'file\' and \'files\''),
-  validatorTs: Joi.string().description('Validates the parsed input. Valid TypeScript function with signature ({ parsed: string, boolean | number | string | null | FileToFieldConfigurationUdf | FileToFieldConfigurationUdf[], values: Record<string, boolean | number | string | null | FileToFieldConfigurationUdf  | FileToFieldConfigurationUdf[]>, additionalData: Record<string,any>}) => true | string. When true is returned, input is valid. When a string is returned, input is invalid and the string is shown as error.'),
-  showTs: Joi.string().description('Determines whether this field should be shown. Valid TypeScript function with signature (value: Record<string, { value: boolean | number | string | null | FileToFieldConfigurationUdf  | FileToFieldConfigurationUdf[], validationResult: true | string }, object: [tbd]) => \'always\' | \'never\' | \'optional\'. Optional fields are hidden when they have no data'),
-  headerTs: Joi.string().description('Adds a header before this field (only if this field is shown). Valid TypeScript function with signature (value: Record<string, { value: boolean | number | string | null | FileToFieldConfigurationUdf | FileToFieldConfigurationUdf[], validationResult: true | string }, object: [tbd]) => string | false'),
-  unparserTs: Joi.string().description('Converts the stored value back to what should be shown in the input field. Is also an opportunity to provide a default value. Valid TypeScript function with signature (value: Record<string, { value: boolean | number | string | null | FileToFieldConfigurationUdf | FileToFieldConfigurationUdf[] }, object: [tbd]) => string. Not available for inputTypes \'file\' and \'files\''),
+  parserTs: Joi.string().description('Parses the input string. Valid TypeScript function with signature ({ raw: boolean | number | string | null | undefined }) => boolean | number | string | null | undefined. Not available for inputTypes \'file\' and \'files\''),
+  validatorTs: Joi.string().description('Validates the parsed input. Valid TypeScript function with signature ({ parsed: string, boolean | number | string | null | undefined | FileToFieldConfigurationUdf | FileToFieldConfigurationUdf[], values: Record<string, boolean | number | string | null | undefined | FileToFieldConfigurationUdf  | FileToFieldConfigurationUdf[]> }) => true | string. When true is returned, input is valid. When a string is returned, input is invalid and the string is shown as error.'),
+  showTs: Joi.string().description('Determines whether this field should be shown. Valid TypeScript function with signature ({ values: Record<string, boolean | number | string | null | undefined | FileToFieldConfigurationUdf  | FileToFieldConfigurationUdf[]> }) => boolean. Optional fields are hidden when they have no data'),
+  headerTs: Joi.string().description('Adds a header before this field (only if this field is shown). Valid TypeScript function with signature ({ value: Record<string, boolean | number | string | null | FileToFieldConfigurationUdf | FileToFieldConfigurationUdf[]> }) => string | false'),
+  unparserTs: Joi.string().description('Converts the stored value back to what should be shown in the input field. Is also an opportunity to provide a default value. Valid TypeScript function with signature ({ parsed: string, boolean | number | string | null | undefined, values: Record<string, boolean | number | string | null | undefined | FileToFieldConfigurationUdf | FileToFieldConfigurationUdf[]> }) => boolean | number | string | null | undefined. Not available for inputTypes \'file\' and \'files\''),
   prefix: Joi.string().description('Not available for inputTypes \'radio\', \'switch\', \'checkbox\', \'file\' and \'files\''),
   suffix: Joi.string().description('Not available for inputTypes \'radio\', \'switch\', \'checkbox\', \'file\' and \'files\''),
   hint: Joi.string().allow('').description('As shown near the input field'),
@@ -186,7 +185,6 @@ export {
   UpdatableFieldConfiguration,
   BaseField,
   BaseFields,
-  FileFieldFromServer,
   FieldFromServer,
   FieldsFromServer,
   FieldToServerFull,
@@ -198,7 +196,6 @@ export {
   FieldsToFieldConfigurationUdf,
   baseFieldSchema,
   baseFieldsSchema,
-  fileFieldFromServerSchema,
   fieldFromServerSchema,
   fieldsFromServerSchema,
   fieldToServerFullSchema,

@@ -8,7 +8,7 @@ const schema = Joi.object().keys({
   .tag('fileToFieldConfigurationUdf')
   .description('Information about a file that is passed to the user defined functions in a field configuration (eg. validator)');
 
-type FileToFieldConfigurationUdf = {
+interface FileToFieldConfigurationUdf {
   name: string | null;
   mimeType: string | null;
   bytes: number;

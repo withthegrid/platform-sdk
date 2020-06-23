@@ -24,7 +24,9 @@ interface EffectiveRequest {
   };
 }
 
-type Response = Pin;
+type Response = {
+  pin: Pin;
+}
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'post',
@@ -37,7 +39,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     typeKey: Joi.string().allow(null).default(null),
   }).required(),
   right: { environment: 'STATIC' },
-  response: pinSchema.required(),
+  response: Joi.object().keys({
+    pin: pinSchema.required(),
+  }).required(),
   description: 'Create a pin within a pin group',
 };
 

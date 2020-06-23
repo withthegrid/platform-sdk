@@ -1,6 +1,7 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 import { fieldsToServerUpdateSchema, FieldsToServerUpdate } from '../../models/field-configuration';
+import { schema as pinSchema, Pin } from '../../models/pin';
 
 interface Request {
   params: {
@@ -12,7 +13,7 @@ interface Request {
 }
 
 interface Response {
-  name: string;
+  pin: Pin;
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
@@ -25,7 +26,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     fields: fieldsToServerUpdateSchema.example({ id: 'My connecting point' }),
   }).required(),
   response: Joi.object().keys({
-    name: Joi.string().required().example('My connecting point'),
+    pin: pinSchema.required(),
   }).required(),
   right: { environment: 'STATIC' },
   description: 'Updates a specific pin',

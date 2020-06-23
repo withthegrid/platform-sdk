@@ -2,6 +2,8 @@ import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 import { fieldsToServerFullSchema, FieldsToServerFull } from '../../models/field-configuration';
 
+import { schema as edgeSchema, Edge } from '../../models/edge';
+
 interface Request {
   body: {
     nodeHashIds: [string | null] | [string | null, string | null];
@@ -38,6 +40,7 @@ interface EffectiveRequest {
 
 interface Response {
   hashId: string;
+  edge: Edge;
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
@@ -80,6 +83,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   right: { environment: 'STATIC' },
   response: Joi.object().keys({
     hashId: Joi.string().required().example('ka08d'),
+    edge: edgeSchema.required(),
   }).required(),
   description: 'Create an edge',
 };

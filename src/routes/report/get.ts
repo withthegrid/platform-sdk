@@ -5,7 +5,6 @@ import { schema as measurementSchema, Measurement, MeasurementV1 } from '../../m
 import { schema as quantitySchema, Quantity } from '../../models/quantity';
 import { schema as reportTypeSchema, ReportType } from '../../models/report-type';
 import { fieldsFromServerSchema, FieldsFromServer } from '../../models/field-configuration';
-import { schema as fileFromServerSchema, FileFromServer } from '../../models/file-from-server';
 import { schema as deviceTypeSchema, DeviceType } from '../../models/device-type';
 
 interface Request {
@@ -29,7 +28,6 @@ interface Response {
   userName: string | null;
   generatedAt: Date | null;
   createdAt: Date;
-  files: FileFromServer[];
 }
 
 type ResponsesIncludingDeprecated = Response | {
@@ -85,7 +83,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       })).required(),
       type: reportTypeSchema.required(),
       quantities: Joi.array().items(quantitySchema).required(),
-      files: Joi.array().items(fileFromServerSchema).required(),
     });
   },
   description: 'Get a specific report identified by its hashId',

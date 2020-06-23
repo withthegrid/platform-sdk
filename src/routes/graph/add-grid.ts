@@ -2,6 +2,8 @@ import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 import { fieldsToServerFullSchema, FieldsToServerFull } from '../../models/field-configuration';
 
+import { schema as gridSchema, Grid } from '../../models/grid';
+
 interface Request {
   body: {
     fields: FieldsToServerFull;
@@ -11,6 +13,7 @@ interface Request {
 
 interface Response {
   hashId: string;
+  grid: Grid;
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
@@ -23,6 +26,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   right: { environment: 'STATIC' },
   response: Joi.object().keys({
     hashId: Joi.string().required().example('naud51'),
+    grid: gridSchema.required(),
   }).required(),
   description: 'Create a pin group grid',
 };
