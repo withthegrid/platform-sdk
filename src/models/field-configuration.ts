@@ -61,7 +61,7 @@ const fieldToServerFullSchema = Joi.alternatives().try(
 );
 
 const fieldsToServerFullSchema = Joi.object().pattern(
-  Joi.string().required(),
+  Joi.string(),
   fieldToServerFullSchema,
 );
 
@@ -75,7 +75,7 @@ const fieldToServerPartialSchema = Joi.alternatives().try(
     delete: Joi.array().items(Joi.string().required()),
     add: Joi.array().items(fileToServerSchema.required()),
   }),
-).required();
+);
 
 
 const fieldsToServerPartialSchema = Joi.array().items(
