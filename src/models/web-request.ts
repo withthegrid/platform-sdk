@@ -9,22 +9,23 @@ const schema = Joi.object().keys({
   createdAt: Joi.date().required().example('2019-12-31T15:23Z'),
   request: Joi.object().keys({
     url: Joi.object().keys({
-      protocol: Joi.string().required().example('https'),
-      host: Joi.string().required().example('api.withthegrid.com'),
-      path: Joi.string().required().example('/something'),
+      protocol: Joi.string().allow('').required().example('https'),
+      host: Joi.string().allow('').required().example('api.withthegrid.com'),
+      path: Joi.string().allow('').required().example('/something'),
       query: Joi.object().pattern(Joi.string(), Joi.alternatives().try(
-        Joi.string().required(),
-        Joi.array().items(Joi.string().required()).required(),
+        Joi.string().allow('').required(),
+        Joi.array().items(Joi.string().allow('').required()).required(),
       ).required()).required().example({
         e: 'f1a4w1',
         t: 'asd193gaf11234',
       }),
     }).required(),
-    ip: Joi.string().required().example('8.8.8.8'),
-    method: Joi.string().required().example('post').description('In lowercase'),
+    ip: Joi.string().allow('').required().example('8.8.8.8'),
+    method: Joi.string().allow('').required().example('post')
+      .description('In lowercase'),
     headers: Joi.object().pattern(Joi.string(), Joi.alternatives().try(
-      Joi.string(),
-      Joi.array().items(Joi.string().required()).required(),
+      Joi.string().allow(''),
+      Joi.array().items(Joi.string().allow('').required()).required(),
     ).required()).required().example({
       'content-type': 'application/json;charset=UTF-8',
     }),
@@ -35,7 +36,7 @@ const schema = Joi.object().keys({
       }).required(),
       Joi.object().keys({
         type: Joi.string().valid('string', 'hex').required(),
-        data: Joi.string().required(),
+        data: Joi.string().allow('').required(),
       }).required(),
     ).example({ type: 'json', data: { key: 'value' } }),
     certificate: Joi.object().keys({
@@ -64,7 +65,7 @@ const schema = Joi.object().keys({
       }).required(),
       Joi.object().keys({
         type: Joi.string().valid('string', 'hex').required(),
-        data: Joi.string().required(),
+        data: Joi.string().allow('').required(),
       }).required(),
     ).example({ type: 'json', data: { key: 'value' } }),
   }).required(),
