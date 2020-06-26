@@ -27,7 +27,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   }).required(),
   response: pinLinkSchema.required(),
   right: { environment: 'STATIC' },
-  description: 'Connects a pin to an edge. All measurements on that pin (also in the past) are also accessible on the edge. Pins can be connected to multiple edges and edges can be connected to multiple pins.',
+  description: 'Connects a pin to an edge. Only measurements from after the connection is made, are accessible on the edge. Pins can be connected to multiple edges and edges can be connected to multiple pins.',
 };
 
 export {
