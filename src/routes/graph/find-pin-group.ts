@@ -4,6 +4,7 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 import { schema as deviceSchema, Device } from '../../models/device';
 import { schema as gridSchema, Grid } from '../../models/grid';
 import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
+import { schema as environmentSchema, Environment } from '../../models/environment';
 
 import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
 
@@ -34,6 +35,15 @@ interface Response {
   rows: ResponseRow[];
 }
 
+interface DeprecatedResponseRow extends ResponseRow {
+  environment: Environment;
+}
+
+type ResponsesIncludingDeprecated = {
+  rows: (ResponseRow | DeprecatedResponseRow)[];
+}
+
+
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
   path: '/pin-group',
@@ -54,13 +64,25 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     .with('lastValueSortColumn', 'lastValueHashId')
     .default(),
   right: { environment: 'READ' },
-  response: Joi.object().keys({
-    rows: Joi.array().items(Joi.object().keys({
+  response: (apiVersion: number): Joi.ObjectSchema => {
+    const baseRowSchema = Joi.object().keys({
       pinGroup: pinGroupSchema.required(),
       device: deviceSchema.allow(null).required(),
       grid: gridSchema.allow(null).required(),
-    })).required(),
-  }),
+    });
+
+    if (apiVersion <= 2) {
+      const row = baseRowSchema.keys({
+        environment: environmentSchema.required(),
+      });
+      return Joi.object().keys({
+        rows: Joi.array().items(row).required(),
+      });
+    }
+    return Joi.object().keys({
+      rows: Joi.array().items(baseRowSchema).required(),
+    });
+  },
   description: 'Search through pin groups',
 };
 
@@ -71,4 +93,6 @@ export {
   Response,
   Query,
   ResponseRow,
+  DeprecatedResponseRow,
+  ResponsesIncludingDeprecated,
 };

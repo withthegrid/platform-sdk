@@ -2,6 +2,7 @@ import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
+import { schema as environmentSchema, Environment } from '../../models/environment';
 
 import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
 
@@ -40,10 +41,11 @@ interface Response {
   rows: ResponseRow[];
 }
 
-interface DeprecatedResponseRow {
+interface DeprecatedResponseRowV1 {
   report: {
     hashId: string;
     deviceHashId: string | null;
+    clientHashId: string | null;
     generatedAt: Date;
     typeKey: string;
     version: number;
@@ -52,10 +54,24 @@ interface DeprecatedResponseRow {
     viewable: boolean;
   };
   nodeGroup: PinGroup | null;
+  client: Environment;
+}
+
+
+interface DeprecatedResponseRowV2 {
+  report: {
+    hashId: string;
+    deviceHashId: string | null;
+    environmentHashId: string | null;
+    generatedAt: Date;
+  };
+  pinGroup: PinGroup | null;
+  environment: Environment | null;
+  reportTypeName: string;
 }
 
 type ResponsesIncludingDeprecated = {
-  rows: (ResponseRow | DeprecatedResponseRow)[];
+  rows: (ResponseRow | DeprecatedResponseRowV1 | DeprecatedResponseRowV2)[];
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
@@ -87,6 +103,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
           report: Joi.object().keys({
             hashId: Joi.string().required().example('qoa978'),
             deviceHashId: Joi.string().allow(null).required().example('j1iha9'),
+            clientHashId: Joi.string().allow(null).required().example('f1a4w1'),
             generatedAt: Joi.date().required().example('2019-12-31T15:23Z'),
             typeKey: Joi.string().required().example('cp-pole'),
             version: Joi.number().integer().required().example(1),
@@ -95,8 +112,25 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
             viewable: Joi.boolean().required().example(true),
           }).required(),
           nodeGroup: pinGroupSchema.allow(null).required(),
+          client: environmentSchema.allow(null).required(),
         })).required(),
       }).required();
+    }
+
+    if (apiVersion <= 2) {
+      return Joi.object().keys({
+        rows: Joi.array().items(Joi.object().keys({
+          report: Joi.object().keys({
+            hashId: Joi.string().required().example('qoa978'),
+            deviceHashId: Joi.string().allow(null).required().example('j1iha9'),
+            environmentHashId: Joi.string().allow(null).required().example('f1a4w1'),
+            generatedAt: Joi.date().required().example('2019-12-31T15:23Z'),
+          }).required(),
+          pinGroup: pinGroupSchema.allow(null).required(),
+          environment: environmentSchema.allow(null).required(),
+          reportTypeName: Joi.string().required().example('Temperature and inclination'),
+        })).required(),
+      });
     }
 
     return Joi.object().keys({
@@ -121,6 +155,7 @@ export {
   Response,
   Query,
   ResponseRow,
-  DeprecatedResponseRow,
+  DeprecatedResponseRowV1,
+  DeprecatedResponseRowV2,
   ResponsesIncludingDeprecated,
 };
