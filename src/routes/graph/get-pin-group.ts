@@ -46,8 +46,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     hashId: Joi.string().required().example('dao97'),
   }).required(),
   right: { environment: 'READ' },
-  response: Joi.object().keys({
-    pinGroup: pinGroupSchema.required(),
+  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
+    pinGroup: pinGroupSchema(apiVersion).required(),
     pins: Joi.array().items(pinSchema).required(),
     pinLinks: Joi.array().items(pinLinkSchema).required(),
     edges: Joi.array().items(edgeSchema).required(),

@@ -48,8 +48,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     deviceFields: fieldsToServerUpdateSchema,
     photo: Joi.string().allow(null).description('Should be a dataurl. Null clears the photo'),
   }).required().nand('gridHashId', 'gridName'),
-  response: Joi.object().keys({
-    pinGroup: pinGroupSchema.required(),
+  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
+    pinGroup: pinGroupSchema(apiVersion).required(),
     grid: gridSchema.allow(null).required(),
   }).required(),
   right: { environment: 'STATIC' },

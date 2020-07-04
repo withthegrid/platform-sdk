@@ -66,7 +66,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   right: { environment: 'READ' },
   response: (apiVersion: number): Joi.ObjectSchema => {
     const baseRowSchema = Joi.object().keys({
-      pinGroup: pinGroupSchema.required(),
+      pinGroup: pinGroupSchema(apiVersion).required(),
       device: deviceSchema.allow(null).required(),
       grid: gridSchema.allow(null).required(),
     });

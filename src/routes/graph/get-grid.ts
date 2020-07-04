@@ -26,9 +26,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     hashId: Joi.string().required().example('naud51'),
   }).required(),
   right: { environment: 'READ' },
-  response: Joi.object().keys({
+  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     grid: gridSchema.required(),
-    pinGroups: Joi.array().items(pinGroupSchema).required(),
+    pinGroups: Joi.array().items(pinGroupSchema(apiVersion)).required(),
     notificationLevel: Joi.number().valid(0, 1, 2).allow(null).required()
       .example(0)
       .description('Subscribe to every issue created on a pinGroup in this grid (0), when the issue gets serious (1) or when the issue gets critical (2). If you do not want to receive any notifications, set to null'),

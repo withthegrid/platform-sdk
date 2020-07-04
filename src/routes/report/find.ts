@@ -111,7 +111,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
             createdByDevice: Joi.boolean().required().example(true),
             viewable: Joi.boolean().required().example(true),
           }).required(),
-          nodeGroup: pinGroupSchema.allow(null).required(),
+          nodeGroup: pinGroupSchema(apiVersion).allow(null).required(),
           client: environmentSchema.allow(null).required(),
         })).required(),
       }).required();
@@ -126,7 +126,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
             environmentHashId: Joi.string().allow(null).required().example('f1a4w1'),
             generatedAt: Joi.date().required().example('2019-12-31T15:23Z'),
           }).required(),
-          pinGroup: pinGroupSchema.allow(null).required(),
+          pinGroup: pinGroupSchema(apiVersion).allow(null).required(),
           environment: environmentSchema.allow(null).required(),
           reportTypeName: Joi.string().required().example('Temperature and inclination'),
         })).required(),
@@ -140,7 +140,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
           deviceHashId: Joi.string().allow(null).required().example('j1iha9'),
           generatedAt: Joi.date().required().example('2019-12-31T15:23Z'),
         }).required(),
-        pinGroup: pinGroupSchema.allow(null).required(),
+        pinGroup: pinGroupSchema(apiVersion).allow(null).required(),
         reportTypeName: Joi.string().required().example('Temperature and inclination'),
       })).required(),
     }).required();

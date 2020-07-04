@@ -64,14 +64,14 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     .with('lastValueSortColumn', 'lastValueHashId')
     .default(),
   right: { environment: 'READ' },
-  response: Joi.object().keys({
+  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     rows: Joi.array().items(Joi.object().keys({
       issue: issueSchema.required(),
       userName: Joi.string().allow(null).required().example('John Doe'),
       assignedUserName: Joi.string().allow(null).required().example(null),
       subscribed: Joi.boolean().required().example(false),
       links: Joi.array().min(1).items(Joi.object().keys({
-        pinGroup: pinGroupSchema.required(),
+        pinGroup: pinGroupSchema(apiVersion).required(),
         pin: pinSchema.allow(null).required(),
       })).required(),
     })).required(),

@@ -24,6 +24,7 @@ interface Response {
   pinGroup: PinGroup;
 }
 
+
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'post',
   path: '/pin-group',
@@ -42,9 +43,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     photo: Joi.string().description('Should be a dataurl'),
   }).required().nand('gridHashId', 'gridName'),
   right: { environment: 'STATIC' },
-  response: Joi.object().keys({
+  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     hashId: Joi.string().required().example('dao97'),
-    pinGroup: pinGroupSchema.required(),
+    pinGroup: pinGroupSchema(apiVersion).required(),
   }).required(),
   description: 'Create a pin group',
 };

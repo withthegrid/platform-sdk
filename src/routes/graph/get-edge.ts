@@ -26,7 +26,6 @@ interface Response {
   photo: string | null;
 }
 
-
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
   path: '/edge/:hashId',
@@ -34,10 +33,10 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     hashId: Joi.string().required().example('ka08d'),
   }).required(),
   right: { environment: 'READ' },
-  response: Joi.object().keys({
+  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     edge: edgeSchema.required(),
     pins: Joi.array().items(pinSchema).required(),
-    pinGroups: Joi.array().items(pinGroupSchema).required(),
+    pinGroups: Joi.array().items(pinGroupSchema(apiVersion)).required(),
     measurementCycles: Joi.array().items(measurementCycleSchema.allow(null)).required(),
     thresholds: Joi.array().items(Joi.object().keys({
       value: thresholdSchema.required(),

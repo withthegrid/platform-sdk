@@ -26,10 +26,10 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     hashId: Joi.string().required().example('ga9741s'),
   }).required(),
   right: { environment: 'READ', supplier: 'ENVIRONMENT_ADMIN' },
-  response: Joi.object().keys({
+  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     command: commandSchema.required(),
     commandType: commandTypeSchema.required(),
-    pinGroup: pinGroupSchema.allow(null).required(),
+    pinGroup: pinGroupSchema(apiVersion).allow(null).required(),
   }).required(),
   description: 'Get a specific command identified by its hashId',
 };
