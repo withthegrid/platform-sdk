@@ -65,6 +65,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     pinGroupHashId: Joi.string().allow(null).default(null),
     edgeHashId: Joi.string().allow(null).default(null),
     gridHashId: Joi.string().allow(null).default(null),
+    allEnvironments: Joi.boolean().description('Deprecated'),
     sortBy: Joi.string().valid('generatedAt').default('generatedAt'),
     descending: Joi.boolean().default(true),
     rowsPerPage: Joi.number()

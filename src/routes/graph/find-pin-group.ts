@@ -39,6 +39,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   path: '/pin-group',
   query: Joi.object().keys({
     includeDeleted: Joi.boolean().default(false),
+    allEnvironments: Joi.boolean().description('Deprecated'),
     sortBy: Joi.string().valid('hashId', 'name').default('hashId'),
     descending: Joi.boolean().default(true),
     rowsPerPage: Joi.number()
