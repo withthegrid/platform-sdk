@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import BaseJoi from '@hapi/joi';
 
 import Comms from './comms';
 import Routes, * as IndividualRoutes from './routes';
@@ -9,6 +9,30 @@ import * as routes from './routes/routes';
 import { Response as MachineLoginResponse } from './routes/authentication/machine-login';
 
 const apiVersion = 3;
+
+/* Enable automatic coercion from string to valid array. 
+ * Joi release v16: https://github.com/hapijs/joi/issues/2037
+ */
+const Joi = BaseJoi.extend({
+  type: 'array',
+  base: BaseJoi.array(),
+  coerce: {
+    from: 'string',
+    method(value: any, helpers: BaseJoi.CustomHelpers): BaseJoi.CoerceResult {
+      if (typeof value !== 'string' ||
+        value[0] !== '[' && !/^\s*\[/.test(value)) {
+        return { value: value }; 
+      }
+
+      try {
+        return { value: JSON.parse(value) };
+      }
+      catch (ignoreErr) { 
+        return { errors: [ignoreErr] };
+      }
+    }
+  }
+});
 
 class PlatformSdk {
   protected comms: Comms;
