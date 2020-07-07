@@ -4,7 +4,6 @@ import { identifierExample } from '../../models/supplier-certificate';
 
 interface Request {
   body: {
-    name: string;
     csr: string;
     identifier: string;
   };
@@ -19,7 +18,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'post',
   path: '/',
   body: Joi.object().keys({
-    name: Joi.string().required().example('My certificate'),
     csr: Joi.string().required().example(`-----BEGIN CERTIFICATE REQUEST-----
 MIHhMIGHAgEAMCUxEjAQBgNVBAoMCWRldmVsb3BlcjEPMA0GA1UEAwwGeGQycmQ0
 MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEyHDE7farWQdLw/HDgOcbt9BU8ba6

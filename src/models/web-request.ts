@@ -50,7 +50,6 @@ const schema = Joi.object().keys({
           value: Joi.string().allow('').required().example('common name'),
         }).required(),
       }))).required(),
-      serial: Joi.number().required().example(10),
     }).allow(null).required(),
   }).required(),
   response: Joi.object().keys({
@@ -100,7 +99,6 @@ interface WebRequest {
           value: string;
         };
       }[][];
-      serial: number;
     } | null;
   };
   response: {

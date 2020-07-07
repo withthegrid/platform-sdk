@@ -6,7 +6,6 @@ interface Request {
     hashId: string;
   };
   body: {
-    name?: string;
     identifier?: string;
   };
 }
@@ -20,7 +19,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     hashId: Joi.string().required().example('v19a12'),
   }).required(),
   body: Joi.object().keys({
-    name: Joi.string().example('My certificate'),
     identifier: Joi.string().description('A javascript function that returns deviceType and identifier. See [add link]'),
   }).required(),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
