@@ -30,6 +30,10 @@ interface Response {
   edge: Edge;
 }
 
+type ResponsesIncludingDeprecated = Response | {
+  name: string;
+}
+
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'post',
   path: '/edge/:hashId',
@@ -64,9 +68,16 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       photo: Joi.string().allow(null).description('Should be a dataurl. Null clears the photo'),
     }).required(),
   ),
-  response: Joi.object().keys({
-    edge: edgeSchema.required(),
-  }).required(),
+  response: (apiVersion: number): Joi.ObjectSchema => {
+    if (apiVersion <= 2) {
+      return Joi.object().keys({
+        name: Joi.string().required().example('My segment'),
+      }).required();
+    }
+    return Joi.object().keys({
+      edge: edgeSchema.required(),
+    }).required();
+  },
   right: { environment: 'STATIC' },
   description: 'Updates a specific edge',
 };
@@ -76,6 +87,7 @@ export {
   Request,
   Request as EffectiveRequest,
   Response,
+  ResponsesIncludingDeprecated,
   EffectiveLineStringBody,
   EffectiveMultiLineStringBody,
 };

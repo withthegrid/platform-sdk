@@ -29,6 +29,10 @@ interface Response {
   grid: Grid | null;
 }
 
+type ResponsesIncludingDeprecated = Response | {
+  name: string;
+}
+
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'post',
   path: '/pin-group/:hashId',
@@ -48,10 +52,17 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     deviceFields: fieldsToServerUpdateSchema,
     photo: Joi.string().allow(null).description('Should be a dataurl. Null clears the photo'),
   }).required().nand('gridHashId', 'gridName'),
-  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
-    pinGroup: pinGroupSchema(apiVersion).required(),
-    grid: gridSchema.allow(null).required(),
-  }).required(),
+  response: (apiVersion: number): Joi.ObjectSchema => {
+    if (apiVersion <= 2) {
+      return Joi.object().keys({
+        name: Joi.string().required().example('My measurement location'),
+      }).required();
+    }
+    return Joi.object().keys({
+      pinGroup: pinGroupSchema(apiVersion).required(),
+      grid: gridSchema.allow(null).required(),
+    }).required();
+  },
   right: { environment: 'STATIC' },
   description: 'Updates a specific pin group',
 };
@@ -61,4 +72,5 @@ export {
   Request,
   Request as EffectiveRequest,
   Response,
+  ResponsesIncludingDeprecated,
 };
