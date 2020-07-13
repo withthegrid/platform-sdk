@@ -15,6 +15,7 @@ interface Request {
     end?: 'required' | 'optional' | 'disabled';
     supplierOnly?: boolean;
     fieldConfigurations?: UpdatableFieldConfiguration[];
+    channelSelect?: 'single' | 'multiple' | 'off';
   };
 }
 
@@ -34,6 +35,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     supplierOnly: Joi.boolean().description('If true, this type of command can not be created from an environment'),
     fieldConfigurations: Joi.array().items(updatableFieldConfigurationSchema)
       .description('See the chapter on open fields on how to use this'),
+    channelSelect: Joi.string().valid('single', 'multiple', 'off')
+      .description('When creating a command of this type, the user can then optionally choose one (in case of \'single\') or more channelIndices (in case of \'multiple\') for which this command is relevant. If \'off\' is chosen, the user cannot specify channelIndices'),
   }).required(),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
   description: 'Update a command type.',

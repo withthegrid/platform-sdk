@@ -13,6 +13,8 @@ const schema = Joi.object().keys({
   supplierOnly: Joi.boolean().required().example(false).description('If true, this type of command can not be created from an environment'),
   fieldConfigurations: Joi.array().items(fieldConfigurationFromServerSchema).required()
     .description('See the chapter on open fields on how to use this'),
+  channelSelect: Joi.string().valid('single', 'multiple', 'off').required().example('off')
+    .description('When creating a command of this type, the user can then optionally choose one (in case of \'single\') or more channelIndices (in case of \'multiple\') for which this command is relevant. If \'off\' is chosen, the user cannot specify channelIndices'),
 })
   .description('An object defining what a command type should look like: the template for commands sent to devices')
   .tag('commandType');
@@ -25,6 +27,7 @@ interface CommandType {
   end: 'required' | 'optional' | 'disabled';
   supplierOnly: boolean;
   fieldConfigurations: FieldConfigurationFromServer[];
+  channelSelect: 'single' | 'multiple' | 'off';
 }
 
 export {
