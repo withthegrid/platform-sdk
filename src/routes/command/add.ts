@@ -12,6 +12,7 @@ interface Request {
     startAt: Date | null;
     delay: number;
     endAt: Date | null;
+    channelIndices: number[];
     email: string[];
   };
 }
@@ -35,6 +36,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     delay: Joi.number().default(0).description('In seconds. Only relevant when startAt is null. The command should then be executed by the device at time of receival + delay'),
     endAt: Joi.date().allow(null).default(null).example(null)
       .description('Timestamp the device should stop execution of the command.'),
+    channelIndices: Joi.array().items(Joi.number()).default([]).description('The device channels for which this command is relevant. See commandType.channelSelect for allowed values.'),
     email: Joi.array().items(Joi.string().email({ tlds: false })).required().example([])
       .description('An email will be sent to all provided email addresses when the command is executed by the sensor'),
   }).required(),

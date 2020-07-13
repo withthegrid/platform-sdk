@@ -13,6 +13,8 @@ const schema = Joi.object().keys({
   delay: Joi.number().required().example(0).description('In seconds. Only relevant when startAt is null. The command should then be executed by the device at time of receival + delay'),
   endAt: Joi.date().allow(null).required().example(null)
     .description('Timestamp the device should stop execution of the command.'),
+  channelIndices: Joi.array().items(Joi.number()).required().example([0, 2])
+    .description('The device channels for which this command is relevant. See commandType.channelSelect for allowed values.'),
   email: Joi.array().items(Joi.string().email({ tlds: false }).example('info@acme.com')).allow(null),
   createdAt: Joi.date(),
   deletedAt: Joi.date().allow(null),
@@ -32,6 +34,7 @@ interface Command {
   startAt: Date | null;
   delay: number;
   endAt: Date | null;
+  channelIndices: number[];
   email: string[] | null;
   createdAt?: Date;
   deletedAt?: Date | null;
