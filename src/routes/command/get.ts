@@ -3,8 +3,6 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as commandSchema, Command } from '../../models/command';
 import { schema as commandTypeSchema, CommandType } from '../../models/command-type';
-import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
-
 
 interface Request {
   params: {
@@ -15,7 +13,6 @@ interface Request {
 interface Response {
   command: Command;
   commandType: CommandType;
-  pinGroup: PinGroup | null;
 }
 
 
@@ -26,10 +23,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     hashId: Joi.string().required().example('ga9741s'),
   }).required(),
   right: { environment: 'READ', supplier: 'ENVIRONMENT_ADMIN' },
-  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
+  response: Joi.object().keys({
     command: commandSchema.required(),
     commandType: commandTypeSchema.required(),
-    pinGroup: pinGroupSchema(apiVersion).allow(null).required(),
   }).required(),
   description: 'Get a specific command identified by its hashId',
 };
