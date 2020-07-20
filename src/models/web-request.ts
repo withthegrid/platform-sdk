@@ -67,7 +67,7 @@ const schema = Joi.object().keys({
         data: Joi.string().allow('').required(),
       }).required(),
     ).example({ type: 'json', data: { key: 'value' } }),
-  }).required(),
+  }).allow(null).required(),
 })
   .description('An object defining an incoming or outgoing request')
   .tag('webRequest');
@@ -105,7 +105,7 @@ interface WebRequest {
     statusCode: number;
     headers: Record<string, string>;
     body?: Body;
-  };
+  } | null;
 }
 
 export { schema, WebRequest };
