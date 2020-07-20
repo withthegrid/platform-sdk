@@ -3,7 +3,6 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as supplierCertificateSchema, SupplierCertificate, identifierExample } from '../../models/supplier-certificate';
 
-
 interface Request {
   params: {
     hashId: string;
@@ -14,7 +13,6 @@ interface Response {
   certificate: SupplierCertificate;
   identifier: string;
 }
-
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',

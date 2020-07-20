@@ -37,5 +37,4 @@ const schema = (apiVersion: number): Joi.AnySchema => supplierActivityConstructo
   .tag('supplierActivityParseReport')
   .description('Supplier defined function informs the system incoming data should be converted into a measurement report.');
 
-
 export { schema, ParseReport };

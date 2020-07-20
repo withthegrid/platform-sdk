@@ -1,6 +1,5 @@
 import Joi from '@hapi/joi';
 
-
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('f1a4w1'),
   name: Joi.string().required().example('My environment'),

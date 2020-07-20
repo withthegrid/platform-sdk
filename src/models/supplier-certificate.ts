@@ -10,7 +10,6 @@ const identifierExample = `function (command) {
   });
 }`;
 
-
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('v19a12'),
   name: Joi.string().required().example('My certificate'),
@@ -30,7 +29,6 @@ const schema = Joi.object().keys({
 })
   .tag('supplierCertificate')
   .description('Information about a suppier certificate that can be used to create device certificates');
-
 
 interface SupplierCertificate {
   hashId: string;

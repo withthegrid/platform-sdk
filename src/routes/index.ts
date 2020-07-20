@@ -93,7 +93,6 @@ class Routes {
 
   download: DownloadRoute;
 
-
   constructor(readonly comms: Comms) {
     this.authentication = new AuthenticationRoute(comms);
     this.autocomplete = new AutocompleteRoute(comms);

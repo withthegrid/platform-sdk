@@ -3,9 +3,7 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as deviceTypeSchema, DeviceType } from '../../models/device-type';
 
-
 import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
-
 
 type Query = TableQuery;
 

@@ -19,7 +19,6 @@ const schema = Joi.object().keys({
   .tag('log')
   .description('An entry in the audit log');
 
-
 interface Log {
   hashId: string;
   userHashId: string | null;

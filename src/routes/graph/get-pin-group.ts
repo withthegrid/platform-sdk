@@ -38,7 +38,6 @@ interface Response {
   photo: string | null;
 }
 
-
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
   path: '/pin-group/:hashId',

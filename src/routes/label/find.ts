@@ -5,7 +5,6 @@ import { schema as labelSchema, Label } from '../../models/label';
 
 import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
 
-
 type Query = TableQuery;
 
 interface Request {

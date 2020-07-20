@@ -16,7 +16,6 @@ const schema = Joi.object().keys({
   .tag('fileFromServer')
   .description('Information about a stored file that can be used to download or inline it');
 
-
 interface FileFromServer {
   hashId: string;
   requestorType: string;

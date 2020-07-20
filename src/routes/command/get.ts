@@ -15,7 +15,6 @@ interface Response {
   commandType: CommandType;
 }
 
-
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
   path: '/:hashId',

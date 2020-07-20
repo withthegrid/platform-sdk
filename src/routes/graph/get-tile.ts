@@ -1,7 +1,6 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
-
 interface Request {
   params: {
     x: number;
@@ -19,7 +18,6 @@ type EffectiveRequest = {
 }
 
 type Response = void;
-
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',

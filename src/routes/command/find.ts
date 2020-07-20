@@ -7,7 +7,6 @@ import { schema as commandTypeSchema, CommandType } from '../../models/command-t
 
 import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
 
-
 interface Query extends TableQuery {
   pinGroupHashId?: string | null;
   edgeHashId?: string | null;
@@ -37,7 +36,6 @@ interface ResponseRow {
 interface Response {
   rows: ResponseRow[];
 }
-
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',

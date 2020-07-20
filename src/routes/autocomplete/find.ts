@@ -8,7 +8,6 @@ interface Request {
   };
 }
 
-
 type EffectiveRequest = RecursiveRequired<Request>;
 
 interface ResponseRow {
@@ -18,7 +17,6 @@ interface ResponseRow {
 }
 
 type Response = ResponseRow[];
-
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',

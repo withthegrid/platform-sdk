@@ -25,5 +25,4 @@ const schema = (apiVersion: number): Joi.AnySchema => supplierActivityConstructo
   .tag('supplierActivityHandleDeletedCommand')
   .description('Supplier defined device type event handler handled a command that was deleted.');
 
-
 export { schema, HandleDeletedCommand };

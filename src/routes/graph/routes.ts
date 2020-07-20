@@ -32,7 +32,6 @@ import * as updatePinGroup from './update-pin-group';
 import * as updateNode from './update-node';
 import * as updatePin from './update-pin';
 
-
 export {
   addEdgeToPin,
   addEdge,

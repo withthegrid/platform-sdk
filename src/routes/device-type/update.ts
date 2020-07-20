@@ -5,7 +5,6 @@ import {
   UpdatableFieldConfiguration,
 } from '../../models/field-configuration';
 
-
 interface Request {
   params: {
     hashId: string;
@@ -20,7 +19,6 @@ interface Request {
 }
 
 type Response = void;
-
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'post',

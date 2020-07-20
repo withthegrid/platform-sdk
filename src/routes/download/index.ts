@@ -23,5 +23,4 @@ class DownloadRoute {
     )(parameters);
 }
 
-
 export default DownloadRoute;

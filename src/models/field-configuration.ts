@@ -77,7 +77,6 @@ const fieldToServerPartialSchema = Joi.alternatives().try(
   }),
 );
 
-
 const fieldsToServerPartialSchema = Joi.array().items(
   fieldToServerPartialSchema,
 );

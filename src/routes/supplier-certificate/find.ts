@@ -3,7 +3,6 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
 
-
 type Query = TableQuery;
 
 interface Request {

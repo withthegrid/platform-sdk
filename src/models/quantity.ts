@@ -7,7 +7,6 @@ const schema = Joi.object().keys({
 })
   .tag('quantity');
 
-
 interface Quantity {
   hashId: string;
   name: string;

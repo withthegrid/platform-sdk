@@ -21,7 +21,6 @@ interface Response {
   }[];
 }
 
-
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
   path: '/pin/:hashId',

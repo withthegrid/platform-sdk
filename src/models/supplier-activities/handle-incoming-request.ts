@@ -22,5 +22,4 @@ const schema = (apiVersion: number): Joi.AnySchema => supplierActivityConstructo
   .tag('supplierActivityHandleIncomingRequest')
   .description('Supplier defined device type event handler handled an incoming request for a specific device type.');
 
-
 export { schema, HandleIncomingRequest };

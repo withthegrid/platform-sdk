@@ -8,7 +8,6 @@ import Comms from '../../comms';
 import controllerGenerator, { Result } from '../../comms/controller';
 import TableController from '../../comms/table-controller';
 
-
 class SupplierRoute {
   static routerPath = 'supplier';
 
@@ -52,7 +51,6 @@ class SupplierRoute {
       SupplierRoute.auth,
       this.comms,
     )(parameters);
-
 
   findTableController = (parameters: find.Query):
     TableController<find.ResponseRow> => new TableController<find.ResponseRow>(

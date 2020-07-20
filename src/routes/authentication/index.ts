@@ -24,5 +24,4 @@ class AuthenticationRoute {
     )(parameters);
 }
 
-
 export default AuthenticationRoute;

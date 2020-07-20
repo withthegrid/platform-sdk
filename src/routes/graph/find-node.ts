@@ -5,7 +5,6 @@ import { schema as nodeSchema, Node } from '../../models/node';
 
 import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
 
-
 interface Query extends TableQuery {
   includeDeleted?: boolean;
 }

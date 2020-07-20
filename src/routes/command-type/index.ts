@@ -8,7 +8,6 @@ import Comms from '../../comms';
 import controllerGenerator, { Result } from '../../comms/controller';
 import TableController from '../../comms/table-controller';
 
-
 class CommandTypeRoute {
   static routerPath = 'command-type';
 
@@ -28,7 +27,6 @@ class CommandTypeRoute {
       CommandTypeRoute.auth,
       this.comms,
     )(parameters);
-
 
   delete = (parameters: deleteRoute.Request):
     Result<deleteRoute.EffectiveRequest, deleteRoute.Response> => controllerGenerator<
@@ -53,7 +51,6 @@ class CommandTypeRoute {
       CommandTypeRoute.auth,
       this.comms,
     )(parameters);
-
 
   findTableController = (parameters: find.Query):
     TableController<find.ResponseRow> => new TableController<find.ResponseRow>(
@@ -84,7 +81,6 @@ class CommandTypeRoute {
       CommandTypeRoute.auth,
       this.comms,
     )(parameters);
-
 
   update = (parameters: update.Request):
     Result<update.EffectiveRequest, update.Response> => controllerGenerator<

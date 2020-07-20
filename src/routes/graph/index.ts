@@ -44,7 +44,6 @@ class GraphRoute {
   constructor(readonly comms: Comms) {
   }
 
-
   addEdgeToPin = (parameters: addEdgeToPin.Request):
     Result<addEdgeToPin.EffectiveRequest, addEdgeToPin.Response> => controllerGenerator<
       addEdgeToPin.Request,
@@ -503,6 +502,5 @@ class GraphRoute {
       this.comms,
     )(parameters);
 }
-
 
 export default GraphRoute;

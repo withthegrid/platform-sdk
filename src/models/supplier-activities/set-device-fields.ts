@@ -3,7 +3,6 @@ import Joi from '@hapi/joi';
 import { fieldsToFieldConfigurationUdfSchema, FieldsToFieldConfigurationUdf } from '../field-configuration';
 import { schemaConstructor as supplierActivityConstructor, SupplierActivity } from './base';
 
-
 interface SetDeviceFields extends SupplierActivity<'setDeviceFields'> {
   triggerData: {
     diff?: {
@@ -24,6 +23,5 @@ const schema = supplierActivityConstructor(
 )
   .tag('supplierActivitySetDeviceFields')
   .description('Supplier defined function that updates a device\'s fields.');
-
 
 export { schema, SetDeviceFields };

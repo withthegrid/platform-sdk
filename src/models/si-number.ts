@@ -11,7 +11,6 @@ const schema = Joi.object().keys({
   .description('Significant number. Its value is significand * 10 ^ orderOfMagnitude. It has as many significant figures as the significand has (except when the significand is 0, then the number of significant figures is not defined)')
   .tag('siNumber');
 
-
 interface SiNumber {
   orderOfMagnitude: number;
   significand: number;

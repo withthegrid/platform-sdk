@@ -2,7 +2,6 @@ import Joi from '@hapi/joi';
 
 import { fieldConfigurationFromServerSchema, FieldConfigurationFromServer } from './field-configuration';
 
-
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('f1a4w1'),
   name: Joi.string().required().example('My environment'),

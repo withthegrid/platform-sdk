@@ -25,5 +25,4 @@ const schema = (apiVersion: number): Joi.AnySchema => supplierActivityConstructo
   .tag('supplierActivityHandleCommandDue')
   .description('Supplier defined device type event handler handled a command that was due.');
 
-
 export { schema, HandleCommandDue };

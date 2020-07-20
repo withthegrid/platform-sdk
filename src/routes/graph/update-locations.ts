@@ -1,7 +1,6 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
-
 interface Request {
   body: ({
     type: 'node' | 'pinGroups';

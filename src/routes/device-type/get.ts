@@ -4,7 +4,6 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 import { schema as deviceTypeSchema, DeviceType } from '../../models/device-type';
 import { schema as commandTypeSchema, CommandType } from '../../models/command-type';
 
-
 interface Request {
   params: {
     hashId: string;

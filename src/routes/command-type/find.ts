@@ -5,7 +5,6 @@ import { schema as commandTypeSchema, CommandType } from '../../models/command-t
 
 import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
 
-
 type Query = TableQuery;
 
 interface Request {

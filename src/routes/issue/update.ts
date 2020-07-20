@@ -3,7 +3,6 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as issueCommentSchema, IssueComment } from '../../models/issue-comment';
 
-
 interface Request {
   params: {
     hashId: string;

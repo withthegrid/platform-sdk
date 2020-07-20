@@ -3,7 +3,6 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as environmentSchema, Environment } from '../../models/environment';
 
-
 interface Request {
   params: {
     hashId: string;
@@ -14,7 +13,6 @@ interface Response {
   environment: Environment;
   environmentRights: string[];
 }
-
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',

@@ -16,7 +16,6 @@ const schema = Joi.object().keys({
   .description('Called a sensor in the GUI')
   .tag('device');
 
-
 interface Device {
   hashId: string;
   supplierHashId: string;

@@ -12,7 +12,6 @@ const schema = Joi.object().keys({
   .description('A label can be used to tag issues with.')
   .tag('label');
 
-
 interface Label {
   hashId: string;
   name: string;

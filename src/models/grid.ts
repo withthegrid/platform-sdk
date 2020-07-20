@@ -12,7 +12,6 @@ const schema = Joi.object().keys({
   .tag('grid')
   .description('A collection of pin groups or nodes. In the GUI, only pinGroup grids are used.');
 
-
 interface Grid {
   hashId: string;
   typeKey: 'node' | 'pinGroup';

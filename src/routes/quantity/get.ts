@@ -3,7 +3,6 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as quantitySchema, Quantity } from '../../models/quantity';
 
-
 interface Request {
   params: {
     hashId: string;
@@ -13,7 +12,6 @@ interface Request {
 interface Response {
   quantity: Quantity;
 }
-
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',

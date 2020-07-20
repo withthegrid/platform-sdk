@@ -24,7 +24,6 @@ interface Response {
   pinGroup: PinGroup;
 }
 
-
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'post',
   path: '/pin-group',

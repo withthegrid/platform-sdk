@@ -38,7 +38,6 @@ const schema = (apiVersion: number): Joi.ObjectSchema => {
   });
 };
 
-
 interface Measurement {
   hashId: string;
   generatedAt: Date;

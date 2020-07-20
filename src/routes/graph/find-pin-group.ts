@@ -8,7 +8,6 @@ import { schema as environmentSchema, Environment } from '../../models/environme
 
 import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
 
-
 interface Query extends TableQuery {
   includeDeleted?: boolean;
 }
@@ -42,7 +41,6 @@ interface DeprecatedResponseRow extends ResponseRow {
 type ResponsesIncludingDeprecated = {
   rows: (ResponseRow | DeprecatedResponseRow)[];
 }
-
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',

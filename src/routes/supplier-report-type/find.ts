@@ -5,7 +5,6 @@ import { schema as reportTypeSchema, ReportType } from '../../models/report-type
 
 import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
 
-
 type Query = TableQuery;
 
 interface Request {

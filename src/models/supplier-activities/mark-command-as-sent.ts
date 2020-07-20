@@ -4,7 +4,6 @@ import { schemaConstructor as supplierActivityConstructor, SupplierActivity } fr
 import { schema as commandSchema, Command } from '../command';
 import { schema as commandTypeSchema, CommandType } from '../command-type';
 
-
 interface MarkCommandAsSent extends SupplierActivity<'markCommandAsSent'> {
   triggerData: Record<string, never> | {
     command: Command;
@@ -24,6 +23,5 @@ const schema = supplierActivityConstructor(
 )
   .tag('supplierActivityMarkCommandAsSent')
   .description('Supplier defined function informs the system that a specific command has been shared with a specific device.');
-
 
 export { schema, MarkCommandAsSent };

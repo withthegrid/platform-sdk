@@ -28,7 +28,6 @@ interface Response {
   pins: Pin[];
 }
 
-
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'post',
   path: '/:hashId/link',

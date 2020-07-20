@@ -29,5 +29,4 @@ const schema = (apiVersion: number): Joi.AnySchema => Joi.alternatives().try(
   setReportingFrequencySchema,
 );
 
-
 export { schema, DeviceTypeHandlerActivity };

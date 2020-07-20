@@ -3,9 +3,7 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as userSchema, User } from '../../models/user';
 
-
 import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
-
 
 type Query = TableQuery;
 

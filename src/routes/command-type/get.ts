@@ -3,7 +3,6 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as commandTypeSchema, CommandType } from '../../models/command-type';
 
-
 interface Request {
   params: {
     hashId: string;
@@ -13,7 +12,6 @@ interface Request {
 interface Response {
   commandType: CommandType;
 }
-
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',

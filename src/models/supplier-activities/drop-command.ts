@@ -4,7 +4,6 @@ import { schemaConstructor as supplierActivityConstructor, SupplierActivity } fr
 import { schema as commandSchema, Command } from '../command';
 import { schema as commandTypeSchema, CommandType } from '../command-type';
 
-
 interface DropCommand extends SupplierActivity<'dropCommand'> {
   triggerData: Record<string, never> | {
     command: Command;
@@ -24,6 +23,5 @@ const schema = supplierActivityConstructor(
 )
   .tag('supplierActivityDropCommand')
   .description('Supplier defined function informs the system that a specific command can be removed from the list of scheduled commands. This can be used, for example, as it was sent to the device and is not needed anymore, or when its scheduled execution time has passed.');
-
 
 export { schema, DropCommand };

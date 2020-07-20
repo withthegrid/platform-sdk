@@ -4,7 +4,6 @@ import { schemaConstructor as supplierActivityConstructor, SupplierActivity } fr
 import { schema as commandSchema, Command } from '../command';
 import { schema as commandTypeSchema, CommandType } from '../command-type';
 
-
 interface ScheduleCommand extends SupplierActivity<'scheduleCommand'> {
   triggerData: Record<string, never> | {
     command: Command;
@@ -24,6 +23,5 @@ const schema = supplierActivityConstructor(
 )
   .tag('supplierActivityScheduleCommand')
   .description('Supplier defined function informs the system that a command for a specific device should be scheduled.');
-
 
 export { schema, ScheduleCommand };

@@ -4,7 +4,6 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 import { schema as environmentSchema, Environment } from '../../models/environment';
 import { schema as userSchema, User } from '../../models/user';
 
-
 type Request = Record<string, undefined>;
 
 interface Response {
@@ -12,7 +11,6 @@ interface Response {
   environmentRights?: string[];
   user: User;
 }
-
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',

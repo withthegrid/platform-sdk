@@ -4,7 +4,6 @@ import * as update from './update';
 import Comms from '../../comms';
 import controllerGenerator, { Result } from '../../comms/controller';
 
-
 class IssueRoute {
   static routerPath = 'issue-comment';
 
@@ -12,7 +11,6 @@ class IssueRoute {
 
   constructor(readonly comms: Comms) {
   }
-
 
   delete = (parameters: deleteRoute.Request):
     Result<deleteRoute.EffectiveRequest, deleteRoute.Response> => controllerGenerator<
@@ -25,7 +23,6 @@ class IssueRoute {
       IssueRoute.auth,
       this.comms,
     )(parameters);
-
 
   update = (parameters: update.Request):
     Result<update.EffectiveRequest, update.Response> => controllerGenerator<

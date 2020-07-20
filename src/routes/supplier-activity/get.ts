@@ -4,7 +4,6 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 import { schema as deviceSchema, Device } from '../../models/device';
 import { schema as deviceTypeSchema, DeviceType } from '../../models/device-type';
 
-
 import { schema as handleCommandDueSchema, HandleCommandDue } from '../../models/supplier-activities/handle-command-due';
 import { schema as handleDeletedCommandSchema, HandleDeletedCommand } from '../../models/supplier-activities/handle-deleted-command';
 import { schema as handleIncomingRequestSchema, HandleIncomingRequest } from '../../models/supplier-activities/handle-incoming-request';
@@ -30,7 +29,6 @@ type Response = {
   | HandleNewCommand
   | HandleUnlink;
 };
-
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',

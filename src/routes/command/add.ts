@@ -2,7 +2,6 @@ import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 import { fieldsToServerFullSchema, FieldsToServerFull } from '../../models/field-configuration';
 
-
 interface Request {
   body: {
     objectType: 'device' | 'pinGroup';

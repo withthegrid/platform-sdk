@@ -15,7 +15,6 @@ interface Response {
   edges: Edge[];
 }
 
-
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
   path: '/node/:hashId',

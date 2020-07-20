@@ -11,7 +11,6 @@ const schema = Joi.object().keys({
   .description('Connects a pin to an edge. Pins can be connected to multiple edges and edges can be connected to multiple pins.')
   .tag('pinLink');
 
-
 interface PinLink {
   hashId: string;
   pinHashId: string;

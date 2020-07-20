@@ -6,7 +6,6 @@ import { schema as gridSchema, Grid } from '../../models/grid';
 
 import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
 
-
 type Query = TableQuery;
 
 interface Request {

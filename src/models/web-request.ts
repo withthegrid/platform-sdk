@@ -72,7 +72,6 @@ const schema = Joi.object().keys({
   .description('An object defining an incoming or outgoing request')
   .tag('webRequest');
 
-
 interface WebRequest {
   hashId: string;
   incoming: boolean;

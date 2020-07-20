@@ -30,7 +30,6 @@ const schema = Joi.object().keys({
   .description('The pattern in which a device should take measurements')
   .tag('measurementCycle');
 
-
 interface MeasurementCycle {
   interval: number;
   offset: number;

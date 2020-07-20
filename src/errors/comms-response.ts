@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import { AxiosRequestConfig } from 'axios';
+
 import BaseError from './base';
 
 class CommsResponseError extends BaseError {
@@ -7,8 +10,8 @@ class CommsResponseError extends BaseError {
     readonly headers: any,
     readonly requestMethod: string,
     readonly requestPath: string,
-    readonly requestParams?: any,
-    readonly requestData?: any,
+    readonly requestParams?: AxiosRequestConfig['params'],
+    readonly requestData?: AxiosRequestConfig['data'],
   ) {
     super('comms_response', 'The request was made and the server responded with a status code that falls out of the range of 2xx');
   }

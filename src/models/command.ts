@@ -23,7 +23,6 @@ const schema = Joi.object().keys({
   .tag('command')
   .description('An instruction for a specific device');
 
-
 interface Command {
   hashId: string;
   deviceHashId: string;

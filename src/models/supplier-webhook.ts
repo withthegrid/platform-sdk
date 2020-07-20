@@ -1,6 +1,5 @@
 import Joi from '@hapi/joi';
 
-
 const identifierExample = `function (command) {
   return JSON.stringify({
     hashId: command.hashId,
@@ -11,7 +10,6 @@ const identifierExample = `function (command) {
   });
 }`;
 
-
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('z812a63'),
   name: Joi.string().required().example('My webhook'),
@@ -19,7 +17,6 @@ const schema = Joi.object().keys({
 })
   .tag('supplierWebhook')
   .description('Information about a webhook that listens to incoming messages from device (gateways)');
-
 
 interface SupplierWebhook {
   hashId: string;

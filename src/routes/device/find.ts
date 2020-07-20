@@ -7,7 +7,6 @@ import { schema as deviceTypeSchema, DeviceType } from '../../models/device-type
 
 import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
 
-
 type Query = TableQuery;
 
 interface Request {
@@ -31,7 +30,6 @@ interface ResponseRow {
 interface Response {
   rows: ResponseRow[];
 }
-
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',

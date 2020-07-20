@@ -8,7 +8,6 @@ import Comms from './comms';
 import OutdatedClient from './outdated-client';
 import Parsing from './parsing';
 
-
 export default {
   Authentication,
   Base,

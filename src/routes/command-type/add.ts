@@ -2,7 +2,6 @@ import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 import { fieldConfigurationToServerSchema, FieldConfigurationToServer } from '../../models/field-configuration';
 
-
 interface Request {
   body: {
     name: string;
@@ -21,7 +20,6 @@ type EffectiveRequest = {
 interface Response {
   hashId: string;
 }
-
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'post',

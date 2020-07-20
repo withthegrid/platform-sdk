@@ -68,7 +68,6 @@ class Comms {
     this.loggedIn = false;
   }
 
-
   static getCancelToken(): CancelTokenSource {
     return Axios.CancelToken.source();
   }
@@ -135,6 +134,5 @@ class Comms {
     return response.data;
   }
 }
-
 
 export default Comms;

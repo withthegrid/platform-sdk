@@ -4,7 +4,6 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 import { schema as reportTypeSchema, ReportType } from '../../models/report-type';
 import { schema as quantitySchema, Quantity } from '../../models/quantity';
 
-
 interface Request {
   params: {
     hashId: string;
@@ -15,7 +14,6 @@ interface Response {
   reportType: ReportType;
   quantities: Quantity[];
 }
-
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',

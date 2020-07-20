@@ -1,11 +1,13 @@
+import { AxiosRequestConfig } from 'axios';
+
 import BaseError from './base';
 
 class CommsRequestError extends BaseError {
   constructor(
     readonly requestMethod: string,
     readonly requestPath: string,
-    readonly requestParams?: any,
-    readonly requestData?: any,
+    readonly requestParams?: AxiosRequestConfig['params'],
+    readonly requestData?: AxiosRequestConfig['data'],
   ) {
     super('comms_request', 'The request was made but no response was received `error.request` is an instance of XMLHttpRequest in the browser and an instance of http.ClientRequest in node.js');
   }

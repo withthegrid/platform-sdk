@@ -44,7 +44,6 @@ type ResponsesIncludingDeprecated = Response | {
   name: string;
 }
 
-
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
   path: '/:hashId',

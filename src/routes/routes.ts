@@ -1,4 +1,3 @@
-
 import * as authentication from './authentication/routes';
 import * as autocomplete from './autocomplete/routes';
 import * as command from './command/routes';

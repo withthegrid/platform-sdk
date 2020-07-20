@@ -28,5 +28,4 @@ const schema = (apiVersion: number): Joi.AnySchema => supplierActivityConstructo
   .tag('supplierActivityHandleNewCommand')
   .description('Supplier defined device type event handler handled a new command for a specific device type. Useful if the command should be shared with a 3rd party by issuing an HTTP request.');
 
-
 export { schema, HandleNewCommand };

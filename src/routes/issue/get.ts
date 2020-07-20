@@ -32,7 +32,6 @@ interface Response {
   }[];
 }
 
-
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
   path: '/:hashId',

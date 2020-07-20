@@ -23,5 +23,4 @@ class AutocompleteRoute {
     )(parameters);
 }
 
-
 export default AutocompleteRoute;

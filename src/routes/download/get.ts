@@ -12,7 +12,6 @@ interface Request {
 
 type Response = void;
 
-
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
   path: '/:hashId',

@@ -24,7 +24,6 @@ interface Response {
   upperbound: Date | null;
 }
 
-
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
   path: '/pin/:hashId/measurements',

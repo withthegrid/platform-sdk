@@ -3,9 +3,7 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as supplierWebhook, SupplierWebhook } from '../../models/supplier-webhook';
 
-
 import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
-
 
 type Query = TableQuery;
 

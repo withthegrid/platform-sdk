@@ -6,7 +6,6 @@ import { schema as deviceTypeSchema, DeviceType } from '../../models/device-type
 
 import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
 
-
 type TriggerType = 'handleCommandDue'
   | 'handleDeletedCommand'
   | 'handleIncomingRequest'
@@ -21,7 +20,6 @@ interface Query extends TableQuery {
   triggerType?: TriggerType;
   failed?: boolean;
 }
-
 
 interface Request {
   query: Query;

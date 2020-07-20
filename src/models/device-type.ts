@@ -21,7 +21,6 @@ const schema = baseSchema
   .tag('deviceType')
   .description('Information about the type of device');
 
-
 interface DeviceType {
   hashId: string;
   name: string;

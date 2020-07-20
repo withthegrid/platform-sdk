@@ -7,7 +7,6 @@ import Comms from '../../comms';
 import controllerGenerator, { Result } from '../../comms/controller';
 import TableController from '../../comms/table-controller';
 
-
 class ReportTypeRoute {
   static routerPath = 'report-type';
 
@@ -27,7 +26,6 @@ class ReportTypeRoute {
       ReportTypeRoute.auth,
       this.comms,
     )(parameters);
-
 
   delete = (parameters: deleteRoute.Request):
     Result<deleteRoute.EffectiveRequest, deleteRoute.Response> => controllerGenerator<
@@ -52,7 +50,6 @@ class ReportTypeRoute {
       ReportTypeRoute.auth,
       this.comms,
     )(parameters);
-
 
   findTableController = (parameters: find.Query):
     TableController<find.ResponseRow> => new TableController<find.ResponseRow>(

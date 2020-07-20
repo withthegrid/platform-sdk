@@ -7,7 +7,6 @@ import { schema as pinSchema, Pin } from '../../models/pin';
 
 import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
 
-
 interface Query extends TableQuery {
   pinGroupHashId?: string | null;
   edgeHashId?: string | null;

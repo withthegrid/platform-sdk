@@ -3,7 +3,6 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as supplierWebhook, SupplierWebhook, identifierExample } from '../../models/supplier-webhook';
 
-
 interface Request {
   params: {
     hashId: string;
@@ -15,7 +14,6 @@ interface Response {
   identifier: string;
   url: string;
 }
-
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',

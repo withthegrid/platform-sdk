@@ -3,11 +3,9 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as releaseSchema, Release } from '../../models/release';
 
-
 type Request = Record<string, undefined>;
 
 type Response = Release[];
-
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',

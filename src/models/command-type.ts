@@ -2,7 +2,6 @@ import Joi from '@hapi/joi';
 
 import { fieldConfigurationFromServerSchema, FieldConfigurationFromServer } from './field-configuration';
 
-
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('x18a92'),
   name: Joi.string().required().example('Measurement cycle'),
@@ -18,7 +17,6 @@ const schema = Joi.object().keys({
 })
   .description('An object defining what a command type should look like: the template for commands sent to devices')
   .tag('commandType');
-
 
 interface CommandType {
   hashId: string;

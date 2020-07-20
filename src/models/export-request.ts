@@ -14,7 +14,6 @@ const schema = Joi.object().keys({
   .tag('exportRequest')
   .description('A request to create a zip file with a data export. Should not be used by machine accounts.');
 
-
 interface ExportRequest {
   hashId: string;
   from: Date;

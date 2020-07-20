@@ -3,7 +3,6 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as reportTypeSchema, ReportType } from '../../models/report-type';
 
-
 interface Request {
   params: {
     hashId: string;
@@ -14,7 +13,6 @@ interface Response {
   reportType: ReportType;
   parser: string;
 }
-
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',

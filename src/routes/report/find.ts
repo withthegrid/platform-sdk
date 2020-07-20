@@ -6,7 +6,6 @@ import { schema as environmentSchema, Environment } from '../../models/environme
 
 import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
 
-
 interface Query extends TableQuery {
   pinGroupHashId?: string | null;
   edgeHashId?: string | null;
@@ -56,7 +55,6 @@ interface DeprecatedResponseRowV1 {
   nodeGroup: PinGroup | null;
   client: Environment;
 }
-
 
 interface DeprecatedResponseRowV2 {
   report: {

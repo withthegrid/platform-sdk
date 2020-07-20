@@ -5,7 +5,6 @@ import {
   UpdatableFieldConfiguration,
 } from '../../models/field-configuration';
 
-
 interface Request {
   body: {
     name?: string;

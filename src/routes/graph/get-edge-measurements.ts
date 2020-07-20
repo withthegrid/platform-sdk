@@ -4,7 +4,6 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 import { schema as measurementSchema, Measurement } from '../../models/measurement';
 import { schema as quantitySchema, Quantity } from '../../models/quantity';
 
-
 interface Request {
   params: {
     hashId: string;
@@ -24,7 +23,6 @@ interface Response {
   lowerbound: Date | null;
   upperbound: Date | null;
 }
-
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',

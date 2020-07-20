@@ -44,7 +44,6 @@ const schema = (apiVersion: number): Joi.ObjectSchema => {
   return model;
 };
 
-
 interface PinGroup {
   hashId: string;
   gridHashId: string | null;

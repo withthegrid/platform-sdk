@@ -4,7 +4,6 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 import { schema as gridSchema, Grid } from '../../models/grid';
 import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
 
-
 interface Request {
   params: {
     hashId: string;
@@ -17,7 +16,6 @@ interface Response {
   notificationLevel: 0 | 1 | 2 | null;
   photo: string | null;
 }
-
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',

@@ -3,7 +3,6 @@ import Joi from '@hapi/joi';
 import { schema as issueCommentSchema, IssueComment } from '../../models/issue-comment';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
-
 interface Request {
   params: {
     hashId: string;

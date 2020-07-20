@@ -19,7 +19,6 @@ interface Response {
   pinGroup: PinGroup | null;
 }
 
-
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
   path: '/:hashId',

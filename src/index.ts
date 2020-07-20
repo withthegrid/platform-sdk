@@ -29,7 +29,6 @@ class PlatformSdk {
     return response;
   }
 
-
   get environment(): { type: string; hashId: string } | undefined {
     return this.comms.environment;
   }

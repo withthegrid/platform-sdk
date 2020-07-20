@@ -12,7 +12,6 @@ import Comms from '../../comms';
 import controllerGenerator, { Result } from '../../comms/controller';
 import TableController from '../../comms/table-controller';
 
-
 class DeviceRoute {
   static routerPath = 'device';
 
@@ -56,7 +55,6 @@ class DeviceRoute {
       DeviceRoute.auth,
       this.comms,
     )(parameters);
-
 
   findTableController = (parameters: find.Query):
     TableController<find.ResponseRow> => new TableController<find.ResponseRow>(
@@ -104,7 +102,6 @@ class DeviceRoute {
       this.comms,
     )(parameters);
 
-
   unclaim = (parameters: unclaim.Request):
     Result<unclaim.EffectiveRequest, unclaim.Response> => controllerGenerator<
       unclaim.Request,
@@ -128,7 +125,6 @@ class DeviceRoute {
       DeviceRoute.auth,
       this.comms,
     )(parameters);
-
 
   update = (parameters: update.Request):
     Result<update.EffectiveRequest, update.Response> => controllerGenerator<

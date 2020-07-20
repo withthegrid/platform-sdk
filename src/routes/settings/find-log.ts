@@ -5,7 +5,6 @@ import { schema as logSchema, Log } from '../../models/log';
 
 import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
 
-
 interface Query extends TableQuery {
   objectType: string;
   objectHashId: string;

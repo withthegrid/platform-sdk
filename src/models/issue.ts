@@ -20,7 +20,6 @@ const schema = Joi.object().keys({
   .description('A problem or remark about a specific pin group (or pin).')
   .tag('issue');
 
-
 interface Issue {
   hashId: string;
   userHashId: string | null;

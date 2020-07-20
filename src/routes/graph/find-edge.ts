@@ -5,7 +5,6 @@ import { schema as edgeSchema, Edge } from '../../models/edge';
 
 import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
 
-
 interface Query extends TableQuery {
   includeDeleted?: boolean;
   boundingBox?: [number, number, number, number];

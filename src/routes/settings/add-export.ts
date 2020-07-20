@@ -1,7 +1,6 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
-
 interface Request {
   body: {
     from: Date;
@@ -16,7 +15,6 @@ interface Request {
 interface Response {
   hashId: string;
 }
-
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'post',
