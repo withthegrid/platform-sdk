@@ -5,15 +5,21 @@ import { schemaConstructor as supplierActivityConstructor, SupplierActivity } fr
 import { schema as setDeviceFieldsSchema, SetDeviceFields } from './set-device-fields';
 import { schema as scheduleCommandSchema, ScheduleCommand } from './schedule-command';
 import { schema as measurementSchema, Measurement } from '../measurement';
+import { schema as quantitySchema, Quantity } from '../quantity';
+
+import { schema as reportTypeSchema, ReportType } from '../report-type';
 import { fieldsFromServerSchema, FieldsFromServer } from '../field-configuration';
 
 interface ParseReport extends SupplierActivity<'parseReport'> {
   triggerData: {
-    reportTypeHashId?: string;
+    reportType?: ReportType;
     payload?: string;
     reportHashId?: string;
     // commandHashId: string | null;
-    measurements?: Measurement[];
+    observations?: {
+      measurement: Measurement;
+      quantity: Quantity;
+    }[];
     fields?: FieldsFromServer;
   };
   activities: (SetDeviceFields | ScheduleCommand)[];
@@ -22,11 +28,14 @@ interface ParseReport extends SupplierActivity<'parseReport'> {
 const schema = (apiVersion: number): Joi.AnySchema => supplierActivityConstructor(
   'parseReport',
   Joi.object().keys({
-    reportTypeHashId: Joi.string().example('l19a7s'),
+    reportType: reportTypeSchema,
     payload: Joi.string().example('[123, 987]'),
     reportHashId: Joi.string().example('qoa978'),
     // commandHashId: Joi.string().allow(null).required().example(null),
-    measurements: Joi.array().items(measurementSchema(apiVersion)),
+    observations: Joi.array().items(Joi.object().keys({
+      measurement: measurementSchema(apiVersion).required(),
+      quantity: quantitySchema.required(),
+    })),
     fields: fieldsFromServerSchema.example({}),
   }).required(),
   Joi.alternatives().try(
