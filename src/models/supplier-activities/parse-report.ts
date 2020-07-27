@@ -8,7 +8,7 @@ import { schema as measurementSchema, Measurement } from '../measurement';
 import { schema as quantitySchema, Quantity } from '../quantity';
 
 import { schema as reportTypeSchema, ReportType } from '../report-type';
-import { fieldsFromServerSchema, FieldsFromServer } from '../field-configuration';
+import { schema as fieldsFromServerSchema, FieldsFromServer } from '../fields/fields-from-server';
 
 interface ParseReport extends SupplierActivity<'parseReport'> {
   triggerData: {
@@ -25,7 +25,7 @@ interface ParseReport extends SupplierActivity<'parseReport'> {
   activities: (SetDeviceFields | ScheduleCommand)[];
 }
 
-const schema = (apiVersion: number): Joi.AnySchema => supplierActivityConstructor(
+const schema = (apiVersion: number): Joi.ObjectSchema => supplierActivityConstructor(
   'parseReport',
   Joi.object().keys({
     reportType: reportTypeSchema,

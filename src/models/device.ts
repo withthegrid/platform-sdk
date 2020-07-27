@@ -1,7 +1,7 @@
 import Joi from '@hapi/joi';
 
 import { schema as measurementCycleSchema, MeasurementCycle } from './measurement-cycle';
-import { fieldsFromServerSchema, FieldsFromServer } from './field-configuration';
+import { schema as fieldsFromServerSchema, FieldsFromServer } from './fields/fields-from-server';
 
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('j1iha9'),

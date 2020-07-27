@@ -1,6 +1,6 @@
 import Joi from '@hapi/joi';
 
-import { fieldConfigurationFromServerSchema, FieldConfigurationFromServer } from './field-configuration';
+import { schema as fieldConfigurationFromServerSchema, FieldConfigurationFromServer } from './fields/field-configuration-from-server';
 
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('f1a4w1'),

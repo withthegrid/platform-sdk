@@ -2,7 +2,7 @@ import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as pinSchema, Pin } from '../../models/pin';
-import { fieldsToServerFullSchema, FieldsToServerFull } from '../../models/field-configuration';
+import { schema as fieldsToServerFullSchema, FieldsToServerFull } from '../../models/fields/fields-to-server-full';
 
 interface Request {
   params: {

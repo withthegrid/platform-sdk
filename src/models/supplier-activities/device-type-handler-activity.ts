@@ -18,7 +18,7 @@ type DeviceTypeHandlerActivity = DropCommand
   | SetDeviceFields
   | SetReportingFrequency;
 
-const schema = (apiVersion: number): Joi.AnySchema => Joi.alternatives().try(
+const schema = (apiVersion: number): Joi.AlternativesSchema => Joi.alternatives().try(
   dropCommandSchema,
   increaseReportingCounterSchema,
   markCommandAsSentSchema,

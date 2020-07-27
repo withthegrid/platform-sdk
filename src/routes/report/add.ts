@@ -1,8 +1,9 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
+import { schema as fieldsFromServerSchema, FieldsFromServer } from '../../models/fields/fields-from-server';
 import {
-  fieldsToServerFullSchema, FieldsToServerFull, fieldsFromServerSchema, FieldsFromServer,
-} from '../../models/field-configuration';
+  schema as fieldsToServerFullSchema, FieldsToServerFull,
+} from '../../models/fields/fields-to-server-full';
 
 interface Request {
   body: {

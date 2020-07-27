@@ -5,7 +5,7 @@ import { schema as measurementCycleSchema, MeasurementCycle } from '../../models
 import { schema as deviceSchema, Device } from '../../models/device';
 import { schema as deviceTypeSchema, DeviceType } from '../../models/device-type';
 import { schema as pinSchema, Pin } from '../../models/pin';
-import { fieldsToServerUpdateSchema, FieldsToServerUpdate } from '../../models/field-configuration';
+import { schema as fieldsToServerUpdateSchema, FieldsToServerUpdate } from '../../models/fields/fields-to-server-update';
 
 interface Request {
   params: {

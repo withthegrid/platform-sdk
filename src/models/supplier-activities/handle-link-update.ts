@@ -10,7 +10,7 @@ interface HandleLinkUpdate extends SupplierActivity<'handleLinkUpdate'> {
   activities: DeviceTypeHandlerActivity[];
 }
 
-const schema = (apiVersion: number): Joi.AnySchema => supplierActivityConstructor(
+const schema = (apiVersion: number): Joi.ObjectSchema => supplierActivityConstructor(
   'handleLinkUpdate',
   Joi.object().keys({
   }).required(),

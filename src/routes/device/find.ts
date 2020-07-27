@@ -53,8 +53,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     rows: Joi.array().items(Joi.object().keys({
       device: deviceSchema.required(),
       deviceType: deviceTypeSchema.required(),
-      environmentName: Joi.string().allow(null).required(),
-      environmentHashId: Joi.string().allow(null).required(),
+      environmentName: Joi.string().allow(null).example('My environment').required(),
+      environmentHashId: Joi.string().allow(null).example('f1a4w1').required(),
       pinGroup: pinGroupSchema(apiVersion).allow(null).required().description('Will be null when queried from supplier'),
     })).required(),
   }),

@@ -1,8 +1,9 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
+import { schema as fieldsFromServerSchema, FieldsFromServer } from '../../models/fields/fields-from-server';
 import {
-  fieldsToServerUpdateSchema, FieldsToServerUpdate, fieldsFromServerSchema, FieldsFromServer,
-} from '../../models/field-configuration';
+  schema as fieldsToServerUpdateSchema, FieldsToServerUpdate,
+} from '../../models/fields/fields-to-server-update';
 
 interface NewMeasurement {
   pinHashId: string;

@@ -12,7 +12,7 @@ interface HandleIncomingRequest extends SupplierActivity<'handleIncomingRequest'
   activities: DeviceTypeHandlerActivity[];
 }
 
-const schema = (apiVersion: number): Joi.AnySchema => supplierActivityConstructor(
+const schema = (apiVersion: number): Joi.ObjectSchema => supplierActivityConstructor(
   'handleIncomingRequest',
   Joi.object().keys({
     request: webRequestSchema.required(),

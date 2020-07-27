@@ -24,8 +24,8 @@ function schemaConstructor(
     triggerType: Joi.string().valid(triggerType).required().example(triggerType),
     failed: Joi.boolean().required().example(false),
     log: Joi.array().items(Joi.object().keys({
-      type: Joi.string().valid('error', 'log').required(),
-      message: Joi.string().required(),
+      type: Joi.string().valid('error', 'log').example('log').required(),
+      message: Joi.string().example('Debug information: [..]').required(),
       lineNumber: Joi.number(),
       columnNumber: Joi.number(),
     })).required(),

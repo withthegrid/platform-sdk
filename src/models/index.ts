@@ -17,7 +17,17 @@ import * as measurementCycle from './measurement-cycle';
 import * as measurement from './measurement';
 import * as pinGroup from './pin-group';
 import * as node from './node';
-import * as fieldConfiguration from './field-configuration';
+import * as baseField from './fields/base-field';
+import * as baseFields from './fields/base-fields';
+import * as fieldConfigurationFromServer from './fields/field-configuration-from-server';
+import * as fieldConfigurationToServer from './fields/field-configuration-to-server';
+import * as fieldToFieldConfigurationUdf from './fields/field-to-field-configuration-udf';
+import * as fieldToServerFull from './fields/field-to-server-full';
+import * as fieldsFromServer from './fields/fields-from-server';
+import * as fieldsToFieldConfigurationUdf from './fields/fields-to-field-configuration-udf';
+import * as fieldsToServerFull from './fields/fields-to-server-full';
+import * as fieldsToServerUpdate from './fields/fields-to-server-update';
+import * as updatableFieldConfiguration from './fields/updatable-field-configuration';
 import * as pin from './pin';
 import * as pinLink from './pin-link';
 import * as quantity from './quantity';
@@ -66,7 +76,17 @@ export {
   measurement,
   pinGroup,
   node,
-  fieldConfiguration,
+  baseField,
+  baseFields,
+  fieldConfigurationFromServer,
+  fieldConfigurationToServer,
+  fieldToFieldConfigurationUdf,
+  fieldToServerFull,
+  fieldsFromServer,
+  fieldsToFieldConfigurationUdf,
+  fieldsToServerFull,
+  fieldsToServerUpdate,
+  updatableFieldConfiguration,
   pin,
   pinLink,
   quantity,

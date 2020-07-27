@@ -1,5 +1,5 @@
 import Joi from '@hapi/joi';
-import { fieldsFromServerSchema, FieldsFromServer } from './field-configuration';
+import { schema as fieldsFromServerSchema, FieldsFromServer } from './fields/fields-from-server';
 
 const schema = (apiVersion: number): Joi.ObjectSchema => {
   const model = Joi.object().keys({

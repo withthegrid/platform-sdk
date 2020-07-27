@@ -1,9 +1,9 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 import {
-  updatableFieldConfigurationSchema,
+  schema as updatableFieldConfigurationSchema,
   UpdatableFieldConfiguration,
-} from '../../models/field-configuration';
+} from '../../models/fields/updatable-field-configuration';
 
 interface Request {
   params: {

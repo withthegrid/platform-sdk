@@ -10,7 +10,7 @@ interface HandleUnlink extends SupplierActivity<'handleUnlink'> {
   activities: DeviceTypeHandlerActivity[];
 }
 
-const schema = (apiVersion: number): Joi.AnySchema => supplierActivityConstructor(
+const schema = (apiVersion: number): Joi.ObjectSchema => supplierActivityConstructor(
   'handleUnlink',
   Joi.object().keys({
   }).required(),

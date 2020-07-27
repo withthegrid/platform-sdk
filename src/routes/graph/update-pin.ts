@@ -1,6 +1,6 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
-import { fieldsToServerUpdateSchema, FieldsToServerUpdate } from '../../models/field-configuration';
+import { schema as fieldsToServerUpdateSchema, FieldsToServerUpdate } from '../../models/fields/fields-to-server-update';
 import { schema as pinSchema, Pin } from '../../models/pin';
 
 interface Request {

@@ -2,8 +2,8 @@ import Joi from '@hapi/joi';
 
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('3a78q91'),
-  requestorType: Joi.string().required(),
-  requestorHashId: Joi.string().required(),
+  requestorType: Joi.string().example('client').required(),
+  requestorHashId: Joi.string().example('f1a4w1').required(),
   url: Joi.string().required().example('https://api.withthegrid.com/file/3a78q91?exp=null&sig=795d221ccd09fb0bfadfb74770fe0b7c'),
   signature: Joi.string().required().example('795d221ccd09fb0bfadfb74770fe0b7c'),
   name: Joi.string().allow(null).required().example('my photo.png'),

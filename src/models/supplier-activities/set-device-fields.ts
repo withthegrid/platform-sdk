@@ -1,6 +1,6 @@
 import Joi from '@hapi/joi';
 
-import { fieldsToFieldConfigurationUdfSchema, FieldsToFieldConfigurationUdf } from '../field-configuration';
+import { schema as fieldsToFieldConfigurationUdfSchema, FieldsToFieldConfigurationUdf } from '../fields/fields-to-field-configuration-udf';
 import { schemaConstructor as supplierActivityConstructor, SupplierActivity } from './base';
 
 interface SetDeviceFields extends SupplierActivity<'setDeviceFields'> {

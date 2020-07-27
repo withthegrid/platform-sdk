@@ -14,7 +14,7 @@ interface HandleCommandDue extends SupplierActivity<'handleCommandDue'> {
   activities: DeviceTypeHandlerActivity[];
 }
 
-const schema = (apiVersion: number): Joi.AnySchema => supplierActivityConstructor(
+const schema = (apiVersion: number): Joi.ObjectSchema => supplierActivityConstructor(
   'handleCommandDue',
   Joi.object().keys({
     command: commandSchema.required(),

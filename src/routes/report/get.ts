@@ -4,7 +4,7 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 import { schema as measurementSchema, Measurement, MeasurementV1 } from '../../models/measurement';
 import { schema as quantitySchema, Quantity } from '../../models/quantity';
 import { schema as reportTypeSchema, ReportType } from '../../models/report-type';
-import { fieldsFromServerSchema, FieldsFromServer } from '../../models/field-configuration';
+import { schema as fieldsFromServerSchema, FieldsFromServer } from '../../models/fields/fields-from-server';
 import { schema as deviceTypeSchema, DeviceType } from '../../models/device-type';
 
 interface Request {
