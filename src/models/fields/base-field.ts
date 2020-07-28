@@ -4,7 +4,7 @@ type BaseField = boolean | number | string | null | undefined;
 
 // strict(): do not do casting here, otherwise for example a string might end up as a number
 const schema = Joi.alternatives().try(
-  Joi.boolean().example('true').strict().required(),
+  Joi.boolean().example(true).strict().required(),
   Joi.number().strict().required(),
   Joi.string().strict().allow('').required(),
   Joi.any().valid(null).required(),

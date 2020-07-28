@@ -26,7 +26,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   path: '/',
   body: Joi.object().keys({
     name: Joi.string().required().example('Cathodic protection sensor').description('This name is also visible in environments. To get a uniform user experience, please provide the name in English'),
-    eventHandler: Joi.string().required().example('[omitted]').description('A javascript function that handles events. See [add link]'),
+    eventHandler: Joi.string().required().example('[omitted]').description('A javascript function that handles events. See the chapter "User defined code'),
     fieldConfigurations: Joi.array().items(fieldConfigurationToServerSchema).required()
       .description('See the chapter on open fields on how to use this'),
     pinGroupFieldConfigurations: Joi.array().items(fieldConfigurationToServerSchema).required()

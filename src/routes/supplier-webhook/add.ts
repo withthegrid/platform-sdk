@@ -20,7 +20,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   path: '/',
   body: Joi.object().keys({
     name: Joi.string().required().example('My webhook'),
-    identifier: Joi.string().required().example(identifierExample).description('A javascript function that returns deviceType and identifier. See [add link]'),
+    identifier: Joi.string().required().example(identifierExample).description('A javascript function that returns deviceType and identifier. See the chapter "User defined code"'),
   }).required(),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({

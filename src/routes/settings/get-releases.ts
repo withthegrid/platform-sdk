@@ -12,7 +12,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   path: '/releases',
   right: {},
   response: Joi.array().items(releaseSchema).required(),
-  description: 'Get a list of recent changes to the platform',
+  description: 'Get a list of recent changes to the application',
 };
 
 export {

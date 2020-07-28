@@ -23,7 +23,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   right: { supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
     reportType: reportTypeSchema.required(),
-    parser: Joi.string().required().example('[omitted]').description('A javascript function that parses an incoming report. See [add link]'),
+    parser: Joi.string().required().example('[omitted]').description('A javascript function that parses an incoming report. See the chapter "User defined code"'),
   }).required(),
   description: 'Get a specific device report type identified by its hashId',
 };

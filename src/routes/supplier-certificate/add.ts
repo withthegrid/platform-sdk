@@ -25,7 +25,7 @@ fEvEY79Z47ozYQ6LAt6wYEW/4Aq4Eir1kSCw/DtououtnpaQokZQkGYf2aAAMAoG
 CCqGSM49BAMCA0kAMEYCIQCHf/bilJwxF+7V/0mifsXK4U0PUHDe0YNBorb2dBzc
 KAIhAK59odu1i8oxIJg237EOLKbf0k/Rhub/CKPrsQ50t0lK
 -----END CERTIFICATE REQUEST-----`).description('A Base64 encoded PKCS#10 certificate signing request'),
-    identifier: Joi.string().required().example(identifierExample).description('A javascript function that returns deviceType and identifier. See [add link]'),
+    identifier: Joi.string().required().example(identifierExample).description('A javascript function that returns deviceType and identifier. See the chapter "User defined code"'),
   }).required(),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({

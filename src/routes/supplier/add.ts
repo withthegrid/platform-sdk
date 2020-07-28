@@ -25,7 +25,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     supplierRights: Joi.array().items(Joi.string()).required().example(['STATIC', 'USERS'])
       .description('See the getting started section about rights'),
   }).required(),
-  description: 'Create a supplier to connect new IoT sensor types and other new data sources to our platform, which can be used in one or more environments',
+  description: 'Create a supplier to connect new IoT sensor types and other new data sources to our application, which can be used in one or more environments',
 };
 
 export {

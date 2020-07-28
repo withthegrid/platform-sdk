@@ -16,7 +16,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     hashId: Joi.string().required().example('wasd2'),
   }).required(),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
-  description: 'Delete a device type. All devices of this device type do no longer get access to the platform!',
+  description: 'Delete a device type. All devices of this device type do no longer get access to the application!',
 };
 
 export {

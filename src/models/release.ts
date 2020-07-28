@@ -6,7 +6,7 @@ const schema = Joi.object().keys({
   createdAt: Joi.date().required().example('2019-12-31T15:23Z'),
   description: Joi.array().items(Joi.string().example('Fixed a bug in the response of ...')).required(),
 })
-  .description('Contains information about a GUI or server release of the withthegrid platform')
+  .description('Contains information about a GUI or server release of the withthegrid application')
   .tag('release');
 
 interface Release {

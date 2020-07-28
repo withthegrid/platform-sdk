@@ -23,7 +23,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   right: {}, // supplierHashId in header is irrelevant
   response: Joi.object().keys({
     certificate: supplierCertificateSchema.required(),
-    identifier: Joi.string().required().example(identifierExample).description('A javascript function that parses the incoming request into a device identifier and report type hashId. See [add link]'),
+    identifier: Joi.string().required().example(identifierExample).description('A javascript function that parses the incoming request into a device identifier and report type hashId. See the chapter "User defined code"'),
   }).required(),
   description: 'Get a specific supplier certificate identified by its hashId',
 };

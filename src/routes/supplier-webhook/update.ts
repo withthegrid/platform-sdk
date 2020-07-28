@@ -21,7 +21,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   }).required(),
   body: Joi.object().keys({
     name: Joi.string().example('My webhook'),
-    identifier: Joi.string().description('A javascript function that returns deviceType and identifier. See [add link]'),
+    identifier: Joi.string().description('A javascript function that returns deviceType and identifier. See the chapter "User defined code"'),
   }).required(),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
   description: 'Update the properties of a webhook.',

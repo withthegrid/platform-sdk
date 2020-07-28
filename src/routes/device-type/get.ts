@@ -25,7 +25,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   right: { supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
     deviceType: deviceTypeSchema.required(),
-    eventHandler: Joi.string().required().example('[omitted]').description('A javascript function that handles an events. See [add link]'),
+    eventHandler: Joi.string().required().example('[omitted]').description('A javascript function that handles an events. See the chapter "User defined code"'),
     commandTypes: Joi.array().items(commandTypeSchema).required(),
   }).required(),
   description: 'Get a specific device type identified by its hashId',

@@ -16,7 +16,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     hashId: Joi.string().required().example('v19a12'),
   }).required(),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
-  description: 'Delete a certificate from a supplier. When the certificate has been removed, access to the platform by devices with a device certificate signed by this intermediate certificate is rejected.',
+  description: 'Delete a certificate from a supplier. When the certificate has been removed, access to the application by devices with a device certificate signed by this intermediate certificate is rejected.',
 };
 
 export {

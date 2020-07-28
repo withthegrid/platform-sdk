@@ -13,7 +13,7 @@ const schema = Joi.object().keys({
   rights: Joi.array().items(Joi.string()).required().example(['STATIC', 'USERS'])
     .description('See the getting started section about rights'),
 })
-  .description('A human that has access to the withthegrid platform')
+  .description('A human that has access to the withthegrid application')
   .tag('user');
 
 interface User {

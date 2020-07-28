@@ -1,5 +1,5 @@
-# API client for withthegrid platform
-This package implements the API that allows communication with the withthegrid platform.
+# API client for withthegrid application
+This package implements the API that allows communication with the withthegrid application.
 
 ## Documentation
 See https://docs.withthegrid.com/javascript for documentation on this SDK.

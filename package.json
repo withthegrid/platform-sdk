@@ -1,7 +1,7 @@
 {
   "name": "@withthegrid/platform-sdk",
   "version": "12.4.1",
-  "description": "SDK for withthegrid platform",
+  "description": "SDK for withthegrid application",
   "license": "MIT",
   "files": [
     "/esm",

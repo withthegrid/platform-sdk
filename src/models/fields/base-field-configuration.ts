@@ -4,8 +4,8 @@ import { schema as baseFieldSchema, BaseField } from './base-field';
 const schema = Joi.object().keys({
   key: Joi.string().pattern(/^[a-z][a-zA-Z\d]*$/).required().example('id'),
   name: Joi.string().required().example('ID as used in our geographic information system'),
-  inputType: Joi.valid('text', 'textarea', 'select', 'radio', 'switch', 'checkbox', 'file', 'files')
-    .description('The UI component to show.'),
+  inputType: Joi.string().valid('text', 'textarea', 'select', 'radio', 'switch', 'checkbox', 'file', 'files')
+    .description('The UI component to show. If not specified, it is text unless valueOptions are provided, then it is select.'),
   valueOptions: Joi.array().items(Joi.object().keys({
     text: Joi.string().required(),
     value: baseFieldSchema.required().description('Will be passed through parser'),

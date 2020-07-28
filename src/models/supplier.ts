@@ -6,7 +6,7 @@ const schema = Joi.object().keys({
   createdAt: Joi.date().required().example('2019-12-31T15:23Z'),
 })
   .tag('supplier')
-  .description('The space that allows connecting new IoT sensor types and other new data sources to our platform, which can be used in one or more environments. Multiple users can be given access to the same supplier.');
+  .description('The space that allows connecting new IoT sensor types and other new data sources to our application, which can be used in one or more environments. Multiple users can be given access to the same supplier.');
 
 interface Supplier {
   hashId: string;

@@ -36,7 +36,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       pin: Joi.array().items(updatableFieldConfigurationSchema),
       measurement: Joi.array().items(updatableFieldConfigurationSchema),
     }).description('See the chapter on open fields on how to use this'),
-    parser: Joi.string().example('[omitted]').description('A javascript function that parses an incoming report. See [add link]'),
+    parser: Joi.string().example('[omitted]').description('A javascript function that parses an incoming report. See the chapter "User defined code"'),
     retryFailedSince: Joi.date().description('If supplied, all incoming reports of this type that failed to decode since the provided date will be reparsed.'),
   }).required(),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
