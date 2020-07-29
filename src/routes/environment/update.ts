@@ -5,6 +5,8 @@ import {
   UpdatableFieldConfiguration,
 } from '../../models/fields/updatable-field-configuration';
 
+import { schema as environmentSchema, Environment } from '../../models/environment';
+
 interface Request {
   body: {
     name?: string;
@@ -20,7 +22,9 @@ interface Request {
   };
 }
 
-type Response = void;
+interface Response {
+  environment: Environment;
+}
 
 const fieldConfigurationSchema = updatableFieldConfigurationSchema.description('The first element in the array is not allowed to have fieldConfiguration.valueOptions defined');
 
@@ -43,6 +47,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     locale: Joi.string().valid('en', 'nl'),
   }).required(),
   right: { environment: 'ENVIRONMENT_ADMIN' },
+  response: Joi.object().keys({
+    environment: environmentSchema.required(),
+  }).required(),
 };
 
 export {
