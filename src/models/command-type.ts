@@ -1,6 +1,6 @@
 import Joi from '@hapi/joi';
 
-import { schema as fieldConfigurationFromServerSchema, FieldConfigurationFromServer } from './fields/field-configuration-from-server';
+import { schema as fieldConfigurationsFromServerSchema, FieldConfigurationsFromServer } from './fields/field-configurations-from-server';
 
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('x18a92'),
@@ -10,7 +10,7 @@ const schema = Joi.object().keys({
   end: Joi.string().valid('required', 'optional', 'disabled').required().example('disabled')
     .description('\'required\': user must provide command.endAt. \'optional\': user can provide command.endAt. \'disabled\': user cannot provide command.endAt.'),
   supplierOnly: Joi.boolean().required().example(false).description('If true, this type of command can not be created from an environment'),
-  fieldConfigurations: Joi.array().items(fieldConfigurationFromServerSchema).required()
+  fieldConfigurations: fieldConfigurationsFromServerSchema.required()
     .description('See the chapter on open fields on how to use this'),
   channelSelect: Joi.string().valid('single', 'multiple', 'off').required().example('off')
     .description('When creating a command of this type, the user can then optionally choose one (in case of \'single\') or more channelIndices (in case of \'multiple\') for which this command is relevant. If \'off\' is chosen, the user cannot specify channelIndices'),
@@ -24,7 +24,7 @@ interface CommandType {
   start: 'required' | 'optional' | 'disabled';
   end: 'required' | 'optional' | 'disabled';
   supplierOnly: boolean;
-  fieldConfigurations: FieldConfigurationFromServer[];
+  fieldConfigurations: FieldConfigurationsFromServer;
   channelSelect: 'single' | 'multiple' | 'off';
 }
 

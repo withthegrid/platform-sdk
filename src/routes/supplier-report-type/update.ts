@@ -1,9 +1,9 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 import {
-  schema as updatableFieldConfigurationSchema,
-  UpdatableFieldConfiguration,
-} from '../../models/fields/updatable-field-configuration';
+  schema as updatableFieldConfigurationsSchema,
+  UpdatableFieldConfigurations,
+} from '../../models/fields/updatable-field-configurations';
 
 interface Request {
   params: {
@@ -12,9 +12,9 @@ interface Request {
   body: {
     name?: string;
     fieldConfigurations?: {
-      pinGroup?: UpdatableFieldConfiguration[];
-      pin?: UpdatableFieldConfiguration[];
-      measurement?: UpdatableFieldConfiguration[];
+      pinGroup?: UpdatableFieldConfigurations;
+      pin?: UpdatableFieldConfigurations;
+      measurement?: UpdatableFieldConfigurations;
     };
     parser?: string;
     retryFailedSince?: Date;
@@ -32,9 +32,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   body: Joi.object().keys({
     name: Joi.string().example('Temperature'),
     fieldConfigurations: Joi.object().keys({
-      pinGroup: Joi.array().items(updatableFieldConfigurationSchema),
-      pin: Joi.array().items(updatableFieldConfigurationSchema),
-      measurement: Joi.array().items(updatableFieldConfigurationSchema),
+      pinGroup: updatableFieldConfigurationsSchema,
+      pin: updatableFieldConfigurationsSchema,
+      measurement: updatableFieldConfigurationsSchema,
     }).description('See the chapter on open fields on how to use this'),
     parser: Joi.string().example('[omitted]').description('A javascript function that parses an incoming report. See the chapter "User defined code"'),
     retryFailedSince: Joi.date().description('If supplied, all incoming reports of this type that failed to decode since the provided date will be reparsed.'),

@@ -2,7 +2,7 @@ import Joi from '@hapi/joi';
 import { schema as baseFieldSchema, BaseField } from './base-field';
 import { schema as fileFromServerSchema, FileFromServer } from '../file-from-server';
 
-type FieldFromServer = BaseField | FileFromServer | FileFromServer[];
+type FieldFromServer = BaseField | FileFromServer[];
 type FieldsFromServer = Record<string, FieldFromServer>;
 
 // strict(): do not do casting here, otherwise for example a string might end up as a number

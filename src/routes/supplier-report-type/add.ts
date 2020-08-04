@@ -1,14 +1,14 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
-import { schema as fieldConfigurationToServerSchema, FieldConfigurationToServer } from '../../models/fields/field-configuration-to-server';
+import { schema as fieldConfigurationsToServerSchema, FieldConfigurationsToServer } from '../../models/fields/field-configurations-to-server';
 
 interface Request {
   body: {
     name: string;
     fieldConfigurations: {
-      pinGroup: FieldConfigurationToServer[];
-      pin: FieldConfigurationToServer[];
-      measurement: FieldConfigurationToServer[];
+      pinGroup: FieldConfigurationsToServer;
+      pin: FieldConfigurationsToServer;
+      measurement: FieldConfigurationsToServer;
     };
     parser: string;
   };
@@ -24,9 +24,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   body: Joi.object().keys({
     name: Joi.string().required().example('Temperature'),
     fieldConfigurations: Joi.object().keys({
-      pinGroup: Joi.array().items(fieldConfigurationToServerSchema).required(),
-      pin: Joi.array().items(fieldConfigurationToServerSchema).required(),
-      measurement: Joi.array().items(fieldConfigurationToServerSchema).required(),
+      pinGroup: fieldConfigurationsToServerSchema.required(),
+      pin: fieldConfigurationsToServerSchema.required(),
+      measurement: fieldConfigurationsToServerSchema.required(),
     }).required()
       .description('See the chapter on open fields on how to use this'),
     parser: Joi.string().required().example('[omitted]').description('A javascript function that parses an incoming report. See the chapter "User defined code"'),

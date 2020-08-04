@@ -1,9 +1,9 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 import {
-  schema as updatableFieldConfigurationSchema,
-  UpdatableFieldConfiguration,
-} from '../../models/fields/updatable-field-configuration';
+  schema as updatableFieldConfigurationsSchema,
+  UpdatableFieldConfigurations,
+} from '../../models/fields/updatable-field-configurations';
 
 import { schema as environmentSchema, Environment } from '../../models/environment';
 
@@ -12,11 +12,11 @@ interface Request {
     name?: string;
     mapLayers?: { name: string; key: string }[];
     fieldConfigurations?: {
-      pinGroups: UpdatableFieldConfiguration[];
-      edges: UpdatableFieldConfiguration[];
-      grids: UpdatableFieldConfiguration[];
-      nodes: UpdatableFieldConfiguration[];
-      pins: UpdatableFieldConfiguration[];
+      pinGroups: UpdatableFieldConfigurations;
+      edges: UpdatableFieldConfigurations;
+      grids: UpdatableFieldConfigurations;
+      nodes: UpdatableFieldConfigurations;
+      pins: UpdatableFieldConfigurations;
     };
     locale?: 'nl' | 'en';
   };
@@ -26,7 +26,7 @@ interface Response {
   environment: Environment;
 }
 
-const fieldConfigurationSchema = updatableFieldConfigurationSchema.description('The first element in the array is not allowed to have fieldConfiguration.valueOptions defined');
+const fieldConfigurationSchema = updatableFieldConfigurationsSchema.description('If a BaseFieldConfiguration-array is provided, the first element is not allowed to have fieldConfiguration.valueOptions defined').required();
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'put',
@@ -38,11 +38,11 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       key: Joi.string().invalid('nodes').required().example('myLayer'),
     })).min(1),
     fieldConfigurations: Joi.object().keys({
-      pinGroups: Joi.array().items(fieldConfigurationSchema).min(1).required(),
-      grids: Joi.array().items(fieldConfigurationSchema).min(1).required(),
-      edges: Joi.array().items(fieldConfigurationSchema).min(1).required(),
-      nodes: Joi.array().items(fieldConfigurationSchema).min(1).required(),
-      pins: Joi.array().items(fieldConfigurationSchema).min(1).required(),
+      pinGroups: fieldConfigurationSchema,
+      grids: fieldConfigurationSchema,
+      edges: fieldConfigurationSchema,
+      nodes: fieldConfigurationSchema,
+      pins: fieldConfigurationSchema,
     }).description('See the chapter on open fields on how to use this. A minimum of 1 element should be present in each field configuration array'),
     locale: Joi.string().valid('en', 'nl'),
   }).required(),

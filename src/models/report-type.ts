@@ -1,14 +1,14 @@
 import Joi from '@hapi/joi';
 
-import { schema as fieldConfigurationFromServerSchema, FieldConfigurationFromServer } from './fields/field-configuration-from-server';
+import { schema as fieldConfigurationsFromServerSchema, FieldConfigurationsFromServer } from './fields/field-configurations-from-server';
 
 const baseSchema = Joi.object().keys({
   hashId: Joi.string().required().example('l19a7s'),
   name: Joi.string().required().example('Temperature and inclination'),
   fieldConfigurations: Joi.object().keys({
-    pinGroup: Joi.array().items(fieldConfigurationFromServerSchema).required(),
-    pin: Joi.array().items(fieldConfigurationFromServerSchema).required(),
-    measurement: Joi.array().items(fieldConfigurationFromServerSchema).required(),
+    pinGroup: fieldConfigurationsFromServerSchema.required(),
+    pin: fieldConfigurationsFromServerSchema.required(),
+    measurement: fieldConfigurationsFromServerSchema.required(),
   }).required()
     .description('See the chapter on open fields on how to use this'),
   deletedAt: Joi.date().allow(null).required().example(null),
@@ -22,9 +22,9 @@ interface ReportType {
   hashId: string;
   name: string;
   fieldConfigurations: {
-    pinGroup: FieldConfigurationFromServer[];
-    pin: FieldConfigurationFromServer[];
-    measurement: FieldConfigurationFromServer[];
+    pinGroup: FieldConfigurationsFromServer;
+    pin: FieldConfigurationsFromServer;
+    measurement: FieldConfigurationsFromServer;
   };
   deletedAt: Date | null;
 }

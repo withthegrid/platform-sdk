@@ -1,9 +1,9 @@
 import Joi from '@hapi/joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 import {
-  schema as updatableFieldConfigurationSchema,
-  UpdatableFieldConfiguration,
-} from '../../models/fields/updatable-field-configuration';
+  schema as updatableFieldConfigurationsSchema,
+  UpdatableFieldConfigurations,
+} from '../../models/fields/updatable-field-configurations';
 
 interface Request {
   params: {
@@ -12,11 +12,11 @@ interface Request {
   body: {
     name?: string;
     eventHandler?: string;
-    fieldConfigurations?: UpdatableFieldConfiguration[];
-    pinGroupFieldConfigurations?: UpdatableFieldConfiguration[];
+    fieldConfigurations?: UpdatableFieldConfigurations;
+    pinGroupFieldConfigurations?: UpdatableFieldConfigurations;
     channels?: {
       name: string;
-      pinFieldConfigurations: UpdatableFieldConfiguration[];
+      pinFieldConfigurations: UpdatableFieldConfigurations;
       defaultPinName?: string;
     }[];
     commandTypeHashIds?: string[];
@@ -34,12 +34,12 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   body: Joi.object().keys({
     name: Joi.string().example('Cathodic protection sensor').description('This name is also visible in environments. To get a uniform user experience, please provide the name in English'),
     eventHandler: Joi.string().description('A javascript function that handles events. See the chapter "User defined code"'),
-    fieldConfigurations: Joi.array().items(updatableFieldConfigurationSchema),
-    pinGroupFieldConfigurations: Joi.array().items(updatableFieldConfigurationSchema)
+    fieldConfigurations: updatableFieldConfigurationsSchema,
+    pinGroupFieldConfigurations: updatableFieldConfigurationsSchema
       .description('Defines deviceFields on the pinGroup the device is connected to. Can be used in report type functions. See the chapter on open fields on how to use this'),
     channels: Joi.array().items(Joi.object().keys({
       name: Joi.string().required().example('Red wire').description('This name is also visible in environments. To get a uniform user experience, please provide the name in English'),
-      pinFieldConfigurations: Joi.array().items(updatableFieldConfigurationSchema).required()
+      pinFieldConfigurations: updatableFieldConfigurationsSchema.required()
         .description('Defines deviceFields on the pin the channel is connected to. Can be used in report type functions. See the chapter on open fields on how to use this'),
       defaultPinName: Joi.string().example('Anode').description('If undefined, the channel cannot be linked to a pin'),
     })).description('All measurements are registered on a channel. When a device is installed at a pinGroup, its channels are connected to the pins of the pinGroup. Be careful when altering channels that it does still make sense for already installed devices and historic measurement reports. It is therefore not allowed to delete channels (therefore it is required that the array is not shorter than the existing channel array).'),

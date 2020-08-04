@@ -1,6 +1,6 @@
 import Joi from '@hapi/joi';
 
-import { schema as fieldConfigurationFromServerSchema, FieldConfigurationFromServer } from './fields/field-configuration-from-server';
+import { schema as fieldConfigurationsFromServerSchema, FieldConfigurationsFromServer } from './fields/field-configurations-from-server';
 
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('f1a4w1'),
@@ -17,11 +17,11 @@ const schema = Joi.object().keys({
     .required()
     .description('All pin groups and edges in this environment are contained in the rectangle described by this linestring. If null, no pinGroups or edges are present'),
   fieldConfigurations: Joi.object().keys({
-    pinGroups: Joi.array().items(fieldConfigurationFromServerSchema).required(),
-    edges: Joi.array().items(fieldConfigurationFromServerSchema).required(),
-    grids: Joi.array().items(fieldConfigurationFromServerSchema).required(),
-    nodes: Joi.array().items(fieldConfigurationFromServerSchema).required(),
-    pins: Joi.array().items(fieldConfigurationFromServerSchema).required(),
+    pinGroups: fieldConfigurationsFromServerSchema.required(),
+    edges: fieldConfigurationsFromServerSchema.required(),
+    grids: fieldConfigurationsFromServerSchema.required(),
+    nodes: fieldConfigurationsFromServerSchema.required(),
+    pins: fieldConfigurationsFromServerSchema.required(),
   }).required().description('See the chapter on open fields on how to use this'),
   locale: Joi.string().required().example('en'),
   expiresAt: Joi.date().allow(null).required().example(null),
@@ -39,11 +39,11 @@ interface Environment {
     coordinates: [[number, number], [number, number]];
   } | null;
   fieldConfigurations: {
-    pinGroups: FieldConfigurationFromServer[];
-    edges: FieldConfigurationFromServer[];
-    grids: FieldConfigurationFromServer[];
-    nodes: FieldConfigurationFromServer[];
-    pins: FieldConfigurationFromServer[];
+    pinGroups: FieldConfigurationsFromServer;
+    edges: FieldConfigurationsFromServer;
+    grids: FieldConfigurationsFromServer;
+    nodes: FieldConfigurationsFromServer;
+    pins: FieldConfigurationsFromServer;
   };
   locale: string;
   expiresAt: Date | null;
