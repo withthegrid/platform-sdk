@@ -8,7 +8,6 @@ type FieldsFromServer = Record<string, FieldFromServer>;
 // strict(): do not do casting here, otherwise for example a string might end up as a number
 const fieldFromServerSchema = Joi.alternatives().try(
   baseFieldSchema,
-  fileFromServerSchema.required(),
   Joi.array().items(fileFromServerSchema).required(),
 );
 
