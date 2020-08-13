@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 
 interface SupplierActivity<TriggerType extends string> {
   hashId: string;

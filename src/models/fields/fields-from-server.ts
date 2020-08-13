@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 import { schema as baseFieldSchema, BaseField } from './base-field';
 import { schema as fileFromServerSchema, FileFromServer } from '../file-from-server';
 

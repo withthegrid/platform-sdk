@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 
 const schema = Joi.object().keys({
   name: Joi.string().allow(null).required().example('my photo.png'),

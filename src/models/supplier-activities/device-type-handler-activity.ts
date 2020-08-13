@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 
 import { schema as dropCommandSchema, DropCommand } from './drop-command';
 import { schema as increaseReportingCounterSchema, IncreaseReportingCounter } from './increase-reporting-counter';

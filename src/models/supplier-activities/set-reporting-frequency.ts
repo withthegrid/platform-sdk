@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 
 import { schemaConstructor as supplierActivityConstructor, SupplierActivity } from './base';
 import { schema as measurementCycleSchema, MeasurementCycle } from '../measurement-cycle';

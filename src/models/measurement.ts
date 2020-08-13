@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 
 const schema = (apiVersion: number): Joi.ObjectSchema => {
   const model = Joi.object().keys({

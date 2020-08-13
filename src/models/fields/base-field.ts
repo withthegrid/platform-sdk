@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 
 type BaseField = boolean | number | string | null | undefined;
 

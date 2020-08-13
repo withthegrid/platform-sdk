@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 import { schema as baseFieldSchema, BaseField } from './base-field';
 
 type BaseFields = Record<string, BaseField>;

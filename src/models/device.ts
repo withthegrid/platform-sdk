@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 
 import { schema as measurementCycleSchema, MeasurementCycle } from './measurement-cycle';
 import { schema as fieldsFromServerSchema, FieldsFromServer } from './fields/fields-from-server';

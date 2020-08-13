@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as supplierWebhook, SupplierWebhook, identifierExample } from '../../models/supplier-webhook';

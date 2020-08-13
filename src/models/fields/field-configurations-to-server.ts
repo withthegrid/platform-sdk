@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 
 import { schema as baseFieldConfigurationSchema, BaseFieldConfiguration } from './base-field-configuration';
 

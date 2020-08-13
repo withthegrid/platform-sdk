@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 import { schema as fileToFieldConfigurationUdfSchema, FileToFieldConfigurationUdf } from '../file-to-field-configuration-udf';
 import { schema as baseFieldSchema, BaseField } from './base-field';
 

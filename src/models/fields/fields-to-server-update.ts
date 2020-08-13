@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 import { schema as fileToServerSchema, FileToServer } from '../file-to-server';
 import { schema as fieldToServerFullSchema, FieldToServerFull } from './field-to-server-full';
 import { schema as fieldsToServerFullSchema, FieldsToServerFull } from './fields-to-server-full';

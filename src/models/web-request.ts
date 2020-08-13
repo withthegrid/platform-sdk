@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 
 type Json = string | number | boolean | null | Json[] | { [key: string]: Json };
 type Body = { type: 'json'; data: Json } | { type: 'string'; data: string } | { type: 'hex'; data: string };
