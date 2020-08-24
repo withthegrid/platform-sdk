@@ -2,6 +2,7 @@ import Joi from 'joi';
 
 interface SupplierActivity<TriggerType extends string> {
   hashId: string;
+  rootActivityHashId: string;
   createdAt: Date;
   triggerType: TriggerType;
   failed: boolean;
@@ -20,6 +21,7 @@ function schemaConstructor(
 ): Joi.ObjectSchema {
   let schema = Joi.object().keys({
     hashId: Joi.string().required().example('2ad91p'),
+    rootActivityHashId: Joi.string().required().example('2ad91p'),
     createdAt: Joi.date().required().example('2019-12-31T15:23Z'),
     triggerType: Joi.string().valid(triggerType).required().example(triggerType),
     failed: Joi.boolean().required().example(false),
