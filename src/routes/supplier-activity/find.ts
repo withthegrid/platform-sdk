@@ -3,34 +3,19 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as deviceSchema, Device } from '../../models/device';
 import { schema as deviceTypeSchema, DeviceType } from '../../models/device-type';
+import { AllActivities } from '../../models/supplier-activities/all-activities';
 
 import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
 
-type TriggerType = 'handleCommandDue'
-  | 'handleDeletedCommand'
-  | 'handleIncomingRequest'
-  | 'handleLinkUpdate'
-  | 'handleLink'
-  | 'handleNewCommand'
-  | 'handleUnlink';
+type TriggerType = AllActivities['triggerType'];
 
-interface Query extends TableQuery {
-  deviceHashId?: string | null;
-  deviceTypeHashId?: string | null;
-  triggerType?: TriggerType;
-  failed?: boolean;
-}
+type Query = TableQuery;
 
 interface Request {
   query: Query;
 }
 
-interface EffectiveQuery extends EffectiveTableQuery {
-  deviceHashId?: string | null;
-  deviceTypeHashId?: string | null;
-  triggerType?: TriggerType;
-  failed?: boolean;
-}
+type EffectiveQuery = EffectiveTableQuery;
 
 interface EffectiveRequest {
   query: EffectiveQuery;
