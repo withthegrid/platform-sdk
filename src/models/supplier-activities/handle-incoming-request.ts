@@ -8,6 +8,10 @@ import { schema as deviceTypeHandlerActivity, DeviceTypeHandlerActivity } from '
 interface HandleIncomingRequest extends SupplierActivity<'handleIncomingRequest'> {
   triggerData: {
     request: WebRequest;
+    identifier?: {
+      type: 'certificate' | 'webhook';
+      hashId: string;
+    };
   };
   activities: DeviceTypeHandlerActivity[];
 }
@@ -16,6 +20,10 @@ const schema = (apiVersion: number): Joi.ObjectSchema => supplierActivityConstru
   'handleIncomingRequest',
   Joi.object().keys({
     request: webRequestSchema.required(),
+    identifier: Joi.object().keys({
+      type: Joi.string().valid('certificate', 'webhook').example('webhook').required(),
+      hashId: Joi.string().example('z812a63').required(),
+    }),
   }).required(),
   deviceTypeHandlerActivity(apiVersion),
 )
