@@ -30,6 +30,8 @@ interface ResponseRow {
   report: {
     hashId: string;
     deviceHashId: string | null;
+    reportTypeHashId: string | null;
+    reportTypeType: 'human' | 'device';
     generatedAt: Date;
   };
   pinGroup: PinGroup | null;
@@ -136,6 +138,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
         report: Joi.object().keys({
           hashId: Joi.string().required().example('qoa978'),
           deviceHashId: Joi.string().allow(null).required().example('j1iha9'),
+          reportTypeHashId: Joi.string().allow(null).required().example('l19a7s'),
+          reportTypeType: Joi.string().valid('human', 'device').example('human').required(),
           generatedAt: Joi.date().required().example('2019-12-31T15:23Z'),
         }).required(),
         pinGroup: pinGroupSchema(apiVersion).allow(null).required(),
