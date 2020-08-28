@@ -5,7 +5,7 @@ const schema = Joi.object().keys({
   hashId: Joi.string().required().example('ga9741s'),
   deviceHashId: Joi.string().required().example('j1iha9'),
   commandTypeHashId: Joi.string().required().example('x18a92'),
-  fields: fieldsFromServerSchema.allow(null).required().example({}).description('Will always null when queried from supplier'),
+  fields: fieldsFromServerSchema.required().example({}),
   pinGroupHashId: Joi.string().required().allow(null).example('dao97'),
   userHashId: Joi.string().allow(null).required().example('b45zo0'),
   startAt: Joi.date().allow(null).required().example('2019-12-31T15:23Z')
@@ -27,7 +27,7 @@ interface Command {
   hashId: string;
   deviceHashId: string;
   commandTypeHashId: string;
-  fields: FieldsFromServer | null;
+  fields: FieldsFromServer;
   pinGroupHashId: string | null;
   userHashId: string | null;
   startAt: Date | null;
