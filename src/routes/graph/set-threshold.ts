@@ -37,7 +37,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   response: Joi.object().keys({
     hashId: Joi.string().required().example('tap192'),
   }).required(),
-  description: 'Sets thresholds on a specific quantitity on a specific pin. If a measurement outside these limits is registered, an issue is automatically created (if there isn\'t a relevant one open yet)',
+  description: 'Sets issue triggers (thresholds) on a specific quantitity on a specific port (pin). If a measurement outside these limits is registered, an issue is automatically created (if there isn\'t a relevant one open yet)',
 };
 
 export {

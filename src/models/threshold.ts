@@ -10,7 +10,7 @@ const schema = Joi.object().keys({
   high: siNumberSchema.allow(null).required(),
   criticallyHigh: siNumberSchema.allow(null).required(),
 })
-  .description('A limit on measurements of a certain quantity. If a measurement outside these limits is registered, an issue is automatically created (if there isn\'t a relevant one open yet)')
+  .description('Called an "Issue trigger" in the UI. A limit on measurements of a certain quantity. If a measurement outside these limits is registered, an issue is automatically created (if there isn\'t a relevant one open yet)')
   .tag('threshold');
 
 interface Threshold {
