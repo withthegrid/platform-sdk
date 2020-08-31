@@ -7,7 +7,7 @@ const baseSchema = Joi.object().keys({
   fieldConfigurations: fieldConfigurationsFromServerSchema.required()
     .description('See the chapter on open fields on how to use this'),
   pinGroupFieldConfigurations: fieldConfigurationsFromServerSchema.required()
-    .description('Defines deviceFields on the pinGroup the device is connected to. Can be used in report type functions. See the chapter on open fields on how to use this'),
+    .description('Defines deviceFields on the location (pinGroup) the device is connected to. Can be used in report type functions. See the chapter on open fields on how to use this'),
   channels: Joi.array().items(Joi.object().keys({
     name: Joi.string().required().example('Red wire'),
     pinFieldConfigurations: fieldConfigurationsFromServerSchema.required()

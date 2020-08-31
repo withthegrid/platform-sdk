@@ -35,7 +35,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
         .description('[lon, lat] in WGS84')
         .example([4.884707950517225, 52.37502141913572]),
     }).required(),
-    fields: fieldsToServerFullSchema.required().example({ id: 'My measurement location' }),
+    fields: fieldsToServerFullSchema.required().example({ id: 'My location' }),
     mapLayer: Joi.string().invalid('nodes').description('If not provided, the first available one is chosen'),
     gridHashId: Joi.string().allow(null),
     gridName: Joi.string().allow(null).description('If multiple grids exist with the same name, one is chosen at random'),

@@ -10,7 +10,7 @@ const schema = Joi.object().keys({
   deletedAt: Joi.date().allow(null).required().example(null),
 })
   .tag('grid')
-  .description('A collection of pin groups or nodes. In the GUI, only pinGroup grids are used.');
+  .description('A collection of locations (pinGroups) or nodes. In the GUI, only pinGroup grids are used.');
 
 interface Grid {
   hashId: string;

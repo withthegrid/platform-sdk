@@ -36,7 +36,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   response: Joi.array().items(Joi.object().keys({
     objectType: Joi.string().valid('grid', 'pinGroup', 'edge').required().example('pinGroup'),
     hashId: Joi.string().required().example('dao97'),
-    name: Joi.string().required().example('My measurement location'),
+    name: Joi.string().required().example('My location'),
   })).required(),
 };
 

@@ -55,7 +55,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   response: (apiVersion: number): Joi.ObjectSchema => {
     if (apiVersion <= 2) {
       return Joi.object().keys({
-        name: Joi.string().required().example('My measurement location'),
+        name: Joi.string().required().example('My location'),
       }).required();
     }
     return Joi.object().keys({

@@ -15,7 +15,7 @@ const schema = Joi.object().keys({
       .example([[3.3135576, 47.9747658], [5.1288442202798, 51.8145997]]),
   }).allow(null)
     .required()
-    .description('All pin groups and edges in this monitoring environment are contained in the rectangle described by this linestring. If null, no pinGroups or edges are present'),
+    .description('All pin groups and edges in this monitoring environment are contained in the rectangle described by this linestring. If null, no locations (pinGroups) or lines (edges) are present'),
   fieldConfigurations: Joi.object().keys({
     pinGroups: fieldConfigurationsFromServerSchema.required(),
     edges: fieldConfigurationsFromServerSchema.required(),
