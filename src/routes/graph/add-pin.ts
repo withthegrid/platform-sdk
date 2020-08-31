@@ -35,7 +35,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     pinGroupHashId: Joi.string().required().example('dao97'),
   }).required(),
   body: Joi.object().keys({
-    fields: fieldsToServerFullSchema.required().example({ id: 'My connecting point' }),
+    fields: fieldsToServerFullSchema.required().example({ id: 'My port' }),
     typeKey: Joi.string().allow(null).default(null),
   }).required(),
   right: { environment: 'STATIC' },

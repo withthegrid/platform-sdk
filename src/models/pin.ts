@@ -4,8 +4,8 @@ import { schema as fieldsFromServerSchema, FieldsFromServer } from './fields/fie
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('e13d57'),
   pinGroupHashId: Joi.string().required().example('dao97'),
-  name: Joi.string().required().example('My connecting point'),
-  fields: fieldsFromServerSchema.required().example({ id: 'My connecting point' })
+  name: Joi.string().required().example('My port'),
+  fields: fieldsFromServerSchema.required().example({ id: 'My port' })
     .description('The field configuration is stored in the fieldConfigurations key of the monitoring environment object'),
   deviceFields: fieldsFromServerSchema.required().example({})
     .description('The field configuration is stored in the pinFieldConfigurations key of the channel key in the device type object'),
@@ -15,7 +15,7 @@ const schema = Joi.object().keys({
   typeKey: Joi.string().allow(null).default(null),
   deletedAt: Joi.date().allow(null).required().example('2019-12-31T15:23Z'),
 })
-  .description('A connecting point. Always part of a pin group. All measurements are recorded at pin level. When a device is connected to a pin group, its channels are to be connected to the pins of the pin group.')
+  .description('A port. Always part of a pin group. All measurements are recorded at pin level. When a device is connected to a pin group, its channels are to be connected to the pins of the pin group.')
   .tag('pin');
 
 interface Pin {

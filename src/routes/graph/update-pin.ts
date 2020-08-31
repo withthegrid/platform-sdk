@@ -23,7 +23,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     hashId: Joi.string().required().example('e13d57'),
   }).required(),
   body: Joi.object().keys({
-    fields: fieldsToServerUpdateSchema.example({ id: 'My connecting point' }),
+    fields: fieldsToServerUpdateSchema.example({ id: 'My port' }),
   }).required(),
   response: Joi.object().keys({
     pin: pinSchema.required(),
