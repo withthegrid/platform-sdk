@@ -32,7 +32,7 @@ const schema = (apiVersion: number): Joi.ObjectSchema => {
     mapLayer: Joi.string().invalid('nodes').required().example('myLayer'),
     deletedAt: Joi.date().allow(null).required().example(null),
   })
-    .description('A collection of pins. Is called a "measurement location" in the GUI. A device can be connected to a pin group. Measurement reports are registered at pin group level.')
+    .description('A collection of pins. Is called a "measurement location" in the GUI. A device can be connected to a pin group. Condition reports are registered at pin group level.')
     .tag('pinGroup');
 
   if (apiVersion <= 2) {

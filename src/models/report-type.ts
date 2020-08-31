@@ -15,7 +15,7 @@ const baseSchema = Joi.object().keys({
 });
 
 const schema = baseSchema
-  .description('An object defining what a measurement report should look like')
+  .description('An object defining what a condition report should look like')
   .tag('reportType');
 
 interface ReportType {

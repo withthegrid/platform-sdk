@@ -44,6 +44,6 @@ const schema = (apiVersion: number): Joi.ObjectSchema => supplierActivityConstru
   ),
 )
   .tag('supplierActivityParseReport')
-  .description('User defined function in the connectivity environment that informs the system incoming data should be converted into a measurement report.');
+  .description('User defined function in the connectivity environment that informs the system incoming data should be converted into a condition report.');
 
 export { schema, ParseReport };
