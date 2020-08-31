@@ -17,7 +17,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   body: Joi.object().keys({
     deviceHashIds: Joi.array().items(Joi.string().required()).required().example(['j1iha9']),
   }).required(),
-  right: { environment: 'SENSOR', supplier: 'ENVIRONMENT_ADMIN' },
+  right: { environment: 'SENSORS', supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
     claimTokens: Joi.array().items(Joi.object().keys({
       deviceHashId: Joi.string().required().example('j1iha9'),
