@@ -27,7 +27,7 @@ interface Response {
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
   path: '/',
-  right: {}, // everyone can find suppliers
+  right: {}, // all logged in sers
   query: Joi.object().keys({
     sortBy: Joi.string().valid('name', 'hashId').default('hashId'),
     descending: Joi.boolean().default(true),
@@ -49,7 +49,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
         .description('See the getting started section about rights'),
     })).required(),
   }),
-  description: 'Search through suppliers. Not useful for machine accounts, as they only have access to a single supplier',
+  description: 'Search through connectivity environments. Not useful for machine accounts, as they only have access to a single connectivity environment',
 };
 
 export {

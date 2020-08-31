@@ -25,14 +25,14 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'post',
   path: '/',
   body: Joi.object().keys({
-    name: Joi.string().required().example('Cathodic protection sensor').description('This name is also visible in environments. To get a uniform user experience, please provide the name in English'),
+    name: Joi.string().required().example('Cathodic protection sensor').description('This name is also visible in monitoring environments. To get a uniform user experience, please provide the name in English'),
     eventHandler: Joi.string().required().example('[omitted]').description('A javascript function that handles events. See the chapter "User defined code'),
     fieldConfigurations: fieldConfigurationsToServerSchema.required()
       .description('See the chapter on open fields on how to use this'),
     pinGroupFieldConfigurations: fieldConfigurationsToServerSchema.required()
       .description('Defines deviceFields on the pinGroup the device is connected to. Can be used in report type functions. See the chapter on open fields on how to use this'),
     channels: Joi.array().items(Joi.object().keys({
-      name: Joi.string().required().example('Red wire').description('This name is also visible in environments. To get a uniform user experience, please provide the name in English'),
+      name: Joi.string().required().example('Red wire').description('This name is also visible in monitoring environments. To get a uniform user experience, please provide the name in English'),
       pinFieldConfigurations: fieldConfigurationsToServerSchema.required()
         .description('Defines deviceFields on the pin the channel is connected to. Can be used in report type functions. See the chapter on open fields on how to use this'),
       defaultPinName: Joi.string().example('Anode').description('If undefined, the channel cannot be linked to a pin'),

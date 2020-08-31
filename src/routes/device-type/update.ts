@@ -32,11 +32,11 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     hashId: Joi.string().required().example('wasd2'),
   }).required(),
   body: Joi.object().keys({
-    name: Joi.string().example('Cathodic protection sensor').description('This name is also visible in environments. To get a uniform user experience, please provide the name in English'),
+    name: Joi.string().example('Cathodic protection sensor').description('This name is also visible in monitoring environments. To get a uniform user experience, please provide the name in English'),
     eventHandler: Joi.string().description('A javascript function that handles events. See the chapter "User defined code"'),
     fieldConfigurations: updatableFieldConfigurationsSchema,
     pinGroupFieldConfigurations: updatableFieldConfigurationsSchema
-      .description('Defines deviceFields on the pinGroup the device is connected to. Can be used in report type functions. See the chapter on open fields on how to use this'),
+      .description('Defines deviceFields on the pinGroup the device is connected to. Can be used in monitoring report type functions. See the chapter on open fields on how to use this'),
     channels: Joi.array().items(Joi.object().keys({
       name: Joi.string().required().example('Red wire').description('This name is also visible in environments. To get a uniform user experience, please provide the name in English'),
       pinFieldConfigurations: updatableFieldConfigurationsSchema.required()

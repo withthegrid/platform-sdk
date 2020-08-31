@@ -6,7 +6,7 @@ import { schema as fieldsFromServerSchema, FieldsFromServer } from './fields/fie
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('j1iha9'),
   supplierHashId: Joi.string().required().example('f1a4w1'),
-  supplierDeviceIdentifier: Joi.string().required().example('390044000351352237353037').description('Should be unique within the supplier'),
+  supplierDeviceIdentifier: Joi.string().required().example('390044000351352237353037').description('Should be unique within the connectivity environment'),
   deviceTypeHashId: Joi.string().required().example('wasd2'),
   fields: fieldsFromServerSchema.required().example({}),
   measurementCycle: measurementCycleSchema.allow(null).required(),

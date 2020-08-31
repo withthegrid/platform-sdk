@@ -23,7 +23,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       .description('See the getting started section about rights'),
   }).required(),
   right: { environment: 'USERS', supplier: 'ENVIRONMENT_ADMIN' },
-  description: 'Update the rights of a user for this environment or supplier.',
+  description: 'Update the rights of a user for this monitoring environment or connectivity environment.',
 };
 
 export {

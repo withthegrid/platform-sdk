@@ -17,6 +17,6 @@ const schema = (apiVersion: number): Joi.ObjectSchema => supplierActivityConstru
   deviceTypeHandlerActivity(apiVersion),
 )
   .tag('supplierActivityHandleUnlink')
-  .description('Supplier defined device type event handler handled the unlinking of the sensor from a pinGroup.');
+  .description('Device type event handler handled the unlinking of the sensor from a pinGroup.');
 
 export { schema, HandleUnlink };

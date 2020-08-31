@@ -16,6 +16,6 @@ const schema = supplierActivityConstructor(
   }).required(),
 )
   .tag('supplierActivitySetReportingFrequency')
-  .description('Supplier defined function set the reporting frequency of a specific device to a specific interval. The system uses this information to monitor connectivity of the device and raises an issue if it fails to report in time.');
+  .description('User defined function in the connectivity environment that sets the reporting frequency of a specific device to a specific interval. The system uses this information to monitor connectivity of the device and raises an issue if it fails to report in time.');
 
 export { schema, SetReportingFrequency };

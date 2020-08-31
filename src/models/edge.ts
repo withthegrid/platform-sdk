@@ -26,7 +26,7 @@ const schema = Joi.object().keys({
   ),
   name: Joi.string().required().example('My segment'),
   fields: fieldsFromServerSchema.required().example({ id: 'My segment' })
-    .description('The list of keys for an environment can be obtained by requesting the environment model (returned at login)'),
+    .description('The field configuration is stored in the fieldConfigurations key of the monitoring environment object'),
   level: Joi.number().integer().valid(0, 1, 2).required()
     .description('0: no serious or critical open issues, 1: one or more serious open issues an no critical open issues, 2: one or more critical open issues')
     .example(0),

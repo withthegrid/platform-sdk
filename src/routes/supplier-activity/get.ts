@@ -30,7 +30,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     deviceType: deviceTypeSchema.allow(null).required(),
     activity: allActivitiesSchema(apiVersion).required(),
   }).required(),
-  description: 'Get a specific supplier activity identified by its hashId',
+  description: 'Get a specific activity in the connectivity environment',
 };
 
 export {

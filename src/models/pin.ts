@@ -6,8 +6,9 @@ const schema = Joi.object().keys({
   pinGroupHashId: Joi.string().required().example('dao97'),
   name: Joi.string().required().example('My connecting point'),
   fields: fieldsFromServerSchema.required().example({ id: 'My connecting point' })
-    .description('The list of keys for an environment can be obtained by requesting the environment model (returned at login)'),
-  deviceFields: fieldsFromServerSchema.required().example({}),
+    .description('The field configuration is stored in the fieldConfigurations key of the monitoring environment object'),
+  deviceFields: fieldsFromServerSchema.required().example({})
+    .description('The field configuration is stored in the pinFieldConfigurations key of the channel key in the device type object'),
   level: Joi.number().integer().valid(0, 1, 2).required()
     .description('0: no serious or critical open issues, 1: one or more serious open issues an no critical open issues, 2: one or more critical open issues')
     .example(0),

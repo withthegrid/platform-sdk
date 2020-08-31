@@ -9,7 +9,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'delete',
   path: '/',
   right: { supplier: 'ENVIRONMENT_ADMIN' },
-  description: 'Delete a supplier. No user can access it afterwards.',
+  description: 'Delete a connectivity environment. No user can access it afterwards.',
 };
 
 export {

@@ -13,9 +13,10 @@ const schema = (apiVersion: number): Joi.ObjectSchema => {
     }).required(),
     name: Joi.string().required().example('My measurement location'),
     symbolKey: Joi.string().required().example('cp-pole'),
-    deviceFields: fieldsFromServerSchema.required().example({}),
+    deviceFields: fieldsFromServerSchema.required().example({})
+      .description('The field configuration is stored in the pinGroupFieldConfigurations key of the device type object'),
     fields: fieldsFromServerSchema.required().example({ id: 'My measurement location' })
-      .description('The list of keys for an environment can be obtained by requesting the environment model (returned at login)'),
+      .description('The field configuration is stored in the fieldConfigurations key of the monitoring environment object'),
     deviceLinkHashId: Joi.string().allow(null).required()
       .description('In null, there is no sensor installed at this measurement location')
       .example(null),

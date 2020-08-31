@@ -49,7 +49,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
         .description('See the getting started section about rights'),
     })).required(),
   }),
-  description: 'Search through environments. Not useful for machine accounts, as they only have access to a single environment',
+  description: 'Search through monitoring environments. Not useful for machine accounts, as they only have access to a single monitoring environment',
 };
 
 export {

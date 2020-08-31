@@ -70,7 +70,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       deviceType: deviceTypeSchema.allow(null).required(),
     })).required(),
   }).required(),
-  description: 'Search through supplier requests',
+  description: 'Search through activity in the connectivity environment',
 };
 
 export {

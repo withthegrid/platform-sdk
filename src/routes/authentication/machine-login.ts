@@ -45,7 +45,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     }
 
     const newBody = body.keys({
-      environment: environmentSchema.description('A random environment this user has access to'),
+      environment: environmentSchema.description('A random monitoring environment this user has access to'),
       environmentRights: Joi.array().items(Joi.string()).example(['STATIC', 'USERS'])
         .description('See the getting started section about rights'),
     });

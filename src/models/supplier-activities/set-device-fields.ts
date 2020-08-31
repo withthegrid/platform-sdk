@@ -22,6 +22,6 @@ const schema = supplierActivityConstructor(
   }).required(),
 )
   .tag('supplierActivitySetDeviceFields')
-  .description('Supplier defined function that updates a device\'s fields.');
+  .description('User defined function in the connectivity environment that updates a device\'s fields.');
 
 export { schema, SetDeviceFields };

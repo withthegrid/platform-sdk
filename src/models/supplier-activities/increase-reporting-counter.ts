@@ -13,6 +13,6 @@ const schema = supplierActivityConstructor(
   }).required(),
 )
   .tag('supplierActivityIncreaseReportingCounter')
-  .description('Supplier defined function increases the counter that is used to monitor connectivity of the device.');
+  .description('User defined function in the connectivity environment that increases the counter that is used to monitor connectivity of the device.');
 
 export { schema, IncreaseReportingCounter };

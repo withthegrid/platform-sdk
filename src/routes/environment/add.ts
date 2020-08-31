@@ -17,7 +17,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'post',
   path: '/',
   body: Joi.object().keys({
-    name: Joi.string().required().example('My environment'),
+    name: Joi.string().required().example('My monitoring environment'),
   }).required(),
   right: {}, // everyone can add an environment
   response: Joi.object().keys({
@@ -25,7 +25,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     environmentRights: Joi.array().items(Joi.string()).required().example(['STATIC', 'USERS'])
       .description('See the getting started section about rights'),
   }).required(),
-  description: 'Create an evironment',
+  description: 'Create a monitoring environment',
 };
 
 export {

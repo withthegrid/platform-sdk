@@ -17,7 +17,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       .example(['aklasjkl13a23']),
   }).required(),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
-  description: 'Delete one or more devices. If a device is claimed by an environment, it cannot be deleted.',
+  description: 'Delete one or more devices. If a device is claimed by a monitoring environment, it cannot be deleted.',
 };
 
 export {

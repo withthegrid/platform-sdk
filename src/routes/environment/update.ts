@@ -32,7 +32,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'put',
   path: '/',
   body: Joi.object().keys({
-    name: Joi.string().example('My environment name'),
+    name: Joi.string().example('My monitoring environment'),
     mapLayers: Joi.array().items(Joi.object().keys({
       name: Joi.string().required().example('My map layer'),
       key: Joi.string().invalid('nodes').required().example('myLayer'),

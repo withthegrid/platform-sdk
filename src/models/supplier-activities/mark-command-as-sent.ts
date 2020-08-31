@@ -22,6 +22,6 @@ const schema = supplierActivityConstructor(
   ).required(),
 )
   .tag('supplierActivityMarkCommandAsSent')
-  .description('Supplier defined function informs the system that a specific command has been shared with a specific device.');
+  .description('User defined function in the connectivity environment that informs the system that a specific command has been shared with a specific device.');
 
 export { schema, MarkCommandAsSent };

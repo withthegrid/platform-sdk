@@ -16,7 +16,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     hashId: Joi.string().required().example('z812a63'),
   }).required(),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
-  description: 'Delete a webhook from a supplier.',
+  description: 'Delete a webhook from a connectivity environment.',
 };
 
 export {

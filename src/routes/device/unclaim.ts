@@ -17,7 +17,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       .example(['aklasjkl13a23']),
   }).required(),
   right: { environment: 'SENSORS' },
-  description: 'Remove one or more devices from this environment. Only use this if you want to return the device to the supplier',
+  description: 'Remove one or more devices from this monitoring environment. Only use this if you want to return the device to the supplier',
 };
 
 export {

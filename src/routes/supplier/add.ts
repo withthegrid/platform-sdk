@@ -17,15 +17,15 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'post',
   path: '/',
   body: Joi.object().keys({
-    name: Joi.string().required().example('My IoT company'),
+    name: Joi.string().required().example('My connectivity environment'),
   }).required(),
-  right: {}, // everyone can add a supplier
+  right: {}, // all logged in users
   response: Joi.object().keys({
     supplier: supplierSchema.required(),
     supplierRights: Joi.array().items(Joi.string()).required().example(['STATIC', 'USERS'])
       .description('See the getting started section about rights'),
   }).required(),
-  description: 'Create a supplier to connect new IoT sensor types and other new data sources to our application, which can be used in one or more environments',
+  description: 'Create a connectivity environment to connect external systems and individual IoT devices to our application, which can be used in one or more monitoring environments',
 };
 
 export {

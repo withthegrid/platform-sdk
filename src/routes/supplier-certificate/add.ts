@@ -41,7 +41,7 @@ KAIhAK59odu1i8oxIJg237EOLKbf0k/Rhub/CKPrsQ50t0lK
     -----END CERTIFICATE-----
     `).description('A Base64 encoded intermediate certificate. Should be used to create device certificates.'),
   }).required(),
-  description: 'Add a certificate to the supplier.',
+  description: 'Add a certificate to the connectivity environment that can be used to create device client certificates.',
 };
 
 export {

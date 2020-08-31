@@ -22,6 +22,6 @@ const schema = supplierActivityConstructor(
   ).required(),
 )
   .tag('supplierActivityScheduleCommand')
-  .description('Supplier defined function informs the system that a command for a specific device should be scheduled.');
+  .description('User defined function in the connectivity environment that informs the system that a command for a specific device should be scheduled.');
 
 export { schema, ScheduleCommand };

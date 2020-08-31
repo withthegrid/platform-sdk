@@ -4,7 +4,7 @@ import { schema as fieldConfigurationsFromServerSchema, FieldConfigurationsFromS
 
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('f1a4w1'),
-  name: Joi.string().required().example('My environment'),
+  name: Joi.string().required().example('My monitoring environment'),
   mapLayers: Joi.array().items(Joi.object().keys({
     name: Joi.string().required().example('My map layer'),
     key: Joi.string().invalid('nodes').required().example('myLayer'),
@@ -15,7 +15,7 @@ const schema = Joi.object().keys({
       .example([[3.3135576, 47.9747658], [5.1288442202798, 51.8145997]]),
   }).allow(null)
     .required()
-    .description('All pin groups and edges in this environment are contained in the rectangle described by this linestring. If null, no pinGroups or edges are present'),
+    .description('All pin groups and edges in this monitoring environment are contained in the rectangle described by this linestring. If null, no pinGroups or edges are present'),
   fieldConfigurations: Joi.object().keys({
     pinGroups: fieldConfigurationsFromServerSchema.required(),
     edges: fieldConfigurationsFromServerSchema.required(),
@@ -28,7 +28,7 @@ const schema = Joi.object().keys({
   createdAt: Joi.date().required().example('2019-12-31T15:23Z'),
 })
   .tag('environment')
-  .description('The space on which all data like geographical objects, measurements and issues are stored. Multiple users can be given access to the same environment.');
+  .description('Is called a monitoring environment in the UI. The space on which all data like geographical objects, measurements and issues are stored. Multiple users can be given access to the same monitoring environment.');
 
 interface Environment {
   hashId: string;

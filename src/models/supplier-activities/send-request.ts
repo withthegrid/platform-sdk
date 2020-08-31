@@ -16,6 +16,6 @@ const schema = supplierActivityConstructor(
   }).required(),
 )
   .tag('supplierActivitySendRequest')
-  .description('Supplier defined function performs an HTTP request.');
+  .description('User defined function in the connectivity environment that performs an HTTP request.');
 
 export { schema, SendRequest };

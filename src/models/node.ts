@@ -11,7 +11,7 @@ const schema = Joi.object().keys({
   }).required(),
   name: Joi.string().required().example('My node'),
   fields: fieldsFromServerSchema.required().example({ id: 'My node' })
-    .description('The list of keys for an environment can be obtained by requesting the environment model (returned at login)'),
+    .description('The field configuration is stored in the fieldConfigurations key of the monitoring environment object'),
   gridHashId: Joi.string().required().example('naud52'),
   deletedAt: Joi.date().allow(null).required().example(null),
 })

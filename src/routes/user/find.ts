@@ -51,7 +51,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
         .description('See the getting started section about rights'),
     })).required(),
   }),
-  description: 'Search through users wihtin an environment or supplier',
+  description: 'Search through users wihtin a monitoring environment or a connectivity environment',
 };
 
 export {
