@@ -15,7 +15,7 @@ const schema = Joi.object().keys({
   gridHashId: Joi.string().required().example('naud52'),
   deletedAt: Joi.date().allow(null).required().example(null),
 })
-  .description('A geographical object representing a point. Is used to connect one or more single line segment edges.')
+  .description('A geographical object representing a point. Is used to connect one or more single segment lines.')
   .tag('node');
 
 interface Node {

@@ -63,7 +63,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
             [4.924301064507517, 52.364277347881085],
           ]),
       }).required(),
-      fields: fieldsToServerFullSchema.required().example({ id: 'My segment' }),
+      fields: fieldsToServerFullSchema.required().example({ id: 'My line' }),
       properties: Joi.any().description('deprecated'),
       mapLayer: Joi.string().invalid('nodes').example('myLayer'),
       photo: Joi.string().description('Should be a dataurl'),
@@ -76,7 +76,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
             .items(Joi.array().length(2).items(Joi.number()).description('[lon, lat] in WGS84')))
           .required(),
       }).required(),
-      fields: fieldsToServerFullSchema.required().example({ id: 'My segment' }),
+      fields: fieldsToServerFullSchema.required().example({ id: 'My line' }),
       properties: Joi.any().description('deprecated'),
       mapLayer: Joi.string().invalid('nodes'),
       photo: Joi.string().description('Should be a dataurl'),

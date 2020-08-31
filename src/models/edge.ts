@@ -24,8 +24,8 @@ const schema = Joi.object().keys({
         .required(),
     }).required(),
   ),
-  name: Joi.string().required().example('My segment'),
-  fields: fieldsFromServerSchema.required().example({ id: 'My segment' })
+  name: Joi.string().required().example('My line'),
+  fields: fieldsFromServerSchema.required().example({ id: 'My line' })
     .description('The field configuration is stored in the fieldConfigurations key of the monitoring environment object'),
   level: Joi.number().integer().valid(0, 1, 2).required()
     .description('0: no serious or critical open issues, 1: one or more serious open issues an no critical open issues, 2: one or more critical open issues')
@@ -33,7 +33,7 @@ const schema = Joi.object().keys({
   mapLayer: Joi.string().invalid('nodes').required().example('myLayer'),
   deletedAt: Joi.date().allow(null).required().example(null),
 })
-  .description('A geographical object representing one or more connected series of line segments. Called a "segment" in the GUI. If the edge only consists of 1 line segment, it should be connected to a node on both ends.')
+  .description('A geographical object representing one or more connected series of line segments. Called a "line" in the GUI. If the edge only consists of 1 segment, it should be connected to a node on both ends.')
   .tag('edge');
 
 interface Edge {
