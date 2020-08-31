@@ -13,7 +13,7 @@ const schema = Joi.object().keys({
   lastOnlineAt: Joi.date().allow(null).required().example('2019-12-31T15:23Z'),
   validated: Joi.boolean().required().example(true),
 })
-  .description('Called a sensor in the GUI')
+  .description('A single device, that can be installed at a location and report measurements from one or more ports at that location')
   .tag('device');
 
 interface Device {

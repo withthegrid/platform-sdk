@@ -37,7 +37,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       .description('Timestamp the device should stop execution of the command.'),
     channelIndices: Joi.array().items(Joi.number()).default([]).description('The device channels for which this command is relevant. See commandType.channelSelect for allowed values.'),
     email: Joi.array().items(Joi.string().email({ tlds: false })).required().example([])
-      .description('An email will be sent to all provided email addresses when the command is executed by the sensor'),
+      .description('An email will be sent to all provided email addresses when the command is executed by the device'),
   }).required(),
   right: { environment: 'SENSORS', supplier: 'ENVIRONMENT_ADMIN' },
   description: 'Add a command that should be sent to a specific device',

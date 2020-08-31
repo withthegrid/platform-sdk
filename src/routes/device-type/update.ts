@@ -32,7 +32,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     hashId: Joi.string().required().example('wasd2'),
   }).required(),
   body: Joi.object().keys({
-    name: Joi.string().example('Cathodic protection sensor').description('This name is also visible in monitoring environments. To get a uniform user experience, please provide the name in English'),
+    name: Joi.string().example('Cathodic protection device').description('This name is also visible in monitoring environments. To get a uniform user experience, please provide the name in English'),
     eventHandler: Joi.string().description('A javascript function that handles events. See the chapter "User defined code"'),
     fieldConfigurations: updatableFieldConfigurationsSchema,
     pinGroupFieldConfigurations: updatableFieldConfigurationsSchema

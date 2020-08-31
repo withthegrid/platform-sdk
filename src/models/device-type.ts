@@ -3,7 +3,7 @@ import { schema as fieldConfigurationsFromServerSchema, FieldConfigurationsFromS
 
 const baseSchema = Joi.object().keys({
   hashId: Joi.string().required().example('wasd2'),
-  name: Joi.string().required().example('Cathodic protection sensor'),
+  name: Joi.string().required().example('Cathodic protection device'),
   fieldConfigurations: fieldConfigurationsFromServerSchema.required()
     .description('See the chapter on open fields on how to use this'),
   pinGroupFieldConfigurations: fieldConfigurationsFromServerSchema.required()
