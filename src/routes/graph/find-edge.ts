@@ -3,7 +3,7 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as edgeSchema, Edge } from '../../models/edge';
 
-import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
+import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../../comms/table-controller';
 
 interface Query extends TableQuery {
   includeDeleted?: boolean;
@@ -34,25 +34,14 @@ interface Response {
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
   path: '/edge',
-  query: Joi.object().keys({
-    includeDeleted: Joi.boolean().default(false),
-    sortBy: Joi.string().valid('hashId', 'name').default('hashId'),
-    descending: Joi.boolean().default(true),
-    rowsPerPage: Joi.number()
-      .integer()
-      .min(1)
-      .max(100)
-      .default(10),
-    search: Joi.string().allow('').default(''),
-    boundingBox: Joi.array()
-      .items(Joi.number())
-      .length(4)
-      .description('west, south, east, north'),
-    lastValueSortColumn: Joi.any(),
-    lastValueHashId: Joi.string(),
-  })
-    .with('lastValueSortColumn', 'lastValueHashId')
-    .default(),
+  query: tableQuerySchemaGenerator(Joi.string().valid('hashId', 'name').default('hashId'))
+    .keys({
+      includeDeleted: Joi.boolean().default(false),
+      boundingBox: Joi.array()
+        .items(Joi.number())
+        .length(4)
+        .description('west, south, east, north'),
+    }),
   right: { environment: 'READ' },
   response: Joi.object().keys({
     rows: Joi.array().items(Joi.object().keys({

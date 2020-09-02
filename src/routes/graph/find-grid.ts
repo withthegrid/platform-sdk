@@ -3,7 +3,7 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as gridSchema, Grid } from '../../models/grid';
 
-import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
+import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../../comms/table-controller';
 
 interface Query extends TableQuery {
   includeDeleted?: boolean;
@@ -34,22 +34,11 @@ interface Response {
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
   path: '/grid',
-  query: Joi.object().keys({
-    includeDeleted: Joi.boolean().default(false),
-    type: Joi.string().valid('node', 'pinGroup'),
-    sortBy: Joi.string().valid('hashId', 'name').default('hashId'),
-    descending: Joi.boolean().default(true),
-    rowsPerPage: Joi.number()
-      .integer()
-      .min(1)
-      .max(100)
-      .default(10),
-    search: Joi.string().allow('').default(''),
-    lastValueSortColumn: Joi.any(),
-    lastValueHashId: Joi.string(),
-  })
-    .with('lastValueSortColumn', 'lastValueHashId')
-    .default(),
+  query: tableQuerySchemaGenerator(Joi.string().valid('hashId', 'name').default('hashId'))
+    .keys({
+      includeDeleted: Joi.boolean().default(false),
+      type: Joi.string().valid('node', 'pinGroup'),
+    }),
   right: { environment: 'READ' },
   response: Joi.object().keys({
     rows: Joi.array().items(Joi.object().keys({

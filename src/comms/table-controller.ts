@@ -1,4 +1,24 @@
+import Joi from 'joi';
+
 import { Result, RequestQuery } from './controller';
+
+function tableQuerySchemaGenerator(
+  sortBy: Joi.StringSchema = Joi.string().valid('hashId').default('hashId'),
+): Joi.ObjectSchema {
+  return Joi.object().keys({
+    sortBy,
+    descending: Joi.boolean().default(true),
+    rowsPerPage: Joi.number()
+      .integer()
+      .min(1)
+      .max(100)
+      .default(10),
+    search: Joi.string().allow('').default(''),
+    lastValueSortColumn: Joi.any().description('To retrieve the next page, provide lastValueSortColumn and lastValueHashId. lastValueSortColumn is the value for the key provided in sortBy of the last row that is received. Should also be provided when sortBy is \'hashId\''),
+    lastValueHashId: Joi.string().description('To retrieve the next page, provide lastValueSortColumn and lastValueHashId. lastValueHashId is the hashId of the last row that is received.'),
+    updatedAfter: Joi.date().iso().description('Only rows that are updated after the provided date will be returned'),
+  }).with('lastValueSortColumn', 'lastValueHashId').default();
+}
 
 interface DefaultedTableQueryParameters extends RequestQuery {
   sortBy?: string;
@@ -10,6 +30,7 @@ interface DefaultedTableQueryParameters extends RequestQuery {
 interface TableQuery extends DefaultedTableQueryParameters {
   lastValueSortColumn?: string | number | Date | null;
   lastValueHashId?: string;
+  updatedAfter?: Date;
 }
 
 interface TableRequest {
@@ -19,6 +40,7 @@ interface TableRequest {
 interface EffectiveTableQuery extends Required<DefaultedTableQueryParameters> {
   lastValueSortColumn?: string | number | Date | null;
   lastValueHashId?: string;
+  updatedAfter?: Date;
 }
 
 interface EffectiveTableRequest {
@@ -105,6 +127,7 @@ class TableController<RowImplementation> {
 
 export default TableController;
 export {
+  tableQuerySchemaGenerator,
   TableQuery,
   EffectiveTableQuery,
   TableRequest,

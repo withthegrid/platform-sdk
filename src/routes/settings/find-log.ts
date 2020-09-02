@@ -3,7 +3,7 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as logSchema, Log } from '../../models/log';
 
-import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
+import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../../comms/table-controller';
 
 interface Query extends TableQuery {
   objectType: string;
@@ -35,20 +35,11 @@ interface Response {
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
   path: '/log',
-  query: Joi.object().keys({
-    objectType: Joi.string().required().example('command'),
-    objectHashId: Joi.string().required().example('ga9741s'),
-    sortBy: Joi.string().valid('hashId').default('hashId'),
-    descending: Joi.boolean().default(true),
-    rowsPerPage: Joi.number()
-      .integer()
-      .min(1)
-      .max(100)
-      .default(10),
-    search: Joi.string().allow('').default(''),
-    lastValueSortColumn: Joi.any(),
-    lastValueHashId: Joi.string(),
-  }).with('lastValueSortColumn', 'lastValueHashId').required(),
+  query: tableQuerySchemaGenerator(Joi.string().valid('hashId').default('hashId'))
+    .keys({
+      objectType: Joi.string().required().example('command'),
+      objectHashId: Joi.string().required().example('ga9741s'),
+    }),
   right: { environment: 'AUDIT_TRAIL' },
   response: Joi.object().keys({
     rows: Joi.array().items(Joi.object().keys({

@@ -5,7 +5,7 @@ import { schema as issueSchema, Issue } from '../../models/issue';
 import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
 import { schema as pinSchema, Pin } from '../../models/pin';
 
-import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
+import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../../comms/table-controller';
 
 interface Query extends TableQuery {
   pinGroupHashId?: string | null;
@@ -45,23 +45,12 @@ interface Response {
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
   path: '/',
-  query: Joi.object().keys({
-    pinGroupHashId: Joi.string().allow(null).default(null),
-    edgeHashId: Joi.string().allow(null).default(null),
-    gridHashId: Joi.string().allow(null).default(null),
-    sortBy: Joi.string().valid('level', 'createdAt').default('createdAt'),
-    descending: Joi.boolean().default(true),
-    rowsPerPage: Joi.number()
-      .integer()
-      .min(1)
-      .max(100)
-      .default(10),
-    search: Joi.string().allow('').default(''),
-    lastValueSortColumn: Joi.any(),
-    lastValueHashId: Joi.string(),
-  })
-    .with('lastValueSortColumn', 'lastValueHashId')
-    .default(),
+  query: tableQuerySchemaGenerator(Joi.string().valid('level', 'createdAt').default('createdAt'))
+    .keys({
+      pinGroupHashId: Joi.string().allow(null).default(null),
+      edgeHashId: Joi.string().allow(null).default(null),
+      gridHashId: Joi.string().allow(null).default(null),
+    }),
   right: { environment: 'READ' },
   response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     rows: Joi.array().items(Joi.object().keys({

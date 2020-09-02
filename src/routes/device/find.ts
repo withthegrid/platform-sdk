@@ -5,7 +5,7 @@ import { schema as deviceSchema, Device } from '../../models/device';
 import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
 import { schema as deviceTypeSchema, DeviceType } from '../../models/device-type';
 
-import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
+import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../../comms/table-controller';
 
 type Query = TableQuery;
 
@@ -34,20 +34,7 @@ interface Response {
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
   path: '/',
-  query: Joi.object().keys({
-    sortBy: Joi.string().valid('hashId').default('hashId'),
-    descending: Joi.boolean().default(true),
-    rowsPerPage: Joi.number()
-      .integer()
-      .min(1)
-      .max(100)
-      .default(10),
-    search: Joi.string().allow('').default(''),
-    lastValueSortColumn: Joi.any(),
-    lastValueHashId: Joi.string(),
-  })
-    .with('lastValueSortColumn', 'lastValueHashId')
-    .default(),
+  query: tableQuerySchemaGenerator(),
   right: { environment: 'READ', supplier: 'ENVIRONMENT_ADMIN' },
   response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     rows: Joi.array().items(Joi.object().keys({

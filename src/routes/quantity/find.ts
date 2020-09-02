@@ -3,7 +3,7 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as quantitySchema, Quantity } from '../../models/quantity';
 
-import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
+import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../../comms/table-controller';
 
 type Query = TableQuery;
 
@@ -27,20 +27,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
   path: '/quantities',
   right: { environment: 'READ', supplier: 'ENVIRONMENT_ADMIN' },
-  query: Joi.object().keys({
-    sortBy: Joi.string().valid('name', 'hashId').default('hashId'),
-    descending: Joi.boolean().default(true),
-    rowsPerPage: Joi.number()
-      .integer()
-      .min(1)
-      .max(100)
-      .default(10),
-    search: Joi.string().allow('').default(''),
-    lastValueSortColumn: Joi.any(),
-    lastValueHashId: Joi.string(),
-  })
-    .with('lastValueSortColumn', 'lastValueHashId')
-    .default(),
+  query: tableQuerySchemaGenerator(Joi.string().valid('name', 'hashId').default('hashId')),
   response: Joi.object().keys({
     rows: Joi.array().items(Joi.object().keys({
       quantity: quantitySchema.required(),
