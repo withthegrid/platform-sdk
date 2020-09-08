@@ -13,6 +13,7 @@ interface Response {
   webhook: SupplierWebhook;
   identifier: string;
   url: string;
+  subscriptionHashId?: string;
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
@@ -26,6 +27,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     webhook: supplierWebhook.required(),
     identifier: Joi.string().required().example(identifierExample).description('A javascript function that parses the incoming request into a device identifier and report type hashId. See the chapter "User defined code"'),
     url: Joi.string().required().example('https://api.withthegrid.com/iot?s=f1a4w1?t=asd193gaf11234').description('The URL the third party service should use to post data sent by the devices.'),
+    subscriptionHashId: Joi.string().description('If the user is subscribed to (email) alerts on this object, this key is present'),
   }).required(),
   description: 'Get a specific webhook identified by its hashId',
 };

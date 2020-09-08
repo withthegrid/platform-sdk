@@ -14,6 +14,7 @@ interface Response {
   deviceType: DeviceType;
   eventHandler: string;
   commandTypes: CommandType[];
+  subscriptionHashId?: string;
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
@@ -27,6 +28,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     deviceType: deviceTypeSchema.required(),
     eventHandler: Joi.string().required().example('[omitted]').description('A javascript function that handles an events. See the chapter "User defined code"'),
     commandTypes: Joi.array().items(commandTypeSchema).required(),
+    subscriptionHashId: Joi.string().description('If the user is subscribed to (email) alerts on this object, this key is present'),
   }).required(),
   description: 'Get a specific device type identified by its hashId',
 };

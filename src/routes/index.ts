@@ -15,6 +15,7 @@ import QuantityRoute from './quantity';
 import ReportRoute from './report';
 import ReportTypeRoute from './report-type';
 import SettingsRoute from './settings';
+import SubscriptionRoute from './subscription';
 import SupplierRoute from './supplier';
 import SupplierActivityRoute from './supplier-activity';
 import SupplierCertificateRoute from './supplier-certificate';
@@ -39,6 +40,7 @@ interface RouteClasses {
   Report?: typeof ReportRoute;
   ReportType?: typeof ReportTypeRoute;
   Settings?: typeof SettingsRoute;
+  Supscription?: typeof SubscriptionRoute;
   Supplier?: typeof SupplierRoute;
   SupplierActivityRoute?: typeof SupplierActivityRoute;
   SupplierCertificate?: typeof SupplierCertificateRoute;
@@ -79,6 +81,8 @@ class Routes {
 
   settings: SettingsRoute;
 
+  subscription: SubscriptionRoute;
+
   supplier: SupplierRoute;
 
   supplierActivity: SupplierActivityRoute;
@@ -109,6 +113,7 @@ class Routes {
     this.report = new ReportRoute(comms);
     this.reportType = new ReportTypeRoute(comms);
     this.settings = new SettingsRoute(comms);
+    this.subscription = new SubscriptionRoute(comms);
     this.supplier = new SupplierRoute(comms);
     this.supplierActivity = new SupplierActivityRoute(comms);
     this.supplierCertificate = new SupplierCertificateRoute(comms);
@@ -136,6 +141,7 @@ export {
   ReportRoute,
   ReportTypeRoute,
   SettingsRoute,
+  SubscriptionRoute,
   SupplierRoute,
   SupplierActivityRoute,
   SupplierCertificateRoute,

@@ -13,6 +13,7 @@ interface Request {
 interface Response {
   hashId: string;
   url: string;
+  subscriptionHashId?: string;
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
@@ -26,6 +27,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   response: Joi.object().keys({
     hashId: Joi.string().required().example('z812a63'),
     url: Joi.string().required().example('https://api.withthegrid.com/iot?s=f1a4w1?t=asd193gaf11234').description('The URL the third party service should use to post data sent by the devices.'),
+    subscriptionHashId: Joi.string().description('Right now the user gets automatically subscribed to alerts on this object. This hashId can be used to remove such an alert'),
   }).required(),
   description: 'Add a webhook to the connectivity environment.',
 };

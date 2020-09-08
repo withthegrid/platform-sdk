@@ -14,6 +14,7 @@ import * as quantity from './quantity/routes';
 import * as report from './report/routes';
 import * as reportType from './report-type/routes';
 import * as settings from './settings/routes';
+import * as subscription from './subscription/routes';
 import * as supplier from './supplier/routes';
 import * as supplierActivity from './supplier-activity/routes';
 import * as supplierCertificate from './supplier-certificate/routes';
@@ -38,6 +39,7 @@ export {
   report,
   reportType,
   settings,
+  subscription,
   supplier,
   supplierActivity,
   supplierCertificate,

@@ -19,6 +19,7 @@ interface Request {
 
 interface Response {
   hashId: string;
+  subscriptionHashId?: string;
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
@@ -42,6 +43,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   right: { supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
     hashId: Joi.string().required().example('wasd2'),
+    subscriptionHashId: Joi.string().description('Right now the user gets automatically subscribed to alerts on this object. This hashId can be used to remove such an alert'),
   }).required(),
   description: 'Add a new device type.',
 };

@@ -12,6 +12,7 @@ interface Request {
 interface Response {
   hashId: string;
   certificate: string;
+  subscriptionHashId?: string;
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
@@ -31,15 +32,16 @@ KAIhAK59odu1i8oxIJg237EOLKbf0k/Rhub/CKPrsQ50t0lK
   response: Joi.object().keys({
     hashId: Joi.string().required().example('v19a12'),
     certificate: Joi.string().required().example(`-----BEGIN CERTIFICATE-----
-    MIIBNzCB3gIBATAKBggqhkjOPQQDAjAkMREwDwYDVQQKDAhzdXBwbGllcjEPMA0G
-    A1UEAwwGeGQycmQ0MB4XDTIwMDIyNDEzNTQwOVoXDTIxMDIyMzEzNTQwOVowLDEP
-    MA0GA1UECgwGZGV2aWNlMRkwFwYDVQQDDBB1bnFpZSBpZGVudGlmaWVyMFkwEwYH
-    KoZIzj0CAQYIKoZIzj0DAQcDQgAEUPyQwLuDlKw7CA41ADhxXRvD3n9ZFF0XCeI9
-    OAgRIgl2mGmnO31wX1DD4weZoB2pswCBrC39FpyHgIz6LK10PzAKBggqhkjOPQQD
-    AgNIADBFAiEAyz0Ha4eFfebqSoES4vxguipSHmR/zN8KjEEie7xpqo8CICFS5NWG
-    iaT6xhGfChGbQjpmQQYYabau8Ons8F2JNyLu
-    -----END CERTIFICATE-----
-    `).description('A Base64 encoded intermediate certificate. Should be used to create device certificates.'),
+MIIBNzCB3gIBATAKBggqhkjOPQQDAjAkMREwDwYDVQQKDAhzdXBwbGllcjEPMA0G
+A1UEAwwGeGQycmQ0MB4XDTIwMDIyNDEzNTQwOVoXDTIxMDIyMzEzNTQwOVowLDEP
+MA0GA1UECgwGZGV2aWNlMRkwFwYDVQQDDBB1bnFpZSBpZGVudGlmaWVyMFkwEwYH
+KoZIzj0CAQYIKoZIzj0DAQcDQgAEUPyQwLuDlKw7CA41ADhxXRvD3n9ZFF0XCeI9
+OAgRIgl2mGmnO31wX1DD4weZoB2pswCBrC39FpyHgIz6LK10PzAKBggqhkjOPQQD
+AgNIADBFAiEAyz0Ha4eFfebqSoES4vxguipSHmR/zN8KjEEie7xpqo8CICFS5NWG
+iaT6xhGfChGbQjpmQQYYabau8Ons8F2JNyLu
+-----END CERTIFICATE-----
+`).description('A Base64 encoded intermediate certificate. Should be used to create device certificates.'),
+    subscriptionHashId: Joi.string().description('Right now the user gets automatically subscribed to alerts on this object. This hashId can be used to remove such an alert'),
   }).required(),
   description: 'Add a certificate to the connectivity environment that can be used to create device client certificates.',
 };
