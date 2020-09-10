@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 import { schema as fieldsFromServerSchema, FieldsFromServer } from './fields/fields-from-server';
 
 const schema = (apiVersion: number): Joi.ObjectSchema => {
@@ -10,13 +10,14 @@ const schema = (apiVersion: number): Joi.ObjectSchema => {
         .description('[lon, lat] in WGS84')
         .example([4.884707950517225, 52.37502141913572]),
     }).required(),
-    name: Joi.string().required().example('My measurement location'),
+    name: Joi.string().required().example('My location'),
     symbolKey: Joi.string().required().example('cp-pole'),
-    deviceFields: fieldsFromServerSchema.required().example({}),
-    fields: fieldsFromServerSchema.required().example({ id: 'My measurement location' })
-      .description('The list of keys for an environment can be obtained by requesting the environment model (returned at login)'),
+    deviceFields: fieldsFromServerSchema.required().example({})
+      .description('The field configuration is stored in the pinGroupFieldConfigurations key of the device type object'),
+    fields: fieldsFromServerSchema.required().example({ id: 'My location' })
+      .description('The field configuration is stored in the fieldConfigurations key of the monitoring environment object'),
     deviceLinkHashId: Joi.string().allow(null).required()
-      .description('In null, there is no sensor installed at this measurement location')
+      .description('If null, there is no device installed at this location')
       .example(null),
     level: Joi.number().integer().valid(0, 1, 2).required()
       .description('0: no serious or critical open issues, 1: one or more serious open issues an no critical open issues, 2: one or more critical open issues')
@@ -24,7 +25,7 @@ const schema = (apiVersion: number): Joi.ObjectSchema => {
     mapLayer: Joi.string().invalid('nodes').required().example('myLayer'),
     deletedAt: Joi.date().allow(null).required().example(null),
   })
-    .description('A collection of pins. Is called a "measurement location" in the GUI. A device can be connected to a pin group. Measurement reports are registered at pin group level.')
+    .description('A collection of pins. Is called a "location" in the GUI. A device can be connected to a pin group. Condition reports are registered at pin group level.')
     .tag('pinGroup');
 
   const pinGroupDeprecatedModel = model.keys({

@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 
 const schema = Joi.object().keys({
   orderOfMagnitude: Joi.number().integer().min(-128).max(127)

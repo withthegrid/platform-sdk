@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 
 const identifierExample = `function (command) {
   return JSON.stringify({

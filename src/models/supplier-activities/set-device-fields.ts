@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 
 import { schema as fieldsToFieldConfigurationUdfSchema, FieldsToFieldConfigurationUdf } from '../fields/fields-to-field-configuration-udf';
 import { schemaConstructor as supplierActivityConstructor, SupplierActivity } from './base';
@@ -22,6 +22,6 @@ const schema = supplierActivityConstructor(
   }).required(),
 )
   .tag('supplierActivitySetDeviceFields')
-  .description('Supplier defined function that updates a device\'s fields.');
+  .description('User defined function in the connectivity environment that updates a device\'s fields.');
 
 export { schema, SetDeviceFields };

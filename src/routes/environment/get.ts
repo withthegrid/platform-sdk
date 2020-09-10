@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as environmentSchema, Environment } from '../../models/environment';
@@ -26,7 +26,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     environmentRights: Joi.array().items(Joi.string()).required().example(['STATIC', 'USERS'])
       .description('See the getting started section about rights'),
   }).required(),
-  description: 'Get a specific environment identified by its hashId',
+  description: 'Get a specific monitoring environment identified by its hashId',
 };
 
 export {

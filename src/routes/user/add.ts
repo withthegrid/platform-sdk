@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
 interface Request {
@@ -26,7 +26,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   response: Joi.object().keys({
     hashId: Joi.string().required().example('b45zo0'),
   }).required(),
-  description: 'Add a user to an environment or supplier.',
+  description: 'Add a user to a monitoring environment or a connectivity environment.',
 };
 
 export {

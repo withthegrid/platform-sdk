@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 import { schema as fieldsToServerUpdateSchema, FieldsToServerUpdate } from '../../models/fields/fields-to-server-update';
 import { schema as pinSchema, Pin } from '../../models/pin';
@@ -23,7 +23,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     hashId: Joi.string().required().example('e13d57'),
   }).required(),
   body: Joi.object().keys({
-    fields: fieldsToServerUpdateSchema.example({ id: 'My connecting point' }),
+    fields: fieldsToServerUpdateSchema.example({ id: 'My port' }),
   }).required(),
   response: Joi.object().keys({
     pin: pinSchema.required(),

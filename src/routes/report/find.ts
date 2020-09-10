@@ -1,10 +1,10 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
 import { schema as environmentSchema, Environment } from '../../models/environment';
 
-import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
+import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../../comms/table-controller';
 
 interface Query extends TableQuery {
   pinGroupHashId?: string | null;
@@ -30,6 +30,8 @@ interface ResponseRow {
   report: {
     hashId: string;
     deviceHashId: string | null;
+    reportTypeHashId: string | null;
+    reportTypeType: 'human' | 'device';
     generatedAt: Date;
   };
   pinGroup: PinGroup | null;
@@ -75,24 +77,12 @@ type ResponsesIncludingDeprecated = {
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
   path: '/',
-  query: Joi.object().keys({
-    pinGroupHashId: Joi.string().allow(null).default(null),
-    edgeHashId: Joi.string().allow(null).default(null),
-    gridHashId: Joi.string().allow(null).default(null),
-    allEnvironments: Joi.boolean().description('Deprecated'),
-    sortBy: Joi.string().valid('generatedAt').default('generatedAt'),
-    descending: Joi.boolean().default(true),
-    rowsPerPage: Joi.number()
-      .integer()
-      .min(1)
-      .max(100)
-      .default(10),
-    search: Joi.string().allow('').default(''),
-    lastValueSortColumn: Joi.any(),
-    lastValueHashId: Joi.string(),
-  })
-    .with('lastValueSortColumn', 'lastValueHashId')
-    .default(),
+  query: tableQuerySchemaGenerator(Joi.string().valid('generatedAt').default('generatedAt'))
+    .keys({
+      pinGroupHashId: Joi.string().allow(null).default(null),
+      edgeHashId: Joi.string().allow(null).default(null),
+      gridHashId: Joi.string().allow(null).default(null),
+    }),
   right: { environment: 'READ' },
   response: (apiVersion: number): Joi.ObjectSchema => {
     if (apiVersion <= 1) {
@@ -136,6 +126,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
         report: Joi.object().keys({
           hashId: Joi.string().required().example('qoa978'),
           deviceHashId: Joi.string().allow(null).required().example('j1iha9'),
+          reportTypeHashId: Joi.string().allow(null).required().example('l19a7s'),
+          reportTypeType: Joi.string().valid('human', 'device').example('human').required(),
           generatedAt: Joi.date().required().example('2019-12-31T15:23Z'),
         }).required(),
         pinGroup: pinGroupSchema(apiVersion).allow(null).required(),

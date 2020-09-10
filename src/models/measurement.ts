@@ -1,11 +1,11 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 
 const schema = (apiVersion: number): Joi.ObjectSchema => {
   const model = Joi.object().keys({
     hashId: Joi.string().required().example('po177'),
     generatedAt: Joi.date().required().example('2019-12-31T15:23Z'),
     channelIndex: Joi.number().integer().allow(null).required()
-      .description('The channel of the installed sensor. When null, the measurement is not taken by a sensor but manually entered')
+      .description('The channel of the installed device. When null, the measurement is not taken by a device but manually entered')
       .example(0),
   })
     .tag('measurement')

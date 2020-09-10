@@ -57,6 +57,7 @@ import * as supplierCertificate from './supplier-certificate';
 import * as supplierWebhook from './supplier-webhook';
 import * as threshold from './threshold';
 import * as user from './user';
+import * as userSubscription from './user-subscription';
 
 export {
   command,
@@ -118,4 +119,5 @@ export {
   threshold,
   user,
   webRequest,
+  userSubscription,
 };

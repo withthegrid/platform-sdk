@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 
 import { schemaConstructor as supplierActivityConstructor, SupplierActivity } from './base';
 import { schema as commandSchema, Command } from '../command';
@@ -23,6 +23,6 @@ const schema = (apiVersion: number): Joi.ObjectSchema => supplierActivityConstru
   deviceTypeHandlerActivity(apiVersion),
 )
   .tag('supplierActivityHandleCommandDue')
-  .description('Supplier defined device type event handler handled a command that was due.');
+  .description('Device type event handler handled a command that was due.');
 
 export { schema, HandleCommandDue };

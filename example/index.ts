@@ -55,7 +55,7 @@ const example = async (): Promise<void> => {
   }
 
   const response = await result.response;
-  console.log(`Added a new pinGroup with hashId ${response.hashId}`);
+  console.log(`Added a new location (pinGroup) with hashId ${response.hashId}`);
 
   /*
      ..TableController routes are convenience functions that return a table controller

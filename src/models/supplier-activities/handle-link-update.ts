@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 
 import { schemaConstructor as supplierActivityConstructor, SupplierActivity } from './base';
 
@@ -17,6 +17,6 @@ const schema = (apiVersion: number): Joi.ObjectSchema => supplierActivityConstru
   deviceTypeHandlerActivity(apiVersion),
 )
   .tag('supplierActivityHandleLinkUpdate')
-  .description('Supplier defined device type event handler handled an update of the link of the sensor with its pinGroup.');
+  .description('Device type event handler handled an update of the installation between device and location.');
 
 export { schema, HandleLinkUpdate };

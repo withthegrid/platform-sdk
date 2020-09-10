@@ -1,13 +1,13 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 import { schema as fieldConfigurationsFromServerSchema, FieldConfigurationsFromServer } from './fields/field-configurations-from-server';
 
 const baseSchema = Joi.object().keys({
   hashId: Joi.string().required().example('wasd2'),
-  name: Joi.string().required().example('Cathodic protection sensor'),
+  name: Joi.string().required().example('Cathodic protection device'),
   fieldConfigurations: fieldConfigurationsFromServerSchema.required()
     .description('See the chapter on open fields on how to use this'),
   pinGroupFieldConfigurations: fieldConfigurationsFromServerSchema.required()
-    .description('Defines deviceFields on the pinGroup the device is connected to. Can be used in report type functions. See the chapter on open fields on how to use this'),
+    .description('Defines deviceFields on the location (pinGroup) the device is connected to. Can be used in report type functions. See the chapter on open fields on how to use this'),
   channels: Joi.array().items(Joi.object().keys({
     name: Joi.string().required().example('Red wire'),
     pinFieldConfigurations: fieldConfigurationsFromServerSchema.required()

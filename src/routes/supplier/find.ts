@@ -1,9 +1,9 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as supplierSchema, Supplier } from '../../models/supplier';
 
-import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
+import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../../comms/table-controller';
 
 type Query = TableQuery;
 
@@ -27,21 +27,8 @@ interface Response {
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
   path: '/',
-  right: {}, // everyone can find suppliers
-  query: Joi.object().keys({
-    sortBy: Joi.string().valid('name', 'hashId').default('hashId'),
-    descending: Joi.boolean().default(true),
-    rowsPerPage: Joi.number()
-      .integer()
-      .min(1)
-      .max(100)
-      .default(10),
-    search: Joi.string().allow('').default(''),
-    lastValueSortColumn: Joi.any(),
-    lastValueHashId: Joi.string(),
-  })
-    .with('lastValueSortColumn', 'lastValueHashId')
-    .default(),
+  right: {}, // all logged in sers
+  query: tableQuerySchemaGenerator(Joi.string().valid('hashId', 'name').default('hashId')),
   response: Joi.object().keys({
     rows: Joi.array().items(Joi.object().keys({
       supplier: supplierSchema.required(),
@@ -49,7 +36,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
         .description('See the getting started section about rights'),
     })).required(),
   }),
-  description: 'Search through suppliers. Not useful for machine accounts, as they only have access to a single supplier',
+  description: 'Search through connectivity environments. Not useful for machine accounts, as they only have access to a single connectivity environment',
 };
 
 export {

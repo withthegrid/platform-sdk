@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 import { schema as fieldsToServerFullSchema, FieldsToServerFull } from '../../models/fields/fields-to-server-full';
 
@@ -61,7 +61,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       mapLayer: Joi.string().invalid('nodes').description('If not provided, the first available one is chosen'),
       photo: Joi.string().description('Should be a dataurl'), 
     }).required(),
-  ),   
+  ),
   right: { environment: 'STATIC' },
   response: (apiVersion: number): Joi.ObjectSchema => {  
     return Joi.object().keys({

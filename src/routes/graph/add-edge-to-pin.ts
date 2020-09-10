@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as pinLinkSchema, PinLink } from '../../models/pin-link';

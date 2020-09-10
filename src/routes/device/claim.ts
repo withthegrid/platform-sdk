@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 import { schema as deviceSchema, Device } from '../../models/device';
 
@@ -23,7 +23,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   response: Joi.object().keys({
     devices: Joi.array().items(deviceSchema.required()).required(),
   }),
-  description: 'Add one or more devices to this environment by providing their claim tokens. This invalidates the claim token',
+  description: 'Add one or more devices to this monitoring environment by providing their claim tokens. This invalidates the claim token',
 };
 
 export {

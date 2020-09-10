@@ -1,36 +1,21 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as deviceSchema, Device } from '../../models/device';
 import { schema as deviceTypeSchema, DeviceType } from '../../models/device-type';
+import { AllActivities } from '../../models/supplier-activities/all-activities';
 
-import { TableQuery, EffectiveTableQuery } from '../../comms/table-controller';
+import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../../comms/table-controller';
 
-type TriggerType = 'handleCommandDue'
-  | 'handleDeletedCommand'
-  | 'handleIncomingRequest'
-  | 'handleLinkUpdate'
-  | 'handleLink'
-  | 'handleNewCommand'
-  | 'handleUnlink';
+type TriggerType = AllActivities['triggerType'];
 
-interface Query extends TableQuery {
-  deviceHashId?: string | null;
-  deviceTypeHashId?: string | null;
-  triggerType?: TriggerType;
-  failed?: boolean;
-}
+type Query = TableQuery;
 
 interface Request {
   query: Query;
 }
 
-interface EffectiveQuery extends EffectiveTableQuery {
-  deviceHashId?: string | null;
-  deviceTypeHashId?: string | null;
-  triggerType?: TriggerType;
-  failed?: boolean;
-}
+type EffectiveQuery = EffectiveTableQuery;
 
 interface EffectiveRequest {
   query: EffectiveQuery;
@@ -54,24 +39,7 @@ interface Response {
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
   path: '/',
-  query: Joi.object().keys({
-    deviceHashId: Joi.string().allow(null),
-    deviceTypeHashId: Joi.string().allow(null),
-    failed: Joi.boolean(),
-    responseCode: Joi.string(),
-    sortBy: Joi.string().valid('createdAt').default('createdAt'),
-    descending: Joi.boolean().default(true),
-    rowsPerPage: Joi.number()
-      .integer()
-      .min(1)
-      .max(100)
-      .default(10),
-    search: Joi.string().allow('').default(''),
-    lastValueSortColumn: Joi.any(),
-    lastValueHashId: Joi.string(),
-  })
-    .with('lastValueSortColumn', 'lastValueHashId')
-    .default(),
+  query: tableQuerySchemaGenerator(Joi.string().valid('createdAt').default('createdAt')),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
     rows: Joi.array().items(Joi.object().keys({
@@ -85,7 +53,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       deviceType: deviceTypeSchema.allow(null).required(),
     })).required(),
   }).required(),
-  description: 'Search through supplier requests',
+  description: 'Search through activity in the connectivity environment',
 };
 
 export {

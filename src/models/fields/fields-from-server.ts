@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 import { schema as baseFieldSchema, BaseField } from './base-field';
 import { schema as fileFromServerSchema, FileFromServer } from '../file-from-server';
 
@@ -8,7 +8,6 @@ type FieldsFromServer = Record<string, FieldFromServer>;
 // strict(): do not do casting here, otherwise for example a string might end up as a number
 const fieldFromServerSchema = Joi.alternatives().try(
   baseFieldSchema,
-  fileFromServerSchema.required(),
   Joi.array().items(fileFromServerSchema).required(),
 );
 

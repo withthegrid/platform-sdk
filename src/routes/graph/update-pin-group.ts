@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 import { schema as fieldsToServerUpdateSchema, FieldsToServerUpdate } from '../../models/fields/fields-to-server-update';
 
@@ -70,7 +70,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   response: (apiVersion: number): Joi.ObjectSchema => {
     if (apiVersion <= 2) {
       return Joi.object().keys({
-        name: Joi.string().required().example('My measurement location'),
+        name: Joi.string().required().example('My location'),
       }).required();
     } else if (apiVersion == 3) {
       return Joi.object().keys({

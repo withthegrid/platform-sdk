@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as measurementCycleSchema, MeasurementCycle } from '../../models/measurement-cycle';
@@ -46,10 +46,10 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     device: deviceSchema.required(),
     deviceType: deviceTypeSchema.required(),
     measurementCycle: measurementCycleSchema.allow(null).required(),
-    pins: Joi.array().items(pinSchema).required().description('All pins of the pinGroup, as some might have an updated deviceFields property'),
+    pins: Joi.array().items(pinSchema).required().description('All ports (pins) of the location (pinGroup), as some might have an updated deviceFields property'),
   }).required(),
   right: { environment: 'SENSORS' },
-  description: 'Connect a device to a pin group (and its channels to the pin group\'s pins. Future measurement reports from this device will also be available on this pin group. A claim token for this device will be invalidated',
+  description: 'Connect a device to a pin group (and its channels to the pin group\'s pins. Future condition reports from this device will also be available on this pin group. A claim token for this device will be invalidated',
 };
 
 export {

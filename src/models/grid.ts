@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 import { schema as fieldsFromServerSchema, FieldsFromServer } from './fields/fields-from-server';
 
 const schema = Joi.object().keys({
@@ -6,11 +6,11 @@ const schema = Joi.object().keys({
   typeKey: Joi.string().valid('node', 'pinGroup').required().example('pinGroup'),
   name: Joi.string().required().example('My grid'),
   fields: fieldsFromServerSchema.required().example({ id: 'My grid' })
-    .description('The list of keys for an environment can be obtained by requesting the environment model (returned at login)'),
+    .description('The field configuration is stored in the fieldConfigurations key of the monitoring environment object'),
   deletedAt: Joi.date().allow(null).required().example(null),
 })
   .tag('grid')
-  .description('A collection of pin groups or nodes. In the GUI, only pinGroup grids are used.');
+  .description('A collection of locations (pinGroups) or nodes. In the GUI, only pinGroup grids are used.');
 
 interface Grid {
   hashId: string;
