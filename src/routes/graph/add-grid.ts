@@ -8,6 +8,7 @@ interface Request {
   body: {
     fields: FieldsToServerFull;
     photo?: string;
+    pinGroupHashIds?: string[];
   };
 }
 
@@ -19,10 +20,17 @@ interface Response {
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'post',
   path: '/grid',
-  body: Joi.object().keys({
-    fields: fieldsToServerFullSchema.required().example({ id: 'My grid' }),
-    photo: Joi.string().description('Should be a dataurl'),
-  }).required(),
+  body: Joi.alternatives().try(
+    Joi.object().keys({
+      fields: fieldsToServerFullSchema.required().example({ id: 'My grid' }),
+      photo: Joi.string().description('Should be a dataurl'),
+    }).required(),
+    Joi.object().keys({
+      fields: fieldsToServerFullSchema.required().example({ id: 'My grid' }),
+      photo: Joi.string().description('Should be a dataurl'),
+      pinGroupHashIds: Joi.array().items(Joi.string()).default([]),
+    }).required(),
+  ),
   right: { environment: 'STATIC' },
   response: Joi.object().keys({
     hashId: Joi.string().required().example('naud51'),

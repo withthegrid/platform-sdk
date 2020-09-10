@@ -66,19 +66,28 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     const baseRowSchema = Joi.object().keys({
       pinGroup: pinGroupSchema(apiVersion).required(),
       device: deviceSchema.allow(null).required(),
-      grid: gridSchema.allow(null).required(),
     });
 
+    let row;
+
     if (apiVersion <= 2) {
-      const row = baseRowSchema.keys({
+      row = baseRowSchema.keys({
         environment: environmentSchema.required(),
+        grid: gridSchema.allow(null).required(), // is this how I add a default null?
       });
-      return Joi.object().keys({
-        rows: Joi.array().items(row).required(),
+    } else if (apiVersion == 3) {
+      row = baseRowSchema.keys({
+        grid: gridSchema.allow(null).required(),
+      });
+    } else {
+      // maybe we need the grids to which a pinGroup belongs, as the relationship changed from one to one to one to many 
+      // (same logic as for get-pin-group, where we replaced grid with grids)
+      row = baseRowSchema.keys({
+        grids: Joi.array().items(gridSchema.allow(null)).required(),
       });
     }
     return Joi.object().keys({
-      rows: Joi.array().items(baseRowSchema).required(),
+      rows: Joi.array().items(row).required(),
     });
   },
   description: 'Search through pin groups',

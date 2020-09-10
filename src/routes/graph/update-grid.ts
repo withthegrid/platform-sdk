@@ -11,6 +11,7 @@ interface Request {
   body: {
     fields?: FieldsToServerUpdate;
     photo?: string | null;
+    pinGroupHashIds?: string[];
   };
 }
 
@@ -24,12 +25,19 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   params: Joi.object().keys({
     hashId: Joi.string().required().example('naud51'),
   }).required(),
-  body: Joi.object().keys({
-    fields: fieldsToServerUpdateSchema.example({ id: 'My grid' }),
-    photo: Joi.string().allow(null).description('Should be a dataurl. Null clears the photo'),
-  }).required(),
+  body: Joi.alternatives().try(
+    Joi.object().keys({
+      fields: fieldsToServerUpdateSchema.example({ id: 'My grid' }),
+      photo: Joi.string().allow(null).description('Should be a dataurl. Null clears the photo'),
+    }).required(),
+    Joi.object().keys({
+      fields: fieldsToServerUpdateSchema.example({ id: 'My grid' }),
+      photo: Joi.string().allow(null).description('Should be a dataurl. Null clears the photo'),
+      pinGroupHashIds: Joi.array().items(Joi.string()).optional(),
+    }).required(),
+  ),
   response: Joi.object().keys({
-    grid: gridSchema.required(),
+    grid: gridSchema,
   }).required(),
   right: { environment: 'STATIC' },
   description: 'Updates a specific grid',

@@ -45,26 +45,36 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     hashId: Joi.string().required().example('dao97'),
   }).required(),
   right: { environment: 'READ' },
-  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
-    pinGroup: pinGroupSchema(apiVersion).required(),
-    pins: Joi.array().items(pinSchema).required(),
-    pinLinks: Joi.array().items(pinLinkSchema).required(),
-    edges: Joi.array().items(edgeSchema).required(),
-    grid: gridSchema.allow(null).required(),
-    device: deviceSchema.allow(null).required(),
-    deviceType: deviceTypeSchema.allow(null).required(),
-    channelMapping: Joi.array().items(Joi.object().keys({
-      channel: Joi.number().integer().required().example(0),
-      pinHashId: Joi.string().allow(null).default(null),
-    })).required().allow(null),
-    measurementCycle: measurementCycleSchema.allow(null).required(),
-    thresholds: Joi.array().items(Joi.object().keys({
-      value: thresholdSchema.required(),
-      quantity: quantitySchema.required(),
-    })).required(),
-    photo: Joi.string().allow(null).required().description('base64 encoded string')
-      .example('iVBORw0KGgoAAAANSUhEUgAAB9AAAAhwCAYAAAB1bKV...'),
-  }).required(),
+  response: (apiVersion: number): Joi.ObjectSchema => {
+    const response = Joi.object().keys({
+      pinGroup: pinGroupSchema(apiVersion).required(),
+      pins: Joi.array().items(pinSchema).required(),
+      pinLinks: Joi.array().items(pinLinkSchema).required(),
+      edges: Joi.array().items(edgeSchema).required(),
+      device: deviceSchema.allow(null).required(),
+      deviceType: deviceTypeSchema.allow(null).required(),
+      channelMapping: Joi.array().items(Joi.object().keys({
+        channel: Joi.number().integer().required().example(0),
+        pinHashId: Joi.string().allow(null).default(null),
+      })).required().allow(null),
+      measurementCycle: measurementCycleSchema.allow(null).required(),
+      thresholds: Joi.array().items(Joi.object().keys({
+        value: thresholdSchema.required(),
+        quantity: quantitySchema.required(),
+      })).required(),
+      photo: Joi.string().allow(null).required().description('base64 encoded string')
+        .example('iVBORw0KGgoAAAANSUhEUgAAB9AAAAhwCAYAAAB1bKV...'),
+    }).required()
+    if (apiVersion <= 3) {
+      return response.keys({
+        grid: gridSchema.allow(null).required(),
+      })
+    } else {
+      return response.keys({
+        grids: Joi.array().items(gridSchema.allow(null)).required(),      
+      })
+    }
+  },
   description: 'Get a specific pin group identified by its hashId',
 };
 
