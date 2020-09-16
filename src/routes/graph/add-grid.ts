@@ -17,20 +17,29 @@ interface Response {
   grid: Grid;
 }
 
+let currentApiVersion = 1;
+(apiVersion: number) => {
+  currentApiVersion = apiVersion;
+};
+let body;
+
+if (currentApiVersion <= 3) {
+  body = Joi.object().keys({
+    fields: fieldsToServerFullSchema.required().example({ id: 'My grid' }),
+    photo: Joi.string().description('Should be a dataurl'),
+  })
+} else {
+  body = Joi.object().keys({
+    fields: fieldsToServerFullSchema.required().example({ id: 'My grid' }),
+    photo: Joi.string().description('Should be a dataurl'),
+    pinGroupHashIds: Joi.array().items(Joi.string()).default([]),
+  })
+}
+
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'post',
   path: '/grid',
-  body: Joi.alternatives().try(
-    Joi.object().keys({
-      fields: fieldsToServerFullSchema.required().example({ id: 'My grid' }),
-      photo: Joi.string().description('Should be a dataurl'),
-    }).required(),
-    Joi.object().keys({
-      fields: fieldsToServerFullSchema.required().example({ id: 'My grid' }),
-      photo: Joi.string().description('Should be a dataurl'),
-      pinGroupHashIds: Joi.array().items(Joi.string()).default([]),
-    }).required(),
-  ),
+  body: body,
   right: { environment: 'STATIC' },
   response: Joi.object().keys({
     hashId: Joi.string().required().example('naud51'),

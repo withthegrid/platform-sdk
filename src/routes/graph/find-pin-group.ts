@@ -27,7 +27,8 @@ interface EffectiveRequest {
 interface ResponseRow {
   pinGroup: PinGroup;
   device: Device | null;
-  grid: Grid | null;
+  grid?: Grid | null;
+  grids?: Grid[] | null;
 }
 
 interface Response {
@@ -42,6 +43,35 @@ type ResponsesIncludingDeprecated = {
   rows: (ResponseRow | DeprecatedResponseRow)[];
 }
 
+let currentApiVersion = 1;
+(apiVersion: number) => {
+  currentApiVersion = apiVersion;
+};
+let response;
+const baseRowSchema = Joi.object().keys({
+  pinGroup: pinGroupSchema(currentApiVersion).required(),
+  device: deviceSchema.allow(null).required(),
+});
+
+let row;
+
+if (currentApiVersion <= 2) {
+  row = baseRowSchema.keys({
+    environment: environmentSchema.required(),
+    grid: gridSchema.allow(null).required(),
+  });
+} else if (currentApiVersion == 3) {
+  row = baseRowSchema.keys({
+    grid: gridSchema.allow(null).required(),
+  });
+} else {
+  // maybe we need the grids to which a pinGroup belongs, as the relationship changed from one to one to one to many 
+  // (same logic as for get-pin-group, where we replaced grid with grids)
+  row = baseRowSchema.keys({
+    grids: Joi.array().items(gridSchema.allow(null)).required(),
+  });
+}
+
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
   path: '/pin-group',
@@ -50,34 +80,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       includeDeleted: Joi.boolean().default(false),
     }),
   right: { environment: 'READ' },
-  response: (apiVersion: number): Joi.ObjectSchema => {
-    const baseRowSchema = Joi.object().keys({
-      pinGroup: pinGroupSchema(apiVersion).required(),
-      device: deviceSchema.allow(null).required(),
-    });
-
-    let row;
-
-    if (apiVersion <= 2) {
-      row = baseRowSchema.keys({
-        environment: environmentSchema.required(),
-        grid: gridSchema.allow(null).required(), // is this how I add a default null?
-      });
-    } else if (apiVersion == 3) {
-      row = baseRowSchema.keys({
-        grid: gridSchema.allow(null).required(),
-      });
-    } else {
-      // maybe we need the grids to which a pinGroup belongs, as the relationship changed from one to one to one to many 
-      // (same logic as for get-pin-group, where we replaced grid with grids)
-      row = baseRowSchema.keys({
-        grids: Joi.array().items(gridSchema.allow(null)).required(),
-      });
-    }
-    return Joi.object().keys({
-      rows: Joi.array().items(row).required(),
-    });
-  },
+  response: Joi.object().keys({
+    rows: Joi.array().items(row).required(),
+  }),
   description: 'Search through pin groups',
 };
 

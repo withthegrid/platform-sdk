@@ -44,7 +44,6 @@ const schema = (apiVersion: number): Joi.ObjectSchema => {
       properties: Joi.object().default({}),
     });
   } else if (apiVersion <= 3) {
-    // using defaults allows us to leave the backend unchanged
     return pinGroupDeprecatedModel;
   } else {
     return model.keys({

@@ -30,45 +30,44 @@ interface ResponseDeprecated {
   pinGroup: PinGroup;
 }
 
+let currentApiVersion = 1;
+(apiVersion: number) => {
+  currentApiVersion = apiVersion;
+};
+let body;
+const baseBody = Joi.object().keys({
+  fields: fieldsToServerFullSchema.required().example({ id: 'My location' }),
+  geometry: Joi.object().keys({
+    type: Joi.string().valid('Point').required().example('Point'),
+    coordinates: Joi.array().length(2).items(Joi.number())
+      .description('[lon, lat] in WGS84')
+      .example([4.884707950517225, 52.37502141913572]),
+  }).required(),
+  mapLayer: Joi.string().invalid('nodes').description('If not provided, the first available one is chosen'),
+  photo: Joi.string().description('Should be a dataurl'),
+  symbolKey: Joi.string().required().example('cp-pole'),
+});
+
+if (currentApiVersion <= 3) {
+  body = baseBody.keys({
+    gridHashId: Joi.string().allow(null).required(),
+    gridName: Joi.string().allow(null).description('If multiple grids exist with the same name, one is chosen at random').required(),
+  }).required().nand('gridHashId', 'gridName')
+} else {
+  body = baseBody.keys({
+    gridHashIds: Joi.array().items().items(Joi.string()).allow(null).required(),
+  }).required()
+}
+
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'post',
   path: '/pin-group',
-  body: Joi.alternatives().try(
-    Joi.object().keys({
-      symbolKey: Joi.string().required().example('cp-pole'),
-      geometry: Joi.object().keys({
-        type: Joi.string().valid('Point').required().example('Point'),
-        coordinates: Joi.array().length(2).items(Joi.number())
-          .description('[lon, lat] in WGS84')
-          .example([4.884707950517225, 52.37502141913572]),
-      }).required(),
-      fields: fieldsToServerFullSchema.required().example({ id: 'My location' }),
-      mapLayer: Joi.string().invalid('nodes').description('If not provided, the first available one is chosen'),
-      gridHashId: Joi.string().allow(null),
-      gridName: Joi.string().allow(null).description('If multiple grids exist with the same name, one is chosen at random'),
-      photo: Joi.string().description('Should be a dataurl'),
-    }).required().nand('gridHashId', 'gridName'), //this body object contradicts the TypeScript schema because there, these 2 keys are optional
-    Joi.object().keys({
-      symbolKey: Joi.string().required().example('cp-pole'),
-      geometry: Joi.object().keys({
-        type: Joi.string().valid('Point').required().example('Point'),
-        coordinates: Joi.array().length(2).items(Joi.number())
-          .description('[lon, lat] in WGS84')
-          .example([4.884707950517225, 52.37502141913572]),
-      }).required(),
-      gridHashIds: Joi.array().allow(null).required(),
-      fields: fieldsToServerFullSchema.required().example({ id: 'My measurement location' }),
-      mapLayer: Joi.string().invalid('nodes').description('If not provided, the first available one is chosen'),
-      photo: Joi.string().description('Should be a dataurl'), 
-    }).required(),
-  ),
+  body: body,
   right: { environment: 'STATIC' },
-  response: (apiVersion: number): Joi.ObjectSchema => {  
-    return Joi.object().keys({
-      hashId: Joi.string().required().example('dao97'),
-      pinGroup: pinGroupSchema(apiVersion).required(),
-    }).required();
-  },
+  response: Joi.object().keys({
+    hashId: Joi.string().required().example('dao97'),
+    pinGroup: pinGroupSchema(currentApiVersion).required(),
+  }).required(),
   description: 'Create a pin group',
 };
 

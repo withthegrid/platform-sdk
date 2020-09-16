@@ -19,23 +19,28 @@ interface Response {
   grid: Grid;
 }
 
+let currentApiVersion = 1;
+(apiVersion: number) => {
+  currentApiVersion = apiVersion;
+};
+let body = Joi.object().keys({
+  fields: fieldsToServerUpdateSchema.example({ id: 'My grid' }),
+  photo: Joi.string().allow(null).description('Should be a dataurl. Null clears the photo'),
+}).required()
+
+if (currentApiVersion > 3) {
+  body = body.keys({
+    pinGroupHashIds: Joi.array().items(Joi.string()).default([]),
+  }).required()
+}
+
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'post',
   path: '/grid/:hashId',
   params: Joi.object().keys({
     hashId: Joi.string().required().example('naud51'),
   }).required(),
-  body: Joi.alternatives().try(
-    Joi.object().keys({
-      fields: fieldsToServerUpdateSchema.example({ id: 'My grid' }),
-      photo: Joi.string().allow(null).description('Should be a dataurl. Null clears the photo'),
-    }).required(),
-    Joi.object().keys({
-      fields: fieldsToServerUpdateSchema.example({ id: 'My grid' }),
-      photo: Joi.string().allow(null).description('Should be a dataurl. Null clears the photo'),
-      pinGroupHashIds: Joi.array().items(Joi.string()).optional(),
-    }).required(),
-  ),
+  body: body,
   response: Joi.object().keys({
     grid: gridSchema,
   }).required(),
