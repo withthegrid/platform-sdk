@@ -17,7 +17,7 @@ function tableQuerySchemaGenerator(
     lastValueSortColumn: Joi.any().description('To retrieve the next page, provide lastValueSortColumn and lastValueHashId. lastValueSortColumn is the value for the key provided in sortBy of the last row that is received. Should also be provided when sortBy is \'hashId\''),
     lastValueHashId: Joi.string().description('To retrieve the next page, provide lastValueSortColumn and lastValueHashId. lastValueHashId is the hashId of the last row that is received.'),
     updatedAfter: Joi.date().iso().description('Only rows that are updated after the provided date will be returned'),
-  }).with('lastValueSortColumn', 'lastValueHashId').default();
+  }).with('lastValueSortColumn', 'lastValueHashId').default().required();
 }
 
 interface DefaultedTableQueryParameters extends RequestQuery {
