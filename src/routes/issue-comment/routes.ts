@@ -2,6 +2,6 @@ import * as deleteRoute from './delete';
 import * as update from './update';
 
 export {
-  deleteRoute,
+  deleteRoute as delete,
   update,
 };

@@ -10,7 +10,7 @@ import * as update from './update';
 
 export {
   claim,
-  deleteRoute,
+  deleteRoute as delete,
   find,
   getClaimToken,
   get,

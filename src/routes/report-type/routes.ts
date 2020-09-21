@@ -5,7 +5,7 @@ import * as get from './get';
 
 export {
   add,
-  deleteRoute,
+  deleteRoute as delete,
   find,
   get,
 };
