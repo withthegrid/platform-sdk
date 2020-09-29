@@ -7,9 +7,9 @@ import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../.
 
 type Query = TableQuery;
 
-interface Request {
+type Request = {
   query?: Query;
-}
+} | undefined;
 
 interface EffectiveRequest {
   query: EffectiveTableQuery;

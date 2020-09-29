@@ -30,7 +30,7 @@ class SettingsRoute {
       this.comms,
     )(parameters);
 
-  findExportRequest = (parameters: findExportRequest.Request):
+  findExportRequest = (parameters?: findExportRequest.Request):
     Result<findExportRequest.EffectiveRequest, findExportRequest.Response> => controllerGenerator<
       findExportRequest.Request,
       findExportRequest.EffectiveRequest,
@@ -42,7 +42,7 @@ class SettingsRoute {
       this.comms,
     )(parameters);
 
-  findExportRequestTableController = (parameters: findExportRequest.Query):
+  findExportRequestTableController = (parameters?: findExportRequest.Query):
     TableController<
       findExportRequest.ResponseRow
     > => new TableController<findExportRequest.ResponseRow>(
@@ -76,7 +76,7 @@ class SettingsRoute {
       parameters,
     );
 
-  getReleases = (parameters: getReleases.Request):
+  getReleases = (parameters?: getReleases.Request):
     Result<getReleases.EffectiveRequest, getReleases.Response> => controllerGenerator<
       getReleases.Request,
       getReleases.EffectiveRequest,

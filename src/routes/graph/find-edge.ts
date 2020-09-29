@@ -10,9 +10,9 @@ interface Query extends TableQuery {
   boundingBox?: [number, number, number, number];
 }
 
-interface Request {
+type Request = {
   query?: Query;
-}
+} | undefined;
 
 interface EffectiveQuery extends EffectiveTableQuery {
   includeDeleted: boolean;

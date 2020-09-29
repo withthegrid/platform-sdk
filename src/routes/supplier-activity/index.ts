@@ -13,7 +13,7 @@ class SupplierActivityRoute {
   constructor(readonly comms: Comms) {
   }
 
-  find = (parameters: find.Request):
+  find = (parameters?: find.Request):
     Result<find.EffectiveRequest, find.Response> => controllerGenerator<
       find.Request,
       find.EffectiveRequest,
@@ -25,7 +25,7 @@ class SupplierActivityRoute {
       this.comms,
     )(parameters);
 
-  findTableController = (parameters: find.Query):
+  findTableController = (parameters?: find.Query):
     TableController<find.ResponseRow> => new TableController<find.ResponseRow>(
       this.find,
       (row: find.ResponseRow) => ({

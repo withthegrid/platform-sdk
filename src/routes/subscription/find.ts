@@ -10,9 +10,9 @@ interface Query extends TableQuery {
   supplierHashId?: string;
 }
 
-interface Request {
+type Request = {
   query?: Query;
-}
+} | undefined;
 
 interface EffectiveQuery extends EffectiveTableQuery {
   supplierHashId?: string;

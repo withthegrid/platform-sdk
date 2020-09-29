@@ -11,9 +11,9 @@ type TriggerType = AllActivities['triggerType'];
 
 type Query = TableQuery;
 
-interface Request {
+type Request = {
   query?: Query;
-}
+} | undefined;
 
 type EffectiveQuery = EffectiveTableQuery;
 

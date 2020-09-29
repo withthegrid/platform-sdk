@@ -10,9 +10,9 @@ interface Query extends TableQuery {
   type?: 'pinGroup' | 'node';
 }
 
-interface Request {
+type Request = {
   query?: Query;
-}
+} | undefined;
 
 interface EffectiveQuery extends EffectiveTableQuery {
   includeDeleted: boolean;

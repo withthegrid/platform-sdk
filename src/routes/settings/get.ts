@@ -4,7 +4,8 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 import { schema as environmentSchema, Environment } from '../../models/environment';
 import { schema as userSchema, User } from '../../models/user';
 
-type Request = Record<string, undefined>;
+type Request = Record<string, undefined> | undefined;
+type EffectiveRequest = Record<string, undefined>;
 
 interface Response {
   environment?: Environment;
@@ -28,6 +29,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
 export {
   controllerGeneratorOptions,
   Request,
-  Request as EffectiveRequest,
+  EffectiveRequest,
   Response,
 };

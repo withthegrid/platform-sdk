@@ -54,7 +54,7 @@ class IssueRoute {
       this.comms,
     )(parameters);
 
-  find = (parameters: find.Request):
+  find = (parameters?: find.Request):
     Result<find.EffectiveRequest, find.Response> => controllerGenerator<
       find.Request,
       find.EffectiveRequest,
@@ -66,7 +66,7 @@ class IssueRoute {
       this.comms,
     )(parameters);
 
-  findTableController = (parameters: find.Query):
+  findTableController = (parameters?: find.Query):
     TableController<find.ResponseRow> => new TableController<find.ResponseRow>(
       this.find,
       (row: find.ResponseRow, sortBy: string) => {

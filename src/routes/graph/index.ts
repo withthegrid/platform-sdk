@@ -188,7 +188,7 @@ class GraphRoute {
       this.comms,
     )(parameters);
 
-  findEdge = (parameters: findEdge.Request):
+  findEdge = (parameters?: findEdge.Request):
     Result<findEdge.EffectiveRequest, findEdge.Response> => controllerGenerator<
       findEdge.Request,
       findEdge.EffectiveRequest,
@@ -200,7 +200,7 @@ class GraphRoute {
       this.comms,
     )(parameters);
 
-  findEdgeTableController = (parameters: findEdge.Query):
+  findEdgeTableController = (parameters?: findEdge.Query):
     TableController<findEdge.ResponseRow> => new TableController<findEdge.ResponseRow>(
       this.findEdge,
       (row: findEdge.ResponseRow) => ({
@@ -210,7 +210,7 @@ class GraphRoute {
       parameters,
     );
 
-  findGrid = (parameters: findGrid.Request):
+  findGrid = (parameters?: findGrid.Request):
     Result<findGrid.EffectiveRequest, findGrid.Response> => controllerGenerator<
       findGrid.Request,
       findGrid.EffectiveRequest,
@@ -222,7 +222,7 @@ class GraphRoute {
       this.comms,
     )(parameters);
 
-  findGridTableController = (parameters: findGrid.Query):
+  findGridTableController = (parameters?: findGrid.Query):
     TableController<findGrid.ResponseRow> => new TableController<findGrid.ResponseRow>(
       this.findGrid,
       (row: findGrid.ResponseRow, sortBy: string) => {
@@ -240,7 +240,7 @@ class GraphRoute {
       parameters,
     );
 
-  findPinGroup = (parameters: findPinGroup.Request):
+  findPinGroup = (parameters?: findPinGroup.Request):
     Result<findPinGroup.EffectiveRequest, findPinGroup.Response> => controllerGenerator<
       findPinGroup.Request,
       findPinGroup.EffectiveRequest,
@@ -252,7 +252,7 @@ class GraphRoute {
       this.comms,
     )(parameters);
 
-  findPinGroupTableController = (parameters: findPinGroup.Query):
+  findPinGroupTableController = (parameters?: findPinGroup.Query):
     TableController<findPinGroup.ResponseRow> => new TableController<findPinGroup.ResponseRow>(
       this.findPinGroup,
       (row: findPinGroup.ResponseRow, sortBy: string) => {
@@ -270,7 +270,7 @@ class GraphRoute {
       parameters,
     );
 
-  findNode = (parameters: findNode.Request):
+  findNode = (parameters?: findNode.Request):
     Result<findNode.EffectiveRequest, findNode.Response> => controllerGenerator<
       findNode.Request,
       findNode.EffectiveRequest,
@@ -282,7 +282,7 @@ class GraphRoute {
       this.comms,
     )(parameters);
 
-  findNodeTableController = (parameters: findNode.Query):
+  findNodeTableController = (parameters?: findNode.Query):
     TableController<findNode.ResponseRow> => new TableController<findNode.ResponseRow>(
       this.findNode,
       (row: findNode.ResponseRow) => ({

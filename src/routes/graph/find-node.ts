@@ -9,9 +9,9 @@ interface Query extends TableQuery {
   includeDeleted?: boolean;
 }
 
-interface Request {
+type Request = {
   query?: Query;
-}
+} | undefined;
 
 interface EffectiveQuery extends EffectiveTableQuery {
   includeDeleted: boolean;

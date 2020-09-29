@@ -13,9 +13,9 @@ interface Query extends TableQuery {
   gridHashId?: string | null;
 }
 
-interface Request {
+type Request = {
   query?: Query;
-}
+} | undefined;
 
 interface EffectiveQuery extends EffectiveTableQuery {
   pinGroupHashId: string | null;
