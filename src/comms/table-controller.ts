@@ -64,9 +64,9 @@ class TableController<RowImplementation> {
   lastValueHashId?: string;
 
   constructor(
-    private readonly route: (parameters: TableRequest) => Result<EffectiveTableRequest, { rows: RowImplementation[] }>, // eslint-disable-line max-len
+    private readonly route: (parameters?: TableRequest) => Result<EffectiveTableRequest, { rows: RowImplementation[] }>, // eslint-disable-line max-len
     readonly objectKeyMapper: (row: RowImplementation, sortBy: string) => ObjectKeyResult,
-    readonly parameters: TableQuery,
+    readonly parameters?: TableQuery,
   ) {
     this.pagesAcquired = 0;
     this.rows = [];

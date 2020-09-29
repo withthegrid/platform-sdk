@@ -37,7 +37,7 @@ interface Result<EffectiveRequestImplementation, ResponseImplementation> {
   cancelToken: CancelTokenSource;
 }
 
-export default <RequestImplementation extends Request, EffectiveRequestImplementation extends Request, ResponseImplementation>( // eslint-disable-line max-len
+export default <RequestImplementation extends Request | undefined, EffectiveRequestImplementation extends Request, ResponseImplementation>( // eslint-disable-line max-len
   options: ControllerGeneratorOptions,
   routerPath: string,
   auth: boolean,
@@ -51,7 +51,7 @@ export default <RequestImplementation extends Request, EffectiveRequestImplement
   let validatedSubPath = options.path;
   let validatedParams: Record<string, string | number | boolean | null> | undefined;
   if (options.params !== undefined) {
-    const validation = options.params.validate(parameters.params, { abortEarly: false });
+    const validation = options.params.validate(parameters?.params, { abortEarly: false });
     if (validation.error !== undefined) {
       throw new ParsingError(validation.error, 'params');
     }
@@ -65,7 +65,7 @@ export default <RequestImplementation extends Request, EffectiveRequestImplement
 
   let validatedQuery: any;
   if (options.query !== undefined) {
-    const validation = options.query.validate(parameters.query, { abortEarly: false });
+    const validation = options.query.validate(parameters?.query, { abortEarly: false });
     if (validation.error !== undefined) {
       throw new ParsingError(validation.error, 'query');
     }
@@ -74,7 +74,7 @@ export default <RequestImplementation extends Request, EffectiveRequestImplement
 
   let validatedBody: any;
   if (options.body !== undefined) {
-    const validation = options.body.validate(parameters.body, { abortEarly: false });
+    const validation = options.body.validate(parameters?.body, { abortEarly: false });
     if (validation.error !== undefined) {
       throw new ParsingError(validation.error, 'body');
     }
