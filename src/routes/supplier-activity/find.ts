@@ -12,7 +12,7 @@ type TriggerType = AllActivities['triggerType'];
 type Query = TableQuery;
 
 interface Request {
-  query: Query;
+  query?: Query;
 }
 
 type EffectiveQuery = EffectiveTableQuery;

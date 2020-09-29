@@ -11,7 +11,7 @@ interface Query extends TableQuery {
 }
 
 interface Request {
-  query: Query;
+  query?: Query;
 }
 
 interface EffectiveQuery extends EffectiveTableQuery {
