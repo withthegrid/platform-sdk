@@ -24,32 +24,6 @@ import SupplierWebhookRoute from './supplier-webhook';
 import UserRoute from './user';
 import DownloadRoute from './download';
 
-interface RouteClasses {
-  Authentication?: typeof AuthenticationRoute;
-  Autocomplete?: typeof AutocompleteRoute;
-  Command?: typeof CommandRoute;
-  CommandType?: typeof CommandTypeRoute;
-  Device?: typeof DeviceRoute;
-  DeviceType?: typeof DeviceTypeRoute;
-  Environment?: typeof EnvironmentRoute;
-  Graph?: typeof GraphRoute;
-  Issue?: typeof IssueRoute;
-  IssueComment?: typeof IssueCommentRoute;
-  Label?: typeof LabelRoute;
-  Quantity?: typeof QuantityRoute;
-  Report?: typeof ReportRoute;
-  ReportType?: typeof ReportTypeRoute;
-  Settings?: typeof SettingsRoute;
-  Supscription?: typeof SubscriptionRoute;
-  Supplier?: typeof SupplierRoute;
-  SupplierActivityRoute?: typeof SupplierActivityRoute;
-  SupplierCertificate?: typeof SupplierCertificateRoute;
-  SupplierReportType?: typeof SupplierReportTypeRoute;
-  SupplierWebhook?: typeof SupplierWebhookRoute;
-  User?: typeof UserRoute;
-  Download?: typeof DownloadRoute;
-}
-
 class Routes {
   authentication: AuthenticationRoute;
 
