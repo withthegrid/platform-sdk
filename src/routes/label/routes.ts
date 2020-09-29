@@ -5,7 +5,7 @@ import * as update from './update';
 
 export {
   add,
-  deleteRoute,
+  deleteRoute as delete,
   find,
   update,
 };

@@ -9,7 +9,7 @@ import * as update from './update';
 export {
   addComment,
   add,
-  deleteRoute,
+  deleteRoute as delete,
   find,
   get,
   setSubscription,

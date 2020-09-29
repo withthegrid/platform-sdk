@@ -4,6 +4,6 @@ import * as find from './find';
 
 export {
   add,
-  deleteRoute,
+  deleteRoute as delete,
   find,
 };
