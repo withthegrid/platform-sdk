@@ -5,7 +5,7 @@ module.exports = {
   root: true,
   parserOptions: {
     ecmaVersion: 2018,
-    sourceType: 'module'
+    sourceType: 'module',
   },
   env: {
     es6: true,
@@ -20,8 +20,9 @@ module.exports = {
     'no-param-reassign': 0,
     'no-mixed-operators': 0,
     'import/no-dynamic-require': 0,
+    'import/prefer-default-export': 0,
     'import/no-extraneous-dependencies': ['error', {
-      'optionalDependencies': ['test/unit/index.js']
+      optionalDependencies: ['test/unit/index.js'],
     }],
     'import/extensions': 0,
     'prefer-destructuring': [
@@ -34,29 +35,29 @@ module.exports = {
         AssignmentExpression: {
           array: true,
           object: false,
-        }
+        },
       },
       {
         enforceForRenamedProperties: false,
       },
     ],
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": "error",
-    "no-useless-constructor": "off",
-    "@typescript-eslint/no-useless-constructor": "error",
-    "no-undef": "off",
-    "@typescript-eslint/no-explicit-any": "off"
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'error',
+    'no-useless-constructor': 'off',
+    '@typescript-eslint/no-useless-constructor': 'error',
+    'no-undef': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
   },
   settings: {
-    'import/extensions': [".js", ".jsx", ".ts", ".tsx"],
+    'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],
     'import/parsers': {
-      '@typescript-eslint/parser': [".ts", ".tsx"]
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
     },
     'import/resolver': {
-      'node': {
-        'extensions': [".js", ".jsx", ".ts", ".tsx"]
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
-      typescript: {} // this loads <rootdir>/tsconfig.json to eslint
-    }
+      typescript: {}, // this loads <rootdir>/tsconfig.json to eslint
+    },
   },
 };
