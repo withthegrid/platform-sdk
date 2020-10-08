@@ -10,6 +10,7 @@ import * as graph from './graph/routes';
 import * as issue from './issue/routes';
 import * as issueComment from './issue-comment/routes';
 import * as label from './label/routes';
+import * as measurement from './measurement/routes';
 import * as quantity from './quantity/routes';
 import * as report from './report/routes';
 import * as reportType from './report-type/routes';
@@ -35,6 +36,7 @@ export {
   issue,
   issueComment,
   label,
+  measurement,
   quantity,
   report,
   reportType,

@@ -11,6 +11,7 @@ import GraphRoute from './graph';
 import IssueRoute from './issue';
 import IssueCommentRoute from './issue-comment';
 import LabelRoute from './label';
+import MeasurementRoute from './measurement';
 import QuantityRoute from './quantity';
 import ReportRoute from './report';
 import ReportTypeRoute from './report-type';
@@ -46,6 +47,8 @@ class Routes {
   issueComment: IssueCommentRoute;
 
   label: LabelRoute;
+
+  measurement: MeasurementRoute;
 
   quantity: QuantityRoute;
 
@@ -83,6 +86,7 @@ class Routes {
     this.issue = new IssueRoute(comms);
     this.issueComment = new IssueCommentRoute(comms);
     this.label = new LabelRoute(comms);
+    this.measurement = new MeasurementRoute(comms);
     this.quantity = new QuantityRoute(comms);
     this.report = new ReportRoute(comms);
     this.reportType = new ReportTypeRoute(comms);
@@ -111,6 +115,7 @@ export {
   IssueRoute,
   IssueCommentRoute,
   LabelRoute,
+  MeasurementRoute,
   QuantityRoute,
   ReportRoute,
   ReportTypeRoute,
