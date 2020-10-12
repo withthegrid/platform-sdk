@@ -8,7 +8,12 @@ interface Request {
   body: {
     fields: FieldsToServerFull;
     photo?: string;
+    pinGroupHashIds?: string[]
   };
+}
+
+interface EffectiveRequest {
+  body: Request['body'] & Required<Pick<Request['body'], 'pinGroupHashIds'>>
 }
 
 interface Response {
@@ -22,6 +27,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   body: Joi.object().keys({
     fields: fieldsToServerFullSchema.required().example({ id: 'My grid' }),
     photo: Joi.string().description('Should be a dataurl'),
+    pinGroupHashIds: Joi.array().items(Joi.string()).default([]).description('Determines the set (and the order) of the pin groups in the grid'),
   }).required(),
   right: { environment: 'STATIC' },
   response: Joi.object().keys({
@@ -34,6 +40,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
 export {
   controllerGeneratorOptions,
   Request,
-  Request as EffectiveRequest,
+  EffectiveRequest,
   Response,
 };

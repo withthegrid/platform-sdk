@@ -11,6 +11,7 @@ interface Request {
   body: {
     fields?: FieldsToServerUpdate;
     photo?: string | null;
+    pinGroupHashIds?: string[]
   };
 }
 
@@ -27,6 +28,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   body: Joi.object().keys({
     fields: fieldsToServerUpdateSchema.example({ id: 'My grid' }),
     photo: Joi.string().allow(null).description('Should be a dataurl. Null clears the photo'),
+    pinGroupHashIds: Joi.array().items(Joi.string()).description('Determines the set (and the order) of the pin groups in the grid'),
   }).required(),
   response: Joi.object().keys({
     grid: gridSchema.required(),

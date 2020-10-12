@@ -16,6 +16,24 @@ interface Request {
       coordinates: [number, number];
     };
     fields?: FieldsToServerUpdate;
+    gridHashIds?: string[];
+    mapLayer?: string;
+    deviceFields?: FieldsToServerUpdate;
+    photo?: string | null;
+  };
+}
+
+interface RequestV3AndOlder {
+  params: {
+    hashId: string;
+  };
+  body: {
+    symbolKey?: string;
+    geometry?: {
+      type: 'Point';
+      coordinates: [number, number];
+    };
+    fields?: FieldsToServerUpdate;
     gridHashId?: string | null;
     mapLayer?: string;
     gridName?: string | null;
@@ -24,14 +42,23 @@ interface Request {
   };
 }
 
+type RequestsIncludingDeprecated = Request | RequestV3AndOlder;
+
 interface Response {
+  pinGroup: PinGroup;
+  grids: Grid[];
+}
+
+interface ResponseV3 {
   pinGroup: PinGroup;
   grid: Grid | null;
 }
 
-type ResponsesIncludingDeprecated = Response | {
+interface ResponseV2AndOlder {
   name: string;
 }
+
+type ResponsesIncludingDeprecated = Response | ResponseV3 | ResponseV2AndOlder;
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'post',
@@ -39,28 +66,44 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   params: Joi.object().keys({
     hashId: Joi.string().required().example('dao97'),
   }).required(),
-  body: Joi.object().keys({
-    symbolKey: Joi.string().example('cp-rect'),
-    geometry: Joi.object().keys({
-      type: Joi.string().valid('Point').required(),
-      coordinates: Joi.array().length(2).items(Joi.number()),
-    }),
-    fields: fieldsToServerUpdateSchema,
-    gridHashId: Joi.string().allow(null),
-    mapLayer: Joi.string().invalid('nodes'),
-    gridName: Joi.string().allow(null).description('If multiple grids exist with the same name, one is chosen at random'),
-    deviceFields: fieldsToServerUpdateSchema,
-    photo: Joi.string().allow(null).description('Should be a dataurl. Null clears the photo'),
-  }).required().nand('gridHashId', 'gridName'),
+  body: (apiVersion: number): Joi.ObjectSchema => {
+    const baseBody = Joi.object().keys({
+      symbolKey: Joi.string().example('cp-rect'),
+      geometry: Joi.object().keys({
+        type: Joi.string().valid('Point').required(),
+        coordinates: Joi.array().length(2).items(Joi.number()),
+      }),
+      fields: fieldsToServerUpdateSchema,
+      mapLayer: Joi.string().invalid('nodes'),
+      deviceFields: fieldsToServerUpdateSchema,
+      photo: Joi.string().allow(null).description('Should be a dataurl. Null clears the photo'),
+    });
+
+    if (apiVersion <= 3) {
+      return baseBody.keys({
+        gridHashId: Joi.string().allow(null),
+        gridName: Joi.string().allow(null).description('If multiple grids exist with the same name, one is chosen at random'),
+      }).required().nand('gridHashId', 'gridName');
+    }
+    return baseBody.keys({
+      gridHashIds: Joi.array().items(Joi.string()).description('PinGroups will be added at the end of the list in a grid'),
+    }).required();
+  },
   response: (apiVersion: number): Joi.ObjectSchema => {
     if (apiVersion <= 2) {
       return Joi.object().keys({
         name: Joi.string().required().example('My location'),
       }).required();
     }
+    if (apiVersion <= 3) {
+      return Joi.object().keys({
+        pinGroup: pinGroupSchema(apiVersion).required(),
+        grid: gridSchema.allow(null).required(),
+      }).required();
+    }
     return Joi.object().keys({
       pinGroup: pinGroupSchema(apiVersion).required(),
-      grid: gridSchema.allow(null).required(),
+      grids: Joi.array().items(gridSchema).required(),
     }).required();
   },
   right: { environment: 'STATIC' },
@@ -71,6 +114,7 @@ export {
   controllerGeneratorOptions,
   Request,
   Request as EffectiveRequest,
+  RequestsIncludingDeprecated as EffectiveRequestsIncludingDeprecated,
   Response,
   ResponsesIncludingDeprecated,
 };

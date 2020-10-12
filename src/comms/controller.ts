@@ -6,7 +6,7 @@ import ParsingError from '../errors/parsing';
 import CommsError from '../errors/comms';
 import AuthenticationError from '../errors/authentication';
 
-interface ResponseSchemaFunction {
+interface VersionedAnySchemaFunction {
   (apiVersion: number): Joi.AnySchema;
 }
 
@@ -16,8 +16,8 @@ interface ControllerGeneratorOptions {
   path: string;
   params?: Joi.ObjectSchema;
   query?: Joi.ObjectSchema;
-  body?: Joi.AnySchema;
-  response?: Joi.AnySchema | ResponseSchemaFunction;
+  body?: Joi.AnySchema | VersionedAnySchemaFunction;
+  response?: Joi.AnySchema | VersionedAnySchemaFunction;
   right: { supplier?: string; environment?: string };
 }
 
@@ -73,8 +73,15 @@ export default <RequestImplementation extends Request | undefined, EffectiveRequ
   }
 
   let validatedBody: any;
-  if (options.body !== undefined) {
-    const validation = options.body.validate(parameters?.body, { abortEarly: false });
+  let bodySchema: Joi.AnySchema | undefined;
+  if (typeof options.body === 'function') {
+    bodySchema = options.body(comms.apiVersion);
+  } else if (options.body !== undefined) {
+    bodySchema = options.body;
+  }
+
+  if (bodySchema !== undefined) {
+    const validation = bodySchema.validate(parameters?.body, { abortEarly: false });
     if (validation.error !== undefined) {
       throw new ParsingError(validation.error, 'body');
     }

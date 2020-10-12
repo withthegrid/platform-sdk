@@ -42,7 +42,7 @@ interface Response {
   rows: ResponseRow[];
 }
 
-interface DeprecatedResponseRowV1 {
+interface ResponseRowV1 {
   report: {
     hashId: string;
     deviceHashId: string | null;
@@ -58,7 +58,7 @@ interface DeprecatedResponseRowV1 {
   client: Environment;
 }
 
-interface DeprecatedResponseRowV2 {
+interface ResponseRowV2 {
   report: {
     hashId: string;
     deviceHashId: string | null;
@@ -71,7 +71,7 @@ interface DeprecatedResponseRowV2 {
 }
 
 type ResponsesIncludingDeprecated = {
-  rows: (ResponseRow | DeprecatedResponseRowV1 | DeprecatedResponseRowV2)[];
+  rows: (ResponseRow | ResponseRowV1 | ResponseRowV2)[];
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
@@ -145,7 +145,7 @@ export {
   Response,
   Query,
   ResponseRow,
-  DeprecatedResponseRowV1,
-  DeprecatedResponseRowV2,
+  ResponseRowV1,
+  ResponseRowV2,
   ResponsesIncludingDeprecated,
 };

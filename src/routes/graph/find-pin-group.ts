@@ -27,6 +27,11 @@ interface EffectiveRequest {
 interface ResponseRow {
   pinGroup: PinGroup;
   device: Device | null;
+}
+
+interface ResponseRowV3 {
+  pinGroup: PinGroup;
+  device: Device | null;
   grid: Grid | null;
 }
 
@@ -34,12 +39,12 @@ interface Response {
   rows: ResponseRow[];
 }
 
-interface DeprecatedResponseRow extends ResponseRow {
+interface ResponseRowV2AndOlder extends ResponseRowV3 {
   environment: Environment;
 }
 
 type ResponsesIncludingDeprecated = {
-  rows: (ResponseRow | DeprecatedResponseRow)[];
+  rows: (ResponseRow | ResponseRowV3 | ResponseRowV2AndOlder)[];
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
@@ -54,12 +59,20 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     const baseRowSchema = Joi.object().keys({
       pinGroup: pinGroupSchema(apiVersion).required(),
       device: deviceSchema.allow(null).required(),
-      grid: gridSchema.allow(null).required(),
     });
 
     if (apiVersion <= 2) {
       const row = baseRowSchema.keys({
         environment: environmentSchema.required(),
+        grid: gridSchema.allow(null).required(),
+      });
+      return Joi.object().keys({
+        rows: Joi.array().items(row).required(),
+      });
+    }
+    if (apiVersion <= 3) {
+      const row = baseRowSchema.keys({
+        grid: gridSchema.allow(null).required(),
       });
       return Joi.object().keys({
         rows: Joi.array().items(row).required(),
@@ -79,6 +92,7 @@ export {
   Response,
   Query,
   ResponseRow,
-  DeprecatedResponseRow,
+  ResponseRowV3,
+  ResponseRowV2AndOlder,
   ResponsesIncludingDeprecated,
 };
