@@ -7,12 +7,12 @@ import { schema as scheduleCommandSchema, ScheduleCommand } from './schedule-com
 import { schema as measurementSchema, Measurement } from '../measurement';
 import { schema as quantitySchema, Quantity } from '../quantity';
 
-import { schema as reportTypeSchema, ReportType } from '../report-type';
+import { schema as supplierReportTypeSchema, SupplierReportType } from '../supplier-report-type';
 import { schema as fieldsFromServerSchema, FieldsFromServer } from '../fields/fields-from-server';
 
 interface ParseReport extends SupplierActivity<'parseReport'> {
   triggerData: {
-    reportType?: ReportType;
+    reportType?: SupplierReportType;
     payload?: string;
     reportHashId?: string;
     // commandHashId: string | null;
@@ -28,7 +28,7 @@ interface ParseReport extends SupplierActivity<'parseReport'> {
 const schema = (apiVersion: number): Joi.ObjectSchema => supplierActivityConstructor(
   'parseReport',
   Joi.object().keys({
-    reportType: reportTypeSchema,
+    reportType: supplierReportTypeSchema,
     payload: Joi.string().example('[123, 987]'),
     reportHashId: Joi.string().example('qoa978'),
     // commandHashId: Joi.string().allow(null).required().example(null),

@@ -1,7 +1,7 @@
 import Joi from 'joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
-import { schema as reportTypeSchema, ReportType } from '../../models/report-type';
+import { schema as environmentReportTypeSchema, EnvironmentReportType } from '../../models/environment-report-type';
 import { schema as quantitySchema, Quantity } from '../../models/quantity';
 
 interface Request {
@@ -11,7 +11,7 @@ interface Request {
 }
 
 interface Response {
-  reportType: ReportType;
+  reportType: EnvironmentReportType;
   quantities: Quantity[];
 }
 
@@ -23,7 +23,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   }).required(),
   right: { environment: 'READ' },
   response: Joi.object().keys({
-    reportType: reportTypeSchema.required(),
+    reportType: environmentReportTypeSchema.required(),
     quantities: Joi.array().items(quantitySchema).required(),
   }).required(),
   description: 'Get a specific report type identified by its hashId',

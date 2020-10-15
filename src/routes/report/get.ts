@@ -3,7 +3,7 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as measurementSchema, Measurement, MeasurementV1 } from '../../models/measurement';
 import { schema as quantitySchema, Quantity } from '../../models/quantity';
-import { schema as reportTypeSchema, ReportType } from '../../models/report-type';
+import { schema as environmentReportTypeSchema, EnvironmentReportType } from '../../models/environment-report-type';
 import { schema as fieldsFromServerSchema, FieldsFromServer } from '../../models/fields/fields-from-server';
 import { schema as deviceTypeSchema, DeviceType } from '../../models/device-type';
 
@@ -22,7 +22,7 @@ interface Response {
   deviceType: DeviceType | null;
   deviceHashId: string | null;
   fields: FieldsFromServer;
-  type: ReportType;
+  type: EnvironmentReportType;
   quantities: Quantity[];
   pinGroupHashId: string | null;
   userName: string | null;
@@ -80,7 +80,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
         measurement: measurementSchema(apiVersion).required(),
         quantityHashId: Joi.string().required().example('sajia1'),
       })).required(),
-      type: reportTypeSchema.required(),
+      type: environmentReportTypeSchema.required(),
       quantities: Joi.array().items(quantitySchema).required(),
     });
   },

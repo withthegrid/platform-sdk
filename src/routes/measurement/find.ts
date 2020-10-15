@@ -72,7 +72,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     before: Joi.date(),
   }),
   response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
-    nextPageOffset: Joi.string().allow(null).required(),
+    nextPageOffset: Joi.string().allow(null).example(null).required()
+      .description('This is the last page iff nextPageOffset is null'),
     rows: Joi.array().items(Joi.object().keys({
       reportHashId: Joi.string().required().example('qoa978'),
       generatedAt: Joi.date().required().example('2019-12-31T15:23Z'),

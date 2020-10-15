@@ -4,6 +4,7 @@ import * as deviceType from './device-type';
 import * as device from './device';
 import * as edge from './edge';
 import * as environment from './environment';
+import * as environmentReportType from './environment-report-type';
 import * as exportRequest from './export-request';
 import * as fileFromServer from './file-from-server';
 import * as fileToFieldConfigurationUdf from './file-to-field-configuration-udf';
@@ -34,7 +35,6 @@ import * as pin from './pin';
 import * as pinLink from './pin-link';
 import * as quantity from './quantity';
 import * as release from './release';
-import * as reportType from './report-type';
 import * as webRequest from './web-request';
 import * as siNumber from './si-number';
 import * as supplier from './supplier';
@@ -54,6 +54,7 @@ import * as supplierActivitySendRequest from './supplier-activities/send-request
 import * as supplierActivitySetDeviceFields from './supplier-activities/set-device-fields';
 import * as supplierActivitySetReportingFrequency from './supplier-activities/set-reporting-frequency';
 import * as supplierCertificate from './supplier-certificate';
+import * as supplierReportType from './supplier-report-type';
 import * as supplierWebhook from './supplier-webhook';
 import * as threshold from './threshold';
 import * as user from './user';
@@ -66,6 +67,7 @@ export {
   device,
   edge,
   environment,
+  environmentReportType,
   exportRequest,
   fileFromServer,
   fileToFieldConfigurationUdf,
@@ -96,7 +98,6 @@ export {
   pinLink,
   quantity,
   release,
-  reportType,
   siNumber,
   supplier,
   supplierActivityDropCommand,
@@ -115,6 +116,7 @@ export {
   supplierActivitySetDeviceFields,
   supplierActivitySetReportingFrequency,
   supplierCertificate,
+  supplierReportType,
   supplierWebhook,
   threshold,
   user,

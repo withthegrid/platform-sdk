@@ -15,10 +15,10 @@ const baseSchema = Joi.object().keys({
 });
 
 const schema = baseSchema
-  .description('An object defining what a condition report should look like')
-  .tag('reportType');
+  .description('An object defining what a condition report should look like, used in connectivity environments')
+  .tag('supplierReportType');
 
-interface ReportType {
+interface SupplierReportType {
   hashId: string;
   name: string;
   fieldConfigurations: {
@@ -29,4 +29,4 @@ interface ReportType {
   deletedAt: Date | null;
 }
 
-export { schema, baseSchema, ReportType };
+export { schema, baseSchema, SupplierReportType };
