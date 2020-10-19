@@ -9,7 +9,7 @@ import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../.
 interface Query extends TableQuery {
   pinGroupHashIds: string[]; // max 50
   quantityHashIds?: string[]; // max 20
-  fieldsKeys?: string[]; // max 20
+  fieldKeys?: string[]; // max 20
   since?: Date; // including
   before?: Date; // not including
 }
@@ -21,7 +21,7 @@ type Request = {
 interface EffectiveQuery extends EffectiveTableQuery {
   pinGroupHashIds: string[]; // max 50
   quantityHashIds: string[]; // max 20
-  fieldsKeys: string[]; // max 20
+  fieldKeys: string[]; // max 20
   since?: Date; // including
   before?: Date; // not including
 }
@@ -57,7 +57,7 @@ interface Response {
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
-  path: '/quantities',
+  path: '/',
   right: { environment: 'READ' },
   query: tableQuerySchemaGenerator(
     Joi.string().valid('generatedAt').default('generatedAt'),
@@ -67,7 +67,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       .required(),
     quantityHashIds: Joi.array().max(20).items(Joi.string().example('sajia1'))
       .default([]),
-    fieldsKeys: Joi.array().max(20).items(Joi.string()).default([]),
+    fieldKeys: Joi.array().max(20).items(Joi.string()).default([]),
     since: Joi.date(),
     before: Joi.date(),
   }),

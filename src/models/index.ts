@@ -16,6 +16,7 @@ import * as label from './label';
 import * as log from './log';
 import * as measurementCycle from './measurement-cycle';
 import * as measurement from './measurement';
+import * as measurementFilter from './measurement-filter';
 import * as pinGroup from './pin-group';
 import * as node from './node';
 import * as baseField from './fields/base-field';
@@ -79,6 +80,7 @@ export {
   log,
   measurementCycle,
   measurement,
+  measurementFilter,
   pinGroup,
   node,
   baseField,
