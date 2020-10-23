@@ -5,14 +5,20 @@ import { schema as environmentReportTypeSchema, EnvironmentReportType } from '..
 
 import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../../comms/table-controller';
 
-type Query = TableQuery;
+interface Query extends TableQuery {
+  type?: 'human' | 'device';
+}
 
 type Request = {
   query?: Query;
 } | undefined;
 
+interface EffectiveQuery extends EffectiveTableQuery {
+  type?: 'human' | 'device';
+}
+
 interface EffectiveRequest {
-  query: EffectiveTableQuery;
+  query: EffectiveQuery;
 }
 
 interface ResponseRow {
@@ -26,7 +32,10 @@ interface Response {
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
   path: '/',
-  query: tableQuerySchemaGenerator(Joi.string().valid('hashId', 'name').default('hashId')),
+  query: tableQuerySchemaGenerator(Joi.string().valid('hashId', 'name').default('hashId'))
+    .keys({
+      type: Joi.string().valid('human', 'device'),
+    }),
   right: { environment: 'READ' },
   response: Joi.object().keys({
     rows: Joi.array().items(Joi.object().keys({
