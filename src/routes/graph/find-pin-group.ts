@@ -10,6 +10,7 @@ import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../.
 
 interface Query extends TableQuery {
   includeDeleted?: boolean;
+  forCommandTypeHashId?: string;
 }
 
 type Request = {
@@ -18,6 +19,7 @@ type Request = {
 
 interface EffectiveQuery extends EffectiveTableQuery {
   includeDeleted: boolean;
+  forCommandTypeHashId?: string;
 }
 
 interface EffectiveRequest {
@@ -53,6 +55,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   query: tableQuerySchemaGenerator(Joi.string().valid('hashId', 'name').default('hashId'))
     .keys({
       includeDeleted: Joi.boolean().default(false),
+      forCommandTypeHashId: Joi.string().description('Filter the results on devices types that are able to receive commands of this type'),
     }),
   right: { environment: 'READ' },
   response: (apiVersion: number): Joi.ObjectSchema => {

@@ -7,13 +7,17 @@ import { schema as deviceTypeSchema, DeviceType } from '../../models/device-type
 
 import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../../comms/table-controller';
 
-type Query = TableQuery;
+interface Query extends TableQuery {
+  forCommandTypeHashId?: string;
+}
 
 type Request = {
   query?: Query;
 } | undefined;
 
-type EffectiveQuery = EffectiveTableQuery;
+interface EffectiveQuery extends EffectiveTableQuery {
+  forCommandTypeHashId?: string;
+}
 
 interface EffectiveRequest {
   query: EffectiveQuery;
@@ -34,7 +38,9 @@ interface Response {
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
   path: '/',
-  query: tableQuerySchemaGenerator(),
+  query: tableQuerySchemaGenerator().keys({
+    forCommandTypeHashId: Joi.string().description('Filter the results on devices types that are able to receive commands of this type'),
+  }),
   right: { environment: 'READ', supplier: 'ENVIRONMENT_ADMIN' },
   response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     rows: Joi.array().items(Joi.object().keys({

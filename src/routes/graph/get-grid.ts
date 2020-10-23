@@ -16,7 +16,7 @@ interface Response {
   lastReports: {
     pinGroupHashId: string;
     generatedAt: Date;
-  }[]
+  }[];
   notificationLevel: 0 | 1 | 2 | null;
   photo: string | null;
 }
