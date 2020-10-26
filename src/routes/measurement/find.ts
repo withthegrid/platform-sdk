@@ -3,6 +3,7 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { BaseFields, schema as baseFieldsSchema } from '../../models/fields/base-fields';
 import { Measurement, schema as measurementSchema } from '../../models/measurement';
+import { schema as quantitySchema, Quantity } from '../../models/quantity';
 
 import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../../comms/table-controller';
 
@@ -53,6 +54,8 @@ interface ResponseRow {
 interface Response {
   nextPageOffset: string | null;
   rows: ResponseRow[];
+  pinGroupNames?: { hashId: string; name: string }[];
+  quantities?: Quantity[];
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
@@ -93,6 +96,11 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
         quantityHashId: Joi.string().required().example('sajia1'),
       })).required(),
     })).required(),
+    pinGroupNames: Joi.array().items(Joi.object().keys({
+      hashId: Joi.string().required().example('dao97'),
+      name: Joi.string().required().example('My location'),
+    })).description('Will only be available when there is no offset provided'),
+    quantities: Joi.array().items(quantitySchema).description('Will only be available when there is no offset provided'),
   }),
   description: 'Search through measurements',
 };
