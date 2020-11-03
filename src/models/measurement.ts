@@ -35,6 +35,8 @@ const schema = (apiVersion: number): Joi.ObjectSchema => {
       .required()
       .example(-1500)
       .description('The measured value is significand * 10 ^ orderOfMagnitude. It has as many significant figures as the significand has (except when the significand is 0, then the number of significant figures is not defined)'),
+    performance: Joi.number().integer().default(0)
+      .description('0: within thresholds, 1: outside serious thresholds but inside critical thresholds, 2: outside critical thresholds'),
   });
 };
 
@@ -46,6 +48,7 @@ interface Measurement {
   pinHashId: string | null;
   orderOfMagnitude: number;
   significand: number;
+  performance: number;
 }
 
 interface MeasurementV1 {
