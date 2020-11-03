@@ -32,6 +32,8 @@ interface EffectiveRequest {
 
 interface ResponseRow {
   reportHashId: string;
+  createdAt: Date;
+  updatedAt: Date;
   generatedAt: Date;
   reportType: {
     type: 'human' | 'device';
@@ -76,6 +78,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       .description('This is the last page iff nextPageOffset is null'),
     rows: Joi.array().items(Joi.object().keys({
       reportHashId: Joi.string().required().example('qoa978'),
+      createdAt: Joi.date().required().example('2019-12-31T15:23Z'),
+      updatedAt: Joi.date().required().example('2019-12-31T15:23Z'),
       generatedAt: Joi.date().required().example('2019-12-31T15:23Z'),
       reportType: Joi.object().keys({
         type: Joi.string().valid('human', 'device').example('human').required(),
