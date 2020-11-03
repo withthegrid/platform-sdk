@@ -68,9 +68,11 @@ interface Response<RowImplementation> {
 class TableController<RowImplementation> {
   pagesAcquired: number;
 
+  rowsPerPage: number;
+
   rows: RowImplementation[];
 
-  result: Result<EffectiveTableRequest, Response<RowImplementation>> | null;
+  cancelFunction: (() => void) | null;
 
   lastValueSortColumn?: string | number | Date | null;
 
@@ -84,14 +86,15 @@ class TableController<RowImplementation> {
     readonly parameters?: TableQuery,
   ) {
     this.pagesAcquired = 0;
+    this.rowsPerPage = 0;
     this.rows = [];
-    this.result = null;
+    this.cancelFunction = null;
   }
 
   async acquire(): Promise<number> {
-    if (this.result !== null) {
-      this.result.cancelToken.cancel();
-      this.result = null;
+    if (this.cancelFunction !== null) {
+      this.cancelFunction();
+      this.cancelFunction = null;
     }
 
     const params: TableQuery = { ...this.parameters };
@@ -104,11 +107,15 @@ class TableController<RowImplementation> {
     params.offset = this.nextPageOffset;
 
     const result = this.route({ query: params });
-    this.result = result;
+    this.cancelFunction = result.cancelToken.cancel;
 
     const response = await result.response;
 
-    this.add(response, result.request.query.sortBy);
+    this.add(
+      response,
+      result.request.query.rowsPerPage,
+      result.request.query.sortBy,
+    );
     return this.pagesAcquired;
   }
 
@@ -118,14 +125,19 @@ class TableController<RowImplementation> {
    * retrieved rows by another means (eg. by a manual call to a .find
    * controller)
    *
-   * Be sure to add only one page at a time and ensure it is the complete result
-   * for that page, otherwise this.pagesAcquired gets fucked up
+   * Be sure that the response contains full pages, otherwise you will see at
+   * least 1 page with less rows
    */
-  add(response: Response<RowImplementation>, sortBy: string): void {
+  add(
+    response: Response<RowImplementation>,
+    rowsPerPage: number,
+    sortBy: string | undefined = undefined,
+  ): void {
+    this.rowsPerPage = rowsPerPage;
     if (response.rows.length > 0) {
       if (response.nextPageOffset !== undefined) {
         this.nextPageOffset = response.nextPageOffset;
-      } else if (this.objectKeyMapper !== undefined) {
+      } else if (this.objectKeyMapper !== undefined && sortBy !== undefined) {
         const lastRow = response.rows[response.rows.length - 1];
         const { lastValueSortColumn, lastValueHashId } = this.objectKeyMapper(
           lastRow,
@@ -140,24 +152,20 @@ class TableController<RowImplementation> {
 
       this.rows = this.rows.concat(response.rows);
     }
-    this.pagesAcquired += 1;
+    this.pagesAcquired += Math.ceil(response.rows.length / rowsPerPage);
   }
 
   get(page: number): RowImplementation[] {
-    if (this.result === null || this.rows.length === 0) {
-      return [];
-    }
-
-    const lower = page * this.result.request.query.rowsPerPage;
-    const upper = lower + this.result.request.query.rowsPerPage;
+    const lower = page * this.rowsPerPage;
+    const upper = lower + this.rowsPerPage;
 
     return this.rows.filter((r, index) => index >= lower && index < upper);
   }
 
   destroy(): void {
-    if (this.result !== null) {
-      this.result.cancelToken.cancel();
-      this.result = null;
+    if (this.cancelFunction !== null) {
+      this.cancelFunction();
+      this.cancelFunction = null;
       this.rows = [];
     }
   }
