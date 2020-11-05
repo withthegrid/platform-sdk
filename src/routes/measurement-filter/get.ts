@@ -2,6 +2,7 @@ import Joi from 'joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as measurementFilterSchema, MeasurementFilter } from '../../models/measurement-filter';
+import { schema as environmentReportTypeSchema, EnvironmentReportType } from '../../models/environment-report-type';
 import { schema as gridSchema, Grid } from '../../models/grid';
 import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
 import { schema as quantitySchema, Quantity } from '../../models/quantity';
@@ -14,6 +15,7 @@ interface Request {
 
 interface Response {
   measurementFilter: MeasurementFilter;
+  reportTypes: EnvironmentReportType[];
   grids: { grid: Grid; pinGroupHashIds: string[] }[];
   pinGroups: { pinGroup: PinGroup; explicit: boolean }[];
   quantities: Quantity[];
@@ -29,6 +31,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   right: { environment: 'READ' },
   response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     measurementFilter: measurementFilterSchema.required(),
+    reportTypes: Joi.array().items(environmentReportTypeSchema).required(),
     grids: Joi.array().items(Joi.object().keys({
       grid: gridSchema.required(),
       pinGroupHashIds: Joi.array().items(Joi.string().example('dao97')).required().description('A pinGroup can be part of multiple grids and can also be added explicitly as an individual pinGroup to this filter.'),

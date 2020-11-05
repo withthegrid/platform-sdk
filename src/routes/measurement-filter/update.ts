@@ -12,6 +12,7 @@ interface Request {
       since?: Date; // including
       before?: Date; // not including
     };
+    reportTypeHashIds?: string[];
     gridHashIds?: string[];
     pinGroupHashIds?: string[];
     quantityHashIds?: string[];
@@ -37,6 +38,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
         before: Joi.date().example('2019-12-31T15:23Z'),
       }).required(),
     ),
+    reportTypeHashIds: Joi.array().max(20).items(Joi.string()),
     gridHashIds: Joi.array().max(50).items(Joi.string()),
     pinGroupHashIds: Joi.array().max(50).items(Joi.string()),
     quantityHashIds: Joi.array().max(20).items(Joi.string()),

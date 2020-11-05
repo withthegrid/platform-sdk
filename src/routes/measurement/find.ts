@@ -19,6 +19,7 @@ type Request = {
 }
 
 interface EffectiveQuery extends EffectiveTableQuery {
+  reportTypeHashIds: string[]; // max 20
   pinGroupHashIds: string[]; // max 50
   quantityHashIds: string[]; // max 20
   fieldKeys: string[]; // max 20
@@ -35,11 +36,7 @@ interface ResponseRow {
   createdAt: Date;
   updatedAt: Date;
   generatedAt: Date;
-  reportType: {
-    type: 'human' | 'device';
-    hashId: string;
-    name: string;
-  };
+  reportTypeHashId: string;
   pinGroupHashId: string;
   pin: {
     hashId: string;
@@ -65,6 +62,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     Joi.string().valid('generatedAt').default('generatedAt'),
     500,
   ).keys({
+    reportTypeHashIds: Joi.array().min(1).max(20).items(Joi.string().example('l19a7s'))
+      .default([]),
     pinGroupHashIds: Joi.array().min(1).max(50).items(Joi.string().example('dao97').required())
       .required(),
     quantityHashIds: Joi.array().max(20).items(Joi.string().example('sajia1'))
@@ -81,11 +80,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       createdAt: Joi.date().required().example('2019-12-31T15:23Z'),
       updatedAt: Joi.date().required().example('2019-12-31T15:23Z'),
       generatedAt: Joi.date().required().example('2019-12-31T15:23Z'),
-      reportType: Joi.object().keys({
-        type: Joi.string().valid('human', 'device').example('human').required(),
-        hashId: Joi.string().required().example('l19a7s'),
-        name: Joi.string().required().example('Temperature and inclination'),
-      }).required(),
+      reportTypeHashId: Joi.string().required().example('l19a7s'),
       pinGroupHashId: Joi.string().required().example('dao97'),
       pin: Joi.object().keys({
         hashId: Joi.string().required().example('e13d57'),
