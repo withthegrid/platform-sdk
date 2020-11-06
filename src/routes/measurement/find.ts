@@ -7,6 +7,7 @@ import { Measurement, schema as measurementSchema } from '../../models/measureme
 import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../../comms/table-controller';
 
 interface Query extends TableQuery {
+  reportTypeHashIds: string[]; // max 20
   pinGroupHashIds: string[]; // max 50
   quantityHashIds?: string[]; // max 20
   fieldKeys?: string[]; // max 20

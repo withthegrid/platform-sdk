@@ -1,12 +1,10 @@
 import Joi from 'joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
+import { Content, contentSchema } from '../../models/export-request';
 
 interface Request {
   body: {
-    from: Date;
-    to: Date;
-    staticOnly: boolean;
-    gridHashId: string | null;
+    content: Content;
     delimiter: ',' | ';';
     rowDelimiter: '\n' | '\r\n';
   };
@@ -20,10 +18,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'post',
   path: '/export',
   body: Joi.object().keys({
-    from: Joi.date().iso().required().example('2019-12-01T00:00Z'),
-    to: Joi.date().iso().required().example('2020-01-01T00:00Z'),
-    staticOnly: Joi.boolean().required().example(false),
-    gridHashId: Joi.string().allow(null).required().example(null),
+    content: contentSchema.required(),
     delimiter: Joi.string().valid(',', ';').required().example(','),
     rowDelimiter: Joi.string().valid('\n', '\r\n').required().example('\n'),
   }).required(),
