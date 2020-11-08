@@ -28,12 +28,12 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     name: Joi.string().required().example('North'),
     description: Joi.string().required().allow('').example('Temperatures in the North'),
     period: Joi.alternatives().try(
-      Joi.string().valid('lastMonth', 'lastQuarter', 'lastYear').required(),
+      Joi.string().valid('lastMonth', 'lastQuarter', 'lastYear').required().example('lastMonth'),
       Joi.object().keys({
         since: Joi.date(),
         before: Joi.date().example('2019-12-31T15:23Z'),
       }).required(),
-    ).required().example('lastMonth'),
+    ).required(),
     reportTypeHashIds: Joi.array().max(20).items(Joi.string().example('naud51'))
       .required(),
     gridHashIds: Joi.array().max(50).items(Joi.string().example('naud51'))
@@ -42,7 +42,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       .required(),
     quantityHashIds: Joi.array().max(20).items(Joi.string().example('sajia1'))
       .required(),
-    fieldKeys: Joi.array().max(20).items(Joi.string()).required(),
+    fieldKeys: Joi.array().max(20).items(Joi.string().example('id')).required(),
   }).required(),
   right: { environment: 'REPORTS' },
   response: Joi.object().keys({

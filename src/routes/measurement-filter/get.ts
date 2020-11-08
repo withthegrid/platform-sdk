@@ -41,7 +41,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       explicit: Joi.boolean().required().example(true).description('If true, the pinGroup is added individually to the measurement filter, not (only) as part of a grid'),
     })).required(),
     quantities: Joi.array().items(quantitySchema).required(),
-    fieldKeys: Joi.array().items(Joi.string()).required(),
+    fieldKeys: Joi.array().items(Joi.string().example('id')).required(),
   }).required(),
   description: 'Get a specific measurement filter identified by its hashId',
 };

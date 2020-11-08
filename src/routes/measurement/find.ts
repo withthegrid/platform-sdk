@@ -69,7 +69,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       .required(),
     quantityHashIds: Joi.array().max(20).items(Joi.string().example('sajia1'))
       .default([]),
-    fieldKeys: Joi.array().max(20).items(Joi.string()).default([]),
+    fieldKeys: Joi.array().max(20).items(Joi.string().example('id')).default([]),
     since: Joi.date(),
     before: Joi.date(),
   }),

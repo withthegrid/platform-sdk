@@ -36,7 +36,7 @@ const contentSchema = Joi.alternatives().try(
       .required(),
     quantityHashIds: Joi.array().max(20).items(Joi.string().example('sajia1'))
       .default([]),
-    fieldKeys: Joi.array().max(20).items(Joi.string()).default([]),
+    fieldKeys: Joi.array().max(20).items(Joi.string().example('id')).default([]),
     from: Joi.date().iso().example('2019-12-01T00:00Z'),
     to: Joi.date().iso().example('2020-01-01T00:00Z'),
   }).required(),
