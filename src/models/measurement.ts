@@ -37,6 +37,10 @@ const schema = (apiVersion: number): Joi.ObjectSchema => {
       .description('The measured value is significand * 10 ^ orderOfMagnitude. It has as many significant figures as the significand has (except when the significand is 0, then the number of significant figures is not defined)'),
     performance: Joi.number().integer().default(0)
       .description('0: within thresholds, 1: outside serious thresholds but inside critical thresholds, 2: outside critical thresholds'),
+    anomalousDetector: Joi.number().integer().valid(0, 1, null).default(null)
+      .description('Anomaly detector classification, 0: not an anomaly, 1: is an anomaly, null: unknown'),
+    anomalousUser: Joi.number().integer().valid(0, 1, null).default(null)
+      .description('User classification, 0: not an anomaly, 1: is an anomaly, null: unknown'),
   });
 };
 
@@ -49,6 +53,8 @@ interface Measurement {
   orderOfMagnitude: number;
   significand: number;
   performance: number;
+  anomalousDetector?: 0 | 1 | null;
+  anomalousUser ?: 0 | 1 | null;
 }
 
 interface MeasurementV1 {

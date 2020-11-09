@@ -1,4 +1,5 @@
 import * as find from './find';
+import * as setAnomalousUser from './setAnomalousUser';
 
 import Comms from '../../comms';
 import controllerGenerator, { Result } from '../../comms/controller';
@@ -30,6 +31,18 @@ class QuantityRoute {
       undefined,
       parameters,
     );
+
+  setAnomalousUser = (parameters: setAnomalousUser.Request):
+    Result<setAnomalousUser.EffectiveRequest, setAnomalousUser.Response> => controllerGenerator<
+        setAnomalousUser.Request,
+        setAnomalousUser.EffectiveRequest,
+        setAnomalousUser.Response
+      >(
+        setAnomalousUser.controllerGeneratorOptions,
+        QuantityRoute.routerPath,
+        QuantityRoute.auth,
+        this.comms,
+      )(parameters);
 }
 
 export default QuantityRoute;
