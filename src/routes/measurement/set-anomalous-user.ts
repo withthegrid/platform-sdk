@@ -6,8 +6,7 @@ interface Request {
     hashId: string;
   };
   body: {
-    anomalousUser: 0 | 1 | null;
-    clientHashId: string;
+    anomalousUser: boolean | null;
   };
 }
 
@@ -20,8 +19,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     hashId: Joi.string().required().example('qoa978'),
   }).required(),
   body: Joi.object().keys({
-    anomalousUser: Joi.number().integer().valid(0, 1, null),
-    clientHashId: Joi.string().required().example('qoa978'),
+    anomalousUser: Joi.boolean(),
   }).required(),
   right: { environment: 'REPORTS' },
   description: 'Set/update anomalousUser in the dataset.',

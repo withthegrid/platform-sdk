@@ -1,5 +1,5 @@
 import * as find from './find';
-import * as setAnomalousUser from './setAnomalousUser';
+import * as setAnomalousUser from './set-anomalous-user';
 
 import Comms from '../../comms';
 import controllerGenerator, { Result } from '../../comms/controller';
