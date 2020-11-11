@@ -6,7 +6,7 @@ interface Request {
     hashId: string;
   };
   body: {
-    anomalousUser: boolean | null;
+    anomalousUser: boolean;
   };
 }
 
