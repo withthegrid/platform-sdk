@@ -33,21 +33,23 @@ interface EffectiveRequest {
 }
 
 interface ResponseRow {
-  reportHashId: string;
-  createdAt: Date;
-  updatedAt: Date;
-  generatedAt: Date;
-  reportTypeHashId: string;
+  report: {
+    hashId: string;
+    createdAt: Date;
+    updatedAt: Date;
+    generatedAt: Date;
+    reportTypeHashId: string;
+    pinObservations: {
+      measurement: Measurement;
+      quantityHashId: string;
+    }[];
+    pinGroupFields: BaseFields; // so no files
+  } | null,
   pinGroupHashId: string;
   pin: {
     hashId: string;
     name: string;
   };
-  pinGroupFields: BaseFields; // so no files
-  observations: {
-    measurement: Measurement;
-    quantityHashId: string;
-  }[];
 }
 
 interface Response {
@@ -60,7 +62,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   path: '/',
   right: { environment: 'READ' },
   query: tableQuerySchemaGenerator(
-    Joi.string().valid('generatedAt').default('generatedAt'),
+    Joi.string().valid('pinName').default('pinName'),
     500,
   ).keys({
     reportTypeHashIds: Joi.array().min(1).max(20).items(Joi.string().example('l19a7s'))
@@ -77,21 +79,24 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     nextPageOffset: Joi.string().allow(null).example(null).required()
       .description('This is the last page iff nextPageOffset is null'),
     rows: Joi.array().items(Joi.object().keys({
-      reportHashId: Joi.string().required().example('qoa978'),
-      createdAt: Joi.date().required().example('2019-12-31T15:23Z'),
-      updatedAt: Joi.date().required().example('2019-12-31T15:23Z'),
-      generatedAt: Joi.date().required().example('2019-12-31T15:23Z'),
-      reportTypeHashId: Joi.string().required().example('l19a7s'),
+      report: Joi.object().keys({
+        hashId: Joi.string().required().example('qoa978'),
+        createdAt: Joi.date().required().example('2019-12-31T15:23Z'),
+        updatedAt: Joi.date().required().example('2019-12-31T15:23Z'),
+        generatedAt: Joi.date().required().example('2019-12-31T15:23Z'),
+        reportTypeHashId: Joi.string().required().example('l19a7s'),
+        pinGroupFields: baseFieldsSchema.required(), // so no files
+        pinObservations: Joi.array().items(Joi.object().keys({
+          measurement: measurementSchema(apiVersion).required(),
+          quantityHashId: Joi.string().required().example('sajia1'),
+        })).required(),
+      }).allow(null).required()
+        .description('only null when there are not reports for this pin'),
       pinGroupHashId: Joi.string().required().example('dao97'),
       pin: Joi.object().keys({
         hashId: Joi.string().required().example('e13d57'),
         name: Joi.string().required().example('My port'),
       }).required(),
-      pinGroupFields: baseFieldsSchema.required(), // so no files
-      observations: Joi.array().items(Joi.object().keys({
-        measurement: measurementSchema(apiVersion).required(),
-        quantityHashId: Joi.string().required().example('sajia1'),
-      })).required(),
     })).required(),
   }),
   description: 'Search through measurements',
