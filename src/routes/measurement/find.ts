@@ -8,7 +8,7 @@ import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../.
 
 interface Query extends TableQuery {
   reportTypeHashIds: string[]; // max 20
-  pinGroupHashIds: string[]; // max 50
+  pinGroupHashIds: string[]; // max 250
   quantityHashIds?: string[]; // max 20
   fieldKeys?: string[]; // max 20
   since?: Date; // including
@@ -21,7 +21,7 @@ type Request = {
 
 interface EffectiveQuery extends EffectiveTableQuery {
   reportTypeHashIds: string[]; // max 20
-  pinGroupHashIds: string[]; // max 50
+  pinGroupHashIds: string[]; // max 250
   quantityHashIds: string[]; // max 20
   fieldKeys: string[]; // max 20
   since?: Date; // including
@@ -67,7 +67,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   ).keys({
     reportTypeHashIds: Joi.array().min(1).max(20).items(Joi.string().example('l19a7s'))
       .default([]),
-    pinGroupHashIds: Joi.array().min(1).max(50).items(Joi.string().example('dao97').required())
+    pinGroupHashIds: Joi.array().min(1).max(250).items(Joi.string().example('dao97').required())
       .required(),
     quantityHashIds: Joi.array().max(20).items(Joi.string().example('sajia1'))
       .default([]),

@@ -11,7 +11,7 @@ interface AllContent {
 interface MeasurementFilterContent {
   type: 'measurementFilter';
   reportTypeHashIds: string[]; // max 20
-  pinGroupHashIds: string[]; // max 50
+  pinGroupHashIds: string[]; // max 250
   quantityHashIds: string[]; // max 20
   fieldKeys: string[]; // max 20
   from?: Date;
@@ -32,7 +32,7 @@ const contentSchema = Joi.alternatives().try(
     type: Joi.string().required().valid('measurementFilter').example('measurementFilter'),
     reportTypeHashIds: Joi.array().min(1).max(20).items(Joi.string().example('l19a7s'))
       .default([]),
-    pinGroupHashIds: Joi.array().min(1).max(50).items(Joi.string().example('dao97').required())
+    pinGroupHashIds: Joi.array().min(1).max(250).items(Joi.string().example('dao97').required())
       .required(),
     quantityHashIds: Joi.array().max(20).items(Joi.string().example('sajia1'))
       .default([]),
