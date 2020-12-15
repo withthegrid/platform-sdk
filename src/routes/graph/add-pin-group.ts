@@ -10,7 +10,7 @@ interface Request {
     geometry: {
       type: 'Point';
       coordinates: [number, number];
-    };
+    } | null;
     fields: FieldsToServerFull;
     mapLayer?: string;
     gridHashIds?: string[];
@@ -24,7 +24,7 @@ interface RequestV3AndOlder {
     geometry: {
       type: 'Point';
       coordinates: [number, number];
-    };
+    } | null;
     fields: FieldsToServerFull;
     mapLayer?: string;
     gridHashId?: string | null;
@@ -51,7 +51,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
         coordinates: Joi.array().length(2).items(Joi.number())
           .description('[lon, lat] in WGS84')
           .example([4.884707950517225, 52.37502141913572]),
-      }).required(),
+      }).allow(null).required(),
       fields: fieldsToServerFullSchema.required().example({ id: 'My location' }),
       mapLayer: Joi.string().invalid('nodes').description('If not provided, the first available one is chosen'),
       photo: Joi.string().description('Should be a dataurl'),

@@ -14,7 +14,7 @@ interface Request {
     geometry?: {
       type: 'Point';
       coordinates: [number, number];
-    };
+    } | null;
     fields?: FieldsToServerUpdate;
     gridHashIds?: string[];
     mapLayer?: string;
@@ -32,7 +32,7 @@ interface RequestV3AndOlder {
     geometry?: {
       type: 'Point';
       coordinates: [number, number];
-    };
+    } | null;
     fields?: FieldsToServerUpdate;
     gridHashId?: string | null;
     mapLayer?: string;
@@ -72,7 +72,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       geometry: Joi.object().keys({
         type: Joi.string().valid('Point').required(),
         coordinates: Joi.array().length(2).items(Joi.number()),
-      }),
+      }).allow(null),
       fields: fieldsToServerUpdateSchema,
       mapLayer: Joi.string().invalid('nodes'),
       deviceFields: fieldsToServerUpdateSchema,

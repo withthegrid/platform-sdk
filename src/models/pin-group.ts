@@ -9,7 +9,7 @@ const schema = (apiVersion: number): Joi.ObjectSchema => {
       coordinates: Joi.array().length(2).items(Joi.number())
         .description('[lon, lat] in WGS84')
         .example([4.884707950517225, 52.37502141913572]),
-    }).required(),
+    }).allow(null).required(),
     name: Joi.string().required().example('My location'),
     symbolKey: Joi.string().required().example('cp-pole'),
     deviceFields: fieldsFromServerSchema.required().example({})
@@ -62,7 +62,7 @@ interface PinGroup {
   geometry: {
     type: 'Point';
     coordinates: [number, number];
-  };
+  } | null;
   name: string;
   symbolKey: string;
   deviceFields: FieldsFromServer;
