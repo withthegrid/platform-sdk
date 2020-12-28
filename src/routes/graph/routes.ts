@@ -10,6 +10,7 @@ import * as deleteGrid from './delete-grid';
 import * as deletePinGroup from './delete-pin-group';
 import * as deleteNode from './delete-node';
 import * as deletePin from './delete-pin';
+import * as find from './find';
 import * as findEdge from './find-edge';
 import * as findGrid from './find-grid';
 import * as findPinGroup from './find-pin-group';
@@ -45,6 +46,7 @@ export {
   deletePinGroup,
   deleteNode,
   deletePin,
+  find,
   findEdge,
   findGrid,
   findPinGroup,

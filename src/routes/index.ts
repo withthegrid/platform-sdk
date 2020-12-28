@@ -1,7 +1,6 @@
 import Comms from '../comms';
 
 import AuthenticationRoute from './authentication';
-import AutocompleteRoute from './autocomplete';
 import EnvironmentRoute from './environment';
 import CommandRoute from './command';
 import CommandTypeRoute from './command-type';
@@ -28,8 +27,6 @@ import DownloadRoute from './download';
 
 class Routes {
   authentication: AuthenticationRoute;
-
-  autocomplete: AutocompleteRoute;
 
   command: CommandRoute;
 
@@ -79,7 +76,6 @@ class Routes {
 
   constructor(readonly comms: Comms) {
     this.authentication = new AuthenticationRoute(comms);
-    this.autocomplete = new AutocompleteRoute(comms);
     this.command = new CommandRoute(comms);
     this.commandType = new CommandTypeRoute(comms);
     this.device = new DeviceRoute(comms);
@@ -109,7 +105,6 @@ class Routes {
 export default Routes;
 export {
   AuthenticationRoute,
-  AutocompleteRoute,
   CommandRoute,
   CommandTypeRoute,
   DeviceRoute,

@@ -10,6 +10,7 @@ import * as deleteGrid from './delete-grid';
 import * as deletePinGroup from './delete-pin-group';
 import * as deleteNode from './delete-node';
 import * as deletePin from './delete-pin';
+import * as find from './find';
 import * as findEdge from './find-edge';
 import * as findGrid from './find-grid';
 import * as findPinGroup from './find-pin-group';
@@ -187,6 +188,25 @@ class GraphRoute {
       GraphRoute.auth,
       this.comms,
     )(parameters);
+
+  find = (parameters?: find.Request):
+    Result<find.EffectiveRequest, find.Response> => controllerGenerator<
+      find.Request,
+      find.EffectiveRequest,
+      find.Response
+    >(
+      find.controllerGeneratorOptions,
+      GraphRoute.routerPath,
+      GraphRoute.auth,
+      this.comms,
+    )(parameters);
+
+  findTableController = (parameters?: find.Query):
+    TableController<find.ResponseRow> => new TableController<find.ResponseRow>(
+      this.find,
+      undefined,
+      parameters,
+    );
 
   findEdge = (parameters?: findEdge.Request):
     Result<findEdge.EffectiveRequest, findEdge.Response> => controllerGenerator<

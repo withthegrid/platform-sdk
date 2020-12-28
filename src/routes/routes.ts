@@ -1,5 +1,4 @@
 import * as authentication from './authentication/routes';
-import * as autocomplete from './autocomplete/routes';
 import * as command from './command/routes';
 import * as commandType from './command-type/routes';
 import * as device from './device/routes';
@@ -26,7 +25,6 @@ import * as user from './user/routes';
 
 export {
   authentication,
-  autocomplete,
   command,
   commandType,
   device,

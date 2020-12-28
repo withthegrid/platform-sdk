@@ -55,18 +55,7 @@ class MeasurementFilterRoute {
   findTableController = (parameters?: find.Query):
     TableController<find.ResponseRow> => new TableController<find.ResponseRow>(
       this.find,
-      (row: find.ResponseRow, sortBy: string) => {
-        let lastValueSortColumn;
-        if (sortBy === 'name') {
-          lastValueSortColumn = row.measurementFilter.name;
-        } else {
-          lastValueSortColumn = row.measurementFilter.hashId;
-        }
-        return {
-          lastValueSortColumn,
-          lastValueHashId: row.measurementFilter.hashId,
-        };
-      },
+      undefined,
       parameters,
     );
 
