@@ -5,14 +5,22 @@ import { schema as quantitySchema, Quantity } from '../../models/quantity';
 
 import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../../comms/table-controller';
 
-type Query = TableQuery;
+interface Query extends TableQuery {
+  environmentReportTypeHashIds?: string[];
+  includeDeleted?: boolean;
+}
 
 type Request = {
   query?: Query;
 } | undefined;
 
+interface EffectiveQuery extends EffectiveTableQuery {
+  environmentReportTypeHashIds?: string[];
+  includeDeleted: boolean;
+}
+
 interface EffectiveRequest {
-  query: EffectiveTableQuery;
+  query: EffectiveQuery;
 }
 
 interface ResponseRow {
@@ -27,7 +35,11 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
   path: '/quantities',
   right: { environment: 'READ', supplier: 'ENVIRONMENT_ADMIN' },
-  query: tableQuerySchemaGenerator(Joi.string().valid('name', 'hashId').default('hashId')),
+  query: tableQuerySchemaGenerator(Joi.string().valid('name', 'hashId').default('hashId'))
+    .keys({
+      environmentReportTypeHashIds: Joi.array().items(Joi.string()).description('Limit results to provided report type hashIds. Only valid when requesting for an environment (not a supplier)'),
+      includeDeleted: Joi.boolean().default(false),
+    }),
   response: Joi.object().keys({
     rows: Joi.array().items(Joi.object().keys({
       quantity: quantitySchema.required(),
