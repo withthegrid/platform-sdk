@@ -50,6 +50,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   response: Joi.object().keys({
     hashId: Joi.string().required().example('l19a7s'),
   }).required(),
+  description: 'Add a report type for human reports.',
 };
 
 export {
