@@ -1,5 +1,6 @@
 import Joi from 'joi';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const schema = (apiVersion: number): Joi.ObjectSchema => {
   const model = Joi.object().keys({
     hashId: Joi.string().required().example('po177'),
@@ -7,22 +8,7 @@ const schema = (apiVersion: number): Joi.ObjectSchema => {
     channelIndex: Joi.number().integer().allow(null).required()
       .description('The channel of the installed device. When null, the measurement is not taken by a device but manually entered')
       .example(0),
-  })
-    .tag('measurement')
-    .description('A value representing a measurement of a certain quantity at a certain pin by a device or human at a specific point in time.');
 
-  if (apiVersion <= 1) {
-    return model.keys({
-      nodeGroupHashId: Joi.string().allow(null).required().example('dao97'),
-      quantity: Joi.string().required().example('voltage'),
-      slotId: Joi.number().integer().allow(null).required()
-        .example(null),
-      nodeHashId: Joi.string().allow(null).required().example('qp111a'),
-      value: Joi.number().required().example(-1.500),
-    });
-  }
-
-  return model.keys({
     channelMeasurementIndex: Joi.number().integer().allow(null).default(null)
       .example(0)
       .description('Not null for device measurements. Represents the device channel this measurement is taken from, see the channels key in the device type object.'),
@@ -41,7 +27,11 @@ const schema = (apiVersion: number): Joi.ObjectSchema => {
       .description('Anomaly detector classification, false: not an anomaly, true: is an anomaly, null: unknown'),
     anomalousUser: Joi.boolean().allow(null).default(null)
       .description('User classification, false: not an anomaly, true: is an anomaly, null: unknown'),
-  });
+  })
+    .tag('measurement')
+    .description('A value representing a measurement of a certain quantity at a certain pin by a device or human at a specific point in time.');
+
+  return model;
 };
 
 interface Measurement {
@@ -57,15 +47,4 @@ interface Measurement {
   anomalousUser: boolean | null;
 }
 
-interface MeasurementV1 {
-  hashId: string;
-  generatedAt: Date;
-  channelIndex: number | null;
-  nodeGroupHashId: string | null;
-  quantity: string;
-  slotId: number | null;
-  nodeHashId: string | null;
-  value: number;
-}
-
-export { schema, Measurement, MeasurementV1 };
+export { schema, Measurement };

@@ -42,22 +42,6 @@ interface Response {
   rows: ResponseRow[];
 }
 
-interface ResponseRowV1 {
-  report: {
-    hashId: string;
-    deviceHashId: string | null;
-    clientHashId: string | null;
-    generatedAt: Date;
-    typeKey: string;
-    version: number;
-    name: string;
-    createdByDevice: boolean;
-    viewable: boolean;
-  };
-  nodeGroup: PinGroup | null;
-  client: Environment;
-}
-
 interface ResponseRowV2 {
   report: {
     hashId: string;
@@ -71,7 +55,7 @@ interface ResponseRowV2 {
 }
 
 type ResponsesIncludingDeprecated = {
-  rows: (ResponseRow | ResponseRowV1 | ResponseRowV2)[];
+  rows: (ResponseRow | ResponseRowV2)[];
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
@@ -85,26 +69,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     }),
   right: { environment: 'READ' },
   response: (apiVersion: number): Joi.ObjectSchema => {
-    if (apiVersion <= 1) {
-      return Joi.object().keys({
-        rows: Joi.array().items(Joi.object().keys({
-          report: Joi.object().keys({
-            hashId: Joi.string().required().example('qoa978'),
-            deviceHashId: Joi.string().allow(null).required().example('j1iha9'),
-            clientHashId: Joi.string().allow(null).required().example('f1a4w1'),
-            generatedAt: Joi.date().required().example('2019-12-31T15:23Z'),
-            typeKey: Joi.string().required().example('cp-pole'),
-            version: Joi.number().integer().required().example(1),
-            name: Joi.string().required().example('default'),
-            createdByDevice: Joi.boolean().required().example(true),
-            viewable: Joi.boolean().required().example(true),
-          }).required(),
-          nodeGroup: pinGroupSchema(apiVersion).allow(null).required(),
-          client: environmentSchema.allow(null).required(),
-        })).required(),
-      }).required();
-    }
-
     if (apiVersion <= 2) {
       return Joi.object().keys({
         rows: Joi.array().items(Joi.object().keys({
@@ -145,7 +109,6 @@ export {
   Response,
   Query,
   ResponseRow,
-  ResponseRowV1,
   ResponseRowV2,
   ResponsesIncludingDeprecated,
 };

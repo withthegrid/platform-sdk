@@ -41,19 +41,13 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       moreMeasurementsAvailable: Joi.boolean().required().example(false).description('Whether there are more than 310 measurements available'),
       lowerbound: Joi.date().allow(null).required().example('2019-12-01T00:00Z'),
       upperbound: Joi.date().allow(null).required().example('2019-12-01T00:00Z'),
-    }).required();
-
-    if (apiVersion <= 1) {
-      return base.keys({
-        measurements: Joi.array().items(measurementSchema(apiVersion)).required(),
-      });
-    }
-    return base.keys({
       observations: Joi.array().items(Joi.object().keys({
         measurement: measurementSchema(apiVersion).required(),
         quantity: quantitySchema.required(),
       })).required(),
-    });
+    }).required();
+
+    return base;
   },
 };
 
