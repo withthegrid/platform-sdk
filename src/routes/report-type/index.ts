@@ -2,6 +2,7 @@ import * as add from './add';
 import * as deleteRoute from './delete';
 import * as find from './find';
 import * as get from './get';
+import * as update from './update';
 
 import Comms from '../../comms';
 import controllerGenerator, { Result } from '../../comms/controller';
@@ -76,6 +77,18 @@ class ReportTypeRoute {
       get.Response
     >(
       get.controllerGeneratorOptions,
+      ReportTypeRoute.routerPath,
+      ReportTypeRoute.auth,
+      this.comms,
+    )(parameters);
+
+  update = (parameters: update.Request):
+    Result<update.EffectiveRequest, update.Response> => controllerGenerator<
+      update.Request,
+      update.EffectiveRequest,
+      update.Response
+    >(
+      update.controllerGeneratorOptions,
       ReportTypeRoute.routerPath,
       ReportTypeRoute.auth,
       this.comms,
