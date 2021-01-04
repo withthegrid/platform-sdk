@@ -10,6 +10,7 @@ interface Request {
     supplierOnly?: boolean;
     fieldConfigurations: FieldConfigurationsToServer;
     channelSelect?: 'single' | 'multiple' | 'off';
+    clientAccess?: 'full' | 'read' | 'none';
   };
 }
 
@@ -33,6 +34,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       .description('See the chapter on open fields on how to use this'),
     channelSelect: Joi.string().valid('single', 'multiple', 'off').default('off')
       .description('When creating a command of this type, the user can then optionally choose one (in case of \'single\') or more channelIndices (in case of \'multiple\') for which this command is relevant. If \'off\' is chosen, the user cannot specify channelIndices'),
+    clientAccess: Joi.string().valid('full', 'read', 'none').default('full')
+      .description('\'full\': end-users can view, create and delete commands of this type. \'read\': end-users can view but not create and delete commands of this type. \'none\': end-users cannot view, create or delete commands of this type.'),
   }).required(),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
