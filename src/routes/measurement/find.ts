@@ -7,8 +7,10 @@ import { Measurement, schema as measurementSchema } from '../../models/measureme
 import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../../comms/table-controller';
 
 interface Query extends TableQuery {
+  includePinsWithoutReports?: boolean;
   reportTypeHashIds: string[]; // max 20
-  pinGroupHashIds: string[]; // max 250
+  gridHashId?: string;
+  pinGroupHashIds?: string[]; // max 50
   quantityHashIds?: string[]; // max 20
   fieldKeys?: string[]; // max 20
   since?: Date; // including
@@ -20,10 +22,12 @@ type Request = {
 }
 
 interface EffectiveQuery extends EffectiveTableQuery {
-  reportTypeHashIds: string[]; // max 20
-  pinGroupHashIds: string[]; // max 250
-  quantityHashIds: string[]; // max 20
-  fieldKeys: string[]; // max 20
+  includePinsWithoutReports: boolean;
+  reportTypeHashIds: string[];
+  gridHashId?: string;
+  pinGroupHashIds?: string[];
+  quantityHashIds: string[];
+  fieldKeys: string[];
   since?: Date; // including
   before?: Date; // not including
 }
@@ -45,7 +49,10 @@ interface ResponseRow {
     }[];
     pinGroupFields: BaseFields; // so no files
   } | null,
-  pinGroupHashId: string;
+  pinGroup: {
+    hashId: string;
+    name: string;
+  },
   pin: {
     hashId: string;
     name: string;
@@ -62,13 +69,14 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   path: '/',
   right: { environment: 'READ' },
   query: tableQuerySchemaGenerator(
-    Joi.string().valid('pinName').default('pinName'),
+    Joi.string().valid('pinName', 'generatedAt').default('pinName'),
     500,
   ).keys({
+    includePinsWithoutReports: Joi.boolean().default(true),
     reportTypeHashIds: Joi.array().min(1).max(20).items(Joi.string().example('l19a7s'))
       .default([]),
-    pinGroupHashIds: Joi.array().min(1).max(250).items(Joi.string().example('dao97').required())
-      .required(),
+    gridHashId: Joi.string(),
+    pinGroupHashIds: Joi.array().min(1).max(50).items(Joi.string().example('dao97')),
     quantityHashIds: Joi.array().max(20).items(Joi.string().example('sajia1'))
       .default([]),
     fieldKeys: Joi.array().max(20).items(Joi.string().example('id')).default([]),
@@ -92,7 +100,10 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
         })).required(),
       }).allow(null).required()
         .description('only null when there are not reports for this pin'),
-      pinGroupHashId: Joi.string().required().example('dao97'),
+      pinGroup: Joi.object().keys({
+        hashId: Joi.string().required().example('dao97'),
+        name: Joi.string().required().example('My location'),
+      }).required(),
       pin: Joi.object().keys({
         hashId: Joi.string().required().example('e13d57'),
         name: Joi.string().required().example('My port'),
