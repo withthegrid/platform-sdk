@@ -9,9 +9,10 @@ interface Request {
       since?: Date; // including
       before?: Date; // not including
     };
+    includePinsWithoutReports: boolean;
     reportTypeHashIds: string[];
-    gridHashIds: string[];
-    pinGroupHashIds: string[];
+    gridHashId?: string;
+    pinGroupHashIds?: string[];
     quantityHashIds: string[];
     fieldKeys: string[];
   }
@@ -34,12 +35,11 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
         before: Joi.date().example('2019-12-31T15:23Z'),
       }).required(),
     ).required(),
+    includePinsWithoutReports: Joi.boolean().default(true),
     reportTypeHashIds: Joi.array().max(20).items(Joi.string().example('naud51'))
       .required(),
-    gridHashIds: Joi.array().max(50).items(Joi.string().example('naud51'))
-      .required(),
-    pinGroupHashIds: Joi.array().max(50).items(Joi.string().example('dao97'))
-      .required(),
+    gridHashId: Joi.string(),
+    pinGroupHashIds: Joi.array().min(1).max(50).items(Joi.string().example('dao97')),
     quantityHashIds: Joi.array().max(20).items(Joi.string().example('sajia1'))
       .required(),
     fieldKeys: Joi.array().max(20).items(Joi.string().example('id')).required(),

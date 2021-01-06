@@ -10,10 +10,12 @@ interface AllContent {
 
 interface MeasurementFilterContent {
   type: 'measurementFilter';
-  reportTypeHashIds: string[]; // max 20
-  pinGroupHashIds: string[]; // max 250
-  quantityHashIds: string[]; // max 20
-  fieldKeys: string[]; // max 20
+  includePinsWithoutReports: boolean;
+  reportTypeHashIds: string[];
+  gridHashId: string | null;
+  pinGroupHashIds: string[];
+  quantityHashIds: string[];
+  fieldKeys: string[];
   from?: Date;
   to?: Date;
 }
@@ -30,9 +32,11 @@ const contentSchema = Joi.alternatives().try(
   }).required(),
   Joi.object().keys({
     type: Joi.string().required().valid('measurementFilter').example('measurementFilter'),
+    includePinsWithoutReports: Joi.boolean().required(),
     reportTypeHashIds: Joi.array().min(1).max(20).items(Joi.string().example('l19a7s'))
       .default([]),
-    pinGroupHashIds: Joi.array().min(1).max(250).items(Joi.string().example('dao97').required())
+    gridHashId: Joi.string().allow(null).required(),
+    pinGroupHashIds: Joi.array().min(0).max(50).items(Joi.string().example('dao97'))
       .required(),
     quantityHashIds: Joi.array().max(20).items(Joi.string().example('sajia1'))
       .default([]),
