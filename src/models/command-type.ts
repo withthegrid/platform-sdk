@@ -9,7 +9,6 @@ const schema = Joi.object().keys({
     .description('\'required\': user must provide command.startAt. \'optional\': user can provide command.startAt or a delay for the command to start after it is sent to the device. \'disabled\': user cannot provide command.startAt nor a delay.'),
   end: Joi.string().valid('required', 'optional', 'disabled').required().example('disabled')
     .description('\'required\': user must provide command.endAt. \'optional\': user can provide command.endAt. \'disabled\': user cannot provide command.endAt.'),
-  supplierOnly: Joi.boolean().required().example(false).description('If true, this type of command can not be created from a monitoring environment but only from a connectivity environment'),
   fieldConfigurations: fieldConfigurationsFromServerSchema.required()
     .description('See the chapter on open fields on how to use this'),
   channelSelect: Joi.string().valid('single', 'multiple', 'off').required().example('off')
@@ -25,7 +24,6 @@ interface CommandType {
   name: string;
   start: 'required' | 'optional' | 'disabled';
   end: 'required' | 'optional' | 'disabled';
-  supplierOnly: boolean;
   fieldConfigurations: FieldConfigurationsFromServer;
   channelSelect: 'single' | 'multiple' | 'off';
   environmentAccess: 'full' | 'read' | 'none';

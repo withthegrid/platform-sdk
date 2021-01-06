@@ -7,7 +7,6 @@ interface Request {
     name: string;
     start?: 'required' | 'optional' | 'disabled';
     end?: 'required' | 'optional' | 'disabled';
-    supplierOnly?: boolean;
     fieldConfigurations: FieldConfigurationsToServer;
     channelSelect?: 'single' | 'multiple' | 'off';
     environmentAccess?: 'full' | 'read' | 'none';
@@ -29,7 +28,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     name: Joi.string().required().example('Measurement cycle'),
     start: Joi.string().valid('required', 'optional', 'disabled').default('optional').description('\'required\': user must provide command.startAt. \'optional\': user can provide command.startAt or a delay for the command to start after it is sent to the device. \'disabled\': user cannot provide command.startAt nor a delay.'),
     end: Joi.string().valid('required', 'optional', 'disabled').default('disabled').description('\'required\': user must provide command.endAt. \'optional\': user can provide command.endAt. \'disabled\': user cannot provide command.endAt.'),
-    supplierOnly: Joi.boolean().default(false).description('If true, this type of command can not be created from a monitoring environment, but only from a connectivity environment'),
     fieldConfigurations: fieldConfigurationsToServerSchema.required()
       .description('See the chapter on open fields on how to use this'),
     channelSelect: Joi.string().valid('single', 'multiple', 'off').default('off')
