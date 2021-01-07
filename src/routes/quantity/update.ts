@@ -23,7 +23,10 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   body: Joi.object().keys({
     name: Joi.string().example('Temperature'),
     unit: Joi.string().example('K').description('Will be displayed with an SI-prefix (eg. k or M) if relevant'),
-    defaultOrderOfMagnitude: Joi.number().required().example(3).description('Defines default order of magnitude to be selected at manual report form'),
+    defaultOrderOfMagnitude: Joi.number().integer().min(-128).max(127)
+      .required()
+      .example(3)
+      .description('Defines default order of magnitude to be selected at manual report form'),
   }).required(),
   right: { environment: 'ENVIRONMENT_ADMIN', supplier: 'ENVIRONMENT_ADMIN' },
 };
