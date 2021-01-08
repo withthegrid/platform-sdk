@@ -32,7 +32,7 @@ const contentSchema = Joi.alternatives().try(
   }).required(),
   Joi.object().keys({
     type: Joi.string().required().valid('measurementFilter').example('measurementFilter'),
-    includePinsWithoutReports: Joi.boolean().required(),
+    includePinsWithoutReports: Joi.boolean().required().example(true),
     reportTypeHashIds: Joi.array().min(1).max(20).items(Joi.string().example('l19a7s'))
       .default([]),
     gridHashId: Joi.string().allow(null).required(),

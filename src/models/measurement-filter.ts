@@ -11,7 +11,7 @@ const schema = Joi.object().keys({
       before: Joi.date().example('2019-12-31T15:23Z'),
     }).required(),
   ).required(),
-  includePinsWithoutReports: Joi.boolean().required(),
+  includePinsWithoutReports: Joi.boolean().required().example(true),
   createdAt: Joi.date().required().example('2019-12-31T15:23Z'),
   updatedAt: Joi.date().required().example('2019-12-31T15:23Z'),
   deletedAt: Joi.date().allow(null),
