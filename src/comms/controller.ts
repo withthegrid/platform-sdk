@@ -75,10 +75,8 @@ export default <RequestImplementation extends Request | undefined, EffectiveRequ
   let validatedBody: any;
   let bodySchema: Joi.AnySchema | undefined;
   if (typeof options.body === 'function') {
-    console.log('function');
     bodySchema = options.body(comms.apiVersion);
   } else if (options.body !== undefined) {
-    console.log(options.body);
     bodySchema = options.body;
   }
 
