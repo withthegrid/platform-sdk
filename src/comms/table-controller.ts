@@ -155,10 +155,11 @@ class TableController<RowImplementation> {
       }
 
       this.rows = this.rows.concat(response.rows);
+      this.pagesAcquired += Math.ceil(response.rows.length / rowsPerPage);
     } else {
+      this.pagesAcquired += 1; // for backwards compatability only
       this.endReached = true;
     }
-    this.pagesAcquired += Math.ceil(response.rows.length / rowsPerPage);
   }
 
   get(page: number): RowImplementation[] {
