@@ -66,13 +66,13 @@ interface Response<RowImplementation> {
 }
 
 class TableController<RowImplementation> {
-  pagesAcquired: number;
+  pagesAcquired = 0;
 
-  rowsPerPage: number;
+  rowsPerPage = 0;
 
-  rows: RowImplementation[];
+  rows: RowImplementation[] = [];
 
-  cancelFunction: (() => void) | null;
+  cancelFunction: (() => void) | null = null;
 
   lastValueSortColumn?: string | number | Date | null;
 
@@ -80,18 +80,20 @@ class TableController<RowImplementation> {
 
   nextPageOffset?: string | null;
 
+  endReached = false;
+
   constructor(
     private readonly route: (parameters?: TableRequest) => Result<EffectiveTableRequest, Response<RowImplementation>>, // eslint-disable-line max-len
     readonly objectKeyMapper?: (row: RowImplementation, sortBy: string) => ObjectKeyResult,
     readonly parameters?: TableQuery,
   ) {
-    this.pagesAcquired = 0;
-    this.rowsPerPage = 0;
-    this.rows = [];
-    this.cancelFunction = null;
   }
 
   async acquire(): Promise<number> {
+    if (this.endReached) {
+      throw new Error('Has reached the last page');
+    }
+
     if (this.cancelFunction !== null) {
       this.cancelFunction();
       this.cancelFunction = null;
@@ -101,10 +103,9 @@ class TableController<RowImplementation> {
 
     params.lastValueSortColumn = this.lastValueSortColumn;
     params.lastValueHashId = this.lastValueHashId;
-    if (this.nextPageOffset === null) {
-      throw new Error('Has reached the last page');
+    if (this.nextPageOffset !== null) {
+      params.offset = this.nextPageOffset;
     }
-    params.offset = this.nextPageOffset;
 
     const result = this.route({ query: params });
     this.cancelFunction = result.cancelToken.cancel;
@@ -137,6 +138,9 @@ class TableController<RowImplementation> {
     if (response.rows.length > 0) {
       if (response.nextPageOffset !== undefined) {
         this.nextPageOffset = response.nextPageOffset;
+        if (response.nextPageOffset === null) {
+          this.endReached = true;
+        }
       } else if (this.objectKeyMapper !== undefined && sortBy !== undefined) {
         const lastRow = response.rows[response.rows.length - 1];
         const { lastValueSortColumn, lastValueHashId } = this.objectKeyMapper(
@@ -151,6 +155,8 @@ class TableController<RowImplementation> {
       }
 
       this.rows = this.rows.concat(response.rows);
+    } else {
+      this.endReached = true;
     }
     this.pagesAcquired += Math.ceil(response.rows.length / rowsPerPage);
   }
