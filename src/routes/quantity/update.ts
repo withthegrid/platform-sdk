@@ -1,5 +1,6 @@
 import Joi from 'joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
+import { schema as siNumberSchema, SiNumber } from '../../models/si-number';
 
 interface Request {
   params: {
@@ -9,6 +10,10 @@ interface Request {
     name?: string;
     unit?: string;
     defaultOrderOfMagnitude?: number;
+    defaultCriticallyLowThreshold?: SiNumber | null;
+    defaultLowThreshold?: SiNumber | null;
+    defaultHighThreshold?: SiNumber | null;
+    defaultCriticallyHighThreshold?: SiNumber | null;
   };
 }
 
@@ -26,6 +31,10 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     defaultOrderOfMagnitude: Joi.number().integer().min(-128).max(127)
       .example(3)
       .description('Defines default order of magnitude to be selected at manual report form'),
+    defaultCriticallyLowThreshold: siNumberSchema.allow(null),
+    defaultLowThreshold: siNumberSchema.allow(null),
+    defaultHighThreshold: siNumberSchema.allow(null),
+    defaultCriticallyHighThreshold: siNumberSchema.allow(null),
   }).required(),
   right: { environment: 'ENVIRONMENT_ADMIN', supplier: 'ENVIRONMENT_ADMIN' },
 };

@@ -4,11 +4,16 @@ import {
   schema as updatableFieldConfigurationsSchema,
   UpdatableFieldConfigurations,
 } from '../../models/fields/updatable-field-configurations';
+import { schema as siNumberSchema, SiNumber } from '../../models/si-number';
 
 type RequestQuantity = {
   name: string;
   unit: string;
   defaultOrderOfMagnitude: number;
+  defaultCriticallyLowThreshold?: SiNumber | null;
+  defaultLowThreshold?: SiNumber | null;
+  defaultHighThreshold?: SiNumber | null;
+  defaultCriticallyHighThreshold?: SiNumber | null;
 } | {
   hashId: string;
 };
@@ -48,9 +53,12 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
         name: Joi.string().required().example('Temperature'),
         unit: Joi.string().required().example('K').description('Will be displayed with an SI-prefix (eg. k or M) if relevant'),
         defaultOrderOfMagnitude: Joi.number().integer().min(-128).max(127)
-          .default(0)
           .example(3)
           .description('Defines default order of magnitude to be selected at manual report form'),
+        defaultCriticallyLowThreshold: siNumberSchema.allow(null),
+        defaultLowThreshold: siNumberSchema.allow(null),
+        defaultHighThreshold: siNumberSchema.allow(null),
+        defaultCriticallyHighThreshold: siNumberSchema.allow(null),
       }),
       Joi.object().keys({
         hashId: Joi.string().required(),

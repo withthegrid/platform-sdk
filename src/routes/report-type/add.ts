@@ -1,11 +1,16 @@
 import Joi from 'joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 import { schema as fieldConfigurationsToServerSchema, FieldConfigurationsToServer } from '../../models/fields/field-configurations-to-server';
+import { schema as siNumberSchema, SiNumber } from '../../models/si-number';
 
 type RequestQuantity = {
   name: string;
   unit: string;
   defaultOrderOfMagnitude: number;
+  defaultCriticallyLowThreshold: SiNumber | null;
+  defaultLowThreshold: SiNumber | null;
+  defaultHighThreshold: SiNumber | null;
+  defaultCriticallyHighThreshold: SiNumber | null;
 } | {
   hashId: string;
 };
@@ -45,6 +50,10 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
           .default(0)
           .example(3)
           .description('Defines default order of magnitude to be selected at manual report form'),
+        defaultCriticallyLowThreshold: siNumberSchema.allow(null).default(null),
+        defaultLowThreshold: siNumberSchema.allow(null).default(null),
+        defaultHighThreshold: siNumberSchema.allow(null).default(null),
+        defaultCriticallyHighThreshold: siNumberSchema.allow(null).default(null),
       }),
       Joi.object().keys({
         hashId: Joi.string().required(),
