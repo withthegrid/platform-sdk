@@ -10,10 +10,10 @@ interface Request {
     name?: string;
     unit?: string;
     defaultOrderOfMagnitude?: number;
-    defaultCriticallyLowThreshold: SiNumber | null;
-    defaultLowThreshold: SiNumber | null;
-    defaultHighThreshold: SiNumber | null;
-    defaultCriticallyHighThreshold: SiNumber | null;
+    defaultCriticallyLowThreshold?: SiNumber | null;
+    defaultLowThreshold?: SiNumber | null;
+    defaultHighThreshold?: SiNumber | null;
+    defaultCriticallyHighThreshold?: SiNumber | null;
   };
 }
 
