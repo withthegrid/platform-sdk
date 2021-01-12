@@ -54,11 +54,12 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
         unit: Joi.string().required().example('K').description('Will be displayed with an SI-prefix (eg. k or M) if relevant'),
         defaultOrderOfMagnitude: Joi.number().integer().min(-128).max(127)
           .example(3)
+          .default(0)
           .description('Defines default order of magnitude to be selected at manual report form'),
-        defaultCriticallyLowThreshold: siNumberSchema.allow(null),
-        defaultLowThreshold: siNumberSchema.allow(null),
-        defaultHighThreshold: siNumberSchema.allow(null),
-        defaultCriticallyHighThreshold: siNumberSchema.allow(null),
+        defaultCriticallyLowThreshold: siNumberSchema.allow(null).default(null),
+        defaultLowThreshold: siNumberSchema.allow(null).default(null),
+        defaultHighThreshold: siNumberSchema.allow(null).default(null),
+        defaultCriticallyHighThreshold: siNumberSchema.allow(null).default(null),
       }),
       Joi.object().keys({
         hashId: Joi.string().required(),
