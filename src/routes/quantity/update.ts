@@ -14,6 +14,7 @@ interface Request {
     defaultLowThreshold?: SiNumber | null;
     defaultHighThreshold?: SiNumber | null;
     defaultCriticallyHighThreshold?: SiNumber | null;
+    disableSiPrefixes?: boolean;
   };
 }
 
@@ -35,6 +36,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     defaultLowThreshold: siNumberSchema.allow(null),
     defaultHighThreshold: siNumberSchema.allow(null),
     defaultCriticallyHighThreshold: siNumberSchema.allow(null),
+    disableSiPrefixes: Joi.boolean().example(true).description('Will disable SI-prefixes for this quantity'),
   }).required(),
   right: { environment: 'ENVIRONMENT_ADMIN', supplier: 'ENVIRONMENT_ADMIN' },
 };
