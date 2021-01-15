@@ -82,11 +82,28 @@ class TableController<RowImplementation> {
 
   endReached = false;
 
+  /**
+   *
+   * @param route
+   * @param objectKeyMapper
+   * @param parameters
+   * @param prioritizedRows Rows that you already know are present in the result
+   * pages, but should appear on top. Required providing rowToUniqueKey as well.
+   * @param rowToUniqueKey if provided, duplicates will be dropped. Useful when
+   * using prioritizedRows
+   */
   constructor(
     private readonly route: (parameters?: TableRequest) => Result<EffectiveTableRequest, Response<RowImplementation>>, // eslint-disable-line max-len
     readonly objectKeyMapper?: (row: RowImplementation, sortBy: string) => ObjectKeyResult,
     readonly parameters?: TableQuery,
+    prioritizedRows?: RowImplementation[],
+    readonly rowToUniqueKey?: (row: RowImplementation) => string,
   ) {
+    if (prioritizedRows === undefined) {
+      this.rows = [];
+    } else {
+      this.rows = prioritizedRows;
+    }
   }
 
   async acquire(): Promise<number> {
@@ -154,7 +171,17 @@ class TableController<RowImplementation> {
         throw new Error('Response has no nextPageOffset and objectKeyMapper is not defined');
       }
 
-      this.rows = this.rows.concat(response.rows);
+      const { rowToUniqueKey } = this;
+      if (rowToUniqueKey === undefined) {
+        this.rows = this.rows.concat(response.rows);
+      } else {
+        response.rows.forEach((r) => {
+          const uniqueKey = rowToUniqueKey(r);
+          if (this.rows.every((r2) => rowToUniqueKey(r2) !== uniqueKey)) {
+            this.rows.push(r);
+          }
+        });
+      }
       this.pagesAcquired += Math.ceil(response.rows.length / rowsPerPage);
     } else {
       this.pagesAcquired += 1; // for backwards compatability only
