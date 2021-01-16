@@ -14,6 +14,7 @@ type RequestQuantity = {
   defaultLowThreshold: SiNumber | null;
   defaultHighThreshold: SiNumber | null;
   defaultCriticallyHighThreshold: SiNumber | null;
+  disableSiPrefixes: boolean;
 } | {
   hashId: string;
 };
@@ -60,6 +61,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
         defaultLowThreshold: siNumberSchema.allow(null).default(null),
         defaultHighThreshold: siNumberSchema.allow(null).default(null),
         defaultCriticallyHighThreshold: siNumberSchema.allow(null).default(null),
+        disableSiPrefixes: Joi.boolean().default(false).example(true).description('Will disable SI-prefixes for this quantity if true'),
       }),
       Joi.object().keys({
         hashId: Joi.string().required(),
