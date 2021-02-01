@@ -24,8 +24,7 @@ interface MeasurementFilterContent {
 }
 
 type Content = AllContent | MeasurementFilterContent;
-
-const contentSchema = Joi.alternatives().try(
+const contentSchemaAlternatives = [
   Joi.object().keys({
     type: Joi.string().required().valid('all').example('all'),
     staticOnly: Joi.boolean().required().example(false),
@@ -34,6 +33,8 @@ const contentSchema = Joi.alternatives().try(
     to: Joi.date().iso().required().example('2020-01-01T00:00Z'),
   }).required(),
   Joi.object().keys({
+    name: Joi.string().allow('').default('').example('Name'),
+    description: Joi.string().allow('').default('').example('Description'),
     type: Joi.string().required().valid('measurementFilter').example('measurementFilter'),
     includePinsWithoutReports: Joi.boolean().required().example(true),
     reportTypeHashIds: Joi.array().min(1).max(20).items(Joi.string().example('l19a7s'))
@@ -47,11 +48,11 @@ const contentSchema = Joi.alternatives().try(
     from: Joi.date().iso().example('2019-12-01T00:00Z'),
     to: Joi.date().iso().example('2020-01-01T00:00Z'),
   }).required(),
-);
+];
 
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('maay1'),
-  content: contentSchema.required(),
+  content: Joi.alternatives().try(...contentSchemaAlternatives).required(),
   delimiter: Joi.string().valid(',', ';').required().example(','),
   rowDelimiter: Joi.string().valid('\n', '\r\n').required().example('\n'),
   status: Joi.string().valid('waiting', 'creating', 'available', 'deleted').required().example('available'),
@@ -75,5 +76,5 @@ export {
   AllContent,
   MeasurementFilterContent,
   Content,
-  contentSchema,
+  contentSchemaAlternatives,
 };

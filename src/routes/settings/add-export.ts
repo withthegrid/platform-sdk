@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
-import { AllContent, contentSchema } from '../../models/export-request';
+import { AllContent, contentSchemaAlternatives } from '../../models/export-request';
 
 interface MeasurementFilterContentByHashId {
   type: 'measurementFilter';
@@ -37,7 +37,13 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'post',
   path: '/export',
   body: Joi.object().keys({
-    content: contentSchema.required(),
+    content: Joi.alternatives().try(
+      Joi.object().keys({
+        type: Joi.string().required().valid('measurementFilter').example('measurementFilter'),
+        measurementFilterHashId: Joi.string().required(),
+      }).required(),
+      ...contentSchemaAlternatives,
+    ).required(),
     delimiter: Joi.string().valid(',', ';').required().example(','),
     rowDelimiter: Joi.string().valid('\n', '\r\n').required().example('\n'),
   }).required(),
