@@ -10,14 +10,17 @@ interface AllContent {
 
 interface MeasurementFilterContent {
   type: 'measurementFilter';
+  name: string;
+  description: string;
+  from?: Date;
+  to?: Date;
+  // deprecated from here
   includePinsWithoutReports: boolean;
   reportTypeHashIds: string[];
   gridHashId: string | null;
   pinGroupHashIds: string[];
   quantityHashIds: string[];
   fieldKeys: string[];
-  from?: Date;
-  to?: Date;
 }
 
 type Content = AllContent | MeasurementFilterContent;
