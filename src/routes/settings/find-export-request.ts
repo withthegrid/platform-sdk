@@ -1,7 +1,7 @@
 import Joi from 'joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
-import {schema as exportRequestSchema, ExportRequest, contentSchemaAlternatives} from '../../models/export-request';
+import { ExportRequest } from '../../models/export-request';
 
 import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../../comms/table-controller';
 
