@@ -33,8 +33,8 @@ const contentSchemaAlternatives = [
     to: Joi.date().iso().required().example('2020-01-01T00:00Z'),
   }).required(),
   Joi.object().keys({
-    name: Joi.string().allow('').default('').example('Power at South District'),
-    description: Joi.string().allow('').default('').example('Shows measurements of power at South district related locations'),
+    name: Joi.string().allow('').default('').example('Name'),
+    description: Joi.string().allow('').default('').example('Description'),
     type: Joi.string().required().valid('measurementFilter').example('measurementFilter'),
     includePinsWithoutReports: Joi.boolean().required().example(true),
     reportTypeHashIds: Joi.array().min(1).max(20).items(Joi.string().example('l19a7s'))
