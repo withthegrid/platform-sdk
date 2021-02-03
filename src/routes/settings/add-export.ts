@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
-import { AllContent, contentSchemaAlternatives } from '../../models/export-request';
+import { AllContent } from '../../models/export-request';
 
 interface MeasurementFilterContentByHashId {
   type: 'measurementFilter';
