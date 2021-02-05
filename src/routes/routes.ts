@@ -1,4 +1,5 @@
 import * as authentication from './authentication/routes';
+import * as chart from './chart/routes';
 import * as command from './command/routes';
 import * as commandType from './command-type/routes';
 import * as device from './device/routes';
@@ -25,6 +26,7 @@ import * as user from './user/routes';
 
 export {
   authentication,
+  chart,
   command,
   commandType,
   device,

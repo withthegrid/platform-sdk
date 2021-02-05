@@ -15,7 +15,7 @@ interface ControllerGeneratorOptions {
   method: 'get' | 'post' | 'put' | 'delete' | 'all';
   path: string;
   params?: Joi.ObjectSchema;
-  query?: Joi.ObjectSchema;
+  query?: Joi.AnySchema; // to allow for Joi.alternatives()
   body?: Joi.AnySchema | VersionedAnySchemaFunction;
   response?: Joi.AnySchema | VersionedAnySchemaFunction;
   right: { supplier?: string; environment?: string };
