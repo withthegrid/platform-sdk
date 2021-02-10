@@ -1,6 +1,6 @@
 {
   "name": "@withthegrid/platform-sdk",
-  "version": "16.12.1",
+  "version": "16.12.2",
   "description": "SDK for withthegrid application",
   "license": "MIT",
   "files": [
