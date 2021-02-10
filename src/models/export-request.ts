@@ -42,7 +42,7 @@ const contentSchemaAlternatives = [
     gridHashId: Joi.string().allow(null).required(),
     pinGroupHashIds: Joi.array().min(0).max(50).items(Joi.string().example('dao97'))
       .required(),
-    quantityHashIds: Joi.array().max(20).items(Joi.string().example('sajia1'))
+    quantityHashIds: Joi.array().max(64).items(Joi.string().example('sajia1'))
       .default([]),
     fieldKeys: Joi.array().max(20).items(Joi.string().example('id')).default([]),
     from: Joi.date().iso().example('2019-12-01T00:00Z'),
