@@ -29,13 +29,13 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
   path: '/',
   query: tableQuerySchemaGenerator(Joi.string().valid('hashId', 'name').default('hashId')),
-  right: { supplier: 'ENVIRONMENT_ADMIN' },
+  right: { supplier: 'ENVIRONMENT_ADMIN', environment: 'READ' },
   response: Joi.object().keys({
     rows: Joi.array().items(Joi.object().keys({
       deviceType: deviceTypeSchema.required(),
     })).required(),
   }),
-  description: 'Search through device types within a supplier',
+  description: 'Search through device types within a supplier, or within devices registered by client',
 };
 
 export {
