@@ -7,7 +7,8 @@ interface Request {
   | { edgeHashId: string }
   | { pinHashId: string };
   body: {
-    charts: {
+    lastMode?: 'manual' | 'automatic';
+    manualCharts?: {
       title: string | null;
       series: {
         quantityHashId: string;
@@ -30,14 +31,15 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     Joi.object().keys({ pinHashId: Joi.string().required().example('e13d57') }).required(),
   ).required(),
   body: Joi.object().keys({
-    charts: Joi.array().items(Joi.object().keys({
+    lastMode: Joi.string().valid('manual', 'automatic'),
+    manualCharts: Joi.array().items(Joi.object().keys({
       title: Joi.string().allow(null).example(null).required(),
       series: Joi.array().max(40).items(Joi.object().keys({
         quantityHashId: Joi.string().required().example('sajia1'),
         pinHashId: Joi.string().required().example('e13d57'),
         color: Joi.string().example('#ff0000').description('A hex color string').required(),
       })).required(),
-    })).required(),
+    })),
   }).required(),
   right: { environment: 'REPORTS' },
 };

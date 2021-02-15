@@ -1,3 +1,4 @@
+import * as chart from './chart';
 import * as command from './command';
 import * as commandType from './command-type';
 import * as deviceType from './device-type';
@@ -62,6 +63,7 @@ import * as user from './user';
 import * as userSubscription from './user-subscription';
 
 export {
+  chart,
   command,
   commandType,
   deviceType,

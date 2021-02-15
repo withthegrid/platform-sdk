@@ -1,10 +1,7 @@
 import Joi from 'joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
-import { schema as quantitySchema, Quantity } from '../../models/quantity';
-import { schema as pinSchema, Pin } from '../../models/pin';
-import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
-import { schema as thresholdSchema, Threshold } from '../../models/threshold';
+import { schema as chartSchema, Chart } from '../../models/chart';
 
 interface Request {
   query: { pinGroupHashId: string }
@@ -14,16 +11,11 @@ interface Request {
 }
 
 interface Response {
+  lastMode: 'manual' | 'automatic';
   charts: {
-    title: string | null;
-    series: {
-      quantity: Quantity;
-      pin: Pin;
-      pinGroup: PinGroup;
-      color: string;
-      threshold: Threshold | null;
-    }[];
-  }[];
+    automatic: Chart[],
+    manual: Chart[],
+  };
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
@@ -37,16 +29,11 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   ).required(),
   right: { environment: 'READ' },
   response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
-    charts: Joi.array().items(Joi.object().keys({
-      title: Joi.string().allow(null).example(null).required(),
-      series: Joi.array().items(Joi.object().keys({
-        quantity: quantitySchema.required(),
-        pin: pinSchema.required(),
-        pinGroup: pinGroupSchema(apiVersion).required(),
-        color: Joi.string().example('#ff0000').description('A hex color string').required(),
-        threshold: thresholdSchema.allow(null).required(),
-      })).required(),
-    })).required(),
+    lastMode: Joi.string().valid('manual', 'automatic').required(),
+    charts: Joi.object().keys({
+      automatic: Joi.array().items(chartSchema(apiVersion)).required(),
+      manual: Joi.array().items(chartSchema(apiVersion)).required(),
+    }).required(),
   }).required(),
   description: 'Get the chart panel for a pinGroup, grid, edge or pin',
 };
