@@ -8,10 +8,10 @@ const schema = (apiVersion: number): Joi.ObjectSchema => {
     channelIndex: Joi.number().integer().allow(null).required()
       .description('The channel of the installed device. When null, the measurement is not taken by a device but manually entered')
       .example(0),
-
     channelMeasurementIndex: Joi.number().integer().allow(null).default(null)
       .example(0)
       .description('Not null for device measurements. Represents the device channel this measurement is taken from, see the channels key in the device type object.'),
+    reportHashId: Joi.string().required().example('qoa978'),
     pinHashId: Joi.string().allow(null).required().example('e13d57'),
     orderOfMagnitude: Joi.number().integer().min(-128).max(127)
       .required()
@@ -39,6 +39,7 @@ interface Measurement {
   generatedAt: Date;
   channelIndex: number | null;
   channelMeasurementIndex: number | null;
+  reportHashId: string;
   pinHashId: string | null;
   orderOfMagnitude: number;
   significand: number;

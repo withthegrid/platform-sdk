@@ -2,6 +2,7 @@ import Comms from '../comms';
 
 import AuthenticationRoute from './authentication';
 import EnvironmentRoute from './environment';
+import ChartRoute from './chart';
 import CommandRoute from './command';
 import CommandTypeRoute from './command-type';
 import DeviceRoute from './device';
@@ -27,6 +28,8 @@ import DownloadRoute from './download';
 
 class Routes {
   authentication: AuthenticationRoute;
+
+  chart: ChartRoute;
 
   command: CommandRoute;
 
@@ -76,6 +79,7 @@ class Routes {
 
   constructor(readonly comms: Comms) {
     this.authentication = new AuthenticationRoute(comms);
+    this.chart = new ChartRoute(comms);
     this.command = new CommandRoute(comms);
     this.commandType = new CommandTypeRoute(comms);
     this.device = new DeviceRoute(comms);
@@ -105,6 +109,7 @@ class Routes {
 export default Routes;
 export {
   AuthenticationRoute,
+  ChartRoute,
   CommandRoute,
   CommandTypeRoute,
   DeviceRoute,
