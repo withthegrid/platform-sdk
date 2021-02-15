@@ -29,6 +29,14 @@ interface Request {
   params?: RequestParams;
   query?: RequestQuery;
   body?: any;
+  options?: {
+    /**
+     * If provided AND false, response will not be validated against Joi schema.
+     * This will save quite some time, but will cause Date objects to still be strings
+     * Note: defaults are already filled server side, so that's not an issue
+     */
+    validateResponse: boolean
+  };
 }
 
 interface Result<EffectiveRequestImplementation, ResponseImplementation> {
@@ -103,6 +111,10 @@ export default <RequestImplementation extends Request | undefined, EffectiveRequ
       .then((response) => {
         // Axios response will be an empty string if there is no response
         if (response !== '' && options.response !== undefined) {
+          if (parameters?.options?.validateResponse === false) {
+            resolve(response);
+            return;
+          }
           let responseSchema: Joi.AnySchema;
           if (typeof options.response === 'function') {
             responseSchema = options.response(comms.apiVersion);
