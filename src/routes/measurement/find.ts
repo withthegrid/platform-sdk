@@ -77,7 +77,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       .default([]),
     gridHashId: Joi.string(),
     pinGroupHashIds: Joi.array().min(1).max(50).items(Joi.string().example('dao97')),
-    quantityHashIds: Joi.array().max(64).items(Joi.string().example('sajia1'))
+    quantityHashIds: Joi.array().min(1).max(64).items(Joi.string().example('sajia1'))
       .default([]),
     fieldKeys: Joi.array().max(20).items(Joi.string().example('id')).default([]),
     since: Joi.date(),

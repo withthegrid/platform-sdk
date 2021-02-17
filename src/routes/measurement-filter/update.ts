@@ -43,7 +43,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     reportTypeHashIds: Joi.array().max(20).items(Joi.string()),
     gridHashId: Joi.string(),
     pinGroupHashIds: Joi.array().min(1).max(50).items(Joi.string().example('dao97')),
-    quantityHashIds: Joi.array().max(64).items(Joi.string()),
+    quantityHashIds: Joi.array().min(1).max(64).items(Joi.string()),
     fieldKeys: Joi.array().max(20).items(Joi.string()),
   }).required(),
   right: { environment: 'REPORTS' },
