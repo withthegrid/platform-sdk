@@ -69,7 +69,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   path: '/',
   right: { environment: 'READ' },
   query: tableQuerySchemaGenerator(
-    Joi.string().valid('pinName', 'generatedAt').default('pinName'),
+    Joi.string().valid('pinName', 'generatedAt', 'pinGroupName').default('pinName'),
     500,
   ).keys({
     includePinsWithoutReports: Joi.boolean().default(true),
