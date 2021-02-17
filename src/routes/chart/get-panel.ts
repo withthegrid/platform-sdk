@@ -29,7 +29,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   ).required(),
   right: { environment: 'READ' },
   response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
-    lastMode: Joi.string().valid('manual', 'automatic').required(),
+    lastMode: Joi.string().valid('manual', 'automatic').example('automatic').required(),
     charts: Joi.object().keys({
       automatic: Joi.array().items(chartSchema(apiVersion)).required(),
       manual: Joi.array().items(chartSchema(apiVersion)).required(),
