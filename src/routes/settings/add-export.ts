@@ -40,7 +40,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     content: Joi.alternatives().try(
       Joi.object().keys({
         type: Joi.string().required().valid('measurementFilter').example('measurementFilter'),
-        measurementFilterHashId: Joi.string().required(),
+        measurementFilterHashId: Joi.string().example('k8gh3').required(),
       }).required(),
       Joi.object().keys({
         type: Joi.string().required().valid('all').example('all'),
