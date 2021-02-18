@@ -30,7 +30,22 @@ interface DeviceType {
     name: string;
     pinFieldConfigurations: FieldConfigurationsFromServer;
     defaultPinName?: string;
+    charts?: {
+      title: string | null;
+      series: {
+        quantityId: number;
+        color: string;
+      }[];
+    }[];
   }[];
+  charts: {
+    title: string | null;
+    series: {
+      channelIndex: number;
+      quantityId: number;
+      color: string;
+    }[];
+  }[] | null;
   commandTypeHashIds: string[];
 }
 
