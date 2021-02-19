@@ -12,7 +12,7 @@ interface Request {
       name: string;
       pinFieldConfigurations: FieldConfigurationsToServer;
       defaultPinName?: string;
-      charts?: {
+      charts: {
         title: string | null;
         series: {
           quantityHashId: string;
@@ -27,7 +27,7 @@ interface Request {
         quantityHashId: string;
         color: string;
       }[];
-    }[] | null;
+    }[];
     commandTypeHashIds: string[];
   };
 }
@@ -67,7 +67,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
         quantityHashId: Joi.string().example('x18a92').required(),
         color: Joi.string().example('#ff00ff').required(),
       })).required(),
-    })).allow(null).required(),
+    })).required(),
     commandTypeHashIds: Joi.array().items(Joi.string().example('x18a92')).required().description('The hashIds of the command types a user can schedule for this device'),
   }).required(),
   right: { supplier: 'ENVIRONMENT_ADMIN' },

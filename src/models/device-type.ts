@@ -19,7 +19,7 @@ const baseSchema = Joi.object().keys({
         quantityHashId: Joi.string().example('x18a92').required(),
         color: Joi.string().example('#ff00ff').required(),
       })).required(),
-    })),
+    })).required(),
   })).required(),
   charts: Joi.array().items(Joi.object().keys({
     title: Joi.string().allow(null).example('Cathodic protection charts').required(),
@@ -28,7 +28,7 @@ const baseSchema = Joi.object().keys({
       quantityHashId: Joi.string().example('x18a92').required(),
       color: Joi.string().example('#ff00ff').required(),
     })).required(),
-  })).allow(null).required(),
+  })).required(),
   commandTypeHashIds: Joi.array().items(Joi.string().example('x18a92')).required().description('The hashIds of the command types a user can schedule for this device'),
 });
 
@@ -45,7 +45,7 @@ interface DeviceType {
     name: string;
     pinFieldConfigurations: FieldConfigurationsFromServer;
     defaultPinName?: string;
-    charts?: {
+    charts: {
       title: string | null;
       series: {
         quantityHashId: string;
@@ -60,7 +60,7 @@ interface DeviceType {
       quantityHashId: string;
       color: string;
     }[];
-  }[] | null;
+  }[];
   commandTypeHashIds: string[];
 }
 
