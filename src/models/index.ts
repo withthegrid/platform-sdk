@@ -36,7 +36,6 @@ import * as updatableFieldConfigurations from './fields/updatable-field-configur
 import * as pin from './pin';
 import * as pinLink from './pin-link';
 import * as quantity from './quantity';
-import * as release from './release';
 import * as webRequest from './web-request';
 import * as siNumber from './si-number';
 import * as supplier from './supplier';
@@ -101,7 +100,6 @@ export {
   pin,
   pinLink,
   quantity,
-  release,
   siNumber,
   supplier,
   supplierActivityDropCommand,

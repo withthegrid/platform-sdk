@@ -1,7 +1,6 @@
 import * as addExport from './add-export';
 import * as findExportRequest from './find-export-request';
 import * as findLog from './find-log';
-import * as getReleases from './get-releases';
 import * as get from './get';
 import * as requestExportDownload from './request-export-download';
 import * as update from './update';
@@ -75,18 +74,6 @@ class SettingsRoute {
       }),
       parameters,
     );
-
-  getReleases = (parameters?: getReleases.Request):
-    Result<getReleases.EffectiveRequest, getReleases.Response> => controllerGenerator<
-      getReleases.Request,
-      getReleases.EffectiveRequest,
-      getReleases.Response
-    >(
-      getReleases.controllerGeneratorOptions,
-      SettingsRoute.routerPath,
-      SettingsRoute.auth,
-      this.comms,
-    )(parameters);
 
   get = (parameters: get.Request):
     Result<get.EffectiveRequest, get.Response> => controllerGenerator<
