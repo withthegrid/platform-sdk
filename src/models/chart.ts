@@ -12,7 +12,7 @@ const schema = (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     pin: pinSchema.required(),
     pinGroup: pinGroupSchema(apiVersion).required(),
     color: Joi.string().example('#ff0000').description('A hex color string').required(),
-    threshold: thresholdSchema.allow(null).required(),
+    pinThreshold: thresholdSchema.allow(null).required(),
   })).required(),
 })
   .tag('chart')
@@ -25,7 +25,7 @@ interface Chart {
     pin: Pin;
     pinGroup: PinGroup;
     color: string;
-    threshold: Threshold | null;
+    pinThreshold: Threshold | null;
   }[];
 }
 
