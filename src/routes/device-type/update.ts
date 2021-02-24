@@ -18,7 +18,7 @@ interface Request {
       name: string;
       pinFieldConfigurations: UpdatableFieldConfigurations;
       defaultPinName?: string;
-      charts: {
+      charts?: {
         title: string | null;
         series: {
           quantityHashId: string;
@@ -63,7 +63,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
           quantityHashId: Joi.string().example('x18a92').required(),
           color: Joi.string().example('#ff00ff').required(),
         })).required(),
-      })).required(),
+      })),
     })).description('All measurements are registered on a channel. When a device is installed at a location (pinGroup), its channels are connected to the ports (pins) of the location (pinGroup). Be careful when altering channels that it does still make sense for already installed devices and historic condition reports. It is therefore not allowed to delete channels (therefore it is required that the array is not shorter than the existing channel array).'),
     charts: Joi.array().items(Joi.object().keys({
       title: Joi.string().allow(null).example('Cathodic protection charts').required(),

@@ -12,7 +12,7 @@ interface Request {
       name: string;
       pinFieldConfigurations: FieldConfigurationsToServer;
       defaultPinName?: string;
-      charts: {
+      charts?: {
         title: string | null;
         series: {
           quantityHashId: string;
@@ -20,7 +20,7 @@ interface Request {
         }[];
       }[];
     }[];
-    charts: {
+    charts?: {
       title: string | null;
       series: {
         channelIndex: number;
@@ -57,7 +57,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
         series: Joi.array().items(Joi.object().keys({
           quantityHashId: Joi.string().example('x18a92').required(),
           color: Joi.string().example('#ff00ff').required(),
-        })).required(),
+        })),
       })),
     })).required().description('All measurements are registered on a channel. When a device is installed at a location (pinGroup), its channels are connected to the ports (pins) of the location(pinGroup).'),
     charts: Joi.array().items(Joi.object().keys({
@@ -67,7 +67,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
         quantityHashId: Joi.string().example('x18a92').required(),
         color: Joi.string().example('#ff00ff').required(),
       })).required(),
-    })).required(),
+    })),
     commandTypeHashIds: Joi.array().items(Joi.string().example('x18a92')).required().description('The hashIds of the command types a user can schedule for this device'),
   }).required(),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
