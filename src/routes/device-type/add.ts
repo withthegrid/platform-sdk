@@ -57,7 +57,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
         series: Joi.array().items(Joi.object().keys({
           quantityHashId: Joi.string().example('x18a92').required(),
           color: Joi.string().example('#ff00ff').required(),
-        })),
+        })).required(),
       })),
     })).required().description('All measurements are registered on a channel. When a device is installed at a location (pinGroup), its channels are connected to the ports (pins) of the location(pinGroup).'),
     charts: Joi.array().items(Joi.object().keys({
