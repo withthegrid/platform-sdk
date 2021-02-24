@@ -12,6 +12,21 @@ interface Request {
       name: string;
       pinFieldConfigurations: FieldConfigurationsToServer;
       defaultPinName?: string;
+      charts?: {
+        title: string | null;
+        series: {
+          quantityHashId: string;
+          color: string;
+        }[];
+      }[];
+    }[];
+    charts?: {
+      title: string | null;
+      series: {
+        channelIndex: number;
+        quantityHashId: string;
+        color: string;
+      }[];
     }[];
     commandTypeHashIds: string[];
   };
@@ -37,7 +52,22 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       pinFieldConfigurations: fieldConfigurationsToServerSchema.required()
         .description('Defines deviceFields on the pin the channel is connected to. Can be used in report type functions. See the chapter on open fields on how to use this'),
       defaultPinName: Joi.string().example('Anode').description('If undefined, the channel cannot be linked to a pin'),
+      charts: Joi.array().items(Joi.object().keys({
+        title: Joi.string().allow(null).example('Red wire charts').required(),
+        series: Joi.array().items(Joi.object().keys({
+          quantityHashId: Joi.string().example('x18a92').required(),
+          color: Joi.string().example('#ff00ff').required(),
+        })).required(),
+      })),
     })).required().description('All measurements are registered on a channel. When a device is installed at a location (pinGroup), its channels are connected to the ports (pins) of the location(pinGroup).'),
+    charts: Joi.array().items(Joi.object().keys({
+      title: Joi.string().allow(null).example('Cathodic protection charts').required(),
+      series: Joi.array().items(Joi.object().keys({
+        channelIndex: Joi.number().integer().required(),
+        quantityHashId: Joi.string().example('x18a92').required(),
+        color: Joi.string().example('#ff00ff').required(),
+      })).required(),
+    })),
     commandTypeHashIds: Joi.array().items(Joi.string().example('x18a92')).required().description('The hashIds of the command types a user can schedule for this device'),
   }).required(),
   right: { supplier: 'ENVIRONMENT_ADMIN' },

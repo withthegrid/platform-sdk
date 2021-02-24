@@ -13,6 +13,21 @@ const baseSchema = Joi.object().keys({
     pinFieldConfigurations: fieldConfigurationsFromServerSchema.required()
       .description('Defines deviceFields on the pin the channel is connected to. Can be used in report type functions. See the chapter on open fields on how to use this'),
     defaultPinName: Joi.string().example('Anode').description('If undefined, the channel cannot be linked to a pin'),
+    charts: Joi.array().items(Joi.object().keys({
+      title: Joi.string().allow(null).example('Red wire charts').required(),
+      series: Joi.array().items(Joi.object().keys({
+        quantityHashId: Joi.string().example('x18a92').required(),
+        color: Joi.string().example('#ff00ff').required(),
+      })).required(),
+    })).required(),
+  })).required(),
+  charts: Joi.array().items(Joi.object().keys({
+    title: Joi.string().allow(null).example('Cathodic protection charts').required(),
+    series: Joi.array().items(Joi.object().keys({
+      channelIndex: Joi.number().integer().required(),
+      quantityHashId: Joi.string().example('x18a92').required(),
+      color: Joi.string().example('#ff00ff').required(),
+    })).required(),
   })).required(),
   commandTypeHashIds: Joi.array().items(Joi.string().example('x18a92')).required().description('The hashIds of the command types a user can schedule for this device'),
 });
@@ -30,6 +45,21 @@ interface DeviceType {
     name: string;
     pinFieldConfigurations: FieldConfigurationsFromServer;
     defaultPinName?: string;
+    charts: {
+      title: string | null;
+      series: {
+        quantityHashId: string;
+        color: string;
+      }[];
+    }[];
+  }[];
+  charts: {
+    title: string | null;
+    series: {
+      channelIndex: number;
+      quantityHashId: string;
+      color: string;
+    }[];
   }[];
   commandTypeHashIds: string[];
 }
