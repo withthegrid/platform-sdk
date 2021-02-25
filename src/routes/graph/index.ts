@@ -14,6 +14,7 @@ import * as find from './find';
 import * as findEdge from './find-edge';
 import * as findGrid from './find-grid';
 import * as findPinGroup from './find-pin-group';
+import * as findPinQuantities from './find-pin-quantities';
 import * as findNode from './find-node';
 import * as getEdgeMeasurements from './get-edge-measurements';
 import * as getEdge from './get-edge';
@@ -267,6 +268,18 @@ class GraphRoute {
       findPinGroup.Response
     >(
       findPinGroup.controllerGeneratorOptions,
+      GraphRoute.routerPath,
+      GraphRoute.auth,
+      this.comms,
+    )(parameters);
+
+  findPinQuantities = (parameters: findPinQuantities.Request):
+    Result<findPinQuantities.EffectiveRequest, findPinQuantities.Response> => controllerGenerator<
+      findPinQuantities.Request,
+      findPinQuantities.EffectiveRequest,
+      findPinQuantities.Response
+    >(
+      findPinQuantities.controllerGeneratorOptions,
       GraphRoute.routerPath,
       GraphRoute.auth,
       this.comms,
