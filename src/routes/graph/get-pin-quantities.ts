@@ -6,7 +6,7 @@ import { schema as thresholdSchema, Threshold } from '../../models/threshold';
 
 interface Request {
   params: {
-    hashId: string;
+    pinHashId: string;
   };
 }
 
@@ -21,9 +21,9 @@ interface Response {
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
-  path: '/pin-quantities/:hashId',
+  path: '/pin-quantities/:pinHashId',
   params: Joi.object().keys({
-    hashId: Joi.string().required().example('mygndr'),
+    pinHashId: Joi.string().required().example('e13d57'),
   }).required(),
   right: { environment: 'READ' },
   response: Joi.object().keys({

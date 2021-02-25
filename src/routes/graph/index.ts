@@ -14,13 +14,13 @@ import * as find from './find';
 import * as findEdge from './find-edge';
 import * as findGrid from './find-grid';
 import * as findPinGroup from './find-pin-group';
-import * as findPinQuantities from './find-pin-quantities';
 import * as findNode from './find-node';
 import * as getEdgeMeasurements from './get-edge-measurements';
 import * as getEdge from './get-edge';
 import * as getGrid from './get-grid';
 import * as getPinGroupPerformance from './get-pin-group-performance';
 import * as getPinGroup from './get-pin-group';
+import * as getPinQuantities from './get-pin-quantities';
 import * as getNode from './get-node';
 import * as getPinMeasurements from './get-pin-measurements';
 import * as getPin from './get-pin';
@@ -273,13 +273,13 @@ class GraphRoute {
       this.comms,
     )(parameters);
 
-  findPinQuantities = (parameters: findPinQuantities.Request):
-    Result<findPinQuantities.EffectiveRequest, findPinQuantities.Response> => controllerGenerator<
-      findPinQuantities.Request,
-      findPinQuantities.EffectiveRequest,
-      findPinQuantities.Response
+  getPinQuantities = (parameters: getPinQuantities.Request):
+    Result<getPinQuantities.EffectiveRequest, getPinQuantities.Response> => controllerGenerator<
+      getPinQuantities.Request,
+      getPinQuantities.EffectiveRequest,
+      getPinQuantities.Response
     >(
-      findPinQuantities.controllerGeneratorOptions,
+      getPinQuantities.controllerGeneratorOptions,
       GraphRoute.routerPath,
       GraphRoute.auth,
       this.comms,
