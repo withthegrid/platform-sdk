@@ -20,6 +20,7 @@ import * as getEdge from './get-edge';
 import * as getGrid from './get-grid';
 import * as getPinGroupPerformance from './get-pin-group-performance';
 import * as getPinGroup from './get-pin-group';
+import * as getPinQuantities from './get-pin-quantities';
 import * as getNode from './get-node';
 import * as getPinMeasurements from './get-pin-measurements';
 import * as getPin from './get-pin';
@@ -56,6 +57,7 @@ export {
   getGrid,
   getPinGroupPerformance,
   getPinGroup,
+  getPinQuantities,
   getNode,
   getPinMeasurements,
   getPin,
