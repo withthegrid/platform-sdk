@@ -12,7 +12,7 @@ interface Request {
       low: SiNumber | null;
       high: SiNumber | null;
       criticallyHigh: SiNumber | null;
-    };
+    } | null;
   };
 }
 
@@ -31,7 +31,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       low: siNumberSchema.allow(null).required().description('If null, incoming measurements are not checked against this value'),
       high: siNumberSchema.allow(null).required().description('If null, incoming measurements are not checked against this value'),
       criticallyHigh: siNumberSchema.allow(null).required().description('If null, incoming measurements are not checked against this value'),
-    }).required(),
+    }).allow(null).required(),
   }).required(),
   right: { environment: 'ISSUES' },
   response: Joi.object().keys({
