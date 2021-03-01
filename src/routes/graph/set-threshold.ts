@@ -17,7 +17,7 @@ interface Request {
 }
 
 interface Response {
-  hashId: string;
+  hashId?: string;
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
@@ -35,7 +35,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   }).required(),
   right: { environment: 'ISSUES' },
   response: Joi.object().keys({
-    hashId: Joi.string().required().example('tap192'),
+    hashId: Joi.string().example('tap192')
+      .description('If thresholds is set to null, this key will not be present'),
   }).required(),
   description: 'Sets issue triggers (thresholds) on a specific quantitity on a specific port (pin). If a measurement outside these limits is registered, an issue is automatically created (if there isn\'t a relevant one open yet)',
 };
