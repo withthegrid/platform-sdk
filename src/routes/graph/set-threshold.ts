@@ -12,12 +12,12 @@ interface Request {
       low: SiNumber | null;
       high: SiNumber | null;
       criticallyHigh: SiNumber | null;
-    };
+    } | null;
   };
 }
 
 interface Response {
-  hashId: string;
+  hashId?: string;
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
@@ -31,11 +31,12 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       low: siNumberSchema.allow(null).required().description('If null, incoming measurements are not checked against this value'),
       high: siNumberSchema.allow(null).required().description('If null, incoming measurements are not checked against this value'),
       criticallyHigh: siNumberSchema.allow(null).required().description('If null, incoming measurements are not checked against this value'),
-    }).required(),
+    }).allow(null).required(),
   }).required(),
   right: { environment: 'ISSUES' },
   response: Joi.object().keys({
-    hashId: Joi.string().required().example('tap192'),
+    hashId: Joi.string().example('tap192')
+      .description('If thresholds is set to null, this key will not be present'),
   }).required(),
   description: 'Sets issue triggers (thresholds) on a specific quantitity on a specific port (pin). If a measurement outside these limits is registered, an issue is automatically created (if there isn\'t a relevant one open yet)',
 };
