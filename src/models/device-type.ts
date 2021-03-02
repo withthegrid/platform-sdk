@@ -17,7 +17,8 @@ const baseSchema = Joi.object().keys({
       title: Joi.string().allow(null).example('Red wire charts').required(),
       series: Joi.array().items(Joi.object().keys({
         quantityHashId: Joi.string().example('x18a92').required(),
-        color: Joi.string().example('#ff00ff').required(),
+        color: Joi.string().example('#ff00ff').allow(null)
+          .default(null),
       })).required(),
     })).required(),
   })).required(),
@@ -26,7 +27,8 @@ const baseSchema = Joi.object().keys({
     series: Joi.array().items(Joi.object().keys({
       channelIndex: Joi.number().integer().required(),
       quantityHashId: Joi.string().example('x18a92').required(),
-      color: Joi.string().example('#ff00ff').required(),
+      color: Joi.string().example('#ff00ff').allow(null)
+        .default(null),
     })).required(),
   })).required(),
   commandTypeHashIds: Joi.array().items(Joi.string().example('x18a92')).required().description('The hashIds of the command types a user can schedule for this device'),
@@ -49,7 +51,7 @@ interface DeviceType {
       title: string | null;
       series: {
         quantityHashId: string;
-        color: string;
+        color: string | null;
       }[];
     }[];
   }[];
@@ -58,7 +60,7 @@ interface DeviceType {
     series: {
       channelIndex: number;
       quantityHashId: string;
-      color: string;
+      color: string | null;
     }[];
   }[];
   commandTypeHashIds: string[];

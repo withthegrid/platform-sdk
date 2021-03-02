@@ -16,7 +16,7 @@ interface Request {
         title: string | null;
         series: {
           quantityHashId: string;
-          color: string;
+          color: string | null;
         }[];
       }[];
     }[];
@@ -25,7 +25,7 @@ interface Request {
       series: {
         channelIndex: number;
         quantityHashId: string;
-        color: string;
+        color: string | null;
       }[];
     }[];
     commandTypeHashIds: string[];
@@ -56,7 +56,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
         title: Joi.string().allow(null).example('Red wire charts').required(),
         series: Joi.array().items(Joi.object().keys({
           quantityHashId: Joi.string().example('x18a92').required(),
-          color: Joi.string().example('#ff00ff').required(),
+          color: Joi.string().example('#ff00ff').allow(null)
+            .default(null),
         })).required(),
       })),
     })).required().description('All measurements are registered on a channel. When a device is installed at a location (pinGroup), its channels are connected to the ports (pins) of the location(pinGroup).'),
@@ -65,7 +66,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       series: Joi.array().items(Joi.object().keys({
         channelIndex: Joi.number().integer().required(),
         quantityHashId: Joi.string().example('x18a92').required(),
-        color: Joi.string().example('#ff00ff').required(),
+        color: Joi.string().example('#ff00ff').allow(null)
+          .default(null),
       })).required(),
     })),
     commandTypeHashIds: Joi.array().items(Joi.string().example('x18a92')).required().description('The hashIds of the command types a user can schedule for this device'),

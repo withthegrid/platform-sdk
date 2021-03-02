@@ -13,7 +13,7 @@ interface Request {
       series: {
         quantityHashId: string;
         pinHashId: string;
-        color: string;
+        color: string | null;
       }[];
     }[];
   };
@@ -37,7 +37,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       series: Joi.array().max(40).items(Joi.object().keys({
         quantityHashId: Joi.string().required().example('sajia1'),
         pinHashId: Joi.string().required().example('e13d57'),
-        color: Joi.string().example('#ff0000').description('A hex color string').required(),
+        color: Joi.string().example('#ff0000').description('A hex color string').allow(null)
+          .default(null),
       })).required(),
     })),
   }).required(),
