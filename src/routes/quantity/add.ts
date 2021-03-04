@@ -5,7 +5,7 @@ import { schema as siNumberSchema, SiNumber } from '../../models/si-number';
 interface Request {
   body: {
     name: string;
-    color?: string;
+    color: string;
     unit: string;
     defaultOrderOfMagnitude: number;
     defaultCriticallyLowThreshold: SiNumber | null;
