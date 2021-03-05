@@ -19,7 +19,7 @@ interface Request {
 }
 
 interface Response {
-  hashId?: string | string[];
+  hashId: (string | null) | (string | null)[];
 }
 
 const bodySchema = Joi.object().keys({
