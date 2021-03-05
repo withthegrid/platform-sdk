@@ -55,10 +55,20 @@ class UserRoute {
   findTableController = (parameters?: find.Query):
     TableController<find.ResponseRow> => new TableController<find.ResponseRow>(
       this.find,
-      (row: find.ResponseRow) => ({
-        lastValueSortColumn: row.user.hashId,
-        lastValueHashId: row.user.hashId,
-      }),
+      (row: find.ResponseRow, sortBy: string) => {
+        let lastValueSortColumn;
+        if (sortBy === 'name') {
+          lastValueSortColumn = row.user.name;
+        } else if (sortBy === 'email') {
+          lastValueSortColumn = row.user.email;
+        } else {
+          lastValueSortColumn = row.user.hashId;
+        }
+        return {
+          lastValueSortColumn,
+          lastValueHashId: row.user.hashId,
+        };
+      },
       parameters,
     );
 

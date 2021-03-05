@@ -224,10 +224,18 @@ class GraphRoute {
   findEdgeTableController = (parameters?: findEdge.Query):
     TableController<findEdge.ResponseRow> => new TableController<findEdge.ResponseRow>(
       this.findEdge,
-      (row: findEdge.ResponseRow) => ({
-        lastValueSortColumn: row.edge.hashId,
-        lastValueHashId: row.edge.hashId,
-      }),
+      (row: findEdge.ResponseRow, sortBy: string) => {
+        let lastValueSortColumn;
+        if (sortBy === 'name') {
+          lastValueSortColumn = row.edge.name;
+        } else {
+          lastValueSortColumn = row.edge.hashId;
+        }
+        return {
+          lastValueSortColumn,
+          lastValueHashId: row.edge.hashId,
+        };
+      },
       parameters,
     );
 
@@ -318,10 +326,18 @@ class GraphRoute {
   findNodeTableController = (parameters?: findNode.Query):
     TableController<findNode.ResponseRow> => new TableController<findNode.ResponseRow>(
       this.findNode,
-      (row: findNode.ResponseRow) => ({
-        lastValueSortColumn: row.node.hashId,
-        lastValueHashId: row.node.hashId,
-      }),
+      (row: findNode.ResponseRow, sortBy: string) => {
+        let lastValueSortColumn;
+        if (sortBy === 'name') {
+          lastValueSortColumn = row.node.name;
+        } else {
+          lastValueSortColumn = row.node.hashId;
+        }
+        return {
+          lastValueSortColumn,
+          lastValueHashId: row.node.hashId,
+        };
+      },
       parameters,
     );
 

@@ -55,10 +55,18 @@ class SupplierCertificateRoute {
   findTableController = (parameters?: find.Query):
     TableController<find.ResponseRow> => new TableController<find.ResponseRow>(
       this.find,
-      (row: find.ResponseRow) => ({
-        lastValueSortColumn: row.certificate.hashId,
-        lastValueHashId: row.certificate.hashId,
-      }),
+      (row: find.ResponseRow, sortBy: string) => {
+        let lastValueSortColumn;
+        if (sortBy === 'name') {
+          lastValueSortColumn = row.certificate.name;
+        } else {
+          lastValueSortColumn = row.certificate.hashId;
+        }
+        return {
+          lastValueSortColumn,
+          lastValueHashId: row.certificate.hashId,
+        };
+      },
       parameters,
     );
 
