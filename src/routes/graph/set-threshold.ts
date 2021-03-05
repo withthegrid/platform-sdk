@@ -44,10 +44,10 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   response: Joi.object().keys({
     hashId: Joi.alternatives().try(
       Joi.string().allow(null).required().example('tap192')
-        .description('If thresholds is set to null, this key will not be present'),
+        .description('If thresholds is set to null, this property will be null'),
       Joi.array().items(
         Joi.string().allow(null).required().example('tap192')
-          .description('If thresholds is set to null, this key will not be present'),
+          .description('If thresholds in body array item is set to null, the corresponding hashId item will be null'),
       ).required(),
     ).required(),
   }).required(),
