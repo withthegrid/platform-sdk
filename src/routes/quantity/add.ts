@@ -5,6 +5,7 @@ import { schema as siNumberSchema, SiNumber } from '../../models/si-number';
 interface Request {
   body: {
     name: string;
+    color: string;
     unit: string;
     defaultOrderOfMagnitude: number;
     defaultCriticallyLowThreshold: SiNumber | null;
@@ -24,6 +25,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   path: '/',
   body: Joi.object().keys({
     name: Joi.string().required().example('Temperature'),
+    color: Joi.string().default('#ff00ff').example('#ff00ff'),
     unit: Joi.string().required().example('K').description('Will be displayed with an SI-prefix (eg. k or M) if relevant'),
     defaultOrderOfMagnitude: Joi.number().integer().min(-128).max(127)
       .default(0)
