@@ -2,7 +2,7 @@ import Joi from 'joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as quantitySchema, Quantity } from '../../models/quantity';
-import { EnvironmentReportType } from '../../models/environment-report-type';
+import { EnvironmentReportType, schema as environmentReportTypeSchema } from '../../models/environment-report-type';
 
 interface Request {
   params: {
@@ -24,7 +24,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   }).required(),
   right: { environment: 'READ', supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
+    reportTypes: Joi.array().items(environmentReportTypeSchema).required(),
     quantity: quantitySchema.required(),
+    linkedSupplierQuantities: Joi.array().items(quantitySchema).required(),
   }).required(),
   description: 'Get a specific quantity identified by its hashId',
 };
