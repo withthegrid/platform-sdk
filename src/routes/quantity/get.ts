@@ -2,6 +2,7 @@ import Joi from 'joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as quantitySchema, Quantity } from '../../models/quantity';
+import { EnvironmentReportType } from '../../models/environment-report-type';
 
 interface Request {
   params: {
@@ -10,7 +11,9 @@ interface Request {
 }
 
 interface Response {
+  reportTypes: EnvironmentReportType[];
   quantity: Quantity;
+  linkedSupplierQuantities: Quantity[];
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
