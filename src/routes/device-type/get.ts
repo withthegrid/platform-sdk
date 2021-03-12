@@ -3,6 +3,7 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 
 import { schema as deviceTypeSchema, DeviceType } from '../../models/device-type';
 import { schema as commandTypeSchema, CommandType } from '../../models/command-type';
+import { schema as quantitySchema, Quantity } from '../../models/quantity';
 
 interface Request {
   params: {
@@ -15,6 +16,7 @@ interface Response {
   eventHandler: string;
   commandTypes: CommandType[];
   subscriptionHashId?: string;
+  chartQuantities: Quantity[];
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
@@ -29,6 +31,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     eventHandler: Joi.string().required().example('[omitted]').description('A javascript function that handles an events. See the chapter "User defined code"'),
     commandTypes: Joi.array().items(commandTypeSchema).required(),
     subscriptionHashId: Joi.string().description('If the user is subscribed to (email) alerts on this object, this key is present'),
+    chartQuantities: Joi.array().items(quantitySchema).required(),
   }).required(),
   description: 'Get a specific device type identified by its hashId',
 };
