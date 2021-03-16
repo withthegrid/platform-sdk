@@ -19,6 +19,7 @@ interface Response {
   pins: Pin[];
   pinGroups: PinGroup[];
   measurementCycles: Array<MeasurementCycle | null>;
+  nextReportBefore: Date | null;
   thresholds: {
     value: Threshold;
     quantity: Quantity;

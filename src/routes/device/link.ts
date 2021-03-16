@@ -25,6 +25,7 @@ interface Response {
   device: Device;
   deviceType: DeviceType;
   measurementCycle: MeasurementCycle | null;
+  nextReportBefore: Date | null;
   pins: Pin[];
 }
 

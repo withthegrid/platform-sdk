@@ -31,6 +31,7 @@ interface Response {
     pinHashId: string | null;
   }[] | null;
   measurementCycle: MeasurementCycle | null;
+  nextReportBefore: Date | null;
   thresholds: {
     value: Threshold;
     quantity: Quantity;
