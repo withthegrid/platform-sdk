@@ -39,6 +39,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     pins: Joi.array().items(pinSchema).required(),
     pinGroups: Joi.array().items(pinGroupSchema(apiVersion)).required(),
     measurementCycles: Joi.array().items(measurementCycleSchema.allow(null)).required(),
+    nextReportBefore: Joi.date().allow(null).required(),
     thresholds: Joi.array().items(Joi.object().keys({
       value: thresholdSchema.required(),
       quantity: quantitySchema.required(),
