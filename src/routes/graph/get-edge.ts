@@ -19,7 +19,7 @@ interface Response {
   pins: Pin[];
   pinGroups: PinGroup[];
   measurementCycles: Array<MeasurementCycle | null>;
-  nextReportBefore: Date | null;
+  nextReportBefore: Array<Date | null>;
   thresholds: {
     value: Threshold;
     quantity: Quantity;
@@ -39,7 +39,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     pins: Joi.array().items(pinSchema).required(),
     pinGroups: Joi.array().items(pinGroupSchema(apiVersion)).required(),
     measurementCycles: Joi.array().items(measurementCycleSchema.allow(null)).required(),
-    nextReportBefore: Joi.date().allow(null).required(),
+    nextReportBefore: Joi.array().items(Joi.date().allow(null)).required(),
     thresholds: Joi.array().items(Joi.object().keys({
       value: thresholdSchema.required(),
       quantity: quantitySchema.required(),
