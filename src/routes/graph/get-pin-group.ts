@@ -81,7 +81,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
         pinHashId: Joi.string().allow(null).default(null),
       })).required().allow(null),
       measurementCycle: measurementCycleSchema.allow(null).required(),
-      nextReportBefore: Joi.date().allow(null).required(),
       thresholds: Joi.array().items(Joi.object().keys({
         value: thresholdSchema.required(),
         quantity: quantitySchema.required(),
@@ -97,6 +96,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     }
 
     return base.keys({
+      nextReportBefore: Joi.date().allow(null).required(),
       grids: Joi.array().items(gridSchema).required(),
     });
   },
