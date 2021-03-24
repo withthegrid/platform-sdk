@@ -3,13 +3,13 @@ import Joi from 'joi';
 import { schemaConstructor as supplierActivityConstructor, SupplierActivity } from './base';
 
 interface ExpectNextReportBefore extends SupplierActivity<'expectNextReportBefore'> {
-  triggerData: { before?: Date };
+  triggerData: { before?: Date | null };
 }
 
 const schema = supplierActivityConstructor(
   'expectNextReportBefore',
   Joi.object().keys({
-    before: Joi.date().example('2019-12-31T15:23Z'),
+    before: Joi.date().allow(null).example('2019-12-31T15:23Z'),
   }).required(),
 )
   .tag('supplierActivityExpectNextReportBefore')
