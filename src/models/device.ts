@@ -10,6 +10,7 @@ const schema = Joi.object().keys({
   deviceTypeHashId: Joi.string().required().example('wasd2'),
   fields: fieldsFromServerSchema.required().example({}),
   measurementCycle: measurementCycleSchema.allow(null).required(),
+  nextReportBefore: Joi.date().allow(null).required().example('2019-12-31T15:25Z'),
   lastOnlineAt: Joi.date().allow(null).required().example('2019-12-31T15:23Z'),
   validated: Joi.boolean().required().example(true),
 })
@@ -23,6 +24,7 @@ interface Device {
   deviceTypeHashId: string;
   fields: FieldsFromServer;
   measurementCycle: MeasurementCycle | null;
+  nextReportBefore: Date | null;
   lastOnlineAt: Date | null;
   validated: boolean;
 }

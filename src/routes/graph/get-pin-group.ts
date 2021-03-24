@@ -31,6 +31,7 @@ interface Response {
     pinHashId: string | null;
   }[] | null;
   measurementCycle: MeasurementCycle | null;
+  nextReportBefore: Date | null;
   thresholds: {
     value: Threshold;
     quantity: Quantity;
@@ -95,6 +96,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     }
 
     return base.keys({
+      nextReportBefore: Joi.date().allow(null).required(),
       grids: Joi.array().items(gridSchema).required(),
     });
   },
