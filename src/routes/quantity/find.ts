@@ -8,6 +8,7 @@ import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../.
 interface Query extends TableQuery {
   environmentReportTypeHashIds?: string[];
   includeDeleted?: boolean;
+  deviceQuantityMode?: boolean;
 }
 
 type Request = {
@@ -25,6 +26,7 @@ interface EffectiveRequest {
 
 interface ResponseRow {
   quantity: Quantity;
+  environmentQuantity?: Quantity;
 }
 
 interface Response {
@@ -39,10 +41,12 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     .keys({
       environmentReportTypeHashIds: Joi.array().items(Joi.string()).description('Limit results to provided report type hashIds. Only valid when requesting for an environment (not a supplier)'),
       includeDeleted: Joi.boolean().default(false),
+      deviceQuantityMode: Joi.boolean().default(false),
     }),
   response: Joi.object().keys({
     rows: Joi.array().items(Joi.object().keys({
       quantity: quantitySchema.required(),
+      environmentQuantity: quantitySchema,
     })).required(),
   }),
   description: 'Search through quantities',
