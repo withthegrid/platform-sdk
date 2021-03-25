@@ -18,6 +18,7 @@ type Request = {
 interface EffectiveQuery extends EffectiveTableQuery {
   environmentReportTypeHashIds?: string[];
   includeDeleted: boolean;
+  deviceQuantityMode?: boolean;
 }
 
 interface EffectiveRequest {
