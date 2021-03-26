@@ -16,6 +16,7 @@ interface Request {
     defaultHighThreshold?: SiNumber | null;
     defaultCriticallyHighThreshold?: SiNumber | null;
     disableSiPrefixes?: boolean;
+    deviceQuantityHashIds?: string[];
   };
 }
 
@@ -39,6 +40,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     defaultHighThreshold: siNumberSchema.allow(null),
     defaultCriticallyHighThreshold: siNumberSchema.allow(null),
     disableSiPrefixes: Joi.boolean().example(true).description('Will disable SI-prefixes for this quantity'),
+    deviceQuantityHashIds: Joi.array().items(Joi.string().example('x18a92')).description('Device quantities, linked to this quantity'),
   }).required(),
   right: { environment: 'ENVIRONMENT_ADMIN', supplier: 'ENVIRONMENT_ADMIN' },
 };
