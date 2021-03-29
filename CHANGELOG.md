@@ -1,3 +1,10 @@
+### [16.26.4](https://github.com/withthegrid/platform-sdk/compare/v16.26.3...v16.26.4) (2021-03-29)
+
+
+### Continuous Integration
+
+* drop setup-node action ([32eb89b](https://github.com/withthegrid/platform-sdk/commit/32eb89ba68bf0b0d1328f18fe92f754839498fb9))
+
 ### [16.26.3](https://github.com/withthegrid/platform-sdk/compare/v16.26.2...v16.26.3) (2021-03-29)
 
 
