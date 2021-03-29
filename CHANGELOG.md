@@ -1,3 +1,10 @@
+### [16.26.5](https://github.com/withthegrid/platform-sdk/compare/v16.26.4...v16.26.5) (2021-03-29)
+
+
+### Continuous Integration
+
+* update GITHUB_TOKEN ([0caa7ec](https://github.com/withthegrid/platform-sdk/commit/0caa7ecaaa3498c6d0fc07abcfc96ee80070ef14))
+
 ### [16.26.4](https://github.com/withthegrid/platform-sdk/compare/v16.26.3...v16.26.4) (2021-03-29)
 
 
