@@ -1,0 +1,35 @@
+name: Continuous integration and deployment
+on:
+  push:
+    branches:
+      - main
+      - next
+  pull_request:
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Set-up node
+        uses: actions/setup-node@v2
+        with:
+          # https://github.com/actions/setup-node/issues/26
+          node-version: '14'
+          registry-url: https://npm.pkg.github.com
+      - name: Install packages
+        run: npm ci
+      - name: Lint code
+        run: npm run lint
+        timeout-minutes: 5
+      - name: Create a release
+        if: github.event_name == 'push'
+        run: npm run release
+        timeout-minutes: 5
+        env:
+          # Has write access to packages
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GOOGLE_CHAT_WEBHOOK: ${{ secrets.RELEASE_GOOGLE_CHAT_WEBHOOK }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
