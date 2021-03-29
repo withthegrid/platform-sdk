@@ -1,27 +1,7 @@
 {
+  "extends": "./tsconfig",
   "compilerOptions": {
     "module": "commonjs",
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "target": "es6",
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "noImplicitThis": true,
-    "noImplicitReturns": true,
-    "declaration": true,
-    "moduleResolution": "node",
-    "sourceMap": true,
     "outDir": "cjs",
-    "baseUrl": ".",
-    "paths": {
-      "*": [
-        "node_modules/*",
-        "src/types/*"
-      ]
-    },
-    "rootDir": "src",
   },
-  "include": [
-    "src/**/*"
-  ]
 }
