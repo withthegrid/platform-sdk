@@ -5,7 +5,7 @@ import path from 'path';
 import { localSpawn } from './spawn';
 
 import notifyOnGoogleChat from './google-chat';
-import getTargets from './get-targets';
+import getNpmTag from './get-npm-tag';
 
 async function go() {
   const result = await semanticRelease({
@@ -68,7 +68,7 @@ async function go() {
 
   if (result !== false) {
     const branch = (await localSpawn('git', ['branch', '--show-current'])).trim();
-    const targets = await getTargets(branch, result.nextRelease.gitTag);
+    const npmTag = await getNpmTag(branch);
 
     // create .npmrc file with tokens
     const npmrcPath = path.resolve(__dirname, '../.npmrc');
@@ -79,14 +79,10 @@ async function go() {
 
     fs.writeFileSync(npmrcPath, npmRcLines.join(os.EOL), { flag: 'w' });
 
-    let npmTag: string;
-    if (targets.includes('production')) {
-      npmTag = 'latest';
-    } else {
-      npmTag = 'sandbox';
-    }
-    await localSpawn('npm', ['publish', '--tag', npmTag]);
-    await localSpawn('npm', ['publish', '--ignore-scripts', '--@withthegrid:registry=\'https://npm.pkg.github.com\'', '--tag', 'latest']);
+    const npmPublish = await localSpawn('npm', ['publish', '--tag', npmTag]);
+    console.log(npmPublish);
+    const gitHubPublish = await localSpawn('npm', ['publish', '--ignore-scripts', '--@withthegrid:registry=\'https://npm.pkg.github.com\'', '--tag', 'latest']);
+    console.log(gitHubPublish);
 
     if (process.env.GOOGLE_CHAT_WEBHOOK !== undefined) {
       const repoUrl = `https://github.com/withthegrid/platform-sdk/releases/${result.nextRelease.gitTag}`;
