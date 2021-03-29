@@ -1,3 +1,10 @@
+### [16.26.10](https://github.com/withthegrid/platform-sdk/compare/v16.26.9...v16.26.10) (2021-03-29)
+
+
+### Continuous Integration
+
+* ready ([45e68ef](https://github.com/withthegrid/platform-sdk/commit/45e68efd699f63f67622497d4b72a1ad3c72a4ed))
+
 ### [16.26.9](https://github.com/withthegrid/platform-sdk/compare/v16.26.8...v16.26.9) (2021-03-29)
 
 
