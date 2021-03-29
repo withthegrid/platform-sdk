@@ -15,7 +15,7 @@ function localSpawn(cmd: string, params: string[], cwd = rootPath): Promise<stri
     console.log(`local: ${cmd} ${params.join(' ')}${cwdRemark}`);
 
     let stdOut = '';
-    // const stdErr = '';
+    let stdErr = '';
 
     activeSpawns += 1;
     const spawnedProcess = spawn(cmd, params, { cwd });
@@ -32,12 +32,10 @@ function localSpawn(cmd: string, params: string[], cwd = rootPath): Promise<stri
 
     spawnedProcess.stdout.on('data', (data: Buffer) => {
       stdOut += data.toString('utf-8');
-      console.log(data.toString('utf-8'));
     });
 
     spawnedProcess.stderr.on('data', (data: Buffer) => {
-      // stdErr += data;
-      console.log(data.toString('utf-8'));
+      stdErr += data.toString('utf-8');
     });
 
     spawnedProcess.on('exit', (code) => {
@@ -47,10 +45,10 @@ function localSpawn(cmd: string, params: string[], cwd = rootPath): Promise<stri
         resolve(stdOut);
         return;
       }
-      // console.log('stdout:');
-      // console.log(stdOut);
-      // console.log('stderr:');
-      // console.log(stdErr);
+      console.log('stdout:');
+      console.log(stdOut);
+      console.log('stderr:');
+      console.log(stdErr);
       reject(new Error(`Exited with code ${code}`));
     });
   });

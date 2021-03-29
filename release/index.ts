@@ -86,7 +86,7 @@ async function go() {
 
     fs.writeFileSync(npmrcPath, npmRcLines.join(os.EOL), { flag: 'w' });
 
-    // await localSpawn('npm', ['publish', '--tag', npmTag]);
+    await localSpawn('npm', ['publish', '--tag', npmTag]);
     await localSpawn('npm', ['publish', '--@withthegrid:registry=https://npm.pkg.github.com']);
 
     if (process.env.GOOGLE_CHAT_WEBHOOK !== undefined) {
