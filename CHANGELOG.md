@@ -1,3 +1,10 @@
+### [16.26.9](https://github.com/withthegrid/platform-sdk/compare/v16.26.8...v16.26.9) (2021-03-29)
+
+
+### Continuous Integration
+
+* change gh deploy URL ([38c4249](https://github.com/withthegrid/platform-sdk/commit/38c42490ff702d52ecf2453397eed068ba2b90fa))
+
 ### [16.26.8](https://github.com/withthegrid/platform-sdk/compare/v16.26.7...v16.26.8) (2021-03-29)
 
 
