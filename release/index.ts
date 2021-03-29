@@ -73,8 +73,11 @@ async function go() {
     // create .npmrc file with tokens
     const npmrcPath = path.resolve(process.cwd(), '.npmrc');
     const npmRcLines = [
-      `//registry.npmjs.org/:_authToken=${process.env.NPM_TOKEN}`,
-      `//npm.pkg.github.com/:_authToken=${process.env.GITHUB_TOKEN}`,
+      // see https://docs.npmjs.com/using-private-packages-in-a-ci-cd-workflow
+      // eslint-disable-next-line no-template-curly-in-string
+      '//registry.npmjs.org/:_authToken=${NPM_TOKEN}',
+      // eslint-disable-next-line no-template-curly-in-string
+      '//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}',
     ];
     if (fs.existsSync(npmrcPath)) {
       const curContents: string = fs.readFileSync(npmrcPath, 'utf8');
@@ -83,7 +86,7 @@ async function go() {
 
     fs.writeFileSync(npmrcPath, npmRcLines.join(os.EOL), { flag: 'w' });
 
-    await localSpawn('npm', ['publish', '--tag', npmTag]);
+    // await localSpawn('npm', ['publish', '--tag', npmTag]);
     await localSpawn('npm', ['publish', '--@withthegrid:registry=\'https://npm.pkg.github.com\'']);
 
     if (process.env.GOOGLE_CHAT_WEBHOOK !== undefined) {
