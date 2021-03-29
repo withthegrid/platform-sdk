@@ -1,7 +1,6 @@
 import Joi from 'joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
 
-import { schema as measurementCycleSchema, MeasurementCycle } from '../../models/measurement-cycle';
 import { schema as deviceSchema, Device } from '../../models/device';
 import { schema as deviceTypeSchema, DeviceType } from '../../models/device-type';
 import { schema as pinSchema, Pin } from '../../models/pin';
@@ -24,7 +23,6 @@ interface Request {
 interface Response {
   device: Device;
   deviceType: DeviceType;
-  measurementCycle: MeasurementCycle | null;
   nextReportBefore: Date | null;
   pins: Pin[];
 }
@@ -46,7 +44,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   response: Joi.object().keys({
     device: deviceSchema.required(),
     deviceType: deviceTypeSchema.required(),
-    measurementCycle: measurementCycleSchema.allow(null).required(),
     nextReportBefore: Joi.date().allow(null).required(),
     pins: Joi.array().items(pinSchema).required().description('All ports (pins) of the location (pinGroup), as some might have an updated deviceFields property'),
   }).required(),

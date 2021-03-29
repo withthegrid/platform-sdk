@@ -15,7 +15,6 @@ import * as issueComment from './issue-comment';
 import * as issue from './issue';
 import * as label from './label';
 import * as log from './log';
-import * as measurementCycle from './measurement-cycle';
 import * as measurement from './measurement';
 import * as measurementFilter from './measurement-filter';
 import * as pinGroup from './pin-group';
@@ -53,7 +52,6 @@ import * as supplierActivityParseReport from './supplier-activities/parse-report
 import * as supplierActivityScheduleCommand from './supplier-activities/schedule-command';
 import * as supplierActivitySendRequest from './supplier-activities/send-request';
 import * as supplierActivitySetDeviceFields from './supplier-activities/set-device-fields';
-import * as supplierActivitySetReportingFrequency from './supplier-activities/set-reporting-frequency';
 import * as supplierActivityExpectNextReportBefore from './supplier-activities/expect-next-report-before';
 import * as supplierCertificate from './supplier-certificate';
 import * as supplierReportType from './supplier-report-type';
@@ -80,7 +78,6 @@ export {
   issue,
   label,
   log,
-  measurementCycle,
   measurement,
   measurementFilter,
   pinGroup,
@@ -117,7 +114,6 @@ export {
   supplierActivityScheduleCommand,
   supplierActivitySendRequest,
   supplierActivitySetDeviceFields,
-  supplierActivitySetReportingFrequency,
   supplierActivityExpectNextReportBefore,
   supplierCertificate,
   supplierReportType,
