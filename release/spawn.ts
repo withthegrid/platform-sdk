@@ -50,50 +50,6 @@ function localSpawn(cmd: string, params: string[], cwd = rootPath): Promise<stri
   });
 }
 
-function remoteSpawn(params: string): Promise<string> {
-  const sshAlias = process.env.SSH_ALIAS;
-  if (sshAlias === undefined) {
-    throw new Error('Environment variable SSH_ALIAS is missing');
-  }
-
-  return new Promise((resolve, reject) => {
-    console.log(`remote: ${params}`);
-
-    let stdOut = '';
-    let stdErr = '';
-    activeSpawns += 1;
-    const spawnedProcess = spawn('ssh', [sshAlias, params]);
-
-    if (spawnedProcess.stdout === null || spawnedProcess.stderr === null) {
-      activeSpawns -= 1;
-      reject(new Error('Spawned process does not have stdout or stderr'));
-      return;
-    }
-
-    spawnedProcess.stdout.on('data', (data) => {
-      stdOut += data;
-    });
-
-    spawnedProcess.stderr.on('data', (data) => {
-      stdErr += data;
-    });
-
-    spawnedProcess.on('exit', (code) => {
-      activeSpawns -= 1;
-
-      if (code === 0) {
-        resolve(stdOut);
-        return;
-      }
-      console.log('stdout:');
-      console.log(stdOut);
-      console.log('stderr:');
-      console.log(stdErr);
-      reject(new Error(`Exited with code ${code}`));
-    });
-  });
-}
-
 function inactive(): Promise<void> {
   return new Promise((resolve) => {
     const intervalId = setInterval(() => {
@@ -105,4 +61,4 @@ function inactive(): Promise<void> {
   });
 }
 
-export { localSpawn, remoteSpawn, inactive };
+export { localSpawn, inactive };
