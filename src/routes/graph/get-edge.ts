@@ -4,7 +4,6 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 import { schema as edgeSchema, Edge } from '../../models/edge';
 import { schema as pinSchema, Pin } from '../../models/pin';
 import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
-import { schema as measurementCycleSchema, MeasurementCycle } from '../../models/measurement-cycle';
 import { schema as thresholdSchema, Threshold } from '../../models/threshold';
 import { schema as quantitySchema, Quantity } from '../../models/quantity';
 
@@ -18,7 +17,6 @@ interface Response {
   edge: Edge;
   pins: Pin[];
   pinGroups: PinGroup[];
-  measurementCycles: Array<MeasurementCycle | null>;
   nextReportBefore: Array<Date | null>;
   thresholds: {
     value: Threshold;
@@ -38,7 +36,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     edge: edgeSchema.required(),
     pins: Joi.array().items(pinSchema).required(),
     pinGroups: Joi.array().items(pinGroupSchema(apiVersion)).required(),
-    measurementCycles: Joi.array().items(measurementCycleSchema.allow(null)).required(),
     nextReportBefore: Joi.array().items(Joi.date().allow(null)).required(),
     thresholds: Joi.array().items(Joi.object().keys({
       value: thresholdSchema.required(),
