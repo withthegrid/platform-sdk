@@ -1,3 +1,10 @@
+### [16.26.6](https://github.com/withthegrid/platform-sdk/compare/v16.26.5...v16.26.6) (2021-03-29)
+
+
+### Continuous Integration
+
+* trigger action ([71f222b](https://github.com/withthegrid/platform-sdk/commit/71f222b7a7dd2b0106b99fed3dafe32baba6904a))
+
 ### [16.26.5](https://github.com/withthegrid/platform-sdk/compare/v16.26.4...v16.26.5) (2021-03-29)
 
 
