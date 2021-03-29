@@ -24,6 +24,6 @@ jobs:
         timeout-minutes: 5
         env:
           # Has write access to packages
-          GITHUB_TOKEN: ${{ secrets.ROBS_PERSONAL_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GOOGLE_CHAT_WEBHOOK: ${{ secrets.RELEASE_GOOGLE_CHAT_WEBHOOK }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

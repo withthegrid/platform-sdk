@@ -83,10 +83,8 @@ async function go() {
 
     fs.writeFileSync(npmrcPath, npmRcLines.join(os.EOL), { flag: 'w' });
 
-    const npmPublish = await localSpawn('npm', ['publish', '--tag', npmTag]);
-    console.log(npmPublish);
-    const gitHubPublish = await localSpawn('npm', ['publish', '--ignore-scripts', '--@withthegrid:registry=\'https://npm.pkg.github.com\'', '--tag', 'latest']);
-    console.log(gitHubPublish);
+    await localSpawn('npm', ['publish', '--tag', npmTag]);
+    await localSpawn('npm', ['publish', '--@withthegrid:registry=\'https://npm.pkg.github.com\'']);
 
     if (process.env.GOOGLE_CHAT_WEBHOOK !== undefined) {
       const repoUrl = `https://github.com/withthegrid/platform-sdk/releases/${result.nextRelease.gitTag}`;
