@@ -71,11 +71,15 @@ async function go() {
     const npmTag = await getNpmTag(branch);
 
     // create .npmrc file with tokens
-    const npmrcPath = path.resolve(__dirname, '../.npmrc');
+    const npmrcPath = path.resolve(process.cwd(), '.npmrc');
     const npmRcLines = [
       `//registry.npmjs.org/:_authToken=${process.env.NPM_TOKEN}`,
       `//npm.pkg.github.com/:_authToken=${process.env.GITHUB_TOKEN}`,
     ];
+    if (fs.existsSync(npmrcPath)) {
+      const curContents: string = fs.readFileSync(npmrcPath, 'utf8');
+      npmRcLines.push(...curContents.split(os.EOL));
+    }
 
     fs.writeFileSync(npmrcPath, npmRcLines.join(os.EOL), { flag: 'w' });
 

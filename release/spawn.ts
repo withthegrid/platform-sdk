@@ -20,6 +20,10 @@ function localSpawn(cmd: string, params: string[], cwd = rootPath): Promise<stri
     activeSpawns += 1;
     const spawnedProcess = spawn(cmd, params, { cwd });
 
+    spawnedProcess.on('error', (e) => {
+      reject(e);
+    });
+
     if (spawnedProcess.stdout === null || spawnedProcess.stderr === null) {
       activeSpawns -= 1;
       reject(new Error('Spawned process does not have stdout or stderr'));
