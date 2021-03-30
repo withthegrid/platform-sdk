@@ -25,7 +25,7 @@ const baseSchema = Joi.object().keys({
   charts: Joi.array().items(Joi.object().keys({
     title: Joi.string().allow(null).example('Cathodic protection charts').required(),
     series: Joi.array().items(Joi.object().keys({
-      channelIndex: Joi.number().integer().required(),
+      channelIndex: Joi.number().integer().example(0).required(),
       quantityHashId: Joi.string().example('x18a92').required(),
       color: Joi.string().example('#ff00ff').allow(null)
         .default(null),
