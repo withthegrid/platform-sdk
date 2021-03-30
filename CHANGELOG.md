@@ -1,3 +1,10 @@
+### [16.26.11](https://github.com/withthegrid/platform-sdk/compare/v16.26.10...v16.26.11) (2021-03-30)
+
+
+### Bug Fixes
+
+* examples for documentation ([5a166ee](https://github.com/withthegrid/platform-sdk/commit/5a166ee0e534703c1df3f73d7d4aabdbffea0870))
+
 ### [16.26.10](https://github.com/withthegrid/platform-sdk/compare/v16.26.9...v16.26.10) (2021-03-29)
 
 
