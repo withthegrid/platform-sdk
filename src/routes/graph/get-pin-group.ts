@@ -94,7 +94,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     }
 
     return base.keys({
-      nextReportBefore: Joi.date().allow(null).required(),
+      nextReportBefore: Joi.date().allow(null).required().example('2019-12-31T15:25Z'),
       grids: Joi.array().items(gridSchema).required(),
     });
   },

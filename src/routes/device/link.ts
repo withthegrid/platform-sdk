@@ -44,7 +44,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   response: Joi.object().keys({
     device: deviceSchema.required(),
     deviceType: deviceTypeSchema.required(),
-    nextReportBefore: Joi.date().allow(null).required(),
+    nextReportBefore: Joi.date().allow(null).example('2019-12-31T15:25Z').required(),
     pins: Joi.array().items(pinSchema).required().description('All ports (pins) of the location (pinGroup), as some might have an updated deviceFields property'),
   }).required(),
   right: { environment: 'SENSORS' },
