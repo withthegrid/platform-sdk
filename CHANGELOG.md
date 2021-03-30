@@ -1,3 +1,10 @@
+### [16.26.12](https://github.com/withthegrid/platform-sdk/compare/v16.26.11...v16.26.12) (2021-03-30)
+
+
+### Continuous Integration
+
+* all pushes to main get npm tag latest, all pushed to next get sandbox ([793de12](https://github.com/withthegrid/platform-sdk/commit/793de12643bdccb9f062e20cb7fe767d1b713e19))
+
 ### [16.26.11](https://github.com/withthegrid/platform-sdk/compare/v16.26.10...v16.26.11) (2021-03-30)
 
 
