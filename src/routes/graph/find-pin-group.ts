@@ -11,6 +11,8 @@ import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../.
 interface Query extends TableQuery {
   includeDeleted?: boolean;
   forCommandTypeHashId?: string;
+  forEdge?: string;
+  forGrid?: string;
 }
 
 type Request = {
@@ -20,6 +22,8 @@ type Request = {
 interface EffectiveQuery extends EffectiveTableQuery {
   includeDeleted: boolean;
   forCommandTypeHashId?: string;
+  forEdge?: string;
+  forGrid?: string;
 }
 
 interface EffectiveRequest {
@@ -56,6 +60,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     .keys({
       includeDeleted: Joi.boolean().default(false),
       forCommandTypeHashId: Joi.string().description('Filter the results on devices types that are able to receive commands of this type'),
+      forGrid: Joi.string().description('Find only between pin groups which belongs to specified grid hash id'),
+      forEdge: Joi.string().description('Find only between pin groups which belongs to specified edge hash id'),
     }),
   right: { environment: 'READ' },
   response: (apiVersion: number): Joi.ObjectSchema => {
