@@ -1,3 +1,10 @@
+## [16.27.0](https://github.com/withthegrid/platform-sdk/compare/v16.26.12...v16.27.0) (2021-04-06)
+
+
+### Features
+
+* **find-pin-group:** added forGrid and forEdge query options ([#30](https://github.com/withthegrid/platform-sdk/issues/30)) ([e925a76](https://github.com/withthegrid/platform-sdk/commit/e925a76251440474a526f70dbdeb0b7fa2f808c8)), closes [withthegrid/platform#585](https://github.com/withthegrid/platform/issues/585)
+
 ### [16.26.12](https://github.com/withthegrid/platform-sdk/compare/v16.26.11...v16.26.12) (2021-03-30)
 
 
