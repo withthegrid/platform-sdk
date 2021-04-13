@@ -14,13 +14,6 @@ interface MeasurementFilterContent {
   description: string;
   from?: Date;
   to?: Date;
-  // deprecated from here
-  includePinsWithoutReports: boolean;
-  reportTypeHashIds: string[];
-  gridHashId: string | null;
-  pinGroupHashIds: string[];
-  quantityHashIds: string[];
-  fieldKeys: string[];
 }
 
 type Content = AllContent | MeasurementFilterContent;
@@ -36,15 +29,6 @@ const contentSchemaAlternatives = [
     name: Joi.string().allow('').default('').example('Name'),
     description: Joi.string().allow('').default('').example('Description'),
     type: Joi.string().required().valid('measurementFilter').example('measurementFilter'),
-    includePinsWithoutReports: Joi.boolean().required().example(true),
-    reportTypeHashIds: Joi.array().min(1).max(20).items(Joi.string().example('l19a7s'))
-      .default([]),
-    gridHashId: Joi.string().allow(null).required(),
-    pinGroupHashIds: Joi.array().min(0).max(50).items(Joi.string().example('dao97'))
-      .required(),
-    quantityHashIds: Joi.array().min(1).max(64).items(Joi.string().example('sajia1'))
-      .default([]),
-    fieldKeys: Joi.array().max(20).items(Joi.string().example('id')).default([]),
     from: Joi.date().iso().example('2019-12-01T00:00Z'),
     to: Joi.date().iso().example('2020-01-01T00:00Z'),
   }).required(),
