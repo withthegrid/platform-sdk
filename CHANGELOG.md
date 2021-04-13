@@ -1,3 +1,10 @@
+## [16.28.0](https://github.com/withthegrid/platform-sdk/compare/v16.27.0...v16.28.0) (2021-04-13)
+
+
+### Features
+
+* remove measurement filter content ([#31](https://github.com/withthegrid/platform-sdk/issues/31)) ([5edc911](https://github.com/withthegrid/platform-sdk/commit/5edc911f7648ce87d904c9345bb42237f10bcebb)), closes [withthegrid/platform#571](https://github.com/withthegrid/platform/issues/571)
+
 ## [16.27.0](https://github.com/withthegrid/platform-sdk/compare/v16.26.12...v16.27.0) (2021-04-06)
 
 
