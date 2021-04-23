@@ -3,8 +3,8 @@ import Joi from 'joi';
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('op09a'),
   userHashId: Joi.string().allow(null).required().example('b45zo0'),
-  objectType: Joi.string().allow(null).required().example('command'),
-  objectHashId: Joi.string().allow(null).required().example('ga9741s'),
+  objectType: Joi.string().allow(null).example('command'),
+  objectHashId: Joi.string().allow(null).example('ga9741s'),
   subObjectType: Joi.string().allow(null).required().example(null),
   subObjectHashId: Joi.string().allow(null).required().example(null),
   action: Joi.string().max(32).required().example('delete'),
