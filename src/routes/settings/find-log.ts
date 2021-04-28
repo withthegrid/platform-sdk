@@ -8,7 +8,6 @@ import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../.
 interface Query extends TableQuery {
   objectType?: string;
   objectHashId?: string;
-  environmentType?: string;
 }
 
 interface Request {
@@ -40,9 +39,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     .keys({
       objectType: Joi.string().example('command'),
       objectHashId: Joi.string().example('ga9741s'),
-      environmentType: Joi.string().example('monitoring'),
     }),
-  right: { environment: 'AUDIT_TRAIL' },
+  right: { environment: 'AUDIT_TRAIL', supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
     rows: Joi.array().items(Joi.object().keys({
       log: logSchema.required(),

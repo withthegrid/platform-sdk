@@ -5,7 +5,6 @@ const schema = Joi.object().keys({
   userHashId: Joi.string().allow(null).required().example('b45zo0'),
   objectType: Joi.string().allow(null).example('command'),
   objectHashId: Joi.string().allow(null).example('ga9741s'),
-  environmentType: Joi.string().allow(null).example('monitoring'),
   subObjectType: Joi.string().allow(null).required().example(null),
   subObjectHashId: Joi.string().allow(null).required().example(null),
   action: Joi.string().max(32).required().example('delete'),

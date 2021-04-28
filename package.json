@@ -16,10 +16,10 @@
   "scripts": {
     "start": "npm run watch-ts",
     "build": "npm run build:esm && npm run build:cjs",
-    "build:cjs": "rm -rf cjs/ && tsc -p tsconfig.cjs.json",
-    "build:esm": "rm -rf esm/ && tsc",
+    "build:cjs": "rimraf -rf cjs/ && tsc -p tsconfig.cjs.json",
+    "build:esm": "rimraf -rf esm/ && tsc",
     "prepare": "npm run build",
-    "watch-ts": "rm -rf esm/ && tsc -w",
+    "watch-ts": "rimraf -rf esm/ && tsc -w",
     "lint": "npm run build:cjs && eslint --ext .ts src",
     "release": "ts-node -P tsconfig.cjs.json release/"
   },
@@ -29,7 +29,8 @@
     "@types/qs": "^6.9.6",
     "axios": "^0.21.1",
     "joi": "^17.4.0",
-    "qs": "^6.10.1"
+    "qs": "^6.10.1",
+    "rimraf": "^3.0.2"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^5.0.1",
