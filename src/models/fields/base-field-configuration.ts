@@ -4,7 +4,7 @@ import { Translations, stringOrTranslationsSchema } from '../helpers/translation
 
 const schema = Joi.object().keys({
   key: Joi.string().pattern(/^[a-z][a-zA-Z\d]*$/).required().example('id'),
-  type: Joi.string().required().valid('string', 'boolean', 'number', 'integer')
+  type: Joi.string().valid('string', 'boolean', 'number', 'integer')
     .default('string')
     .when(Joi.ref('regex'), {
       is: Joi.string().required(),
