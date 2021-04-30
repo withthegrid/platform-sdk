@@ -26,6 +26,8 @@ interface Pin {
   deviceFields: FieldsFromServer;
   level: 0 | 1 | 2;
   typeKey: string | null;
+  edgeHashId: string | null;
+  nodeHashId: string | null;
   deletedAt: Date | null;
 }
 
