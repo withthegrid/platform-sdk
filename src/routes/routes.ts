@@ -1,3 +1,4 @@
+import * as analytics from './analytics/routes';
 import * as authentication from './authentication/routes';
 import * as chart from './chart/routes';
 import * as command from './command/routes';
@@ -25,6 +26,7 @@ import * as supplierWebhook from './supplier-webhook/routes';
 import * as user from './user/routes';
 
 export {
+  analytics,
   authentication,
   chart,
   command,

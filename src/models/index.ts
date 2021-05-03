@@ -1,3 +1,4 @@
+import * as analyticsQuery from './analytics-query';
 import * as chart from './chart';
 import * as command from './command';
 import * as commandType from './command-type';
@@ -63,6 +64,7 @@ import * as user from './user';
 import * as userSubscription from './user-subscription';
 
 export {
+  analyticsQuery,
   chart,
   command,
   commandType,
