@@ -1,3 +1,10 @@
+## [16.29.0](https://github.com/withthegrid/platform-sdk/compare/v16.28.0...v16.29.0) (2021-05-03)
+
+
+### Features
+
+* analytics route ([#35](https://github.com/withthegrid/platform-sdk/issues/35)) ([8c61c1c](https://github.com/withthegrid/platform-sdk/commit/8c61c1cf659c7691c7c27fa4ec51998cbd7f58e6))
+
 ## [16.28.0](https://github.com/withthegrid/platform-sdk/compare/v16.27.0...v16.28.0) (2021-04-13)
 
 
