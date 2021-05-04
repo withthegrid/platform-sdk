@@ -1,3 +1,10 @@
+## [16.32.0](https://github.com/withthegrid/platform-sdk/compare/v16.31.0...v16.32.0) (2021-05-04)
+
+
+### Features
+
+* extended BaseFieldConfiguration interface and schema ([#34](https://github.com/withthegrid/platform-sdk/issues/34)) ([4b44b88](https://github.com/withthegrid/platform-sdk/commit/4b44b88d6d2f8892dc138502abb53173cecb1da3)), closes [withthegrid/platform#664](https://github.com/withthegrid/platform/issues/664)
+
 ## [16.31.0](https://github.com/withthegrid/platform-sdk/compare/v16.30.0...v16.31.0) (2021-05-04)
 
 
