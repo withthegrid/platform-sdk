@@ -82,8 +82,8 @@ interface BaseFieldConfiguration {
   type: 'string' | 'boolean' | 'number' | 'integer';
   name: string | Translations;
   inputType: 'text' | 'textarea' | 'select' | 'radio' | 'switch' | 'checkbox' | 'file' | 'files';
-  defaultValue: string | boolean | number;
-  valueOptions: ValueOption[] | null;
+  defaultValue?: string | boolean | number;
+  valueOptions?: ValueOption[] | null;
   regex?: string;
   lowerbound?: number;
   upperbound?: number;
