@@ -22,7 +22,7 @@ const schema = Joi.object().keys({
       then: Joi.string().valid('number').default('number'),
     }),
   name: stringOrTranslationsSchema.required(),
-  inputType: Joi.string()
+  inputType: Joi
     .when(Joi.ref('valueOptions'), {
       is: Joi.array().required(),
       then: Joi.string()
@@ -36,7 +36,7 @@ const schema = Joi.object().keys({
   defaultValue: Joi
     .when(Joi.ref('type'), {
       is: 'string',
-      then: Joi.string().default(''),
+      then: Joi.string().allow('').default(''),
     })
     .when(Joi.ref('type'), {
       is: 'number',
@@ -49,8 +49,7 @@ const schema = Joi.object().keys({
     .when(Joi.ref('type'), {
       is: 'boolean',
       then: Joi.boolean().default(0),
-    })
-    .required(),
+    }),
   valueOptions: Joi.array().items(Joi.object().keys({
     text: stringOrTranslationsSchema.required(),
     value: baseFieldSchema.required().description('Will be passed through parser'),
