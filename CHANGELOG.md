@@ -1,3 +1,10 @@
+## [16.31.0](https://github.com/withthegrid/platform-sdk/compare/v16.30.0...v16.31.0) (2021-05-04)
+
+
+### Features
+
+* remove PinLinks model, added edgeHashId and nodeHashId to the Pin model ([#33](https://github.com/withthegrid/platform-sdk/issues/33)) ([7b9a69b](https://github.com/withthegrid/platform-sdk/commit/7b9a69bffc9da77f4b576134cafd325004912737)), closes [withthegrid/platform#504](https://github.com/withthegrid/platform/issues/504)
+
 ## [16.30.0](https://github.com/withthegrid/platform-sdk/compare/v16.29.0...v16.30.0) (2021-05-04)
 
 
