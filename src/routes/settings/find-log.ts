@@ -6,8 +6,8 @@ import { schema as logSchema, Log } from '../../models/log';
 import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../../comms/table-controller';
 
 interface Query extends TableQuery {
-  objectType: string;
-  objectHashId: string;
+  objectType?: string;
+  objectHashId?: string;
 }
 
 interface Request {
@@ -37,10 +37,10 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   path: '/log',
   query: tableQuerySchemaGenerator(Joi.string().valid('hashId').default('hashId'))
     .keys({
-      objectType: Joi.string().required().example('command'),
-      objectHashId: Joi.string().required().example('ga9741s'),
+      objectType: Joi.string().example('command'),
+      objectHashId: Joi.string().example('ga9741s'),
     }),
-  right: { environment: 'AUDIT_TRAIL' },
+  right: { environment: 'AUDIT_TRAIL', supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
     rows: Joi.array().items(Joi.object().keys({
       log: logSchema.required(),
