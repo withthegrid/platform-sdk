@@ -12,3 +12,5 @@ export interface Translations {
   en: string,
   nl: string,
 }
+
+export type StringOrTranslations = string | Translations;

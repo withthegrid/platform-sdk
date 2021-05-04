@@ -1,6 +1,9 @@
 import Joi from 'joi';
 import { schema as baseFieldSchema, BaseField } from './base-field';
-import { Translations, stringOrTranslationsSchema } from '../helpers/translations';
+import {
+  stringOrTranslationsSchema,
+  StringOrTranslations,
+} from '../helpers/translations';
 
 const schema = Joi.object().keys({
   key: Joi.string().pattern(/^[a-z][a-zA-Z\d]*$/).required().example('id'),
@@ -23,10 +26,10 @@ const schema = Joi.object().keys({
     .when(Joi.ref('valueOptions'), {
       is: Joi.array().required(),
       then: Joi.string()
-        .valid('select')
+        .valid('select', 'radio')
         .default('select'),
       otherwise: Joi.string()
-        .valid('text', 'textarea', 'select', 'radio', 'switch', 'checkbox', 'file', 'files')
+        .valid('text', 'textarea', 'switch', 'checkbox', 'file', 'files')
         .default('text'),
     })
     .description('The UI component to show. If not specified, it is text unless valueOptions are provided, then it is select.'),
@@ -54,8 +57,8 @@ const schema = Joi.object().keys({
   })).allow(null).default(null)
     .description('If null, inputType should not be select or radio. If not null, input type should be select or radio. Default: null'),
   regex: Joi.string().description('If provided, type should be string and the provided value should adhere to this regex'),
-  lowerbound: Joi.number().description('If provided, type should be number or integer (and lowerbound should be integer as well in case type is integer) and provided value should not be lower than this value'),
-  upperbound: Joi.number().description('If provided, type should be number or integer (and lowerbound should be integer as well in case type is integer) and provided value should not be higher than this value'),
+  lowerbound: Joi.number().description('If provided, type should be number or integer and provided value should not be lower than this value'),
+  upperbound: Joi.number().description('If provided, type should be number or integer and provided value should not be higher than this value'),
   showIf: Joi.object().keys({
     key: Joi.string().required(),
     value: Joi.alternatives(
@@ -73,24 +76,24 @@ const schema = Joi.object().keys({
 
 interface ValueOption {
   // string for backwards compatibility, shown at all locales
-  text: string | Translations;
+  text: StringOrTranslations;
   value: BaseField;
 }
 
 interface BaseFieldConfiguration {
   key: string;
   type: 'string' | 'boolean' | 'number' | 'integer';
-  name: string | Translations;
+  name: StringOrTranslations;
   inputType: 'text' | 'textarea' | 'select' | 'radio' | 'switch' | 'checkbox' | 'file' | 'files';
-  defaultValue?: string | boolean | number;
-  valueOptions?: ValueOption[] | null;
+  defaultValue: string | boolean | number;
+  valueOptions: ValueOption[] | null;
   regex?: string;
   lowerbound?: number;
   upperbound?: number;
   showIf?: { key: string, value: string | boolean | number };
-  prefix?: string | Translations;
-  suffix?: string | Translations;
-  hint?: string | Translations;
+  prefix?: StringOrTranslations;
+  suffix?: StringOrTranslations;
+  hint?: StringOrTranslations;
 }
 
 export {
