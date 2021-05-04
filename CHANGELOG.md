@@ -1,3 +1,10 @@
+## [16.30.0](https://github.com/withthegrid/platform-sdk/compare/v16.29.0...v16.30.0) (2021-05-04)
+
+
+### Features
+
+* generic audit log ([77a029a](https://github.com/withthegrid/platform-sdk/commit/77a029a2a2c74e97ffccb5e068c57437d7868bf6)), closes [withthegrid/platform#421](https://github.com/withthegrid/platform/issues/421)
+
 ## [16.29.0](https://github.com/withthegrid/platform-sdk/compare/v16.28.0...v16.29.0) (2021-05-03)
 
 
