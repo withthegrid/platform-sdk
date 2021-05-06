@@ -35,6 +35,7 @@ import * as fieldsToServerFull from './fields/fields-to-server-full';
 import * as fieldsToServerUpdate from './fields/fields-to-server-update';
 import * as updatableFieldConfigurations from './fields/updatable-field-configurations';
 import * as pin from './pin';
+import * as pinLink from './pin-link';
 import * as quantity from './quantity';
 import * as webRequest from './web-request';
 import * as siNumber from './si-number';
@@ -100,6 +101,7 @@ export {
   fieldsToServerUpdate,
   updatableFieldConfigurations,
   pin,
+  pinLink,
   quantity,
   siNumber,
   supplier,
