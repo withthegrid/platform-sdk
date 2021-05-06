@@ -1,3 +1,10 @@
+### [16.32.2](https://github.com/withthegrid/platform-sdk/compare/v16.32.1...v16.32.2) (2021-05-06)
+
+
+### Bug Fixes
+
+* put back pin links (temporary) ([de5a6c1](https://github.com/withthegrid/platform-sdk/commit/de5a6c19abaf00c157fd4efcc7437b62717ec35c))
+
 ### [16.32.1](https://github.com/withthegrid/platform-sdk/compare/v16.32.0...v16.32.1) (2021-05-06)
 
 
