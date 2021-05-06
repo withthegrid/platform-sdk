@@ -10,7 +10,6 @@ import { schema as deviceTypeSchema, DeviceType } from '../../models/device-type
 import { schema as measurementCycleSchema, MeasurementCycle } from '../../models/measurement-cycle';
 import { schema as thresholdSchema, Threshold } from '../../models/threshold';
 import { schema as quantitySchema, Quantity } from '../../models/quantity';
-import { schema as pinLinkSchema, PinLink } from '../../models/pin-link';
 
 interface Request {
   params: {
@@ -21,7 +20,6 @@ interface Request {
 interface Response {
   pinGroup: PinGroup;
   pins: Pin[];
-  pinLinks: PinLink[];
   edges: Edge[];
   grids: Grid[];
   device: Device | null;
@@ -42,7 +40,6 @@ interface Response {
 type ResponseV3Andolder = {
   pinGroup: PinGroup;
   pins: Pin[];
-  pinLinks: PinLink[];
   edges: Edge[];
   grid: Grid | null;
   device: Device | null;
@@ -72,7 +69,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     const base = Joi.object().keys({
       pinGroup: pinGroupSchema(apiVersion).required(),
       pins: Joi.array().items(pinSchema).required(),
-      pinLinks: Joi.array().items(pinLinkSchema).required(),
       edges: Joi.array().items(edgeSchema).required(),
       device: deviceSchema.allow(null).required(),
       deviceType: deviceTypeSchema.allow(null).required(),
