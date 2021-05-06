@@ -12,6 +12,8 @@ const schema = Joi.object().keys({
   level: Joi.number().integer().valid(0, 1, 2).required()
     .description('0: no serious or critical open issues, 1: one or more serious open issues an no critical open issues, 2: one or more critical open issues')
     .example(0),
+  edgeHashId: Joi.string().allow(null).default(null),
+  nodeHashId: Joi.string().allow(null).default(null),
   typeKey: Joi.string().allow(null).default(null),
   deletedAt: Joi.date().allow(null).required().example('2019-12-31T15:23Z'),
 })
