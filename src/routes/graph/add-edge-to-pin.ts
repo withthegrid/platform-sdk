@@ -1,5 +1,6 @@
 import Joi from 'joi';
 import { ControllerGeneratorOptions } from '../../comms/controller';
+import { PinLink, schema as pinLinkSchema } from '../../models/pin-link';
 
 interface Request {
   params: {
@@ -11,7 +12,7 @@ interface Request {
   };
 }
 
-type Response = void;
+type Response = PinLink;
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'post',
@@ -23,6 +24,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     edgeHashId: Joi.string().required().example('ka08d'),
     nodeHashId: Joi.string().allow(null).description('If supplied, should be one of the two endpoints of the provided edge hashId or null. If not supplied, the closest is chosen. Ignored for edges with geometry.type MultiLineString').example(null),
   }).required(),
+  response: pinLinkSchema.required(),
   right: { environment: 'STATIC' },
   description: 'Connects a pin to an edge. Only measurements from after the connection is made, are accessible on the edge. Pins can be connected to only one edge and edges can be connected to multiple pins.',
 };
