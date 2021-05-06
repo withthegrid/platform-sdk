@@ -1,3 +1,10 @@
+## [16.33.0](https://github.com/withthegrid/platform-sdk/compare/v16.32.2...v16.33.0) (2021-05-06)
+
+
+### Features
+
+* added edge link fields to pin schema ([#37](https://github.com/withthegrid/platform-sdk/issues/37)) ([4106c85](https://github.com/withthegrid/platform-sdk/commit/4106c85e10df06aa51e3dea9c2245ccae3bcc0a6)), closes [withthegrid/platform#504](https://github.com/withthegrid/platform/issues/504)
+
 ### [16.32.2](https://github.com/withthegrid/platform-sdk/compare/v16.32.1...v16.32.2) (2021-05-06)
 
 
