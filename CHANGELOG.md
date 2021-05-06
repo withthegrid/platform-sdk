@@ -1,3 +1,10 @@
+### [16.32.1](https://github.com/withthegrid/platform-sdk/compare/v16.32.0...v16.32.1) (2021-05-06)
+
+
+### Reverts
+
+* Revert "feat: extended BaseFieldConfiguration interface and schema (#34)" ([d60b4b2](https://github.com/withthegrid/platform-sdk/commit/d60b4b2210a37827bbe37eb25c15db0c3938662b)), closes [#34](https://github.com/withthegrid/platform-sdk/issues/34)
+
 ## [16.32.0](https://github.com/withthegrid/platform-sdk/compare/v16.31.0...v16.32.0) (2021-05-04)
 
 
