@@ -1,3 +1,10 @@
+## [16.34.0](https://github.com/withthegrid/platform-sdk/compare/v16.33.0...v16.34.0) (2021-05-07)
+
+
+### Features
+
+* gridName in graph.addPinGroup and graph.updatePinGroup ([#39](https://github.com/withthegrid/platform-sdk/issues/39)) ([03e0114](https://github.com/withthegrid/platform-sdk/commit/03e01146d907069a65da4a0db7e957ab52b6bc85))
+
 ## [16.33.0](https://github.com/withthegrid/platform-sdk/compare/v16.32.2...v16.33.0) (2021-05-06)
 
 
