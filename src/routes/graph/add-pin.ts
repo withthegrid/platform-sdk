@@ -7,6 +7,7 @@ import { schema as fieldsToServerFullSchema, FieldsToServerFull } from '../../mo
 interface Request {
   params: {
     pinGroupHashId: string;
+    edgeHashId?: string | null;
   };
   body: {
     fields: FieldsToServerFull;
@@ -21,6 +22,7 @@ interface EffectiveRequest {
   body: {
     fields: FieldsToServerFull;
     typeKey: string | null;
+    edgeHashId: string | null;
   };
 }
 
@@ -37,6 +39,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   body: Joi.object().keys({
     fields: fieldsToServerFullSchema.required().example({ id: 'My port' }),
     typeKey: Joi.string().allow(null).default(null),
+    edgeHashId: Joi.string().allow(null).default(null).example('ka08d'),
   }).required(),
   right: { environment: 'STATIC' },
   response: Joi.object().keys({
