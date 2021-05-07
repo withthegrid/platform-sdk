@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithSupplier } from '../../comms/controller';
 import { identifierExample } from '../../models/supplier-certificate';
 
 interface Request {
@@ -15,7 +15,7 @@ interface Response {
   subscriptionHashId?: string;
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
   method: 'post',
   path: '/',
   body: Joi.object().keys({

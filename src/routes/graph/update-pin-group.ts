@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 import { schema as fieldsToServerUpdateSchema, FieldsToServerUpdate } from '../../models/fields/fields-to-server-update';
 
 import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
@@ -61,7 +61,7 @@ interface ResponseV2AndOlder {
 
 type ResponsesIncludingDeprecated = Response | ResponseV3 | ResponseV2AndOlder;
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'post',
   path: '/pin-group/:hashId',
   params: Joi.object().keys({

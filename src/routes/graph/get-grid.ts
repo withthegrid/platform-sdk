@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 
 import { schema as gridSchema, Grid } from '../../models/grid';
 import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
@@ -21,7 +21,7 @@ interface Response {
   photo: string | null;
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'get',
   path: '/grid/:hashId',
   params: Joi.object().keys({

@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 import {
   schema as updatableFieldConfigurationsSchema,
   UpdatableFieldConfigurations,
@@ -37,7 +37,7 @@ interface Request {
 
 type Response = void;
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'post',
   path: '/:hashId',
   params: Joi.object().keys({

@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 
 import { schema as quantitySchema, Quantity } from '../../models/quantity';
 import { schema as thresholdSchema, Threshold } from '../../models/threshold';
@@ -19,7 +19,7 @@ interface Response {
   rows: ResponseRow[];
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'get',
   path: '/pin-quantities/:pinHashId',
   params: Joi.object().keys({

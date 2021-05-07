@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 import { schema as analyticsQuerySchema, AnalyticsQuery } from '../../models/analytics-query';
 
 type Query = AnalyticsQuery;
@@ -15,7 +15,7 @@ interface Response {
   nextPageOffset: string | null;
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'get',
   path: '/',
   query: analyticsQuerySchema.required(),

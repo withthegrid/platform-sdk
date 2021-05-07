@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 
 import { schema as measurementCycleSchema, MeasurementCycle } from '../../models/measurement-cycle';
 import { schema as deviceSchema, Device } from '../../models/device';
@@ -29,7 +29,7 @@ interface Response {
   pins: Pin[];
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'post',
   path: '/:hashId/link',
   params: Joi.object().keys({

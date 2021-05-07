@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithSupplier } from '../../comms/controller';
 
 import { schema as supplierReportTypeSchema, SupplierReportType } from '../../models/supplier-report-type';
 
@@ -15,7 +15,7 @@ interface Response {
   subscriptionHashId?: string;
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
   method: 'get',
   path: '/:hashId',
   params: Joi.object().keys({

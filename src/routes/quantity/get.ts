@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClientAndSupplier } from '../../comms/controller';
 
 import { schema as quantitySchema, Quantity } from '../../models/quantity';
 import { EnvironmentReportType, schema as environmentReportTypeSchema } from '../../models/environment-report-type';
@@ -16,7 +16,7 @@ interface Response {
   linkedSupplierQuantities: Quantity[];
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClientAndSupplier = {
   method: 'get',
   path: '/:hashId',
   params: Joi.object().keys({

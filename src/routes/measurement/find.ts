@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 
 import { BaseFields, schema as baseFieldsSchema } from '../../models/fields/base-fields';
 import { Measurement, schema as measurementSchema } from '../../models/measurement';
@@ -64,7 +64,7 @@ interface Response {
   rows: ResponseRow[];
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'get',
   path: '/',
   right: { environment: 'READ' },

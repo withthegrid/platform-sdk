@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 import { PinLink, schema as pinLinkSchema } from '../../models/pin-link';
 
 interface Request {
@@ -14,7 +14,7 @@ interface Request {
 
 type Response = PinLink;
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'post',
   path: '/pin/:pinHashId/edge',
   params: Joi.object().keys({

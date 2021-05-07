@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithoutClientOrSupplier } from '../../comms/controller';
 
 import { schema as supplierCertificateSchema, SupplierCertificate, identifierExample } from '../../models/supplier-certificate';
 
@@ -15,7 +15,7 @@ interface Response {
   subscriptionHashId?: string;
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSupplier = {
   method: 'get',
   path: '/:hashId',
   params: Joi.object().keys({

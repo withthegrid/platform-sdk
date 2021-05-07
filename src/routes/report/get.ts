@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 
 import { schema as measurementSchema, Measurement } from '../../models/measurement';
 import { schema as quantitySchema, Quantity } from '../../models/quantity';
@@ -30,7 +30,7 @@ interface Response {
   createdAt: Date;
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'get',
   path: '/:hashId',
   params: Joi.object().keys({
