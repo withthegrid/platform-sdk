@@ -17,6 +17,7 @@ interface Request {
     } | null;
     fields?: FieldsToServerUpdate;
     gridHashIds?: string[];
+    gridName?: string;
     mapLayer?: string;
     deviceFields?: FieldsToServerUpdate;
     photo?: string | null;
@@ -87,6 +88,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     }
     return baseBody.keys({
       gridHashIds: Joi.array().items(Joi.string()).description('PinGroups will be added at the end of the list in a grid'),
+      gridName: Joi.string().description('Ensures the pinGroup is part of a grid with the provided name. If multiple grids exist with the same name, one is chosen at random'),
     }).required();
   },
   response: (apiVersion: number): Joi.ObjectSchema => {

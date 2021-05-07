@@ -14,6 +14,7 @@ interface Request {
     fields: FieldsToServerFull;
     mapLayer?: string;
     gridHashIds?: string[];
+    gridName?: string;
     photo?: string;
   };
 }
@@ -65,6 +66,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     }
     return baseBody.keys({
       gridHashIds: Joi.array().items(Joi.string()).description('PinGroups will be added at the end of the list in a grid'),
+      gridName: Joi.string().description('Ensures the pinGroup is part of a grid with the provided name. If multiple grids exist with the same name, one is chosen at random'),
     }).required();
   },
   right: { environment: 'STATIC' },
