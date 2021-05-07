@@ -7,11 +7,11 @@ import { schema as fieldsToServerFullSchema, FieldsToServerFull } from '../../mo
 interface Request {
   params: {
     pinGroupHashId: string;
-    edgeHashId?: string | null;
   };
   body: {
     fields: FieldsToServerFull;
     typeKey?: string | null;
+    edgeHashId?: string | null;
   };
 }
 
