@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 import {
   schema as updatableFieldConfigurationsSchema,
   UpdatableFieldConfigurations,
@@ -28,7 +28,7 @@ interface Response {
 
 const fieldConfigurationSchema = updatableFieldConfigurationsSchema.description('If a BaseFieldConfiguration-array is provided, the first element is not allowed to have fieldConfiguration.valueOptions defined').required();
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'put',
   path: '/',
   body: Joi.object().keys({

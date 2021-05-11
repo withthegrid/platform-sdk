@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithoutClientOrSupplier } from '../../comms/controller';
 
 import { schema as environmentSchema, Environment } from '../../models/environment';
 import { schema as userSchema, User } from '../../models/user';
@@ -17,7 +17,7 @@ interface Response {
   environmentRights?: string[];
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSupplier = {
   method: 'post',
   path: '/machine-login',
   right: {},

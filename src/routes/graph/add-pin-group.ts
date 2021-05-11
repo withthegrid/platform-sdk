@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 import { schema as fieldsToServerFullSchema, FieldsToServerFull } from '../../models/fields/fields-to-server-full';
 
 import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
@@ -41,7 +41,7 @@ interface Response {
   pinGroup: PinGroup;
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'post',
   path: '/pin-group',
   body: (apiVersion: number): Joi.ObjectSchema => {

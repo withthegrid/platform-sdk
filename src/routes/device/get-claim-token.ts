@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClientAndSupplier } from '../../comms/controller';
 
 interface Request {
   body: {
@@ -11,7 +11,7 @@ type Response = {
   claimTokens: { deviceHashId: string; claimToken: string }[];
 };
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClientAndSupplier = {
   method: 'post',
   path: '/claim-tokens',
   body: Joi.object().keys({

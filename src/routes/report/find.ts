@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 
 import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
 import { schema as environmentSchema, Environment } from '../../models/environment';
@@ -58,7 +58,7 @@ type ResponsesIncludingDeprecated = {
   rows: (ResponseRow | ResponseRowV2)[];
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'get',
   path: '/',
   query: tableQuerySchemaGenerator(Joi.string().valid('generatedAt').default('generatedAt'))

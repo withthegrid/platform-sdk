@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 
 interface Request {
   params: {
@@ -19,7 +19,7 @@ type EffectiveRequest = {
 
 type Response = void;
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'get',
   path: '/tiles/:z/:x/:y',
   params: Joi.object().keys({

@@ -1,3 +1,10 @@
+## [16.35.0](https://github.com/withthegrid/platform-sdk/compare/v16.34.0...v16.35.0) (2021-05-07)
+
+
+### Features
+
+* specify client or supplier in ControllerGeneratorOptions type ([fdb95ff](https://github.com/withthegrid/platform-sdk/commit/fdb95ff90fc355cfad740ac5cdbf706a07b5a60c))
+
 ## [16.34.0](https://github.com/withthegrid/platform-sdk/compare/v16.33.0...v16.34.0) (2021-05-07)
 
 
