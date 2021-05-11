@@ -25,7 +25,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   }).required(),
   body: Joi.object().keys({
     fields: fieldsToServerUpdateSchema.example({ id: 'My port' }),
-    edgeHashId: Joi.string().allow(null).default(null).example('ka08d'),
+    edgeHashId: Joi.string().allow(null).example('ka08d'),
   }).required(),
   response: Joi.object().keys({
     pin: pinSchema.required(),
