@@ -44,7 +44,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   response: Joi.object().keys({
     rows: Joi.array().items(Joi.object().keys({
       grid: gridSchema.allow(null).required(),
-      level: Joi.number().valid(0, 1, 2).allow(null).example(0)
+      level: Joi.number().valid(0, 1, 2).allow(null).example(0),
     })).required(),
   }),
   description: 'Search through grids',
