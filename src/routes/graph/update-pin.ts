@@ -9,6 +9,7 @@ interface Request {
   };
   body: {
     fields?: FieldsToServerUpdate;
+    edgeHashId?: string | null;
   };
 }
 
@@ -24,6 +25,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   }).required(),
   body: Joi.object().keys({
     fields: fieldsToServerUpdateSchema.example({ id: 'My port' }),
+    edgeHashId: Joi.string().allow(null).example('ka08d'),
   }).required(),
   response: Joi.object().keys({
     pin: pinSchema.required(),
