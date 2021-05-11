@@ -1,3 +1,10 @@
+## [16.36.0](https://github.com/withthegrid/platform-sdk/compare/v16.35.0...v16.36.0) (2021-05-11)
+
+
+### Features
+
+* add edge hash id to pin add update routes ([#42](https://github.com/withthegrid/platform-sdk/issues/42)) ([25278df](https://github.com/withthegrid/platform-sdk/commit/25278dfedd634180df2369c1b6f2647eb9286fbd)), closes [withthegrid/platform#504](https://github.com/withthegrid/platform/issues/504)
+
 ## [16.35.0](https://github.com/withthegrid/platform-sdk/compare/v16.34.0...v16.35.0) (2021-05-07)
 
 
