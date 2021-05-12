@@ -1,3 +1,10 @@
+## [16.37.0](https://github.com/withthegrid/platform-sdk/compare/v16.36.0...v16.37.0) (2021-05-12)
+
+
+### Features
+
+*  notifications level for graph.findGroup ([88fcfe5](https://github.com/withthegrid/platform-sdk/commit/88fcfe5cea564bae220454cfdedd554901354996)), closes [withthegrid/platform-client#454](https://github.com/withthegrid/platform-client/issues/454)
+
 ## [16.36.0](https://github.com/withthegrid/platform-sdk/compare/v16.35.0...v16.36.0) (2021-05-11)
 
 
