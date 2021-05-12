@@ -1,10 +1,8 @@
-import * as addEdgeToPin from './add-edge-to-pin';
 import * as addEdge from './add-edge';
 import * as addGrid from './add-grid';
 import * as addPinGroup from './add-pin-group';
 import * as addNode from './add-node';
 import * as addPin from './add-pin';
-import * as deleteEdgeFromPin from './delete-edge-from-pin';
 import * as deleteEdge from './delete-edge';
 import * as deleteGrid from './delete-grid';
 import * as deletePinGroup from './delete-pin-group';
@@ -35,13 +33,11 @@ import * as updateNode from './update-node';
 import * as updatePin from './update-pin';
 
 export {
-  addEdgeToPin,
   addEdge,
   addGrid,
   addPinGroup,
   addNode,
   addPin,
-  deleteEdgeFromPin,
   deleteEdge,
   deleteGrid,
   deletePinGroup,
