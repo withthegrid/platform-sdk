@@ -1,3 +1,38 @@
+## [16.38.0](https://github.com/withthegrid/platform-sdk/compare/v16.37.0...v16.38.0) (2021-05-12)
+
+
+### Features
+
+* add edge info to measurement.find response row ([#44](https://github.com/withthegrid/platform-sdk/issues/44)) ([8774fed](https://github.com/withthegrid/platform-sdk/commit/8774fed362c8f371a2c9befa4a0f0de294da68d8)), closes [withthegrid/platform#504](https://github.com/withthegrid/platform/issues/504)
+
+## [16.37.0](https://github.com/withthegrid/platform-sdk/compare/v16.36.0...v16.37.0) (2021-05-12)
+
+
+### Features
+
+*  notifications level for graph.findGroup ([88fcfe5](https://github.com/withthegrid/platform-sdk/commit/88fcfe5cea564bae220454cfdedd554901354996)), closes [withthegrid/platform-client#454](https://github.com/withthegrid/platform-client/issues/454)
+
+## [16.36.0](https://github.com/withthegrid/platform-sdk/compare/v16.35.0...v16.36.0) (2021-05-11)
+
+
+### Features
+
+* add edge hash id to pin add update routes ([#42](https://github.com/withthegrid/platform-sdk/issues/42)) ([25278df](https://github.com/withthegrid/platform-sdk/commit/25278dfedd634180df2369c1b6f2647eb9286fbd)), closes [withthegrid/platform#504](https://github.com/withthegrid/platform/issues/504)
+
+## [16.35.0](https://github.com/withthegrid/platform-sdk/compare/v16.34.0...v16.35.0) (2021-05-07)
+
+
+### Features
+
+* specify client or supplier in ControllerGeneratorOptions type ([fdb95ff](https://github.com/withthegrid/platform-sdk/commit/fdb95ff90fc355cfad740ac5cdbf706a07b5a60c))
+
+## [16.34.0](https://github.com/withthegrid/platform-sdk/compare/v16.33.0...v16.34.0) (2021-05-07)
+
+
+### Features
+
+* gridName in graph.addPinGroup and graph.updatePinGroup ([#39](https://github.com/withthegrid/platform-sdk/issues/39)) ([03e0114](https://github.com/withthegrid/platform-sdk/commit/03e01146d907069a65da4a0db7e957ab52b6bc85))
+
 ## [16.33.0](https://github.com/withthegrid/platform-sdk/compare/v16.32.2...v16.33.0) (2021-05-06)
 
 

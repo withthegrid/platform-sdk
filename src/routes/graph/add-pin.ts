@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 
 import { schema as pinSchema, Pin } from '../../models/pin';
 import { schema as fieldsToServerFullSchema, FieldsToServerFull } from '../../models/fields/fields-to-server-full';
@@ -11,6 +11,7 @@ interface Request {
   body: {
     fields: FieldsToServerFull;
     typeKey?: string | null;
+    edgeHashId?: string | null;
   };
 }
 
@@ -21,6 +22,7 @@ interface EffectiveRequest {
   body: {
     fields: FieldsToServerFull;
     typeKey: string | null;
+    edgeHashId: string | null;
   };
 }
 
@@ -28,7 +30,7 @@ type Response = {
   pin: Pin;
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'post',
   path: '/pin-group/:pinGroupHashId/pin',
   params: Joi.object().keys({
@@ -37,6 +39,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   body: Joi.object().keys({
     fields: fieldsToServerFullSchema.required().example({ id: 'My port' }),
     typeKey: Joi.string().allow(null).default(null),
+    edgeHashId: Joi.string().allow(null).default(null).example('ka08d'),
   }).required(),
   right: { environment: 'STATIC' },
   response: Joi.object().keys({

@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 import { AllContent } from '../../models/export-request';
 
 interface MeasurementFilterContentByHashId {
@@ -20,7 +20,7 @@ interface Response {
   hashId: string;
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'post',
   path: '/export',
   body: Joi.object().keys({

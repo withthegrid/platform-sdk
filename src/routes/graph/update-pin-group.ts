@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 import { schema as fieldsToServerUpdateSchema, FieldsToServerUpdate } from '../../models/fields/fields-to-server-update';
 
 import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
@@ -17,6 +17,7 @@ interface Request {
     } | null;
     fields?: FieldsToServerUpdate;
     gridHashIds?: string[];
+    gridName?: string;
     mapLayer?: string;
     deviceFields?: FieldsToServerUpdate;
     photo?: string | null;
@@ -60,7 +61,7 @@ interface ResponseV2AndOlder {
 
 type ResponsesIncludingDeprecated = Response | ResponseV3 | ResponseV2AndOlder;
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'post',
   path: '/pin-group/:hashId',
   params: Joi.object().keys({
@@ -87,6 +88,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     }
     return baseBody.keys({
       gridHashIds: Joi.array().items(Joi.string()).description('PinGroups will be added at the end of the list in a grid'),
+      gridName: Joi.string().description('Ensures the pinGroup is part of a grid with the provided name. If multiple grids exist with the same name, one is chosen at random'),
     }).required();
   },
   response: (apiVersion: number): Joi.ObjectSchema => {

@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 import { schema as fieldsToServerFullSchema, FieldsToServerFull } from '../../models/fields/fields-to-server-full';
 
 import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
@@ -14,6 +14,7 @@ interface Request {
     fields: FieldsToServerFull;
     mapLayer?: string;
     gridHashIds?: string[];
+    gridName?: string;
     photo?: string;
   };
 }
@@ -40,7 +41,7 @@ interface Response {
   pinGroup: PinGroup;
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'post',
   path: '/pin-group',
   body: (apiVersion: number): Joi.ObjectSchema => {
@@ -65,6 +66,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     }
     return baseBody.keys({
       gridHashIds: Joi.array().items(Joi.string()).description('PinGroups will be added at the end of the list in a grid'),
+      gridName: Joi.string().description('Ensures the pinGroup is part of a grid with the provided name. If multiple grids exist with the same name, one is chosen at random'),
     }).required();
   },
   right: { environment: 'STATIC' },

@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithoutClientOrSupplier } from '../../comms/controller';
 
 import { schema as environmentSchema, Environment } from '../../models/environment';
 import { schema as userSchema, User } from '../../models/user';
@@ -13,7 +13,7 @@ interface Response {
   user: User;
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSupplier = {
   method: 'get',
   path: '/',
   right: {},

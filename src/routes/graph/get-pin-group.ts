@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 
 import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
 import { schema as pinSchema, Pin } from '../../models/pin';
@@ -58,7 +58,7 @@ type ResponseV3Andolder = {
 
 type ResponsesIncludingDeprecated = Response | ResponseV3Andolder;
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'get',
   path: '/pin-group/:hashId',
   params: Joi.object().keys({

@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithoutClientOrSupplier } from '../../comms/controller';
 import { schema as supplierSchema, Supplier } from '../../models/supplier';
 
 interface Request {
@@ -13,7 +13,7 @@ interface Response {
   supplierRights: string[];
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSupplier = {
   method: 'post',
   path: '/',
   body: Joi.object().keys({

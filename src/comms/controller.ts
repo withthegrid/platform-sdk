@@ -21,6 +21,18 @@ interface ControllerGeneratorOptions {
   right: { supplier?: string; environment?: string };
 }
 
+type ControllerGeneratorOptionsWithoutClientOrSupplier = ControllerGeneratorOptions
+  & { right: Record<string, never> };
+
+type ControllerGeneratorOptionsWithClient = ControllerGeneratorOptions
+  & { right: { environment: string } };
+
+type ControllerGeneratorOptionsWithSupplier = ControllerGeneratorOptions
+  & { right: { supplier: string } };
+
+type ControllerGeneratorOptionsWithClientAndSupplier = ControllerGeneratorOptions
+  & { right: { environment: string; supplier: string } };
+
 type RequestParams = Record<string, string | number>;
 
 type RequestQuery = Record<string, any>;
@@ -157,4 +169,8 @@ export {
   Request,
   Result,
   ControllerGeneratorOptions,
+  ControllerGeneratorOptionsWithoutClientOrSupplier,
+  ControllerGeneratorOptionsWithClient,
+  ControllerGeneratorOptionsWithSupplier,
+  ControllerGeneratorOptionsWithClientAndSupplier,
 };

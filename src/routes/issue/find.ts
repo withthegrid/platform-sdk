@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 
 import { schema as issueSchema, Issue } from '../../models/issue';
 import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
@@ -42,7 +42,7 @@ interface Response {
   rows: ResponseRow[];
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'get',
   path: '/',
   query: tableQuerySchemaGenerator(Joi.string().valid('level', 'createdAt').default('createdAt'))
