@@ -113,8 +113,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
         name: Joi.string().required().example('My port'),
       }).required(),
       edge: Joi.object().keys({
-        hashId: Joi.string().allow(null).example('ka08d'),
-        name: Joi.string().allow(null).example('My line'),
+        hashId: Joi.string().allow(null).required().example('ka08d'),
+        name: Joi.string().allow(null).required().example('My line'),
       }).required(),
     })).required(),
   }),
