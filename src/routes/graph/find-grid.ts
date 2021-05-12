@@ -25,7 +25,7 @@ interface EffectiveRequest {
 
 interface ResponseRow {
   grid: Grid;
-  level: 0 | 1 | 2 | null;
+  notificationLevel: 0 | 1 | 2 | null;
 }
 
 interface Response {
@@ -44,7 +44,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   response: Joi.object().keys({
     rows: Joi.array().items(Joi.object().keys({
       grid: gridSchema.allow(null).required(),
-      level: Joi.number().valid(0, 1, 2).allow(null).example(0),
+      notificationLevel: Joi.number().valid(0, 1, 2).allow(null).required()
+        .example(0)
+        .description('The user is subscribed to every issue created on a location (pinGroup) in this grid (0), when the issue gets serious (1) or when the issue gets critical (2). If null, the user is not autmatically subscribed to new issues.'),
     })).required(),
   }),
   description: 'Search through grids',
