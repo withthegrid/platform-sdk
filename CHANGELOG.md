@@ -1,3 +1,10 @@
+## [16.39.0](https://github.com/withthegrid/platform-sdk/compare/v16.38.0...v16.39.0) (2021-05-12)
+
+
+### Features
+
+* remove pin link model ([#38](https://github.com/withthegrid/platform-sdk/issues/38)) ([c8deba4](https://github.com/withthegrid/platform-sdk/commit/c8deba42853d79474e9c2d78cda9d8076f9d433b)), closes [withthegrid/platform#504](https://github.com/withthegrid/platform/issues/504)
+
 ## [16.38.0](https://github.com/withthegrid/platform-sdk/compare/v16.37.0...v16.38.0) (2021-05-12)
 
 
