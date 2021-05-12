@@ -1,3 +1,10 @@
+## [16.38.0](https://github.com/withthegrid/platform-sdk/compare/v16.37.0...v16.38.0) (2021-05-12)
+
+
+### Features
+
+* add edge info to measurement.find response row ([#44](https://github.com/withthegrid/platform-sdk/issues/44)) ([8774fed](https://github.com/withthegrid/platform-sdk/commit/8774fed362c8f371a2c9befa4a0f0de294da68d8)), closes [withthegrid/platform#504](https://github.com/withthegrid/platform/issues/504)
+
 ## [16.37.0](https://github.com/withthegrid/platform-sdk/compare/v16.36.0...v16.37.0) (2021-05-12)
 
 
