@@ -57,6 +57,10 @@ interface ResponseRow {
     hashId: string;
     name: string;
   };
+  edge: {
+    hashId: string | null;
+    name: string | null;
+  };
 }
 
 interface Response {
@@ -107,6 +111,10 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       pin: Joi.object().keys({
         hashId: Joi.string().required().example('e13d57'),
         name: Joi.string().required().example('My port'),
+      }).required(),
+      edge: Joi.object().keys({
+        hashId: Joi.string().allow(null).required().example('ka08d'),
+        name: Joi.string().allow(null).required().example('My line'),
       }).required(),
     })).required(),
   }),
