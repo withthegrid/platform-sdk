@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClientAndSupplier } from '../../comms/controller';
 
 import { schema as commandTypeSchema, CommandType } from '../../models/command-type';
 
@@ -13,7 +13,7 @@ interface Response {
   commandType: CommandType;
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClientAndSupplier = {
   method: 'get',
   path: '/:hashId',
   params: Joi.object().keys({

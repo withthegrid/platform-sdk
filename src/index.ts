@@ -56,7 +56,13 @@ class PlatformSdk {
 
 export default PlatformSdk;
 
-export { ControllerGeneratorOptions } from './comms/controller';
+export {
+  ControllerGeneratorOptions,
+  ControllerGeneratorOptionsWithoutClientOrSupplier,
+  ControllerGeneratorOptionsWithClient,
+  ControllerGeneratorOptionsWithSupplier,
+  ControllerGeneratorOptionsWithClientAndSupplier,
+} from './comms/controller';
 export { default as TableController, TableQuery, EffectiveTableQuery } from './comms/table-controller';
 export { default as Comms } from './comms';
 export { default as controllerGenerator, Result } from './comms/controller';

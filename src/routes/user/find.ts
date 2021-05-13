@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClientAndSupplier } from '../../comms/controller';
 
 import { schema as userSchema, User } from '../../models/user';
 
@@ -26,7 +26,7 @@ interface Response {
   rows: ResponseRow[];
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClientAndSupplier = {
   method: 'get',
   path: '/',
   query: tableQuerySchemaGenerator(Joi.string().valid('hashId', 'name', 'email').default('name')),

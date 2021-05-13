@@ -1,3 +1,4 @@
+import * as analyticsQuery from './analytics-query';
 import * as chart from './chart';
 import * as command from './command';
 import * as commandType from './command-type';
@@ -34,7 +35,6 @@ import * as fieldsToServerFull from './fields/fields-to-server-full';
 import * as fieldsToServerUpdate from './fields/fields-to-server-update';
 import * as updatableFieldConfigurations from './fields/updatable-field-configurations';
 import * as pin from './pin';
-import * as pinLink from './pin-link';
 import * as quantity from './quantity';
 import * as webRequest from './web-request';
 import * as siNumber from './si-number';
@@ -63,6 +63,7 @@ import * as user from './user';
 import * as userSubscription from './user-subscription';
 
 export {
+  analyticsQuery,
   chart,
   command,
   commandType,
@@ -99,7 +100,6 @@ export {
   fieldsToServerUpdate,
   updatableFieldConfigurations,
   pin,
-  pinLink,
   quantity,
   siNumber,
   supplier,

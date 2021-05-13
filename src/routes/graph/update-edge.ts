@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 import { schema as fieldsToServerUpdateSchema, FieldsToServerUpdate } from '../../models/fields/fields-to-server-update';
 
 import { schema as edgeSchema, Edge } from '../../models/edge';
@@ -34,7 +34,7 @@ type ResponsesIncludingDeprecated = Response | {
   name: string;
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'post',
   path: '/edge/:hashId',
   params: Joi.object().keys({

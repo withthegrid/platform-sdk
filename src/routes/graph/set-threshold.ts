@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 
 import { schema as siNumberSchema, SiNumber } from '../../models/si-number';
 
@@ -33,7 +33,7 @@ const bodySchema = Joi.object().keys({
   }).allow(null).required(),
 }).required();
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'post',
   path: '/thresholds',
   body: Joi.alternatives().try(

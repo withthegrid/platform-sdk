@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithSupplier } from '../../comms/controller';
 
 import { schema as deviceSchema, Device } from '../../models/device';
 import { schema as deviceTypeSchema, DeviceType } from '../../models/device-type';
@@ -36,7 +36,7 @@ interface Response {
   rows: ResponseRow[];
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
   method: 'get',
   path: '/',
   query: tableQuerySchemaGenerator(Joi.string().valid('createdAt').default('createdAt')),

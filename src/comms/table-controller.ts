@@ -55,6 +55,10 @@ interface EffectiveTableRequest {
   query: EffectiveTableQuery;
 }
 
+interface SimplifiedEffectiveTableRequest {
+  query: Omit<EffectiveTableQuery, 'sortBy' | 'descending' | 'search'>;
+}
+
 interface ObjectKeyResult {
   lastValueSortColumn: string | number | Date | null;
   lastValueHashId: string;
@@ -83,7 +87,7 @@ class TableController<RowImplementation> {
   endReached = false;
 
   constructor(
-    private readonly route: (parameters?: TableRequest) => Result<EffectiveTableRequest, Response<RowImplementation>>, // eslint-disable-line max-len
+    private readonly route: (parameters?: TableRequest) => Result<SimplifiedEffectiveTableRequest, Response<RowImplementation>>, // eslint-disable-line max-len
     readonly objectKeyMapper?: (row: RowImplementation, sortBy: string) => ObjectKeyResult,
     readonly parameters?: TableQuery,
   ) {
@@ -101,8 +105,10 @@ class TableController<RowImplementation> {
 
     const params: TableQuery = { ...this.parameters };
 
-    params.lastValueSortColumn = this.lastValueSortColumn;
-    params.lastValueHashId = this.lastValueHashId;
+    if (this.lastValueSortColumn !== undefined) {
+      params.lastValueSortColumn = this.lastValueSortColumn;
+      params.lastValueHashId = this.lastValueHashId;
+    }
     if (this.nextPageOffset !== null) {
       params.offset = this.nextPageOffset;
     }

@@ -1,9 +1,8 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 
 import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
 import { schema as pinSchema, Pin } from '../../models/pin';
-import { schema as pinLinkSchema, PinLink } from '../../models/pin-link';
 import { schema as edgeSchema, Edge } from '../../models/edge';
 import { schema as gridSchema, Grid } from '../../models/grid';
 import { schema as deviceSchema, Device } from '../../models/device';
@@ -21,7 +20,6 @@ interface Request {
 interface Response {
   pinGroup: PinGroup;
   pins: Pin[];
-  pinLinks: PinLink[];
   edges: Edge[];
   grids: Grid[];
   device: Device | null;
@@ -42,7 +40,6 @@ interface Response {
 type ResponseV3Andolder = {
   pinGroup: PinGroup;
   pins: Pin[];
-  pinLinks: PinLink[];
   edges: Edge[];
   grid: Grid | null;
   device: Device | null;
@@ -61,7 +58,7 @@ type ResponseV3Andolder = {
 
 type ResponsesIncludingDeprecated = Response | ResponseV3Andolder;
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'get',
   path: '/pin-group/:hashId',
   params: Joi.object().keys({
@@ -72,7 +69,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     const base = Joi.object().keys({
       pinGroup: pinGroupSchema(apiVersion).required(),
       pins: Joi.array().items(pinSchema).required(),
-      pinLinks: Joi.array().items(pinLinkSchema).required(),
       edges: Joi.array().items(edgeSchema).required(),
       device: deviceSchema.allow(null).required(),
       deviceType: deviceTypeSchema.allow(null).required(),

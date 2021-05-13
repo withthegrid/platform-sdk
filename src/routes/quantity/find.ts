@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClientAndSupplier } from '../../comms/controller';
 
 import { schema as quantitySchema, Quantity } from '../../models/quantity';
 
@@ -34,7 +34,7 @@ interface Response {
   rows: ResponseRow[];
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClientAndSupplier = {
   method: 'get',
   path: '/quantities',
   right: { environment: 'READ', supplier: 'ENVIRONMENT_ADMIN' },

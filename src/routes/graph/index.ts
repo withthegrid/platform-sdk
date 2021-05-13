@@ -1,10 +1,8 @@
-import * as addEdgeToPin from './add-edge-to-pin';
 import * as addEdge from './add-edge';
 import * as addGrid from './add-grid';
 import * as addPinGroup from './add-pin-group';
 import * as addNode from './add-node';
 import * as addPin from './add-pin';
-import * as deleteEdgeFromPin from './delete-edge-from-pin';
 import * as deleteEdge from './delete-edge';
 import * as deleteGrid from './delete-grid';
 import * as deletePinGroup from './delete-pin-group';
@@ -45,18 +43,6 @@ class GraphRoute {
 
   constructor(readonly comms: Comms) {
   }
-
-  addEdgeToPin = (parameters: addEdgeToPin.Request):
-    Result<addEdgeToPin.EffectiveRequest, addEdgeToPin.Response> => controllerGenerator<
-      addEdgeToPin.Request,
-      addEdgeToPin.EffectiveRequest,
-      addEdgeToPin.Response
-    >(
-      addEdgeToPin.controllerGeneratorOptions,
-      GraphRoute.routerPath,
-      GraphRoute.auth,
-      this.comms,
-    )(parameters);
 
   addEdge = (parameters: addEdge.Request):
     Result<addEdge.EffectiveRequest, addEdge.Response> => controllerGenerator<
@@ -113,18 +99,6 @@ class GraphRoute {
       addPin.Response
     >(
       addPin.controllerGeneratorOptions,
-      GraphRoute.routerPath,
-      GraphRoute.auth,
-      this.comms,
-    )(parameters);
-
-  deleteEdgeFromPin = (parameters: deleteEdgeFromPin.Request):
-    Result<deleteEdgeFromPin.EffectiveRequest, deleteEdgeFromPin.Response> => controllerGenerator<
-      deleteEdgeFromPin.Request,
-      deleteEdgeFromPin.EffectiveRequest,
-      deleteEdgeFromPin.Response
-    >(
-      deleteEdgeFromPin.controllerGeneratorOptions,
       GraphRoute.routerPath,
       GraphRoute.auth,
       this.comms,

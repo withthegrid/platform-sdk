@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 
 import { BaseFields, schema as baseFieldsSchema } from '../../models/fields/base-fields';
 import { Measurement, schema as measurementSchema } from '../../models/measurement';
@@ -57,6 +57,10 @@ interface ResponseRow {
     hashId: string;
     name: string;
   };
+  edge: {
+    hashId: string | null;
+    name: string | null;
+  };
 }
 
 interface Response {
@@ -64,7 +68,7 @@ interface Response {
   rows: ResponseRow[];
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'get',
   path: '/',
   right: { environment: 'READ' },
@@ -107,6 +111,10 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       pin: Joi.object().keys({
         hashId: Joi.string().required().example('e13d57'),
         name: Joi.string().required().example('My port'),
+      }).required(),
+      edge: Joi.object().keys({
+        hashId: Joi.string().allow(null).required().example('ka08d'),
+        name: Joi.string().allow(null).required().example('My line'),
       }).required(),
     })).required(),
   }),

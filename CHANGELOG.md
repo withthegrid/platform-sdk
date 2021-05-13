@@ -1,3 +1,94 @@
+## [16.39.0](https://github.com/withthegrid/platform-sdk/compare/v16.38.0...v16.39.0) (2021-05-12)
+
+
+### Features
+
+* remove pin link model ([#38](https://github.com/withthegrid/platform-sdk/issues/38)) ([c8deba4](https://github.com/withthegrid/platform-sdk/commit/c8deba42853d79474e9c2d78cda9d8076f9d433b)), closes [withthegrid/platform#504](https://github.com/withthegrid/platform/issues/504)
+
+## [16.38.0](https://github.com/withthegrid/platform-sdk/compare/v16.37.0...v16.38.0) (2021-05-12)
+
+
+### Features
+
+* add edge info to measurement.find response row ([#44](https://github.com/withthegrid/platform-sdk/issues/44)) ([8774fed](https://github.com/withthegrid/platform-sdk/commit/8774fed362c8f371a2c9befa4a0f0de294da68d8)), closes [withthegrid/platform#504](https://github.com/withthegrid/platform/issues/504)
+
+## [16.37.0](https://github.com/withthegrid/platform-sdk/compare/v16.36.0...v16.37.0) (2021-05-12)
+
+
+### Features
+
+*  notifications level for graph.findGroup ([88fcfe5](https://github.com/withthegrid/platform-sdk/commit/88fcfe5cea564bae220454cfdedd554901354996)), closes [withthegrid/platform-client#454](https://github.com/withthegrid/platform-client/issues/454)
+
+## [16.36.0](https://github.com/withthegrid/platform-sdk/compare/v16.35.0...v16.36.0) (2021-05-11)
+
+
+### Features
+
+* add edge hash id to pin add update routes ([#42](https://github.com/withthegrid/platform-sdk/issues/42)) ([25278df](https://github.com/withthegrid/platform-sdk/commit/25278dfedd634180df2369c1b6f2647eb9286fbd)), closes [withthegrid/platform#504](https://github.com/withthegrid/platform/issues/504)
+
+## [16.35.0](https://github.com/withthegrid/platform-sdk/compare/v16.34.0...v16.35.0) (2021-05-07)
+
+
+### Features
+
+* specify client or supplier in ControllerGeneratorOptions type ([fdb95ff](https://github.com/withthegrid/platform-sdk/commit/fdb95ff90fc355cfad740ac5cdbf706a07b5a60c))
+
+## [16.34.0](https://github.com/withthegrid/platform-sdk/compare/v16.33.0...v16.34.0) (2021-05-07)
+
+
+### Features
+
+* gridName in graph.addPinGroup and graph.updatePinGroup ([#39](https://github.com/withthegrid/platform-sdk/issues/39)) ([03e0114](https://github.com/withthegrid/platform-sdk/commit/03e01146d907069a65da4a0db7e957ab52b6bc85))
+
+## [16.33.0](https://github.com/withthegrid/platform-sdk/compare/v16.32.2...v16.33.0) (2021-05-06)
+
+
+### Features
+
+* added edge link fields to pin schema ([#37](https://github.com/withthegrid/platform-sdk/issues/37)) ([4106c85](https://github.com/withthegrid/platform-sdk/commit/4106c85e10df06aa51e3dea9c2245ccae3bcc0a6)), closes [withthegrid/platform#504](https://github.com/withthegrid/platform/issues/504)
+
+### [16.32.2](https://github.com/withthegrid/platform-sdk/compare/v16.32.1...v16.32.2) (2021-05-06)
+
+
+### Bug Fixes
+
+* put back pin links (temporary) ([de5a6c1](https://github.com/withthegrid/platform-sdk/commit/de5a6c19abaf00c157fd4efcc7437b62717ec35c))
+
+### [16.32.1](https://github.com/withthegrid/platform-sdk/compare/v16.32.0...v16.32.1) (2021-05-06)
+
+
+### Reverts
+
+* Revert "feat: extended BaseFieldConfiguration interface and schema (#34)" ([d60b4b2](https://github.com/withthegrid/platform-sdk/commit/d60b4b2210a37827bbe37eb25c15db0c3938662b)), closes [#34](https://github.com/withthegrid/platform-sdk/issues/34)
+
+## [16.32.0](https://github.com/withthegrid/platform-sdk/compare/v16.31.0...v16.32.0) (2021-05-04)
+
+
+### Features
+
+* extended BaseFieldConfiguration interface and schema ([#34](https://github.com/withthegrid/platform-sdk/issues/34)) ([4b44b88](https://github.com/withthegrid/platform-sdk/commit/4b44b88d6d2f8892dc138502abb53173cecb1da3)), closes [withthegrid/platform#664](https://github.com/withthegrid/platform/issues/664)
+
+## [16.31.0](https://github.com/withthegrid/platform-sdk/compare/v16.30.0...v16.31.0) (2021-05-04)
+
+
+### Features
+
+* remove PinLinks model, added edgeHashId and nodeHashId to the Pin model ([#33](https://github.com/withthegrid/platform-sdk/issues/33)) ([7b9a69b](https://github.com/withthegrid/platform-sdk/commit/7b9a69bffc9da77f4b576134cafd325004912737)), closes [withthegrid/platform#504](https://github.com/withthegrid/platform/issues/504)
+
+## [16.30.0](https://github.com/withthegrid/platform-sdk/compare/v16.29.0...v16.30.0) (2021-05-04)
+
+
+### Features
+
+* generic audit log ([77a029a](https://github.com/withthegrid/platform-sdk/commit/77a029a2a2c74e97ffccb5e068c57437d7868bf6)), closes [withthegrid/platform#421](https://github.com/withthegrid/platform/issues/421)
+
+## [16.29.0](https://github.com/withthegrid/platform-sdk/compare/v16.28.0...v16.29.0) (2021-05-03)
+
+
+### Features
+
+* analytics route ([#35](https://github.com/withthegrid/platform-sdk/issues/35)) ([8c61c1c](https://github.com/withthegrid/platform-sdk/commit/8c61c1cf659c7691c7c27fa4ec51998cbd7f58e6))
+
 ## [16.28.0](https://github.com/withthegrid/platform-sdk/compare/v16.27.0...v16.28.0) (2021-04-13)
 
 

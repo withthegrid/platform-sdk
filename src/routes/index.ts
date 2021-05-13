@@ -1,5 +1,6 @@
 import Comms from '../comms';
 
+import AnalyticsRoute from './analytics';
 import AuthenticationRoute from './authentication';
 import EnvironmentRoute from './environment';
 import ChartRoute from './chart';
@@ -27,6 +28,8 @@ import UserRoute from './user';
 import DownloadRoute from './download';
 
 class Routes {
+  analytics: AnalyticsRoute;
+
   authentication: AuthenticationRoute;
 
   chart: ChartRoute;
@@ -78,6 +81,7 @@ class Routes {
   download: DownloadRoute;
 
   constructor(readonly comms: Comms) {
+    this.analytics = new AnalyticsRoute(comms);
     this.authentication = new AuthenticationRoute(comms);
     this.chart = new ChartRoute(comms);
     this.command = new CommandRoute(comms);
@@ -108,6 +112,7 @@ class Routes {
 
 export default Routes;
 export {
+  AnalyticsRoute,
   AuthenticationRoute,
   ChartRoute,
   CommandRoute,

@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 
 import { schema as measurementFilterSchema, MeasurementFilter } from '../../models/measurement-filter';
 import { schema as environmentReportTypeSchema, EnvironmentReportType } from '../../models/environment-report-type';
@@ -22,7 +22,7 @@ interface Response {
   fieldKeys: string[];
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'get',
   path: '/:hashId',
   params: Joi.object().keys({
