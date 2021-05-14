@@ -3,7 +3,7 @@ import { schema as baseFieldSchema, BaseField } from './base-field';
 import {
   stringOrTranslationsSchema,
   StringOrTranslations,
-} from '../helpers/translations';
+} from '../../translations';
 
 const schema = Joi.object().keys({
   key: Joi.string().pattern(/^[a-z][a-zA-Z\d]*$/).required().example('id'),
