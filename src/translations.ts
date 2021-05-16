@@ -13,4 +13,6 @@ export interface Translations {
   nl: string,
 }
 
+export type Locale = keyof Translations;
+
 export type StringOrTranslations = string | Translations;

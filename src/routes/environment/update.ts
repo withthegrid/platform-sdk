@@ -6,6 +6,7 @@ import {
 } from '../../models/fields/updatable-field-configurations';
 
 import { schema as environmentSchema, Environment } from '../../models/environment';
+import { Locale } from '../../translations';
 
 interface Request {
   body: {
@@ -18,7 +19,7 @@ interface Request {
       nodes: UpdatableFieldConfigurations;
       pins: UpdatableFieldConfigurations;
     };
-    locale?: 'nl' | 'en';
+    locale?: Locale;
   };
 }
 

@@ -1,4 +1,5 @@
 import Joi from 'joi';
+import { Locale } from '../translations';
 
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('b45zo0'),
@@ -21,7 +22,7 @@ interface User {
   email: string | null;
   name: string;
   timezone: string;
-  locale: 'en' | 'nl';
+  locale: Locale;
   phone: string | null;
   company: string | null;
   rights: string[];
