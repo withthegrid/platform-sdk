@@ -20,6 +20,14 @@ const schema = Joi.object().keys({
     .when(Joi.ref('upperbound'), {
       is: Joi.number().required(),
       then: Joi.string().valid('number').default('number'),
+    })
+    .when(Joi.ref('inputType'), {
+      is: Joi.string().valid('switch', 'checkbox', 'radio', 'select').required(),
+      then: Joi.string().valid('boolean').default('boolean'),
+    })
+    .when(Joi.ref('inputType'), {
+      is: Joi.string().valid('text', 'textarea').required(),
+      then: Joi.string().valid('string').default('string'),
     }),
   name: stringOrTranslationsSchema.required(),
   inputType: Joi
