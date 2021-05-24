@@ -1,3 +1,10 @@
+## [16.40.0](https://github.com/withthegrid/platform-sdk/compare/v16.39.0...v16.40.0) (2021-05-24)
+
+
+### Features
+
+* report late supplier activity ([0531563](https://github.com/withthegrid/platform-sdk/commit/05315632bc79183dc23dcfcf9a6c1507ab4e7f6e)), closes [withthegrid/platform#676](https://github.com/withthegrid/platform/issues/676)
+
 ## [16.39.0](https://github.com/withthegrid/platform-sdk/compare/v16.38.0...v16.39.0) (2021-05-12)
 
 
