@@ -47,6 +47,7 @@ import * as supplierActivityHandleLinkUpdate from './supplier-activities/handle-
 import * as supplierActivityHandleLink from './supplier-activities/handle-link';
 import * as supplierActivityHandleNewCommand from './supplier-activities/handle-new-command';
 import * as supplierActivityHandleUnlink from './supplier-activities/handle-unlink';
+import * as supplierActivityHandleReportLate from './supplier-activities/handle-report-late';
 import * as supplierActivityIncreaseReportingCounter from './supplier-activities/increase-reporting-counter';
 import * as supplierActivityMarkCommandAsSent from './supplier-activities/mark-command-as-sent';
 import * as supplierActivityParseReport from './supplier-activities/parse-report';
@@ -111,6 +112,7 @@ export {
   supplierActivityHandleLink,
   supplierActivityHandleNewCommand,
   supplierActivityHandleUnlink,
+  supplierActivityHandleReportLate,
   supplierActivityIncreaseReportingCounter,
   supplierActivityMarkCommandAsSent,
   supplierActivityParseReport,
