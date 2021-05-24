@@ -56,16 +56,28 @@ const schema = Joi.object().keys({
     })
     .when(Joi.ref('type'), {
       is: 'boolean',
-      then: Joi.boolean().default(0),
+      then: Joi.boolean().default(false),
     }),
   valueOptions: Joi.array().items(Joi.object().keys({
     text: stringOrTranslationsSchema.required(),
     value: baseFieldSchema.required().description('Will be passed through parser'),
   })).allow(null).default(null)
     .description('If null, inputType should not be select or radio. If not null, input type should be select or radio. Default: null'),
-  regex: Joi.string().description('If provided, type should be string and the provided value should adhere to this regex'),
-  lowerbound: Joi.number().description('If provided, type should be number or integer and provided value should not be lower than this value'),
-  upperbound: Joi.number().description('If provided, type should be number or integer and provided value should not be higher than this value'),
+  regex: Joi.string().description('If provided, type should be string and the provided value should adhere to this regex')
+    .when(Joi.ref('type'), {
+      not: 'string',
+      then: Joi.forbidden(),
+    }),
+  lowerbound: Joi.number().description('If provided, type should be number or integer and provided value should not be lower than this value')
+    .when(Joi.ref('type'), {
+      not: ['number', 'integer'],
+      then: Joi.forbidden(),
+    }),
+  upperbound: Joi.number().description('If provided, type should be number or integer and provided value should not be higher than this value')
+    .when(Joi.ref('type'), {
+      not: ['number', 'integer'],
+      then: Joi.forbidden(),
+    }),
   showIf: Joi.object().keys({
     key: Joi.string().required(),
     value: Joi.alternatives(
@@ -74,8 +86,16 @@ const schema = Joi.object().keys({
       Joi.boolean(),
     ).required(),
   }).description('Show this field if other field with provided key is set to provided value. Referenced field must exists already'),
-  prefix: stringOrTranslationsSchema.description('Not available for inputTypes \'radio\', \'switch\', \'checkbox\', \'file\' and \'files\''),
-  suffix: stringOrTranslationsSchema.description('Not available for inputTypes \'radio\', \'switch\', \'checkbox\', \'file\' and \'files\''),
+  prefix: stringOrTranslationsSchema.description('Not available for inputTypes \'radio\', \'switch\', \'checkbox\', \'file\' and \'files\'')
+    .when(Joi.ref('type'), {
+      not: 'string',
+      then: Joi.forbidden(),
+    }),
+  suffix: stringOrTranslationsSchema.description('Not available for inputTypes \'radio\', \'switch\', \'checkbox\', \'file\' and \'files\'')
+    .when(Joi.ref('type'), {
+      not: 'string',
+      then: Joi.forbidden(),
+    }),
   hint: Joi.string().allow('').description('As shown near the input field'),
 })
   .tag('baseFieldConfiguration')
