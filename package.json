@@ -5,7 +5,8 @@
   "license": "MIT",
   "files": [
     "/esm",
-    "/cjs"
+    "/cjs",
+    "/json"
   ],
   "repository": {
     "type": "git",
@@ -15,9 +16,10 @@
   "module": "esm/index.js",
   "scripts": {
     "start": "npm run watch-ts",
-    "build": "npm run build:esm && npm run build:cjs",
+    "build": "npm run build:esm && npm run build:cjs && npm run build:json",
     "build:cjs": "rimraf -rf cjs/ && tsc -p tsconfig.cjs.json",
     "build:esm": "rimraf -rf esm/ && tsc",
+    "build:json": "rimraf -rf json/ && typescript-json-schema ./tsconfig.json BaseFieldConfiguration --required --noExtraProps -o json/base-field-configuration.json",
     "prepare": "npm run build",
     "watch-ts": "rimraf -rf esm/ && tsc -w",
     "lint": "npm run build:cjs && eslint --ext .ts src",
@@ -43,10 +45,11 @@
     "eslint": "^7.23.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
+    "rimraf": "^3.0.2",
     "semantic-release": "^17.4.2",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.3",
-    "rimraf": "^3.0.2"
+    "typescript-json-schema": "^0.50.0"
   },
   "engines": {
     "node": ">=8.0.0"
