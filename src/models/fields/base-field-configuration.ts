@@ -45,7 +45,7 @@ const schema = Joi.object().keys({
         otherwise: Joi.when(Joi.ref('type'), {
           is: Joi.string().valid('boolean').required(),
           then: Joi.string().valid('switch', 'checkbox').default('checkbox'),
-          otherwise: Joi.string().valid('text', 'textarea').default('text'),
+          otherwise: Joi.string().valid('text', 'textarea', 'file', 'files').default('text'),
         }),
       }),
     })
@@ -99,7 +99,7 @@ interface ValueOption<T extends BaseField = BaseField> {
 interface SharedBaseFieldConfiguration {
   /**
    * key used to store the field value
-   * @pattern: ^[a-z][a-zA-Z\d]*$
+   * @pattern ^[a-z][a-zA-Z\d]*$
    */
   key: string;
   /**
