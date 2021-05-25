@@ -15,11 +15,11 @@ const schema = Joi.object().keys({
     })
     .when(Joi.ref('lowerbound'), {
       is: Joi.number().required(),
-      then: Joi.string().valid('number').default('number'),
+      then: Joi.string().valid('number', 'integer').default('number'),
     })
     .when(Joi.ref('upperbound'), {
       is: Joi.number().required(),
-      then: Joi.string().valid('number').default('number'),
+      then: Joi.string().valid('number', 'integer').default('number'),
     })
     .when(Joi.ref('inputType'), {
       is: Joi.string().valid('switch', 'checkbox').required(),
