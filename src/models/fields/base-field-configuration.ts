@@ -1,13 +1,80 @@
 import Joi from 'joi';
-import { BaseField } from './base-field';
+import { schema as baseFieldSchema, BaseField } from './base-field';
 import {
   stringOrTranslationsSchema,
   StringOrTranslations,
 } from '../../translations';
 
-const commonBaseFieldConfigurationSchema = Joi.object().keys({
+const schema = Joi.object().keys({
   key: Joi.string().pattern(/^[a-z][a-zA-Z\d]*$/).required().example('id'),
+  type: Joi.string().valid('string', 'boolean', 'number', 'integer')
+    .default('string')
+    .when(Joi.ref('regex'), {
+      is: Joi.string().required(),
+      then: Joi.string().valid('string').default('string'),
+    })
+    .when(Joi.ref('lowerbound'), {
+      is: Joi.number().required(),
+      then: Joi.string().valid('number').default('number'),
+    })
+    .when(Joi.ref('upperbound'), {
+      is: Joi.number().required(),
+      then: Joi.string().valid('number').default('number'),
+    })
+    .when(Joi.ref('inputType'), {
+      is: Joi.string().valid('switch', 'checkbox').required(),
+      then: Joi.string().valid('boolean').default('boolean'),
+    })
+    .when(Joi.ref('inputType'), {
+      is: Joi.string().valid('text', 'textarea').required(),
+      then: Joi.string().valid('string').default('string'),
+    }),
   name: stringOrTranslationsSchema.required(),
+  inputType: Joi
+    .when(Joi.ref('valueOptions'), {
+      is: Joi.array().min(1).items(Joi.object().keys({
+        text: stringOrTranslationsSchema.required(),
+        value: baseFieldSchema.required().description('Will be passed through parser'),
+      }).required()).required(),
+      then: Joi.string()
+        .valid('select', 'radio')
+        .default('select'),
+      otherwise: Joi.when(Joi.ref('type'), {
+        is: Joi.string().valid('number', 'integer').required(),
+        then: Joi.string().valid('text').default('text'),
+        otherwise: Joi.when(Joi.ref('type'), {
+          is: Joi.string().valid('boolean').required(),
+          then: Joi.string().valid('switch', 'checkbox').default('checkbox'),
+          otherwise: Joi.string().valid('text', 'textarea').default('text'),
+        }),
+      }),
+    })
+    .description('The UI component to show. If not specified, it is text unless valueOptions are provided, then it is select.'),
+  defaultValue: Joi
+    .when(Joi.ref('type'), {
+      is: 'string',
+      then: Joi.string().allow('').default(''),
+    })
+    .when(Joi.ref('type'), {
+      is: 'number',
+      then: Joi.number().default(0),
+    })
+    .when(Joi.ref('type'), {
+      is: 'integer',
+      then: Joi.number().integer().default(0),
+    })
+    .when(Joi.ref('type'), {
+      is: 'boolean',
+      then: Joi.boolean().default(false),
+    }),
+  valueOptions: Joi.array().items(Joi.object().keys({
+    text: stringOrTranslationsSchema.required(),
+    value: baseFieldSchema.required().description('Will be passed through parser'),
+  })).allow(null).default(null)
+    .description('If null, inputType should not be select or radio. If not null, input type should be select or radio. Default: null'),
+  regex: Joi.string().description('If provided, type should be string and the provided value should adhere to this regex'),
+  lowerbound: Joi.number().description('If provided, type should be number or integer and provided value should not be lower than this value'),
+  upperbound: Joi.number().description('If provided, type should be number or integer and provided value should not be higher than this value'),
   showIf: Joi.object().keys({
     key: Joi.string().required(),
     value: Joi.alternatives(
@@ -19,86 +86,12 @@ const commonBaseFieldConfigurationSchema = Joi.object().keys({
   prefix: stringOrTranslationsSchema.description('Not available for inputTypes \'radio\', \'switch\', \'checkbox\', \'file\' and \'files\''),
   suffix: stringOrTranslationsSchema.description('Not available for inputTypes \'radio\', \'switch\', \'checkbox\', \'file\' and \'files\''),
   hint: Joi.string().allow('').description('As shown near the input field'),
-});
-
-const getBaseFieldConfigurationSchema = (
-  commonSchema: Joi.ObjectSchema,
-): Joi.AlternativesSchema => Joi.alternatives().try(
-  commonSchema.keys({
-    type: Joi.string().valid('string').default('string'),
-    defaultValue: Joi.string().default(''),
-    valueOptions: Joi.array().length(0).allow(null).default(null),
-    inputType: Joi.string().valid('text', 'textarea').default('text'),
-    regex: Joi.string(),
-  }).required(),
-  commonSchema.keys({
-    type: Joi.string().valid('string').default('string'),
-    defaultValue: Joi.string().default(''),
-    valueOptions: Joi.array().items(Joi.object().keys({
-      text: stringOrTranslationsSchema.required(),
-      value: Joi.string().required().description('Will be passed through parser'),
-    })),
-    inputType: Joi.string().valid('select', 'radio').default('select'),
-  }).required(),
-  commonSchema.keys({
-    type: Joi.string().valid('number').required(),
-    defaultValue: Joi.number().default(0),
-    valueOptions: Joi.array().length(0).allow(null).default(null),
-    inputType: Joi.number().valid('text').default('text'),
-    lowerbound: Joi.number().description('If provided, type should be number or integer and provided value should not be lower than this value'),
-    upperbound: Joi.number().description('If provided, type should be number or integer and provided value should not be higher than this value'),
-  }).required(),
-  commonSchema.keys({
-    type: Joi.string().valid('number').required(),
-    defaultValue: Joi.number().default(0),
-    valueOptions: Joi.array().items(Joi.object().keys({
-      text: stringOrTranslationsSchema.required(),
-      value: Joi.number().required().description('Will be passed through parser'),
-    })),
-    inputType: Joi.string().valid('select', 'radio').default('select'),
-  }).required(),
-  commonSchema.keys({
-    type: Joi.string().valid('integer').required(),
-    defaultValue: Joi.number().integer().default(0),
-    valueOptions: Joi.array().length(0).allow(null).default(null),
-    inputType: Joi.number().valid('text').default('text'),
-    lowerbound: Joi.number().description('If provided, type should be number or integer and provided value should not be lower than this value'),
-    upperbound: Joi.number().description('If provided, type should be number or integer and provided value should not be higher than this value'),
-  }).required(),
-  commonSchema.keys({
-    type: Joi.string().valid('number').required(),
-    defaultValue: Joi.number().integer().default(0),
-    valueOptions: Joi.array().items(Joi.object().keys({
-      text: stringOrTranslationsSchema.required(),
-      value: Joi.number().integer().required().description('Will be passed through parser'),
-    })),
-    inputType: Joi.string().valid('select', 'radio').default('select'),
-  }).required(),
-  commonSchema.keys({
-    type: Joi.string().valid('boolean').required(),
-    defaultValue: Joi.boolean().default(false),
-    valueOptions: Joi.array().length(0).allow(null).default(null),
-    inputType: Joi.number().valid('switch', 'checkbox').default('checkbox'),
-  }).required(),
-  commonSchema.keys({
-    type: Joi.string().valid('boolean').required(),
-    defaultValue: Joi.boolean().default(0),
-    valueOptions: Joi.array().items(Joi.object().keys({
-      text: stringOrTranslationsSchema.required(),
-      value: Joi.boolean().required().description('Will be passed through parser'),
-    })),
-    inputType: Joi.string().valid('select', 'radio').default('select'),
-  }).required(),
-  commonSchema.keys({
-    inputType: Joi.string().valid('file', 'files').required(),
-  }).required(),
-);
-
-const schema = getBaseFieldConfigurationSchema(commonBaseFieldConfigurationSchema)
+})
   .tag('baseFieldConfiguration')
   .description('Defines which data can be stored in form fields.');
 
-interface ValueOption<T extends BaseField> {
+interface ValueOption<T extends BaseField = BaseField> {
+  // string for backwards compatibility, shown at all locales
   text: StringOrTranslations;
   value: T;
 }
@@ -246,6 +239,4 @@ type BaseFieldConfiguration = ({
 export {
   schema,
   BaseFieldConfiguration,
-  getBaseFieldConfigurationSchema,
-  commonBaseFieldConfigurationSchema,
 };
