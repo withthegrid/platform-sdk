@@ -118,9 +118,12 @@ interface SharedBaseFieldConfiguration {
    * equal to provided `value`
    */
   showIf?: { key: string, value: string | boolean | number };
+  hint?: StringOrTranslations;
+}
+
+interface BaseFieldConfigurationWithPrefix {
   prefix?: StringOrTranslations;
   suffix?: StringOrTranslations;
-  hint?: StringOrTranslations;
 }
 
 type integer = number;
@@ -140,7 +143,7 @@ type BaseFieldConfiguration = ({
    */
   inputType: 'text' | 'textarea';
   regex?: string;
-} | {
+} & BaseFieldConfigurationWithPrefix | {
   type: 'string';
   /**
    * @default ""
@@ -153,7 +156,18 @@ type BaseFieldConfiguration = ({
   /**
    * @default "select"
    */
-  inputType: 'select' | 'radio';
+  inputType: 'select';
+} & BaseFieldConfigurationWithPrefix | {
+  type: 'string';
+  /**
+   * @default ""
+   */
+  defaultValue: string;
+  /**
+   * @minItems 1
+   */
+  valueOptions: ValueOption<string>[];
+  inputType: 'radio';
 } | {
   type: 'number';
   /**
@@ -170,7 +184,7 @@ type BaseFieldConfiguration = ({
   inputType: 'text';
   lowerbound?: number;
   upperbound?: number;
-} | {
+} & BaseFieldConfigurationWithPrefix | {
   type: 'number';
   /**
    * @default 0
@@ -183,7 +197,18 @@ type BaseFieldConfiguration = ({
   /**
    * @default "select"
    */
-  inputType: 'select' | 'radio';
+  inputType: 'select';
+} & BaseFieldConfigurationWithPrefix | {
+  type: 'number';
+  /**
+   * @default 0
+   */
+  defaultValue: number;
+  /**
+   * @minItems 1
+   */
+  valueOptions: ValueOption<number>[];
+  inputType: 'radio';
 } | {
   type: 'integer';
   /**
@@ -202,7 +227,7 @@ type BaseFieldConfiguration = ({
   inputType: 'text';
   lowerbound?: number;
   upperbound?: number;
-} | {
+} & BaseFieldConfigurationWithPrefix | {
   type: 'integer';
   /**
    * @default 0
@@ -214,7 +239,23 @@ type BaseFieldConfiguration = ({
   valueOptions: (Omit<ValueOption<integer>, 'value'> & {
     value: integer;
   })[];
-  inputType: 'select' | 'radio';
+  /**
+   * @default 'select'
+   */
+  inputType: 'select';
+} & BaseFieldConfigurationWithPrefix | {
+  type: 'integer';
+  /**
+   * @default 0
+   */
+  defaultValue: integer;
+  /**
+   * @minItems 1
+   */
+  valueOptions: (Omit<ValueOption<integer>, 'value'> & {
+    value: integer;
+  })[];
+  inputType: 'radio';
 } | {
   type: 'boolean';
   /**
@@ -242,7 +283,21 @@ type BaseFieldConfiguration = ({
   /**
    * @default "select"
    */
-  inputType: 'select' | 'radio';
+  inputType: 'select';
+} & BaseFieldConfigurationWithPrefix | {
+  type: 'boolean';
+  /**
+   * @default false
+   */
+  defaultValue: boolean;
+  /**
+   * @minItems 1
+   */
+  valueOptions: ValueOption<boolean>[];
+  /**
+   * @default "select"
+   */
+  inputType: 'radio';
 } | {
   inputType: 'file' | 'files';
 }) & SharedBaseFieldConfiguration;
