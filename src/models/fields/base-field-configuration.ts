@@ -16,10 +16,13 @@ const commonBaseFieldConfigurationSchema = Joi.object().keys({
       Joi.boolean(),
     ).required(),
   }).description('Show this field if other field with provided key is set to provided value. Referenced field must exists already'),
-  prefix: stringOrTranslationsSchema.description('Not available for inputTypes \'radio\', \'switch\', \'checkbox\', \'file\' and \'files\''),
-  suffix: stringOrTranslationsSchema.description('Not available for inputTypes \'radio\', \'switch\', \'checkbox\', \'file\' and \'files\''),
   hint: Joi.string().allow('').description('As shown near the input field'),
 });
+
+const prefixesMixin = {
+  prefix: stringOrTranslationsSchema.description('Not available for inputTypes \'radio\', \'switch\', \'checkbox\', \'file\' and \'files\''),
+  suffix: stringOrTranslationsSchema.description('Not available for inputTypes \'radio\', \'switch\', \'checkbox\', \'file\' and \'files\''),
+};
 
 const getBaseFieldConfigurationSchema = (
   commonSchema: Joi.ObjectSchema,
@@ -30,6 +33,7 @@ const getBaseFieldConfigurationSchema = (
     valueOptions: Joi.array().length(0).allow(null).default(null),
     inputType: Joi.string().valid('text', 'textarea').default('text'),
     regex: Joi.string(),
+    ...prefixesMixin,
   }).required(),
   commonSchema.keys({
     type: Joi.string().valid('string').default('string'),
@@ -38,7 +42,17 @@ const getBaseFieldConfigurationSchema = (
       text: stringOrTranslationsSchema.required(),
       value: Joi.string().required().description('Will be passed through parser'),
     })),
-    inputType: Joi.string().valid('select', 'radio').default('select'),
+    inputType: Joi.string().valid('select').default('select'),
+    ...prefixesMixin,
+  }).required(),
+  commonSchema.keys({
+    type: Joi.string().valid('string').default('string'),
+    defaultValue: Joi.string().allow('').default(''),
+    valueOptions: Joi.array().items(Joi.object().keys({
+      text: stringOrTranslationsSchema.required(),
+      value: Joi.string().required().description('Will be passed through parser'),
+    })),
+    inputType: Joi.string().valid('radio').required(),
   }).required(),
   commonSchema.keys({
     type: Joi.string().valid('number').required(),
@@ -47,6 +61,7 @@ const getBaseFieldConfigurationSchema = (
     inputType: Joi.number().valid('text').default('text'),
     lowerbound: Joi.number().description('If provided, type should be number or integer and provided value should not be lower than this value'),
     upperbound: Joi.number().description('If provided, type should be number or integer and provided value should not be higher than this value'),
+    ...prefixesMixin,
   }).required(),
   commonSchema.keys({
     type: Joi.string().valid('number').required(),
@@ -55,7 +70,17 @@ const getBaseFieldConfigurationSchema = (
       text: stringOrTranslationsSchema.required(),
       value: Joi.number().required().description('Will be passed through parser'),
     })),
-    inputType: Joi.string().valid('select', 'radio').default('select'),
+    inputType: Joi.string().valid('select').default('select'),
+    ...prefixesMixin,
+  }).required(),
+  commonSchema.keys({
+    type: Joi.string().valid('number').required(),
+    defaultValue: Joi.number().default(0),
+    valueOptions: Joi.array().items(Joi.object().keys({
+      text: stringOrTranslationsSchema.required(),
+      value: Joi.number().required().description('Will be passed through parser'),
+    })),
+    inputType: Joi.string().valid('radio').required(),
   }).required(),
   commonSchema.keys({
     type: Joi.string().valid('integer').required(),
@@ -64,15 +89,26 @@ const getBaseFieldConfigurationSchema = (
     inputType: Joi.number().valid('text').default('text'),
     lowerbound: Joi.number().description('If provided, type should be number or integer and provided value should not be lower than this value'),
     upperbound: Joi.number().description('If provided, type should be number or integer and provided value should not be higher than this value'),
+    ...prefixesMixin,
   }).required(),
   commonSchema.keys({
-    type: Joi.string().valid('number').required(),
+    type: Joi.string().valid('integer').required(),
     defaultValue: Joi.number().integer().default(0),
     valueOptions: Joi.array().items(Joi.object().keys({
       text: stringOrTranslationsSchema.required(),
       value: Joi.number().integer().required().description('Will be passed through parser'),
     })),
-    inputType: Joi.string().valid('select', 'radio').default('select'),
+    inputType: Joi.string().valid('select').default('select'),
+    ...prefixesMixin,
+  }).required(),
+  commonSchema.keys({
+    type: Joi.string().valid('integer').required(),
+    defaultValue: Joi.number().integer().default(0),
+    valueOptions: Joi.array().items(Joi.object().keys({
+      text: stringOrTranslationsSchema.required(),
+      value: Joi.number().integer().required().description('Will be passed through parser'),
+    })),
+    inputType: Joi.string().valid('radio').required(),
   }).required(),
   commonSchema.keys({
     type: Joi.string().valid('boolean').required(),
@@ -87,7 +123,17 @@ const getBaseFieldConfigurationSchema = (
       text: stringOrTranslationsSchema.required(),
       value: Joi.boolean().required().description('Will be passed through parser'),
     })),
-    inputType: Joi.string().valid('select', 'radio').default('select'),
+    inputType: Joi.string().valid('select').default('select'),
+    ...prefixesMixin,
+  }).required(),
+  commonSchema.keys({
+    type: Joi.string().valid('boolean').required(),
+    defaultValue: Joi.boolean().default(0),
+    valueOptions: Joi.array().items(Joi.object().keys({
+      text: stringOrTranslationsSchema.required(),
+      value: Joi.boolean().required().description('Will be passed through parser'),
+    })),
+    inputType: Joi.string().valid('radio').required(),
   }).required(),
   commonSchema.keys({
     inputType: Joi.string().valid('file', 'files').required(),
