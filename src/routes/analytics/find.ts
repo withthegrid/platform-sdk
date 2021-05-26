@@ -21,8 +21,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   query: analyticsQuerySchema.required(),
   right: { environment: 'READ' },
   response: Joi.object().keys({
-    nextPageOffset: Joi.string().allow(null).required(),
-    rows: Joi.array().required(),
+    nextPageOffset: Joi.string().allow(null).example(null).required(),
+    rows: Joi.array().items(Joi.any()).example([['dao97']]).required(),
   }).required(),
   description: 'Get a specific quantity identified by its hashId',
 };
