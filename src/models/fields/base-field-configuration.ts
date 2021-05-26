@@ -167,7 +167,7 @@ interface SharedBaseFieldConfiguration {
   hint?: StringOrTranslations;
 }
 
-interface BaseFieldConfigurationWithPrefix {
+interface PrefixMixin {
   prefix?: StringOrTranslations;
   suffix?: StringOrTranslations;
 }
@@ -189,7 +189,7 @@ type BaseFieldConfiguration = ({
    */
   inputType: 'text' | 'textarea';
   regex?: string;
-} & BaseFieldConfigurationWithPrefix | {
+} & PrefixMixin | {
   type: 'string';
   /**
    * @default ""
@@ -203,7 +203,7 @@ type BaseFieldConfiguration = ({
    * @default "select"
    */
   inputType: 'select';
-} & BaseFieldConfigurationWithPrefix | {
+} & PrefixMixin | {
   type: 'string';
   /**
    * @default ""
@@ -230,7 +230,7 @@ type BaseFieldConfiguration = ({
   inputType: 'text';
   lowerbound?: number;
   upperbound?: number;
-} & BaseFieldConfigurationWithPrefix | {
+} & PrefixMixin | {
   type: 'number';
   /**
    * @default 0
@@ -244,7 +244,7 @@ type BaseFieldConfiguration = ({
    * @default "select"
    */
   inputType: 'select';
-} & BaseFieldConfigurationWithPrefix | {
+} & PrefixMixin | {
   type: 'number';
   /**
    * @default 0
@@ -273,7 +273,7 @@ type BaseFieldConfiguration = ({
   inputType: 'text';
   lowerbound?: number;
   upperbound?: number;
-} & BaseFieldConfigurationWithPrefix | {
+} & PrefixMixin | {
   type: 'integer';
   /**
    * @default 0
@@ -289,7 +289,7 @@ type BaseFieldConfiguration = ({
    * @default 'select'
    */
   inputType: 'select';
-} & BaseFieldConfigurationWithPrefix | {
+} & PrefixMixin | {
   type: 'integer';
   /**
    * @default 0
@@ -330,7 +330,7 @@ type BaseFieldConfiguration = ({
    * @default "select"
    */
   inputType: 'select';
-} & BaseFieldConfigurationWithPrefix | {
+} & PrefixMixin | {
   type: 'boolean';
   /**
    * @default false
