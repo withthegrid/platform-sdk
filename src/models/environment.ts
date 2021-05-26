@@ -8,6 +8,8 @@ const schema = Joi.object().keys({
   mapLayers: Joi.array().items(Joi.object().keys({
     name: Joi.string().required().example('My map layer'),
     key: Joi.string().invalid('nodes').required().example('myLayer'),
+    namedStyle: Joi.string().example('arcgis'),
+    style: Joi.string().example(''),
   })).min(1).required(),
   boundingBox: Joi.object().keys({
     type: Joi.string().valid('LineString').required().example('LineString'),
@@ -33,7 +35,7 @@ const schema = Joi.object().keys({
 interface Environment {
   hashId: string;
   name: string;
-  mapLayers: { name: string; key: string }[];
+  mapLayers: { name: string; key: string; namedStyle?: string; style?: JSON; }[];
   boundingBox: {
     type: 'LineString';
     coordinates: [[number, number], [number, number]];

@@ -10,7 +10,7 @@ import { schema as environmentSchema, Environment } from '../../models/environme
 interface Request {
   body: {
     name?: string;
-    mapLayers?: { name: string; key: string }[];
+    mapLayers?: { name: string; key: string; namedStyle?: string; style?: JSON; }[];
     fieldConfigurations?: {
       pinGroups: UpdatableFieldConfigurations;
       edges: UpdatableFieldConfigurations;
@@ -36,6 +36,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     mapLayers: Joi.array().items(Joi.object().keys({
       name: Joi.string().required().example('My map layer'),
       key: Joi.string().invalid('nodes').required().example('myLayer'),
+      namedStyle: Joi.string().example('arcgis'),
+      style: Joi.string().example(''),
     })).min(1),
     fieldConfigurations: Joi.object().keys({
       pinGroups: fieldConfigurationSchema,
