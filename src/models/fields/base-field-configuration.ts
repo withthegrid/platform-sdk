@@ -180,7 +180,7 @@ type BaseFieldConfiguration = ({
   /**
    * @default ""
    */
-  defaultValue: string;
+  defaultValue: StringOrTranslations;
   /**
    * @default null
    */
@@ -188,7 +188,7 @@ type BaseFieldConfiguration = ({
   /**
    * @default "text"
    */
-  inputType: 'text' | 'textarea';
+  inputType: 'text' | 'textarea' | 'translations';
   regex?: string;
 } & PrefixMixin | {
   type: 'string';
