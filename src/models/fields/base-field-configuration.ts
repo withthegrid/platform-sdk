@@ -137,8 +137,9 @@ const getBaseFieldConfigurationSchema = (
   }).required(),
   commonSchema.keys({
     inputType: Joi.string().valid('file', 'files').required(),
+    valueOptions: Joi.array().length(0).allow(null),
   }).required(),
-).required()
+)
   .tag('baseFieldConfiguration')
   .description('Defines which data can be stored in form fields.');
 
@@ -346,6 +347,7 @@ type BaseFieldConfiguration = ({
   inputType: 'radio';
 } | {
   inputType: 'file' | 'files';
+  valueOptions: null | [];
 }) & SharedBaseFieldConfiguration;
 
 export {
