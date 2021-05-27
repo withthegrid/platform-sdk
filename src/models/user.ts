@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { Locale } from '../translations';
+import { Locale, schema as localeSchema } from './locale';
 
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('b45zo0'),
@@ -8,7 +8,7 @@ const schema = Joi.object().keys({
     .description('Is null for machine accounts'),
   name: Joi.string().required().example('John Doe'),
   timezone: Joi.string().required().example('Europe/Amsterdam').description('A IANA zone or a fixed-offset name of the form \'UTC+3\', or the strings \'utc\'.'),
-  locale: Joi.string().valid('nl', 'en').default('en'),
+  locale: localeSchema.default('en'),
   phone: Joi.string().allow(null).default(null),
   company: Joi.string().allow(null).default(null),
   rights: Joi.array().items(Joi.string()).required().example(['STATIC', 'USERS'])

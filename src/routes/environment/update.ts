@@ -6,7 +6,7 @@ import {
 } from '../../models/fields/updatable-field-configurations';
 
 import { schema as environmentSchema, Environment } from '../../models/environment';
-import { Locale } from '../../translations';
+import { Locale } from '../../models/locale';
 
 interface Request {
   body: {

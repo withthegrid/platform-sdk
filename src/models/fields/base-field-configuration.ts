@@ -1,9 +1,9 @@
 import Joi from 'joi';
 import { BaseField } from './base-field';
 import {
-  stringOrTranslationsSchema,
+  schema as stringOrTranslationsSchema,
   StringOrTranslations,
-} from '../../translations';
+} from '../translations';
 
 const commonBaseFieldConfigurationSchema = Joi.object().keys({
   key: Joi.string().pattern(/^[a-z][a-zA-Z\d]*$/).required().example('id'),
@@ -161,7 +161,7 @@ interface SharedBaseFieldConfiguration {
    */
   name: StringOrTranslations;
   /**
-   * show this field in UI only if value of another form field, identified by provided `key`, is
+   * show this field in UI only if value of an earlier form field, identified by provided `key`, is
    * equal to provided `value`
    */
   showIf?: { key: string, value: string | boolean | number };

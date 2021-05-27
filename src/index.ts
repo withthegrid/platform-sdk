@@ -69,8 +69,6 @@ export { default as controllerGenerator, Result } from './comms/controller';
 
 export { default as errors } from './errors';
 
-export { Translations, StringOrTranslations, Locale } from './translations';
-
 export {
   routes,
   models,
