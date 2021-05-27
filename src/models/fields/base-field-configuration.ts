@@ -29,7 +29,7 @@ const getBaseFieldConfigurationSchema = (
 ): Joi.AlternativesSchema => Joi.alternatives().try(
   commonSchema.keys({
     type: Joi.string().valid('string').default('string'),
-    defaultValue: Joi.string().allow('').default(''),
+    defaultValue: stringOrTranslationsSchema.allow('').default(''),
     valueOptions: Joi.array().length(0).allow(null).default(null),
     inputType: Joi.string().valid('text', 'textarea').default('text'),
     regex: Joi.string(),
@@ -37,7 +37,7 @@ const getBaseFieldConfigurationSchema = (
   }).required(),
   commonSchema.keys({
     type: Joi.string().valid('string').default('string'),
-    defaultValue: Joi.string().allow('').default(''),
+    defaultValue: stringOrTranslationsSchema.allow('').default(''),
     valueOptions: Joi.array().items(Joi.object().keys({
       text: stringOrTranslationsSchema.required(),
       value: Joi.string().required().description('Will be passed through parser'),
