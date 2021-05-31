@@ -16,7 +16,7 @@ const commonBaseFieldConfigurationSchema = Joi.object().keys({
       Joi.boolean(),
     ).required(),
   }).description('Show this field if other field with provided key is set to provided value. Referenced field must exists already'),
-  hint: Joi.string().allow('').description('As shown near the input field'),
+  hint: stringOrTranslationsSchema.allow('').description('As shown near the input field'),
 });
 
 const prefixesMixin = {
