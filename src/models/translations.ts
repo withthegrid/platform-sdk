@@ -1,11 +1,12 @@
 import Joi from 'joi';
 
+const translationsSchema = Joi.object().keys({
+  en: Joi.string().required(),
+  nl: Joi.string().required(),
+});
 const schema = Joi.alternatives(
   Joi.string(),
-  Joi.object().keys({
-    en: Joi.string().required(),
-    nl: Joi.string().required(),
-  }),
+  translationsSchema,
 );
 
 interface Translations {
@@ -17,6 +18,7 @@ type StringOrTranslations = string | Translations;
 
 export {
   schema,
+  translationsSchema,
   Translations,
   StringOrTranslations,
 };
