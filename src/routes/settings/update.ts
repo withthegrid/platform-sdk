@@ -1,11 +1,12 @@
 import Joi from 'joi';
 import { ControllerGeneratorOptionsWithoutClientOrSupplier } from '../../comms/controller';
+import { Locale, schema as localeSchema } from '../../models/locale';
 
 interface Request {
   body: {
     name?: string;
     password?: string;
-    locale?: string;
+    locale?: Locale;
     timezone?: string;
     phone?: string | null;
     company?: string | null;
@@ -20,7 +21,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSuppl
   body: Joi.object().keys({
     name: Joi.string().example('Jane Doe'),
     password: Joi.string(),
-    locale: Joi.string().valid('en', 'nl'),
+    locale: localeSchema,
     timezone: Joi.string(),
     phone: Joi.string().allow(null),
     company: Joi.string().allow(null),

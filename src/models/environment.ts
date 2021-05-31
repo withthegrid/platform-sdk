@@ -1,6 +1,7 @@
 import Joi from 'joi';
 
 import { schema as fieldConfigurationsFromServerSchema, FieldConfigurationsFromServer } from './fields/field-configurations-from-server';
+import { Locale, schema as localeSchema } from './locale';
 
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('f1a4w1'),
@@ -23,7 +24,7 @@ const schema = Joi.object().keys({
     nodes: fieldConfigurationsFromServerSchema.required(),
     pins: fieldConfigurationsFromServerSchema.required(),
   }).required().description('See the chapter on open fields on how to use this'),
-  locale: Joi.string().required().example('en'),
+  locale: localeSchema.required().example('en'),
   expiresAt: Joi.date().allow(null).required().example(null),
   createdAt: Joi.date().required().example('2019-12-31T15:23Z'),
 })
@@ -45,7 +46,7 @@ interface Environment {
     nodes: FieldConfigurationsFromServer;
     pins: FieldConfigurationsFromServer;
   };
-  locale: string;
+  locale: Locale;
   expiresAt: Date | null;
   createdAt: Date;
 }
