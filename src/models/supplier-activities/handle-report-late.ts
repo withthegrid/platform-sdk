@@ -15,7 +15,7 @@ const schema = (apiVersion: number): Joi.ObjectSchema => supplierActivityConstru
   }).required(),
   deviceTypeHandlerActivity(apiVersion),
 )
-  .tag('supplierActivityHandleLink')
+  .tag('supplierActivityHandleReportLate')
   .description('Device type event handler handled the device not reporting in on time.');
 
 export { schema, HandleReportLate };
