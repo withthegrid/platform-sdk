@@ -35,7 +35,7 @@ const schema = Joi.object().keys({
 interface Environment {
   hashId: string;
   name: string;
-  mapLayers: { name: string; key: string; namedStyle?: string; style?: JSON; }[];
+  mapLayers: { name: string; key: string; namedStyle?: string; style?: string; }[];
   boundingBox: {
     type: 'LineString';
     coordinates: [[number, number], [number, number]];

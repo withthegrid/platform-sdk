@@ -10,7 +10,7 @@ import { schema as environmentSchema, Environment } from '../../models/environme
 interface Request {
   body: {
     name?: string;
-    mapLayers?: { name: string; key: string; namedStyle?: string; style?: JSON; }[];
+    mapLayers?: { name: string; key: string; namedStyle?: string; style?: string; }[];
     fieldConfigurations?: {
       pinGroups: UpdatableFieldConfigurations;
       edges: UpdatableFieldConfigurations;
