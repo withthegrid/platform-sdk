@@ -351,9 +351,12 @@ type BaseFieldConfiguration = ({
   valueOptions: null | [];
 }) & SharedBaseFieldConfiguration;
 
+type BaseFieldConfigurations = BaseFieldConfiguration[];
+
 export {
   schema,
   BaseFieldConfiguration,
+  BaseFieldConfigurations,
   getBaseFieldConfigurationSchema,
   commonBaseFieldConfigurationSchema,
 };
