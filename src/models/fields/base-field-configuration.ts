@@ -3,7 +3,7 @@ import { BaseField } from './base-field';
 import {
   schema as stringOrTranslationsSchema,
   StringOrTranslations,
-} from '../translations';
+} from '../string-or-translations';
 
 const commonBaseFieldConfigurationSchema = Joi.object().keys({
   key: Joi.string().pattern(/^[a-z][a-zA-Z\d]*$/).required().example('id'),
@@ -33,13 +33,6 @@ const getBaseFieldConfigurationSchema = (
     valueOptions: Joi.array().length(0).allow(null).default(null),
     inputType: Joi.string().valid('text', 'textarea').default('text'),
     regex: Joi.string(),
-    ...prefixesMixin,
-  }),
-  commonSchema.keys({
-    type: Joi.string().valid('string').default('string'),
-    defaultValue: stringOrTranslationsSchema.allow('').default(''),
-    valueOptions: Joi.array().length(0).allow(null).default(null),
-    inputType: Joi.string().valid('translations').required(),
     ...prefixesMixin,
   }),
   commonSchema.keys({
@@ -198,20 +191,6 @@ type BaseFieldConfiguration = ({
    */
   inputType: 'text' | 'textarea';
   regex?: string;
-} & PrefixMixin | {
-  type: 'string';
-  /**
-   * @default ""
-   */
-  defaultValue: StringOrTranslations;
-  /**
-   * @default null
-   */
-  valueOptions: null | [];
-  /**
-   * @default "text"
-   */
-  inputType: 'translations';
 } & PrefixMixin | {
   type: 'string';
   /**

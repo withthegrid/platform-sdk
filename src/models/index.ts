@@ -63,6 +63,7 @@ import * as threshold from './threshold';
 import * as user from './user';
 import * as userSubscription from './user-subscription';
 import * as translations from './translations';
+import * as stringOrTranslations from './string-or-translations';
 import * as locale from './locale';
 
 export {
@@ -132,4 +133,5 @@ export {
   userSubscription,
   translations,
   locale,
+  stringOrTranslations,
 };
