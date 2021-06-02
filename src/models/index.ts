@@ -62,6 +62,9 @@ import * as supplierWebhook from './supplier-webhook';
 import * as threshold from './threshold';
 import * as user from './user';
 import * as userSubscription from './user-subscription';
+import * as translations from './translations';
+import * as stringOrTranslations from './string-or-translations';
+import * as locale from './locale';
 
 export {
   analyticsQuery,
@@ -128,4 +131,7 @@ export {
   user,
   webRequest,
   userSubscription,
+  translations,
+  locale,
+  stringOrTranslations,
 };
