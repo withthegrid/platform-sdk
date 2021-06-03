@@ -6,6 +6,7 @@ import {
 } from '../../models/fields/updatable-field-configurations';
 
 import { schema as environmentSchema, Environment } from '../../models/environment';
+import { Locale, schema as localeSchema } from '../../models/locale';
 
 interface Request {
   body: {
@@ -18,7 +19,7 @@ interface Request {
       nodes: UpdatableFieldConfigurations;
       pins: UpdatableFieldConfigurations;
     };
-    locale?: 'nl' | 'en';
+    locale?: Locale;
   };
 }
 
@@ -46,7 +47,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       nodes: fieldConfigurationSchema,
       pins: fieldConfigurationSchema,
     }).description('See the chapter on open fields on how to use this. A minimum of 1 element should be present in each field configuration array'),
-    locale: Joi.string().valid('en', 'nl'),
+    locale: localeSchema,
   }).required(),
   right: { environment: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({

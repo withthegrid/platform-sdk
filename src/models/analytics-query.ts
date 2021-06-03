@@ -9,15 +9,15 @@ const constraintSchema = Joi.object().keys({
 const conditionSchema = Joi.object().keys({
   type: Joi.string().valid('or', 'and').required(),
   restrictions: Joi.array().items(Joi.alternatives().try(
-    Joi.link('#analyticsQueryCondition').required(),
+    Joi.link('#analyticsQueryCondition').description('Another condition (recursion allowed)').required(),
     constraintSchema.required(),
   )).required(),
 }).id('analyticsQueryCondition');
 
 const schema = Joi.object().keys({
-  source: Joi.string().required(),
+  source: Joi.string().example('pinGroup').required(),
   columns: Joi.array().items(Joi.alternatives().try(
-    Joi.string().required(),
+    Joi.string().example('pinGroup.hashId').required(),
     Joi.object().keys({ type: Joi.string().valid('count', 'share').required(), condition: conditionSchema }).required(),
     Joi.object().keys({ type: Joi.string().valid('sum', 'mean', 'min', 'max').required(), condition: conditionSchema, field: Joi.string().required() }).required(),
     Joi.object().keys({ type: Joi.string().valid('timeGroup').required(), field: Joi.string().required(), granularity: Joi.string().required() }).required(),
@@ -31,7 +31,7 @@ const schema = Joi.object().keys({
   rowsPerPage: Joi.number().default(20).min(10).max(100),
 })
   .description('A geographical object representing a point. Is used to connect one or more single segment lines.')
-  .tag('node');
+  .tag('analyticsQuery');
 
 type TimeGranularity =
   'day'
