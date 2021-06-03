@@ -1,3 +1,10 @@
+## [16.41.0](https://github.com/withthegrid/platform-sdk/compare/v16.40.0...v16.41.0) (2021-06-02)
+
+
+### Features
+
+* extended base field configuration ([#45](https://github.com/withthegrid/platform-sdk/issues/45)) ([6185d24](https://github.com/withthegrid/platform-sdk/commit/6185d2461a89c8539f65790596365f614f02336f)), closes [withthegrid/platform#664](https://github.com/withthegrid/platform/issues/664)
+
 ## [16.40.0](https://github.com/withthegrid/platform-sdk/compare/v16.39.0...v16.40.0) (2021-05-24)
 
 
