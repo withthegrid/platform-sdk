@@ -7,11 +7,12 @@ import {
 
 import { schema as environmentSchema, Environment } from '../../models/environment';
 import { Locale, schema as localeSchema } from '../../models/locale';
+import { MapLayer, schema as mapLayerSchema } from '../../models/map-layer';
 
 interface Request {
   body: {
     name?: string;
-    mapLayers?: { name: string; key: string; namedStyle?: string; style?: string; }[];
+    mapLayers?: MapLayer[];
     fieldConfigurations?: {
       pinGroups: UpdatableFieldConfigurations;
       edges: UpdatableFieldConfigurations;
@@ -34,12 +35,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   path: '/',
   body: Joi.object().keys({
     name: Joi.string().example('My monitoring environment'),
-    mapLayers: Joi.array().items(Joi.object().keys({
-      name: Joi.string().required().example('My map layer'),
-      key: Joi.string().invalid('nodes').required().example('myLayer'),
-      namedStyle: Joi.string().example('arcgis'),
-      style: Joi.string().example(''),
-    })).min(1),
+    mapLayers: Joi.array().items(mapLayerSchema).min(1),
     fieldConfigurations: Joi.object().keys({
       pinGroups: fieldConfigurationSchema,
       grids: fieldConfigurationSchema,
