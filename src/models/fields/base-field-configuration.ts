@@ -58,7 +58,7 @@ const getBaseFieldConfigurationSchema = (
     type: Joi.string().valid('number').required(),
     defaultValue: Joi.number().default(0),
     valueOptions: Joi.array().length(0).allow(null).default(null),
-    inputType: Joi.number().valid('text').default('text'),
+    inputType: Joi.string().valid('text').default('text'),
     lowerbound: Joi.number().description('If provided, type should be number or integer and provided value should not be lower than this value'),
     upperbound: Joi.number().description('If provided, type should be number or integer and provided value should not be higher than this value'),
     ...prefixesMixin,
@@ -86,7 +86,7 @@ const getBaseFieldConfigurationSchema = (
     type: Joi.string().valid('integer').required(),
     defaultValue: Joi.number().integer().default(0),
     valueOptions: Joi.array().length(0).allow(null).default(null),
-    inputType: Joi.number().valid('text').default('text'),
+    inputType: Joi.string().valid('text').default('text'),
     lowerbound: Joi.number().description('If provided, type should be number or integer and provided value should not be lower than this value'),
     upperbound: Joi.number().description('If provided, type should be number or integer and provided value should not be higher than this value'),
     ...prefixesMixin,
@@ -115,11 +115,11 @@ const getBaseFieldConfigurationSchema = (
     defaultValue: Joi.boolean().default(false),
     valueOptions: Joi.array().min(1).length(0).allow(null)
       .default(null),
-    inputType: Joi.number().valid('switch', 'checkbox').default('checkbox'),
+    inputType: Joi.string().valid('switch', 'checkbox').default('checkbox'),
   }),
   commonSchema.keys({
     type: Joi.string().valid('boolean').required(),
-    defaultValue: Joi.boolean().default(0),
+    defaultValue: Joi.boolean().default(false),
     valueOptions: Joi.array().min(1).items(Joi.object().keys({
       text: stringOrTranslationsSchema.required(),
       value: Joi.boolean().required(),
@@ -129,7 +129,7 @@ const getBaseFieldConfigurationSchema = (
   }),
   commonSchema.keys({
     type: Joi.string().valid('boolean').required(),
-    defaultValue: Joi.boolean().default(0),
+    defaultValue: Joi.boolean().default(false),
     valueOptions: Joi.array().min(1).items(Joi.object().keys({
       text: stringOrTranslationsSchema.required(),
       value: Joi.boolean().required(),
