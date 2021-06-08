@@ -18,6 +18,8 @@ interface Request {
     pinGroupHashIds?: string[]; // max 50
     quantityHashIds?: string[];
     fieldKeys?: string[];
+    pinFieldKeys?: string[];
+    edgeFieldKeys?: string[];
   };
 }
 
@@ -45,6 +47,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     pinGroupHashIds: Joi.array().min(1).max(50).items(Joi.string().example('dao97')),
     quantityHashIds: Joi.array().min(1).max(64).items(Joi.string()),
     fieldKeys: Joi.array().max(20).items(Joi.string()),
+    pinFieldKeys: Joi.array().items(Joi.string()),
+    edgeFieldKeys: Joi.array().items(Joi.string()),
   }).required(),
   right: { environment: 'REPORTS' },
 };

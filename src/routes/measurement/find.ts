@@ -2,6 +2,7 @@ import Joi from 'joi';
 import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 
 import { BaseFields, schema as baseFieldsSchema } from '../../models/fields/base-fields';
+import { schema as fieldsFromServerSchema, FieldsFromServer } from '../../models/fields/fields-from-server';
 import { Measurement, schema as measurementSchema } from '../../models/measurement';
 
 import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../../comms/table-controller';
@@ -56,10 +57,12 @@ interface ResponseRow {
   pin: {
     hashId: string;
     name: string;
+    fields: FieldsFromServer | null;
   };
   edge: {
     hashId: string | null;
     name: string | null;
+    fields: FieldsFromServer | null;
   };
 }
 
@@ -111,10 +114,12 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       pin: Joi.object().keys({
         hashId: Joi.string().required().example('e13d57'),
         name: Joi.string().required().example('My port'),
+        fields: fieldsFromServerSchema.allow(null).example({ id: 'My port' }),
       }).required(),
       edge: Joi.object().keys({
         hashId: Joi.string().allow(null).required().example('ka08d'),
         name: Joi.string().allow(null).required().example('My line'),
+        fields: fieldsFromServerSchema.allow(null).required().example({ id: 'My line' }),
       }).required(),
     })).required(),
   }),
