@@ -1,3 +1,10 @@
+### [16.42.1](https://github.com/withthegrid/platform-sdk/compare/v16.42.0...v16.42.1) (2021-06-09)
+
+
+### Bug Fixes
+
+* bump normalize-url from 5.3.0 to 5.3.1 ([#51](https://github.com/withthegrid/platform-sdk/issues/51)) ([2035886](https://github.com/withthegrid/platform-sdk/commit/20358864480e6f68c8bf65ebffa62cac970e8381))
+
 ## [16.42.0](https://github.com/withthegrid/platform-sdk/compare/v16.41.0...v16.42.0) (2021-06-03)
 
 
