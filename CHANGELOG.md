@@ -1,3 +1,17 @@
+## [16.42.0](https://github.com/withthegrid/platform-sdk/compare/v16.41.0...v16.42.0) (2021-06-03)
+
+
+### Features
+
+* strict show if in field configuration ([#48](https://github.com/withthegrid/platform-sdk/issues/48)) ([b395848](https://github.com/withthegrid/platform-sdk/commit/b395848ecd0d6bd0d68d2ed30967c8bba406429c)), closes [platform/withthegrid#664](https://github.com/platform/withthegrid/issues/664)
+
+## [16.41.0](https://github.com/withthegrid/platform-sdk/compare/v16.40.0...v16.41.0) (2021-06-02)
+
+
+### Features
+
+* extended base field configuration ([#45](https://github.com/withthegrid/platform-sdk/issues/45)) ([6185d24](https://github.com/withthegrid/platform-sdk/commit/6185d2461a89c8539f65790596365f614f02336f)), closes [withthegrid/platform#664](https://github.com/withthegrid/platform/issues/664)
+
 ## [16.40.0](https://github.com/withthegrid/platform-sdk/compare/v16.39.0...v16.40.0) (2021-05-24)
 
 
