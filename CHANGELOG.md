@@ -1,3 +1,22 @@
+## [16.43.0](https://github.com/withthegrid/platform-sdk/compare/v16.42.1...v16.43.0) (2021-06-09)
+
+
+### Features
+
+* added edgeName to sortBy values for meauserment.find route ([#50](https://github.com/withthegrid/platform-sdk/issues/50)) ([33fe935](https://github.com/withthegrid/platform-sdk/commit/33fe93537e87508f48720dc663e330da659639f0)), closes [withthegrid/platform-client#523](https://github.com/withthegrid/platform-client/issues/523)
+
+
+### Bug Fixes
+
+* fixed schema errors, discovered by test ([#49](https://github.com/withthegrid/platform-sdk/issues/49)) ([253e487](https://github.com/withthegrid/platform-sdk/commit/253e487c798f32e4efd5cf1efbf3d27b54857e8c)), closes [withthegrid/platform#664](https://github.com/withthegrid/platform/issues/664)
+
+### [16.42.1](https://github.com/withthegrid/platform-sdk/compare/v16.42.0...v16.42.1) (2021-06-09)
+
+
+### Bug Fixes
+
+* bump normalize-url from 5.3.0 to 5.3.1 ([#51](https://github.com/withthegrid/platform-sdk/issues/51)) ([2035886](https://github.com/withthegrid/platform-sdk/commit/20358864480e6f68c8bf65ebffa62cac970e8381))
+
 ## [16.42.0](https://github.com/withthegrid/platform-sdk/compare/v16.41.0...v16.42.0) (2021-06-03)
 
 
