@@ -1,3 +1,10 @@
+### [17.0.1](https://github.com/withthegrid/platform-sdk/compare/v17.0.0...v17.0.1) (2021-06-15)
+
+
+### Bug Fixes
+
+* default 'boolean' option for field configuration of input type 'switch' or 'checkbox' ([f3faa78](https://github.com/withthegrid/platform-sdk/commit/f3faa78f8a3bc0c11acefe203dac68e18316e262))
+
 ## [17.0.0](https://github.com/withthegrid/platform-sdk/compare/v16.44.0...v17.0.0) (2021-06-15)
 
 
