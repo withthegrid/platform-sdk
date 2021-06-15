@@ -1,3 +1,10 @@
+## [16.44.0](https://github.com/withthegrid/platform-sdk/compare/v16.43.0...v16.44.0) (2021-06-15)
+
+
+### Features
+
+* external map layers ([01c0690](https://github.com/withthegrid/platform-sdk/commit/01c0690fafe87263685b5e71bb1d995f39d6aaef))
+
 ## [16.43.0](https://github.com/withthegrid/platform-sdk/compare/v16.42.1...v16.43.0) (2021-06-09)
 
 
