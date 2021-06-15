@@ -2,14 +2,12 @@ import Joi from 'joi';
 
 import { schema as fieldConfigurationsFromServerSchema, FieldConfigurationsFromServer } from './fields/field-configurations-from-server';
 import { Locale, schema as localeSchema } from './locale';
+import { MapLayer, schema as mapLayerSchema } from './map-layer';
 
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('f1a4w1'),
   name: Joi.string().required().example('My monitoring environment'),
-  mapLayers: Joi.array().items(Joi.object().keys({
-    name: Joi.string().required().example('My map layer'),
-    key: Joi.string().invalid('nodes').required().example('myLayer'),
-  })).min(1).required(),
+  mapLayers: Joi.array().items(mapLayerSchema).min(1).required(),
   boundingBox: Joi.object().keys({
     type: Joi.string().valid('LineString').required().example('LineString'),
     coordinates: Joi.array().length(2).items(Joi.array().length(2).items(Joi.number())).required()
@@ -34,7 +32,7 @@ const schema = Joi.object().keys({
 interface Environment {
   hashId: string;
   name: string;
-  mapLayers: { name: string; key: string }[];
+  mapLayers: MapLayer[];
   boundingBox: {
     type: 'LineString';
     coordinates: [[number, number], [number, number]];
