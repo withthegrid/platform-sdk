@@ -26,8 +26,8 @@ const contentSchemaAlternatives = [
     gridHashId: Joi.string().allow(null).required().example(null),
     from: Joi.date().iso().required().example('2019-12-01T00:00Z'),
     to: Joi.date().iso().required().example('2020-01-01T00:00Z'),
-    pinFieldKeys: Joi.array().items(Joi.string()),
-    edgeFieldKeys: Joi.array().items(Joi.string()),
+    pinFieldKeys: Joi.array().items(Joi.string()).required(),
+    edgeFieldKeys: Joi.array().items(Joi.string()).required(),
   }).required(),
   Joi.object().keys({
     name: Joi.string().allow('').default('').example('Name'),

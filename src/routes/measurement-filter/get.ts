@@ -38,8 +38,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     pinGroups: Joi.array().items(pinGroupSchema(apiVersion)).required(),
     quantities: Joi.array().items(quantitySchema).required(),
     fieldKeys: Joi.array().items(Joi.string().example('id')).required(),
-    pinFieldKeys: Joi.array().items(Joi.string()),
-    edgeFieldKeys: Joi.array().items(Joi.string()),
+    pinFieldKeys: Joi.array().items(Joi.string()).required(),
+    edgeFieldKeys: Joi.array().items(Joi.string()).required(),
   }).required(),
   description: 'Get a specific measurement filter identified by its hashId',
 };
