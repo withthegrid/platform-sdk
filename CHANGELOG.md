@@ -1,3 +1,14 @@
+## [17.0.0](https://github.com/withthegrid/platform-sdk/compare/v16.44.0...v17.0.0) (2021-06-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* analytics column never a string anymore
+
+### Features
+
+* analytics column never a string anymore ([2764103](https://github.com/withthegrid/platform-sdk/commit/276410330e5d826ae3f8adc5ad2ca1837790c165))
+
 ## [16.44.0](https://github.com/withthegrid/platform-sdk/compare/v16.43.0...v16.44.0) (2021-06-15)
 
 
