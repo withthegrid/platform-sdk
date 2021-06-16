@@ -1,3 +1,10 @@
+### [17.0.2](https://github.com/withthegrid/platform-sdk/compare/v17.0.1...v17.0.2) (2021-06-16)
+
+
+### Bug Fixes
+
+* default type for select with number or boolean ([c3cf3a7](https://github.com/withthegrid/platform-sdk/commit/c3cf3a7a0c767a4c42ada83cff50608d1d41a09d))
+
 ### [17.0.1](https://github.com/withthegrid/platform-sdk/compare/v17.0.0...v17.0.1) (2021-06-15)
 
 
