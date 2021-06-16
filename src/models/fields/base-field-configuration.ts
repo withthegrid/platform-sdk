@@ -11,7 +11,7 @@ const commonBaseFieldConfigurationSchema = Joi.object().keys({
   showIf: Joi.object().keys({
     key: Joi.string().required(),
     value: Joi.alternatives(
-      Joi.string().strict(),
+      Joi.string().allow('').strict(),
       Joi.number().strict(),
       Joi.boolean().strict(),
     ).required(),
@@ -41,7 +41,7 @@ const getBaseFieldConfigurationSchema = (
     defaultValue: stringOrTranslationsSchema.allow('').default(''),
     valueOptions: Joi.array().min(1).items(Joi.object().keys({
       text: stringOrTranslationsSchema.required(),
-      value: Joi.string().required(),
+      value: Joi.string().allow('').required(),
     })).required(),
     inputType: Joi.string().valid('select').default('select'),
     ...prefixesMixin,
@@ -51,7 +51,7 @@ const getBaseFieldConfigurationSchema = (
     defaultValue: stringOrTranslationsSchema.allow('').default(''),
     valueOptions: Joi.array().min(1).items(Joi.object().keys({
       text: stringOrTranslationsSchema.required(),
-      value: Joi.string().required(),
+      value: Joi.string().allow('').required(),
     })).required(),
     inputType: Joi.string().valid('radio').required(),
   }),
@@ -66,7 +66,7 @@ const getBaseFieldConfigurationSchema = (
     ...prefixesMixin,
   }),
   commonSchema.keys({
-    type: Joi.string().valid('number').required(),
+    type: Joi.string().valid('number').default('number'),
     defaultValue: Joi.number().default(0),
     valueOptions: Joi.array().min(1).items(Joi.object().keys({
       text: stringOrTranslationsSchema.required(),
@@ -76,7 +76,7 @@ const getBaseFieldConfigurationSchema = (
     ...prefixesMixin,
   }),
   commonSchema.keys({
-    type: Joi.string().valid('number').required(),
+    type: Joi.string().valid('number').default('number'),
     defaultValue: Joi.number().default(0),
     valueOptions: Joi.array().min(1).items(Joi.object().keys({
       text: stringOrTranslationsSchema.required(),
@@ -128,7 +128,7 @@ const getBaseFieldConfigurationSchema = (
     inputType: Joi.string().valid('switch', 'checkbox').required(),
   }),
   commonSchema.keys({
-    type: Joi.string().valid('boolean').required(),
+    type: Joi.string().valid('boolean').default('boolean'),
     defaultValue: Joi.boolean().default(false),
     valueOptions: Joi.array().min(1).items(Joi.object().keys({
       text: stringOrTranslationsSchema.required(),
@@ -138,7 +138,7 @@ const getBaseFieldConfigurationSchema = (
     ...prefixesMixin,
   }),
   commonSchema.keys({
-    type: Joi.string().valid('boolean').required(),
+    type: Joi.string().valid('boolean').default('boolean'),
     defaultValue: Joi.boolean().default(false),
     valueOptions: Joi.array().min(1).items(Joi.object().keys({
       text: stringOrTranslationsSchema.required(),
