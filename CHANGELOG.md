@@ -1,3 +1,10 @@
+## [17.1.0](https://github.com/withthegrid/platform-sdk/compare/v17.0.2...v17.1.0) (2021-06-17)
+
+
+### Features
+
+* allow empty-string translation ([0d869d9](https://github.com/withthegrid/platform-sdk/commit/0d869d9a848b51278ecb3a681b36eb6191417765))
+
 ### [17.0.2](https://github.com/withthegrid/platform-sdk/compare/v17.0.1...v17.0.2) (2021-06-16)
 
 
