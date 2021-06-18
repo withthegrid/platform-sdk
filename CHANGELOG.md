@@ -1,3 +1,10 @@
+### [17.1.1](https://github.com/withthegrid/platform-sdk/compare/v17.1.0...v17.1.1) (2021-06-18)
+
+
+### Bug Fixes
+
+* backwards compatability with file-inputType type field configurations ([f9801cf](https://github.com/withthegrid/platform-sdk/commit/f9801cfd5854263d471cabdca1833b833de4fadb))
+
 ## [17.1.0](https://github.com/withthegrid/platform-sdk/compare/v17.0.2...v17.1.0) (2021-06-17)
 
 
