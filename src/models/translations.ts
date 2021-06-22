@@ -1,8 +1,8 @@
 import Joi from 'joi';
 
 const schema = Joi.object().keys({
-  en: Joi.string().required(),
-  nl: Joi.string().required(),
+  en: Joi.string().allow('').required(),
+  nl: Joi.string().allow('').required(),
 });
 
 interface Translations {

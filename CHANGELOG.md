@@ -1,3 +1,49 @@
+### [17.1.1](https://github.com/withthegrid/platform-sdk/compare/v17.1.0...v17.1.1) (2021-06-18)
+
+
+### Bug Fixes
+
+* backwards compatability with file-inputType type field configurations ([f9801cf](https://github.com/withthegrid/platform-sdk/commit/f9801cfd5854263d471cabdca1833b833de4fadb))
+
+## [17.1.0](https://github.com/withthegrid/platform-sdk/compare/v17.0.2...v17.1.0) (2021-06-17)
+
+
+### Features
+
+* allow empty-string translation ([0d869d9](https://github.com/withthegrid/platform-sdk/commit/0d869d9a848b51278ecb3a681b36eb6191417765))
+
+### [17.0.2](https://github.com/withthegrid/platform-sdk/compare/v17.0.1...v17.0.2) (2021-06-16)
+
+
+### Bug Fixes
+
+* default type for select with number or boolean ([c3cf3a7](https://github.com/withthegrid/platform-sdk/commit/c3cf3a7a0c767a4c42ada83cff50608d1d41a09d))
+
+### [17.0.1](https://github.com/withthegrid/platform-sdk/compare/v17.0.0...v17.0.1) (2021-06-15)
+
+
+### Bug Fixes
+
+* default 'boolean' option for field configuration of input type 'switch' or 'checkbox' ([f3faa78](https://github.com/withthegrid/platform-sdk/commit/f3faa78f8a3bc0c11acefe203dac68e18316e262))
+
+## [17.0.0](https://github.com/withthegrid/platform-sdk/compare/v16.44.0...v17.0.0) (2021-06-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* analytics column never a string anymore
+
+### Features
+
+* analytics column never a string anymore ([2764103](https://github.com/withthegrid/platform-sdk/commit/276410330e5d826ae3f8adc5ad2ca1837790c165))
+
+## [16.44.0](https://github.com/withthegrid/platform-sdk/compare/v16.43.0...v16.44.0) (2021-06-15)
+
+
+### Features
+
+* external map layers ([01c0690](https://github.com/withthegrid/platform-sdk/commit/01c0690fafe87263685b5e71bb1d995f39d6aaef))
+
 ## [16.43.0](https://github.com/withthegrid/platform-sdk/compare/v16.42.1...v16.43.0) (2021-06-09)
 
 
