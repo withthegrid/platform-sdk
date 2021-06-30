@@ -12,13 +12,10 @@ import * as environment from './environment';
 import * as environmentReportType from './environment-report-type';
 import * as exportRequest from './export-request';
 import * as fieldsFromServer from './fields/fields-from-server';
-import * as fieldsToFieldConfigurationUdf from './fields/fields-to-field-configuration-udf';
 import * as fieldsToServerFull from './fields/fields-to-server-full';
 import * as fieldsToServerUpdate from './fields/fields-to-server-update';
-import * as fieldToFieldConfigurationUdf from './fields/field-to-field-configuration-udf';
 import * as fieldToServerFull from './fields/field-to-server-full';
 import * as fileFromServer from './file-from-server';
-import * as fileToFieldConfigurationUdf from './file-to-field-configuration-udf';
 import * as fileToServer from './file-to-server';
 import * as grid from './grid';
 import * as issue from './issue';
@@ -79,13 +76,10 @@ export {
   environmentReportType,
   exportRequest,
   fieldsFromServer,
-  fieldsToFieldConfigurationUdf,
   fieldsToServerFull,
   fieldsToServerUpdate,
-  fieldToFieldConfigurationUdf,
   fieldToServerFull,
   fileFromServer,
-  fileToFieldConfigurationUdf,
   fileToServer,
   grid,
   issue,
