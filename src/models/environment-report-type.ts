@@ -1,14 +1,14 @@
 import Joi from 'joi';
 
-import { schema as fieldConfigurationsFromServerSchema, FieldConfigurationsFromServer } from './fields/field-configurations-from-server';
+import { schema as baseFieldConfigurationSchema, BaseFieldConfiguration } from './fields/base-field-configuration';
 
 const baseSchema = Joi.object().keys({
   hashId: Joi.string().required().example('l19a7s'),
   name: Joi.string().required().example('Temperature and inclination'),
   fieldConfigurations: Joi.object().keys({
-    pinGroup: fieldConfigurationsFromServerSchema.required(),
-    pin: fieldConfigurationsFromServerSchema.required(),
-    measurement: fieldConfigurationsFromServerSchema.required(),
+    pinGroup: Joi.array().items(baseFieldConfigurationSchema).required(),
+    pin: Joi.array().items(baseFieldConfigurationSchema).required(),
+    measurement: Joi.array().items(baseFieldConfigurationSchema).required(),
   }).required()
     .description('See the chapter on open fields on how to use this'),
   type: Joi.string().valid('human', 'device').example('human').required(),
@@ -23,9 +23,9 @@ interface EnvironmentReportType {
   hashId: string;
   name: string;
   fieldConfigurations: {
-    pinGroup: FieldConfigurationsFromServer;
-    pin: FieldConfigurationsFromServer;
-    measurement: FieldConfigurationsFromServer;
+    pinGroup: BaseFieldConfiguration[];
+    pin: BaseFieldConfiguration[];
+    measurement: BaseFieldConfiguration[];
   };
   type: 'human' | 'device';
   deletedAt: Date | null;

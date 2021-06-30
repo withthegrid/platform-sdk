@@ -47,7 +47,7 @@ const getBaseFieldConfigurationSchema = (
   }),
   commonSchema.keys({
     type: Joi.string().valid('string').default('string'),
-    defaultValue: stringOrTranslationsSchema.allow('').default(''),
+    defaultValue: Joi.string().allow('').default(''),
     valueOptions: Joi.array().min(1).items(Joi.object().keys({
       text: stringOrTranslationsSchema.required(),
       value: Joi.string().allow('').required(),
@@ -57,7 +57,7 @@ const getBaseFieldConfigurationSchema = (
   }),
   commonSchema.keys({
     type: Joi.string().valid('string').default('string'),
-    defaultValue: stringOrTranslationsSchema.allow('').default(''),
+    defaultValue: Joi.string().allow('').default(''),
     valueOptions: Joi.array().min(1).items(Joi.object().keys({
       text: stringOrTranslationsSchema.required(),
       value: Joi.string().allow('').required(),
