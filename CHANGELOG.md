@@ -1,3 +1,10 @@
+## [17.2.0](https://github.com/withthegrid/platform-sdk/compare/v17.1.1...v17.2.0) (2021-06-30)
+
+
+### Features
+
+* drop TS type field configs ([9c8f5d9](https://github.com/withthegrid/platform-sdk/commit/9c8f5d9bb1de3bd39a80b64b6ecce6ac940477e5)), closes [withthegrid/platform#664](https://github.com/withthegrid/platform/issues/664)
+
 ### [17.1.1](https://github.com/withthegrid/platform-sdk/compare/v17.1.0...v17.1.1) (2021-06-18)
 
 
