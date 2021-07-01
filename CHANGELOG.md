@@ -1,3 +1,10 @@
+### [17.2.1](https://github.com/withthegrid/platform-sdk/compare/v17.2.0...v17.2.1) (2021-07-01)
+
+
+### Bug Fixes
+
+* UpdatableFieldConfigurations model should not be required ([6ffc768](https://github.com/withthegrid/platform-sdk/commit/6ffc7683558b2a998129adc9b734be1ee1f31b28))
+
 ## [17.2.0](https://github.com/withthegrid/platform-sdk/compare/v17.1.1...v17.2.0) (2021-06-30)
 
 
