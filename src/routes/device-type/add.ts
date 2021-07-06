@@ -1,16 +1,16 @@
 import Joi from 'joi';
 import { ControllerGeneratorOptionsWithSupplier } from '../../comms/controller';
-import { schema as fieldConfigurationsToServerSchema, FieldConfigurationsToServer } from '../../models/fields/field-configurations-to-server';
+import { schema as baseFieldConfigurationSchema, BaseFieldConfiguration } from '../../models/fields/base-field-configuration';
 
 interface Request {
   body: {
     name: string;
     eventHandler: string;
-    fieldConfigurations: FieldConfigurationsToServer;
-    pinGroupFieldConfigurations: FieldConfigurationsToServer;
+    fieldConfigurations: BaseFieldConfiguration[];
+    pinGroupFieldConfigurations: BaseFieldConfiguration[];
     channels: {
       name: string;
-      pinFieldConfigurations: FieldConfigurationsToServer;
+      pinFieldConfigurations: BaseFieldConfiguration[];
       defaultPinName?: string;
       charts?: {
         title: string | null;
@@ -43,13 +43,13 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
   body: Joi.object().keys({
     name: Joi.string().required().example('Cathodic protection device').description('This name is also visible in monitoring environments. To get a uniform user experience, please provide the name in English'),
     eventHandler: Joi.string().required().example('[omitted]').description('A javascript function that handles events. See the chapter "User defined code'),
-    fieldConfigurations: fieldConfigurationsToServerSchema.required()
+    fieldConfigurations: Joi.array().items(baseFieldConfigurationSchema).required()
       .description('See the chapter on open fields on how to use this'),
-    pinGroupFieldConfigurations: fieldConfigurationsToServerSchema.required()
+    pinGroupFieldConfigurations: Joi.array().items(baseFieldConfigurationSchema).required()
       .description('Defines deviceFields on the location (pinGroup) the device is connected to. Can be used in report type functions. See the chapter on open fields on how to use this'),
     channels: Joi.array().items(Joi.object().keys({
       name: Joi.string().required().example('Red wire').description('This name is also visible in monitoring environments. To get a uniform user experience, please provide the name in English'),
-      pinFieldConfigurations: fieldConfigurationsToServerSchema.required()
+      pinFieldConfigurations: Joi.array().items(baseFieldConfigurationSchema).required()
         .description('Defines deviceFields on the pin the channel is connected to. Can be used in report type functions. See the chapter on open fields on how to use this'),
       defaultPinName: Joi.string().example('Anode').description('If undefined, the channel cannot be linked to a pin'),
       charts: Joi.array().items(Joi.object().keys({

@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
-import { schema as fieldConfigurationsToServerSchema, FieldConfigurationsToServer } from '../../models/fields/field-configurations-to-server';
+import { schema as baseFieldConfigurationSchema, BaseFieldConfiguration } from '../../models/fields/base-field-configuration';
 import { schema as siNumberSchema, SiNumber } from '../../models/si-number';
 
 type RequestQuantity = {
@@ -21,9 +21,9 @@ interface Request {
   body: {
     name: string;
     fieldConfigurations: {
-      pinGroup: FieldConfigurationsToServer;
-      pin: FieldConfigurationsToServer;
-      measurement: FieldConfigurationsToServer;
+      pinGroup: BaseFieldConfiguration[];
+      pin: BaseFieldConfiguration[];
+      measurement: BaseFieldConfiguration[];
     };
     quantities: RequestQuantity[];
   };
@@ -39,9 +39,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   body: Joi.object().keys({
     name: Joi.string().required().example('Temperature'),
     fieldConfigurations: Joi.object().keys({
-      pinGroup: fieldConfigurationsToServerSchema.required(),
-      pin: fieldConfigurationsToServerSchema.required(),
-      measurement: fieldConfigurationsToServerSchema.required(),
+      pinGroup: Joi.array().items(baseFieldConfigurationSchema).required(),
+      pin: Joi.array().items(baseFieldConfigurationSchema).required(),
+      measurement: Joi.array().items(baseFieldConfigurationSchema).required(),
     }).required()
       .description('See the chapter on open fields on how to use this'),
     quantities: Joi.array().items(Joi.alternatives().try(
