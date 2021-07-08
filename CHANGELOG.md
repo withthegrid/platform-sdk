@@ -1,3 +1,10 @@
+## [17.3.0](https://github.com/withthegrid/platform-sdk/compare/v17.2.1...v17.3.0) (2021-07-08)
+
+
+### Features
+
+* add pin and edge fields to condition overview ([82fc43c](https://github.com/withthegrid/platform-sdk/commit/82fc43cb97d6e06e33aa4d46cc2ef9300074247f)), closes [withthegrid/platform#652](https://github.com/withthegrid/platform/issues/652)
+
 ### [17.2.1](https://github.com/withthegrid/platform-sdk/compare/v17.2.0...v17.2.1) (2021-07-01)
 
 
