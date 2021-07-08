@@ -56,10 +56,12 @@ interface ResponseRow {
   pin: {
     hashId: string;
     name: string;
+    fields: BaseFields;
   };
   edge: {
     hashId: string | null;
     name: string | null;
+    fields: BaseFields;
   };
 }
 
@@ -97,7 +99,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
         updatedAt: Joi.date().required().example('2019-12-31T15:23Z'),
         generatedAt: Joi.date().required().example('2019-12-31T15:23Z'),
         reportTypeHashId: Joi.string().required().example('l19a7s'),
-        pinGroupFields: baseFieldsSchema.required(), // so no files
+        pinGroupFields: baseFieldsSchema.required().description('Files are not included'),
         pinObservations: Joi.array().items(Joi.object().keys({
           measurement: measurementSchema(apiVersion).required(),
           quantityHashId: Joi.string().required().example('sajia1'),
@@ -111,10 +113,12 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       pin: Joi.object().keys({
         hashId: Joi.string().required().example('e13d57'),
         name: Joi.string().required().example('My port'),
+        fields: baseFieldsSchema.required().example({ id: 'My port' }).description('Files are not included'),
       }).required(),
       edge: Joi.object().keys({
         hashId: Joi.string().allow(null).required().example('ka08d'),
         name: Joi.string().allow(null).required().example('My line'),
+        fields: baseFieldsSchema.required().example({ id: 'My line' }).description('Files are not included'),
       }).required(),
     })).required(),
   }),
