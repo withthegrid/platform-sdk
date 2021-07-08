@@ -13,6 +13,8 @@ interface Query extends TableQuery {
   pinGroupHashIds?: string[]; // max 50
   quantityHashIds?: string[]; // max 64
   fieldKeys?: string[]; // max 20
+  pinFieldKeys?: string[];
+  edgeFieldKeys?: string[];
   since?: Date; // including
   before?: Date; // not including
 }
@@ -86,6 +88,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     quantityHashIds: Joi.array().min(1).max(64).items(Joi.string().example('sajia1'))
       .default([]),
     fieldKeys: Joi.array().max(20).items(Joi.string().example('id')).default([]),
+    pinFieldKeys: Joi.array().max(20).items(Joi.string().example('id')).default([]),
+    edgeFieldKeys: Joi.array().max(20).items(Joi.string().example('id')).default([]),
     since: Joi.date(),
     before: Joi.date(),
   }),
