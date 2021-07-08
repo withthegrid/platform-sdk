@@ -1,3 +1,10 @@
+### [17.3.1](https://github.com/withthegrid/platform-sdk/compare/v17.3.0...v17.3.1) (2021-07-08)
+
+
+### Bug Fixes
+
+* pinFieldKeys and edgeFieldKeys ([1a3dc20](https://github.com/withthegrid/platform-sdk/commit/1a3dc2080b8c5313de1f2c67bedd322a1ad77cd8))
+
 ## [17.3.0](https://github.com/withthegrid/platform-sdk/compare/v17.2.1...v17.3.0) (2021-07-08)
 
 
