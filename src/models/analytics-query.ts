@@ -41,7 +41,7 @@ type TimeGranularity =
   | 'dayOfTheWeek'
   | 'monthOfTheYear';
 
-type Comparison = '=' | '>=' | '<=' | '>' | '<' | 'like' | '<>' | 'isNull' | 'isNotNull';
+type Comparison = '=' | '>=' | '<=' | '>' | '<' | 'like' | '<>' | 'isNull' | 'isNotNull' | 'inGrid';
 type Value = string | number | boolean;
 
 interface Constraint {
