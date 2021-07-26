@@ -1,8 +1,13 @@
 import Joi from 'joi';
 
 const constraintSchema = Joi.object().keys({
-  field: Joi.alternatives().try(Joi.string(), Joi.number()).required(),
+  left: Joi.alternatives().try(Joi.string(), Joi.number()).required(),
   comparison: Joi.string().required(),
+  right: Joi.object().keys({
+    field: Joi.alternatives().try(Joi.string(), Joi.number()),
+    value: Joi.alternatives().try(Joi.string().allow(''), Joi.number(), Joi.boolean()),
+  }),
+  field: Joi.alternatives().try(Joi.string(), Joi.number()).required(),
   value: Joi.alternatives().try(Joi.string().allow(''), Joi.number(), Joi.boolean()),
 });
 
@@ -50,6 +55,8 @@ interface Constraint {
   left: string | number;
   comparison: Comparison;
   right?: { field: string | number } | { value: Value};
+  field: string | number;
+  value?: Value;
 }
 
 interface Condition {
