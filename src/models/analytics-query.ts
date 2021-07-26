@@ -47,9 +47,9 @@ type Value = string | number | boolean;
 
 interface Constraint {
   // string: column name, number (or stringified number): number i is reference to query.columns[i]
-  field: string | number;
+  left: string | number;
   comparison: Comparison;
-  value?: Value;
+  right?: { field: string | number } | { value: Value};
 }
 
 interface Condition {
