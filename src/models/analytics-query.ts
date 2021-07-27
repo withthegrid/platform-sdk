@@ -7,7 +7,7 @@ const constraintSchema = Joi.object().keys({
     field: Joi.alternatives().try(Joi.string(), Joi.number()),
     value: Joi.alternatives().try(Joi.string().allow(''), Joi.number(), Joi.boolean()),
   }),
-  field: Joi.alternatives().try(Joi.string(), Joi.number()).required(),
+  field: Joi.alternatives().try(Joi.string(), Joi.number()),
   value: Joi.alternatives().try(Joi.string().allow(''), Joi.number(), Joi.boolean()),
 });
 
