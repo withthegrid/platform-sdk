@@ -17,6 +17,7 @@ const commonBaseFieldConfigurationSchema = Joi.object().keys({
     ).required(),
   }).description('Show this field if other field with provided key is set to provided value. Referenced field must exists already'),
   hint: stringOrTranslationsSchema.allow('').description('As shown near the input field'),
+  supplierOnly: Joi.boolean(),
   // the below are needed to validate objects that do not need these props, but
   // have them set at undefined
   prefix: Joi.any().forbidden(),
@@ -187,6 +188,7 @@ interface SharedBaseFieldConfiguration {
    */
   showIf?: { key: string, value: string | boolean | number };
   hint?: StringOrTranslations;
+  supplierOnly?: boolean;
 }
 
 interface PrefixMixin {
