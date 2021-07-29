@@ -1,3 +1,17 @@
+## [17.5.0](https://github.com/withthegrid/platform-sdk/compare/v17.4.0...v17.5.0) (2021-07-26)
+
+
+### Features
+
+* added isNamedRange comparison type to analytics query ([#57](https://github.com/withthegrid/platform-sdk/issues/57)) ([838430b](https://github.com/withthegrid/platform-sdk/commit/838430bd78988dc489d9c48adc13f6712be27090)), closes [withthegrid/platform#697](https://github.com/withthegrid/platform/issues/697)
+
+## [17.4.0](https://github.com/withthegrid/platform-sdk/compare/v17.3.1...v17.4.0) (2021-07-26)
+
+
+### Features
+
+* inGrid comparison type to analytics query ([56d083a](https://github.com/withthegrid/platform-sdk/commit/56d083a024e1ed78d6e3bc6979fd62661f2ab574)), closes [withthegrid/platform#681](https://github.com/withthegrid/platform/issues/681)
+
 ### [17.3.1](https://github.com/withthegrid/platform-sdk/compare/v17.3.0...v17.3.1) (2021-07-08)
 
 
