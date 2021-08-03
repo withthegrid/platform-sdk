@@ -7,8 +7,6 @@ const constraintSchema = Joi.object().keys({
     field: Joi.alternatives().try(Joi.string(), Joi.number()),
     value: Joi.alternatives().try(Joi.string().allow(''), Joi.number(), Joi.boolean()),
   }),
-  field: Joi.alternatives().try(Joi.string(), Joi.number()),
-  value: Joi.alternatives().try(Joi.string().allow(''), Joi.number(), Joi.boolean()),
 });
 
 const conditionSchema = Joi.object().keys({
@@ -55,8 +53,6 @@ interface Constraint {
   left: string | number;
   comparison: Comparison;
   right?: { field: string | number } | { value: Value};
-  field: string | number;
-  value?: Value;
 }
 
 interface Condition {
