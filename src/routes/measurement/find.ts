@@ -61,10 +61,10 @@ interface ResponseRow {
     fields: BaseFields;
   };
   edge: {
-    hashId: string | null;
-    name: string | null;
+    hashId: string;
+    name: string;
     fields: BaseFields;
-  };
+  } | null;
 }
 
 interface Response {
@@ -120,10 +120,10 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
         fields: baseFieldsSchema.required().example({ id: 'My port' }).description('Files are not included'),
       }).required(),
       edge: Joi.object().keys({
-        hashId: Joi.string().allow(null).required().example('ka08d'),
-        name: Joi.string().allow(null).required().example('My line'),
+        hashId: Joi.string().required().example('ka08d'),
+        name: Joi.string().required().example('My line'),
         fields: baseFieldsSchema.required().example({ id: 'My line' }).description('Files are not included'),
-      }).required(),
+      }).allow(null).required(),
     })).required(),
   }),
   description: 'Search through measurements',
