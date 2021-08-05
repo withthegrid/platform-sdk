@@ -39,34 +39,17 @@ const getBaseFieldConfigurationSchema = (
 ): Joi.AlternativesSchema => Joi.alternatives().try(
   commonSchema.keys({
     type: Joi.string().valid('string').default('string'),
-    defaultValue: Joi.string().allow('').default(''),
-    valueOptions: Joi.array().items(Joi.any()).length(0).allow(null)
-      .default(null),
-    inputType: Joi.string().valid('text', 'textarea').default('text'),
-    regex: Joi.string(),
-    ...prefixesMixin,
-  }),
-  commonSchema.keys({
-    type: Joi.string().valid('string').default('string'),
+    defaultValue: Joi.string().allow(''),
     valueOptions: Joi.array().items(Joi.any()).length(0).allow(null)
       .default(null),
     inputType: Joi.string().valid('text', 'textarea').default('text'),
     regex: Joi.string(),
     allowNull: Joi.boolean(),
     ...prefixesMixin,
-  }),
+  }).xor('defaultValue', 'allowNull'),
   commonSchema.keys({
     type: Joi.string().valid('string').default('string'),
-    defaultValue: Joi.string().allow('').default(''),
-    valueOptions: Joi.array().min(1).items(Joi.object().keys({
-      text: stringOrTranslationsSchema.required(),
-      value: Joi.string().allow('').required(),
-    })).required(),
-    inputType: Joi.string().valid('select').default('select'),
-    ...prefixesMixin,
-  }),
-  commonSchema.keys({
-    type: Joi.string().valid('string').default('string'),
+    defaultValue: Joi.string().allow(''),
     valueOptions: Joi.array().min(1).items(Joi.object().keys({
       text: stringOrTranslationsSchema.required(),
       value: Joi.string().allow('').required(),
@@ -74,7 +57,7 @@ const getBaseFieldConfigurationSchema = (
     inputType: Joi.string().valid('select').default('select'),
     allowNull: Joi.boolean(),
     ...prefixesMixin,
-  }),
+  }).xor('defaultValue', 'allowNull'),
   commonSchema.keys({
     type: Joi.string().valid('string').default('string'),
     defaultValue: Joi.string().allow('').default(''),
@@ -86,16 +69,7 @@ const getBaseFieldConfigurationSchema = (
   }),
   commonSchema.keys({
     type: Joi.string().valid('number').required(),
-    defaultValue: Joi.number().default(0),
-    valueOptions: Joi.array().items(Joi.any()).length(0).allow(null)
-      .default(null),
-    inputType: Joi.string().valid('text').default('text'),
-    lowerbound: Joi.number().description('If provided, type should be number or integer and provided value should not be lower than this value'),
-    upperbound: Joi.number().description('If provided, type should be number or integer and provided value should not be higher than this value'),
-    ...prefixesMixin,
-  }),
-  commonSchema.keys({
-    type: Joi.string().valid('number').required(),
+    defaultValue: Joi.number(),
     valueOptions: Joi.array().items(Joi.any()).length(0).allow(null)
       .default(null),
     inputType: Joi.string().valid('text').default('text'),
@@ -103,19 +77,10 @@ const getBaseFieldConfigurationSchema = (
     upperbound: Joi.number().description('If provided, type should be number or integer and provided value should not be higher than this value'),
     allowNull: Joi.boolean(),
     ...prefixesMixin,
-  }),
+  }).xor('defaultValue', 'allowNull'),
   commonSchema.keys({
     type: Joi.string().valid('number').default('number'),
-    defaultValue: Joi.number().default(0),
-    valueOptions: Joi.array().min(1).items(Joi.object().keys({
-      text: stringOrTranslationsSchema.required(),
-      value: Joi.number().required(),
-    })).required(),
-    inputType: Joi.string().valid('select').default('select'),
-    ...prefixesMixin,
-  }),
-  commonSchema.keys({
-    type: Joi.string().valid('number').default('number'),
+    defaultValue: Joi.number(),
     valueOptions: Joi.array().min(1).items(Joi.object().keys({
       text: stringOrTranslationsSchema.required(),
       value: Joi.number().required(),
@@ -123,7 +88,7 @@ const getBaseFieldConfigurationSchema = (
     inputType: Joi.string().valid('select').default('select'),
     allowNull: Joi.boolean(),
     ...prefixesMixin,
-  }),
+  }).xor('defaultValue', 'allowNull'),
   commonSchema.keys({
     type: Joi.string().valid('number').default('number'),
     defaultValue: Joi.number().default(0),
@@ -141,18 +106,9 @@ const getBaseFieldConfigurationSchema = (
     inputType: Joi.string().valid('text').default('text'),
     lowerbound: Joi.number().description('If provided, type should be number or integer and provided value should not be lower than this value'),
     upperbound: Joi.number().description('If provided, type should be number or integer and provided value should not be higher than this value'),
-    ...prefixesMixin,
-  }),
-  commonSchema.keys({
-    type: Joi.string().valid('integer').required(),
-    valueOptions: Joi.array().items(Joi.any()).length(0).allow(null)
-      .default(null),
-    inputType: Joi.string().valid('text').default('text'),
-    lowerbound: Joi.number().description('If provided, type should be number or integer and provided value should not be lower than this value'),
-    upperbound: Joi.number().description('If provided, type should be number or integer and provided value should not be higher than this value'),
     allowNull: Joi.boolean(),
     ...prefixesMixin,
-  }),
+  }).xor('defaultValue', 'allowNull'),
   commonSchema.keys({
     type: Joi.string().valid('integer').required(),
     defaultValue: Joi.number().integer().default(0),
@@ -161,18 +117,9 @@ const getBaseFieldConfigurationSchema = (
       value: Joi.number().integer().required(),
     })).required(),
     inputType: Joi.string().valid('select').default('select'),
-    ...prefixesMixin,
-  }),
-  commonSchema.keys({
-    type: Joi.string().valid('integer').required(),
-    valueOptions: Joi.array().min(1).items(Joi.object().keys({
-      text: stringOrTranslationsSchema.required(),
-      value: Joi.number().integer().required(),
-    })).required(),
-    inputType: Joi.string().valid('select').default('select'),
     allowNull: Joi.boolean(),
     ...prefixesMixin,
-  }),
+  }).xor('defaultValue', 'allowNull'),
   commonSchema.keys({
     type: Joi.string().valid('integer').required(),
     defaultValue: Joi.number().integer().default(0),
@@ -204,18 +151,9 @@ const getBaseFieldConfigurationSchema = (
       value: Joi.boolean().required(),
     })).required(),
     inputType: Joi.string().valid('select').default('select'),
-    ...prefixesMixin,
-  }),
-  commonSchema.keys({
-    type: Joi.string().valid('boolean').default('boolean'),
-    valueOptions: Joi.array().min(1).items(Joi.object().keys({
-      text: stringOrTranslationsSchema.required(),
-      value: Joi.boolean().required(),
-    })).required(),
-    inputType: Joi.string().valid('select').default('select'),
     allowNull: Joi.boolean(),
     ...prefixesMixin,
-  }),
+  }).xor('defaultValue', 'allowNull'),
   commonSchema.keys({
     type: Joi.string().valid('boolean').default('boolean'),
     defaultValue: Joi.boolean().default(false),
