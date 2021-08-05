@@ -15,6 +15,7 @@ interface Response {
   user: User;
   environment?: Environment;
   environmentRights?: string[];
+  notificationLevel: 0 | 1 | 2 | null;
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSupplier = {
@@ -31,6 +32,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSuppl
     environment: environmentSchema.description('A random monitoring environment this user has access to'),
     environmentRights: Joi.array().items(Joi.string()).example(['STATIC', 'USERS'])
       .description('See the getting started section about rights'),
+    notificationLevel: Joi.number().allow(null).required()
+      .example(0)
+      .description('The user is subscribed to every issue created on a location (pinGroup) in this grid (0), when the issue gets serious (1) or when the issue gets critical (2). If null, the user is not autmatically subscribed to new issues.'),
   }).required(),
 };
 

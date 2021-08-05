@@ -5,6 +5,7 @@ import * as find from './find';
 import * as get from './get';
 import * as setSubscription from './set-subscription';
 import * as update from './update';
+import * as setEnvironmentNotification from './set-environment-notification';
 
 export {
   addComment,
@@ -14,4 +15,5 @@ export {
   get,
   setSubscription,
   update,
+  setEnvironmentNotification,
 };

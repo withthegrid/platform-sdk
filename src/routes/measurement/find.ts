@@ -63,7 +63,7 @@ interface ResponseRow {
   edge: {
     hashId: string | null;
     name: string | null;
-    fields: BaseFields;
+    fields: BaseFields; 
   };
 }
 

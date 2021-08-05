@@ -5,6 +5,7 @@ import * as find from './find';
 import * as get from './get';
 import * as setSubscription from './set-subscription';
 import * as update from './update';
+import * as setEnvironmentNotification from './set-environment-notification';
 
 import Comms from '../../comms';
 import controllerGenerator, { Result } from '../../comms/controller';
@@ -115,6 +116,20 @@ class IssueRoute {
       update.Response
     >(
       update.controllerGeneratorOptions,
+      IssueRoute.routerPath,
+      IssueRoute.auth,
+      this.comms,
+    )(parameters);
+
+  setEnvironmentNotification = (parameters: setEnvironmentNotification.Request):
+    Result<
+      setEnvironmentNotification.EffectiveRequest,
+      setEnvironmentNotification.Response> => controllerGenerator<
+      setEnvironmentNotification.Request,
+      setEnvironmentNotification.EffectiveRequest,
+      setEnvironmentNotification.Response
+    >(
+      setEnvironmentNotification.controllerGeneratorOptions,
       IssueRoute.routerPath,
       IssueRoute.auth,
       this.comms,

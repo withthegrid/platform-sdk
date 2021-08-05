@@ -11,6 +11,7 @@ interface Response {
   environment?: Environment;
   environmentRights?: string[];
   user: User;
+  notificationLevel: 0 | 1 | 2 | null;
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSupplier = {
@@ -22,6 +23,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSuppl
     environmentRights: Joi.array().items(Joi.string()).example(['STATIC', 'USERS'])
       .description('See the getting started section about rights'),
     user: userSchema.required(),
+    notificationLevel: Joi.number().allow(null).required()
+      .example(0)
+      .description('The user is subscribed to every issue created on a location (pinGroup) in this grid (0), when the issue gets serious (1) or when the issue gets critical (2). If null, the user is not autmatically subscribed to new issues.'),
   }).required(),
   description: 'Get information about the logged in user',
 };
