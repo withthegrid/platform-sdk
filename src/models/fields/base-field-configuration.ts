@@ -26,6 +26,7 @@ const commonBaseFieldConfigurationSchema = Joi.object().keys({
   regex: Joi.any().forbidden(),
   lowerbound: Joi.any().forbidden(),
   upperbound: Joi.any().forbidden(),
+  allowNull: Joi.any().forbidden(),
 });
 
 const prefixesMixin = {
@@ -43,6 +44,16 @@ const getBaseFieldConfigurationSchema = (
       .default(null),
     inputType: Joi.string().valid('text', 'textarea').default('text'),
     regex: Joi.string(),
+    allowNull: Joi.boolean().valid(false).default(false),
+    ...prefixesMixin,
+  }),
+  commonSchema.keys({
+    type: Joi.string().valid('string').default('string'),
+    valueOptions: Joi.array().items(Joi.any()).length(0).allow(null)
+      .default(null),
+    inputType: Joi.string().valid('text', 'textarea').default('text'),
+    regex: Joi.string(),
+    allowNull: Joi.boolean().valid(true).required(),
     ...prefixesMixin,
   }),
   commonSchema.keys({
@@ -53,6 +64,17 @@ const getBaseFieldConfigurationSchema = (
       value: Joi.string().allow('').required(),
     })).required(),
     inputType: Joi.string().valid('select').default('select'),
+    allowNull: Joi.boolean().valid(false).default(false),
+    ...prefixesMixin,
+  }),
+  commonSchema.keys({
+    type: Joi.string().valid('string').default('string'),
+    valueOptions: Joi.array().min(1).items(Joi.object().keys({
+      text: stringOrTranslationsSchema.required(),
+      value: Joi.string().allow('').required(),
+    })).required(),
+    inputType: Joi.string().valid('select').default('select'),
+    allowNull: Joi.boolean().valid(true).required(),
     ...prefixesMixin,
   }),
   commonSchema.keys({
@@ -72,6 +94,17 @@ const getBaseFieldConfigurationSchema = (
     inputType: Joi.string().valid('text').default('text'),
     lowerbound: Joi.number().description('If provided, type should be number or integer and provided value should not be lower than this value'),
     upperbound: Joi.number().description('If provided, type should be number or integer and provided value should not be higher than this value'),
+    allowNull: Joi.boolean().valid(false).default(false),
+    ...prefixesMixin,
+  }),
+  commonSchema.keys({
+    type: Joi.string().valid('number').required(),
+    valueOptions: Joi.array().items(Joi.any()).length(0).allow(null)
+      .default(null),
+    inputType: Joi.string().valid('text').default('text'),
+    lowerbound: Joi.number().description('If provided, type should be number or integer and provided value should not be lower than this value'),
+    upperbound: Joi.number().description('If provided, type should be number or integer and provided value should not be higher than this value'),
+    allowNull: Joi.boolean().valid(true).required(),
     ...prefixesMixin,
   }),
   commonSchema.keys({
@@ -82,6 +115,17 @@ const getBaseFieldConfigurationSchema = (
       value: Joi.number().required(),
     })).required(),
     inputType: Joi.string().valid('select').default('select'),
+    allowNull: Joi.boolean().valid(false).default(false),
+    ...prefixesMixin,
+  }),
+  commonSchema.keys({
+    type: Joi.string().valid('number').default('number'),
+    valueOptions: Joi.array().min(1).items(Joi.object().keys({
+      text: stringOrTranslationsSchema.required(),
+      value: Joi.number().required(),
+    })).required(),
+    inputType: Joi.string().valid('select').default('select'),
+    allowNull: Joi.boolean().valid(true).required(),
     ...prefixesMixin,
   }),
   commonSchema.keys({
@@ -101,6 +145,17 @@ const getBaseFieldConfigurationSchema = (
     inputType: Joi.string().valid('text').default('text'),
     lowerbound: Joi.number().description('If provided, type should be number or integer and provided value should not be lower than this value'),
     upperbound: Joi.number().description('If provided, type should be number or integer and provided value should not be higher than this value'),
+    allowNull: Joi.boolean().valid(false).default(false),
+    ...prefixesMixin,
+  }),
+  commonSchema.keys({
+    type: Joi.string().valid('integer').required(),
+    valueOptions: Joi.array().items(Joi.any()).length(0).allow(null)
+      .default(null),
+    inputType: Joi.string().valid('text').default('text'),
+    lowerbound: Joi.number().description('If provided, type should be number or integer and provided value should not be lower than this value'),
+    upperbound: Joi.number().description('If provided, type should be number or integer and provided value should not be higher than this value'),
+    allowNull: Joi.boolean().valid(true).required(),
     ...prefixesMixin,
   }),
   commonSchema.keys({
@@ -111,6 +166,17 @@ const getBaseFieldConfigurationSchema = (
       value: Joi.number().integer().required(),
     })).required(),
     inputType: Joi.string().valid('select').default('select'),
+    allowNull: Joi.boolean().valid(false).default(false),
+    ...prefixesMixin,
+  }),
+  commonSchema.keys({
+    type: Joi.string().valid('integer').required(),
+    valueOptions: Joi.array().min(1).items(Joi.object().keys({
+      text: stringOrTranslationsSchema.required(),
+      value: Joi.number().integer().required(),
+    })).required(),
+    inputType: Joi.string().valid('select').default('select'),
+    allowNull: Joi.boolean().valid(true).required(),
     ...prefixesMixin,
   }),
   commonSchema.keys({
@@ -144,6 +210,18 @@ const getBaseFieldConfigurationSchema = (
       value: Joi.boolean().required(),
     })).required(),
     inputType: Joi.string().valid('select').default('select'),
+    allowNull: Joi.boolean().valid(false).default(false),
+    ...prefixesMixin,
+  }),
+  commonSchema.keys({
+    type: Joi.string().valid('boolean').default('boolean'),
+    defaultValue: Joi.boolean().default(false),
+    valueOptions: Joi.array().min(1).items(Joi.object().keys({
+      text: stringOrTranslationsSchema.required(),
+      value: Joi.boolean().required(),
+    })).required(),
+    inputType: Joi.string().valid('select').default('select'),
+    allowNull: Joi.boolean().valid(true).required(),
     ...prefixesMixin,
   }),
   commonSchema.keys({
@@ -211,6 +289,19 @@ type BaseFieldConfiguration = ({
    */
   inputType: 'text' | 'textarea';
   regex?: string;
+  allowNull?: false;
+} & PrefixMixin | {
+  type: 'string';
+  /**
+   * @default null
+   */
+  valueOptions: null | [];
+  /**
+   * @default "text"
+   */
+  inputType: 'text' | 'textarea';
+  regex?: string;
+  allowNull: true;
 } & PrefixMixin | {
   type: 'string';
   /**
@@ -225,6 +316,18 @@ type BaseFieldConfiguration = ({
    * @default "select"
    */
   inputType: 'select';
+  allowNull?: false;
+} & PrefixMixin | {
+  type: 'string';
+  /**
+   * @minItems 1
+   */
+  valueOptions: ValueOption<string>[];
+  /**
+   * @default "select"
+   */
+  inputType: 'select';
+  allowNull: true;
 } & PrefixMixin | {
   type: 'string';
   /**
@@ -252,6 +355,20 @@ type BaseFieldConfiguration = ({
   inputType: 'text';
   lowerbound?: number;
   upperbound?: number;
+  allowNull?: false;
+} & PrefixMixin | {
+  type: 'number';
+  /**
+   * @default null
+   */
+  valueOptions: null | [];
+  /**
+   * @default "text"
+   */
+  inputType: 'text';
+  lowerbound?: number;
+  upperbound?: number;
+  allowNull: true;
 } & PrefixMixin | {
   type: 'number';
   /**
@@ -266,6 +383,18 @@ type BaseFieldConfiguration = ({
    * @default "select"
    */
   inputType: 'select';
+  allowNull?: false;
+} & PrefixMixin | {
+  type: 'number';
+  /**
+   * @minItems 1
+   */
+  valueOptions: ValueOption<number>[];
+  /**
+   * @default "select"
+   */
+  inputType: 'select';
+  allowNull: true;
 } & PrefixMixin | {
   type: 'number';
   /**
@@ -295,6 +424,22 @@ type BaseFieldConfiguration = ({
   inputType: 'text';
   lowerbound?: number;
   upperbound?: number;
+  allowNull?: false;
+} & PrefixMixin | {
+  type: 'integer';
+  /**
+   * @default null
+   */
+  valueOptions: null | [];
+  /**
+   * type of UI input element used for the field
+   *
+   * @default "text"
+   */
+  inputType: 'text';
+  lowerbound?: number;
+  upperbound?: number;
+  allowNull: true;
 } & PrefixMixin | {
   type: 'integer';
   /**
@@ -311,6 +456,20 @@ type BaseFieldConfiguration = ({
    * @default 'select'
    */
   inputType: 'select';
+  allowNull?: false;
+} & PrefixMixin | {
+  type: 'integer';
+  /**
+   * @minItems 1
+   */
+  valueOptions: (Omit<ValueOption<integer>, 'value'> & {
+    value: integer;
+  })[];
+  /**
+   * @default 'select'
+   */
+  inputType: 'select';
+  allowNull: true;
 } & PrefixMixin | {
   type: 'integer';
   /**
@@ -352,6 +511,18 @@ type BaseFieldConfiguration = ({
    * @default "select"
    */
   inputType: 'select';
+  allowNull?: false;
+} & PrefixMixin | {
+  type: 'boolean';
+  /**
+   * @minItems 1
+   */
+  valueOptions: ValueOption<boolean>[];
+  /**
+   * @default "select"
+   */
+  inputType: 'select';
+  allowNull: true;
 } & PrefixMixin | {
   type: 'boolean';
   /**
