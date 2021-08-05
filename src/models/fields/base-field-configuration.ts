@@ -26,6 +26,7 @@ const commonBaseFieldConfigurationSchema = Joi.object().keys({
   regex: Joi.any().forbidden(),
   lowerbound: Joi.any().forbidden(),
   upperbound: Joi.any().forbidden(),
+  allowNull: Joi.any().forbidden(),
 });
 
 const prefixesMixin = {
@@ -38,23 +39,25 @@ const getBaseFieldConfigurationSchema = (
 ): Joi.AlternativesSchema => Joi.alternatives().try(
   commonSchema.keys({
     type: Joi.string().valid('string').default('string'),
-    defaultValue: Joi.string().allow('').default(''),
+    defaultValue: Joi.string().allow(''),
     valueOptions: Joi.array().items(Joi.any()).length(0).allow(null)
       .default(null),
     inputType: Joi.string().valid('text', 'textarea').default('text'),
     regex: Joi.string(),
+    allowNull: Joi.boolean(),
     ...prefixesMixin,
-  }),
+  }).xor('defaultValue', 'allowNull'),
   commonSchema.keys({
     type: Joi.string().valid('string').default('string'),
-    defaultValue: Joi.string().allow('').default(''),
+    defaultValue: Joi.string().allow(''),
     valueOptions: Joi.array().min(1).items(Joi.object().keys({
       text: stringOrTranslationsSchema.required(),
       value: Joi.string().allow('').required(),
     })).required(),
     inputType: Joi.string().valid('select').default('select'),
+    allowNull: Joi.boolean(),
     ...prefixesMixin,
-  }),
+  }).xor('defaultValue', 'allowNull'),
   commonSchema.keys({
     type: Joi.string().valid('string').default('string'),
     defaultValue: Joi.string().allow('').default(''),
@@ -66,24 +69,26 @@ const getBaseFieldConfigurationSchema = (
   }),
   commonSchema.keys({
     type: Joi.string().valid('number').required(),
-    defaultValue: Joi.number().default(0),
+    defaultValue: Joi.number(),
     valueOptions: Joi.array().items(Joi.any()).length(0).allow(null)
       .default(null),
     inputType: Joi.string().valid('text').default('text'),
     lowerbound: Joi.number().description('If provided, type should be number or integer and provided value should not be lower than this value'),
     upperbound: Joi.number().description('If provided, type should be number or integer and provided value should not be higher than this value'),
+    allowNull: Joi.boolean(),
     ...prefixesMixin,
-  }),
+  }).xor('defaultValue', 'allowNull'),
   commonSchema.keys({
     type: Joi.string().valid('number').default('number'),
-    defaultValue: Joi.number().default(0),
+    defaultValue: Joi.number(),
     valueOptions: Joi.array().min(1).items(Joi.object().keys({
       text: stringOrTranslationsSchema.required(),
       value: Joi.number().required(),
     })).required(),
     inputType: Joi.string().valid('select').default('select'),
+    allowNull: Joi.boolean(),
     ...prefixesMixin,
-  }),
+  }).xor('defaultValue', 'allowNull'),
   commonSchema.keys({
     type: Joi.string().valid('number').default('number'),
     defaultValue: Joi.number().default(0),
@@ -101,8 +106,9 @@ const getBaseFieldConfigurationSchema = (
     inputType: Joi.string().valid('text').default('text'),
     lowerbound: Joi.number().description('If provided, type should be number or integer and provided value should not be lower than this value'),
     upperbound: Joi.number().description('If provided, type should be number or integer and provided value should not be higher than this value'),
+    allowNull: Joi.boolean(),
     ...prefixesMixin,
-  }),
+  }).xor('defaultValue', 'allowNull'),
   commonSchema.keys({
     type: Joi.string().valid('integer').required(),
     defaultValue: Joi.number().integer().default(0),
@@ -111,8 +117,9 @@ const getBaseFieldConfigurationSchema = (
       value: Joi.number().integer().required(),
     })).required(),
     inputType: Joi.string().valid('select').default('select'),
+    allowNull: Joi.boolean(),
     ...prefixesMixin,
-  }),
+  }).xor('defaultValue', 'allowNull'),
   commonSchema.keys({
     type: Joi.string().valid('integer').required(),
     defaultValue: Joi.number().integer().default(0),
@@ -144,8 +151,9 @@ const getBaseFieldConfigurationSchema = (
       value: Joi.boolean().required(),
     })).required(),
     inputType: Joi.string().valid('select').default('select'),
+    allowNull: Joi.boolean(),
     ...prefixesMixin,
-  }),
+  }).xor('defaultValue', 'allowNull'),
   commonSchema.keys({
     type: Joi.string().valid('boolean').default('boolean'),
     defaultValue: Joi.boolean().default(false),
@@ -196,12 +204,20 @@ interface PrefixMixin {
 
 type integer = number;
 
-type BaseFieldConfiguration = ({
+// https://www.typescriptlang.org/play?ssl=53&ssc=12&pln=48&pc=1#code/C4TwDgpgBAShCOBXAlgJwgQWAGQgQwGdgB5AOwgB4AVAGigGkIQCoIAPYCUgExYGsmAewBmUKlAC8UASBFiAfJICwAKCjqoABWQBjPtToBRNjoA2ibpRlzaDJgXnzVGqADIoAb2cuNAbXpQyKR2zAC6ALQA-ABcsAgo6NwU2noGDI5uWniowMh4psm6+rbGZhaUjMx09I5OahoAvv72oaqqQZyowng60ACyXIgAkpwAtp7eucCmELFEqEEA5gDc3jqCo2CC5KTAMVCkiKMARhCoq-VmRfuHJ2cX6rrbc8ALpCuqDW0qoJBQAMKmIrEVD-DZbHbASRxJBoTA4fBEMiUAaHEYQUZ0ADkVz0WKgAB8oDjwdsuMAsXVVOtSEQoAB3ZDAAAWYM2ZN2sUBwNBpMh0K89XUUxmsQARJwiGKaN51Ot2ZDYgBWABMMqFgRp4qepDFn2+NLpjJZ3L0XKBehBbIh5IFsqgItmUAlECl6pcuL4yoALO6NDrtTS9Sovipqds6WdUIJUAB1JnMgByEATZ3NPOtHKhUkFLkd4slwGl9oDzp1wdD4dpUNIgkMqGjcYTACFBCz05beQrbTn7fnnYXixrPT6-XK+eTYirfSWtWWg-qwypDVCozH4yzWyzY8yuMiABKEWPR95UcBO018K0T3Z2jX9l1u+0jqBKmfDm-AcUEZmCRCmbgoFOA4jlOVAoF3dAhxcUsxXLRdvl+aA4FhdAyFMEBkTSSoWHYTgeH4IRRHEKRrGIxQJHtFJiiMExzEsCgyLEap7Ece13A8KB-ECYIcIiGJ7RcFCEggJJqOwtiNRcdxNGyXJ8goOB1lQJJSnoip7GqeQ6EQHgIGEIJRMklwmj4xDzygdDMPIS9r27W8pGEuErKw1FhjGbFPXxIkSXsikqWXCMazrBt1wTFzyFiCKIFsrsbQciZ7yZUUB1dIsxygF8lQAZnfGC5zghcQwNILWFCptNzbZkotIDDkVizN+V7JLpidR90ufC0vVfXKMvleKvx6jLYPg4ql1UAB6CaxGZZAWA6M5ul6BlkFMUwgOgRACFEh1BAdBY9Es2rrJirqsEa20Oj2-JTEERl3igPBgkEY4ACsIB0KFjWZICqvUdpdkWnpoEvNz0XGXMHWSp15iWB5Mq62JbjA+HS1h94LkrQLqwgwgtx+5q82hgs0ugjQsry8nPynSnHgK0asamqBEz2tdwNOHQ8C26B2F6AgWDAaNIByZBXUe9AoG2DCoG4Oabrunb6V3YJZfQT7pcIAhkEWUglke563o+qEgU6fIoCrOkxjADs+DBsZoWZPGqu+JmWbKxsZddMAmWgK3Hs+xAbpAXGADc9eOP6Oa57axAAZUl47pFrekWBZPAoT9ubHoBLq7Yxc3sctg6+CGXZBAwNa7qWfGarqmyursgboSt1QgA
+type RequireOnlyOne<T, Keys extends keyof T> =
+  Pick<T, Exclude<keyof T, Keys>>
+  & { [K in Keys]-?:
+  Required<Pick<T, K>>
+  & Partial<Record<Exclude<Keys, K>, undefined>>
+}[Keys];
+
+type BaseFieldConfiguration = (RequireOnlyOne<{
   type: 'string';
   /**
    * @default ""
    */
-  defaultValue: string;
+  defaultValue?: string;
   /**
    * @default null
    */
@@ -211,12 +227,13 @@ type BaseFieldConfiguration = ({
    */
   inputType: 'text' | 'textarea';
   regex?: string;
-} & PrefixMixin | {
+  allowNull?: boolean;
+}, 'defaultValue' | 'allowNull'> & PrefixMixin | RequireOnlyOne<{
   type: 'string';
   /**
    * @default ""
    */
-  defaultValue: string;
+  defaultValue?: string;
   /**
    * @minItems 1
    */
@@ -225,7 +242,8 @@ type BaseFieldConfiguration = ({
    * @default "select"
    */
   inputType: 'select';
-} & PrefixMixin | {
+  allowNull?: boolean;
+}, 'defaultValue' | 'allowNull'> & PrefixMixin | {
   type: 'string';
   /**
    * @default ""
@@ -236,12 +254,12 @@ type BaseFieldConfiguration = ({
    */
   valueOptions: ValueOption<string>[];
   inputType: 'radio';
-} | {
+} | RequireOnlyOne<{
   type: 'number';
   /**
    * @default 0
    */
-  defaultValue: number;
+  defaultValue?: number;
   /**
    * @default null
    */
@@ -252,12 +270,13 @@ type BaseFieldConfiguration = ({
   inputType: 'text';
   lowerbound?: number;
   upperbound?: number;
-} & PrefixMixin | {
+  allowNull?: boolean;
+}, 'defaultValue' | 'allowNull'> & PrefixMixin | RequireOnlyOne<{
   type: 'number';
   /**
    * @default 0
    */
-  defaultValue: number;
+  defaultValue?: number;
   /**
    * @minItems 1
    */
@@ -266,7 +285,8 @@ type BaseFieldConfiguration = ({
    * @default "select"
    */
   inputType: 'select';
-} & PrefixMixin | {
+  allowNull?: boolean;
+}, 'defaultValue' | 'allowNull'> & PrefixMixin | {
   type: 'number';
   /**
    * @default 0
@@ -277,12 +297,12 @@ type BaseFieldConfiguration = ({
    */
   valueOptions: ValueOption<number>[];
   inputType: 'radio';
-} | {
+} | RequireOnlyOne<{
   type: 'integer';
   /**
    * @default 0
    */
-  defaultValue: integer;
+  defaultValue?: integer;
   /**
    * @default null
    */
@@ -295,12 +315,13 @@ type BaseFieldConfiguration = ({
   inputType: 'text';
   lowerbound?: number;
   upperbound?: number;
-} & PrefixMixin | {
+  allowNull?: boolean;
+}, 'defaultValue' | 'allowNull'> & PrefixMixin | RequireOnlyOne<{
   type: 'integer';
   /**
    * @default 0
    */
-  defaultValue: integer;
+  defaultValue?: integer;
   /**
    * @minItems 1
    */
@@ -311,7 +332,8 @@ type BaseFieldConfiguration = ({
    * @default 'select'
    */
   inputType: 'select';
-} & PrefixMixin | {
+  allowNull?: boolean;
+}, 'defaultValue' | 'allowNull'> & PrefixMixin | {
   type: 'integer';
   /**
    * @default 0
@@ -338,12 +360,12 @@ type BaseFieldConfiguration = ({
    * @default "checkbox"
    */
   inputType: 'switch' | 'checkbox';
-} | {
+} | RequireOnlyOne<{
   type: 'boolean';
   /**
    * @default false
    */
-  defaultValue: boolean;
+  defaultValue?: boolean;
   /**
    * @minItems 1
    */
@@ -352,7 +374,8 @@ type BaseFieldConfiguration = ({
    * @default "select"
    */
   inputType: 'select';
-} & PrefixMixin | {
+  allowNull?: boolean;
+}, 'defaultValue' | 'allowNull'> & PrefixMixin | {
   type: 'boolean';
   /**
    * @default false
