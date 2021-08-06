@@ -1,3 +1,17 @@
+## [17.7.0](https://github.com/withthegrid/platform-sdk/compare/v17.6.0...v17.7.0) (2021-08-04)
+
+
+### Features
+
+* support for expressions in analytics ([#58](https://github.com/withthegrid/platform-sdk/issues/58)) ([cb40313](https://github.com/withthegrid/platform-sdk/commit/cb40313f5c17e6829483db3ac93443a2e0dcd4bb)), closes [withthegrid/platform#678](https://github.com/withthegrid/platform/issues/678)
+
+## [17.6.0](https://github.com/withthegrid/platform-sdk/compare/v17.5.0...v17.6.0) (2021-08-02)
+
+
+### Features
+
+* measurement.find edge response null as whole instead of per key ([bfafa66](https://github.com/withthegrid/platform-sdk/commit/bfafa66d532fb340a1f5cc43d9281c3404e3cf78))
+
 ## [17.5.0](https://github.com/withthegrid/platform-sdk/compare/v17.4.0...v17.5.0) (2021-07-26)
 
 
