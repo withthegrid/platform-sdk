@@ -11,7 +11,7 @@ type Response = void;
 
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'post',
-  path: '/:hashId/environment-notification',
+  path: '/environment-notification',
   body: Joi.object()
     .keys({
       notificationLevel: Joi.number().allow(null).required().example(true),
