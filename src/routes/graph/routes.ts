@@ -12,6 +12,7 @@ import * as find from './find';
 import * as findEdge from './find-edge';
 import * as findGrid from './find-grid';
 import * as findPinGroup from './find-pin-group';
+import * as findPin from './find-pin';
 import * as findNode from './find-node';
 import * as getEdgeMeasurements from './get-edge-measurements';
 import * as getEdge from './get-edge';
@@ -47,6 +48,7 @@ export {
   findEdge,
   findGrid,
   findPinGroup,
+  findPin,
   findNode,
   getEdgeMeasurements,
   getEdge,

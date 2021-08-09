@@ -12,6 +12,7 @@ import * as find from './find';
 import * as findEdge from './find-edge';
 import * as findGrid from './find-grid';
 import * as findPinGroup from './find-pin-group';
+import * as findPin from './find-pin';
 import * as findNode from './find-node';
 import * as getEdgeMeasurements from './get-edge-measurements';
 import * as getEdge from './get-edge';
@@ -255,6 +256,18 @@ class GraphRoute {
       this.comms,
     )(parameters);
 
+  findPin = (parameters?: findPin.Request):
+    Result<findPin.EffectiveRequest, findPin.Response> => controllerGenerator<
+      findPin.Request,
+      findPin.EffectiveRequest,
+      findPin.Response
+    >(
+      findPin.controllerGeneratorOptions,
+      GraphRoute.routerPath,
+      GraphRoute.auth,
+      this.comms,
+    )(parameters);
+
   getPinQuantities = (parameters: getPinQuantities.Request):
     Result<getPinQuantities.EffectiveRequest, getPinQuantities.Response> => controllerGenerator<
       getPinQuantities.Request,
@@ -280,6 +293,24 @@ class GraphRoute {
         return {
           lastValueSortColumn,
           lastValueHashId: row.pinGroup.hashId,
+        };
+      },
+      parameters,
+    );
+
+  findPinTableController = (parameters?: findPin.Query):
+    TableController<findPin.ResponseRow> => new TableController<findPin.ResponseRow>(
+      this.findPin,
+      (row: findPin.ResponseRow, sortBy: string) => {
+        let lastValueSortColumn;
+        if (sortBy === 'name') {
+          lastValueSortColumn = row.pin.name;
+        } else {
+          lastValueSortColumn = row.pin.hashId;
+        }
+        return {
+          lastValueSortColumn,
+          lastValueHashId: row.pin.hashId,
         };
       },
       parameters,
