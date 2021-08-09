@@ -1,3 +1,17 @@
+## [17.8.0](https://github.com/withthegrid/platform-sdk/compare/v17.7.0...v17.8.0) (2021-08-09)
+
+
+### Features
+
+* analytics constraints right hand references ([aab3e7a](https://github.com/withthegrid/platform-sdk/commit/aab3e7ac63945e42bfe1049876467f8c2ef87ff1)), closes [withthegrid/platform#680](https://github.com/withthegrid/platform/issues/680)
+
+## [17.7.0](https://github.com/withthegrid/platform-sdk/compare/v17.6.0...v17.7.0) (2021-08-04)
+
+
+### Features
+
+* support for expressions in analytics ([#58](https://github.com/withthegrid/platform-sdk/issues/58)) ([cb40313](https://github.com/withthegrid/platform-sdk/commit/cb40313f5c17e6829483db3ac93443a2e0dcd4bb)), closes [withthegrid/platform#678](https://github.com/withthegrid/platform/issues/678)
+
 ## [17.6.0](https://github.com/withthegrid/platform-sdk/compare/v17.5.0...v17.6.0) (2021-08-02)
 
 

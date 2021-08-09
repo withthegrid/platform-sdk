@@ -1,9 +1,12 @@
 import Joi from 'joi';
 
 const constraintSchema = Joi.object().keys({
-  field: Joi.alternatives().try(Joi.string(), Joi.number()).required(),
+  left: Joi.alternatives().try(Joi.string(), Joi.number()).required(),
   comparison: Joi.string().required(),
-  value: Joi.alternatives().try(Joi.string().allow(''), Joi.number(), Joi.boolean()),
+  right: Joi.object().keys({
+    field: Joi.alternatives().try(Joi.string(), Joi.number()),
+    value: Joi.alternatives().try(Joi.string().allow(''), Joi.number(), Joi.boolean()),
+  }),
 });
 
 const conditionSchema = Joi.object().keys({
@@ -14,12 +17,17 @@ const conditionSchema = Joi.object().keys({
   )).required(),
 }).id('analyticsQueryCondition');
 
+const fieldSchema = Joi.alternatives().try(
+  Joi.string().required().example('pinGroup.hashId'),
+  Joi.object().keys({ expression: Joi.string().required(), name: Joi.string().required() }),
+);
+
 const schema = Joi.object().keys({
   source: Joi.string().example('pinGroup').required(),
   columns: Joi.array().items(Joi.alternatives().try(
-    Joi.object().keys({ field: Joi.string().required().example('pinGroup.hashId') }).required(),
+    Joi.object().keys({ field: fieldSchema }).required(),
     Joi.object().keys({ type: Joi.string().valid('count', 'share').required(), condition: conditionSchema }).required(),
-    Joi.object().keys({ type: Joi.string().valid('sum', 'mean', 'min', 'max').required(), condition: conditionSchema, field: Joi.string().required() }).required(),
+    Joi.object().keys({ type: Joi.string().valid('sum', 'mean', 'min', 'max').required(), condition: conditionSchema, field: fieldSchema }).required(),
     Joi.object().keys({ type: Joi.string().valid('timeGroup').required(), field: Joi.string().required(), granularity: Joi.string().required() }).required(),
   )).required(),
   filter: conditionSchema,
@@ -45,11 +53,13 @@ type Comparison = '=' | '>=' | '<=' | '>' | '<' | 'like' | '<>' | 'isNull' | 'is
 
 type Value = string | number | boolean;
 
+type Field = string | { expression: string, name: string }
+
 interface Constraint {
   // string: column name, number (or stringified number): number i is reference to query.columns[i]
-  field: string | number;
+  left: string | number;
   comparison: Comparison;
-  value?: Value;
+  right?: { field: string | number } | { value: Value};
 }
 
 interface Condition {
@@ -60,15 +70,15 @@ interface Condition {
 type AggregatedColumn =
   { type: 'count'; condition?: Condition } // COUNT(*) or SUM(CASE WHEN condition THEN 1 ELSE 0 END)
   | { type: 'share'; condition?: Condition } // SUM(CASE WHEN condition THEN 1 ELSE 0 END)/COUNT(*)
-  | { type: 'sum'; condition?: Condition; field: string } // SUM(CASE WHEN condition THEN field ELSE 0 END)
-  | { type: 'mean'; condition?: Condition; field: string } // SUM(CASE WHEN condition THEN field ELSE 0 END) / SUM(CASE WHEN condition/1 THEN 1 ELSE 0 END)
-  | { type: 'min'; condition?: Condition; field: string } // MIN(CASE WHEN condition THEN field ELSE NULL END)
-  | { type: 'max'; condition?: Condition; field: string } // MAX(CASE WHEN condition THEN field ELSE NULL END)
+  | { type: 'sum'; condition?: Condition; field: Field } // SUM(CASE WHEN condition THEN field ELSE 0 END)
+  | { type: 'mean'; condition?: Condition; field: Field } // SUM(CASE WHEN condition THEN field ELSE 0 END) / SUM(CASE WHEN condition/1 THEN 1 ELSE 0 END)
+  | { type: 'min'; condition?: Condition; field: Field } // MIN(CASE WHEN condition THEN field ELSE NULL END)
+  | { type: 'max'; condition?: Condition; field: Field } // MAX(CASE WHEN condition THEN field ELSE NULL END)
   ;
 
 type TimeGroupColumn = { type: 'timeGroup', field: string; granularity: TimeGranularity };
 
-type UnaggregatedColumn = { type: undefined, field: string };
+type UnaggregatedColumn = { type: undefined, field: Field };
 
 interface AnalyticsQuery {
   source: string;
@@ -85,4 +95,5 @@ export {
   Constraint,
   Condition,
   TimeGranularity,
+  Field,
 };
