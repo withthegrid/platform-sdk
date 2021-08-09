@@ -1,3 +1,10 @@
+## [17.9.0](https://github.com/withthegrid/platform-sdk/compare/v17.8.0...v17.9.0) (2021-08-09)
+
+
+### Features
+
+* add graph.findPin route ([04dc956](https://github.com/withthegrid/platform-sdk/commit/04dc956e9ec3a036950f8e1031bdbe68dd52853f)), closes [withthegrid/platform#556](https://github.com/withthegrid/platform/issues/556)
+
 ## [17.8.0](https://github.com/withthegrid/platform-sdk/compare/v17.7.0...v17.8.0) (2021-08-09)
 
 
