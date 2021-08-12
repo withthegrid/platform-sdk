@@ -25,7 +25,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSuppl
     environment: environmentSchema.required(),
     environmentRights: Joi.array().items(Joi.string()).required().example(['STATIC', 'USERS'])
       .description('See the getting started section about rights'),
-    notificationLevel: Joi.number().allow(null).required()
+    notificationLevel: Joi.number().valid(0, 1, 2).allow(null).required()
       .example(0)
       .description('The user is subscribed to every issue created on locations in this environment (0), when the issue gets serious (1) or when the issue gets critical (2). If null, the user is not autmatically subscribed to new issues.'),
   }).required(),

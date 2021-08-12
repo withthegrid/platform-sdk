@@ -18,7 +18,6 @@ interface EffectiveRequest {
 interface ResponseRow {
   environment: Environment;
   environmentRights: string[];
-  notificationLevel: 0 | 1 | 2 | null;
 }
 
 interface Response {
@@ -35,9 +34,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSuppl
       environment: environmentSchema.required(),
       environmentRights: Joi.array().items(Joi.string()).required().example(['STATIC', 'USERS'])
         .description('See the getting started section about rights'),
-      notificationLevel: Joi.number().allow(null).required()
-        .example(0)
-        .description('The user is subscribed to every issue created on locations in this environment (0), when the issue gets serious (1) or when the issue gets critical (2). If null, the user is not autmatically subscribed to new issues.'),
     })).required(),
   }),
   description: 'Search through monitoring environments. Not useful for machine accounts, as they only have access to a single monitoring environment',
