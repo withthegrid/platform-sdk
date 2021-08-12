@@ -1,9 +1,12 @@
 import Joi from 'joi';
 
 const constraintSchema = Joi.object().keys({
-  field: Joi.alternatives().try(Joi.string(), Joi.number()).required(),
+  left: Joi.alternatives().try(Joi.string(), Joi.number()).required(),
   comparison: Joi.string().required(),
-  value: Joi.alternatives().try(Joi.string().allow(''), Joi.number(), Joi.boolean()),
+  right: Joi.object().keys({
+    field: Joi.alternatives().try(Joi.string(), Joi.number()),
+    value: Joi.alternatives().try(Joi.string().allow(''), Joi.number(), Joi.boolean()),
+  }),
 });
 
 const conditionSchema = Joi.object().keys({
@@ -54,9 +57,9 @@ type Field = string | { expression: string, name: string }
 
 interface Constraint {
   // string: column name, number (or stringified number): number i is reference to query.columns[i]
-  field: string | number;
+  left: string | number;
   comparison: Comparison;
-  value?: Value;
+  right?: { field: string | number } | { value: Value};
 }
 
 interface Condition {
