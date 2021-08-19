@@ -1,3 +1,17 @@
+## [17.9.0](https://github.com/withthegrid/platform-sdk/compare/v17.8.0...v17.9.0) (2021-08-09)
+
+
+### Features
+
+* add graph.findPin route ([04dc956](https://github.com/withthegrid/platform-sdk/commit/04dc956e9ec3a036950f8e1031bdbe68dd52853f)), closes [withthegrid/platform#556](https://github.com/withthegrid/platform/issues/556)
+
+## [17.8.0](https://github.com/withthegrid/platform-sdk/compare/v17.7.0...v17.8.0) (2021-08-09)
+
+
+### Features
+
+* analytics constraints right hand references ([aab3e7a](https://github.com/withthegrid/platform-sdk/commit/aab3e7ac63945e42bfe1049876467f8c2ef87ff1)), closes [withthegrid/platform#680](https://github.com/withthegrid/platform/issues/680)
+
 ## [17.7.0](https://github.com/withthegrid/platform-sdk/compare/v17.6.0...v17.7.0) (2021-08-04)
 
 
