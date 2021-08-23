@@ -1,3 +1,10 @@
+## [17.10.0](https://github.com/withthegrid/platform-sdk/compare/v17.9.0...v17.10.0) (2021-08-23)
+
+
+### Features
+
+* analytics and userEnvironmentSettings ([d4d65f2](https://github.com/withthegrid/platform-sdk/commit/d4d65f2c61e70f415b45309cdf7a71513d47b03e))
+
 ## [17.9.0](https://github.com/withthegrid/platform-sdk/compare/v17.8.0...v17.9.0) (2021-08-09)
 
 
