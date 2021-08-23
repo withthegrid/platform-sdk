@@ -43,6 +43,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     })),
   }).required(),
   right: { environment: 'REPORTS' },
+  description: 'Update a chart panel',
 };
 
 export {

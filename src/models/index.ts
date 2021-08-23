@@ -1,4 +1,6 @@
+import * as analyticsPanel from './analytics-panel';
 import * as analyticsQuery from './analytics-query';
+import * as analyticsVisualisation from './analytics-visualisation';
 import * as baseField from './fields/base-field';
 import * as baseFieldConfiguration from './fields/base-field-configuration';
 import * as baseFields from './fields/base-fields';
@@ -55,6 +57,7 @@ import * as supplierCertificate from './supplier-certificate';
 import * as supplierReportType from './supplier-report-type';
 import * as supplierWebhook from './supplier-webhook';
 import * as threshold from './threshold';
+import * as userEnvironmentSettings from './user-environment-settings';
 import * as translations from './translations';
 import * as updatableFieldConfigurations from './fields/updatable-field-configurations';
 import * as user from './user';
@@ -62,7 +65,9 @@ import * as userSubscription from './user-subscription';
 import * as webRequest from './web-request';
 
 export {
+  analyticsPanel,
   analyticsQuery,
+  analyticsVisualisation,
   baseField,
   baseFieldConfiguration,
   baseFields,
@@ -120,6 +125,7 @@ export {
   supplierWebhook,
   threshold,
   translations,
+  userEnvironmentSettings,
   updatableFieldConfigurations,
   user,
   userSubscription,

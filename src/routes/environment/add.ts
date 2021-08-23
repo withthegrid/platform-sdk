@@ -1,5 +1,7 @@
 import Joi from 'joi';
 import { ControllerGeneratorOptionsWithoutClientOrSupplier } from '../../comms/controller';
+
+import { schema as userEnvironmentSettingsSchema, UserEnvironmentSettings } from '../../models/user-environment-settings';
 import { schema as environmentSchema, Environment } from '../../models/environment';
 
 interface Request {
@@ -11,6 +13,7 @@ interface Request {
 interface Response {
   environment: Environment;
   environmentRights: string[];
+  userEnvironmentSettings: UserEnvironmentSettings,
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSupplier = {
@@ -24,6 +27,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSuppl
     environment: environmentSchema.required(),
     environmentRights: Joi.array().items(Joi.string()).required().example(['STATIC', 'USERS'])
       .description('See the getting started section about rights'),
+    userEnvironmentSettings: userEnvironmentSettingsSchema.required(),
   }).required(),
   description: 'Create a monitoring environment',
 };

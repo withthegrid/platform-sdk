@@ -4,6 +4,7 @@ import * as findLog from './find-log';
 import * as get from './get';
 import * as requestExportDownload from './request-export-download';
 import * as update from './update';
+import * as updateUserEnvironmentSettings from './update-user-environment-settings';
 
 export {
   addExport,
@@ -12,4 +13,5 @@ export {
   get,
   requestExportDownload,
   update,
+  updateUserEnvironmentSettings,
 };

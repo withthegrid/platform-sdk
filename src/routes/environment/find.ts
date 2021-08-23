@@ -1,6 +1,7 @@
 import Joi from 'joi';
 import { ControllerGeneratorOptionsWithoutClientOrSupplier } from '../../comms/controller';
 
+import { schema as userEnvironmentSettingsSchema, UserEnvironmentSettings } from '../../models/user-environment-settings';
 import { schema as environmentSchema, Environment } from '../../models/environment';
 
 import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../../comms/table-controller';
@@ -18,6 +19,7 @@ interface EffectiveRequest {
 interface ResponseRow {
   environment: Environment;
   environmentRights: string[];
+  userEnvironmentSettings: UserEnvironmentSettings,
 }
 
 interface Response {
@@ -34,6 +36,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSuppl
       environment: environmentSchema.required(),
       environmentRights: Joi.array().items(Joi.string()).required().example(['STATIC', 'USERS'])
         .description('See the getting started section about rights'),
+      userEnvironmentSettings: userEnvironmentSettingsSchema.required(),
     })).required(),
   }),
   description: 'Search through monitoring environments. Not useful for machine accounts, as they only have access to a single monitoring environment',

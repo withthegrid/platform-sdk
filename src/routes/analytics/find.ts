@@ -24,7 +24,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     nextPageOffset: Joi.string().allow(null).example(null).required(),
     rows: Joi.array().items(Joi.any()).example([['dao97']]).required(),
   }).required(),
-  description: 'Get a specific quantity identified by its hashId',
+  description: 'Get the results for an analytics dashboard',
 };
 
 export {

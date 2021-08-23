@@ -4,6 +4,7 @@ import * as findLog from './find-log';
 import * as get from './get';
 import * as requestExportDownload from './request-export-download';
 import * as update from './update';
+import * as updateUserEnvironmentSettings from './update-user-environment-settings';
 import Comms from '../../comms';
 
 import controllerGenerator, { Result } from '../../comms/controller';
@@ -109,6 +110,21 @@ class SettingsRoute {
       update.Response
     >(
       update.controllerGeneratorOptions,
+      SettingsRoute.routerPath,
+      SettingsRoute.auth,
+      this.comms,
+    )(parameters);
+
+  updateUserEnvironmentSettings = (parameters: updateUserEnvironmentSettings.Request):
+    Result<
+      updateUserEnvironmentSettings.EffectiveRequest,
+      updateUserEnvironmentSettings.Response
+    > => controllerGenerator<
+      updateUserEnvironmentSettings.Request,
+      updateUserEnvironmentSettings.EffectiveRequest,
+      updateUserEnvironmentSettings.Response
+    >(
+      updateUserEnvironmentSettings.controllerGeneratorOptions,
       SettingsRoute.routerPath,
       SettingsRoute.auth,
       this.comms,

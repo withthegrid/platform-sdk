@@ -38,7 +38,7 @@ const schema = Joi.object().keys({
   })).default(() => []),
   rowsPerPage: Joi.number().default(20).min(10).max(100),
 })
-  .description('A geographical object representing a point. Is used to connect one or more single segment lines.')
+  .description('An object describing an analytics query.')
   .tag('analyticsQuery');
 
 type TimeGranularity =
@@ -59,7 +59,7 @@ interface Constraint {
   // string: column name, number (or stringified number): number i is reference to query.columns[i]
   left: string | number;
   comparison: Comparison;
-  right?: { field: string | number } | { value: Value};
+  right?: { field: string | number } | { value: Value };
 }
 
 interface Condition {
