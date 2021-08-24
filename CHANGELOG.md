@@ -1,3 +1,10 @@
+## [17.11.0](https://github.com/withthegrid/platform-sdk/compare/v17.10.0...v17.11.0) (2021-08-24)
+
+
+### Features
+
+* allowNull property to BaseFieldConfiguration ([#63](https://github.com/withthegrid/platform-sdk/issues/63)) ([11a0cd4](https://github.com/withthegrid/platform-sdk/commit/11a0cd43cb78ac45c74bdcd419329f4e618b8ffc)), closes [withthegrid/platform-client#562](https://github.com/withthegrid/platform-client/issues/562)
+
 ## [17.10.0](https://github.com/withthegrid/platform-sdk/compare/v17.9.0...v17.10.0) (2021-08-23)
 
 
