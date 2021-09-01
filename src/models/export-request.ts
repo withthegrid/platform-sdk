@@ -40,6 +40,7 @@ const schema = Joi.object().keys({
   delimiter: Joi.string().valid(',', ';').required().example(','),
   rowDelimiter: Joi.string().valid('\n', '\r\n').required().example('\n'),
   status: Joi.string().valid('waiting', 'creating', 'available', 'deleted').required().example('available'),
+  downloadUrl: Joi.string().required().example('https://api.withthegrid.com/file/dp53ly?sig=53516c7771191b37352e6636e1d34c3d1038a25157dd9a16d995b2c470e37492&rt=client&rh=wyvzy7&uh=y33lmy'),
   createdAt: Joi.date().required().example('2019-12-31T15:23Z'),
 })
   .tag('exportRequest')
@@ -51,6 +52,7 @@ interface ExportRequest {
   delimiter: ',' | ';';
   rowDelimiter: '\n' | '\r\n';
   status: 'waiting' | 'creating' | 'available' | 'deleted';
+  downloadUrl: string;
   createdAt: Date;
 }
 

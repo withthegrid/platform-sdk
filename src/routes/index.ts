@@ -25,7 +25,6 @@ import SupplierCertificateRoute from './supplier-certificate';
 import SupplierReportTypeRoute from './supplier-report-type';
 import SupplierWebhookRoute from './supplier-webhook';
 import UserRoute from './user';
-import DownloadRoute from './download';
 
 class Routes {
   analytics: AnalyticsRoute;
@@ -78,8 +77,6 @@ class Routes {
 
   user: UserRoute;
 
-  download: DownloadRoute;
-
   constructor(readonly comms: Comms) {
     this.analytics = new AnalyticsRoute(comms);
     this.authentication = new AuthenticationRoute(comms);
@@ -106,7 +103,6 @@ class Routes {
     this.supplierReportType = new SupplierReportTypeRoute(comms);
     this.supplierWebhook = new SupplierWebhookRoute(comms);
     this.user = new UserRoute(comms);
-    this.download = new DownloadRoute(comms);
   }
 }
 
@@ -137,5 +133,4 @@ export {
   SupplierReportTypeRoute,
   SupplierWebhookRoute,
   UserRoute,
-  DownloadRoute,
 };
