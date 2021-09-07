@@ -1,3 +1,10 @@
+## [17.12.0](https://github.com/withthegrid/platform-sdk/compare/v17.11.0...v17.12.0) (2021-09-07)
+
+
+### Features
+
+* removed settings.request-export-download and download.get routes, added downloadUrl field to ExportRequest model ([#64](https://github.com/withthegrid/platform-sdk/issues/64)) ([c28940c](https://github.com/withthegrid/platform-sdk/commit/c28940c5a29729a1fe1fb1abe317d218d22977f1)), closes [withthegrid/platform#356](https://github.com/withthegrid/platform/issues/356)
+
 ## [17.11.0](https://github.com/withthegrid/platform-sdk/compare/v17.10.0...v17.11.0) (2021-08-24)
 
 
