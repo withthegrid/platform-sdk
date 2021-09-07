@@ -2,7 +2,6 @@ import * as addExport from './add-export';
 import * as findExportRequest from './find-export-request';
 import * as findLog from './find-log';
 import * as get from './get';
-import * as requestExportDownload from './request-export-download';
 import * as update from './update';
 import * as updateUserEnvironmentSettings from './update-user-environment-settings';
 import Comms from '../../comms';
@@ -83,21 +82,6 @@ class SettingsRoute {
       get.Response
     >(
       get.controllerGeneratorOptions,
-      SettingsRoute.routerPath,
-      SettingsRoute.auth,
-      this.comms,
-    )(parameters);
-
-  requestExportDownload = (parameters: requestExportDownload.Request):
-    Result<
-      requestExportDownload.EffectiveRequest,
-      requestExportDownload.Response
-    > => controllerGenerator<
-      requestExportDownload.Request,
-      requestExportDownload.EffectiveRequest,
-      requestExportDownload.Response
-    >(
-      requestExportDownload.controllerGeneratorOptions,
       SettingsRoute.routerPath,
       SettingsRoute.auth,
       this.comms,

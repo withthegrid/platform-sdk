@@ -5,7 +5,6 @@ import * as command from './command/routes';
 import * as commandType from './command-type/routes';
 import * as device from './device/routes';
 import * as deviceType from './device-type/routes';
-import * as download from './download/routes';
 import * as environment from './environment/routes';
 import * as graph from './graph/routes';
 import * as issue from './issue/routes';
@@ -33,7 +32,6 @@ export {
   commandType,
   device,
   deviceType,
-  download,
   environment,
   graph,
   issue,
