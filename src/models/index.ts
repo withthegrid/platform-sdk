@@ -51,7 +51,6 @@ import * as supplierActivityParseReport from './supplier-activities/parse-report
 import * as supplierActivityScheduleCommand from './supplier-activities/schedule-command';
 import * as supplierActivitySendRequest from './supplier-activities/send-request';
 import * as supplierActivitySetDeviceFields from './supplier-activities/set-device-fields';
-import * as supplierActivityExpectNextReportBefore from './supplier-activities/expect-next-report-before';
 import * as supplierCertificate from './supplier-certificate';
 import * as supplierReportType from './supplier-report-type';
 import * as supplierWebhook from './supplier-webhook';
