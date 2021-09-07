@@ -1,13 +1,13 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
-import { schema as fieldConfigurationsToServerSchema, FieldConfigurationsToServer } from '../../models/fields/field-configurations-to-server';
+import { ControllerGeneratorOptionsWithSupplier } from '../../comms/controller';
+import { schema as baseFieldConfigurationSchema, BaseFieldConfiguration } from '../../models/fields/base-field-configuration';
 
 interface Request {
   body: {
     name: string;
     start?: 'required' | 'optional' | 'disabled';
     end?: 'required' | 'optional' | 'disabled';
-    fieldConfigurations: FieldConfigurationsToServer;
+    fieldConfigurations: BaseFieldConfiguration[];
     channelSelect?: 'single' | 'multiple' | 'off';
     environmentAccess?: 'full' | 'read' | 'none';
   };
@@ -21,14 +21,14 @@ interface Response {
   hashId: string;
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
   method: 'post',
   path: '/',
   body: Joi.object().keys({
     name: Joi.string().required().example('Measurement cycle'),
     start: Joi.string().valid('required', 'optional', 'disabled').default('optional').description('\'required\': user must provide command.startAt. \'optional\': user can provide command.startAt or a delay for the command to start after it is sent to the device. \'disabled\': user cannot provide command.startAt nor a delay.'),
     end: Joi.string().valid('required', 'optional', 'disabled').default('disabled').description('\'required\': user must provide command.endAt. \'optional\': user can provide command.endAt. \'disabled\': user cannot provide command.endAt.'),
-    fieldConfigurations: fieldConfigurationsToServerSchema.required()
+    fieldConfigurations: Joi.array().items(baseFieldConfigurationSchema).required()
       .description('See the chapter on open fields on how to use this'),
     channelSelect: Joi.string().valid('single', 'multiple', 'off').default('off')
       .description('When creating a command of this type, the user can then optionally choose one (in case of \'single\') or more channelIndices (in case of \'multiple\') for which this command is relevant. If \'off\' is chosen, the user cannot specify channelIndices'),

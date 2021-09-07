@@ -1,10 +1,10 @@
+import * as analytics from './analytics/routes';
 import * as authentication from './authentication/routes';
 import * as chart from './chart/routes';
 import * as command from './command/routes';
 import * as commandType from './command-type/routes';
 import * as device from './device/routes';
 import * as deviceType from './device-type/routes';
-import * as download from './download/routes';
 import * as environment from './environment/routes';
 import * as graph from './graph/routes';
 import * as issue from './issue/routes';
@@ -25,13 +25,13 @@ import * as supplierWebhook from './supplier-webhook/routes';
 import * as user from './user/routes';
 
 export {
+  analytics,
   authentication,
   chart,
   command,
   commandType,
   device,
   deviceType,
-  download,
   environment,
   graph,
   issue,

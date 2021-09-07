@@ -1,11 +1,11 @@
 // import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithSupplier } from '../../comms/controller';
 
 type Request = Record<string, undefined>;
 
 type Response = void;
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
   method: 'delete',
   path: '/',
   right: { supplier: 'ENVIRONMENT_ADMIN' },

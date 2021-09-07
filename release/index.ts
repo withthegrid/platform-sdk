@@ -5,7 +5,6 @@ import path from 'path';
 import { localSpawn } from './spawn';
 
 import notifyOnGoogleChat from './google-chat';
-import getNpmTag from './get-npm-tag';
 
 async function go() {
   const result = await semanticRelease({
@@ -68,7 +67,7 @@ async function go() {
 
   if (result !== false) {
     const branch = (await localSpawn('git', ['branch', '--show-current'])).trim();
-    const npmTag = await getNpmTag(branch);
+    const npmTag = branch === 'main' ? 'latest' : 'sandbox';
 
     // create .npmrc file with tokens
     const npmrcPath = path.resolve(process.cwd(), '.npmrc');

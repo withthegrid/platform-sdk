@@ -1,11 +1,12 @@
 {
   "name": "@withthegrid/platform-sdk",
-  "version": "16.26.11",
+  "version": "17.12.0",
   "description": "SDK for withthegrid application",
   "license": "MIT",
   "files": [
     "/esm",
-    "/cjs"
+    "/cjs",
+    "/json"
   ],
   "repository": {
     "type": "git",
@@ -15,37 +16,42 @@
   "module": "esm/index.js",
   "scripts": {
     "start": "npm run watch-ts",
-    "build": "npm run build:esm && npm run build:cjs",
-    "build:cjs": "rm -rf cjs/ && tsc -p tsconfig.cjs.json",
-    "build:esm": "rm -rf esm/ && tsc",
+    "build": "npm run build:esm && npm run build:cjs && npm run build:json",
+    "build:cjs": "rimraf -rf cjs/ && tsc -p tsconfig.cjs.json",
+    "build:esm": "rimraf -rf esm/ && tsc",
+    "build:json": "rimraf -rf json/ && npm run build:json:field-configuration && npm run build:json:field-configurations",
+    "build:json:field-configuration": "typescript-json-schema ./tsconfig.json BaseFieldConfiguration --required --noExtraProps -o json/base-field-configuration.json",
+    "build:json:field-configurations": "typescript-json-schema ./tsconfig.json BaseFieldConfigurations --required --noExtraProps -o json/base-field-configurations.json",
     "prepare": "npm run build",
-    "watch-ts": "rm -rf esm/ && tsc -w",
+    "watch-ts": "rimraf -rf esm/ && tsc -w",
     "lint": "npm run build:cjs && eslint --ext .ts src",
     "release": "ts-node -P tsconfig.cjs.json release/"
   },
   "author": "Rob Everhardt <rob@withthegrid.com>",
   "dependencies": {
-    "@types/node": "^14.14.37",
-    "@types/qs": "^6.9.6",
+    "@types/node": "^16.4.12",
+    "@types/qs": "^6.9.7",
     "axios": "^0.21.1",
-    "joi": "^17.4.0",
+    "joi": "^17.4.2",
     "qs": "^6.10.1"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/git": "^9.0.0",
-    "@types/semantic-release": "^17.2.0",
-    "@typescript-eslint/eslint-plugin": "^4.19.0",
-    "@typescript-eslint/parser": "^4.19.0",
-    "conventional-changelog-conventionalcommits": "^4.5.0",
+    "@types/semantic-release": "^17.2.1",
+    "@typescript-eslint/eslint-plugin": "^4.29.0",
+    "@typescript-eslint/parser": "^4.29.0",
+    "conventional-changelog-conventionalcommits": "^4.6.0",
     "conventional-changelog-writer": "^5.0.0",
     "conventional-commits-parser": "^3.2.1",
-    "eslint": "^7.23.0",
+    "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.22.1",
-    "semantic-release": "^17.4.2",
-    "ts-node": "^9.1.1",
-    "typescript": "^4.2.3"
+    "eslint-plugin-import": "^2.23.4",
+    "rimraf": "^3.0.2",
+    "semantic-release": "^17.4.4",
+    "ts-node": "^10.1.0",
+    "typescript": "^4.2.3",
+    "typescript-json-schema": "^0.50.1"
   },
   "engines": {
     "node": ">=8.0.0"

@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 
 import { schema as edgeSchema, Edge } from '../../models/edge';
 import { schema as pinSchema, Pin } from '../../models/pin';
@@ -25,7 +25,7 @@ interface Response {
   photo: string | null;
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'get',
   path: '/edge/:hashId',
   params: Joi.object().keys({

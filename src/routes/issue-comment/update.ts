@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 
 import { schema as issueCommentSchema, IssueComment } from '../../models/issue-comment';
 
@@ -18,7 +18,7 @@ type Response = {
   mentionedUsers: { hashId: string; name: string }[];
 }[];
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'post',
   path: '/:hashId',
   params: Joi.object().keys({

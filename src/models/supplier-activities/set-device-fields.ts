@@ -1,13 +1,13 @@
 import Joi from 'joi';
 
-import { schema as fieldsToFieldConfigurationUdfSchema, FieldsToFieldConfigurationUdf } from '../fields/fields-to-field-configuration-udf';
+import { schema as baseFieldsSchema, BaseFields } from '../fields/base-fields';
 import { schemaConstructor as supplierActivityConstructor, SupplierActivity } from './base';
 
 interface SetDeviceFields extends SupplierActivity<'setDeviceFields'> {
   triggerData: {
     diff?: {
-      old: FieldsToFieldConfigurationUdf;
-      new: FieldsToFieldConfigurationUdf;
+      old: BaseFields;
+      new: BaseFields;
     };
   };
 }
@@ -16,8 +16,8 @@ const schema = supplierActivityConstructor(
   'setDeviceFields',
   Joi.object().keys({
     diff: Joi.object().keys({
-      old: fieldsToFieldConfigurationUdfSchema.required(),
-      new: fieldsToFieldConfigurationUdfSchema.required(),
+      old: baseFieldsSchema.required(),
+      new: baseFieldsSchema.required(),
     }).example({ old: { version: '1.1' }, new: { version: '1.2' } }),
   }).required(),
 )

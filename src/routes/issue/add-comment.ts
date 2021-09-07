@@ -1,7 +1,7 @@
 import Joi from 'joi';
 
 import { schema as issueCommentSchema, IssueComment } from '../../models/issue-comment';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 
 interface Request {
   params: {
@@ -26,7 +26,7 @@ type Response = {
   mentionedUsers: { hashId: string; name: string }[];
 };
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'post',
   path: '/:hashId/comment',
   params: Joi.object().keys({

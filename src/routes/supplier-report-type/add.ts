@@ -1,14 +1,14 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
-import { schema as fieldConfigurationsToServerSchema, FieldConfigurationsToServer } from '../../models/fields/field-configurations-to-server';
+import { ControllerGeneratorOptionsWithSupplier } from '../../comms/controller';
+import { schema as baseFieldConfigurationSchema, BaseFieldConfiguration } from '../../models/fields/base-field-configuration';
 
 interface Request {
   body: {
     name: string;
     fieldConfigurations: {
-      pinGroup: FieldConfigurationsToServer;
-      pin: FieldConfigurationsToServer;
-      measurement: FieldConfigurationsToServer;
+      pinGroup: BaseFieldConfiguration[];
+      pin: BaseFieldConfiguration[];
+      measurement: BaseFieldConfiguration[];
     };
     parser: string;
   };
@@ -19,15 +19,15 @@ interface Response {
   subscriptionHashId?: string;
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
   method: 'post',
   path: '/',
   body: Joi.object().keys({
     name: Joi.string().required().example('Temperature'),
     fieldConfigurations: Joi.object().keys({
-      pinGroup: fieldConfigurationsToServerSchema.required(),
-      pin: fieldConfigurationsToServerSchema.required(),
-      measurement: fieldConfigurationsToServerSchema.required(),
+      pinGroup: Joi.array().items(baseFieldConfigurationSchema).required(),
+      pin: Joi.array().items(baseFieldConfigurationSchema).required(),
+      measurement: Joi.array().items(baseFieldConfigurationSchema).required(),
     }).required()
       .description('See the chapter on open fields on how to use this'),
     parser: Joi.string().required().example('[omitted]').description('A javascript function that parses an incoming report. See the chapter "User defined code"'),

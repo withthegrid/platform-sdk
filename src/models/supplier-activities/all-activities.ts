@@ -8,6 +8,7 @@ import { schema as handleLinkSchema, HandleLink } from './handle-link';
 import { schema as handleLinkUpdateSchema, HandleLinkUpdate } from './handle-link-update';
 import { schema as handleNewCommandSchema, HandleNewCommand } from './handle-new-command';
 import { schema as handleUnlinkSchema, HandleUnlink } from './handle-unlink';
+import { schema as handleReportLateSchema, HandleReportLate } from './handle-report-late';
 import { schema as increaseReportingCounterSchema, IncreaseReportingCounter } from './increase-reporting-counter';
 import { schema as markCommandAsSentSchema, MarkCommandAsSent } from './mark-command-as-sent';
 import { schema as parseReportSchema, ParseReport } from './parse-report';
@@ -24,6 +25,7 @@ type AllActivities = DropCommand
   | HandleLinkUpdate
   | HandleNewCommand
   | HandleUnlink
+  | HandleReportLate
   | IncreaseReportingCounter
   | MarkCommandAsSent
   | ParseReport
@@ -41,6 +43,7 @@ const schema = (apiVersion: number): Joi.AlternativesSchema => Joi.alternatives(
   handleLinkUpdateSchema(apiVersion),
   handleNewCommandSchema(apiVersion),
   handleUnlinkSchema(apiVersion),
+  handleReportLateSchema(apiVersion),
   increaseReportingCounterSchema,
   markCommandAsSentSchema,
   parseReportSchema(apiVersion),

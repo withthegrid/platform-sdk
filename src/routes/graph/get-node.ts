@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 
 import { schema as edgeSchema, Edge } from '../../models/edge';
 import { schema as nodeSchema, Node } from '../../models/node';
@@ -15,7 +15,7 @@ interface Response {
   edges: Edge[];
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'get',
   path: '/node/:hashId',
   params: Joi.object().keys({

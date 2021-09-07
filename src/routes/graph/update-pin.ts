@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 import { schema as fieldsToServerUpdateSchema, FieldsToServerUpdate } from '../../models/fields/fields-to-server-update';
 import { schema as pinSchema, Pin } from '../../models/pin';
 
@@ -9,6 +9,7 @@ interface Request {
   };
   body: {
     fields?: FieldsToServerUpdate;
+    edgeHashId?: string | null;
   };
 }
 
@@ -16,7 +17,7 @@ interface Response {
   pin: Pin;
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'post',
   path: '/pin/:hashId',
   params: Joi.object().keys({
@@ -24,6 +25,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   }).required(),
   body: Joi.object().keys({
     fields: fieldsToServerUpdateSchema.example({ id: 'My port' }),
+    edgeHashId: Joi.string().allow(null).example('ka08d'),
   }).required(),
   response: Joi.object().keys({
     pin: pinSchema.required(),

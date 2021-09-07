@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 
 import { BaseFields, schema as baseFieldsSchema } from '../../models/fields/base-fields';
 import { Measurement, schema as measurementSchema } from '../../models/measurement';
@@ -13,6 +13,8 @@ interface Query extends TableQuery {
   pinGroupHashIds?: string[]; // max 50
   quantityHashIds?: string[]; // max 64
   fieldKeys?: string[]; // max 20
+  pinFieldKeys?: string[];
+  edgeFieldKeys?: string[];
   since?: Date; // including
   before?: Date; // not including
 }
@@ -56,7 +58,13 @@ interface ResponseRow {
   pin: {
     hashId: string;
     name: string;
+    fields: BaseFields;
   };
+  edge: {
+    hashId: string;
+    name: string;
+    fields: BaseFields;
+  } | null;
 }
 
 interface Response {
@@ -64,12 +72,12 @@ interface Response {
   rows: ResponseRow[];
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'get',
   path: '/',
   right: { environment: 'READ' },
   query: tableQuerySchemaGenerator(
-    Joi.string().valid('pinName', 'generatedAt', 'pinGroupName').default('pinName'),
+    Joi.string().valid('pinName', 'generatedAt', 'pinGroupName', 'edgeName').default('pinName'),
     500,
   ).keys({
     includePinsWithoutReports: Joi.boolean().default(true),
@@ -80,6 +88,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     quantityHashIds: Joi.array().min(1).max(64).items(Joi.string().example('sajia1'))
       .default([]),
     fieldKeys: Joi.array().max(20).items(Joi.string().example('id')).default([]),
+    pinFieldKeys: Joi.array().max(20).items(Joi.string().example('id')).default([]),
+    edgeFieldKeys: Joi.array().max(20).items(Joi.string().example('id')).default([]),
     since: Joi.date(),
     before: Joi.date(),
   }),
@@ -93,7 +103,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
         updatedAt: Joi.date().required().example('2019-12-31T15:23Z'),
         generatedAt: Joi.date().required().example('2019-12-31T15:23Z'),
         reportTypeHashId: Joi.string().required().example('l19a7s'),
-        pinGroupFields: baseFieldsSchema.required(), // so no files
+        pinGroupFields: baseFieldsSchema.required().description('Files are not included'),
         pinObservations: Joi.array().items(Joi.object().keys({
           measurement: measurementSchema(apiVersion).required(),
           quantityHashId: Joi.string().required().example('sajia1'),
@@ -107,7 +117,13 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
       pin: Joi.object().keys({
         hashId: Joi.string().required().example('e13d57'),
         name: Joi.string().required().example('My port'),
+        fields: baseFieldsSchema.required().example({ id: 'My port' }).description('Files are not included'),
       }).required(),
+      edge: Joi.object().keys({
+        hashId: Joi.string().required().example('ka08d'),
+        name: Joi.string().required().example('My line'),
+        fields: baseFieldsSchema.required().example({ id: 'My line' }).description('Files are not included'),
+      }).allow(null).required(),
     })).required(),
   }),
   description: 'Search through measurements',

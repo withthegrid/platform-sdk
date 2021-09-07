@@ -1,10 +1,8 @@
-import * as addEdgeToPin from './add-edge-to-pin';
 import * as addEdge from './add-edge';
 import * as addGrid from './add-grid';
 import * as addPinGroup from './add-pin-group';
 import * as addNode from './add-node';
 import * as addPin from './add-pin';
-import * as deleteEdgeFromPin from './delete-edge-from-pin';
 import * as deleteEdge from './delete-edge';
 import * as deleteGrid from './delete-grid';
 import * as deletePinGroup from './delete-pin-group';
@@ -14,6 +12,7 @@ import * as find from './find';
 import * as findEdge from './find-edge';
 import * as findGrid from './find-grid';
 import * as findPinGroup from './find-pin-group';
+import * as findPin from './find-pin';
 import * as findNode from './find-node';
 import * as getEdgeMeasurements from './get-edge-measurements';
 import * as getEdge from './get-edge';
@@ -45,18 +44,6 @@ class GraphRoute {
 
   constructor(readonly comms: Comms) {
   }
-
-  addEdgeToPin = (parameters: addEdgeToPin.Request):
-    Result<addEdgeToPin.EffectiveRequest, addEdgeToPin.Response> => controllerGenerator<
-      addEdgeToPin.Request,
-      addEdgeToPin.EffectiveRequest,
-      addEdgeToPin.Response
-    >(
-      addEdgeToPin.controllerGeneratorOptions,
-      GraphRoute.routerPath,
-      GraphRoute.auth,
-      this.comms,
-    )(parameters);
 
   addEdge = (parameters: addEdge.Request):
     Result<addEdge.EffectiveRequest, addEdge.Response> => controllerGenerator<
@@ -113,18 +100,6 @@ class GraphRoute {
       addPin.Response
     >(
       addPin.controllerGeneratorOptions,
-      GraphRoute.routerPath,
-      GraphRoute.auth,
-      this.comms,
-    )(parameters);
-
-  deleteEdgeFromPin = (parameters: deleteEdgeFromPin.Request):
-    Result<deleteEdgeFromPin.EffectiveRequest, deleteEdgeFromPin.Response> => controllerGenerator<
-      deleteEdgeFromPin.Request,
-      deleteEdgeFromPin.EffectiveRequest,
-      deleteEdgeFromPin.Response
-    >(
-      deleteEdgeFromPin.controllerGeneratorOptions,
       GraphRoute.routerPath,
       GraphRoute.auth,
       this.comms,
@@ -281,6 +256,18 @@ class GraphRoute {
       this.comms,
     )(parameters);
 
+  findPin = (parameters?: findPin.Request):
+    Result<findPin.EffectiveRequest, findPin.Response> => controllerGenerator<
+      findPin.Request,
+      findPin.EffectiveRequest,
+      findPin.Response
+    >(
+      findPin.controllerGeneratorOptions,
+      GraphRoute.routerPath,
+      GraphRoute.auth,
+      this.comms,
+    )(parameters);
+
   getPinQuantities = (parameters: getPinQuantities.Request):
     Result<getPinQuantities.EffectiveRequest, getPinQuantities.Response> => controllerGenerator<
       getPinQuantities.Request,
@@ -306,6 +293,24 @@ class GraphRoute {
         return {
           lastValueSortColumn,
           lastValueHashId: row.pinGroup.hashId,
+        };
+      },
+      parameters,
+    );
+
+  findPinTableController = (parameters?: findPin.Query):
+    TableController<findPin.ResponseRow> => new TableController<findPin.ResponseRow>(
+      this.findPin,
+      (row: findPin.ResponseRow, sortBy: string) => {
+        let lastValueSortColumn;
+        if (sortBy === 'name') {
+          lastValueSortColumn = row.pin.name;
+        } else {
+          lastValueSortColumn = row.pin.hashId;
+        }
+        return {
+          lastValueSortColumn,
+          lastValueHashId: row.pin.hashId,
         };
       },
       parameters,

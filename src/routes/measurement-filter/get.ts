@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 
 import { schema as measurementFilterSchema, MeasurementFilter } from '../../models/measurement-filter';
 import { schema as environmentReportTypeSchema, EnvironmentReportType } from '../../models/environment-report-type';
@@ -20,9 +20,11 @@ interface Response {
   pinGroups: PinGroup[];
   quantities: Quantity[];
   fieldKeys: string[];
+  pinFieldKeys: string[];
+  edgeFieldKeys: string[];
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'get',
   path: '/:hashId',
   params: Joi.object().keys({
@@ -36,6 +38,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
     pinGroups: Joi.array().items(pinGroupSchema(apiVersion)).required(),
     quantities: Joi.array().items(quantitySchema).required(),
     fieldKeys: Joi.array().items(Joi.string().example('id')).required(),
+    pinFieldKeys: Joi.array().items(Joi.string()).required(),
+    edgeFieldKeys: Joi.array().items(Joi.string()).required(),
   }).required(),
   description: 'Get a specific measurement filter identified by its hashId',
 };

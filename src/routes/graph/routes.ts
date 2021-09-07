@@ -1,10 +1,8 @@
-import * as addEdgeToPin from './add-edge-to-pin';
 import * as addEdge from './add-edge';
 import * as addGrid from './add-grid';
 import * as addPinGroup from './add-pin-group';
 import * as addNode from './add-node';
 import * as addPin from './add-pin';
-import * as deleteEdgeFromPin from './delete-edge-from-pin';
 import * as deleteEdge from './delete-edge';
 import * as deleteGrid from './delete-grid';
 import * as deletePinGroup from './delete-pin-group';
@@ -14,6 +12,7 @@ import * as find from './find';
 import * as findEdge from './find-edge';
 import * as findGrid from './find-grid';
 import * as findPinGroup from './find-pin-group';
+import * as findPin from './find-pin';
 import * as findNode from './find-node';
 import * as getEdgeMeasurements from './get-edge-measurements';
 import * as getEdge from './get-edge';
@@ -35,13 +34,11 @@ import * as updateNode from './update-node';
 import * as updatePin from './update-pin';
 
 export {
-  addEdgeToPin,
   addEdge,
   addGrid,
   addPinGroup,
   addNode,
   addPin,
-  deleteEdgeFromPin,
   deleteEdge,
   deleteGrid,
   deletePinGroup,
@@ -51,6 +48,7 @@ export {
   findEdge,
   findGrid,
   findPinGroup,
+  findPin,
   findNode,
   getEdgeMeasurements,
   getEdge,
