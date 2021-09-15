@@ -1,3 +1,10 @@
+## [17.13.0](https://github.com/withthegrid/platform-sdk/compare/v17.12.0...v17.13.0) (2021-09-15)
+
+
+### Features
+
+* removed setReportingFrequency supplier activity and all measurementCycles mentions, except get-pin-group < v3 ([#29](https://github.com/withthegrid/platform-sdk/issues/29)) ([5963aa6](https://github.com/withthegrid/platform-sdk/commit/5963aa6cff49df26dfc98bc0c538279d2dc029b8)), closes [#565](https://github.com/withthegrid/platform-sdk/issues/565)
+
 ## [17.12.0](https://github.com/withthegrid/platform-sdk/compare/v17.11.0...v17.12.0) (2021-09-07)
 
 
