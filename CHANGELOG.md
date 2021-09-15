@@ -1,3 +1,10 @@
+## [17.14.0](https://github.com/withthegrid/platform-sdk/compare/v17.13.1...v17.14.0) (2021-09-15)
+
+
+### Features
+
+* limit command.find, report.find and issue.find by map layers ([#65](https://github.com/withthegrid/platform-sdk/issues/65)) ([b4cd058](https://github.com/withthegrid/platform-sdk/commit/b4cd058ff18abba98ff9c22ea5d0ec2f824eaabf)), closes [withthegrid/platform-client#627](https://github.com/withthegrid/platform-client/issues/627)
+
 ### [17.13.1](https://github.com/withthegrid/platform-sdk/compare/v17.13.0...v17.13.1) (2021-09-15)
 
 
