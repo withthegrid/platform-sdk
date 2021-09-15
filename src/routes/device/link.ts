@@ -44,6 +44,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   response: Joi.object().keys({
     device: deviceSchema.required(),
     deviceType: deviceTypeSchema.required(),
+    measurementCycle: Joi.valid(null).default(null), // for legacy purposes only
     nextReportBefore: Joi.date().allow(null).example('2019-12-31T15:25Z').required(),
     pins: Joi.array().items(pinSchema).required().description('All ports (pins) of the location (pinGroup), as some might have an updated deviceFields property'),
   }).required(),

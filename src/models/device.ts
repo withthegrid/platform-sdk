@@ -8,6 +8,7 @@ const schema = Joi.object().keys({
   supplierDeviceIdentifier: Joi.string().required().example('390044000351352237353037').description('Should be unique within the connectivity environment'),
   deviceTypeHashId: Joi.string().required().example('wasd2'),
   fields: fieldsFromServerSchema.required().example({}),
+  measurementCycle: Joi.valid(null).default(null), // for legacy purposes only
   nextReportBefore: Joi.date().allow(null).required().example('2019-12-31T15:25Z'),
   lastOnlineAt: Joi.date().allow(null).required().example('2019-12-31T15:23Z'),
   validated: Joi.boolean().required().example(true),

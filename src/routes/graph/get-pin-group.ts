@@ -46,7 +46,6 @@ type ResponseV3Andolder = {
     channel: number;
     pinHashId: string | null;
   }[] | null;
-  measurementCycle: null;
   thresholds: {
     value: Threshold;
     quantity: Quantity;
@@ -74,7 +73,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
         channel: Joi.number().integer().required().example(0),
         pinHashId: Joi.string().allow(null).default(null),
       })).required().allow(null),
-      measurementCycle: Joi.object().allow(null).required(),
+      measurementCycle: Joi.valid(null).default(null), // for legacy purposes only
       thresholds: Joi.array().items(Joi.object().keys({
         value: thresholdSchema.required(),
         quantity: quantitySchema.required(),
