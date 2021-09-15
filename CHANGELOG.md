@@ -1,3 +1,10 @@
+### [17.13.1](https://github.com/withthegrid/platform-sdk/compare/v17.13.0...v17.13.1) (2021-09-15)
+
+
+### Bug Fixes
+
+* non-breaking removal of measurement cycle ([06155c2](https://github.com/withthegrid/platform-sdk/commit/06155c268d52ac2863456972c085d1a78bf889ce))
+
 ## [17.13.0](https://github.com/withthegrid/platform-sdk/compare/v17.12.0...v17.13.0) (2021-09-15)
 
 
