@@ -1,3 +1,10 @@
+### [17.14.1](https://github.com/withthegrid/platform-sdk/compare/v17.14.0...v17.14.1) (2021-09-16)
+
+
+### Bug Fixes
+
+* only downloadUrl if export request is available ([70f6741](https://github.com/withthegrid/platform-sdk/commit/70f67411293cea80fbc4c6c672e42196766b4376))
+
 ## [17.14.0](https://github.com/withthegrid/platform-sdk/compare/v17.13.1...v17.14.0) (2021-09-15)
 
 
