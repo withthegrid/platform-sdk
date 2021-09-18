@@ -31,7 +31,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   query: tableQuerySchemaGenerator(Joi.string().valid('name').default('name')),
   response: Joi.object().keys({
     nextPageOffset: Joi.string().allow(null).example(null).required()
-      .description('This is the last page iff nextPageOffset is null'),
+      .description('This is the last page if nextPageOffset is null'),
     rows: Joi.array().items(Joi.object().keys({
       objectType: Joi.string().valid('grid', 'pinGroup', 'edge').required().example('pinGroup'),
       hashId: Joi.string().required().example('dao97'),

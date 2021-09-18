@@ -39,6 +39,7 @@ interface ResponseRow {
 }
 
 interface Response {
+  nextPageOffset: string | null;
   rows: ResponseRow[];
 }
 
@@ -71,6 +72,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   response: (apiVersion: number): Joi.ObjectSchema => {
     if (apiVersion <= 2) {
       return Joi.object().keys({
+        nextPageOffset: Joi.string().allow(null).example(null).required()
+          .description('This is the last page if nextPageOffset is null'),
         rows: Joi.array().items(Joi.object().keys({
           report: Joi.object().keys({
             hashId: Joi.string().required().example('qoa978'),
@@ -86,6 +89,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     }
 
     return Joi.object().keys({
+      nextPageOffset: Joi.string().allow(null).example(null).required()
+        .description('This is the last page if nextPageOffset is null'),
       rows: Joi.array().items(Joi.object().keys({
         report: Joi.object().keys({
           hashId: Joi.string().required().example('qoa978'),

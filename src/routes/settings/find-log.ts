@@ -29,6 +29,7 @@ interface ResponseRow {
 }
 
 interface Response {
+  nextPageOffset: string | null;
   rows: ResponseRow[];
 }
 
@@ -42,6 +43,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClientAndSupplie
     }),
   right: { environment: 'AUDIT_TRAIL', supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
+    nextPageOffset: Joi.string().allow(null).example(null).required()
+      .description('This is the last page if nextPageOffset is null'),
     rows: Joi.array().items(Joi.object().keys({
       log: logSchema.required(),
       userName: Joi.string().allow(null).required().example('John Doe'),

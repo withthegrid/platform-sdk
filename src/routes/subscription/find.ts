@@ -26,10 +26,10 @@ interface ResponseRow {
   objectName: string;
   subscription: UserSubscription;
   supplier: Supplier;
-
 }
 
 interface Response {
+  nextPageOffset: string | null;
   rows: ResponseRow[];
 }
 
@@ -41,6 +41,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSuppl
     supplierHashId: Joi.string(),
   }),
   response: Joi.object().keys({
+    nextPageOffset: Joi.string().allow(null).example(null).required()
+      .description('This is the last page if nextPageOffset is null'),
     rows: Joi.array().items(Joi.object().keys({
       objectName: Joi.string().required().example('My device'),
       subscription: userSubscriptionSchema.required(),

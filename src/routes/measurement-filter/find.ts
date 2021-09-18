@@ -31,7 +31,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   query: tableQuerySchemaGenerator(Joi.string().valid('name', 'hashId', 'updatedAt').default('hashId')),
   response: Joi.object().keys({
     nextPageOffset: Joi.string().allow(null).example(null).required()
-      .description('This is the last page iff nextPageOffset is null'),
+      .description('This is the last page if nextPageOffset is null'),
     rows: Joi.array().items(Joi.object().keys({
       measurementFilter: measurementFilterSchema.required(),
     })).required(),

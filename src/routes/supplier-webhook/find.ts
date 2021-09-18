@@ -23,6 +23,7 @@ interface ResponseRow {
 }
 
 interface Response {
+  nextPageOffset: string | null;
   rows: ResponseRow[];
 }
 
@@ -32,6 +33,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
   query: tableQuerySchemaGenerator(Joi.string().valid('hashId', 'name').default('hashId')),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
+    nextPageOffset: Joi.string().allow(null).example(null).required()
+      .description('This is the last page if nextPageOffset is null'),
     rows: Joi.array().items(Joi.object().keys({
       webhook: supplierWebhook.required(),
       url: Joi.string().required().example('https://api.withthegrid.com/iot?s=f1a4w1?t=asd193gaf11234').description('The URL the third party service should use to post data sent by the devices.'),
