@@ -1,3 +1,31 @@
+### [17.14.1](https://github.com/withthegrid/platform-sdk/compare/v17.14.0...v17.14.1) (2021-09-16)
+
+
+### Bug Fixes
+
+* only downloadUrl if export request is available ([70f6741](https://github.com/withthegrid/platform-sdk/commit/70f67411293cea80fbc4c6c672e42196766b4376))
+
+## [17.14.0](https://github.com/withthegrid/platform-sdk/compare/v17.13.1...v17.14.0) (2021-09-15)
+
+
+### Features
+
+* limit command.find, report.find and issue.find by map layers ([#65](https://github.com/withthegrid/platform-sdk/issues/65)) ([b4cd058](https://github.com/withthegrid/platform-sdk/commit/b4cd058ff18abba98ff9c22ea5d0ec2f824eaabf)), closes [withthegrid/platform-client#627](https://github.com/withthegrid/platform-client/issues/627)
+
+### [17.13.1](https://github.com/withthegrid/platform-sdk/compare/v17.13.0...v17.13.1) (2021-09-15)
+
+
+### Bug Fixes
+
+* non-breaking removal of measurement cycle ([06155c2](https://github.com/withthegrid/platform-sdk/commit/06155c268d52ac2863456972c085d1a78bf889ce))
+
+## [17.13.0](https://github.com/withthegrid/platform-sdk/compare/v17.12.0...v17.13.0) (2021-09-15)
+
+
+### Features
+
+* removed setReportingFrequency supplier activity and all measurementCycles mentions, except get-pin-group < v3 ([#29](https://github.com/withthegrid/platform-sdk/issues/29)) ([5963aa6](https://github.com/withthegrid/platform-sdk/commit/5963aa6cff49df26dfc98bc0c538279d2dc029b8)), closes [#565](https://github.com/withthegrid/platform-sdk/issues/565)
+
 ## [17.12.0](https://github.com/withthegrid/platform-sdk/compare/v17.11.0...v17.12.0) (2021-09-07)
 
 

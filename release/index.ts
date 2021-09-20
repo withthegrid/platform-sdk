@@ -10,7 +10,7 @@ async function go() {
   const result = await semanticRelease({
     branches: [
       { name: 'main', channel: 'main' },
-      { name: 'next', channel: 'next' },
+      // { name: 'next', channel: 'next' },
     ],
     plugins: [
       [

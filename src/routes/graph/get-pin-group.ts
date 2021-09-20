@@ -7,7 +7,6 @@ import { schema as edgeSchema, Edge } from '../../models/edge';
 import { schema as gridSchema, Grid } from '../../models/grid';
 import { schema as deviceSchema, Device } from '../../models/device';
 import { schema as deviceTypeSchema, DeviceType } from '../../models/device-type';
-import { schema as measurementCycleSchema, MeasurementCycle } from '../../models/measurement-cycle';
 import { schema as thresholdSchema, Threshold } from '../../models/threshold';
 import { schema as quantitySchema, Quantity } from '../../models/quantity';
 
@@ -28,7 +27,6 @@ interface Response {
     channel: number;
     pinHashId: string | null;
   }[] | null;
-  measurementCycle: MeasurementCycle | null;
   nextReportBefore: Date | null;
   thresholds: {
     value: Threshold;
@@ -48,7 +46,6 @@ type ResponseV3Andolder = {
     channel: number;
     pinHashId: string | null;
   }[] | null;
-  measurementCycle: MeasurementCycle | null;
   thresholds: {
     value: Threshold;
     quantity: Quantity;
@@ -76,7 +73,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
         channel: Joi.number().integer().required().example(0),
         pinHashId: Joi.string().allow(null).default(null),
       })).required().allow(null),
-      measurementCycle: measurementCycleSchema.allow(null).required(),
+      measurementCycle: Joi.valid(null).default(null), // for legacy purposes only
       thresholds: Joi.array().items(Joi.object().keys({
         value: thresholdSchema.required(),
         quantity: quantitySchema.required(),

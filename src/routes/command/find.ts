@@ -11,6 +11,7 @@ interface Query extends TableQuery {
   pinGroupHashId?: string | null;
   edgeHashId?: string | null;
   gridHashId?: string | null;
+  mapLayers?: string[] | null;
 }
 
 type Request = {
@@ -45,6 +46,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClientAndSupplie
     pinGroupHashId: Joi.string().allow(null).default(null),
     edgeHashId: Joi.string().allow(null).default(null),
     gridHashId: Joi.string().allow(null).default(null),
+    mapLayers: Joi.array().items(Joi.string()).allow(null).default(null),
   }),
   right: { environment: 'READ', supplier: 'ENVIRONMENT_ADMIN' },
   response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({

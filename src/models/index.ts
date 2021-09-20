@@ -27,7 +27,6 @@ import * as locale from './locale';
 import * as log from './log';
 import * as mapLayer from './map-layer';
 import * as measurement from './measurement';
-import * as measurementCycle from './measurement-cycle';
 import * as measurementFilter from './measurement-filter';
 import * as node from './node';
 import * as pin from './pin';
@@ -52,7 +51,6 @@ import * as supplierActivityParseReport from './supplier-activities/parse-report
 import * as supplierActivityScheduleCommand from './supplier-activities/schedule-command';
 import * as supplierActivitySendRequest from './supplier-activities/send-request';
 import * as supplierActivitySetDeviceFields from './supplier-activities/set-device-fields';
-import * as supplierActivitySetReportingFrequency from './supplier-activities/set-reporting-frequency';
 import * as supplierCertificate from './supplier-certificate';
 import * as supplierReportType from './supplier-report-type';
 import * as supplierWebhook from './supplier-webhook';
@@ -94,7 +92,6 @@ export {
   log,
   mapLayer,
   measurement,
-  measurementCycle,
   measurementFilter,
   node,
   pin,
@@ -119,7 +116,6 @@ export {
   supplierActivityScheduleCommand,
   supplierActivitySendRequest,
   supplierActivitySetDeviceFields,
-  supplierActivitySetReportingFrequency,
   supplierCertificate,
   supplierReportType,
   supplierWebhook,
