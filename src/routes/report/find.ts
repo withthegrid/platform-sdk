@@ -57,6 +57,7 @@ interface ResponseRowV2 {
 }
 
 type ResponsesIncludingDeprecated = {
+  nextPageOffset: string | null;
   rows: (ResponseRow | ResponseRowV2)[];
 }
 

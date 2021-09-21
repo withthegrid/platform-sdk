@@ -51,6 +51,7 @@ interface ResponseRowV2AndOlder extends ResponseRowV3 {
 }
 
 type ResponsesIncludingDeprecated = {
+  nextPageOffset: string | null;
   rows: (ResponseRow | ResponseRowV3 | ResponseRowV2AndOlder)[];
 }
 
