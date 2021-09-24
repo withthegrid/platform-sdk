@@ -42,6 +42,7 @@ interface ResponseRowV3 {
 }
 
 interface Response {
+  nextPageOffset: string | null;
   rows: ResponseRow[];
 }
 
@@ -50,6 +51,7 @@ interface ResponseRowV2AndOlder extends ResponseRowV3 {
 }
 
 type ResponsesIncludingDeprecated = {
+  nextPageOffset: string | null;
   rows: (ResponseRow | ResponseRowV3 | ResponseRowV2AndOlder)[];
 }
 
@@ -76,6 +78,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
         grid: gridSchema.allow(null).required(),
       });
       return Joi.object().keys({
+        nextPageOffset: Joi.string().allow(null).example(null).required()
+          .description('This is the last page if nextPageOffset is null'),
         rows: Joi.array().items(row).required(),
       });
     }
@@ -84,10 +88,14 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
         grid: gridSchema.allow(null).required(),
       });
       return Joi.object().keys({
+        nextPageOffset: Joi.string().allow(null).example(null).required()
+          .description('This is the last page if nextPageOffset is null'),
         rows: Joi.array().items(row).required(),
       });
     }
     return Joi.object().keys({
+      nextPageOffset: Joi.string().allow(null).example(null).required()
+        .description('This is the last page if nextPageOffset is null'),
       rows: Joi.array().items(baseRowSchema).required(),
     });
   },

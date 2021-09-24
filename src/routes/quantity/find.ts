@@ -31,6 +31,7 @@ interface ResponseRow {
 }
 
 interface Response {
+  nextPageOffset: string | null;
   rows: ResponseRow[];
 }
 
@@ -45,6 +46,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClientAndSupplie
       deviceQuantityMode: Joi.boolean().default(false),
     }),
   response: Joi.object().keys({
+    nextPageOffset: Joi.string().allow(null).example(null).required()
+      .description('This is the last page if nextPageOffset is null'),
     rows: Joi.array().items(Joi.object().keys({
       quantity: quantitySchema.required(),
       environmentQuantity: quantitySchema,

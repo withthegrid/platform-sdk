@@ -33,6 +33,7 @@ interface ResponseRow {
 }
 
 interface Response {
+  nextPageOffset: string | null;
   rows: ResponseRow[];
 }
 
@@ -42,6 +43,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
   query: tableQuerySchemaGenerator(Joi.string().valid('createdAt').default('createdAt')),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
+    nextPageOffset: Joi.string().allow(null).example(null).required()
+      .description('This is the last page if nextPageOffset is null'),
     rows: Joi.array().items(Joi.object().keys({
       activity: Joi.object().keys({
         hashId: Joi.string().example('2ad91p').required(),
