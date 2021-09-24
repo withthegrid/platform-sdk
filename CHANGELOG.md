@@ -1,3 +1,10 @@
+## [17.15.0](https://github.com/withthegrid/platform-sdk/compare/v17.14.1...v17.15.0) (2021-09-24)
+
+
+### Features
+
+* add next page offset ([#66](https://github.com/withthegrid/platform-sdk/issues/66)) ([1cfd810](https://github.com/withthegrid/platform-sdk/commit/1cfd810236b3363fcf23d7e8a91edce97e74eb0c)), closes [withthegrid/platform#768](https://github.com/withthegrid/platform/issues/768)
+
 ### [17.14.1](https://github.com/withthegrid/platform-sdk/compare/v17.14.0...v17.14.1) (2021-09-16)
 
 
