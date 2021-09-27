@@ -32,7 +32,6 @@ class AnalyticsRoute {
   findTableController = (parameters: find.Query):
     TableController<find.ResponseRow> => new TableController<find.ResponseRow>(
       this.find,
-      undefined,
       parameters,
     );
 
@@ -75,18 +74,6 @@ class AnalyticsRoute {
   findPanelTableController = (parameters: findPanel.Query):
     TableController<findPanel.ResponseRow> => new TableController<findPanel.ResponseRow>(
       this.findPanel,
-      (row: findPanel.ResponseRow, sortBy: string) => {
-        let lastValueSortColumn;
-        if (sortBy === 'title') {
-          lastValueSortColumn = row.panel.title;
-        } else {
-          lastValueSortColumn = row.panel.hashId;
-        }
-        return {
-          lastValueSortColumn,
-          lastValueHashId: row.panel.hashId,
-        };
-      },
       parameters,
     );
 

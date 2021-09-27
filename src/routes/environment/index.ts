@@ -55,18 +55,6 @@ class EnvironmentRoute {
   findTableController = (parameters?: find.Query):
     TableController<find.ResponseRow> => new TableController<find.ResponseRow>(
       this.find,
-      (row: find.ResponseRow, sortBy: string) => {
-        let lastValueSortColumn;
-        if (sortBy === 'name') {
-          lastValueSortColumn = row.environment.name;
-        } else {
-          lastValueSortColumn = row.environment.hashId;
-        }
-        return {
-          lastValueSortColumn,
-          lastValueHashId: row.environment.hashId,
-        };
-      },
       parameters,
     );
 

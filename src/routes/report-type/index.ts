@@ -55,18 +55,6 @@ class ReportTypeRoute {
   findTableController = (parameters?: find.Query):
     TableController<find.ResponseRow> => new TableController<find.ResponseRow>(
       this.find,
-      (row: find.ResponseRow, sortBy: string) => {
-        let lastValueSortColumn;
-        if (sortBy === 'name') {
-          lastValueSortColumn = row.reportType.name;
-        } else {
-          lastValueSortColumn = row.reportType.hashId;
-        }
-        return {
-          lastValueSortColumn,
-          lastValueHashId: row.reportType.hashId,
-        };
-      },
       parameters,
     );
 

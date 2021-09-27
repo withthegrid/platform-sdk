@@ -28,10 +28,6 @@ class SupplierActivityRoute {
   findTableController = (parameters?: find.Query):
     TableController<find.ResponseRow> => new TableController<find.ResponseRow>(
       this.find,
-      (row: find.ResponseRow) => ({
-        lastValueSortColumn: row.activity.createdAt,
-        lastValueHashId: row.activity.hashId,
-      }),
       parameters,
     );
 

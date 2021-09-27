@@ -53,18 +53,6 @@ class SubscriptionRoute {
   findTableController = (parameters?: find.Query):
     TableController<find.ResponseRow> => new TableController<find.ResponseRow>(
       this.find,
-      (row: find.ResponseRow, sortBy: string) => {
-        let lastValueSortColumn;
-        if (sortBy === 'objectType') {
-          lastValueSortColumn = row.subscription.objectType;
-        } else {
-          lastValueSortColumn = row.subscription.hashId;
-        }
-        return {
-          lastValueSortColumn,
-          lastValueHashId: row.supplier.hashId,
-        };
-      },
       parameters,
     );
 }

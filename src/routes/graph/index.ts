@@ -180,7 +180,6 @@ class GraphRoute {
   findTableController = (parameters?: find.Query):
     TableController<find.ResponseRow> => new TableController<find.ResponseRow>(
       this.find,
-      undefined,
       parameters,
     );
 
@@ -199,18 +198,6 @@ class GraphRoute {
   findEdgeTableController = (parameters?: findEdge.Query):
     TableController<findEdge.ResponseRow> => new TableController<findEdge.ResponseRow>(
       this.findEdge,
-      (row: findEdge.ResponseRow, sortBy: string) => {
-        let lastValueSortColumn;
-        if (sortBy === 'name') {
-          lastValueSortColumn = row.edge.name;
-        } else {
-          lastValueSortColumn = row.edge.hashId;
-        }
-        return {
-          lastValueSortColumn,
-          lastValueHashId: row.edge.hashId,
-        };
-      },
       parameters,
     );
 
@@ -229,18 +216,6 @@ class GraphRoute {
   findGridTableController = (parameters?: findGrid.Query):
     TableController<findGrid.ResponseRow> => new TableController<findGrid.ResponseRow>(
       this.findGrid,
-      (row: findGrid.ResponseRow, sortBy: string) => {
-        let lastValueSortColumn;
-        if (sortBy === 'hashId') {
-          lastValueSortColumn = row.grid.hashId;
-        } else {
-          lastValueSortColumn = row.grid.name;
-        }
-        return {
-          lastValueSortColumn,
-          lastValueHashId: row.grid.hashId,
-        };
-      },
       parameters,
     );
 
@@ -283,36 +258,12 @@ class GraphRoute {
   findPinGroupTableController = (parameters?: findPinGroup.Query):
     TableController<findPinGroup.ResponseRow> => new TableController<findPinGroup.ResponseRow>(
       this.findPinGroup,
-      (row: findPinGroup.ResponseRow, sortBy: string) => {
-        let lastValueSortColumn;
-        if (sortBy === 'name') {
-          lastValueSortColumn = row.pinGroup.name;
-        } else {
-          lastValueSortColumn = row.pinGroup.hashId;
-        }
-        return {
-          lastValueSortColumn,
-          lastValueHashId: row.pinGroup.hashId,
-        };
-      },
       parameters,
     );
 
   findPinTableController = (parameters?: findPin.Query):
     TableController<findPin.ResponseRow> => new TableController<findPin.ResponseRow>(
       this.findPin,
-      (row: findPin.ResponseRow, sortBy: string) => {
-        let lastValueSortColumn;
-        if (sortBy === 'name') {
-          lastValueSortColumn = row.pin.name;
-        } else {
-          lastValueSortColumn = row.pin.hashId;
-        }
-        return {
-          lastValueSortColumn,
-          lastValueHashId: row.pin.hashId,
-        };
-      },
       parameters,
     );
 
@@ -331,18 +282,6 @@ class GraphRoute {
   findNodeTableController = (parameters?: findNode.Query):
     TableController<findNode.ResponseRow> => new TableController<findNode.ResponseRow>(
       this.findNode,
-      (row: findNode.ResponseRow, sortBy: string) => {
-        let lastValueSortColumn;
-        if (sortBy === 'name') {
-          lastValueSortColumn = row.node.name;
-        } else {
-          lastValueSortColumn = row.node.hashId;
-        }
-        return {
-          lastValueSortColumn,
-          lastValueHashId: row.node.hashId,
-        };
-      },
       parameters,
     );
 

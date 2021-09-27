@@ -55,18 +55,6 @@ class SupplierRoute {
   findTableController = (parameters?: find.Query):
     TableController<find.ResponseRow> => new TableController<find.ResponseRow>(
       this.find,
-      (row: find.ResponseRow, sortBy: string) => {
-        let lastValueSortColumn;
-        if (sortBy === 'name') {
-          lastValueSortColumn = row.supplier.name;
-        } else {
-          lastValueSortColumn = row.supplier.hashId;
-        }
-        return {
-          lastValueSortColumn,
-          lastValueHashId: row.supplier.hashId,
-        };
-      },
       parameters,
     );
 

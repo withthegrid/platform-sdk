@@ -55,18 +55,6 @@ class SupplierWebhookRoute {
   findTableController = (parameters?: find.Query):
     TableController<find.ResponseRow> => new TableController<find.ResponseRow>(
       this.find,
-      (row: find.ResponseRow, sortBy: string) => {
-        let lastValueSortColumn;
-        if (sortBy === 'name') {
-          lastValueSortColumn = row.webhook.name;
-        } else {
-          lastValueSortColumn = row.webhook.hashId;
-        }
-        return {
-          lastValueSortColumn,
-          lastValueHashId: row.webhook.hashId,
-        };
-      },
       parameters,
     );
 

@@ -55,18 +55,6 @@ class CommandTypeRoute {
   findTableController = (parameters?: find.Query):
     TableController<find.ResponseRow> => new TableController<find.ResponseRow>(
       this.find,
-      (row: find.ResponseRow, sortBy: string) => {
-        let lastValueSortColumn;
-        if (sortBy === 'name') {
-          lastValueSortColumn = row.commandType.name;
-        } else {
-          lastValueSortColumn = row.commandType.hashId;
-        }
-        return {
-          lastValueSortColumn,
-          lastValueHashId: row.commandType.hashId,
-        };
-      },
       parameters,
     );
 

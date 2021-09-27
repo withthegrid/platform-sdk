@@ -4,9 +4,7 @@ import { Result, RequestQuery } from './controller';
 
 /**
  *
- * Table controllers support two ways of communicating offset with the server:
- * - lastValueSortColumn/ lastValueHashId: this sdk takes care of mapping the
- *   the page to these two values to retrieve the next page
+ * Table controllers support one way of communicating offset with the server:
  * - offset: for routes where the server supplies nextPageOffset on each page,
  *   that can be used to request the next page
  */
@@ -24,11 +22,9 @@ function tableQuerySchemaGenerator(
       .max(maxRowsPerPage)
       .default(10),
     search: Joi.string().allow('').default(''),
-    lastValueSortColumn: Joi.any().description('To retrieve the next page, provide lastValueSortColumn and lastValueHashId. lastValueSortColumn is the value for the key provided in sortBy of the last row that is received. Should also be provided when sortBy is \'hashId\''),
-    lastValueHashId: Joi.string().description('To retrieve the next page, provide lastValueSortColumn and lastValueHashId. lastValueHashId is the hashId of the last row that is received.'),
-    offset: Joi.string().description('To retrieve the next page, provide of the nextPageOffset of the last page when available and not null (lastValueSortColumn and lastValueHashId can be ignored then).'),
+    offset: Joi.string().description('To retrieve the next page, provide of the nextPageOffset of the last page when available and not null.'),
     updatedAfter: Joi.date().iso().description('Only rows that are updated after the provided date will be returned'),
-  }).with('lastValueSortColumn', 'lastValueHashId').default();
+  }).default();
 }
 
 interface DefaultedTableQueryParameters extends RequestQuery {
@@ -39,8 +35,6 @@ interface DefaultedTableQueryParameters extends RequestQuery {
 }
 
 interface TableQuery extends DefaultedTableQueryParameters {
-  lastValueSortColumn?: string | number | Date | null;
-  lastValueHashId?: string;
   offset?: string;
   updatedAfter?: Date;
 }
@@ -59,11 +53,6 @@ interface SimplifiedEffectiveTableRequest {
   query: Omit<EffectiveTableQuery, 'sortBy' | 'descending' | 'search'>;
 }
 
-interface ObjectKeyResult {
-  lastValueSortColumn: string | number | Date | null;
-  lastValueHashId: string;
-}
-
 interface Response<RowImplementation> {
   rows: RowImplementation[];
   nextPageOffset?: string | null;
@@ -78,17 +67,12 @@ class TableController<RowImplementation> {
 
   cancelFunction: (() => void) | null = null;
 
-  lastValueSortColumn?: string | number | Date | null;
-
-  lastValueHashId?: string;
-
   nextPageOffset?: string | null;
 
   endReached = false;
 
   constructor(
     private readonly route: (parameters?: TableRequest) => Result<SimplifiedEffectiveTableRequest, Response<RowImplementation>>, // eslint-disable-line max-len
-    readonly objectKeyMapper?: (row: RowImplementation, sortBy: string) => ObjectKeyResult,
     readonly parameters?: TableQuery,
   ) {
   }
@@ -105,10 +89,6 @@ class TableController<RowImplementation> {
 
     const params: TableQuery = { ...this.parameters };
 
-    if (this.lastValueSortColumn !== undefined) {
-      params.lastValueSortColumn = this.lastValueSortColumn;
-      params.lastValueHashId = this.lastValueHashId;
-    }
     if (this.nextPageOffset !== null) {
       params.offset = this.nextPageOffset;
     }
@@ -121,7 +101,6 @@ class TableController<RowImplementation> {
     this.add(
       response,
       result.request.query.rowsPerPage,
-      result.request.query.sortBy,
     );
     return this.pagesAcquired;
   }
@@ -138,7 +117,6 @@ class TableController<RowImplementation> {
   add(
     response: Response<RowImplementation>,
     rowsPerPage: number,
-    sortBy: string | undefined = undefined,
   ): void {
     this.rowsPerPage = rowsPerPage;
     if (response.rows.length > 0) {
@@ -147,17 +125,8 @@ class TableController<RowImplementation> {
         if (response.nextPageOffset === null) {
           this.endReached = true;
         }
-      } else if (this.objectKeyMapper !== undefined && sortBy !== undefined) {
-        const lastRow = response.rows[response.rows.length - 1];
-        const { lastValueSortColumn, lastValueHashId } = this.objectKeyMapper(
-          lastRow,
-          sortBy,
-        );
-
-        this.lastValueSortColumn = lastValueSortColumn;
-        this.lastValueHashId = lastValueHashId;
       } else {
-        throw new Error('Response has no nextPageOffset and objectKeyMapper is not defined');
+        throw new Error('Response has no nextPageOffset');
       }
 
       this.rows = this.rows.concat(response.rows);
