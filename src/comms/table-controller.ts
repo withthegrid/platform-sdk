@@ -3,10 +3,7 @@ import Joi from 'joi';
 import { Result, RequestQuery } from './controller';
 
 /**
- *
- * Table controllers support one way of communicating offset with the server:
- * - offset: for routes where the server supplies nextPageOffset on each page,
- *   that can be used to request the next page
+ * Table controllers abstract paging functionaly of .find routes
  */
 
 function tableQuerySchemaGenerator(
@@ -55,7 +52,7 @@ interface SimplifiedEffectiveTableRequest {
 
 interface Response<RowImplementation> {
   rows: RowImplementation[];
-  nextPageOffset?: string | null;
+  nextPageOffset: string | null;
 }
 
 class TableController<RowImplementation> {
@@ -67,7 +64,7 @@ class TableController<RowImplementation> {
 
   cancelFunction: (() => void) | null = null;
 
-  nextPageOffset?: string | null;
+  nextPageOffset: string | null = null;
 
   endReached = false;
 
@@ -120,13 +117,9 @@ class TableController<RowImplementation> {
   ): void {
     this.rowsPerPage = rowsPerPage;
     if (response.rows.length > 0) {
-      if (response.nextPageOffset !== undefined) {
-        this.nextPageOffset = response.nextPageOffset;
-        if (response.nextPageOffset === null) {
-          this.endReached = true;
-        }
-      } else {
-        throw new Error('Response has no nextPageOffset');
+      this.nextPageOffset = response.nextPageOffset;
+      if (response.nextPageOffset === null) {
+        this.endReached = true;
       }
 
       this.rows = this.rows.concat(response.rows);
