@@ -46,10 +46,6 @@ class SettingsRoute {
       findExportRequest.ResponseRow
     > => new TableController<findExportRequest.ResponseRow>(
       this.findExportRequest,
-      (row: findExportRequest.ResponseRow) => ({
-        lastValueSortColumn: row.exportRequest.createdAt,
-        lastValueHashId: row.exportRequest.hashId,
-      }),
       parameters,
     );
 
@@ -68,10 +64,6 @@ class SettingsRoute {
   findLogTableController = (parameters: findLog.Query):
     TableController<findLog.ResponseRow> => new TableController<findLog.ResponseRow>(
       this.findLog,
-      (row: findLog.ResponseRow) => ({
-        lastValueSortColumn: row.log.hashId,
-        lastValueHashId: row.log.hashId,
-      }),
       parameters,
     );
 

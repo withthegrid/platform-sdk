@@ -28,7 +28,6 @@ class QuantityRoute {
   findTableController = (parameters: find.Query):
     TableController<find.ResponseRow> => new TableController<find.ResponseRow>(
       this.find,
-      undefined,
       parameters,
     );
 

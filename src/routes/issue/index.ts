@@ -69,18 +69,6 @@ class IssueRoute {
   findTableController = (parameters?: find.Query):
     TableController<find.ResponseRow> => new TableController<find.ResponseRow>(
       this.find,
-      (row: find.ResponseRow, sortBy: string) => {
-        let lastValueSortColumn;
-        if (sortBy === 'level') {
-          lastValueSortColumn = row.issue.level;
-        } else {
-          lastValueSortColumn = row.issue.createdAt;
-        }
-        return {
-          lastValueSortColumn,
-          lastValueHashId: row.issue.hashId,
-        };
-      },
       parameters,
     );
 

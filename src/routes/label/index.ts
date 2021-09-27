@@ -54,10 +54,6 @@ class IssueRoute {
   findTableController = (parameters?: find.Query):
     TableController<find.ResponseRow> => new TableController<find.ResponseRow>(
       this.find,
-      (row: find.ResponseRow) => ({
-        lastValueSortColumn: row.label.name,
-        lastValueHashId: row.label.hashId,
-      }),
       parameters,
     );
 

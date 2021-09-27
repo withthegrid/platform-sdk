@@ -55,18 +55,6 @@ class QuantityRoute {
   findTableController = (parameters?: find.Query):
     TableController<find.ResponseRow> => new TableController<find.ResponseRow>(
       this.find,
-      (row: find.ResponseRow, sortBy: string) => {
-        let lastValueSortColumn;
-        if (sortBy === 'name') {
-          lastValueSortColumn = row.quantity.name;
-        } else {
-          lastValueSortColumn = row.quantity.hashId;
-        }
-        return {
-          lastValueSortColumn,
-          lastValueHashId: row.quantity.hashId,
-        };
-      },
       parameters,
     );
 

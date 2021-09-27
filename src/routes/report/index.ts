@@ -55,10 +55,6 @@ class ReportRoute {
   findTableController = (parameters?: find.Query):
     TableController<find.ResponseRow> => new TableController<find.ResponseRow>(
       this.find,
-      (row: find.ResponseRow) => ({
-        lastValueSortColumn: row.report.generatedAt,
-        lastValueHashId: row.report.hashId,
-      }),
       parameters,
     );
 

@@ -54,10 +54,6 @@ class CommandRoute {
   findTableController = (parameters?: find.Query):
     TableController<find.ResponseRow> => new TableController<find.ResponseRow>(
       this.find,
-      (row: find.ResponseRow) => ({
-        lastValueSortColumn: row.command.hashId,
-        lastValueHashId: row.command.hashId,
-      }),
       parameters,
     );
 

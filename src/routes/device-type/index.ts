@@ -55,18 +55,6 @@ class DeviceTypeRoute {
   findTableController = (parameters?: find.Query):
     TableController<find.ResponseRow> => new TableController<find.ResponseRow>(
       this.find,
-      (row: find.ResponseRow, sortBy: string) => {
-        let lastValueSortColumn;
-        if (sortBy === 'name') {
-          lastValueSortColumn = row.deviceType.name;
-        } else {
-          lastValueSortColumn = row.deviceType.hashId;
-        }
-        return {
-          lastValueSortColumn,
-          lastValueHashId: row.deviceType.hashId,
-        };
-      },
       parameters,
     );
 
