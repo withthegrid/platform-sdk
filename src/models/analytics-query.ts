@@ -35,7 +35,7 @@ const schema = Joi.object().keys({
   sort: Joi.array().items(Joi.object().keys({
     columnIndex: Joi.number().required(),
     descending: Joi.boolean().required(),
-  })).default(() => []),
+  })).default(() => []).example([]),
   rowsPerPage: Joi.number().default(20).min(10).max(100),
 })
   .description('An object describing an analytics query.')

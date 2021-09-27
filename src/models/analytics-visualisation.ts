@@ -1,10 +1,11 @@
 import Joi from 'joi';
 
 const schema = Joi.object().keys({
-  type: Joi.string().required(),
-  colors: Joi.array().items(Joi.string()).required(),
-  xAxisColumnIndex: Joi.number().integer().allow(null).required(),
-  forceOrdinal: Joi.boolean().required(),
+  type: Joi.string().example('line').required(),
+  colors: Joi.array().items(Joi.string().example('#202f0c')).required(),
+  xAxisColumnIndex: Joi.number().integer().example(null).allow(null)
+    .required(),
+  forceOrdinal: Joi.boolean().example(false).required(),
 })
   .description('An object describing the visualisation of the results of an analytics query.')
   .tag('analyticsVisualisation');

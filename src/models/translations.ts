@@ -1,9 +1,10 @@
 import Joi from 'joi';
 
 const schema = Joi.object().keys({
-  en: Joi.string().allow('').required(),
-  nl: Joi.string().allow('').required(),
-});
+  en: Joi.string().allow('').example('English string').required(),
+  nl: Joi.string().allow('').example('Nederlandse string').required(),
+})
+  .tag('translations');
 
 interface Translations {
   en: string,
