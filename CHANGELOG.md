@@ -1,3 +1,10 @@
+## [17.16.0](https://github.com/withthegrid/platform-sdk/compare/v17.15.0...v17.16.0) (2021-09-27)
+
+
+### Features
+
+* remove lastValue parameters ([16eaea8](https://github.com/withthegrid/platform-sdk/commit/16eaea881d4c14d6db3c4438705ea6ad53011946))
+
 ## [17.15.0](https://github.com/withthegrid/platform-sdk/compare/v17.14.1...v17.15.0) (2021-09-24)
 
 
