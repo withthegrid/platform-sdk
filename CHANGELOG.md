@@ -1,3 +1,10 @@
+### [17.16.1](https://github.com/withthegrid/platform-sdk/compare/v17.16.0...v17.16.1) (2021-09-27)
+
+
+### Bug Fixes
+
+* documentation requirements ([5df11f9](https://github.com/withthegrid/platform-sdk/commit/5df11f9ce7b1eaa83c99b277e9a62e764e1ea0c4))
+
 ## [17.16.0](https://github.com/withthegrid/platform-sdk/compare/v17.15.0...v17.16.0) (2021-09-27)
 
 
