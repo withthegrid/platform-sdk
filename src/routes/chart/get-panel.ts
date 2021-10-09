@@ -28,11 +28,11 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     Joi.object().keys({ pinHashId: Joi.string().required().example('e13d57') }).required(),
   ).required(),
   right: { environment: 'READ' },
-  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
+  response: Joi.object().keys({
     lastMode: Joi.string().valid('manual', 'automatic').example('automatic').required(),
     charts: Joi.object().keys({
-      automatic: Joi.array().items(chartSchema(apiVersion)).required(),
-      manual: Joi.array().items(chartSchema(apiVersion)).required(),
+      automatic: Joi.array().items(chartSchema).required(),
+      manual: Joi.array().items(chartSchema).required(),
     }).required(),
   }).required(),
   description: 'Get the chart panel for a pinGroup, grid, edge or pin',

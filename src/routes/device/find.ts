@@ -43,7 +43,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClientAndSupplie
     forCommandTypeHashId: Joi.string().description('Filter the results on devices types that are able to receive commands of this type'),
   }),
   right: { environment: 'READ', supplier: 'ENVIRONMENT_ADMIN' },
-  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
+  response: Joi.object().keys({
     nextPageOffset: Joi.string().allow(null).example(null).required()
       .description('This is the last page if nextPageOffset is null'),
     rows: Joi.array().items(Joi.object().keys({
@@ -51,7 +51,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClientAndSupplie
       deviceType: deviceTypeSchema.required(),
       environmentName: Joi.string().allow(null).example('My monitoring environment').required(),
       environmentHashId: Joi.string().allow(null).example('f1a4w1').required(),
-      pinGroup: pinGroupSchema(apiVersion).allow(null).required().description('Will be null when queried from a connectivity environment'),
+      pinGroup: pinGroupSchema.allow(null).required().description('Will be null when queried from a connectivity environment'),
     })).required(),
   }),
   description: 'Search through devices',

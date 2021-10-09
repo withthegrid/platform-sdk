@@ -2,9 +2,7 @@ import Joi from 'joi';
 import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 
 import { schema as deviceSchema, Device } from '../../models/device';
-import { schema as gridSchema, Grid } from '../../models/grid';
 import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
-import { schema as environmentSchema, Environment } from '../../models/environment';
 
 import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../../comms/table-controller';
 
@@ -35,24 +33,9 @@ interface ResponseRow {
   device: Device | null;
 }
 
-interface ResponseRowV3 {
-  pinGroup: PinGroup;
-  device: Device | null;
-  grid: Grid | null;
-}
-
 interface Response {
   nextPageOffset: string | null;
   rows: ResponseRow[];
-}
-
-interface ResponseRowV2AndOlder extends ResponseRowV3 {
-  environment: Environment;
-}
-
-type ResponsesIncludingDeprecated = {
-  nextPageOffset: string | null;
-  rows: (ResponseRow | ResponseRowV3 | ResponseRowV2AndOlder)[];
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
@@ -66,39 +49,14 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       forEdge: Joi.string().description('Find only among pin groups which belongs to specified edge hash id'),
     }),
   right: { environment: 'READ' },
-  response: (apiVersion: number): Joi.ObjectSchema => {
-    const baseRowSchema = Joi.object().keys({
-      pinGroup: pinGroupSchema(apiVersion).required(),
+  response: Joi.object().keys({
+    nextPageOffset: Joi.string().allow(null).example(null).required()
+      .description('This is the last page if nextPageOffset is null'),
+    rows: Joi.array().items(Joi.object().keys({
+      pinGroup: pinGroupSchema.required(),
       device: deviceSchema.allow(null).required(),
-    });
-
-    if (apiVersion <= 2) {
-      const row = baseRowSchema.keys({
-        environment: environmentSchema.required(),
-        grid: gridSchema.allow(null).required(),
-      });
-      return Joi.object().keys({
-        nextPageOffset: Joi.string().allow(null).example(null).required()
-          .description('This is the last page if nextPageOffset is null'),
-        rows: Joi.array().items(row).required(),
-      });
-    }
-    if (apiVersion <= 3) {
-      const row = baseRowSchema.keys({
-        grid: gridSchema.allow(null).required(),
-      });
-      return Joi.object().keys({
-        nextPageOffset: Joi.string().allow(null).example(null).required()
-          .description('This is the last page if nextPageOffset is null'),
-        rows: Joi.array().items(row).required(),
-      });
-    }
-    return Joi.object().keys({
-      nextPageOffset: Joi.string().allow(null).example(null).required()
-        .description('This is the last page if nextPageOffset is null'),
-      rows: Joi.array().items(baseRowSchema).required(),
-    });
-  },
+    })).required(),
+  }),
   description: 'Search through pin groups',
 };
 
@@ -109,7 +67,4 @@ export {
   Response,
   Query,
   ResponseRow,
-  ResponseRowV3,
-  ResponseRowV2AndOlder,
-  ResponsesIncludingDeprecated,
 };
