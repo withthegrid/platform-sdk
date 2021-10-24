@@ -19,7 +19,7 @@ const layoutItemSchema = (columnsCount: number) => Joi.array().items(Joi.object(
   .default(null)
   .allow(null);
 
-const layoutSchema = Joi.object().keys({
+const layoutsSchema = Joi.object().keys({
   lg: layoutItemSchema(columnsPerResolution.lg),
   md: layoutItemSchema(columnsPerResolution.md),
   sm: layoutItemSchema(columnsPerResolution.sm),
@@ -29,7 +29,7 @@ const layoutSchema = Joi.object().keys({
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('j1iha9'),
   title: Joi.string().required().max(100).example('My dashboard'),
-  layout: layoutSchema.default(),
+  layouts: layoutsSchema.default(),
   cards: Joi.array().items(Joi.object().keys({
     title: Joi.string().required().example('My widget'),
     query: analyticsQuerySchema.required(),
@@ -47,17 +47,17 @@ interface CardPosition {
 }
 
 // if null then layout for this resolution should be generated on client
-interface AnalyticsPanelLayout {
-  lg: CardPosition[] | null; // 1200+ px, 8 columns
-  md: CardPosition[] | null; // 996+ px, 6 columns
-  sm: CardPosition[] | null; // 600+ px, 4 columns
-  xs: CardPosition[] | null; // + px, 2 column
+interface AnalyticsPanelLayouts {
+  lg: CardPosition[] | null;
+  md: CardPosition[] | null;
+  sm: CardPosition[] | null;
+  xs: CardPosition[] | null;
 }
 
 interface AnalyticsPanel {
   hashId: string;
   title: string;
-  layout: AnalyticsPanelLayout;
+  layouts: AnalyticsPanelLayouts;
   cards: {
     title: string;
     query: AnalyticsQuery;
@@ -68,7 +68,7 @@ interface AnalyticsPanel {
 export {
   schema,
   AnalyticsPanel,
-  AnalyticsPanelLayout,
-  layoutSchema,
+  AnalyticsPanelLayouts,
+  layoutsSchema,
   columnsPerResolution,
 };
