@@ -23,7 +23,6 @@ import * as grid from './grid';
 import * as issue from './issue';
 import * as issueComment from './issue-comment';
 import * as label from './label';
-import * as locale from './locale';
 import * as log from './log';
 import * as mapLayer from './map-layer';
 import * as measurement from './measurement';
@@ -88,7 +87,6 @@ export {
   issue,
   issueComment,
   label,
-  locale,
   log,
   mapLayer,
   measurement,
