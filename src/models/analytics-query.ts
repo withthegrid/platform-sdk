@@ -49,7 +49,7 @@ type TimeGranularity =
   | 'dayOfTheWeek'
   | 'monthOfTheYear';
 
-type Comparison = '=' | '>=' | '<=' | '>' | '<' | 'like' | '<>' | 'isNull' | 'isNotNull' | 'inGrid' | 'isNamedRange';
+type Comparison = '=' | '>=' | '<=' | '>' | '<' | 'like' | '<>' | 'isNull' | 'isNotNull' | 'inGrid' | 'isNamedRange' | 'notLike';
 
 type Value = string | number | boolean;
 
