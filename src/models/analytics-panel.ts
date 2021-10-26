@@ -4,10 +4,10 @@ import { schema as analyticsQuerySchema, AnalyticsQuery } from './analytics-quer
 import { schema as analyticsVisualisationSchema, AnalyticsVisualisation } from './analytics-visualisation';
 
 const columnsPerResolution = {
-  lg: 6,
-  md: 4,
-  sm: 2,
-  xs: 1,
+  lg: 24,
+  md: 16,
+  sm: 8,
+  xs: 4,
 };
 
 const layoutItemSchema = (columnsCount: number) => Joi.array().items(Joi.object().keys({
