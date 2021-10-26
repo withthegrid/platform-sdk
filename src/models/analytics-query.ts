@@ -6,7 +6,7 @@ const fieldSchema = Joi.alternatives().try(
 );
 
 const constraintSchema = Joi.object().keys({
-  left: Joi.alternatives().try(fieldSchema.required(), Joi.number().required()),
+  left: Joi.alternatives().try(fieldSchema, Joi.number()).required(),
   comparison: Joi.string().required(),
   right: Joi.object().keys({
     field: Joi.alternatives().try(Joi.string(), Joi.number()),
