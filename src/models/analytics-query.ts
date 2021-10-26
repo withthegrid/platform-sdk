@@ -1,7 +1,12 @@
 import Joi from 'joi';
 
+const fieldSchema = Joi.alternatives().try(
+  Joi.string().required().example('pinGroup.hashId'),
+  Joi.object().keys({ expression: Joi.string().required(), name: Joi.string().required() }),
+);
+
 const constraintSchema = Joi.object().keys({
-  left: Joi.alternatives().try(Joi.string(), Joi.number()).required(),
+  left: Joi.alternatives().try(fieldSchema, Joi.number()).required(),
   comparison: Joi.string().required(),
   right: Joi.object().keys({
     field: Joi.alternatives().try(Joi.string(), Joi.number()),
@@ -16,11 +21,6 @@ const conditionSchema = Joi.object().keys({
     constraintSchema.required(),
   )).required(),
 }).id('analyticsQueryCondition');
-
-const fieldSchema = Joi.alternatives().try(
-  Joi.string().required().example('pinGroup.hashId'),
-  Joi.object().keys({ expression: Joi.string().required(), name: Joi.string().required() }),
-);
 
 const schema = Joi.object().keys({
   source: Joi.string().example('pinGroup').required(),
@@ -57,7 +57,7 @@ type Field = string | { expression: string, name: string }
 
 interface Constraint {
   // string: column name, number (or stringified number): number i is reference to query.columns[i]
-  left: string | number;
+  left: Field | number;
   comparison: Comparison;
   right?: { field: string | number } | { value: Value };
 }

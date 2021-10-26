@@ -24,6 +24,7 @@ import * as issue from './issue';
 import * as issueComment from './issue-comment';
 import * as label from './label';
 import * as log from './log';
+import * as locale from './locale';
 import * as mapLayer from './map-layer';
 import * as measurement from './measurement';
 import * as measurementFilter from './measurement-filter';
@@ -87,6 +88,7 @@ export {
   issue,
   issueComment,
   label,
+  locale,
   log,
   mapLayer,
   measurement,
