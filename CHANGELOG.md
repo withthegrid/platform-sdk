@@ -1,3 +1,10 @@
+## [17.17.0](https://github.com/withthegrid/platform-sdk/compare/v17.16.1...v17.17.0) (2021-10-26)
+
+
+### Features
+
+* left constraint can be expression ([#68](https://github.com/withthegrid/platform-sdk/issues/68)) ([b031e71](https://github.com/withthegrid/platform-sdk/commit/b031e719e714c019c53ff577783f3f32b11252a1)), closes [withthegrid/platform#678](https://github.com/withthegrid/platform/issues/678)
+
 ### [17.16.1](https://github.com/withthegrid/platform-sdk/compare/v17.16.0...v17.16.1) (2021-09-27)
 
 
