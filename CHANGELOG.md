@@ -1,3 +1,10 @@
+## [17.18.0](https://github.com/withthegrid/platform-sdk/compare/v17.17.0...v17.18.0) (2021-10-27)
+
+
+### Features
+
+* notLike comparison in analytics query ([#72](https://github.com/withthegrid/platform-sdk/issues/72)) ([6184004](https://github.com/withthegrid/platform-sdk/commit/6184004f6636549ec4d24c42858d7e54ae171de8)), closes [withthegrid/platform#769](https://github.com/withthegrid/platform/issues/769)
+
 ## [17.17.0](https://github.com/withthegrid/platform-sdk/compare/v17.16.1...v17.17.0) (2021-10-26)
 
 
