@@ -1,3 +1,17 @@
+## [17.18.0](https://github.com/withthegrid/platform-sdk/compare/v17.17.0...v17.18.0) (2021-10-27)
+
+
+### Features
+
+* notLike comparison in analytics query ([#72](https://github.com/withthegrid/platform-sdk/issues/72)) ([6184004](https://github.com/withthegrid/platform-sdk/commit/6184004f6636549ec4d24c42858d7e54ae171de8)), closes [withthegrid/platform#769](https://github.com/withthegrid/platform/issues/769)
+
+## [17.17.0](https://github.com/withthegrid/platform-sdk/compare/v17.16.1...v17.17.0) (2021-10-26)
+
+
+### Features
+
+* left constraint can be expression ([#68](https://github.com/withthegrid/platform-sdk/issues/68)) ([b031e71](https://github.com/withthegrid/platform-sdk/commit/b031e719e714c019c53ff577783f3f32b11252a1)), closes [withthegrid/platform#678](https://github.com/withthegrid/platform/issues/678)
+
 ### [17.16.1](https://github.com/withthegrid/platform-sdk/compare/v17.16.0...v17.16.1) (2021-09-27)
 
 
