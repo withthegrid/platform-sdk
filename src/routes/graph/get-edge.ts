@@ -32,10 +32,10 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     hashId: Joi.string().required().example('ka08d'),
   }).required(),
   right: { environment: 'READ' },
-  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
+  response: Joi.object().keys({
     edge: edgeSchema.required(),
     pins: Joi.array().items(pinSchema).required(),
-    pinGroups: Joi.array().items(pinGroupSchema(apiVersion)).required(),
+    pinGroups: Joi.array().items(pinGroupSchema).required(),
     measurementCycles: Joi.array().items(Joi.valid(null)).default([]), // for legacy purposes only
     nextReportBefore: Joi.array().items(Joi.date().allow(null).example('2019-12-31T15:25Z')).required(),
     thresholds: Joi.array().items(Joi.object().keys({

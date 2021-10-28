@@ -39,7 +39,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     hashId: Joi.string().required().example('c19aid'),
   }).required(),
   right: { environment: 'READ' },
-  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
+  response: Joi.object().keys({
     issue: issueSchema.required(),
     userName: Joi.string().allow(null).required().example('John Doe'),
     assignedUserName: Joi.string().allow(null).required().example(null),
@@ -55,7 +55,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     })).required(),
     subscribed: Joi.boolean().required().example(false),
     links: Joi.array().items(Joi.object().keys({
-      pinGroup: pinGroupSchema(apiVersion).required(),
+      pinGroup: pinGroupSchema.required(),
       pin: pinSchema.allow(null).required(),
     })).required(),
   }),

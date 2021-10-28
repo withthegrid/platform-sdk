@@ -31,11 +31,11 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     hashId: Joi.string().required().example('k8gh3'),
   }).required(),
   right: { environment: 'READ' },
-  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
+  response: Joi.object().keys({
     measurementFilter: measurementFilterSchema.required(),
     reportTypes: Joi.array().items(environmentReportTypeSchema).required(),
     grid: gridSchema.allow(null).required(),
-    pinGroups: Joi.array().items(pinGroupSchema(apiVersion)).required(),
+    pinGroups: Joi.array().items(pinGroupSchema).required(),
     quantities: Joi.array().items(quantitySchema).required(),
     fieldKeys: Joi.array().items(Joi.string().example('id')).required(),
     pinFieldKeys: Joi.array().items(Joi.string().example('id')).required(),
