@@ -1,3 +1,10 @@
+## [17.19.0](https://github.com/withthegrid/platform-sdk/compare/v17.18.0...v17.19.0) (2021-10-28)
+
+
+### Features
+
+* remove response types for api versions < 4 ([3aedac7](https://github.com/withthegrid/platform-sdk/commit/3aedac71bf3ec6e2a49ada7f21a13fe37fa12616))
+
 ## [17.18.0](https://github.com/withthegrid/platform-sdk/compare/v17.17.0...v17.18.0) (2021-10-27)
 
 
