@@ -14,7 +14,7 @@ const layoutItemSchema = (columnsCount: number) => Joi.array().items(Joi.object(
   x: Joi.number().integer().max(columnsCount - 1).required(),
   y: Joi.number().integer().required(),
   width: Joi.number().integer().min(6).max(columnsCount),
-  height: Joi.number().integer().min(3),
+  height: Joi.number().integer().min(4),
 }))
   .default(null)
   .allow(null);
