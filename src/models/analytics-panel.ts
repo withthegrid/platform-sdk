@@ -5,16 +5,16 @@ import { schema as analyticsVisualisationSchema, AnalyticsVisualisation } from '
 
 const columnsPerResolution = {
   lg: 24,
-  md: 16,
-  sm: 8,
-  xs: 4,
+  md: 18,
+  sm: 12,
+  xs: 6,
 };
 
 const layoutItemSchema = (columnsCount: number) => Joi.array().items(Joi.object().keys({
   x: Joi.number().integer().max(columnsCount - 1).required(),
   y: Joi.number().integer().required(),
-  width: Joi.number().integer().min(1).max(columnsCount),
-  height: Joi.number().integer().min(1).max(4),
+  width: Joi.number().integer().min(6).max(columnsCount),
+  height: Joi.number().integer().min(4),
 }))
   .default(null)
   .allow(null);
@@ -24,7 +24,7 @@ const layoutsSchema = Joi.object().keys({
   md: layoutItemSchema(columnsPerResolution.md),
   sm: layoutItemSchema(columnsPerResolution.sm),
   xs: layoutItemSchema(columnsPerResolution.xs),
-});
+}).allow(null).empty(null);
 
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('j1iha9'),
