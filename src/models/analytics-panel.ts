@@ -14,8 +14,49 @@ const layoutItemSchema = (columnsCount: number) => Joi.array().items(Joi.object(
   x: Joi.number().integer().max(columnsCount - 1).required(),
   y: Joi.number().integer().required(),
   width: Joi.number().integer().min(6).max(columnsCount),
-  height: Joi.number().integer().min(4),
+  height: Joi.number().integer().min(3),
 }))
+  .custom((layout: CardPosition[], helper) => {
+    const rowWidth = columnsCount;
+    const matrix: number[][] = [];
+    function pushRows(newLength: number) {
+      let i = newLength - matrix.length;
+      while (i > 0) {
+        const row: number[] = [];
+        row.length = rowWidth;
+        row.fill(-1);
+        matrix.push(row);
+        i -= 1;
+      }
+    }
+    function insertRectangle(x: number, y: number, w: number, h: number, index: number): number {
+      if (matrix.length < y + h + 1) {
+        pushRows(y + h + 1);
+      }
+      for (let row = y; row < y + h; row += 1) {
+        for (let col = x; col < x + w; col += 1) {
+          if (matrix[row][col] === -1) {
+            matrix[row][col] = index;
+          } else {
+            return matrix[row][col];
+          }
+        }
+      }
+      return -1;
+    }
+
+    for (let index = 0; index < layout.length; index += 1) {
+      const {
+        x, y, width, height,
+      } = layout[index];
+      const overlappingIndex = insertRectangle(x, y, width, height, index);
+      if (overlappingIndex > -1) {
+        return helper.message({ custom: `Widget ${index} is overlapping with widget ${overlappingIndex}` });
+      }
+    }
+
+    return layout;
+  })
   .default(null)
   .allow(null);
 
