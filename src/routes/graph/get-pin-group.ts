@@ -35,26 +35,6 @@ interface Response {
   photo: string | null;
 }
 
-type ResponseV3Andolder = {
-  pinGroup: PinGroup;
-  pins: Pin[];
-  edges: Edge[];
-  grid: Grid | null;
-  device: Device | null;
-  deviceType: DeviceType | null;
-  channelMapping: {
-    channel: number;
-    pinHashId: string | null;
-  }[] | null;
-  thresholds: {
-    value: Threshold;
-    quantity: Quantity;
-  }[];
-  photo: string | null;
-}
-
-type ResponsesIncludingDeprecated = Response | ResponseV3Andolder;
-
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'get',
   path: '/pin-group/:hashId',
@@ -62,37 +42,26 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     hashId: Joi.string().required().example('dao97'),
   }).required(),
   right: { environment: 'READ' },
-  response: (apiVersion: number): Joi.ObjectSchema => {
-    const base = Joi.object().keys({
-      pinGroup: pinGroupSchema(apiVersion).required(),
-      pins: Joi.array().items(pinSchema).required(),
-      edges: Joi.array().items(edgeSchema).required(),
-      device: deviceSchema.allow(null).required(),
-      deviceType: deviceTypeSchema.allow(null).required(),
-      channelMapping: Joi.array().items(Joi.object().keys({
-        channel: Joi.number().integer().required().example(0),
-        pinHashId: Joi.string().allow(null).default(null),
-      })).required().allow(null),
-      measurementCycle: Joi.valid(null).default(null), // for legacy purposes only
-      thresholds: Joi.array().items(Joi.object().keys({
-        value: thresholdSchema.required(),
-        quantity: quantitySchema.required(),
-      })).required(),
-      photo: Joi.string().allow(null).required().description('base64 encoded string')
-        .example('iVBORw0KGgoAAAANSUhEUgAAB9AAAAhwCAYAAAB1bKV...'),
-    }).required();
-
-    if (apiVersion <= 3) {
-      return base.keys({
-        grid: gridSchema.allow(null).required(),
-      });
-    }
-
-    return base.keys({
-      nextReportBefore: Joi.date().allow(null).required().example('2019-12-31T15:25Z'),
-      grids: Joi.array().items(gridSchema).required(),
-    });
-  },
+  response: Joi.object().keys({
+    pinGroup: pinGroupSchema.required(),
+    pins: Joi.array().items(pinSchema).required(),
+    edges: Joi.array().items(edgeSchema).required(),
+    device: deviceSchema.allow(null).required(),
+    deviceType: deviceTypeSchema.allow(null).required(),
+    channelMapping: Joi.array().items(Joi.object().keys({
+      channel: Joi.number().integer().required().example(0),
+      pinHashId: Joi.string().allow(null).default(null),
+    })).required().allow(null),
+    measurementCycle: Joi.valid(null).default(null), // for legacy purposes only
+    thresholds: Joi.array().items(Joi.object().keys({
+      value: thresholdSchema.required(),
+      quantity: quantitySchema.required(),
+    })).required(),
+    photo: Joi.string().allow(null).required().description('base64 encoded string')
+      .example('iVBORw0KGgoAAAANSUhEUgAAB9AAAAhwCAYAAAB1bKV...'),
+    nextReportBefore: Joi.date().allow(null).required().example('2019-12-31T15:25Z'),
+    grids: Joi.array().items(gridSchema).required(),
+  }).required(),
   description: 'Get a specific pin group identified by its hashId',
 };
 
@@ -101,5 +70,4 @@ export {
   Request,
   Request as EffectiveRequest,
   Response,
-  ResponsesIncludingDeprecated,
 };

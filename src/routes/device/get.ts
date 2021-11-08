@@ -26,12 +26,12 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClientAndSupplie
     hashId: Joi.string().required().example('j1iha9'),
   }).required(),
   right: { environment: 'READ', supplier: 'ENVIRONMENT_ADMIN' },
-  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
+  response: Joi.object().keys({
     device: deviceSchema.required(),
     deviceType: deviceTypeSchema.required(),
     environmentName: Joi.string().allow(null).example('My monitoring environment').required(),
     environmentHashId: Joi.string().allow(null).example('f1a4w1').required(),
-    pinGroup: pinGroupSchema(apiVersion).allow(null).required().description('Will be null when queried from supplier'),
+    pinGroup: pinGroupSchema.allow(null).required().description('Will be null when queried from supplier'),
   }),
   description: 'Get a specific device identified by its hashId',
 };

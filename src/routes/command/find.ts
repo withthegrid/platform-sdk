@@ -49,13 +49,13 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClientAndSupplie
     mapLayers: Joi.array().items(Joi.string()).allow(null).default(null),
   }),
   right: { environment: 'READ', supplier: 'ENVIRONMENT_ADMIN' },
-  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
+  response: Joi.object().keys({
     nextPageOffset: Joi.string().allow(null).example(null).required()
       .description('This is the last page if nextPageOffset is null'),
     rows: Joi.array().items(Joi.object().keys({
       command: commandSchema.required(),
       commandType: commandTypeSchema.required(),
-      pinGroup: pinGroupSchema(apiVersion).allow(null).required(),
+      pinGroup: pinGroupSchema.allow(null).required(),
     })).required(),
   }),
   description: 'Search through commands',

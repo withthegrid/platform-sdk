@@ -55,7 +55,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       mapLayers: Joi.array().items(Joi.string()).allow(null).default(null),
     }),
   right: { environment: 'READ' },
-  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
+  response: Joi.object().keys({
     nextPageOffset: Joi.string().allow(null).example(null).required()
       .description('This is the last page if nextPageOffset is null'),
     rows: Joi.array().items(Joi.object().keys({
@@ -64,7 +64,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       assignedUserName: Joi.string().allow(null).required().example(null),
       subscribed: Joi.boolean().required().example(false),
       links: Joi.array().min(1).items(Joi.object().keys({
-        pinGroup: pinGroupSchema(apiVersion).required(),
+        pinGroup: pinGroupSchema.required(),
         pin: pinSchema.allow(null).required(),
       })).required(),
     })).required(),

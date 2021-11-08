@@ -36,9 +36,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     photo: Joi.string().allow(null).description('Should be a dataurl. Null clears the photo'),
     pinGroupHashIds: Joi.array().items(Joi.string()).description('Determines the set (and the order) of the pin groups in the grid'),
   }).required(),
-  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
+  response: Joi.object().keys({
     grid: gridSchema.required(),
-    pinGroups: Joi.array().items(pinGroupSchema(apiVersion)).required(),
+    pinGroups: Joi.array().items(pinGroupSchema).required(),
     lastReports: Joi.array().items(Joi.object({
       pinGroupHashId: Joi.string().required().example('dao97'),
       generatedAt: Joi.date().required().example('2019-12-31T15:23Z'),
