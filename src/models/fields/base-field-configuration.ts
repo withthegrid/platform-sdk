@@ -289,6 +289,7 @@ type BaseFieldConfiguration = ({
    */
   inputType: 'text' | 'textarea';
   regex?: string;
+  allowNull: false;
 } & PrefixMixin | {
   type: 'string';
   /**
@@ -315,6 +316,7 @@ type BaseFieldConfiguration = ({
    * @default "select"
    */
   inputType: 'select';
+  allowNull: false;
 } & PrefixMixin | {
   type: 'string';
   /**
@@ -353,6 +355,7 @@ type BaseFieldConfiguration = ({
   inputType: 'text';
   lowerbound?: number;
   upperbound?: number;
+  allowNull: false;
 } & PrefixMixin | {
   type: 'number';
   /**
@@ -380,6 +383,7 @@ type BaseFieldConfiguration = ({
    * @default "select"
    */
   inputType: 'select';
+  allowNull: false;
 } & PrefixMixin | {
   type: 'number';
   /**
@@ -420,6 +424,7 @@ type BaseFieldConfiguration = ({
   inputType: 'text';
   lowerbound?: number;
   upperbound?: number;
+  allowNull: false;
 } & PrefixMixin | {
   type: 'integer';
   /**
@@ -451,6 +456,7 @@ type BaseFieldConfiguration = ({
    * @default 'select'
    */
   inputType: 'select';
+  allowNull: false;
 } & PrefixMixin | {
   type: 'integer';
   /**
@@ -505,6 +511,7 @@ type BaseFieldConfiguration = ({
    * @default "select"
    */
   inputType: 'select';
+  allowNull: false;
 } & PrefixMixin | {
   type: 'boolean';
   /**
