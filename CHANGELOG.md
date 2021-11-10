@@ -1,3 +1,10 @@
+### [17.19.2](https://github.com/withthegrid/platform-sdk/compare/v17.19.1...v17.19.2) (2021-11-10)
+
+
+### Bug Fixes
+
+* bump axios from 0.21.1 to 0.21.2 ([#74](https://github.com/withthegrid/platform-sdk/issues/74)) ([5e580c1](https://github.com/withthegrid/platform-sdk/commit/5e580c19999580519f499fea7220ec0dd1f6b06f))
+
 ### [17.19.1](https://github.com/withthegrid/platform-sdk/compare/v17.19.0...v17.19.1) (2021-11-10)
 
 
