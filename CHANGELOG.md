@@ -1,3 +1,10 @@
+### [17.19.1](https://github.com/withthegrid/platform-sdk/compare/v17.19.0...v17.19.1) (2021-11-10)
+
+
+### Bug Fixes
+
+* allowNull is not required ([#73](https://github.com/withthegrid/platform-sdk/issues/73)) ([0ebbe8f](https://github.com/withthegrid/platform-sdk/commit/0ebbe8fcdfa8af013ec36282e475022a79c20fec)), closes [withthegrid/platform-client#724](https://github.com/withthegrid/platform-client/issues/724)
+
 ## [17.19.0](https://github.com/withthegrid/platform-sdk/compare/v17.18.0...v17.19.0) (2021-10-28)
 
 
