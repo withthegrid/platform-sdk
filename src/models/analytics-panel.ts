@@ -4,17 +4,17 @@ import { schema as analyticsQuerySchema, AnalyticsQuery } from './analytics-quer
 import { schema as analyticsVisualisationSchema, AnalyticsVisualisation } from './analytics-visualisation';
 
 const columnsPerResolution = {
-  lg: 24,
-  md: 18,
-  sm: 12,
-  xs: 6,
+  lg: 16,
+  md: 12,
+  sm: 8,
+  xs: 4,
 };
 
 const layoutItemSchema = (columnsCount: number) => Joi.array().items(Joi.object().keys({
   x: Joi.number().integer().max(columnsCount - 1).required(),
   y: Joi.number().integer().required(),
-  width: Joi.number().integer().min(6).max(columnsCount),
-  height: Joi.number().integer().min(4),
+  width: Joi.number().integer().min(4).max(columnsCount),
+  height: Joi.number().integer().min(6),
 }))
   .custom((layout: CardPosition[], helper) => {
     const rowWidth = columnsCount;
