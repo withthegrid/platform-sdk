@@ -1,3 +1,17 @@
+### [17.19.2](https://github.com/withthegrid/platform-sdk/compare/v17.19.1...v17.19.2) (2021-11-10)
+
+
+### Bug Fixes
+
+* bump axios from 0.21.1 to 0.21.2 ([#74](https://github.com/withthegrid/platform-sdk/issues/74)) ([5e580c1](https://github.com/withthegrid/platform-sdk/commit/5e580c19999580519f499fea7220ec0dd1f6b06f))
+
+### [17.19.1](https://github.com/withthegrid/platform-sdk/compare/v17.19.0...v17.19.1) (2021-11-10)
+
+
+### Bug Fixes
+
+* allowNull is not required ([#73](https://github.com/withthegrid/platform-sdk/issues/73)) ([0ebbe8f](https://github.com/withthegrid/platform-sdk/commit/0ebbe8fcdfa8af013ec36282e475022a79c20fec)), closes [withthegrid/platform-client#724](https://github.com/withthegrid/platform-client/issues/724)
+
 ## [17.19.0](https://github.com/withthegrid/platform-sdk/compare/v17.18.0...v17.19.0) (2021-10-28)
 
 
