@@ -29,7 +29,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   path: '/panel',
   body: Joi.object().keys({
     title: Joi.string().required().example('My dashboard'),
-    layouts: layoutsSchema.allow(null).empty(null).default(),
+    layouts: layoutsSchema.default(),
     cards: Joi.array().items(Joi.object().keys({
       title: Joi.string().required().example('My widget'),
       query: analyticsQuerySchema.required(),
