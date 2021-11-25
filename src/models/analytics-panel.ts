@@ -3,18 +3,13 @@ import Joi from 'joi';
 import { schema as analyticsQuerySchema, AnalyticsQuery } from './analytics-query';
 import { schema as analyticsVisualisationSchema, AnalyticsVisualisation } from './analytics-visualisation';
 
-const columnsPerResolution = {
-  lg: 16,
-  md: 12,
-  sm: 8,
-  xs: 4,
-};
+const columnsCount = 6;
 
-const layoutItemSchema = (columnsCount: number) => Joi.array().items(Joi.object().keys({
+const layoutSchema = Joi.array().items(Joi.object().keys({
   x: Joi.number().integer().max(columnsCount - 1).required(),
   y: Joi.number().integer().required(),
-  width: Joi.number().integer().min(4).max(columnsCount),
-  height: Joi.number().integer().min(6),
+  width: Joi.number().integer().min(2).max(columnsCount),
+  height: Joi.number().integer().min(4),
 }))
   .custom((layout: CardPosition[], helper) => {
     const rowWidth = columnsCount;
@@ -60,17 +55,10 @@ const layoutItemSchema = (columnsCount: number) => Joi.array().items(Joi.object(
   .default(null)
   .allow(null);
 
-const layoutsSchema = Joi.object().keys({
-  lg: layoutItemSchema(columnsPerResolution.lg),
-  md: layoutItemSchema(columnsPerResolution.md),
-  sm: layoutItemSchema(columnsPerResolution.sm),
-  xs: layoutItemSchema(columnsPerResolution.xs),
-}).allow(null).empty(null);
-
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('j1iha9'),
   title: Joi.string().required().max(100).example('My dashboard'),
-  layouts: layoutsSchema.default(),
+  layout: layoutSchema.default(),
   cards: Joi.array().items(Joi.object().keys({
     title: Joi.string().required().example('My widget'),
     query: analyticsQuerySchema.required(),
@@ -87,18 +75,12 @@ interface CardPosition {
   height: number;
 }
 
-// if null then layout for this resolution should be generated on client
-interface AnalyticsPanelLayouts {
-  lg: CardPosition[] | null;
-  md: CardPosition[] | null;
-  sm: CardPosition[] | null;
-  xs: CardPosition[] | null;
-}
+type AnalyticsPanelLayout = CardPosition[] | null;
 
 interface AnalyticsPanel {
   hashId: string;
   title: string;
-  layouts: AnalyticsPanelLayouts;
+  layouts: AnalyticsPanelLayout;
   cards: {
     title: string;
     query: AnalyticsQuery;
@@ -109,7 +91,7 @@ interface AnalyticsPanel {
 export {
   schema,
   AnalyticsPanel,
-  AnalyticsPanelLayouts,
-  layoutsSchema,
-  columnsPerResolution,
+  AnalyticsPanelLayout,
+  layoutSchema,
+  columnsCount,
 };

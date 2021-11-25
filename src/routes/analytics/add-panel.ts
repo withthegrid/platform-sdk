@@ -2,12 +2,12 @@ import Joi from 'joi';
 import { schema as analyticsQuerySchema, AnalyticsQuery } from '../../models/analytics-query';
 import { schema as analyticsVisualisationSchema, AnalyticsVisualisation } from '../../models/analytics-visualisation';
 import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
-import { AnalyticsPanelLayouts, layoutsSchema } from '../../models/analytics-panel';
+import { AnalyticsPanelLayout, layoutSchema } from '../../models/analytics-panel';
 
 interface Request {
   body: {
     title: string;
-    layouts: AnalyticsPanelLayouts;
+    layout: AnalyticsPanelLayout;
     cards: {
       title: string;
       query: AnalyticsQuery;
@@ -29,7 +29,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   path: '/panel',
   body: Joi.object().keys({
     title: Joi.string().required().example('My dashboard'),
-    layouts: layoutsSchema.default(),
+    layout: layoutSchema.default(),
     cards: Joi.array().items(Joi.object().keys({
       title: Joi.string().required().example('My widget'),
       query: analyticsQuerySchema.required(),
