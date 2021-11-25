@@ -52,13 +52,12 @@ const layoutSchema = Joi.array().items(Joi.object().keys({
 
     return layout;
   })
-  .default(null)
   .allow(null);
 
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('j1iha9'),
   title: Joi.string().required().max(100).example('My dashboard'),
-  layout: layoutSchema,
+  layout: layoutSchema.default(null),
   cards: Joi.array().items(Joi.object().keys({
     title: Joi.string().required().example('My widget'),
     query: analyticsQuerySchema.required(),
@@ -80,7 +79,7 @@ type AnalyticsPanelLayout = CardPosition[] | null;
 interface AnalyticsPanel {
   hashId: string;
   title: string;
-  layouts: AnalyticsPanelLayout;
+  layout: AnalyticsPanelLayout;
   cards: {
     title: string;
     query: AnalyticsQuery;
