@@ -58,7 +58,7 @@ const layoutSchema = Joi.array().items(Joi.object().keys({
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('j1iha9'),
   title: Joi.string().required().max(100).example('My dashboard'),
-  layout: layoutSchema.default(),
+  layout: layoutSchema,
   cards: Joi.array().items(Joi.object().keys({
     title: Joi.string().required().example('My widget'),
     query: analyticsQuerySchema.required(),
