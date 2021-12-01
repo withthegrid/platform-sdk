@@ -48,7 +48,7 @@ interface Environment {
   locale: Locale;
   expiresAt: Date | null;
   createdAt: Date;
-  defaultGraphRange: string;
+  defaultGraphRange: string | null;
 }
 
 export { schema, Environment };
