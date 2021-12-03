@@ -1,3 +1,10 @@
+## [17.20.0](https://github.com/withthegrid/platform-sdk/compare/v17.19.2...v17.20.0) (2021-12-03)
+
+
+### Features
+
+* grid layout for analytics panel ([#71](https://github.com/withthegrid/platform-sdk/issues/71)) ([74711cf](https://github.com/withthegrid/platform-sdk/commit/74711cf56f4f58f90d2277c12548729f0430444c)), closes [withthegrid/platform-client#621](https://github.com/withthegrid/platform-client/issues/621)
+
 ### [17.19.2](https://github.com/withthegrid/platform-sdk/compare/v17.19.1...v17.19.2) (2021-11-10)
 
 
