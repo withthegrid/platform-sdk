@@ -25,7 +25,7 @@ const schema = Joi.object().keys({
   locale: localeSchema.required().example('en'),
   expiresAt: Joi.date().allow(null).required().example(null),
   createdAt: Joi.date().required().example('2019-12-31T15:23Z'),
-  defaultGraphRange: Joi.string().allow(null).required().example('30d'),
+  defaultGraphRange: Joi.string().required().example('30d'),
 })
   .tag('environment')
   .description('Is called a monitoring environment in the UI. The space on which all data like geographical objects, measurements and issues are stored. Multiple users can be given access to the same monitoring environment.');
@@ -48,7 +48,7 @@ interface Environment {
   locale: Locale;
   expiresAt: Date | null;
   createdAt: Date;
-  defaultGraphRange: string | null;
+  defaultGraphRange: string;
 }
 
 export { schema, Environment };
