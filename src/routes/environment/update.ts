@@ -21,6 +21,7 @@ interface Request {
       pins: UpdatableFieldConfigurations;
     };
     locale?: Locale;
+    defaultGraphRange?: string;
   };
 }
 
@@ -44,6 +45,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       pins: fieldConfigurationSchema,
     }).description('See the chapter on open fields on how to use this. A minimum of 1 element should be present in each field configuration array'),
     locale: localeSchema,
+    defaultGraphRange: Joi.string().example('30d'),
   }).required(),
   right: { environment: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
