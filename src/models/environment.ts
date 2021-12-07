@@ -23,9 +23,9 @@ const schema = Joi.object().keys({
     pins: Joi.array().items(baseFieldConfigurationSchema).required(),
   }).required().description('See the chapter on open fields on how to use this'),
   locale: localeSchema.required().example('en'),
+  defaultGraphRange: Joi.string().required().example('30d'),
   expiresAt: Joi.date().allow(null).required().example(null),
   createdAt: Joi.date().required().example('2019-12-31T15:23Z'),
-  defaultGraphRange: Joi.string().allow(null).required().example('30d'),
 })
   .tag('environment')
   .description('Is called a monitoring environment in the UI. The space on which all data like geographical objects, measurements and issues are stored. Multiple users can be given access to the same monitoring environment.');
@@ -46,9 +46,9 @@ interface Environment {
     pins: BaseFieldConfiguration[];
   };
   locale: Locale;
+  defaultGraphRange: string;
   expiresAt: Date | null;
   createdAt: Date;
-  defaultGraphRange: string | null;
 }
 
 export { schema, Environment };
