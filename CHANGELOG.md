@@ -1,3 +1,10 @@
+## [17.21.0](https://github.com/withthegrid/platform-sdk/compare/v17.20.0...v17.21.0) (2021-12-07)
+
+
+### Features
+
+* default graph range for environment ([5c5a51e](https://github.com/withthegrid/platform-sdk/commit/5c5a51ea4a937526564b55a82b5b8af72b87095b))
+
 ## [17.20.0](https://github.com/withthegrid/platform-sdk/compare/v17.19.2...v17.20.0) (2021-12-03)
 
 
