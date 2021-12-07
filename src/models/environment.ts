@@ -23,6 +23,7 @@ const schema = Joi.object().keys({
     pins: Joi.array().items(baseFieldConfigurationSchema).required(),
   }).required().description('See the chapter on open fields on how to use this'),
   locale: localeSchema.required().example('en'),
+  defaultGraphRange: Joi.string().required().example('30d'),
   expiresAt: Joi.date().allow(null).required().example(null),
   createdAt: Joi.date().required().example('2019-12-31T15:23Z'),
 })
@@ -45,6 +46,7 @@ interface Environment {
     pins: BaseFieldConfiguration[];
   };
   locale: Locale;
+  defaultGraphRange: string;
   expiresAt: Date | null;
   createdAt: Date;
 }
