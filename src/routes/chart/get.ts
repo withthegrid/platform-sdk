@@ -34,7 +34,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       pinHashId: Joi.string().required().example('e13d57'),
       quantityHashId: Joi.string().required().example('sajia1'),
     })).required(),
-    highResolution: Joi.boolean().required(),
+    highResolution: Joi.boolean().default(false),
   }).required(),
   response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     series: Joi.array().items(Joi.object().keys({
