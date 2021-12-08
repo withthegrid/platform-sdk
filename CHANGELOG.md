@@ -1,3 +1,10 @@
+## [17.22.0](https://github.com/withthegrid/platform-sdk/compare/v17.21.0...v17.22.0) (2021-12-08)
+
+
+### Features
+
+* hd button for graphs ([715fa76](https://github.com/withthegrid/platform-sdk/commit/715fa767dace454f2a2f07cf363138a0a9a3643c)), closes [withthegrid/platform-client#712](https://github.com/withthegrid/platform-client/issues/712)
+
 ## [17.21.0](https://github.com/withthegrid/platform-sdk/compare/v17.20.0...v17.21.0) (2021-12-07)
 
 
