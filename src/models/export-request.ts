@@ -1,4 +1,5 @@
 import Joi from 'joi';
+import { schema as analyticsQuerySchema, AnalyticsQuery } from './analytics-query';
 
 interface AllContent {
   type: 'all';
@@ -16,7 +17,14 @@ interface MeasurementFilterContent {
   to?: Date;
 }
 
-type Content = AllContent | MeasurementFilterContent;
+interface AnalyticsQueryContent {
+  type: 'analyticsQuery';
+  query: AnalyticsQuery;
+  dashboardId: string;
+  widgetName: string;
+}
+
+type Content = AllContent | MeasurementFilterContent | AnalyticsQueryContent;
 const contentSchemaAlternatives = [
   Joi.object().keys({
     type: Joi.string().required().valid('all').example('all'),
@@ -32,6 +40,12 @@ const contentSchemaAlternatives = [
     from: Joi.date().iso().example('2019-12-01T00:00Z'),
     to: Joi.date().iso().example('2020-01-01T00:00Z'),
   }).required(),
+  Joi.object().keys({
+    type: Joi.string().required().valid('analyticsQuery').example('analyticsQuery'),
+    query: analyticsQuerySchema.required(),
+    dashboardId: Joi.string().required().example(''),
+    widgetName: Joi.string().required().example('Widget name'),
+  }),
 ];
 
 const schema = Joi.object().keys({
@@ -61,6 +75,7 @@ export {
   ExportRequest,
   AllContent,
   MeasurementFilterContent,
+  AnalyticsQueryContent,
   Content,
   contentSchemaAlternatives,
 };

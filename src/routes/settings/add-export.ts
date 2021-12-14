@@ -1,6 +1,7 @@
 import Joi from 'joi';
 import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
-import { AllContent } from '../../models/export-request';
+import { AllContent, AnalyticsQueryContent } from '../../models/export-request';
+import { schema as analyticsQuerySchema } from '../../models/analytics-query';
 
 interface MeasurementFilterContentByHashId {
   type: 'measurementFilter';
@@ -10,7 +11,7 @@ interface MeasurementFilterContentByHashId {
 // AllContent is still a reference to settings/add-export.ts
 interface Request {
   body: {
-    content: AllContent | MeasurementFilterContentByHashId;
+    content: AllContent | MeasurementFilterContentByHashId | AnalyticsQueryContent;
     delimiter: ',' | ';';
     rowDelimiter: '\n' | '\r\n';
   };
@@ -35,6 +36,12 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
         gridHashId: Joi.string().allow(null).required().example(null),
         from: Joi.date().iso().required().example('2019-12-01T00:00Z'),
         to: Joi.date().iso().required().example('2020-01-01T00:00Z'),
+      }).required(),
+      Joi.object().keys({
+        type: Joi.string().required().valid('analyticsQuery').example('analyticsQuery'),
+        query: analyticsQuerySchema.required(),
+        dashboardId: Joi.string().required().example(''),
+        widgetName: Joi.string().required().example('Widget name'),
       }).required(),
     ).required(),
     delimiter: Joi.string().valid(',', ';').required().example(','),
