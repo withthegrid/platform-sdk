@@ -1,3 +1,24 @@
+## [17.22.0](https://github.com/withthegrid/platform-sdk/compare/v17.21.0...v17.22.0) (2021-12-08)
+
+
+### Features
+
+* hd button for graphs ([715fa76](https://github.com/withthegrid/platform-sdk/commit/715fa767dace454f2a2f07cf363138a0a9a3643c)), closes [withthegrid/platform-client#712](https://github.com/withthegrid/platform-client/issues/712)
+
+## [17.21.0](https://github.com/withthegrid/platform-sdk/compare/v17.20.0...v17.21.0) (2021-12-07)
+
+
+### Features
+
+* default graph range for environment ([5c5a51e](https://github.com/withthegrid/platform-sdk/commit/5c5a51ea4a937526564b55a82b5b8af72b87095b))
+
+## [17.20.0](https://github.com/withthegrid/platform-sdk/compare/v17.19.2...v17.20.0) (2021-12-03)
+
+
+### Features
+
+* grid layout for analytics panel ([#71](https://github.com/withthegrid/platform-sdk/issues/71)) ([74711cf](https://github.com/withthegrid/platform-sdk/commit/74711cf56f4f58f90d2277c12548729f0430444c)), closes [withthegrid/platform-client#621](https://github.com/withthegrid/platform-client/issues/621)
+
 ### [17.19.2](https://github.com/withthegrid/platform-sdk/compare/v17.19.1...v17.19.2) (2021-11-10)
 
 
