@@ -1,3 +1,10 @@
+## [17.24.0](https://github.com/withthegrid/platform-sdk/compare/v17.23.0...v17.24.0) (2021-12-16)
+
+
+### Features
+
+* measurements expiration period ([#78](https://github.com/withthegrid/platform-sdk/issues/78)) ([cefb52f](https://github.com/withthegrid/platform-sdk/commit/cefb52f69e7f41b952629a310ca96ad41b96e080)), closes [withthegrid/platform#377](https://github.com/withthegrid/platform/issues/377)
+
 ## [17.23.0](https://github.com/withthegrid/platform-sdk/compare/v17.22.0...v17.23.0) (2021-12-16)
 
 
