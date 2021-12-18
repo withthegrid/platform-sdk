@@ -1,3 +1,17 @@
+## [17.24.0](https://github.com/withthegrid/platform-sdk/compare/v17.23.0...v17.24.0) (2021-12-16)
+
+
+### Features
+
+* measurements expiration period ([#78](https://github.com/withthegrid/platform-sdk/issues/78)) ([cefb52f](https://github.com/withthegrid/platform-sdk/commit/cefb52f69e7f41b952629a310ca96ad41b96e080)), closes [withthegrid/platform#377](https://github.com/withthegrid/platform/issues/377)
+
+## [17.23.0](https://github.com/withthegrid/platform-sdk/compare/v17.22.0...v17.23.0) (2021-12-16)
+
+
+### Features
+
+* doNotCompareToThresholds to report.add, .update ([#76](https://github.com/withthegrid/platform-sdk/issues/76)) ([66a3db0](https://github.com/withthegrid/platform-sdk/commit/66a3db063812eaa283d431ef79938e1267fafddc)), closes [withthegrid/platform#825](https://github.com/withthegrid/platform/issues/825)
+
 ## [17.22.0](https://github.com/withthegrid/platform-sdk/compare/v17.21.0...v17.22.0) (2021-12-08)
 
 

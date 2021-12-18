@@ -11,6 +11,7 @@ interface NewMeasurement {
   generatedAt: Date;
   orderOfMagnitude: number;
   significand: number;
+  doNotCompareToThresholds: boolean;
 }
 
 interface UpdatedMeasurement {
@@ -18,6 +19,7 @@ interface UpdatedMeasurement {
   generatedAt: Date;
   orderOfMagnitude: number;
   significand: number;
+  doNotCompareToThresholds: boolean;
 }
 
 type ReportUpdate = UpdatedMeasurement | NewMeasurement;
@@ -57,6 +59,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
           .required()
           .example(-1400)
           .description('The measured value is significand * 10 ^ orderOfMagnitude. It has as many significant figures as the significand has (except when the significand is 0, then the number of significant figures is not defined)'),
+        doNotCompareToThresholds: Joi.boolean().default(false)
+          .example(true)
+          .description('Do not compare to thresholds'),
       }),
       Joi.object().keys({
         pinHashId: Joi.string().required().example('e13d57'),
@@ -68,6 +73,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
         significand: Joi.number().integer().min(-2147483648).max(2147483647)
           .required()
           .description('The measured value is significand * 10 ^ orderOfMagnitude. It has as many significant figures as the significand has (except when the significand is 0, then the number of significant figures is not defined)'),
+        doNotCompareToThresholds: Joi.boolean().default(false)
+          .example(true)
+          .description('Do not compare to thresholds'),
       }),
     )).required(),
     fields: fieldsToServerUpdateSchema,
