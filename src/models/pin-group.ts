@@ -21,6 +21,8 @@ const schema = Joi.object().keys({
   level: Joi.number().integer().valid(0, 1, 2).required()
     .description('0: no serious or critical open issues, 1: one or more serious open issues an no critical open issues, 2: one or more critical open issues')
     .example(0),
+  mostRecentMeasurementAt: Joi.date().allow(null).required()
+    .description('Most recent measurement date'),
   mapLayer: Joi.string().invalid('nodes').required().example('myLayer'),
   deletedAt: Joi.date().allow(null).required().example(null),
 })
@@ -39,6 +41,7 @@ interface PinGroup {
   fields: FieldsFromServer;
   deviceLinkHashId: string | null;
   level: 0 | 1 | 2;
+  mostRecentMeasurementAt: Date | null;
   mapLayer: string;
   deletedAt: Date | null;
 }
