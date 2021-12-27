@@ -6,7 +6,7 @@ const schema = Joi.object().keys({
   xAxisColumnIndex: Joi.number().integer().example(null).allow(null)
     .required(),
   forceOrdinal: Joi.boolean().example(false).required(),
-  showAllXAxisLabels: Joi.boolean().example(false).required(),
+  showAllXAxisLabels: Joi.boolean().example(false).default(false),
 })
   .description('An object describing the visualisation of the results of an analytics query.')
   .tag('analyticsVisualisation');
