@@ -24,7 +24,7 @@ const schema = Joi.object().keys({
   }).required().description('See the chapter on open fields on how to use this'),
   locale: localeSchema.required().example('en'),
   defaultGraphRange: Joi.string().required().example('30d'),
-  measurementsExpirationPeriod: Joi.string().regex(/^[0-9]+ (day|week|month|year)$/).required(),
+  measurementsExpirationPeriod: Joi.string().regex(/^[0-9]{1,2} (day|week|month|year)$/).required(),
   expiresAt: Joi.date().allow(null).required().example(null),
   createdAt: Joi.date().required().example('2019-12-31T15:23Z'),
 })
