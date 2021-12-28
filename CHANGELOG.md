@@ -1,3 +1,10 @@
+### [17.24.1](https://github.com/withthegrid/platform-sdk/compare/v17.24.0...v17.24.1) (2021-12-28)
+
+
+### Bug Fixes
+
+* limit figures in measurementsExpirationPeriod to 1 or 2 ([6f63632](https://github.com/withthegrid/platform-sdk/commit/6f6363222a95a28e853ee1e316df2fc40f4d8d45))
+
 ## [17.24.0](https://github.com/withthegrid/platform-sdk/compare/v17.23.0...v17.24.0) (2021-12-16)
 
 
