@@ -1,3 +1,10 @@
+### [17.25.1](https://github.com/withthegrid/platform-sdk/compare/v17.25.0...v17.25.1) (2021-12-29)
+
+
+### Bug Fixes
+
+* measurementsExpirationPeriod -> measurementsExpirationDays ([467174f](https://github.com/withthegrid/platform-sdk/commit/467174fe635dab794440cf1042b52a98ca49c79c))
+
 ## [17.25.0](https://github.com/withthegrid/platform-sdk/compare/v17.24.1...v17.25.0) (2021-12-29)
 
 
