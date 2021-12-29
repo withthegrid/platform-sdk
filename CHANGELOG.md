@@ -1,3 +1,10 @@
+## [17.25.0](https://github.com/withthegrid/platform-sdk/compare/v17.24.1...v17.25.0) (2021-12-29)
+
+
+### Features
+
+* mostRecentMeasurementAt property for edge and pinGroup ([e80c760](https://github.com/withthegrid/platform-sdk/commit/e80c7603d825908e0aa34a5d40184c5138f8930b))
+
 ### [17.24.1](https://github.com/withthegrid/platform-sdk/compare/v17.24.0...v17.24.1) (2021-12-28)
 
 
