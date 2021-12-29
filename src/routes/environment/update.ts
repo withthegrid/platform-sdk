@@ -22,7 +22,7 @@ interface Request {
     };
     locale?: Locale;
     defaultGraphRange?: string;
-    measurementsExpirationPeriod?: string;
+    measurementsExpirationDays?: number;
   };
 }
 
@@ -47,7 +47,10 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     }).description('See the chapter on open fields on how to use this. A minimum of 1 element should be present in each field configuration array'),
     locale: localeSchema,
     defaultGraphRange: Joi.string().example('30d'),
-    measurementsExpirationPeriod: Joi.string().regex(/^[0-9]{1,2} (day|week|month|year)$/),
+    measurementsExpirationDays: Joi.number().integer()
+      .example(365)
+      .min(1)
+      .max(9999),
   }).required(),
   right: { environment: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
