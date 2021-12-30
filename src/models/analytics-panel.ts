@@ -59,6 +59,7 @@ const schema = Joi.object().keys({
   layout: layoutSchema.default([]),
   cards: Joi.array().items(Joi.object().keys({
     title: Joi.string().required().example('My widget'),
+    subTitle: Joi.string().required().example('Widget subtitle'),
     query: analyticsQuerySchema.required(),
     visualisation: analyticsVisualisationSchema.required(),
   })).required(),
@@ -81,6 +82,7 @@ interface AnalyticsPanel {
   layout: AnalyticsPanelLayout;
   cards: {
     title: string;
+    subTitle: string;
     query: AnalyticsQuery;
     visualisation: AnalyticsVisualisation;
   }[];
