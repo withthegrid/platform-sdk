@@ -3,6 +3,7 @@ import Joi from 'joi';
 const fieldSchema = Joi.alternatives().try(
   Joi.string().required().example('pinGroup.hashId'),
   Joi.object().keys({ expression: Joi.string().required(), name: Joi.string().required() }),
+  Joi.object().keys({ column: Joi.string().required(), name: Joi.string().required() }),
 );
 
 const constraintSchema = Joi.object().keys({
@@ -53,7 +54,7 @@ type Comparison = '=' | '>=' | '<=' | '>' | '<' | 'like' | '<>' | 'isNull' | 'is
 
 type Value = string | number | boolean;
 
-type Field = string | { expression: string, name: string }
+type Field = string | { expression: string, name: string } | { column: string, name: string };
 
 interface Constraint {
   // string: column name, number (or stringified number): number i is reference to query.columns[i]
