@@ -32,7 +32,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     layout: layoutSchema.default([]),
     cards: Joi.array().items(Joi.object().keys({
       title: Joi.string().required().example('My widget'),
-      subTitle: Joi.string().required().example('Widget subtitle'),
+      subTitle: Joi.string().allow('').required().example('Widget subtitle'),
       query: analyticsQuerySchema.required(),
       visualisation: analyticsVisualisationSchema.required(),
     })).required(),
