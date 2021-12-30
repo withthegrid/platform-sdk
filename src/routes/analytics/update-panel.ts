@@ -14,6 +14,7 @@ interface Request {
     layout?: AnalyticsPanelLayout;
     cards?: {
       title: string;
+      subTitle: string;
       query: AnalyticsQuery;
       visualisation: AnalyticsVisualisation;
     }[];
@@ -33,6 +34,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     layout: layoutSchema,
     cards: Joi.array().items(Joi.object().keys({
       title: Joi.string().required().example('My widget'),
+      subTitle: Joi.string().required().example('Widget description'),
       query: analyticsQuerySchema.required(),
       visualisation: analyticsVisualisationSchema.required(),
     })),
