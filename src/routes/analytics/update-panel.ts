@@ -14,7 +14,7 @@ interface Request {
     layout?: AnalyticsPanelLayout;
     cards?: {
       title: string;
-      subTitle: string;
+      subTitle?: string;
       query: AnalyticsQuery;
       visualisation: AnalyticsVisualisation;
     }[];
