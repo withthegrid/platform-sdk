@@ -34,7 +34,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     layout: layoutSchema,
     cards: Joi.array().items(Joi.object().keys({
       title: Joi.string().required().example('My widget'),
-      subTitle: Joi.string().example('Widget subtitle'),
+      subTitle: Joi.string().allow('').optional(),
       query: analyticsQuerySchema.required(),
       visualisation: analyticsVisualisationSchema.required(),
     })),
