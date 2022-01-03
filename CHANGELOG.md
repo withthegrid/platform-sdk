@@ -1,3 +1,10 @@
+## [17.26.0](https://github.com/withthegrid/platform-sdk/compare/v17.25.1...v17.26.0) (2022-01-03)
+
+
+### Features
+
+* **analytics:** field name customizing ([#81](https://github.com/withthegrid/platform-sdk/issues/81)) ([c8e01d3](https://github.com/withthegrid/platform-sdk/commit/c8e01d3e2a45a36659e4369e847d618902499f0a)), closes [withthegrid/platform#852](https://github.com/withthegrid/platform/issues/852)
+
 ### [17.25.1](https://github.com/withthegrid/platform-sdk/compare/v17.25.0...v17.25.1) (2021-12-29)
 
 
