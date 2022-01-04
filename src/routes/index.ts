@@ -100,6 +100,7 @@ class Routes {
     this.reportType = new ReportTypeRoute(comms);
     this.settings = new SettingsRoute(comms);
     this.subscription = new SubscriptionRoute(comms);
+    this.suggestions = new SuggestionsRoute(comms);
     this.supplier = new SupplierRoute(comms);
     this.supplierActivity = new SupplierActivityRoute(comms);
     this.supplierCertificate = new SupplierCertificateRoute(comms);
@@ -130,6 +131,7 @@ export {
   ReportTypeRoute,
   SettingsRoute,
   SubscriptionRoute,
+  SuggestionsRoute,
   SupplierRoute,
   SupplierActivityRoute,
   SupplierCertificateRoute,
