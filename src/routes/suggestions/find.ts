@@ -20,9 +20,9 @@ interface Response {
 
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'get',
-  path: '/suggestions',
+  path: '/',
   query: Joi.object().keys({
-    search: Joi.string().required().example('v1.1.0'),
+    search: Joi.string().allow('').required().example('v1.1.0'),
     type: Joi.string().required().example('issue.title'),
     offset: Joi.string().example('Installed v1.1.0-rc3')
       .description('To retrieve the next page, provide last item of the array'),
