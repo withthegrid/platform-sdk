@@ -19,6 +19,7 @@ import ReportRoute from './report';
 import ReportTypeRoute from './report-type';
 import SettingsRoute from './settings';
 import SubscriptionRoute from './subscription';
+import SuggestionsRoute from './suggestions';
 import SupplierRoute from './supplier';
 import SupplierActivityRoute from './supplier-activity';
 import SupplierCertificateRoute from './supplier-certificate';
@@ -64,6 +65,8 @@ class Routes {
   settings: SettingsRoute;
 
   subscription: SubscriptionRoute;
+
+  suggestions: SuggestionsRoute;
 
   supplier: SupplierRoute;
 
