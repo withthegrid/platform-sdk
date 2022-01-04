@@ -10,6 +10,7 @@ interface Request {
     layout: AnalyticsPanelLayout;
     cards: {
       title: string;
+      subtitle?: string;
       query: AnalyticsQuery;
       visualisation: AnalyticsVisualisation;
     }[];
@@ -32,7 +33,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     layout: layoutSchema.default([]),
     cards: Joi.array().items(Joi.object().keys({
       title: Joi.string().required().example('My widget'),
-      subTitle: Joi.string().allow('').optional(),
+      subtitle: Joi.string().allow(''),
       query: analyticsQuerySchema.required(),
       visualisation: analyticsVisualisationSchema.required(),
     })).required(),
