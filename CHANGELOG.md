@@ -1,3 +1,10 @@
+## [17.27.0](https://github.com/withthegrid/platform-sdk/compare/v17.26.0...v17.27.0) (2022-01-05)
+
+
+### Features
+
+* add subtitle to analytics model ([d0fb928](https://github.com/withthegrid/platform-sdk/commit/d0fb92809b287c90367b9b5c281d473cbd61ef85)), closes [withthegrid/platform-client#785](https://github.com/withthegrid/platform-client/issues/785)
+
 ## [17.26.0](https://github.com/withthegrid/platform-sdk/compare/v17.25.1...v17.26.0) (2022-01-03)
 
 
