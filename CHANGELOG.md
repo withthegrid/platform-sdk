@@ -1,3 +1,10 @@
+### [17.27.1](https://github.com/withthegrid/platform-sdk/compare/v17.27.0...v17.27.1) (2022-01-05)
+
+
+### Bug Fixes
+
+* **AnalyticsQuery:** move column name out of field into column ([b95158c](https://github.com/withthegrid/platform-sdk/commit/b95158cffa45bfeeafb33653edd6d12fb2840b7f))
+
 ## [17.27.0](https://github.com/withthegrid/platform-sdk/compare/v17.26.0...v17.27.0) (2022-01-05)
 
 
