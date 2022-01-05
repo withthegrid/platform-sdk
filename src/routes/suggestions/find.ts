@@ -1,10 +1,26 @@
 import Joi from 'joi';
 import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 
+const suggestionTypes = [
+  'clientReportType.name',
+  'commandType.name',
+  'deviceType.name',
+  'edge.name',
+  'grid.name',
+  'issue.title',
+  'pinGroup.name',
+  'pin.name',
+  'quantity.name',
+  'quantity.unit',
+  'user.name',
+] as const;
+
+type SuggestionType = (typeof suggestionTypes)[number];
+
 interface Request {
   query: {
     search: string;
-    type: string;
+    type: SuggestionType;
     rowsPerPage: number;
     offset?: string;
   };
@@ -23,7 +39,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   path: '/',
   query: Joi.object().keys({
     search: Joi.string().allow('').required().example('v1.1.0'),
-    type: Joi.string().required().example('issue.title'),
+    type: Joi.string().valid(...suggestionTypes).required().example('issue.title'),
     offset: Joi.string().example('Installed v1.1.0-rc3')
       .description('To retrieve the next page, provide last item of the array'),
     rowsPerPage: Joi.number()
@@ -46,7 +62,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
 
 export {
   controllerGeneratorOptions,
+  suggestionTypes,
   Request,
   EffectiveRequest,
   Response,
+  SuggestionType,
 };
