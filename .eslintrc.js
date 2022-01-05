@@ -14,6 +14,7 @@ module.exports = {
   extends: ['airbnb-base'],
   rules: {
     'arrow-parens': ['error', 'always'],
+    eqeqeq: ['error', 'always'],
     'no-console': 0,
     'no-await-in-loop': 0,
     'no-loop-func': 0,
