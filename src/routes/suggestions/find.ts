@@ -26,9 +26,7 @@ interface Request {
   };
 }
 
-type EffectiveRequest = {
-  query: Required<Request['query']>;
-}
+type EffectiveRequest = Request;
 
 interface Response {
   results: string[];
