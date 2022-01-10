@@ -1,3 +1,10 @@
+## [17.28.0](https://github.com/withthegrid/platform-sdk/compare/v17.27.1...v17.28.0) (2022-01-10)
+
+
+### Features
+
+* **routes:** suggestions.find ([#82](https://github.com/withthegrid/platform-sdk/issues/82)) ([1fbdbab](https://github.com/withthegrid/platform-sdk/commit/1fbdbab79035aa179353692ef6e6ea218f64821c)), closes [withthegrid/platform-client#770](https://github.com/withthegrid/platform-client/issues/770)
+
 ### [17.27.1](https://github.com/withthegrid/platform-sdk/compare/v17.27.0...v17.27.1) (2022-01-05)
 
 
