@@ -79,7 +79,6 @@ const getBaseFieldConfigurationSchema = (
   }),
   commonSchema.keys({
     type: Joi.string().valid('string').default('string'),
-    defaultValue: Joi.string().allow('').default(''),
     valueOptions: Joi.array().min(1).items(Joi.object().keys({
       text: stringOrTranslationsSchema.required(),
       value: Joi.string().allow('').required(),
@@ -130,7 +129,6 @@ const getBaseFieldConfigurationSchema = (
   }),
   commonSchema.keys({
     type: Joi.string().valid('number').default('number'),
-    defaultValue: Joi.number().default(0),
     valueOptions: Joi.array().min(1).items(Joi.object().keys({
       text: stringOrTranslationsSchema.required(),
       value: Joi.number().required(),
@@ -181,7 +179,6 @@ const getBaseFieldConfigurationSchema = (
   }),
   commonSchema.keys({
     type: Joi.string().valid('integer').required(),
-    defaultValue: Joi.number().integer().default(0),
     valueOptions: Joi.array().min(1).items(Joi.object().keys({
       text: stringOrTranslationsSchema.required(),
       value: Joi.number().integer().required(),
@@ -190,14 +187,12 @@ const getBaseFieldConfigurationSchema = (
   }),
   commonSchema.keys({
     type: Joi.string().valid('boolean').required(),
-    defaultValue: Joi.boolean().default(false),
     valueOptions: Joi.array().items(Joi.any()).length(0).allow(null)
       .default(null),
     inputType: Joi.string().valid('switch', 'checkbox').default('checkbox'),
   }),
   commonSchema.keys({
     type: Joi.string().valid('boolean').default('boolean'),
-    defaultValue: Joi.boolean().default(false),
     valueOptions: Joi.array().items(Joi.any()).length(0).allow(null)
       .default(null),
     inputType: Joi.string().valid('switch', 'checkbox').required(),
@@ -226,7 +221,6 @@ const getBaseFieldConfigurationSchema = (
   }),
   commonSchema.keys({
     type: Joi.string().valid('boolean').default('boolean'),
-    defaultValue: Joi.boolean().default(false),
     valueOptions: Joi.array().min(1).items(Joi.object().keys({
       text: stringOrTranslationsSchema.required(),
       value: Joi.boolean().required(),
@@ -331,10 +325,6 @@ type BaseFieldConfiguration = ({
 } & PrefixMixin | {
   type: 'string';
   /**
-   * @default ""
-   */
-  defaultValue: string;
-  /**
    * @minItems 1
    */
   valueOptions: ValueOption<string>[];
@@ -398,10 +388,6 @@ type BaseFieldConfiguration = ({
 } & PrefixMixin | {
   type: 'number';
   /**
-   * @default 0
-   */
-  defaultValue: number;
-  /**
    * @minItems 1
    */
   valueOptions: ValueOption<number>[];
@@ -473,10 +459,6 @@ type BaseFieldConfiguration = ({
 } & PrefixMixin | {
   type: 'integer';
   /**
-   * @default 0
-   */
-  defaultValue: integer;
-  /**
    * @minItems 1
    */
   valueOptions: (Omit<ValueOption<integer>, 'value'> & {
@@ -485,10 +467,6 @@ type BaseFieldConfiguration = ({
   inputType: 'radio';
 } | {
   type: 'boolean';
-  /**
-   * @default false
-   */
-  defaultValue: boolean;
   /**
    * @default null
    */
@@ -525,10 +503,6 @@ type BaseFieldConfiguration = ({
   allowNull: true;
 } & PrefixMixin | {
   type: 'boolean';
-  /**
-   * @default false
-   */
-  defaultValue: boolean;
   /**
    * @minItems 1
    */
