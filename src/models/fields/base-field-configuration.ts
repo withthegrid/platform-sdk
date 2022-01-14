@@ -79,6 +79,7 @@ const getBaseFieldConfigurationSchema = (
   }),
   commonSchema.keys({
     type: Joi.string().valid('string').default('string'),
+    defaultValue: Joi.any(), // for legacy purposes
     valueOptions: Joi.array().min(1).items(Joi.object().keys({
       text: stringOrTranslationsSchema.required(),
       value: Joi.string().allow('').required(),
@@ -129,6 +130,7 @@ const getBaseFieldConfigurationSchema = (
   }),
   commonSchema.keys({
     type: Joi.string().valid('number').default('number'),
+    defaultValue: Joi.any(), // for legacy purposes
     valueOptions: Joi.array().min(1).items(Joi.object().keys({
       text: stringOrTranslationsSchema.required(),
       value: Joi.number().required(),
@@ -179,6 +181,7 @@ const getBaseFieldConfigurationSchema = (
   }),
   commonSchema.keys({
     type: Joi.string().valid('integer').required(),
+    defaultValue: Joi.any(), // for legacy purposes
     valueOptions: Joi.array().min(1).items(Joi.object().keys({
       text: stringOrTranslationsSchema.required(),
       value: Joi.number().integer().required(),
@@ -187,12 +190,14 @@ const getBaseFieldConfigurationSchema = (
   }),
   commonSchema.keys({
     type: Joi.string().valid('boolean').required(),
+    defaultValue: Joi.any(), // for legacy purposes
     valueOptions: Joi.array().items(Joi.any()).length(0).allow(null)
       .default(null),
     inputType: Joi.string().valid('switch', 'checkbox').default('checkbox'),
   }),
   commonSchema.keys({
     type: Joi.string().valid('boolean').default('boolean'),
+    defaultValue: Joi.any(), // for legacy purposes
     valueOptions: Joi.array().items(Joi.any()).length(0).allow(null)
       .default(null),
     inputType: Joi.string().valid('switch', 'checkbox').required(),
@@ -221,6 +226,7 @@ const getBaseFieldConfigurationSchema = (
   }),
   commonSchema.keys({
     type: Joi.string().valid('boolean').default('boolean'),
+    defaultValue: Joi.any(), // for legacy purposes
     valueOptions: Joi.array().min(1).items(Joi.object().keys({
       text: stringOrTranslationsSchema.required(),
       value: Joi.boolean().required(),
