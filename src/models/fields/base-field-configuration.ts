@@ -34,206 +34,148 @@ const prefixesMixin = {
   suffix: stringOrTranslationsSchema.description('Not available for inputTypes \'radio\', \'switch\', \'checkbox\', \'file\' and \'files\''),
 };
 
-const getBaseFieldConfigurationSchema = (
-  commonSchema: Joi.ObjectSchema,
-): Joi.AlternativesSchema => Joi.alternatives().try(
-  commonSchema.keys({
+const schema: Joi.AlternativesSchema = Joi.alternatives().try(
+  commonBaseFieldConfigurationSchema.keys({
     type: Joi.string().valid('string').default('string'),
-    defaultValue: Joi.string().allow('').default(''),
+    defaultValue: Joi.string().allow(''),
     valueOptions: Joi.array().items(Joi.any()).length(0).allow(null)
       .default(null),
     inputType: Joi.string().valid('text', 'textarea').default('text'),
     regex: Joi.string(),
-    allowNull: Joi.boolean().valid(false).default(false),
+    allowNull: Joi.any()
+      .when('defaultValue', { is: Joi.exist(), then: Joi.boolean().default(true), otherwise: Joi.boolean().default(false) })
+      .description('Ignored and for legacy purposes only. Instead, use defaultValue'),
     ...prefixesMixin,
   }),
-  commonSchema.keys({
+  commonBaseFieldConfigurationSchema.keys({
     type: Joi.string().valid('string').default('string'),
-    valueOptions: Joi.array().items(Joi.any()).length(0).allow(null)
-      .default(null),
-    inputType: Joi.string().valid('text', 'textarea').default('text'),
-    regex: Joi.string(),
-    allowNull: Joi.boolean().valid(true).required(),
-    ...prefixesMixin,
-  }),
-  commonSchema.keys({
-    type: Joi.string().valid('string').default('string'),
-    defaultValue: Joi.string().allow('').default(''),
+    defaultValue: Joi.string().allow(''),
     valueOptions: Joi.array().min(1).items(Joi.object().keys({
       text: stringOrTranslationsSchema.required(),
       value: Joi.string().allow('').required(),
     })).required(),
     inputType: Joi.string().valid('select').default('select'),
-    allowNull: Joi.boolean().valid(false).default(false),
+    allowNull: Joi.any()
+      .when('defaultValue', { is: Joi.exist(), then: Joi.boolean().default(true), otherwise: Joi.boolean().default(false) })
+      .description('Ignored and for legacy purposes only. Instead, use defaultValue'),
     ...prefixesMixin,
   }),
-  commonSchema.keys({
+  commonBaseFieldConfigurationSchema.keys({
     type: Joi.string().valid('string').default('string'),
-    valueOptions: Joi.array().min(1).items(Joi.object().keys({
-      text: stringOrTranslationsSchema.required(),
-      value: Joi.string().allow('').required(),
-    })).required(),
-    inputType: Joi.string().valid('select').default('select'),
-    allowNull: Joi.boolean().valid(true).required(),
-    ...prefixesMixin,
-  }),
-  commonSchema.keys({
-    type: Joi.string().valid('string').default('string'),
-    defaultValue: Joi.any(), // for legacy purposes
+    defaultValue: Joi.any().description('Ignored, for legacy purposes only'),
     valueOptions: Joi.array().min(1).items(Joi.object().keys({
       text: stringOrTranslationsSchema.required(),
       value: Joi.string().allow('').required(),
     })).required(),
     inputType: Joi.string().valid('radio').required(),
   }),
-  commonSchema.keys({
+  commonBaseFieldConfigurationSchema.keys({
     type: Joi.string().valid('number').required(),
-    defaultValue: Joi.number().default(0),
+    defaultValue: Joi.number(),
     valueOptions: Joi.array().items(Joi.any()).length(0).allow(null)
       .default(null),
     inputType: Joi.string().valid('text').default('text'),
     lowerbound: Joi.number().description('If provided, type should be number or integer and provided value should not be lower than this value'),
     upperbound: Joi.number().description('If provided, type should be number or integer and provided value should not be higher than this value'),
-    allowNull: Joi.boolean().valid(false).default(false),
+    allowNull: Joi.any()
+      .when('defaultValue', { is: Joi.exist(), then: Joi.boolean().default(true), otherwise: Joi.boolean().default(false) })
+      .description('Ignored and for legacy purposes only. Instead, use defaultValue'),
     ...prefixesMixin,
   }),
-  commonSchema.keys({
-    type: Joi.string().valid('number').required(),
-    valueOptions: Joi.array().items(Joi.any()).length(0).allow(null)
-      .default(null),
-    inputType: Joi.string().valid('text').default('text'),
-    lowerbound: Joi.number().description('If provided, type should be number or integer and provided value should not be lower than this value'),
-    upperbound: Joi.number().description('If provided, type should be number or integer and provided value should not be higher than this value'),
-    allowNull: Joi.boolean().valid(true).required(),
-    ...prefixesMixin,
-  }),
-  commonSchema.keys({
+  commonBaseFieldConfigurationSchema.keys({
     type: Joi.string().valid('number').default('number'),
-    defaultValue: Joi.number().default(0),
+    defaultValue: Joi.number(),
     valueOptions: Joi.array().min(1).items(Joi.object().keys({
       text: stringOrTranslationsSchema.required(),
       value: Joi.number().required(),
     })).required(),
     inputType: Joi.string().valid('select').default('select'),
-    allowNull: Joi.boolean().valid(false).default(false),
+    allowNull: Joi.any()
+      .when('defaultValue', { is: Joi.exist(), then: Joi.boolean().default(true), otherwise: Joi.boolean().default(false) })
+      .description('Ignored and for legacy purposes only. Instead, use defaultValue'),
     ...prefixesMixin,
   }),
-  commonSchema.keys({
+  commonBaseFieldConfigurationSchema.keys({
     type: Joi.string().valid('number').default('number'),
-    valueOptions: Joi.array().min(1).items(Joi.object().keys({
-      text: stringOrTranslationsSchema.required(),
-      value: Joi.number().required(),
-    })).required(),
-    inputType: Joi.string().valid('select').default('select'),
-    allowNull: Joi.boolean().valid(true).required(),
-    ...prefixesMixin,
-  }),
-  commonSchema.keys({
-    type: Joi.string().valid('number').default('number'),
-    defaultValue: Joi.any(), // for legacy purposes
+    defaultValue: Joi.any().description('Ignored, for legacy purposes only'),
     valueOptions: Joi.array().min(1).items(Joi.object().keys({
       text: stringOrTranslationsSchema.required(),
       value: Joi.number().required(),
     })).required(),
     inputType: Joi.string().valid('radio').required(),
   }),
-  commonSchema.keys({
+  commonBaseFieldConfigurationSchema.keys({
     type: Joi.string().valid('integer').required(),
-    defaultValue: Joi.number().integer().default(0),
+    defaultValue: Joi.number().integer(),
     valueOptions: Joi.array().items(Joi.any()).length(0).allow(null)
       .default(null),
     inputType: Joi.string().valid('text').default('text'),
     lowerbound: Joi.number().description('If provided, type should be number or integer and provided value should not be lower than this value'),
     upperbound: Joi.number().description('If provided, type should be number or integer and provided value should not be higher than this value'),
-    allowNull: Joi.boolean().valid(false).default(false),
+    allowNull: Joi.any()
+      .when('defaultValue', { is: Joi.exist(), then: Joi.boolean().default(true), otherwise: Joi.boolean().default(false) })
+      .description('Ignored and for legacy purposes only. Instead, use defaultValue'),
     ...prefixesMixin,
   }),
-  commonSchema.keys({
+  commonBaseFieldConfigurationSchema.keys({
     type: Joi.string().valid('integer').required(),
-    valueOptions: Joi.array().items(Joi.any()).length(0).allow(null)
-      .default(null),
-    inputType: Joi.string().valid('text').default('text'),
-    lowerbound: Joi.number().description('If provided, type should be number or integer and provided value should not be lower than this value'),
-    upperbound: Joi.number().description('If provided, type should be number or integer and provided value should not be higher than this value'),
-    allowNull: Joi.boolean().valid(true).required(),
-    ...prefixesMixin,
-  }),
-  commonSchema.keys({
-    type: Joi.string().valid('integer').required(),
-    defaultValue: Joi.number().integer().default(0),
+    defaultValue: Joi.number().integer(),
     valueOptions: Joi.array().min(1).items(Joi.object().keys({
       text: stringOrTranslationsSchema.required(),
       value: Joi.number().integer().required(),
     })).required(),
     inputType: Joi.string().valid('select').default('select'),
-    allowNull: Joi.boolean().valid(false).default(false),
+    allowNull: Joi.any()
+      .when('defaultValue', { is: Joi.exist(), then: Joi.boolean().default(true), otherwise: Joi.boolean().default(false) })
+      .description('Ignored and for legacy purposes only. Instead, use defaultValue'),
     ...prefixesMixin,
   }),
-  commonSchema.keys({
+  commonBaseFieldConfigurationSchema.keys({
     type: Joi.string().valid('integer').required(),
-    valueOptions: Joi.array().min(1).items(Joi.object().keys({
-      text: stringOrTranslationsSchema.required(),
-      value: Joi.number().integer().required(),
-    })).required(),
-    inputType: Joi.string().valid('select').default('select'),
-    allowNull: Joi.boolean().valid(true).required(),
-    ...prefixesMixin,
-  }),
-  commonSchema.keys({
-    type: Joi.string().valid('integer').required(),
-    defaultValue: Joi.any(), // for legacy purposes
+    defaultValue: Joi.any().description('Ignored, for legacy purposes only'),
     valueOptions: Joi.array().min(1).items(Joi.object().keys({
       text: stringOrTranslationsSchema.required(),
       value: Joi.number().integer().required(),
     })).required(),
     inputType: Joi.string().valid('radio').required(),
   }),
-  commonSchema.keys({
+  commonBaseFieldConfigurationSchema.keys({
     type: Joi.string().valid('boolean').required(),
-    defaultValue: Joi.any(), // for legacy purposes
+    defaultValue: Joi.any().description('Ignored, for legacy purposes only'),
     valueOptions: Joi.array().items(Joi.any()).length(0).allow(null)
       .default(null),
     inputType: Joi.string().valid('switch', 'checkbox').default('checkbox'),
   }),
-  commonSchema.keys({
+  commonBaseFieldConfigurationSchema.keys({
     type: Joi.string().valid('boolean').default('boolean'),
-    defaultValue: Joi.any(), // for legacy purposes
+    defaultValue: Joi.any().description('Ignored, for legacy purposes only'),
     valueOptions: Joi.array().items(Joi.any()).length(0).allow(null)
       .default(null),
     inputType: Joi.string().valid('switch', 'checkbox').required(),
   }),
-  commonSchema.keys({
+  commonBaseFieldConfigurationSchema.keys({
     type: Joi.string().valid('boolean').default('boolean'),
-    defaultValue: Joi.boolean().default(false),
+    defaultValue: Joi.boolean(),
     valueOptions: Joi.array().min(1).items(Joi.object().keys({
       text: stringOrTranslationsSchema.required(),
       value: Joi.boolean().required(),
     })).required(),
     inputType: Joi.string().valid('select').default('select'),
-    allowNull: Joi.boolean().valid(false).default(false),
+    allowNull: Joi.any()
+      .when('defaultValue', { is: Joi.exist(), then: Joi.boolean().default(true), otherwise: Joi.boolean().default(false) })
+      .description('Ignored and for legacy purposes only. Instead, use defaultValue'),
     ...prefixesMixin,
   }),
-  commonSchema.keys({
+  commonBaseFieldConfigurationSchema.keys({
     type: Joi.string().valid('boolean').default('boolean'),
-    defaultValue: Joi.boolean().default(false),
-    valueOptions: Joi.array().min(1).items(Joi.object().keys({
-      text: stringOrTranslationsSchema.required(),
-      value: Joi.boolean().required(),
-    })).required(),
-    inputType: Joi.string().valid('select').default('select'),
-    allowNull: Joi.boolean().valid(true).required(),
-    ...prefixesMixin,
-  }),
-  commonSchema.keys({
-    type: Joi.string().valid('boolean').default('boolean'),
-    defaultValue: Joi.any(), // for legacy purposes
+    defaultValue: Joi.any().description('Ignored, for legacy purposes only'),
     valueOptions: Joi.array().min(1).items(Joi.object().keys({
       text: stringOrTranslationsSchema.required(),
       value: Joi.boolean().required(),
     })).required(),
     inputType: Joi.string().valid('radio').required(),
   }),
-  commonSchema.keys({
+  commonBaseFieldConfigurationSchema.keys({
     inputType: Joi.string().valid('file', 'files').required(),
     valueOptions: Joi.array().items(Joi.any()).length(0).allow(null)
       .default(null),
@@ -241,8 +183,6 @@ const getBaseFieldConfigurationSchema = (
 )
   .tag('baseFieldConfiguration')
   .description('Defines which data can be stored in form fields.');
-
-const schema = getBaseFieldConfigurationSchema(commonBaseFieldConfigurationSchema);
 
 interface ValueOption<T extends BaseField> {
   text: StringOrTranslations;
@@ -267,260 +207,105 @@ interface SharedBaseFieldConfiguration {
   hint?: StringOrTranslations;
 }
 
-interface PrefixMixin {
+interface SharedBaseFieldConfigurationWithPrefix extends SharedBaseFieldConfiguration {
   prefix?: StringOrTranslations;
   suffix?: StringOrTranslations;
 }
 
-type integer = number;
+interface FieldConfigurationStringText extends SharedBaseFieldConfigurationWithPrefix {
+  inputType: 'text';
+  type: 'string';
+  defaultValue?: string;
+  regex?: string;
+}
 
-type BaseFieldConfiguration = ({
+interface FieldConfigurationStringTextArea extends SharedBaseFieldConfigurationWithPrefix {
+  inputType: 'textarea';
   type: 'string';
-  /**
-   * @default ""
-   */
-  defaultValue: string;
-  /**
-   * @default null
-   */
-  valueOptions: null | [];
-  /**
-   * @default "text"
-   */
-  inputType: 'text' | 'textarea';
+  defaultValue?: string;
   regex?: string;
-  allowNull?: false;
-} & PrefixMixin | {
+}
+
+interface FieldConfigurationStringSelect extends SharedBaseFieldConfigurationWithPrefix {
+  inputType: 'select';
   type: 'string';
-  /**
-   * @default null
-   */
-  valueOptions: null | [];
-  /**
-   * @default "text"
-   */
-  inputType: 'text' | 'textarea';
-  regex?: string;
-  allowNull: true;
-} & PrefixMixin | {
-  type: 'string';
-  /**
-   * @default ""
-   */
-  defaultValue: string;
-  /**
-   * @minItems 1
-   */
+  defaultValue?: string;
   valueOptions: ValueOption<string>[];
-  /**
-   * @default "select"
-   */
-  inputType: 'select';
-  allowNull?: false;
-} & PrefixMixin | {
+}
+
+interface FieldConfigurationStringRadio extends SharedBaseFieldConfiguration {
+  inputType: 'radio';
   type: 'string';
-  /**
-   * @minItems 1
-   */
   valueOptions: ValueOption<string>[];
-  /**
-   * @default "select"
-   */
+}
+
+interface FieldConfigurationNumberText extends SharedBaseFieldConfigurationWithPrefix {
+  inputType: 'text';
+  type: 'number' | 'integer';
+  defaultValue?: number;
+  lowerbound?: number;
+  upperbound?: number;
+}
+
+interface FieldConfigurationNumberSelect extends SharedBaseFieldConfigurationWithPrefix {
   inputType: 'select';
-  allowNull: true;
-} & PrefixMixin | {
-  type: 'string';
-  /**
-   * @minItems 1
-   */
-  valueOptions: ValueOption<string>[];
-  inputType: 'radio';
-} | {
-  type: 'number';
-  /**
-   * @default 0
-   */
-  defaultValue: number;
-  /**
-   * @default null
-   */
-  valueOptions: null | [];
-  /**
-   * @default "text"
-   */
-  inputType: 'text';
-  lowerbound?: number;
-  upperbound?: number;
-  allowNull?: false;
-} & PrefixMixin | {
-  type: 'number';
-  /**
-   * @default null
-   */
-  valueOptions: null | [];
-  /**
-   * @default "text"
-   */
-  inputType: 'text';
-  lowerbound?: number;
-  upperbound?: number;
-  allowNull: true;
-} & PrefixMixin | {
-  type: 'number';
-  /**
-   * @default 0
-   */
-  defaultValue: number;
-  /**
-   * @minItems 1
-   */
+  type: 'number' | 'integer';
+  defaultValue?: number;
   valueOptions: ValueOption<number>[];
-  /**
-   * @default "select"
-   */
-  inputType: 'select';
-  allowNull?: false;
-} & PrefixMixin | {
-  type: 'number';
-  /**
-   * @minItems 1
-   */
+}
+
+interface FieldConfigurationNumberRadio extends SharedBaseFieldConfiguration {
+  inputType: 'radio';
+  type: 'number' | 'integer';
   valueOptions: ValueOption<number>[];
-  /**
-   * @default "select"
-   */
-  inputType: 'select';
-  allowNull: true;
-} & PrefixMixin | {
-  type: 'number';
-  /**
-   * @minItems 1
-   */
-  valueOptions: ValueOption<number>[];
-  inputType: 'radio';
-} | {
-  type: 'integer';
-  /**
-   * @default 0
-   */
-  defaultValue: integer;
-  /**
-   * @default null
-   */
-  valueOptions: null | [];
-  /**
-   * type of UI input element used for the field
-   *
-   * @default "text"
-   */
-  inputType: 'text';
-  lowerbound?: number;
-  upperbound?: number;
-  allowNull?: false;
-} & PrefixMixin | {
-  type: 'integer';
-  /**
-   * @default null
-   */
-  valueOptions: null | [];
-  /**
-   * type of UI input element used for the field
-   *
-   * @default "text"
-   */
-  inputType: 'text';
-  lowerbound?: number;
-  upperbound?: number;
-  allowNull: true;
-} & PrefixMixin | {
-  type: 'integer';
-  /**
-   * @default 0
-   */
-  defaultValue: integer;
-  /**
-   * @minItems 1
-   */
-  valueOptions: (Omit<ValueOption<integer>, 'value'> & {
-    value: integer;
-  })[];
-  /**
-   * @default 'select'
-   */
-  inputType: 'select';
-  allowNull?: false;
-} & PrefixMixin | {
-  type: 'integer';
-  /**
-   * @minItems 1
-   */
-  valueOptions: (Omit<ValueOption<integer>, 'value'> & {
-    value: integer;
-  })[];
-  /**
-   * @default 'select'
-   */
-  inputType: 'select';
-  allowNull: true;
-} & PrefixMixin | {
-  type: 'integer';
-  /**
-   * @minItems 1
-   */
-  valueOptions: (Omit<ValueOption<integer>, 'value'> & {
-    value: integer;
-  })[];
-  inputType: 'radio';
-} | {
+}
+
+interface FieldConfigurationBooleanSwitch extends SharedBaseFieldConfiguration {
+  inputType: 'switch';
   type: 'boolean';
-  /**
-   * @default null
-   */
-  valueOptions: null | [];
-  /**
-   * @default "checkbox"
-   */
-  inputType: 'switch' | 'checkbox';
-} | {
+}
+
+interface FieldConfigurationBooleanCheckbox extends SharedBaseFieldConfiguration {
+  inputType: 'checkbox';
   type: 'boolean';
-  /**
-   * @default false
-   */
-  defaultValue: boolean;
-  /**
-   * @minItems 1
-   */
+}
+
+interface FieldConfigurationBooleanSelect extends SharedBaseFieldConfigurationWithPrefix {
+  inputType: 'select';
+  type: 'boolean';
+  defaultValue?: boolean;
   valueOptions: ValueOption<boolean>[];
-  /**
-   * @default "select"
-   */
-  inputType: 'select';
-  allowNull?: false;
-} & PrefixMixin | {
-  type: 'boolean';
-  /**
-   * @minItems 1
-   */
-  valueOptions: ValueOption<boolean>[];
-  /**
-   * @default "select"
-   */
-  inputType: 'select';
-  allowNull: true;
-} & PrefixMixin | {
-  type: 'boolean';
-  /**
-   * @minItems 1
-   */
-  valueOptions: ValueOption<boolean>[];
-  /**
-   * @default "select"
-   */
+}
+
+interface FieldConfigurationBooleanRadio extends SharedBaseFieldConfiguration {
   inputType: 'radio';
-} | {
-  inputType: 'file' | 'files';
+  type: 'boolean';
+  valueOptions: ValueOption<boolean>[];
+}
+
+interface FieldConfigurationFile extends SharedBaseFieldConfiguration {
+  inputType: 'file';
   valueOptions: null | [];
-}) & SharedBaseFieldConfiguration;
+}
+
+interface FieldConfigurationFiles extends SharedBaseFieldConfiguration {
+  inputType: 'files';
+  valueOptions: null | [];
+}
+
+type BaseFieldConfiguration = FieldConfigurationStringText
+  | FieldConfigurationStringTextArea
+  | FieldConfigurationStringSelect
+  | FieldConfigurationStringRadio
+  | FieldConfigurationNumberText
+  | FieldConfigurationNumberSelect
+  | FieldConfigurationNumberRadio
+  | FieldConfigurationBooleanSwitch
+  | FieldConfigurationBooleanCheckbox
+  | FieldConfigurationBooleanSelect
+  | FieldConfigurationBooleanRadio
+  | FieldConfigurationFile
+  | FieldConfigurationFiles;
 
 type BaseFieldConfigurations = BaseFieldConfiguration[];
 
@@ -528,6 +313,5 @@ export {
   schema,
   BaseFieldConfiguration,
   BaseFieldConfigurations,
-  getBaseFieldConfigurationSchema,
-  commonBaseFieldConfigurationSchema,
+  ValueOption,
 };
