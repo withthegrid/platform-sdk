@@ -6,9 +6,9 @@ type UpdatableFieldConfigurations = {
   fieldConfiguration: BaseFieldConfiguration;
 }[];
 
-const schema = Joi.array().items(Joi.object().keys({
+const schema = (apiVersion: number): Joi.ArraySchema => Joi.array().items(Joi.object().keys({
   existingKey: Joi.string().pattern(/^[a-z][a-zA-Z\d]*$/),
-  fieldConfiguration: baseFieldConfigurationSchema.required(),
+  fieldConfiguration: baseFieldConfigurationSchema(apiVersion).required(),
 }))
   .tag('updatableFieldConfigurations')
   .description('How form field configurations should be sent to the server when updating them.');

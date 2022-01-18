@@ -30,31 +30,33 @@ interface Response {
   environment: Environment;
 }
 
-const fieldConfigurationSchema = updatableFieldConfigurationsSchema.description('If a BaseFieldConfiguration-array is provided, the first element is not allowed to have fieldConfiguration.valueOptions defined').required();
-
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'put',
   path: '/',
-  body: Joi.object().keys({
-    name: Joi.string().example('My monitoring environment'),
-    mapLayers: Joi.array().items(mapLayerSchema).min(1),
-    fieldConfigurations: Joi.object().keys({
-      pinGroups: fieldConfigurationSchema,
-      grids: fieldConfigurationSchema,
-      edges: fieldConfigurationSchema,
-      nodes: fieldConfigurationSchema,
-      pins: fieldConfigurationSchema,
-    }).description('See the chapter on open fields on how to use this. A minimum of 1 element should be present in each field configuration array'),
-    locale: localeSchema,
-    defaultGraphRange: Joi.string().example('30d'),
-    measurementsExpirationDays: Joi.number().integer()
-      .example(365)
-      .min(1)
-      .max(9999),
-  }).required(),
+  body: (apiVersion: number): Joi.ObjectSchema => {
+    const fieldConfigurationSchema = updatableFieldConfigurationsSchema(apiVersion).description('If a BaseFieldConfiguration-array is provided, the first element is not allowed to have fieldConfiguration.valueOptions defined').required();
+
+    return Joi.object().keys({
+      name: Joi.string().example('My monitoring environment'),
+      mapLayers: Joi.array().items(mapLayerSchema).min(1),
+      fieldConfigurations: Joi.object().keys({
+        pinGroups: fieldConfigurationSchema,
+        grids: fieldConfigurationSchema,
+        edges: fieldConfigurationSchema,
+        nodes: fieldConfigurationSchema,
+        pins: fieldConfigurationSchema,
+      }).description('See the chapter on open fields on how to use this. A minimum of 1 element should be present in each field configuration array'),
+      locale: localeSchema,
+      defaultGraphRange: Joi.string().example('30d'),
+      measurementsExpirationDays: Joi.number().integer()
+        .example(365)
+        .min(1)
+        .max(9999),
+    }).required();
+  },
   right: { environment: 'ENVIRONMENT_ADMIN' },
-  response: Joi.object().keys({
-    environment: environmentSchema.required(),
+  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
+    environment: environmentSchema(apiVersion).required(),
   }).required(),
 };
 

@@ -40,7 +40,7 @@ const schema = (apiVersion: number): Joi.ObjectSchema => supplierActivityConstru
   }).required(),
   Joi.alternatives().try(
     setDeviceFieldsSchema,
-    scheduleCommandSchema,
+    scheduleCommandSchema(apiVersion),
   ),
 )
   .tag('supplierActivityParseReport')

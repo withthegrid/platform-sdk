@@ -40,16 +40,18 @@ interface Response {
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
   method: 'post',
   path: '/',
-  body: Joi.object().keys({
+  body: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     name: Joi.string().required().example('Cathodic protection device').description('This name is also visible in monitoring environments. To get a uniform user experience, please provide the name in English'),
     eventHandler: Joi.string().required().example('[omitted]').description('A javascript function that handles events. See the chapter "User defined code'),
-    fieldConfigurations: Joi.array().items(baseFieldConfigurationSchema).required()
+    fieldConfigurations: Joi.array().items(baseFieldConfigurationSchema(apiVersion)).required()
       .description('See the chapter on open fields on how to use this'),
-    pinGroupFieldConfigurations: Joi.array().items(baseFieldConfigurationSchema).required()
+    pinGroupFieldConfigurations: Joi.array()
+      .items(baseFieldConfigurationSchema(apiVersion))
+      .required()
       .description('Defines deviceFields on the location (pinGroup) the device is connected to. Can be used in report type functions. See the chapter on open fields on how to use this'),
     channels: Joi.array().items(Joi.object().keys({
       name: Joi.string().required().example('Red wire').description('This name is also visible in monitoring environments. To get a uniform user experience, please provide the name in English'),
-      pinFieldConfigurations: Joi.array().items(baseFieldConfigurationSchema).required()
+      pinFieldConfigurations: Joi.array().items(baseFieldConfigurationSchema(apiVersion)).required()
         .description('Defines deviceFields on the pin the channel is connected to. Can be used in report type functions. See the chapter on open fields on how to use this'),
       defaultPinName: Joi.string().example('Anode').description('If undefined, the channel cannot be linked to a pin'),
       charts: Joi.array().items(Joi.object().keys({

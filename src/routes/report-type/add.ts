@@ -36,12 +36,12 @@ interface Response {
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'post',
   path: '/',
-  body: Joi.object().keys({
+  body: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     name: Joi.string().required().example('Temperature'),
     fieldConfigurations: Joi.object().keys({
-      pinGroup: Joi.array().items(baseFieldConfigurationSchema).required(),
-      pin: Joi.array().items(baseFieldConfigurationSchema).required(),
-      measurement: Joi.array().items(baseFieldConfigurationSchema).required(),
+      pinGroup: Joi.array().items(baseFieldConfigurationSchema(apiVersion)).required(),
+      pin: Joi.array().items(baseFieldConfigurationSchema(apiVersion)).required(),
+      measurement: Joi.array().items(baseFieldConfigurationSchema(apiVersion)).required(),
     }).required()
       .description('See the chapter on open fields on how to use this'),
     quantities: Joi.array().items(Joi.alternatives().try(

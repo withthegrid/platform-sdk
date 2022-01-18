@@ -39,9 +39,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       deviceFields: fieldsToServerUpdateSchema,
     })).required(),
   }).required(),
-  response: Joi.object().keys({
+  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     device: deviceSchema.required(),
-    deviceType: deviceTypeSchema.required(),
+    deviceType: deviceTypeSchema(apiVersion).required(),
     measurementCycle: Joi.valid(null).default(null), // for legacy purposes only
     nextReportBefore: Joi.date().allow(null).example('2019-12-31T15:25Z').required(),
   }).required(),

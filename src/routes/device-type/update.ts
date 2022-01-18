@@ -46,15 +46,15 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
   params: Joi.object().keys({
     hashId: Joi.string().required().example('wasd2'),
   }).required(),
-  body: Joi.object().keys({
+  body: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     name: Joi.string().example('Cathodic protection device').description('This name is also visible in monitoring environments. To get a uniform user experience, please provide the name in English'),
     eventHandler: Joi.string().description('A javascript function that handles events. See the chapter "User defined code"'),
-    fieldConfigurations: updatableFieldConfigurationsSchema,
-    pinGroupFieldConfigurations: updatableFieldConfigurationsSchema
+    fieldConfigurations: updatableFieldConfigurationsSchema(apiVersion),
+    pinGroupFieldConfigurations: updatableFieldConfigurationsSchema(apiVersion)
       .description('Defines deviceFields on the location (pinGroup) the device is connected to. Can be used in monitoring report type functions. See the chapter on open fields on how to use this'),
     channels: Joi.array().items(Joi.object().keys({
       name: Joi.string().required().example('Red wire').description('This name is also visible in environments. To get a uniform user experience, please provide the name in English'),
-      pinFieldConfigurations: updatableFieldConfigurationsSchema.required()
+      pinFieldConfigurations: updatableFieldConfigurationsSchema(apiVersion).required()
         .description('Defines deviceFields on the pin the channel is connected to. Can be used in report type functions. See the chapter on open fields on how to use this'),
       defaultPinName: Joi.string().example('Anode').description('If undefined, the channel cannot be linked to a pin'),
       charts: Joi.array().items(Joi.object().keys({

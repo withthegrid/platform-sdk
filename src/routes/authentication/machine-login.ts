@@ -27,10 +27,10 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSuppl
   body: Joi.object().keys({
     assertion: Joi.string().required().example('12as:7d6a4123').description('Is provided when you create a machine account (also called an API account)'),
   }).required(),
-  response: Joi.object().keys({
+  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     jwt: Joi.string().required().example('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpcCI6InJvYkB3aXRodGhlZ3JpZC5jb20iLCJpA9qiOjE1Nzc3MTA5NjksImV4cCI6MTU4MDMwMjk2OSwiaXNzIjoid2l0aHRoZWdyaWQifQ.7PbwwsWU7x63Pd-J_KZQL22r185GfiufixyXQGOyQs8'),
     user: userSchema.required(),
-    environment: environmentSchema.description('A random monitoring environment this user has access to'),
+    environment: environmentSchema(apiVersion).description('A random monitoring environment this user has access to'),
     environmentRights: Joi.array().items(Joi.string()).example(['STATIC', 'USERS'])
       .description('See the getting started section about rights'),
     userEnvironmentSettings: userEnvironmentSettingsSchema,
