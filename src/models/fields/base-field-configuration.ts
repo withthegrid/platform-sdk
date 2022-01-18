@@ -31,7 +31,7 @@ const schema = (apiVersion: number): Joi.AlternativesSchema => {
   if (apiVersion <= 4) {
     deprecatedAllowNull = {
       allowNull: Joi.any()
-        .when('defaultValue', { is: Joi.exist(), then: Joi.boolean().default(true), otherwise: Joi.boolean().default(false) })
+        .when('defaultValue', { is: Joi.exist(), then: Joi.boolean().default(false), otherwise: Joi.boolean().default(true) })
         .description('Ignored and for legacy purposes only. Instead, use defaultValue'),
     };
     deprecatedValueOptions = {
