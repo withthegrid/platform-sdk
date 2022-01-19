@@ -1,3 +1,10 @@
+## [17.29.0](https://github.com/withthegrid/platform-sdk/compare/v17.28.0...v17.29.0) (2022-01-19)
+
+
+### Features
+
+* dependabot ([0858eb4](https://github.com/withthegrid/platform-sdk/commit/0858eb4bb80647628b97b40c1cda595f1de777fa))
+
 ## [17.28.0](https://github.com/withthegrid/platform-sdk/compare/v17.27.1...v17.28.0) (2022-01-10)
 
 
