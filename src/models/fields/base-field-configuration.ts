@@ -42,9 +42,15 @@ const schema = (apiVersion: number): Joi.AlternativesSchema => {
       defaultValue: Joi.any().description('Ignored, for legacy purposes only'),
     };
   } else {
-    deprecatedAllowNull = {};
-    deprecatedValueOptions = {};
-    deprecatedDefaultValue = {};
+    deprecatedAllowNull = {
+      allowNull: Joi.any().strip(), // can be dropped after deploy of related platform release
+    };
+    deprecatedValueOptions = {
+      valueOptions: Joi.any().strip(), // can be dropped after deploy of related platform release
+    };
+    deprecatedDefaultValue = {
+      defaultValue: Joi.any().strip(), // can be dropped after deploy of related platform release
+    };
   }
 
   return Joi.alternatives().try(
@@ -142,12 +148,6 @@ const schema = (apiVersion: number): Joi.AlternativesSchema => {
       ...deprecatedDefaultValue,
       ...deprecatedValueOptions,
       inputType: Joi.string().valid('switch', 'checkbox').default('checkbox'),
-    }),
-    commonBaseFieldConfigurationSchema.keys({
-      type: Joi.string().valid('boolean').default('boolean'),
-      ...deprecatedDefaultValue,
-      ...deprecatedValueOptions,
-      inputType: Joi.string().valid('switch', 'checkbox').required(),
     }),
     commonBaseFieldConfigurationSchema.keys({
       ...deprecatedAllowNull,
