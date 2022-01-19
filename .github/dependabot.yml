@@ -1,0 +1,13 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "09:00"
+      timezone: "Europe/Amsterdam"
+    pull-request-branch-name:
+      separator: "-"
+    commit-message:
+      prefix: "fix(deps):"
+      prefix-development: "chore(deps):"
