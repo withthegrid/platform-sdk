@@ -1,3 +1,17 @@
+## [17.30.0](https://github.com/withthegrid/platform-sdk/compare/v17.29.0...v17.30.0) (2022-01-20)
+
+
+### Features
+
+* showAllXAxisLabels in analytics visualisation ([#79](https://github.com/withthegrid/platform-sdk/issues/79)) ([8322721](https://github.com/withthegrid/platform-sdk/commit/832272113d16df10b49dbd016939a33bbd34c4f3)), closes [withthegrid/platform-client#798](https://github.com/withthegrid/platform-client/issues/798)
+
+
+### Bug Fixes
+
+* **deps:** bump @types/node from 16.11.7 to 16.11.21 ([#89](https://github.com/withthegrid/platform-sdk/issues/89)) ([2f9fb5b](https://github.com/withthegrid/platform-sdk/commit/2f9fb5becb63a6bd2b7049b7023e8c5e2d149a27))
+* linting error ([f9ba468](https://github.com/withthegrid/platform-sdk/commit/f9ba4680f1e0c895f9f459aa11c8d28f38810126))
+* more linting errors ([1b127dc](https://github.com/withthegrid/platform-sdk/commit/1b127dc9768dda93b665242749c0d3b9d4a77aca))
+
 ## [17.29.0](https://github.com/withthegrid/platform-sdk/compare/v17.28.0...v17.29.0) (2022-01-19)
 
 
