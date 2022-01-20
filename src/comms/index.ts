@@ -52,7 +52,7 @@ class Comms {
   }
 
   get environment(): { type: string; hashId: string } | undefined {
-    if (this.axios.defaults.headers.common['Environment-Hash-Id'] === undefined) {
+    if (typeof this.axios.defaults.headers.common['Environment-Hash-Id'] !== 'string') {
       return undefined;
     }
     const parts = this.axios.defaults.headers.common['Environment-Hash-Id'].split(':', 2);
