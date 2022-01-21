@@ -14,6 +14,17 @@ const constraintSchema = Joi.object().keys({
   }),
 });
 
+const limiterSchema = Joi.object().keys({
+  limitedTo: Joi.number().required(),
+  per: Joi.array().items(Joi.object().keys({
+    columnIndex: Joi.number().required(),
+  })).default(() => []).example([]),
+  sortedBy: Joi.array().items(Joi.object().keys({
+    columnIndex: Joi.number().required(),
+    descending: Joi.boolean().required(),
+  })).default(() => []).example([]),
+});
+
 const conditionSchema = Joi.object().keys({
   type: Joi.string().valid('or', 'and').required(),
   restrictions: Joi.array().items(Joi.alternatives().try(
@@ -41,6 +52,7 @@ const schema = Joi.object().keys({
     }).required(),
   )).required(),
   filter: conditionSchema,
+  limiter: limiterSchema,
   offset: Joi.string(),
   sort: Joi.array().items(Joi.object().keys({
     columnIndex: Joi.number().required(),
@@ -77,6 +89,12 @@ interface Condition {
   restrictions: (Constraint | Condition)[];
 }
 
+interface Limiter {
+  limitedTo: number,
+  per: { columnIndex: number }[];
+  sortedBy: { columnIndex: number, descending: boolean }[];
+}
+
 type AggregatedColumn =
   { type: 'count' | 'share'; condition?: Condition, name?: string }
   | { type: 'sum' | 'mean' | 'min' | 'max'; condition?: Condition; field: Field, name?: string };
@@ -89,6 +107,7 @@ interface AnalyticsQuery {
   source: string;
   columns: (UnaggregatedColumn | AggregatedColumn | TimeGroupColumn)[];
   filter?: Condition;
+  limiter?: Limiter;
   offset?: string;
   sort: { columnIndex: number, descending: boolean }[];
   rowsPerPage: number;
@@ -99,6 +118,7 @@ export {
   AnalyticsQuery,
   Constraint,
   Condition,
+  Limiter,
   TimeGranularity,
   Field,
 };
