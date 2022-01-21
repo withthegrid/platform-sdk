@@ -38,11 +38,11 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       type: Joi.string().valid('human', 'device'),
     }),
   right: { environment: 'READ' },
-  response: Joi.object().keys({
+  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     nextPageOffset: Joi.string().allow(null).example(null).required()
       .description('This is the last page if nextPageOffset is null'),
     rows: Joi.array().items(Joi.object().keys({
-      reportType: environmentReportTypeSchema.required(),
+      reportType: environmentReportTypeSchema(apiVersion).required(),
     })).required(),
   }),
   description: 'Search through report types',

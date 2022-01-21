@@ -18,7 +18,7 @@ const schema = (apiVersion: number): Joi.ObjectSchema => supplierActivityConstru
   'handleCommandDue',
   Joi.object().keys({
     command: commandSchema.required(),
-    commandType: commandTypeSchema.required(),
+    commandType: commandTypeSchema(apiVersion).required(),
   }).required(),
   deviceTypeHandlerActivity(apiVersion),
 )

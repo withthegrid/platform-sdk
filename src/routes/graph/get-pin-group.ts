@@ -42,12 +42,12 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     hashId: Joi.string().required().example('dao97'),
   }).required(),
   right: { environment: 'READ' },
-  response: Joi.object().keys({
+  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     pinGroup: pinGroupSchema.required(),
     pins: Joi.array().items(pinSchema).required(),
     edges: Joi.array().items(edgeSchema).required(),
     device: deviceSchema.allow(null).required(),
-    deviceType: deviceTypeSchema.allow(null).required(),
+    deviceType: deviceTypeSchema(apiVersion).allow(null).required(),
     channelMapping: Joi.array().items(Joi.object().keys({
       channel: Joi.number().integer().required().example(0),
       pinHashId: Joi.string().allow(null).default(null),

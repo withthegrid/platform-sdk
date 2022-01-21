@@ -8,7 +8,7 @@ import * as routes from './routes/routes';
 
 import { Response as MachineLoginResponse } from './routes/authentication/machine-login';
 
-const apiVersion = 4;
+const apiVersion = 5;
 
 class PlatformSdk {
   protected comms: Comms;
