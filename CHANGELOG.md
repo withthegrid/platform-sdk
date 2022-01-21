@@ -1,3 +1,10 @@
+## [17.31.0](https://github.com/withthegrid/platform-sdk/compare/v17.30.0...v17.31.0) (2022-01-21)
+
+
+### Features
+
+* drop defaults for radio, switch and checkbox field configs and drop allowNull ([#83](https://github.com/withthegrid/platform-sdk/issues/83)) ([e9ebc43](https://github.com/withthegrid/platform-sdk/commit/e9ebc43006268cc6f2d11677aac2cab14e4c51d0)), closes [withthegrid/platform#912](https://github.com/withthegrid/platform/issues/912)
+
 ## [17.30.0](https://github.com/withthegrid/platform-sdk/compare/v17.29.0...v17.30.0) (2022-01-20)
 
 
