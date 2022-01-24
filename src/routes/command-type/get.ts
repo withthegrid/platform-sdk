@@ -20,8 +20,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClientAndSupplie
     hashId: Joi.string().required().example('x18a92'),
   }).required(),
   right: { environment: 'READ', supplier: 'ENVIRONMENT_ADMIN' },
-  response: Joi.object().keys({
-    commandType: commandTypeSchema.required(),
+  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
+    commandType: commandTypeSchema(apiVersion).required(),
   }).required(),
   description: 'Get a specific command type identified by its hashId',
 };

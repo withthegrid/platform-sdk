@@ -19,7 +19,7 @@ const schema = (apiVersion: number): Joi.ObjectSchema => supplierActivityConstru
   Joi.alternatives().try(
     Joi.object().keys({
       command: commandSchema.required(),
-      commandType: commandTypeSchema.required(),
+      commandType: commandTypeSchema(apiVersion).required(),
     }).required(),
     Joi.object().keys({}).required(),
   ).required(),

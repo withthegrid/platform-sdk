@@ -23,8 +23,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClientAndSupplie
     hashId: Joi.string().required().example('sajia1'),
   }).required(),
   right: { environment: 'READ', supplier: 'ENVIRONMENT_ADMIN' },
-  response: Joi.object().keys({
-    reportTypes: Joi.array().items(environmentReportTypeSchema).required(),
+  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
+    reportTypes: Joi.array().items(environmentReportTypeSchema(apiVersion)).required(),
     quantity: quantitySchema.required(),
     linkedSupplierQuantities: Joi.array().items(quantitySchema).required(),
   }).required(),

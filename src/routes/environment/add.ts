@@ -23,8 +23,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSuppl
     name: Joi.string().required().example('My monitoring environment'),
   }).required(),
   right: {}, // everyone can add an environment
-  response: Joi.object().keys({
-    environment: environmentSchema.required(),
+  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
+    environment: environmentSchema(apiVersion).required(),
     environmentRights: Joi.array().items(Joi.string()).required().example(['STATIC', 'USERS'])
       .description('See the getting started section about rights'),
     userEnvironmentSettings: userEnvironmentSettingsSchema.required(),

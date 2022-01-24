@@ -4,7 +4,7 @@ import { schema as baseFieldConfigurationSchema, BaseFieldConfiguration } from '
 import { Locale, schema as localeSchema } from './locale';
 import { MapLayer, schema as mapLayerSchema } from './map-layer';
 
-const schema = Joi.object().keys({
+const schema = (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
   hashId: Joi.string().required().example('f1a4w1'),
   name: Joi.string().required().example('My monitoring environment'),
   mapLayers: Joi.array().items(mapLayerSchema).min(1).required(),
@@ -16,11 +16,11 @@ const schema = Joi.object().keys({
     .required()
     .description('All pin groups and edges in this monitoring environment are contained in the rectangle described by this linestring. If null, no locations (pinGroups) or lines (edges) are present'),
   fieldConfigurations: Joi.object().keys({
-    pinGroups: Joi.array().items(baseFieldConfigurationSchema).required(),
-    edges: Joi.array().items(baseFieldConfigurationSchema).required(),
-    grids: Joi.array().items(baseFieldConfigurationSchema).required(),
-    nodes: Joi.array().items(baseFieldConfigurationSchema).required(),
-    pins: Joi.array().items(baseFieldConfigurationSchema).required(),
+    pinGroups: Joi.array().items(baseFieldConfigurationSchema(apiVersion)).required(),
+    edges: Joi.array().items(baseFieldConfigurationSchema(apiVersion)).required(),
+    grids: Joi.array().items(baseFieldConfigurationSchema(apiVersion)).required(),
+    nodes: Joi.array().items(baseFieldConfigurationSchema(apiVersion)).required(),
+    pins: Joi.array().items(baseFieldConfigurationSchema(apiVersion)).required(),
   }).required().description('See the chapter on open fields on how to use this'),
   locale: localeSchema.required().example('en'),
   defaultGraphRange: Joi.string().required().example('30d'),
