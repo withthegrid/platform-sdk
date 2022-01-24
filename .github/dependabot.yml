@@ -11,3 +11,5 @@ updates:
     commit-message:
       prefix: "fix(deps):"
       prefix-development: "chore(deps):"
+    assignees:
+      - everhardt
