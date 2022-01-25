@@ -1,3 +1,10 @@
+### [17.31.2](https://github.com/withthegrid/platform-sdk/compare/v17.31.1...v17.31.2) (2022-01-25)
+
+
+### Bug Fixes
+
+* reportType property in parse report trigger activity ([ed55232](https://github.com/withthegrid/platform-sdk/commit/ed55232fb78d206bf26c59aecc7f7cb49a1c4b07))
+
 ### [17.31.1](https://github.com/withthegrid/platform-sdk/compare/v17.31.0...v17.31.1) (2022-01-25)
 
 
