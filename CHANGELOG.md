@@ -1,3 +1,10 @@
+### [17.31.1](https://github.com/withthegrid/platform-sdk/compare/v17.31.0...v17.31.1) (2022-01-25)
+
+
+### Bug Fixes
+
+* error on update of (supplier) report type ([#92](https://github.com/withthegrid/platform-sdk/issues/92)) ([0275edf](https://github.com/withthegrid/platform-sdk/commit/0275edf731d5e8e587c3c5b1fb3415a3ca3d8e68)), closes [withthegrid/platform#942](https://github.com/withthegrid/platform/issues/942)
+
 ## [17.31.0](https://github.com/withthegrid/platform-sdk/compare/v17.30.0...v17.31.0) (2022-01-21)
 
 
