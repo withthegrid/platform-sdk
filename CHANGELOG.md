@@ -1,3 +1,10 @@
+### [17.31.3](https://github.com/withthegrid/platform-sdk/compare/v17.31.2...v17.31.3) (2022-01-27)
+
+
+### Bug Fixes
+
+* **deps:** bump joi from 17.5.0 to 17.6.0 ([#95](https://github.com/withthegrid/platform-sdk/issues/95)) ([f8ecc48](https://github.com/withthegrid/platform-sdk/commit/f8ecc4820f47c40ff183939c70e1b9d93be29fc6))
+
 ### [17.31.2](https://github.com/withthegrid/platform-sdk/compare/v17.31.1...v17.31.2) (2022-01-25)
 
 
