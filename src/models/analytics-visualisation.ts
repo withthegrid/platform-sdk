@@ -19,6 +19,7 @@ const mapVisualisationSchema = Joi.object().keys({
     .required(),
   tooltipColumnIndex: Joi.number().integer().example(0).allow(null)
     .required(),
+  mapLayerKey: Joi.string().example('base').required(),
 });
 
 const tableVisualisationSchema = Joi.object().keys({
@@ -51,6 +52,7 @@ interface MapsVisualisation {
   longitudeColumnIndex: number;
   colorColumnIndex: number | null;
   tooltipColumnIndex: number | null;
+  mapLayerKey: string;
 }
 
 type AnalyticsVisualisation = TableAnalyticsVisualisation | GraphVisualisation | MapsVisualisation;
