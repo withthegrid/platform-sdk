@@ -14,7 +14,7 @@ const constraintSchema = Joi.object().keys({
   }),
 });
 
-const limiterSchema = Joi.object().keys({
+const limitSchema = Joi.object().keys({
   limitedTo: Joi.number().required(),
   per: Joi.array().items(Joi.object().keys({
     columnIndex: Joi.number().required(),
@@ -52,7 +52,7 @@ const schema = Joi.object().keys({
     }).required(),
   )).required(),
   filter: conditionSchema,
-  limiter: limiterSchema,
+  limitBy: limitSchema,
   offset: Joi.string(),
   sort: Joi.array().items(Joi.object().keys({
     columnIndex: Joi.number().required(),
@@ -89,7 +89,7 @@ interface Condition {
   restrictions: (Constraint | Condition)[];
 }
 
-interface Limiter {
+interface Limit {
   limitedTo: number,
   per: { columnIndex: number }[];
   sortedBy: { columnIndex: number, descending: boolean }[];
@@ -107,7 +107,7 @@ interface AnalyticsQuery {
   source: string;
   columns: (UnaggregatedColumn | AggregatedColumn | TimeGroupColumn)[];
   filter?: Condition;
-  limiter?: Limiter;
+  limitBy?: Limit;
   offset?: string;
   sort: { columnIndex: number, descending: boolean }[];
   rowsPerPage: number;
@@ -118,7 +118,7 @@ export {
   AnalyticsQuery,
   Constraint,
   Condition,
-  Limiter,
+  Limit,
   TimeGranularity,
   Field,
 };
