@@ -1,3 +1,10 @@
+## [17.32.0](https://github.com/withthegrid/platform-sdk/compare/v17.31.3...v17.32.0) (2022-02-02)
+
+
+### Features
+
+* only show x last measurements per port per quantity ([#91](https://github.com/withthegrid/platform-sdk/issues/91)) ([f075f55](https://github.com/withthegrid/platform-sdk/commit/f075f5514eaf1f2bedd2ae021867f2b9fa768d84)), closes [withthegrid/platform#863](https://github.com/withthegrid/platform/issues/863)
+
 ### [17.31.3](https://github.com/withthegrid/platform-sdk/compare/v17.31.2...v17.31.3) (2022-01-27)
 
 
