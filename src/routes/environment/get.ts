@@ -23,8 +23,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSuppl
     hashId: Joi.string().required().example('f1a4w1'),
   }).required(),
   right: {}, // environmentHashId in header is irrelevant
-  response: Joi.object().keys({
-    environment: environmentSchema.required(),
+  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
+    environment: environmentSchema(apiVersion).required(),
     environmentRights: Joi.array().items(Joi.string()).required().example(['STATIC', 'USERS'])
       .description('See the getting started section about rights'),
     userEnvironmentSettings: userEnvironmentSettingsSchema.required(),

@@ -42,7 +42,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
   path: '/',
   query: tableQuerySchemaGenerator(Joi.string().valid('createdAt').default('createdAt')),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
-  response: Joi.object().keys({
+  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     nextPageOffset: Joi.string().allow(null).example(null).required()
       .description('This is the last page if nextPageOffset is null'),
     rows: Joi.array().items(Joi.object().keys({
@@ -53,7 +53,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
         failed: Joi.boolean().required().example(false),
       }).required(),
       device: deviceSchema.allow(null).required(),
-      deviceType: deviceTypeSchema.allow(null).required(),
+      deviceType: deviceTypeSchema(apiVersion).allow(null).required(),
     })).required(),
   }).required(),
   description: 'Search through activity in the connectivity environment',

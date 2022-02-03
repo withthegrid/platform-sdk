@@ -1,3 +1,59 @@
+## [17.32.0](https://github.com/withthegrid/platform-sdk/compare/v17.31.3...v17.32.0) (2022-02-02)
+
+
+### Features
+
+* only show x last measurements per port per quantity ([#91](https://github.com/withthegrid/platform-sdk/issues/91)) ([f075f55](https://github.com/withthegrid/platform-sdk/commit/f075f5514eaf1f2bedd2ae021867f2b9fa768d84)), closes [withthegrid/platform#863](https://github.com/withthegrid/platform/issues/863)
+
+### [17.31.3](https://github.com/withthegrid/platform-sdk/compare/v17.31.2...v17.31.3) (2022-01-27)
+
+
+### Bug Fixes
+
+* **deps:** bump joi from 17.5.0 to 17.6.0 ([#95](https://github.com/withthegrid/platform-sdk/issues/95)) ([f8ecc48](https://github.com/withthegrid/platform-sdk/commit/f8ecc4820f47c40ff183939c70e1b9d93be29fc6))
+
+### [17.31.2](https://github.com/withthegrid/platform-sdk/compare/v17.31.1...v17.31.2) (2022-01-25)
+
+
+### Bug Fixes
+
+* reportType property in parse report trigger activity ([ed55232](https://github.com/withthegrid/platform-sdk/commit/ed55232fb78d206bf26c59aecc7f7cb49a1c4b07))
+
+### [17.31.1](https://github.com/withthegrid/platform-sdk/compare/v17.31.0...v17.31.1) (2022-01-25)
+
+
+### Bug Fixes
+
+* error on update of (supplier) report type ([#92](https://github.com/withthegrid/platform-sdk/issues/92)) ([0275edf](https://github.com/withthegrid/platform-sdk/commit/0275edf731d5e8e587c3c5b1fb3415a3ca3d8e68)), closes [withthegrid/platform#942](https://github.com/withthegrid/platform/issues/942)
+
+## [17.31.0](https://github.com/withthegrid/platform-sdk/compare/v17.30.0...v17.31.0) (2022-01-21)
+
+
+### Features
+
+* drop defaults for radio, switch and checkbox field configs and drop allowNull ([#83](https://github.com/withthegrid/platform-sdk/issues/83)) ([e9ebc43](https://github.com/withthegrid/platform-sdk/commit/e9ebc43006268cc6f2d11677aac2cab14e4c51d0)), closes [withthegrid/platform#912](https://github.com/withthegrid/platform/issues/912)
+
+## [17.30.0](https://github.com/withthegrid/platform-sdk/compare/v17.29.0...v17.30.0) (2022-01-20)
+
+
+### Features
+
+* showAllXAxisLabels in analytics visualisation ([#79](https://github.com/withthegrid/platform-sdk/issues/79)) ([8322721](https://github.com/withthegrid/platform-sdk/commit/832272113d16df10b49dbd016939a33bbd34c4f3)), closes [withthegrid/platform-client#798](https://github.com/withthegrid/platform-client/issues/798)
+
+
+### Bug Fixes
+
+* **deps:** bump @types/node from 16.11.7 to 16.11.21 ([#89](https://github.com/withthegrid/platform-sdk/issues/89)) ([2f9fb5b](https://github.com/withthegrid/platform-sdk/commit/2f9fb5becb63a6bd2b7049b7023e8c5e2d149a27))
+* linting error ([f9ba468](https://github.com/withthegrid/platform-sdk/commit/f9ba4680f1e0c895f9f459aa11c8d28f38810126))
+* more linting errors ([1b127dc](https://github.com/withthegrid/platform-sdk/commit/1b127dc9768dda93b665242749c0d3b9d4a77aca))
+
+## [17.29.0](https://github.com/withthegrid/platform-sdk/compare/v17.28.0...v17.29.0) (2022-01-19)
+
+
+### Features
+
+* dependabot ([0858eb4](https://github.com/withthegrid/platform-sdk/commit/0858eb4bb80647628b97b40c1cda595f1de777fa))
+
 ## [17.28.0](https://github.com/withthegrid/platform-sdk/compare/v17.27.1...v17.28.0) (2022-01-10)
 
 

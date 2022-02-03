@@ -27,7 +27,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
   right: { supplier: 'ENVIRONMENT_ADMIN' },
   response: (apiVersion: number): Joi.AnySchema => Joi.object().keys({
     device: deviceSchema.allow(null).required(),
-    deviceType: deviceTypeSchema.allow(null).required(),
+    deviceType: deviceTypeSchema(apiVersion).allow(null).required(),
     activity: allActivitiesSchema(apiVersion).required(),
   }).required(),
   description: 'Get a specific activity in the connectivity environment',

@@ -5,8 +5,7 @@ import { schemaConstructor as supplierActivityConstructor, SupplierActivity } fr
 import { schema as deviceTypeHandlerActivity, DeviceTypeHandlerActivity } from './device-type-handler-activity';
 
 interface HandleLinkUpdate extends SupplierActivity<'handleLinkUpdate'> {
-  triggerData: {
-  };
+  triggerData: Record<string, never>;
   activities: DeviceTypeHandlerActivity[];
 }
 
