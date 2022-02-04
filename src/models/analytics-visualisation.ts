@@ -24,6 +24,10 @@ const mapVisualisationSchema = Joi.object().keys({
 
 const tableVisualisationSchema = Joi.object().keys({
   type: Joi.string().example('table').valid('table').required(),
+  colors: Joi.array().items(Joi.string().example('#202f0c')),
+  xAxisColumnIndex: Joi.number().integer().example(null).allow(null),
+  forceOrdinal: Joi.boolean().example(false),
+  showAllXAxisLabels: Joi.boolean().example(false).default(false),
 });
 
 const schema = Joi.alternatives().try(
@@ -36,6 +40,10 @@ const schema = Joi.alternatives().try(
 
 interface TableAnalyticsVisualisation {
   type: 'table';
+  colors?: string[];
+  xAxisColumnIndex?: number | null;
+  forceOrdinal?: boolean;
+  showAllXAxisLabels?: boolean;
 }
 
 interface GraphVisualisation {
