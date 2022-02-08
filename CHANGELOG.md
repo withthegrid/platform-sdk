@@ -1,3 +1,10 @@
+### [17.32.1](https://github.com/withthegrid/platform-sdk/compare/v17.32.0...v17.32.1) (2022-02-04)
+
+
+### Bug Fixes
+
+* base-field-configuration default boolean for checkbox ([067677c](https://github.com/withthegrid/platform-sdk/commit/067677c41f36e304f55a606031d1fc3f121b7b5b))
+
 ## [17.32.0](https://github.com/withthegrid/platform-sdk/compare/v17.31.3...v17.32.0) (2022-02-02)
 
 
