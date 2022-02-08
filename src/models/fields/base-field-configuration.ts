@@ -144,7 +144,7 @@ const schema = (apiVersion: number): Joi.AlternativesSchema => {
       inputType: Joi.string().valid('radio').required(),
     }),
     commonBaseFieldConfigurationSchema.keys({
-      type: Joi.string().valid('boolean').required(),
+      type: Joi.string().valid('boolean').default('boolean'),
       ...deprecatedDefaultValue,
       ...deprecatedValueOptions,
       inputType: Joi.string().valid('switch', 'checkbox').default('checkbox'),
