@@ -44,10 +44,10 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
         measurement: measurementSchema(apiVersion).required(),
         quantityHashId: Joi.string().required().example('sajia1'),
       })).required(),
-      deviceType: deviceTypeSchema.allow(null).required(),
+      deviceType: deviceTypeSchema(apiVersion).allow(null).required(),
       deviceHashId: Joi.string().allow(null).required().example('j1iha9'),
       fields: fieldsFromServerSchema.required().example({ id: 'My report' }),
-      type: environmentReportTypeSchema.required(),
+      type: environmentReportTypeSchema(apiVersion).required(),
       quantities: Joi.array().items(quantitySchema).required()
         .description('Only includes the quantities used in the report, not the quantities that are available in the report type (only relevant for report types of type human)'),
       pinGroupHashId: Joi.string().allow(null).required().example('dao97'),

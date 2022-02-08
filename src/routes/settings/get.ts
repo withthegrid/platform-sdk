@@ -19,8 +19,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSuppl
   method: 'get',
   path: '/',
   right: {},
-  response: Joi.object().keys({
-    environment: environmentSchema.description('A random monitoring environment this user has access to'),
+  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
+    environment: environmentSchema(apiVersion).description('A random monitoring environment this user has access to'),
     environmentRights: Joi.array().items(Joi.string()).example(['STATIC', 'USERS'])
       .description('See the getting started section about rights'),
     userEnvironmentSettings: userEnvironmentSettingsSchema,

@@ -22,6 +22,7 @@ const schema = Joi.object().keys({
     .description('0: no serious or critical open issues, 1: one or more serious open issues an no critical open issues, 2: one or more critical open issues')
     .example(0),
   mapLayer: Joi.string().invalid('nodes').required().example('myLayer'),
+  mostRecentMeasurementAt: Joi.date().allow(null).required().example(null),
   deletedAt: Joi.date().allow(null).required().example(null),
 })
   .description('A collection of pins. Is called a "location" in the GUI. A device can be connected to a pin group. Condition reports are registered at pin group level.')
@@ -40,6 +41,7 @@ interface PinGroup {
   deviceLinkHashId: string | null;
   level: 0 | 1 | 2;
   mapLayer: string;
+  mostRecentMeasurementAt: Date | null;
   deletedAt: Date | null;
 }
 

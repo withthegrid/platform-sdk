@@ -1,0 +1,16 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "tuesday"
+      time: "10:00"
+      timezone: "Europe/Amsterdam"
+    pull-request-branch-name:
+      separator: "-"
+    commit-message:
+      prefix: "fix(deps):"
+      prefix-development: "chore(deps):"
+    assignees:
+      - everhardt

@@ -29,11 +29,11 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
   path: '/',
   query: tableQuerySchemaGenerator(Joi.string().valid('hashId', 'name').default('hashId')),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
-  response: Joi.object().keys({
+  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     nextPageOffset: Joi.string().allow(null).example(null).required()
       .description('This is the last page if nextPageOffset is null'),
     rows: Joi.array().items(Joi.object().keys({
-      reportType: supplierReportTypeSchema.required(),
+      reportType: supplierReportTypeSchema(apiVersion).required(),
     })).required(),
   }),
   description: 'Search through device report types',

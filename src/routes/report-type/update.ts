@@ -43,12 +43,12 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   params: Joi.object().keys({
     hashId: Joi.string().required().example('l19a7s'),
   }).required(),
-  body: Joi.object().keys({
+  body: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     name: Joi.string().example('Temperature'),
     fieldConfigurations: Joi.object().keys({
-      pinGroup: updatableFieldConfigurationsSchema,
-      pin: updatableFieldConfigurationsSchema,
-      measurement: updatableFieldConfigurationsSchema,
+      pinGroup: updatableFieldConfigurationsSchema(apiVersion),
+      pin: updatableFieldConfigurationsSchema(apiVersion),
+      measurement: updatableFieldConfigurationsSchema(apiVersion),
     }).description('See the chapter on open fields on how to use this'),
     quantities: Joi.array().items(Joi.alternatives().try(
       Joi.object().keys({

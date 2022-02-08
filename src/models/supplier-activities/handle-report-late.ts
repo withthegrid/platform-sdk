@@ -5,8 +5,7 @@ import { schemaConstructor as supplierActivityConstructor, SupplierActivity } fr
 import { schema as deviceTypeHandlerActivity } from './device-type-handler-activity';
 
 interface HandleReportLate extends SupplierActivity<'handleReportLate'> {
-  triggerData: {
-  };
+  triggerData: Record<string, never>;
 }
 
 const schema = (apiVersion: number): Joi.ObjectSchema => supplierActivityConstructor(

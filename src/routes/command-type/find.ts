@@ -38,11 +38,11 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClientAndSupplie
       forDeviceTypeHashId: Joi.string().description('Filter the results on command types that can be sent to a device of this type'),
     }),
   right: { environment: 'READ', supplier: 'ENVIRONMENT_ADMIN' },
-  response: Joi.object().keys({
+  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     nextPageOffset: Joi.string().allow(null).example(null).required()
       .description('This is the last page if nextPageOffset is null'),
     rows: Joi.array().items(Joi.object().keys({
-      commandType: commandTypeSchema.required(),
+      commandType: commandTypeSchema(apiVersion).required(),
     })).required(),
   }),
   description: 'Search through command types',

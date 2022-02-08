@@ -1,3 +1,129 @@
+### [17.32.1](https://github.com/withthegrid/platform-sdk/compare/v17.32.0...v17.32.1) (2022-02-04)
+
+
+### Bug Fixes
+
+* base-field-configuration default boolean for checkbox ([067677c](https://github.com/withthegrid/platform-sdk/commit/067677c41f36e304f55a606031d1fc3f121b7b5b))
+
+## [17.32.0](https://github.com/withthegrid/platform-sdk/compare/v17.31.3...v17.32.0) (2022-02-02)
+
+
+### Features
+
+* only show x last measurements per port per quantity ([#91](https://github.com/withthegrid/platform-sdk/issues/91)) ([f075f55](https://github.com/withthegrid/platform-sdk/commit/f075f5514eaf1f2bedd2ae021867f2b9fa768d84)), closes [withthegrid/platform#863](https://github.com/withthegrid/platform/issues/863)
+
+### [17.31.3](https://github.com/withthegrid/platform-sdk/compare/v17.31.2...v17.31.3) (2022-01-27)
+
+
+### Bug Fixes
+
+* **deps:** bump joi from 17.5.0 to 17.6.0 ([#95](https://github.com/withthegrid/platform-sdk/issues/95)) ([f8ecc48](https://github.com/withthegrid/platform-sdk/commit/f8ecc4820f47c40ff183939c70e1b9d93be29fc6))
+
+### [17.31.2](https://github.com/withthegrid/platform-sdk/compare/v17.31.1...v17.31.2) (2022-01-25)
+
+
+### Bug Fixes
+
+* reportType property in parse report trigger activity ([ed55232](https://github.com/withthegrid/platform-sdk/commit/ed55232fb78d206bf26c59aecc7f7cb49a1c4b07))
+
+### [17.31.1](https://github.com/withthegrid/platform-sdk/compare/v17.31.0...v17.31.1) (2022-01-25)
+
+
+### Bug Fixes
+
+* error on update of (supplier) report type ([#92](https://github.com/withthegrid/platform-sdk/issues/92)) ([0275edf](https://github.com/withthegrid/platform-sdk/commit/0275edf731d5e8e587c3c5b1fb3415a3ca3d8e68)), closes [withthegrid/platform#942](https://github.com/withthegrid/platform/issues/942)
+
+## [17.31.0](https://github.com/withthegrid/platform-sdk/compare/v17.30.0...v17.31.0) (2022-01-21)
+
+
+### Features
+
+* drop defaults for radio, switch and checkbox field configs and drop allowNull ([#83](https://github.com/withthegrid/platform-sdk/issues/83)) ([e9ebc43](https://github.com/withthegrid/platform-sdk/commit/e9ebc43006268cc6f2d11677aac2cab14e4c51d0)), closes [withthegrid/platform#912](https://github.com/withthegrid/platform/issues/912)
+
+## [17.30.0](https://github.com/withthegrid/platform-sdk/compare/v17.29.0...v17.30.0) (2022-01-20)
+
+
+### Features
+
+* showAllXAxisLabels in analytics visualisation ([#79](https://github.com/withthegrid/platform-sdk/issues/79)) ([8322721](https://github.com/withthegrid/platform-sdk/commit/832272113d16df10b49dbd016939a33bbd34c4f3)), closes [withthegrid/platform-client#798](https://github.com/withthegrid/platform-client/issues/798)
+
+
+### Bug Fixes
+
+* **deps:** bump @types/node from 16.11.7 to 16.11.21 ([#89](https://github.com/withthegrid/platform-sdk/issues/89)) ([2f9fb5b](https://github.com/withthegrid/platform-sdk/commit/2f9fb5becb63a6bd2b7049b7023e8c5e2d149a27))
+* linting error ([f9ba468](https://github.com/withthegrid/platform-sdk/commit/f9ba4680f1e0c895f9f459aa11c8d28f38810126))
+* more linting errors ([1b127dc](https://github.com/withthegrid/platform-sdk/commit/1b127dc9768dda93b665242749c0d3b9d4a77aca))
+
+## [17.29.0](https://github.com/withthegrid/platform-sdk/compare/v17.28.0...v17.29.0) (2022-01-19)
+
+
+### Features
+
+* dependabot ([0858eb4](https://github.com/withthegrid/platform-sdk/commit/0858eb4bb80647628b97b40c1cda595f1de777fa))
+
+## [17.28.0](https://github.com/withthegrid/platform-sdk/compare/v17.27.1...v17.28.0) (2022-01-10)
+
+
+### Features
+
+* **routes:** suggestions.find ([#82](https://github.com/withthegrid/platform-sdk/issues/82)) ([1fbdbab](https://github.com/withthegrid/platform-sdk/commit/1fbdbab79035aa179353692ef6e6ea218f64821c)), closes [withthegrid/platform-client#770](https://github.com/withthegrid/platform-client/issues/770)
+
+### [17.27.1](https://github.com/withthegrid/platform-sdk/compare/v17.27.0...v17.27.1) (2022-01-05)
+
+
+### Bug Fixes
+
+* **AnalyticsQuery:** move column name out of field into column ([b95158c](https://github.com/withthegrid/platform-sdk/commit/b95158cffa45bfeeafb33653edd6d12fb2840b7f))
+
+## [17.27.0](https://github.com/withthegrid/platform-sdk/compare/v17.26.0...v17.27.0) (2022-01-05)
+
+
+### Features
+
+* add subtitle to analytics model ([d0fb928](https://github.com/withthegrid/platform-sdk/commit/d0fb92809b287c90367b9b5c281d473cbd61ef85)), closes [withthegrid/platform-client#785](https://github.com/withthegrid/platform-client/issues/785)
+
+## [17.26.0](https://github.com/withthegrid/platform-sdk/compare/v17.25.1...v17.26.0) (2022-01-03)
+
+
+### Features
+
+* **analytics:** field name customizing ([#81](https://github.com/withthegrid/platform-sdk/issues/81)) ([c8e01d3](https://github.com/withthegrid/platform-sdk/commit/c8e01d3e2a45a36659e4369e847d618902499f0a)), closes [withthegrid/platform#852](https://github.com/withthegrid/platform/issues/852)
+
+### [17.25.1](https://github.com/withthegrid/platform-sdk/compare/v17.25.0...v17.25.1) (2021-12-29)
+
+
+### Bug Fixes
+
+* measurementsExpirationPeriod -> measurementsExpirationDays ([467174f](https://github.com/withthegrid/platform-sdk/commit/467174fe635dab794440cf1042b52a98ca49c79c))
+
+## [17.25.0](https://github.com/withthegrid/platform-sdk/compare/v17.24.1...v17.25.0) (2021-12-29)
+
+
+### Features
+
+* mostRecentMeasurementAt property for edge and pinGroup ([e80c760](https://github.com/withthegrid/platform-sdk/commit/e80c7603d825908e0aa34a5d40184c5138f8930b))
+
+### [17.24.1](https://github.com/withthegrid/platform-sdk/compare/v17.24.0...v17.24.1) (2021-12-28)
+
+
+### Bug Fixes
+
+* limit figures in measurementsExpirationPeriod to 1 or 2 ([6f63632](https://github.com/withthegrid/platform-sdk/commit/6f6363222a95a28e853ee1e316df2fc40f4d8d45))
+
+## [17.24.0](https://github.com/withthegrid/platform-sdk/compare/v17.23.0...v17.24.0) (2021-12-16)
+
+
+### Features
+
+* measurements expiration period ([#78](https://github.com/withthegrid/platform-sdk/issues/78)) ([cefb52f](https://github.com/withthegrid/platform-sdk/commit/cefb52f69e7f41b952629a310ca96ad41b96e080)), closes [withthegrid/platform#377](https://github.com/withthegrid/platform/issues/377)
+
+## [17.23.0](https://github.com/withthegrid/platform-sdk/compare/v17.22.0...v17.23.0) (2021-12-16)
+
+
+### Features
+
+* doNotCompareToThresholds to report.add, .update ([#76](https://github.com/withthegrid/platform-sdk/issues/76)) ([66a3db0](https://github.com/withthegrid/platform-sdk/commit/66a3db063812eaa283d431ef79938e1267fafddc)), closes [withthegrid/platform#825](https://github.com/withthegrid/platform/issues/825)
+
 ## [17.22.0](https://github.com/withthegrid/platform-sdk/compare/v17.21.0...v17.22.0) (2021-12-08)
 
 

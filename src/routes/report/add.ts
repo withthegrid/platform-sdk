@@ -14,6 +14,7 @@ interface Request {
       generatedAt: Date;
       orderOfMagnitude: number;
       significand: number;
+      doNotCompareToThresholds: boolean;
     }[];
     reportTypeHashId: string;
     pinGroupHashId: string;
@@ -43,6 +44,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
         .required()
         .example(-1500)
         .description('The measured value is significand * 10 ^ orderOfMagnitude. It has as many significant figures as the significand has (except when the significand is 0, then the number of significant figures is not defined)'),
+      doNotCompareToThresholds: Joi.boolean().default(false)
+        .example(true)
+        .description('Do not compare to thresholds'),
     })).required(),
     reportTypeHashId: Joi.string().required().example('l19a7s'),
     pinGroupHashId: Joi.string().required().example('dao97'),

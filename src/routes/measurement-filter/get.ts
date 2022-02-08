@@ -31,9 +31,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     hashId: Joi.string().required().example('k8gh3'),
   }).required(),
   right: { environment: 'READ' },
-  response: Joi.object().keys({
+  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     measurementFilter: measurementFilterSchema.required(),
-    reportTypes: Joi.array().items(environmentReportTypeSchema).required(),
+    reportTypes: Joi.array().items(environmentReportTypeSchema(apiVersion)).required(),
     grid: gridSchema.allow(null).required(),
     pinGroups: Joi.array().items(pinGroupSchema).required(),
     quantities: Joi.array().items(quantitySchema).required(),

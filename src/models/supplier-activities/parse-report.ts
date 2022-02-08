@@ -28,7 +28,7 @@ interface ParseReport extends SupplierActivity<'parseReport'> {
 const schema = (apiVersion: number): Joi.ObjectSchema => supplierActivityConstructor(
   'parseReport',
   Joi.object().keys({
-    reportType: supplierReportTypeSchema,
+    reportType: supplierReportTypeSchema(apiVersion),
     payload: Joi.string().example('[123, 987]'),
     reportHashId: Joi.string().example('qoa978'),
     // commandHashId: Joi.string().allow(null).required().example(null),
@@ -40,7 +40,7 @@ const schema = (apiVersion: number): Joi.ObjectSchema => supplierActivityConstru
   }).required(),
   Joi.alternatives().try(
     setDeviceFieldsSchema,
-    scheduleCommandSchema,
+    scheduleCommandSchema(apiVersion),
   ),
 )
   .tag('supplierActivityParseReport')
