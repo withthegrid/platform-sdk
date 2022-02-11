@@ -1,3 +1,10 @@
+## [17.33.0](https://github.com/withthegrid/platform-sdk/compare/v17.32.1...v17.33.0) (2022-02-11)
+
+
+### Features
+
+* any operator in analytics queries ([#100](https://github.com/withthegrid/platform-sdk/issues/100)) ([3563d52](https://github.com/withthegrid/platform-sdk/commit/3563d52ae37ca30e35ea708f4656e41d27a0198f)), closes [withthegrid/platform#866](https://github.com/withthegrid/platform/issues/866)
+
 ### [17.32.1](https://github.com/withthegrid/platform-sdk/compare/v17.32.0...v17.32.1) (2022-02-04)
 
 
