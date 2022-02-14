@@ -1,3 +1,10 @@
+## [17.34.0](https://github.com/withthegrid/platform-sdk/compare/v17.33.1...v17.34.0) (2022-02-14)
+
+
+### Features
+
+* analytics map widget, step 1 ([#102](https://github.com/withthegrid/platform-sdk/issues/102)) ([d402277](https://github.com/withthegrid/platform-sdk/commit/d402277cfd73c9da409313e93a8ccc66632cc669)), closes [withthegrid/platform-client#771](https://github.com/withthegrid/platform-client/issues/771)
+
 ### [17.33.1](https://github.com/withthegrid/platform-sdk/compare/v17.33.0...v17.33.1) (2022-02-14)
 
 
