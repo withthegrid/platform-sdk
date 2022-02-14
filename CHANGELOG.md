@@ -1,3 +1,10 @@
+### [17.33.1](https://github.com/withthegrid/platform-sdk/compare/v17.33.0...v17.33.1) (2022-02-14)
+
+
+### Bug Fixes
+
+* **deps:** bump follow-redirects from 1.14.7 to 1.14.8 ([#107](https://github.com/withthegrid/platform-sdk/issues/107)) ([ad635bd](https://github.com/withthegrid/platform-sdk/commit/ad635bd97220964c785d905990608af0754e3231))
+
 ## [17.33.0](https://github.com/withthegrid/platform-sdk/compare/v17.32.1...v17.33.0) (2022-02-11)
 
 
