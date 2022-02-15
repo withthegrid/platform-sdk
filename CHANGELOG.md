@@ -1,3 +1,10 @@
+## [17.35.0](https://github.com/withthegrid/platform-sdk/compare/v17.34.0...v17.35.0) (2022-02-15)
+
+
+### Features
+
+* initialValue for switch, radio and checkbox formfield configs ([#114](https://github.com/withthegrid/platform-sdk/issues/114)) ([4240f8d](https://github.com/withthegrid/platform-sdk/commit/4240f8d060e812a793ed36ba2fc67967426e1bac))
+
 ## [17.34.0](https://github.com/withthegrid/platform-sdk/compare/v17.33.1...v17.34.0) (2022-02-14)
 
 
