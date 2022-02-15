@@ -82,6 +82,7 @@ const schema = (apiVersion: number): Joi.AlternativesSchema => {
         value: Joi.string().allow('').required(),
       })).required(),
       inputType: Joi.string().valid('radio').required(),
+      initialValue: Joi.string().allow(''),
     }),
     commonBaseFieldConfigurationSchema.keys({
       ...deprecatedAllowNull,
@@ -133,6 +134,7 @@ const schema = (apiVersion: number): Joi.AlternativesSchema => {
         value: Joi.number().required(),
       })).required(),
       inputType: Joi.string().valid('radio').required(),
+      initialValue: Joi.number(),
     }),
     commonBaseFieldConfigurationSchema.keys({
       type: Joi.string().valid('integer').required(),
@@ -142,12 +144,14 @@ const schema = (apiVersion: number): Joi.AlternativesSchema => {
         value: Joi.number().integer().required(),
       })).required(),
       inputType: Joi.string().valid('radio').required(),
+      initialValue: Joi.number().integer(),
     }),
     commonBaseFieldConfigurationSchema.keys({
       type: Joi.string().valid('boolean').default('boolean'),
       ...deprecatedDefaultValue,
       ...deprecatedValueOptions,
       inputType: Joi.string().valid('switch', 'checkbox').default('checkbox'),
+      initialValue: Joi.boolean(),
     }),
     commonBaseFieldConfigurationSchema.keys({
       ...deprecatedAllowNull,
@@ -168,6 +172,7 @@ const schema = (apiVersion: number): Joi.AlternativesSchema => {
         value: Joi.boolean().required(),
       })).required(),
       inputType: Joi.string().valid('radio').required(),
+      initialValue: Joi.boolean(),
     }),
     commonBaseFieldConfigurationSchema.keys({
       inputType: Joi.string().valid('file', 'files').required(),
@@ -226,6 +231,7 @@ interface FieldConfigurationStringSelect extends SharedBaseFieldConfigurationWit
 interface FieldConfigurationStringRadio extends SharedBaseFieldConfiguration {
   inputType: 'radio';
   type: 'string';
+  initialValue?: string;
   /**
    * @minItems 1
    */
@@ -253,6 +259,7 @@ interface FieldConfigurationNumberSelect extends SharedBaseFieldConfigurationWit
 interface FieldConfigurationNumberRadio extends SharedBaseFieldConfiguration {
   inputType: 'radio';
   type: 'number' | 'integer';
+  initialValue?: number;
   /**
    * @minItems 1
    */
@@ -262,11 +269,13 @@ interface FieldConfigurationNumberRadio extends SharedBaseFieldConfiguration {
 interface FieldConfigurationBooleanSwitch extends SharedBaseFieldConfiguration {
   inputType: 'switch';
   type: 'boolean';
+  initialValue?: boolean;
 }
 
 interface FieldConfigurationBooleanCheckbox extends SharedBaseFieldConfiguration {
   inputType: 'checkbox';
   type: 'boolean';
+  initialValue?: boolean;
 }
 
 interface FieldConfigurationBooleanSelect extends SharedBaseFieldConfigurationWithPrefix {
@@ -282,6 +291,7 @@ interface FieldConfigurationBooleanSelect extends SharedBaseFieldConfigurationWi
 interface FieldConfigurationBooleanRadio extends SharedBaseFieldConfiguration {
   inputType: 'radio';
   type: 'boolean';
+  initialValue?: boolean;
   /**
    * @minItems 1
    */
