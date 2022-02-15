@@ -64,10 +64,12 @@ const schema = Joi.object().keys({
   .tag('analyticsQuery');
 
 type TimeGranularity =
-  'day'
+  | 'hour'
+  | 'day'
   | 'week'
   | 'month'
   | 'year'
+  | 'hourOfTheDay'
   | 'dayOfTheWeek'
   | 'monthOfTheYear';
 
