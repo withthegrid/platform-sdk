@@ -1,3 +1,10 @@
+## [17.36.0](https://github.com/withthegrid/platform-sdk/compare/v17.35.0...v17.36.0) (2022-02-15)
+
+
+### Features
+
+* group by hour in analytics ([#106](https://github.com/withthegrid/platform-sdk/issues/106)) ([500f421](https://github.com/withthegrid/platform-sdk/commit/500f421d2224546da2f97d3c3b7f7116178075fd)), closes [withthegrid/platform#932](https://github.com/withthegrid/platform/issues/932)
+
 ## [17.35.0](https://github.com/withthegrid/platform-sdk/compare/v17.34.0...v17.35.0) (2022-02-15)
 
 
