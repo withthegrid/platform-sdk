@@ -60,4 +60,7 @@ type AnalyticsVisualisation = TableAnalyticsVisualisation | GraphVisualisation |
 export {
   schema,
   AnalyticsVisualisation,
+  GraphVisualisation,
+  TableAnalyticsVisualisation,
+  MapsVisualisation,
 };

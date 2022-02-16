@@ -39,7 +39,7 @@ const schema = Joi.object().keys({
     Joi.object().keys({ field: fieldSchema, name: Joi.string() }).required(),
     Joi.object().keys({ type: Joi.string().valid('count', 'share').required(), condition: conditionSchema, name: Joi.string() }).required(),
     Joi.object().keys({
-      type: Joi.string().valid('sum', 'mean', 'min', 'max').required(),
+      type: Joi.string().valid('sum', 'mean', 'min', 'max', 'any').required(),
       condition: conditionSchema,
       field: fieldSchema,
       name: Joi.string(),
@@ -64,10 +64,12 @@ const schema = Joi.object().keys({
   .tag('analyticsQuery');
 
 type TimeGranularity =
-  'day'
+  | 'hour'
+  | 'day'
   | 'week'
   | 'month'
   | 'year'
+  | 'hourOfTheDay'
   | 'dayOfTheWeek'
   | 'monthOfTheYear';
 
@@ -97,7 +99,7 @@ interface Limit {
 
 type AggregatedColumn =
   { type: 'count' | 'share'; condition?: Condition, name?: string }
-  | { type: 'sum' | 'mean' | 'min' | 'max'; condition?: Condition; field: Field, name?: string };
+  | { type: 'sum' | 'mean' | 'min' | 'max' | 'any'; condition?: Condition; field: Field, name?: string };
 
 type TimeGroupColumn = { type: 'timeGroup', field: string; granularity: TimeGranularity, name?: string };
 
