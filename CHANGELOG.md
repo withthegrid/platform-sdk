@@ -1,3 +1,10 @@
+### [17.36.1](https://github.com/withthegrid/platform-sdk/compare/v17.36.0...v17.36.1) (2022-02-16)
+
+
+### Bug Fixes
+
+* **deps:** bump axios from 0.25.0 to 0.26.0 ([#109](https://github.com/withthegrid/platform-sdk/issues/109)) ([c3ec32e](https://github.com/withthegrid/platform-sdk/commit/c3ec32e6cf6a30c5d0dd7697aed73d05de93c22a))
+
 ## [17.36.0](https://github.com/withthegrid/platform-sdk/compare/v17.35.0...v17.36.0) (2022-02-15)
 
 
