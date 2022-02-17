@@ -1,8 +1,5 @@
 import Joi from 'joi';
-import {
-  ControllerGeneratorOptionsWithClient,
-  ControllerGeneratorOptionsWithoutClientOrSupplier, ControllerGeneratorOptionsWithSupplier,
-} from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClientAndSupplier } from '../../comms/controller';
 
 const suggestionTypes = [
   'clientReportType.name',
@@ -32,16 +29,11 @@ interface Request {
 
 type EffectiveRequest = Request;
 
-interface ResponseRow {
-  hashId: string,
-    name: string,
-}
-
 interface Response {
-  results: ResponseRow[];
+  results: string[];
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClientAndSupplier = {
   method: 'get',
   path: '/',
   query: Joi.object().keys({
@@ -57,16 +49,11 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
   }).default(),
   right: { environment: 'READ', supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
-    results: Joi.array().items(
-      Joi.object().keys({
-        hashId: Joi.string().required(),
-        name: Joi.string().required(),
-      }),
-    ).required()
+    results: Joi.array().items(Joi.string()).required()
       .example([
-        { hashId: 'bdh12', name: 'Installed v1.1.0-rc4' },
-        { hashId: 'dhs34', name: 'Installed v1.1.0-rc5' },
-        { hashId: 'hdj23', name: 'Installed v1.1.0-rc6' },
+        'Installed v1.1.0-rc4',
+        'Installed v1.1.0-rc5',
+        'Installed v1.1.0-rc6',
       ]),
   }).required(),
   description: 'Get suggestions for field of type, filtered by search',
@@ -78,6 +65,5 @@ export {
   Request,
   EffectiveRequest,
   Response,
-  ResponseRow,
   SuggestionType,
 };
