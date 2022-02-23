@@ -30,7 +30,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
       measurement: Joi.array().items(baseFieldConfigurationSchema(apiVersion)).required(),
     }).required()
       .description('See the chapter on open fields on how to use this'),
-    parser: Joi.string().required().example('[omitted]').description('A javascript function that parses an incoming report. See the chapter "User defined code"'),
+    parser: Joi.string().max(1000000).required().example('[omitted]')
+      .description('A javascript function that parses an incoming report. See the chapter "User defined code"'),
   }).required(),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
