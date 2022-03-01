@@ -11,6 +11,7 @@ import DeviceTypeRoute from './device-type';
 import GraphRoute from './graph';
 import IssueRoute from './issue';
 import IssueCommentRoute from './issue-comment';
+import IssueTriggerRuleRoute from './issue-trigger-rule';
 import LabelRoute from './label';
 import MeasurementRoute from './measurement';
 import MeasurementFilterRoute from './measurement-filter';
@@ -49,6 +50,8 @@ class Routes {
   issue: IssueRoute;
 
   issueComment: IssueCommentRoute;
+
+  issueTriggerRule: IssueTriggerRuleRoute;
 
   label: LabelRoute;
 
