@@ -1,3 +1,10 @@
+## [17.38.0](https://github.com/withthegrid/platform-sdk/compare/v17.37.0...v17.38.0) (2022-03-02)
+
+
+### Features
+
+* 763 no photo files in response of edge or pingroup ([#120](https://github.com/withthegrid/platform-sdk/issues/120)) ([c83e149](https://github.com/withthegrid/platform-sdk/commit/c83e1499be0c6670a722f36b4c34af590db4a11c)), closes [withthegrid/platform#763](https://github.com/withthegrid/platform/issues/763)
+
 ## [17.37.0](https://github.com/withthegrid/platform-sdk/compare/v17.36.1...v17.37.0) (2022-03-02)
 
 
