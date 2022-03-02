@@ -1,3 +1,10 @@
+## [17.37.0](https://github.com/withthegrid/platform-sdk/compare/v17.36.1...v17.37.0) (2022-03-02)
+
+
+### Features
+
+* enforce event handlers have max length ([#119](https://github.com/withthegrid/platform-sdk/issues/119)) ([4ababc9](https://github.com/withthegrid/platform-sdk/commit/4ababc91da299553b8a6889205536f43fde8539b)), closes [withthegrid/platform#828](https://github.com/withthegrid/platform/issues/828)
+
 ### [17.36.1](https://github.com/withthegrid/platform-sdk/compare/v17.36.0...v17.36.1) (2022-02-16)
 
 
