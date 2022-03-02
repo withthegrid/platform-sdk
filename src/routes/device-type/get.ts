@@ -28,7 +28,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
   right: { supplier: 'ENVIRONMENT_ADMIN' },
   response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     deviceType: deviceTypeSchema(apiVersion).required(),
-    eventHandler: Joi.string().required().example('[omitted]').description('A javascript function that handles an events. See the chapter "User defined code"'),
+    eventHandler: Joi.string().max(1000000).required().example('[omitted]')
+      .description('A javascript function that handles an events. See the chapter "User defined code"'),
     commandTypes: Joi.array().items(commandTypeSchema(apiVersion)).required(),
     subscriptionHashId: Joi.string().description('If the user is subscribed to (email) alerts on this object, this key is present'),
     chartQuantities: Joi.array().items(quantitySchema).required(),
