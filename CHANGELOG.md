@@ -1,3 +1,10 @@
+### [17.38.1](https://github.com/withthegrid/platform-sdk/compare/v17.38.0...v17.38.1) (2022-03-02)
+
+
+### Bug Fixes
+
+* device table shows monitoring environments with attached devices ([#108](https://github.com/withthegrid/platform-sdk/issues/108)) ([d20a73a](https://github.com/withthegrid/platform-sdk/commit/d20a73a8e93477fb3c169d1177f5c31d03b3bf86)), closes [withthegrid/platform#944](https://github.com/withthegrid/platform/issues/944)
+
 ## [17.38.0](https://github.com/withthegrid/platform-sdk/compare/v17.37.0...v17.38.0) (2022-03-02)
 
 
