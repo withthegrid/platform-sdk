@@ -19,9 +19,9 @@
         "src/types/*"
       ]
     },
-    "rootDir": "src",
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "test/**/*"
   ]
 }
