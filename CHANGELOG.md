@@ -1,3 +1,10 @@
+## [17.39.0](https://github.com/withthegrid/platform-sdk/compare/v17.38.1...v17.39.0) (2022-03-04)
+
+
+### Features
+
+* limit name to 255 characters ([#115](https://github.com/withthegrid/platform-sdk/issues/115)) ([9179bc9](https://github.com/withthegrid/platform-sdk/commit/9179bc9b248ace280e917c696382439bb87bfe6f))
+
 ### [17.38.1](https://github.com/withthegrid/platform-sdk/compare/v17.38.0...v17.38.1) (2022-03-02)
 
 
