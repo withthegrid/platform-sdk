@@ -41,11 +41,12 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   response: Joi.object().keys({
     newComments: Joi.array().items(Joi.object().keys({
       comment: issueCommentSchema.required(),
-      userName: Joi.string().allow(null).required().example('John Doe'),
+      userName: Joi.string().allow(null).required().max(255)
+        .example('John Doe'),
     })).required().description('A list of comments created by this call. Includes the comment that was posted and might include an additional comment created by the system'),
     mentionedUsers: Joi.array().items(Joi.object().keys({
       hashId: Joi.string().required().example('ba5qq1'),
-      name: Joi.string().required().example('Jane Doe'),
+      name: Joi.string().max(255).required().example('Jane Doe'),
     })).required().description('Mentioned users in returned comments'),
   }),
   description: 'Add a comment to a specific issue',
