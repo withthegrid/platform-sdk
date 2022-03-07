@@ -42,8 +42,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       value: thresholdSchema.required(),
       quantity: quantitySchema.required(),
     })).required(),
-    photo: Joi.string().allow(null).required().description('base64 encoded string')
-      .example('iVBORw0KGgoAAAANSUhEUgAAB9AAAAhwCAYAAAB1bKV...'),
+    photo: Joi.string().allow(null).required().description('download link for photo.')
+      .example('https://api.withthegrid.com/file/yr969d...'),
   }).required(),
   description: 'Get a specific edge identified by its hashId',
 };

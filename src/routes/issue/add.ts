@@ -55,7 +55,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     hashId: Joi.string().required().example('c19aid'),
     mentionedUsers: Joi.array().items(Joi.object().keys({
       hashId: Joi.string().required().example('ba5qq1'),
-      name: Joi.string().required().example('Jane Doe'),
+      name: Joi.string().max(255).required().example('Jane Doe'),
     })).required(),
   }).required(),
   description: 'Create an issue',

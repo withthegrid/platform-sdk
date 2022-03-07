@@ -47,7 +47,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClientAndSupplie
       .description('This is the last page if nextPageOffset is null'),
     rows: Joi.array().items(Joi.object().keys({
       log: logSchema.required(),
-      userName: Joi.string().allow(null).required().example('John Doe'),
+      userName: Joi.string().max(255).allow(null).required()
+        .example('John Doe'),
     })).required(),
   }).required(),
   description: 'Search the audit log',

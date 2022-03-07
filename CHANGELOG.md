@@ -1,3 +1,31 @@
+## [17.39.0](https://github.com/withthegrid/platform-sdk/compare/v17.38.1...v17.39.0) (2022-03-04)
+
+
+### Features
+
+* limit name to 255 characters ([#115](https://github.com/withthegrid/platform-sdk/issues/115)) ([9179bc9](https://github.com/withthegrid/platform-sdk/commit/9179bc9b248ace280e917c696382439bb87bfe6f))
+
+### [17.38.1](https://github.com/withthegrid/platform-sdk/compare/v17.38.0...v17.38.1) (2022-03-02)
+
+
+### Bug Fixes
+
+* device table shows monitoring environments with attached devices ([#108](https://github.com/withthegrid/platform-sdk/issues/108)) ([d20a73a](https://github.com/withthegrid/platform-sdk/commit/d20a73a8e93477fb3c169d1177f5c31d03b3bf86)), closes [withthegrid/platform#944](https://github.com/withthegrid/platform/issues/944)
+
+## [17.38.0](https://github.com/withthegrid/platform-sdk/compare/v17.37.0...v17.38.0) (2022-03-02)
+
+
+### Features
+
+* 763 no photo files in response of edge or pingroup ([#120](https://github.com/withthegrid/platform-sdk/issues/120)) ([c83e149](https://github.com/withthegrid/platform-sdk/commit/c83e1499be0c6670a722f36b4c34af590db4a11c)), closes [withthegrid/platform#763](https://github.com/withthegrid/platform/issues/763)
+
+## [17.37.0](https://github.com/withthegrid/platform-sdk/compare/v17.36.1...v17.37.0) (2022-03-02)
+
+
+### Features
+
+* enforce event handlers have max length ([#119](https://github.com/withthegrid/platform-sdk/issues/119)) ([4ababc9](https://github.com/withthegrid/platform-sdk/commit/4ababc91da299553b8a6889205536f43fde8539b)), closes [withthegrid/platform#828](https://github.com/withthegrid/platform/issues/828)
+
 ### [17.36.1](https://github.com/withthegrid/platform-sdk/compare/v17.36.0...v17.36.1) (2022-02-16)
 
 
