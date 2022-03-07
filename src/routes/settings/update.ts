@@ -20,7 +20,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSuppl
   path: '/',
   body: Joi.object().keys({
     name: Joi.string().max(255).example('Jane Doe'),
-    password: Joi.string(),
+    password: Joi.string().min(8),
     locale: localeSchema,
     timezone: Joi.string(),
     phone: Joi.string().allow(null),
