@@ -1,3 +1,10 @@
+## [17.40.0](https://github.com/withthegrid/platform-sdk/compare/v17.39.0...v17.40.0) (2022-03-07)
+
+
+### Features
+
+* minimum password length ([#116](https://github.com/withthegrid/platform-sdk/issues/116)) ([863570b](https://github.com/withthegrid/platform-sdk/commit/863570b432c6c90483379942fb81ae00e0f5254c)), closes [withthegrid/platform-client#925](https://github.com/withthegrid/platform-client/issues/925)
+
 ## [17.39.0](https://github.com/withthegrid/platform-sdk/compare/v17.38.1...v17.39.0) (2022-03-04)
 
 
