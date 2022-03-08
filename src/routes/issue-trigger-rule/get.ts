@@ -10,11 +10,7 @@ type Request = {
 };
 type EffectiveRequest = Request;
 
-type EnvironmentIssueTriggerRule = {
-  deviceTypeHashId?: HashId
-} & IssueTriggerRule;
-
-type Response = EnvironmentIssueTriggerRule
+type Response = IssueTriggerRule
 
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'get',
@@ -24,12 +20,13 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   }),
   right: { environment: 'READ' },
   response: Joi.object().keys({
+    clientHashId: Joi.string().example('xd2rd4').required(),
     deviceTypeHashId: Joi.string().example('xd2rd4'),
     priorityLevel: Joi.number().integer().valid(1, 2).example('1'),
     missedReports: Joi.number().integer().required().example('12'),
     offlineForSeconds: Joi.number().integer().required().example('1800'),
   }),
-  description: 'Returns all issue trigger rules for an environment',
+  description: 'Gets a specific issue trigger rule by its hashId',
 };
 
 export {

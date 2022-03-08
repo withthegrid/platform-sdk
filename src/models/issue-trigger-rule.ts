@@ -1,13 +1,11 @@
 import Joi from 'joi';
 
-type PriorityLevel = 1 | 2;
-type MissedReports = number;
-type OfflineForSeconds = number;
-
 export type IssueTriggerRule = {
-  priorityLevel: PriorityLevel
-  missedReports: MissedReports
-  offlineForSeconds: OfflineForSeconds
+  clientHashId: string
+  deviceTypeHashId?: string
+  priorityLevel: 1 | 2
+  missedReports: number
+  offlineForSeconds: number
 }
 
 export const schema = Joi.object().keys({

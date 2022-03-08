@@ -1,7 +1,7 @@
 import Comms from '../../comms';
 import controllerGenerator, { Result } from '../../comms/controller';
 import {
-  add, update, delete as deleteRoute, get, getByClient, getByDeviceType,
+  add, update, delete as deleteRoute, get, find,
 } from './routes';
 
 export default class IssueTriggerRuleRoute {
@@ -63,28 +63,14 @@ export default class IssueTriggerRuleRoute {
     )(parameters);
   }
 
-  public getByClient(parameters: getByClient.Request):
-    Result<getByClient.EffectiveRequest, getByClient.Response> {
+  public find(parameters: find.Request):
+    Result<find.EffectiveRequest, find.Response> {
     return controllerGenerator<
-      getByClient.Request,
-      getByClient.EffectiveRequest,
-      getByClient.Response
+      find.Request,
+      find.EffectiveRequest,
+      find.Response
     >(
-      getByClient.controllerGeneratorOptions,
-      IssueTriggerRuleRoute.routerPath,
-      IssueTriggerRuleRoute.auth,
-      this.comms,
-    )(parameters);
-  }
-
-  public getByDeviceType(parameters: getByDeviceType.Request):
-    Result<getByDeviceType.EffectiveRequest, getByDeviceType.Response> {
-    return controllerGenerator<
-      getByDeviceType.Request,
-      getByDeviceType.EffectiveRequest,
-      getByDeviceType.Response
-    >(
-      getByDeviceType.controllerGeneratorOptions,
+      find.controllerGeneratorOptions,
       IssueTriggerRuleRoute.routerPath,
       IssueTriggerRuleRoute.auth,
       this.comms,

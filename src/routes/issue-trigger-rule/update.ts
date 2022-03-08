@@ -8,7 +8,7 @@ type Request = {
   params: {
     hashId: HashId
   }
-  body: IssueTriggerRule
+  body: Omit<IssueTriggerRule, 'clientHashId' | 'deviceTypeHashId'>
 }
 type EffectiveRequest = Request;
 

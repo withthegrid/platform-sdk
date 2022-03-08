@@ -5,9 +5,7 @@ import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 type HashId = string;
 
 type Request = {
-  body: {
-    deviceTypeHashId?: string
-  } & IssueTriggerRule
+  body: Omit<IssueTriggerRule, 'clientHashId'>
 }
 type EffectiveRequest = Request;
 
