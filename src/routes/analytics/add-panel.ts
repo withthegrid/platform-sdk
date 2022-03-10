@@ -34,8 +34,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     cards: Joi.array().items(Joi.object().keys({
       title: Joi.string().required().example('My widget'),
       subtitle: Joi.string().allow('').example('My widget description'),
-      // TODO srieding joi.link does not work with our joi-to-swagger library.
-      // query: analyticsQuerySchema.required(),
+      query: analyticsQuerySchema.required(),
       visualisation: analyticsVisualisationSchema.required(),
     })).required(),
   }).required(),

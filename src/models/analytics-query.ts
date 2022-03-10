@@ -1,4 +1,4 @@
-import Joi from 'joi';
+import Joi, { array } from 'joi';
 
 const fieldSchema = Joi.alternatives().try(
   Joi.string().required().example('pinGroup.hashId'),
@@ -28,7 +28,26 @@ const limitSchema = Joi.object().keys({
 const conditionSchema = Joi.object().keys({
   type: Joi.string().valid('or', 'and').required(),
   restrictions: Joi.array().items(Joi.alternatives().try(
-    Joi.link('#analyticsQueryCondition').description('Another condition (recursion allowed)').required(),
+    Joi.link('#analyticsQueryCondition').description('Another condition (recursion allowed)').required().meta({
+      swagger: {
+        type: 'object',
+        properties: {
+          type: {
+            type: 'string',
+            enum: ['or', 'and'],
+            example: 'or',
+          },
+          restrictions: {
+            type: 'object',
+            example: '{}',
+            description: 'recursive list of more conditions',
+          },
+        },
+        required: ['type'],
+        additionalProperties: false,
+      },
+      swaggerOverride: true,
+    }),
     constraintSchema.required(),
   )).required(),
 }).id('analyticsQueryCondition');

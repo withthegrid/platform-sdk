@@ -1,4 +1,3 @@
-// import Joi from 'joi';
 import { ControllerGeneratorOptionsWithSupplier } from '../../comms/controller';
 
 type Request = Record<string, undefined>;
