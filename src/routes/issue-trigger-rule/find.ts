@@ -1,35 +1,42 @@
 import Joi from 'joi';
+import { EffectiveTableQuery, TableQuery, tableQuerySchemaGenerator } from '../../comms/table-controller';
 import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
-import { IssueTriggerRule } from '../../models/issue-trigger-rule';
+import { IssueTriggerRule, schema } from '../../models/issue-trigger-rule';
+
+type IssueTriggerRuleQueryFields = Omit<
+  Pick<IssueTriggerRule, 'priorityLevel' | 'deviceTypeHashId'>,
+  'priorityLevel'>;
+
+type Query = TableQuery & IssueTriggerRuleQueryFields;
 
 type Request = {
-  query: {
-    clientHashId: string
-    deviceTypeHashId?: string
-  }
-};
-type EffectiveRequest = Request;
+  query?: Query
+} | undefined;
 
-type Response = Array<IssueTriggerRule>
+type EffectiveQuery = EffectiveTableQuery & IssueTriggerRuleQueryFields;
+
+type EffectiveRequest = { query: EffectiveQuery };
+
+type ResponseRow = IssueTriggerRule;
+type Response = {
+  nextPageOffset: string | null;
+  rows: Array<ResponseRow>;
+}
 
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'get',
-  path: '/',
-  query: Joi.object().keys({
-    clientHashId: Joi.string().example('xd2rd4').required(),
+  path: '/find',
+  query: tableQuerySchemaGenerator().keys({
     deviceTypeHashId: Joi.string().example('xd2rd4'),
+    priorityLevel: Joi.number().integer().valid(1, 2),
   }),
   right: { environment: 'READ' },
-  response: Joi.array().items(
-    Joi.object().keys({
-      clientHashId: Joi.string().example('xd2rd4').required(),
-      deviceTypeHashId: Joi.string().example('xd2rd4'),
-      priorityLevel: Joi.number().integer().valid(1, 2).example('1'),
-      missedReports: Joi.number().integer().required().example('12'),
-      offlineForSeconds: Joi.number().integer().required().example('1800'),
-    }),
-  ),
-  description: 'Returns all issue trigger rules for an environment',
+  response: Joi.object().keys({
+    nextPageOffset: Joi.string().allow(null).example(null).required()
+      .description('This is the last page if nextPageOffset is null'),
+    rows: Joi.array().items(schema),
+  }),
+  description: 'Returns all found issue trigger rules for an environment.',
 };
 
 export {
@@ -37,4 +44,7 @@ export {
   Request,
   EffectiveRequest,
   Response,
+  Query,
+  EffectiveQuery,
+  ResponseRow,
 };

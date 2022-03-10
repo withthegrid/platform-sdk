@@ -1,49 +1,23 @@
+import TableController from '../../comms/table-controller';
 import Comms from '../../comms';
 import controllerGenerator, { Result } from '../../comms/controller';
 import {
-  add, update, delete as deleteRoute, get, find,
+  set, get, find,
 } from './routes';
 
 export default class IssueTriggerRuleRoute {
   static routerPath = 'issue-trigger-rule';
   static auth = true;
 
-  constructor(readonly comms: Comms) {}
+  constructor(private readonly comms: Comms) {}
 
-  public add(parameters: add.Request): Result<add.EffectiveRequest, add.Response> {
+  public set(parameters: set.Request): Result<set.EffectiveRequest, set.Response> {
     return controllerGenerator<
-      add.Request,
-      add.EffectiveRequest,
-      add.Response
+      set.Request,
+      set.EffectiveRequest,
+      set.Response
     >(
-      add.controllerGeneratorOptions,
-      IssueTriggerRuleRoute.routerPath,
-      IssueTriggerRuleRoute.auth,
-      this.comms,
-    )(parameters);
-  }
-
-  public update(parameters: update.Request): Result<update.EffectiveRequest, update.Response> {
-    return controllerGenerator<
-      update.Request,
-      update.EffectiveRequest,
-      update.Response
-    >(
-      update.controllerGeneratorOptions,
-      IssueTriggerRuleRoute.routerPath,
-      IssueTriggerRuleRoute.auth,
-      this.comms,
-    )(parameters);
-  }
-
-  public deleteRoute(parameters: deleteRoute.Request):
-    Result<deleteRoute.EffectiveRequest, deleteRoute.Response> {
-    return controllerGenerator<
-      deleteRoute.Request,
-      deleteRoute.EffectiveRequest,
-      deleteRoute.Response
-    >(
-      deleteRoute.controllerGeneratorOptions,
+      set.controllerGeneratorOptions,
       IssueTriggerRuleRoute.routerPath,
       IssueTriggerRuleRoute.auth,
       this.comms,
@@ -63,17 +37,25 @@ export default class IssueTriggerRuleRoute {
     )(parameters);
   }
 
-  public find(parameters: find.Request):
+  public find(parameters?: find.Request):
     Result<find.EffectiveRequest, find.Response> {
     return controllerGenerator<
-      find.Request,
-      find.EffectiveRequest,
-      find.Response
-    >(
-      find.controllerGeneratorOptions,
-      IssueTriggerRuleRoute.routerPath,
-      IssueTriggerRuleRoute.auth,
-      this.comms,
-    )(parameters);
+        find.Request,
+        find.EffectiveRequest,
+        find.Response
+      >(
+        find.controllerGeneratorOptions,
+        IssueTriggerRuleRoute.routerPath,
+        IssueTriggerRuleRoute.auth,
+        this.comms,
+      )(parameters);
+  }
+
+  public findTableController(parameters?: find.Query):
+    TableController<find.ResponseRow> {
+    return new TableController<find.ResponseRow>(
+      this.find,
+      parameters,
+    );
   }
 }

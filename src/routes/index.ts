@@ -95,6 +95,7 @@ class Routes {
     this.graph = new GraphRoute(comms);
     this.issue = new IssueRoute(comms);
     this.issueComment = new IssueCommentRoute(comms);
+    this.issueTriggerRule = new IssueTriggerRuleRoute(comms);
     this.label = new LabelRoute(comms);
     this.measurement = new MeasurementRoute(comms);
     this.measurementFilter = new MeasurementFilterRoute(comms);
@@ -126,6 +127,7 @@ export {
   GraphRoute,
   IssueRoute,
   IssueCommentRoute,
+  IssueTriggerRuleRoute,
   LabelRoute,
   MeasurementRoute,
   MeasurementFilterRoute,
