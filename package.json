@@ -23,7 +23,7 @@
     "build:json": "rimraf -rf json/ && npm run build:json:field-configuration && npm run build:json:field-configurations",
     "build:json:field-configuration": "typescript-json-schema ./tsconfig.json BaseFieldConfiguration --required --noExtraProps -o json/base-field-configuration.json",
     "build:json:field-configurations": "typescript-json-schema ./tsconfig.json BaseFieldConfigurations --required --noExtraProps -o json/base-field-configurations.json",
-    "build:open-api-file": "ts-node -P tsconfig.cjs.json documentation/",
+    "build:open-api-file": "ts-node -P tsconfig.cjs.json --files documentation/",
     "prepare": "npm run build",
     "watch-ts": "rimraf -rf esm/ && tsc -w",
     "lint": "npm run build:cjs && eslint --ext .ts src",
@@ -33,8 +33,7 @@
   "dependencies": {
     "axios": "^0.26.0",
     "joi": "^17.5.0",
-    "qs": "^6.10.3",
-    "joi-to-swagger": "6.0.1"
+    "qs": "^6.10.3"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.1",
@@ -58,7 +57,9 @@
     "ts-jest" : "27.1.3",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.4",
-    "typescript-json-schema": "^0.53.0"
+    "typescript-json-schema": "^0.53.0",
+    "joi-to-swagger": "6.0.1",
+    "widdershins": "^4.0.1"
   },
   "engines": {
     "node": ">=8.0.0"

@@ -10,7 +10,8 @@ const schema = Joi.object().keys({
   deletedAt: Joi.date().allow(null),
 })
   .description('A comment on a specific issue')
-  .tag('issueComment');
+  .tag('issueComment')
+  .meta({ className: 'issueComment' });
 
 interface IssueComment {
   hashId: string;

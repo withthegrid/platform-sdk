@@ -16,7 +16,8 @@ const schema = Joi.object().keys({
   deletedAt: Joi.date().allow(null).required().example(null),
 })
   .description('A geographical object representing a point. Is used to connect one or more single segment lines.')
-  .tag('node');
+  .tag('node')
+  .meta({ className: 'node' });
 
 interface Node {
   hashId: string;

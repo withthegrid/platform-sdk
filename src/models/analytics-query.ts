@@ -80,6 +80,7 @@ const schema = Joi.object().keys({
   rowsPerPage: Joi.number().default(20).min(10).max(100),
 })
   .description('An object describing an analytics query.')
+  .meta({ className: 'analyticsQuery' })
   .tag('analyticsQuery');
 
 type TimeGranularity =

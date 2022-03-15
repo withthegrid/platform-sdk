@@ -29,6 +29,7 @@ const schema = (apiVersion: number): Joi.ObjectSchema => {
       .description('User classification, false: not an anomaly, true: is an anomaly, null: unknown'),
   })
     .tag('measurement')
+    .meta({ className: 'measurement' })
     .description('A value representing a measurement of a certain quantity at a certain pin by a device or human at a specific point in time.');
 
   return model;

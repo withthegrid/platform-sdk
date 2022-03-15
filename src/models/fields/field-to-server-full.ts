@@ -10,6 +10,7 @@ const schema = Joi.alternatives().try(
   Joi.array().items(fileToServerSchema).required(),
 )
   .tag('fieldToServerFull')
+  .meta({ className: 'fieldToServerFull' })
   .description('The values and files that can be stored in a form field.');
 
 export {

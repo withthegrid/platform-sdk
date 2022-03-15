@@ -32,6 +32,7 @@ const schema = (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
   createdAt: Joi.date().required().example('2019-12-31T15:23Z'),
 })
   .tag('environment')
+  .meta({ className: 'environment' })
   .description('Is called a monitoring environment in the UI. The space on which all data like geographical objects, measurements and issues are stored. Multiple users can be given access to the same monitoring environment.');
 
 interface Environment {

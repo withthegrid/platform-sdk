@@ -15,7 +15,8 @@ const schema = Joi.object().keys({
     .description('See the getting started section about rights'),
 })
   .description('A human that has access to the withthegrid application')
-  .tag('user');
+  .tag('user')
+  .meta({ className: 'user' });
 
 interface User {
   hashId: string;

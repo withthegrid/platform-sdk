@@ -16,7 +16,7 @@ test('test joi-to-swagger', () => {
   const innerSchema = Joi.object().keys({
     innerId: Joi.number().integer().positive().required(),
     innerName: Joi.string(),
-  });
+  }).meta({ className: 'inner' });
   const outerSchema = Joi.object().keys({
     id: Joi.number().integer().positive().required(),
     name: Joi.string(),
@@ -25,8 +25,26 @@ test('test joi-to-swagger', () => {
     active: Joi.boolean().default(true),
     inner: innerSchema,
   });
-  const components1 = j2s(innerSchema).components;
-  const jsonSchema = j2s(outerSchema, components1).swagger;
+  const innerSchema2 = Joi.object().keys({
+    innerId: Joi.number().integer().positive().required(),
+    innerName: Joi.string(),
+  });
+  const outerSchema2 = Joi.object().keys({
+    id: Joi.number().integer().positive().required(),
+    name: Joi.string(),
+    email: Joi.string().email().required(),
+    created: Joi.date().allow(null),
+    active: Joi.boolean().default(true),
+    inner: innerSchema2.meta({ className: 'inner2' }),
+  });
+  const inner = j2s(innerSchema).swagger;
+  const jsonSchema = j2s(outerSchema, inner).swagger;
+  const components = j2s(outerSchema, inner).components;
+  const jsonSchema2 = j2s(outerSchema2).swagger;
+  const components2 = j2s(outerSchema2, components).components;
+  console.log(jsonSchema2);
+  console.log(components2);
+  console.log(components);
   console.log(JSON.stringify(jsonSchema));
 });
 
