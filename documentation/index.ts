@@ -232,6 +232,11 @@ async function go() {
         },
         "version": "${apiVersion}"
     },
+    "servers": [
+      {
+        "url": "https://api.sandbox.withthegrid.com"
+      }
+    ],
     "tags": [{"name":"${Array.from(tags).join('"},{"name":"')}"}],
     "paths": {
       ${pathSwaggerDefinitions.join(',')}

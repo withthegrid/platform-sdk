@@ -10,7 +10,7 @@ Programmatic access to the application requires a machine account. Almost everyt
 Our programmatic interface is a REST JSON API that is accessible through HTTPS. Next to the raw HTTP queries (with examples in cURL), we provide a Javascript(Typescript) SDK. Select in the top bar whether you want to see the documentation for cURL or the Javascript SDK.
 To add the SDK to your javascript package, type
 
-\`\`\`npm i @withthegrid/platform-sdk into your console.\`\`\`
+\`\`\`npm i @withthegrid/platform-sdk\`\`\` into your console.
 
 ## Environment types
 
