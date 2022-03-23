@@ -45,7 +45,7 @@ jobs:
           git config user.email "<>"
       - name: commit
         run: |
-          # Stage the file, commit and push
+          # Stage the documentation file, commit and push
           git add docs/index.html
           git commit -m "chore: Documentation updated by github actions"
           git push
