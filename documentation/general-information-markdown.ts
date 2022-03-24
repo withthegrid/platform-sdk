@@ -8,9 +8,7 @@ This document provides information on how to access the withthegrid application 
 
 Programmatic access to the application requires a machine account. Almost everything a user can do in the user interface of the application, can also be done with a machine account. To obtain one, contact us at info@withthegrid.com.
 Our programmatic interface is a REST JSON API that is accessible through HTTPS. Next to the raw HTTP queries (with examples in cURL), we provide a Javascript(Typescript) SDK. Select in the top bar whether you want to see the documentation for cURL or the Javascript SDK.
-To add the SDK to your javascript package, type
-
-\`\`\`npm i @withthegrid/platform-sdk\`\`\` into your console.
+To add the SDK to your javascript package, type \`\`\`npm i @withthegrid/platform-sdk\`\`\` into your console.
 
 ## Environment types
 
@@ -19,14 +17,14 @@ There are two types of environments in our application: monitoring environments 
 In *monitoring environments*, you store geospatial and other static information on infrastructural assets. You can create condition reports on the condition of these assets, resulting in measurement time series. Reports on asset can be manually created or by connecting an (IoT) device. The condition of the assets is monitored based on the condition reports and issues are automatically created when anomalies are detected.
 
 In *connectivity environments*, developers of devices and external systems can:
-- manage the provisioning of their devices by means of HTTPS webhooks or client certificates (through CoAP over DTLS, MQTT over TLS or HTTPS)
+- manage the provisioning of their devices by means of HTTPS webhooks or client certificates (through CoAP over DTLS or HTTPS)
 - define event handlers in TypeScript that parse incoming payloads into condition reports, return instructions to devices (including FOTA) and monitor device health.
 - monitor activity of your devices
 - Generate claim tokens to share with the customer so they can securely claim the devices in their monitoring environment.
 
-## Rights
+## Rights & Routes
 
-To interact with the API you can make HTTP requests to the routes in the left hand menu. Most of these need authentication.
+To interact with the API you can make HTTP requests to the routes in the left-hand menu. Most of these need authentication.
 Obtain a JSON webtoken from the [authentication route](#tag/authentication). The following rights exist for the *monitoring environments*:
 
 | Right       | Description               |
@@ -40,7 +38,17 @@ Obtain a JSON webtoken from the [authentication route](#tag/authentication). The
 | SENSORS     | Manage devices            |
 | REPORTS     | Manage condition reports  |
 
-For the *connectivity environments* there is only one right. ENVIRONMENT_ADMIN.
+For the *connectivity environments* there is only one right: ENVIRONMENT_ADMIN.
+
+
+### Headers
+
+All requests need a header specifying the version of the api that is being used by the client for example:
+\`\`\`Api-Version: 4\`\`\`
+
+As the route documentation will show, the request body and its response are almost always JSON encoded (with corresponding \`\`\`Content-Type: application/json\`\`\` header).
+
+
 
 ## Schemas
 
@@ -48,7 +56,7 @@ Some objects in requests or responses are used multiple times. Those are extract
 
 ## Sdk
 
-There is a SDK available that can be used to make calling the api more easy. The following is an example for creating a location (pinGroup). It is written for Node, but can easily be altered for use in a browser environment
+There is a SDK available that can be used to make calling the api more easy. The following is an example for creating a location (pinGroup).
 \`\`\`
 // The .default in the require statement is necessary as  SDK is written in
 // Typescript, which exports the default under a default key, see

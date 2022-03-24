@@ -108,13 +108,13 @@ function determineMethodsContent(routesToDocument: RouteToDocument[], tag: strin
       return '';
     }
     let rightsString = '';
-    if (right !== undefined) {
-      rightsString += '\\n\\n';
+    if (right !== undefined && (right.supplier !== undefined || right.environment !== undefined)) {
+      rightsString += '\\n\\nRights\\n\\n';
       if (right.supplier !== undefined) {
-        rightsString += `Right needed *connectivity environment*: ${right.supplier}\\n`;
+        rightsString += `- *Connectivity environment*: ${right.supplier}\\n\\n`;
       }
       if (right.environment !== undefined) {
-        rightsString += `Right needed *monitoring environment*: ${right.environment}\\n`;
+        rightsString += `- *Monitoring environment*: ${right.environment}\\n\\n`;
       }
     }
     return `"description": "${description !== undefined ? description : ''}${right !== undefined ? ` ${rightsString}` : ''}",`;
@@ -126,6 +126,7 @@ function determineMethodsContent(routesToDocument: RouteToDocument[], tag: strin
     methodContentParts.push(`"${route.method}": {
     ${route.summary !== undefined ? `"summary": "${route.summary}",` : ''}
     ${determineDescription(route.description, route.right)}
+    ${route.right.environment === undefined && route.right.supplier === undefined ? '"security":[],' : ''}
     "responses": {
       ${determineResponseContent(route)}
     }
@@ -226,10 +227,6 @@ async function go() {
           "email": "info@withthegrid.com",
           "url": "https://withthegrid.com/"
         },
-        "x-logo": {
-          "url": "https://withthegrid.com/wp-content/uploads/2019/10/wtg-logo.svg",
-          "altText": "withthegrid" 
-        },
         "version": "${apiVersion}"
     },
     "servers": [
@@ -301,7 +298,7 @@ async function go() {
   });
 
   openApiObject.info['x-logo'] = {
-    url: 'https://withthegrid.com/wp-content/uploads/2019/10/wtg-logo.svg',
+    url: 'https://github.com/withthegrid/platform-sdk/raw/feat-987-automatic-documentation-generation_/documentation/wtg-logo.png',
     altText: 'withthegrid',
   };
 
@@ -313,7 +310,11 @@ async function go() {
       descriptionArray.push(`##  ${match[1]}\n\n<SchemaDefinition schemaRef="#/components/schemas/${match[1]}"/>`);
     }
   });
-  openApiObject.tags = openApiObject.tags.map((tag: { name: string }) => ({ name: tag.name, 'x-displayName': `${tag.name[0].toUpperCase()}${tag.name.slice(1)}` }));
+  openApiObject.tags = openApiObject.tags.map((tag: { name: string }) => (
+    {
+      name: tag.name,
+      'x-displayName': `${tag.name === 'authentication' ? 'Login' : tag.name[0].toUpperCase() + tag.name.slice(1)}`,
+    }));
   openApiObject.tags.push({
     name: 'models',
     'x-displayName': 'Schemas',
