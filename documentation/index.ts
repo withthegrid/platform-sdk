@@ -280,6 +280,9 @@ async function go() {
       const substr = str.substring(index);
       const codeStringMatches = substr.matchAll(/(```)(shell|http|javascript|ruby|python|php|java|go)((.*\n)+?)(```)/g);
       let codeStringMatch = codeStringMatches.next();
+      if (codeStringMatch.value[2] === 'shell') {
+        codeStringMatch.value[3] = `${codeStringMatch.value[3].substring(0, codeStringMatch.value[3].length - 2)} \\\n  -H 'Api-Version: 5'\n\n`;
+      }
       let i = 0;
       do {
         codeSamples.push(

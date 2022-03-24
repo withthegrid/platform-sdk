@@ -25,7 +25,7 @@ In *connectivity environments*, developers of devices and external systems can:
 ## Rights & Routes
 
 To interact with the API you can make HTTP requests to the routes in the left-hand menu. Most of these need authentication.
-Obtain a JSON webtoken from the [authentication route](#tag/authentication). The following rights exist for the *monitoring environments*:
+Obtain a JSON webtoken from the [Login route](#tag/authentication). The following rights exist for the *monitoring environments*:
 
 | Right       | Description               |
 |------------ | ------------------------- |
