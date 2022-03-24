@@ -1,11 +1,13 @@
 import Joi from 'joi';
 import { EffectiveTableQuery, TableQuery, tableQuerySchemaGenerator } from '../../comms/table-controller';
 import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
-import { IssueTriggerRule, schema } from '../../models/issue-trigger-rule';
+import { IssueTriggerRule, schema as issueTriggerRuleSchema } from '../../models/issue-trigger-rule';
+import { DeviceType, schema as deviceTypeSchema } from '../../models/device-type';
 
-type IssueTriggerRuleQueryFields = Omit<
-  Pick<IssueTriggerRule, 'priorityLevel' | 'deviceTypeHashId'>,
-  'priorityLevel'>;
+type IssueTriggerRuleQueryFields = {
+  priorityLevel?: IssueTriggerRule['priorityLevel'];
+  deviceTypeHashId?: IssueTriggerRule['deviceTypeHashId'];
+};
 
 type Query = TableQuery & IssueTriggerRuleQueryFields;
 
@@ -17,7 +19,11 @@ type EffectiveQuery = EffectiveTableQuery & IssueTriggerRuleQueryFields;
 
 type EffectiveRequest = { query: EffectiveQuery };
 
-type ResponseRow = IssueTriggerRule;
+type ResponseRow = {
+  issueTriggerRule: IssueTriggerRule;
+  deviceType?: DeviceType;
+};
+
 type Response = {
   nextPageOffset: string | null;
   rows: Array<ResponseRow>;
@@ -31,10 +37,15 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     priorityLevel: Joi.number().integer().valid(1, 2),
   }),
   right: { environment: 'READ' },
-  response: Joi.object().keys({
+  response: (apiVersion: number) => Joi.object().keys({
     nextPageOffset: Joi.string().allow(null).example(null).required()
       .description('This is the last page if nextPageOffset is null'),
-    rows: Joi.array().items(schema),
+    rows: Joi.array().items(
+      Joi.object().keys({
+        issueTriggerRule: issueTriggerRuleSchema,
+        deviceType: deviceTypeSchema(apiVersion).optional(),
+      }),
+    ),
   }),
   description: 'Returns all found issue trigger rules for an environment.',
 };

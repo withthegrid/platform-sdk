@@ -1,13 +1,17 @@
 import Joi from 'joi';
+import { DeviceType, schema as deviceTypeSchema } from '../../models/device-type';
 import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
-import { IssueTriggerRule, schema } from '../../models/issue-trigger-rule';
+import { IssueTriggerRule, schema as issueTriggerRuleSchema } from '../../models/issue-trigger-rule';
 
 type Request = {
   query: Pick<IssueTriggerRule, 'deviceTypeHashId' | 'priorityLevel'>;
 };
 type EffectiveRequest = Request;
 
-type Response = IssueTriggerRule;
+type Response = {
+  issueTriggerRule: IssueTriggerRule;
+  deviceType?: DeviceType;
+};
 
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'get',
@@ -17,7 +21,10 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     priorityLevel: Joi.number().integer().valid(1, 2).required(),
   }),
   right: { environment: 'READ' },
-  response: schema,
+  response: (apiVersion: number) => Joi.object().keys({
+    issueTriggerRule: issueTriggerRuleSchema,
+    deviceType: deviceTypeSchema(apiVersion).optional(),
+  }),
   description: 'Gets a specific issue trigger rule by its priorityLevel and/or deviceTypeHashId.',
 };
 

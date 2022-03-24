@@ -1,12 +1,14 @@
 import Joi from 'joi';
-import { IssueTriggerRule, schema } from '../../models/issue-trigger-rule';
+import { IssueTriggerRule, schema as issueTriggerRuleSchema } from '../../models/issue-trigger-rule';
 import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 
 type Request = {
   query: Pick<IssueTriggerRule, 'priorityLevel' | 'deviceTypeHashId'>;
   body: {
-    missedReports?: IssueTriggerRule['missedReports'];
-    offlineForSeconds?: IssueTriggerRule['offlineForSeconds'];
+    issueTriggerRule: {
+      missedReports: IssueTriggerRule['missedReports'];
+      offlineForSeconds: IssueTriggerRule['offlineForSeconds'];
+    } | null;
   };
 }
 type EffectiveRequest = Request;
@@ -16,16 +18,16 @@ type Response = void;
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'post',
   path: '/',
-  query: schema.keys({
+  query: issueTriggerRuleSchema.keys({
     missedReports: Joi.disallow(),
     offlineForSeconds: Joi.disallow(),
   }),
-  body: schema.keys({
-    priorityLevel: Joi.disallow(),
-    deviceTypeHashId: Joi.disallow(),
-    missedReports: Joi.optional(),
-    offlineForSeconds: Joi.optional(),
-  }).optional(),
+  body: Joi.object().keys({
+    issueTriggerRule: issueTriggerRuleSchema.keys({
+      priorityLevel: Joi.disallow(),
+      deviceTypeHashId: Joi.disallow(),
+    }).allow(null),
+  }).required(),
   right: { environment: 'ENVIRONMENT_ADMIN' },
   description: 'Creates or updates an issue trigger rule override.',
 };
