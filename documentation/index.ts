@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import j2s, { ComponentsSchema } from 'joi-to-swagger';
-import { Schema } from 'joi';
+import { AnySchema, ObjectSchema, Schema } from 'joi';
 import path from 'path';
 import fs from 'fs';
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -99,6 +99,39 @@ function determineResponseContent(
       }`;
 }
 
+function determineParameters(query?: AnySchema, params?: ObjectSchema): string {
+  const paramStrings: string[] = [];
+  if (query === undefined && params === undefined) {
+    return '';
+  }
+
+  if (query !== undefined) {
+    const swagger = j2s(query).swagger;
+    paramStrings.push(`
+      {
+        "name": "query",
+        "schema": ${JSON.stringify(swagger)},
+        "required":false,
+        "in": "query"
+      }`);
+  }
+
+  if (params !== undefined) {
+    const swagger = j2s(params).swagger;
+    Object.getOwnPropertyNames(swagger.properties).sort().forEach((name) => {
+      paramStrings.push(`
+      {
+        "name": "${name}",
+        "schema": ${JSON.stringify(swagger.properties[name])},
+        "required":${swagger.required.includes(name)},
+        "in": "path"
+      }`);
+    });
+  }
+
+  return `"parameters": [${paramStrings.join(',')}],`;
+}
+
 function determineMethodsContent(routesToDocument: RouteToDocument[], tag: string) {
   function determineDescription(
     description?: string,
@@ -127,6 +160,7 @@ function determineMethodsContent(routesToDocument: RouteToDocument[], tag: strin
     ${route.summary !== undefined ? `"summary": "${route.summary}",` : ''}
     ${determineDescription(route.description, route.right)}
     ${route.right.environment === undefined && route.right.supplier === undefined ? '"security":[],' : ''}
+    ${determineParameters(route.query, route.params)}
     "responses": {
       ${determineResponseContent(route)}
     }
@@ -150,8 +184,9 @@ function determinePathSpecification(
     groupedRoutes[key].push(controllerGeneratorOption);
   });
   Object.entries(groupedRoutes).forEach((record) => {
+    const routeWithReplacedHashId = record[0].replace(/:(.*?)(\/|$)/g, '{$1}$2');
     pathSpecificationParts.push(
-      `"/${record[1][0].tag}${record[0]}": {
+      `"/${record[1][0].tag}${routeWithReplacedHashId}": {
       ${determineMethodsContent(record[1], record[1][0].tag)}
     }`,
     );
@@ -231,7 +266,7 @@ async function go() {
     },
     "servers": [
       {
-        "url": "https://api.sandbox.withthegrid.com"
+        "url": "https://api.withthegrid.com"
       }
     ],
     "tags": [{"name":"${Array.from(tags).join('"},{"name":"')}"}],

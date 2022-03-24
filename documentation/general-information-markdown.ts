@@ -58,11 +58,7 @@ Some objects in requests or responses are used multiple times. Those are extract
 
 There is a SDK available that can be used to make calling the api more easy. The following is an example for creating a location (pinGroup).
 \`\`\`
-// The .default in the require statement is necessary as  SDK is written in
-// Typescript, which exports the default under a default key, see
-// https://github.com/microsoft/TypeScript/issues/2719.
-const PlatformSdk = require('@withthegrid/platform-sdk').default;
-const { errors } = require('@withthegrid/platform-sdk');
+import PlatformSdk, { errors } from '@withthegrid/platform-sdk';
 
 const example = async () => {
   const platformSdk = new PlatformSdk();
