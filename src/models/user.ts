@@ -6,7 +6,7 @@ const schema = Joi.object().keys({
   email: Joi.string().email({ tlds: false }).allow(null).required()
     .example('info@acme.com')
     .description('Is null for machine accounts'),
-  name: Joi.string().required().example('John Doe'),
+  name: Joi.string().required().max(255).example('John Doe'),
   timezone: Joi.string().required().example('Europe/Amsterdam').description('A IANA zone or a fixed-offset name of the form \'UTC+3\', or the strings \'utc\'.'),
   locale: localeSchema.default('en'),
   phone: Joi.string().allow(null).default(null),

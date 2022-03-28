@@ -38,8 +38,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     notificationLevel: Joi.number().valid(0, 1, 2).allow(null).required()
       .example(0)
       .description('Subscribe to every issue created on a location (pinGroup) in this grid (0), when the issue gets serious (1) or when the issue gets critical (2). If you do not want to receive any notifications, set to null'),
-    photo: Joi.string().allow(null).required().description('base64 encoded string')
-      .example('iVBORw0KGgoAAAANSUhEUgAAB9AAAAhwCAYAAAB1bKV...'),
+    photo: Joi.string().allow(null).required().description('download link for photo.')
+      .example('https://api.withthegrid.com/file/yr969d...'),
   }).required(),
   description: 'Get a specific grid identified by its hashId',
 };

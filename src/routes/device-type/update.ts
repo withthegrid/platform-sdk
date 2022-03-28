@@ -48,7 +48,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
   }).required(),
   body: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     name: Joi.string().example('Cathodic protection device').description('This name is also visible in monitoring environments. To get a uniform user experience, please provide the name in English'),
-    eventHandler: Joi.string().description('A javascript function that handles events. See the chapter "User defined code"'),
+    eventHandler: Joi.string().max(1000000).description('A javascript function that handles events. See the chapter "User defined code"'),
     fieldConfigurations: updatableFieldConfigurationsSchema(apiVersion),
     pinGroupFieldConfigurations: updatableFieldConfigurationsSchema(apiVersion)
       .description('Defines deviceFields on the location (pinGroup) the device is connected to. Can be used in monitoring report type functions. See the chapter on open fields on how to use this'),

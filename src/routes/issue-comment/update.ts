@@ -31,10 +31,11 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   right: { environment: 'ISSUES' },
   response: Joi.array().items(Joi.object().keys({
     comment: issueCommentSchema.required(),
-    userName: Joi.string().allow(null).required().example('John Doe'),
+    userName: Joi.string().max(255).allow(null).required()
+      .example('John Doe'),
     mentionedUsers: Joi.array().items(Joi.object().keys({
       hashId: Joi.string().required().example('ba5qq1'),
-      name: Joi.string().required().example('Jane Doe'),
+      name: Joi.string().max(255).required().example('Jane Doe'),
     })).required(),
   })).required(),
   description: 'Update a comment on an issue (if it is yours)',
