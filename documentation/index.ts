@@ -357,7 +357,7 @@ async function go() {
   });
 
   openApiObject.info['x-logo'] = {
-    url: 'https://github.com/withthegrid/platform-sdk/raw/feat-987-automatic-documentation-generation_/documentation/wtg-logo.png',
+    url: 'https://github.com/withthegrid/platform-sdk/raw/main/documentation/wtg-logo.png',
     altText: 'withthegrid',
   };
 
