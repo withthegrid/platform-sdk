@@ -218,7 +218,7 @@ function determinePathSpecification(
 function determineWiddershinsOptions() {
   return {
     codeSamples: true,
-    httpsnippet: false,
+    httpSnippet: false,
     templateCallback(templateName: any, stage: any, data: any) { return data; },
     theme: 'darkula',
     search: true,
@@ -334,7 +334,7 @@ async function go() {
       const codeSamples: {lang: string, label: string, source: string}[] = [];
       const index = match.value.index;
       const substr = str.substring(index);
-      const codeStringMatches = substr.matchAll(/(```)(shell|http|javascript|ruby|python|php|java|go)((.*\n)+?)(```)/g);
+      const codeStringMatches = substr.matchAll(/(```)(shell|http|javascript|ruby|python|php|java|go)((.*(\n|\r\n))+?)(```)/g);
       let codeStringMatch = codeStringMatches.next();
       let i = 0;
       do {
