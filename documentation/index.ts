@@ -99,11 +99,31 @@ function determineResponseContent(
       }`;
 }
 
-function determineParameters(query?: AnySchema, params?: ObjectSchema): string {
+function determineParameters(
+  query?: AnySchema,
+  params?: ObjectSchema,
+  right?: { supplier?: string, environment?: string },
+): string {
   const paramStrings: string[] = [];
-  if (query === undefined && params === undefined) {
-    return '';
+
+  if (right !== undefined && (right.supplier !== undefined || right.environment !== undefined)) {
+    paramStrings.push(`
+    {
+      "name": "Environment-Hash-Id",
+      "required": true,
+      "in": "header",
+      "schema": { "type": "string", "example": "yourAssetEnvironmentHashId" }
+    }
+  `);
   }
+  paramStrings.push(`
+    {
+      "name": "Api-Version",
+      "required": true,
+      "in": "header",
+      "schema": { "type": "integer", "example": 5 }
+    }
+  `);
 
   if (query !== undefined) {
     const swagger = j2s(query).swagger;
@@ -159,8 +179,8 @@ function determineMethodsContent(routesToDocument: RouteToDocument[], tag: strin
     methodContentParts.push(`"${route.method}": {
     ${route.summary !== undefined ? `"summary": "${route.summary}",` : ''}
     ${determineDescription(route.description, route.right)}
-    ${route.right.environment === undefined && route.right.supplier === undefined ? '"security":[],' : ''}
-    ${determineParameters(route.query, route.params)}
+    ${tag === 'authentication' ? '"security":[],' : ''}
+    ${determineParameters(route.query, route.params, route.right)}
     "responses": {
       ${determineResponseContent(route)}
     }
@@ -209,6 +229,7 @@ function determineWiddershinsOptions() {
     tocSummary: false,
     headings: 2,
     yaml: false,
+    user_templates: 'documentation/templates',
   };
 }
 
@@ -315,18 +336,18 @@ async function go() {
       const substr = str.substring(index);
       const codeStringMatches = substr.matchAll(/(```)(shell|http|javascript|ruby|python|php|java|go)((.*\n)+?)(```)/g);
       let codeStringMatch = codeStringMatches.next();
-      if (codeStringMatch.value[2] === 'shell') {
-        codeStringMatch.value[3] = `${codeStringMatch.value[3].substring(0, codeStringMatch.value[3].length - 2)} \\\n  -H 'Api-Version: 5'\n\n`;
-      }
       let i = 0;
       do {
-        codeSamples.push(
-          {
-            lang: codeStringMatch.value[2],
-            label: codeStringMatch.value[2],
-            source: codeStringMatch.value[3],
-          },
-        );
+        if (codeStringMatch.value[2] === 'shell' || codeStringMatch.value[2] === 'javascript') {
+          codeSamples.push(
+            {
+              lang: codeStringMatch.value[2],
+              label: codeStringMatch.value[2],
+              source: codeStringMatch.value[3],
+            },
+          );
+        }
+
         i += 1;
         codeStringMatch = codeStringMatches.next();
       } while (i < 8);
