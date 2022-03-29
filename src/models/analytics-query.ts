@@ -1,4 +1,4 @@
-import Joi, { array } from 'joi';
+import Joi from 'joi';
 
 const fieldSchema = Joi.alternatives().try(
   Joi.string().required().example('pinGroup.hashId'),
