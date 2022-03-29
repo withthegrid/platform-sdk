@@ -5,9 +5,10 @@ on:
       - '**'
     paths-ignore:
       - 'docs/index.html'
+  pull_request:
 jobs:
 #  ci:
-#    if: github.ref == 'refs/heads/main'
+#    if: ${{ github.ref == 'refs/heads/main' }}
 #    runs-on: ubuntu-latest
 #    steps:
 #      - name: Checkout repo
@@ -30,7 +31,7 @@ jobs:
 #          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
   document:
     runs-on: ubuntu-latest
-    if: ${{ github.ref != 'refs/heads/main'}}
+    if: ${{ github.ref != 'refs/heads/main' && github.event_name == 'push'}}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
