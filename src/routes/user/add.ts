@@ -17,7 +17,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClientAndSupplie
   method: 'post',
   path: '/',
   body: Joi.object().keys({
-    name: Joi.string().required().example('John Doe'),
+    name: Joi.string().max(255).required().example('John Doe'),
     email: Joi.string().email({ tlds: false }).required().example('info@acme.com'),
     rights: Joi.array().items(Joi.string()).required().example(['STATIC', 'USERS'])
       .description('See the getting started section about rights'),

@@ -54,10 +54,11 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   right: { environment: 'ISSUES' },
   response: Joi.object().keys({
     newComment: issueCommentSchema,
-    newCommentUserName: Joi.string().allow(null).required().example('John Doe'),
+    newCommentUserName: Joi.string().max(255).allow(null).required()
+      .example('John Doe'),
     newCommentMentionedUsers: Joi.array().items(Joi.object().keys({
       hashId: Joi.string().required().example('ba5qq1'),
-      name: Joi.string().required().example('Jane Doe'),
+      name: Joi.string().max(255).required().example('Jane Doe'),
     })).required(),
   }).description('An update might cause a new comment to be created. Current functionality only triggers a possible additional comment from the system'),
   description: 'Change the settings of a specific issue',

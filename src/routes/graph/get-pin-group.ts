@@ -57,8 +57,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       value: thresholdSchema.required(),
       quantity: quantitySchema.required(),
     })).required(),
-    photo: Joi.string().allow(null).required().description('base64 encoded string')
-      .example('iVBORw0KGgoAAAANSUhEUgAAB9AAAAhwCAYAAAB1bKV...'),
+    photo: Joi.string().allow(null).required().description('download link for photo.')
+      .example('https://api.withthegrid.com/file/yr969d...'),
     nextReportBefore: Joi.date().allow(null).required().example('2019-12-31T15:25Z'),
     grids: Joi.array().items(gridSchema).required(),
   }).required(),

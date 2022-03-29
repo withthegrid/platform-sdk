@@ -41,17 +41,19 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   right: { environment: 'READ' },
   response: Joi.object().keys({
     issue: issueSchema.required(),
-    userName: Joi.string().allow(null).required().example('John Doe'),
+    userName: Joi.string().max(255).allow(null).required()
+      .example('John Doe'),
     assignedUserName: Joi.string().allow(null).required().example(null),
     quantities: Joi.array().items(quantitySchema).required(),
     mentionedUsers: Joi.array().items(Joi.object().keys({
       hashId: Joi.string().required().example('ba5qq1'),
-      name: Joi.string().required().example('Jane Doe'),
+      name: Joi.string().max(255).required().example('Jane Doe'),
     })).required(),
     labels: Joi.array().items(labelSchema).required(),
     comments: Joi.array().items(Joi.object().keys({
       comment: issueCommentSchema.required(),
-      userName: Joi.string().allow(null).required().example('John Doe'),
+      userName: Joi.string().max(255).allow(null).required()
+        .example('John Doe'),
     })).required(),
     subscribed: Joi.boolean().required().example(false),
     links: Joi.array().items(Joi.object().keys({

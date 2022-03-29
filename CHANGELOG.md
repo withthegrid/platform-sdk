@@ -1,3 +1,80 @@
+## [17.40.0](https://github.com/withthegrid/platform-sdk/compare/v17.39.0...v17.40.0) (2022-03-07)
+
+
+### Features
+
+* minimum password length ([#116](https://github.com/withthegrid/platform-sdk/issues/116)) ([863570b](https://github.com/withthegrid/platform-sdk/commit/863570b432c6c90483379942fb81ae00e0f5254c)), closes [withthegrid/platform-client#925](https://github.com/withthegrid/platform-client/issues/925)
+
+## [17.39.0](https://github.com/withthegrid/platform-sdk/compare/v17.38.1...v17.39.0) (2022-03-04)
+
+
+### Features
+
+* limit name to 255 characters ([#115](https://github.com/withthegrid/platform-sdk/issues/115)) ([9179bc9](https://github.com/withthegrid/platform-sdk/commit/9179bc9b248ace280e917c696382439bb87bfe6f))
+
+### [17.38.1](https://github.com/withthegrid/platform-sdk/compare/v17.38.0...v17.38.1) (2022-03-02)
+
+
+### Bug Fixes
+
+* device table shows monitoring environments with attached devices ([#108](https://github.com/withthegrid/platform-sdk/issues/108)) ([d20a73a](https://github.com/withthegrid/platform-sdk/commit/d20a73a8e93477fb3c169d1177f5c31d03b3bf86)), closes [withthegrid/platform#944](https://github.com/withthegrid/platform/issues/944)
+
+## [17.38.0](https://github.com/withthegrid/platform-sdk/compare/v17.37.0...v17.38.0) (2022-03-02)
+
+
+### Features
+
+* 763 no photo files in response of edge or pingroup ([#120](https://github.com/withthegrid/platform-sdk/issues/120)) ([c83e149](https://github.com/withthegrid/platform-sdk/commit/c83e1499be0c6670a722f36b4c34af590db4a11c)), closes [withthegrid/platform#763](https://github.com/withthegrid/platform/issues/763)
+
+## [17.37.0](https://github.com/withthegrid/platform-sdk/compare/v17.36.1...v17.37.0) (2022-03-02)
+
+
+### Features
+
+* enforce event handlers have max length ([#119](https://github.com/withthegrid/platform-sdk/issues/119)) ([4ababc9](https://github.com/withthegrid/platform-sdk/commit/4ababc91da299553b8a6889205536f43fde8539b)), closes [withthegrid/platform#828](https://github.com/withthegrid/platform/issues/828)
+
+### [17.36.1](https://github.com/withthegrid/platform-sdk/compare/v17.36.0...v17.36.1) (2022-02-16)
+
+
+### Bug Fixes
+
+* **deps:** bump axios from 0.25.0 to 0.26.0 ([#109](https://github.com/withthegrid/platform-sdk/issues/109)) ([c3ec32e](https://github.com/withthegrid/platform-sdk/commit/c3ec32e6cf6a30c5d0dd7697aed73d05de93c22a))
+
+## [17.36.0](https://github.com/withthegrid/platform-sdk/compare/v17.35.0...v17.36.0) (2022-02-15)
+
+
+### Features
+
+* group by hour in analytics ([#106](https://github.com/withthegrid/platform-sdk/issues/106)) ([500f421](https://github.com/withthegrid/platform-sdk/commit/500f421d2224546da2f97d3c3b7f7116178075fd)), closes [withthegrid/platform#932](https://github.com/withthegrid/platform/issues/932)
+
+## [17.35.0](https://github.com/withthegrid/platform-sdk/compare/v17.34.0...v17.35.0) (2022-02-15)
+
+
+### Features
+
+* initialValue for switch, radio and checkbox formfield configs ([#114](https://github.com/withthegrid/platform-sdk/issues/114)) ([4240f8d](https://github.com/withthegrid/platform-sdk/commit/4240f8d060e812a793ed36ba2fc67967426e1bac))
+
+## [17.34.0](https://github.com/withthegrid/platform-sdk/compare/v17.33.1...v17.34.0) (2022-02-14)
+
+
+### Features
+
+* analytics map widget, step 1 ([#102](https://github.com/withthegrid/platform-sdk/issues/102)) ([d402277](https://github.com/withthegrid/platform-sdk/commit/d402277cfd73c9da409313e93a8ccc66632cc669)), closes [withthegrid/platform-client#771](https://github.com/withthegrid/platform-client/issues/771)
+
+### [17.33.1](https://github.com/withthegrid/platform-sdk/compare/v17.33.0...v17.33.1) (2022-02-14)
+
+
+### Bug Fixes
+
+* **deps:** bump follow-redirects from 1.14.7 to 1.14.8 ([#107](https://github.com/withthegrid/platform-sdk/issues/107)) ([ad635bd](https://github.com/withthegrid/platform-sdk/commit/ad635bd97220964c785d905990608af0754e3231))
+
+## [17.33.0](https://github.com/withthegrid/platform-sdk/compare/v17.32.1...v17.33.0) (2022-02-11)
+
+
+### Features
+
+* any operator in analytics queries ([#100](https://github.com/withthegrid/platform-sdk/issues/100)) ([3563d52](https://github.com/withthegrid/platform-sdk/commit/3563d52ae37ca30e35ea708f4656e41d27a0198f)), closes [withthegrid/platform#866](https://github.com/withthegrid/platform/issues/866)
+
 ### [17.32.1](https://github.com/withthegrid/platform-sdk/compare/v17.32.0...v17.32.1) (2022-02-04)
 
 

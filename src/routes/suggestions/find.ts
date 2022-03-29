@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithClientAndSupplier } from '../../comms/controller';
 
 const suggestionTypes = [
   'clientReportType.name',
@@ -13,6 +13,7 @@ const suggestionTypes = [
   'quantity.name',
   'quantity.unit',
   'user.name',
+  'environment.name',
 ] as const;
 
 type SuggestionType = (typeof suggestionTypes)[number];
@@ -32,7 +33,7 @@ interface Response {
   results: string[];
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithClientAndSupplier = {
   method: 'get',
   path: '/',
   query: Joi.object().keys({
@@ -46,7 +47,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       .max(500)
       .default(50),
   }).default(),
-  right: { environment: 'READ' },
+  right: { environment: 'READ', supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
     results: Joi.array().items(Joi.string()).required()
       .example([

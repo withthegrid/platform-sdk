@@ -60,7 +60,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       .description('This is the last page if nextPageOffset is null'),
     rows: Joi.array().items(Joi.object().keys({
       issue: issueSchema.required(),
-      userName: Joi.string().allow(null).required().example('John Doe'),
+      userName: Joi.string().max(255).allow(null).required()
+        .example('John Doe'),
       assignedUserName: Joi.string().allow(null).required().example(null),
       subscribed: Joi.boolean().required().example(false),
       links: Joi.array().min(1).items(Joi.object().keys({
