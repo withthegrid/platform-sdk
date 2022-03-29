@@ -7,28 +7,28 @@ on:
       - 'docs/index.html'
   pull_request:
 jobs:
-#  ci:
-#    if: ${{ github.ref == 'refs/heads/main' }}
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Checkout repo
-#        uses: actions/checkout@v2
-#        with:
-#          fetch-depth: 0
-#      - name: Install packages
-#        run: npm ci
-#      - name: Lint code
-#        run: npm run lint
-#        timeout-minutes: 5
-#      - name: Create a release
-#        if: github.event_name == 'push'
-#        run: npm run release
-#        timeout-minutes: 5
-#        env:
-#          # Has write access to packages
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#          GOOGLE_CHAT_WEBHOOK: ${{ secrets.RELEASE_GOOGLE_CHAT_WEBHOOK }}
-#          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  ci:
+    if: ${{ github.ref == 'refs/heads/main' || github.event_name == 'pull_request'}}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Install packages
+        run: npm ci
+      - name: Lint code
+        run: npm run lint
+        timeout-minutes: 5
+      - name: Create a release
+        if: github.event_name == 'push'
+        run: npm run release
+        timeout-minutes: 5
+        env:
+          # Has write access to packages
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GOOGLE_CHAT_WEBHOOK: ${{ secrets.RELEASE_GOOGLE_CHAT_WEBHOOK }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
   document:
     runs-on: ubuntu-latest
     if: ${{ github.ref != 'refs/heads/main' && github.event_name == 'push'}}
