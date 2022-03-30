@@ -11,7 +11,7 @@ interface NewMeasurement {
   generatedAt: Date;
   orderOfMagnitude: number;
   significand: number;
-  doNotCompareToThresholds: boolean;
+  doNotCompareToThresholds?: boolean;
 }
 
 interface UpdatedMeasurement {
@@ -19,7 +19,7 @@ interface UpdatedMeasurement {
   generatedAt: Date;
   orderOfMagnitude: number;
   significand: number;
-  doNotCompareToThresholds: boolean;
+  doNotCompareToThresholds?: boolean;
 }
 
 type ReportUpdate = UpdatedMeasurement | NewMeasurement;

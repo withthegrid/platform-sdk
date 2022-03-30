@@ -1,3 +1,10 @@
+### [17.40.1](https://github.com/withthegrid/platform-sdk/compare/v17.40.0...v17.40.1) (2022-03-30)
+
+
+### Bug Fixes
+
+* doNotCompareToThresholds is optional in requests ([d85ad62](https://github.com/withthegrid/platform-sdk/commit/d85ad626de2bc00b9520098636c5984b64412da1)), closes [withthegrid/platform#1128](https://github.com/withthegrid/platform/issues/1128)
+
 ## [17.40.0](https://github.com/withthegrid/platform-sdk/compare/v17.39.0...v17.40.0) (2022-03-07)
 
 
