@@ -21,6 +21,7 @@ const schema = Joi.object().keys({
   sentAt: Joi.date().allow(null).required().example('2019-12-31T15:23Z'),
 })
   .tag('command')
+  .meta({ className: 'command' })
   .description('An instruction for a specific device');
 
 interface Command {

@@ -17,6 +17,7 @@ const schema = Joi.object().keys({
   })).required(),
 })
   .tag('chart')
+  .meta({ className: 'chart' })
   .description('The meta-data describing a chart');
 
 interface Chart {

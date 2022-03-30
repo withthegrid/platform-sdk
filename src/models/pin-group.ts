@@ -26,7 +26,8 @@ const schema = Joi.object().keys({
   deletedAt: Joi.date().allow(null).required().example(null),
 })
   .description('A collection of pins. Is called a "location" in the GUI. A device can be connected to a pin group. Condition reports are registered at pin group level.')
-  .tag('pinGroup');
+  .tag('pinGroup')
+  .meta({ className: 'pinGroup' });
 
 interface PinGroup {
   hashId: string;

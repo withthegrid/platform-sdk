@@ -70,7 +70,8 @@ const schema = Joi.object().keys({
   }).allow(null).required(),
 })
   .description('An object defining an incoming or outgoing request')
-  .tag('webRequest');
+  .tag('webRequest')
+  .meta({ className: 'webRequest' });
 
 interface WebRequest {
   hashId: string;

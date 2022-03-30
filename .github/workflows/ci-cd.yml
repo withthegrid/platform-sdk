@@ -2,10 +2,13 @@ name: Continuous integration and deployment
 on:
   push:
     branches:
-      - main
+      - '**'
+    paths-ignore:
+      - 'docs/index.html'
   pull_request:
 jobs:
   ci:
+    if: ${{ github.ref == 'refs/heads/main' || github.event_name == 'pull_request'}}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -26,3 +29,25 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GOOGLE_CHAT_WEBHOOK: ${{ secrets.RELEASE_GOOGLE_CHAT_WEBHOOK }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  document:
+    runs-on: ubuntu-latest
+    if: ${{ github.ref != 'refs/heads/main' && github.event_name == 'push'}}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Install packages
+        run: npm ci
+      - name: generate documentation
+        run: npm run build:documentation
+      - name: setup git config
+        run: |
+          git config user.name "GitHub Actions Documentation Bot"
+          git config user.email "<>"
+      - name: commit
+        run: |
+          # Stage the documentation file, commit and push
+          git add docs/index.html
+          git commit -m "chore: Documentation updated by github actions"
+          git push

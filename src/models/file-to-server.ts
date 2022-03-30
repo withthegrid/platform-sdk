@@ -10,6 +10,7 @@ const schema = Joi.object().keys({
   name: Joi.string().example('red-dot.png').description('The filename including extension'),
 })
   .tag('fileToServer')
+  .meta({ className: 'fileToServer' })
   .description('Data that should should be sent to the server when uploading a file');
 
 export {

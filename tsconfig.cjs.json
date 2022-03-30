@@ -2,6 +2,10 @@
   "extends": "./tsconfig",
   "compilerOptions": {
     "module": "commonjs",
-    "outDir": "cjs",
+    "outDir": "cjs"
   },
+  "include": [
+    "src/**/*",
+    "test/**/*"
+  ]
 }

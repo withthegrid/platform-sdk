@@ -14,7 +14,8 @@ const schema = Joi.object().keys({
   validated: Joi.boolean().required().example(true),
 })
   .description('A single device, that can be installed at a location and report measurements from one or more ports at that location')
-  .tag('device');
+  .tag('device')
+  .meta({ className: 'device' });
 
 interface Device {
   hashId: string;

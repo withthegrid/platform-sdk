@@ -30,6 +30,7 @@ const schema = Joi.alternatives().try(
   fieldsToServerPartialSchema.required(),
 )
   .tag('fieldsToServerUpdate')
+  .meta({ className: 'fieldsToServerUpdate' })
   .description('How form fields should be sent to the server when updating them.');
 
 export {

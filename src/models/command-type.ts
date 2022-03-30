@@ -17,7 +17,8 @@ const schema = (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     .description('\'full\': end-users can view, create and delete commands of this type. \'read\': end-users can view but not create and delete commands of this type. \'none\': end-users cannot view, create or delete commands of this type.'),
 })
   .description('An object defining what a command type should look like: the template for commands sent to devices')
-  .tag('commandType');
+  .tag('commandType')
+  .meta({ className: 'commandType' });
 
 interface CommandType {
   hashId: string;
