@@ -14,6 +14,7 @@ const schema = Joi.object().keys({
   createdAt: Joi.date().required().example('2019-12-31T15:23Z'),
 })
   .tag('userSubscription')
+  .meta({ className: 'userSubscription' })
   .description('Objects the user want to receive email notifications on');
 
 interface UserSubscription {

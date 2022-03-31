@@ -30,7 +30,8 @@ const schema = Joi.object().keys({
   namedStyle: Joi.string().example('pdok-bodemkaart').description('If provided, a style predefined by withthegrid is used. Style is ignored if it is also provided.'),
 })
   .description('A vector or raster layer on the map.')
-  .tag('mapLayer');
+  .tag('mapLayer')
+  .meta({ className: 'mapLayer' });
 
 interface MapLayer {
   name: string;

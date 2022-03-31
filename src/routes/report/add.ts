@@ -14,7 +14,7 @@ interface Request {
       generatedAt: Date;
       orderOfMagnitude: number;
       significand: number;
-      doNotCompareToThresholds: boolean;
+      doNotCompareToThresholds?: boolean;
     }[];
     reportTypeHashId: string;
     pinGroupHashId: string;

@@ -11,6 +11,7 @@ const schema = (apiVersion: number): Joi.ArraySchema => Joi.array().items(Joi.ob
   fieldConfiguration: baseFieldConfigurationSchema(apiVersion).required(),
 }))
   .tag('updatableFieldConfigurations')
+  .meta({ className: 'updatableFieldConfigurations' })
   .description('How form field configurations should be sent to the server when updating them.');
 
 export {

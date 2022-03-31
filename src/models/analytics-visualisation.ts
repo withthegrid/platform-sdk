@@ -36,7 +36,8 @@ const schema = Joi.alternatives().try(
   tableVisualisationSchema,
 )
   .description('An object describing the visualisation of the results of an analytics query.')
-  .tag('analyticsVisualisation');
+  .tag('analyticsVisualisation')
+  .meta({ className: 'analyticsVisualisation' });
 
 interface TableAnalyticsVisualisation {
   type: 'table';

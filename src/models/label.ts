@@ -10,7 +10,8 @@ const schema = Joi.object().keys({
   deletedAt: Joi.date().allow(null),
 })
   .description('A label can be used to tag issues with.')
-  .tag('label');
+  .tag('label')
+  .meta({ className: 'label' });
 
 interface Label {
   hashId: string;

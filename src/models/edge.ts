@@ -35,7 +35,8 @@ const schema = Joi.object().keys({
   deletedAt: Joi.date().allow(null).required().example(null),
 })
   .description('A geographical object representing one or more connected series of line segments. Called a "line" in the GUI. If the edge only consists of 1 segment, it should be connected to a node on both ends.')
-  .tag('edge');
+  .tag('edge')
+  .meta({ className: 'edge' });
 
 interface Edge {
   hashId: string;

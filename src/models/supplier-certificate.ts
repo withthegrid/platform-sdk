@@ -28,6 +28,7 @@ const schema = Joi.object().keys({
   createdAt: Joi.date().required().example('2019-12-31T15:23Z'),
 })
   .tag('supplierCertificate')
+  .meta({ className: 'supplierCertificate' })
   .description('Information about a suppier certificate that can be used to create device certificates');
 
 interface SupplierCertificate {

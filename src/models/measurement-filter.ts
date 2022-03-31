@@ -17,7 +17,8 @@ const schema = Joi.object().keys({
   deletedAt: Joi.date().allow(null),
 })
   .description('An object that contains the configuration to search through measurements.')
-  .tag('measurementFilter');
+  .tag('measurementFilter')
+  .meta({ className: 'measurementFilter' });
 
 interface MeasurementFilter {
   hashId: string;

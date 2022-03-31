@@ -7,7 +7,8 @@ const schema = Joi.object().keys({
   defaultAnalyticsPanelHashId: Joi.string().allow(null).example('7usgt').required(),
 })
   .description('User speficic settings for an environment')
-  .tag('userEnvironmentSettings');
+  .tag('userEnvironmentSettings')
+  .meta({ className: 'userEnvironmentSettings' });
 
 interface UserEnvironmentSettings {
   notificationLevel: 0 | 1 | 2 | null;

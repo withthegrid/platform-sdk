@@ -13,7 +13,8 @@ const schema = (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     .description('See the chapter on open fields on how to use this'),
   deletedAt: Joi.date().allow(null).required().example(null),
 }).description('An object defining what a condition report should look like, used in connectivity environments')
-  .tag('supplierReportType');
+  .tag('supplierReportType')
+  .meta({ className: 'supplierReportType' });
 
 interface SupplierReportType {
   hashId: string;

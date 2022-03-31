@@ -16,7 +16,7 @@ const schema = Joi.object().keys({
   defaultCriticallyHighThreshold: siNumberSchema.allow(null).default(null),
   disableSiPrefixes: Joi.boolean().default(false).example(true).description('Will disable SI-prefixes for this quantity if true'),
 })
-  .tag('quantity');
+  .tag('quantity').meta({ className: 'quantity' });
 
 interface Quantity {
   hashId: string;

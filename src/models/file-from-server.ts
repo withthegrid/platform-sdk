@@ -14,6 +14,7 @@ const schema = Joi.object().keys({
   expiresAt: Joi.date().allow(null).required().example(null),
 })
   .tag('fileFromServer')
+  .meta({ className: 'fileFromServer' })
   .description('Information about a stored file that can be used to download or inline it');
 
 interface FileFromServer {

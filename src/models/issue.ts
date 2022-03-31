@@ -18,7 +18,8 @@ const schema = Joi.object().keys({
   deletedAt: Joi.date().allow(null),
 })
   .description('A problem or remark about a specific pin group (or pin).')
-  .tag('issue');
+  .tag('issue')
+  .meta({ className: 'issue' });
 
 interface Issue {
   hashId: string;

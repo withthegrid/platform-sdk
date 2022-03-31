@@ -18,7 +18,8 @@ const schema = Joi.object().keys({
   deletedAt: Joi.date().allow(null).required().example('2019-12-31T15:23Z'),
 })
   .description('A port. Always part of a pin group. All measurements are recorded at pin level. When a device is connected to a pin group, its channels are to be connected to the pins of the pin group.')
-  .tag('pin');
+  .tag('pin')
+  .meta({ className: 'pin' });
 
 interface Pin {
   hashId: string;

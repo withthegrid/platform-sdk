@@ -28,7 +28,26 @@ const limitSchema = Joi.object().keys({
 const conditionSchema = Joi.object().keys({
   type: Joi.string().valid('or', 'and').required(),
   restrictions: Joi.array().items(Joi.alternatives().try(
-    Joi.link('#analyticsQueryCondition').description('Another condition (recursion allowed)').required(),
+    Joi.link('#analyticsQueryCondition').description('Another condition (recursion allowed)').required().meta({
+      swagger: {
+        type: 'object',
+        properties: {
+          type: {
+            type: 'string',
+            enum: ['or', 'and'],
+            example: 'or',
+          },
+          restrictions: {
+            type: 'object',
+            example: '{}',
+            description: 'recursive list of more conditions',
+          },
+        },
+        required: ['type'],
+        additionalProperties: false,
+      },
+      swaggerOverride: true,
+    }),
     constraintSchema.required(),
   )).required(),
 }).id('analyticsQueryCondition');
@@ -61,6 +80,7 @@ const schema = Joi.object().keys({
   rowsPerPage: Joi.number().default(20).min(10).max(100),
 })
   .description('An object describing an analytics query.')
+  .meta({ className: 'analyticsQuery' })
   .tag('analyticsQuery');
 
 type TimeGranularity =

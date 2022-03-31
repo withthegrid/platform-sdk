@@ -16,6 +16,7 @@ const schema = Joi.object().keys({
   createdAt: Joi.date().required().example('2019-12-31T15:23Z'),
 })
   .tag('supplierWebhook')
+  .meta({ className: 'supplierWebhook' })
   .description('Information about a webhook that listens to incoming messages from device (gateways)');
 
 interface SupplierWebhook {

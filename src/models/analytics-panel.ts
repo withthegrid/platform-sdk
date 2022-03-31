@@ -65,7 +65,8 @@ const schema = Joi.object().keys({
   })).required(),
 })
   .description('An object describing an analytics dashboard.')
-  .tag('analyticsPanel');
+  .tag('analyticsPanel')
+  .meta({ className: 'analyticsPanel' });
 
 interface CardPosition {
   x: number;

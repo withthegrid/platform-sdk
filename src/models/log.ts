@@ -17,6 +17,7 @@ const schema = Joi.object().keys({
   createdAt: Joi.date().required().example('2019-12-31T15:23Z'),
 })
   .tag('log')
+  .meta({ className: 'log' })
   .description('An entry in the audit log');
 
 interface Log {

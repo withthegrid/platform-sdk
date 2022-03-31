@@ -15,7 +15,8 @@ const schema = (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
   deletedAt: Joi.date().allow(null).required().example(null),
 })
   .description('An object defining what a condition report should look like, used in monitoring environments')
-  .tag('environmentReportType');
+  .tag('environmentReportType')
+  .meta({ className: 'environmentReportType' });
 
 interface EnvironmentReportType {
   hashId: string;
