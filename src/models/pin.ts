@@ -4,9 +4,6 @@ import { schema as fieldsFromServerSchema, FieldsFromServer } from './fields/fie
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('e13d57'),
   pinGroupHashId: Joi.string().required().example('dao97'),
-  pinGroup: Joi.object().keys({
-    name: Joi.string().required().example('My Location'),
-  }).optional(),
   name: Joi.string().required().example('My port'),
   fields: fieldsFromServerSchema.required().example({ id: 'My port' })
     .description('The field configuration is stored in the fieldConfigurations key of the monitoring environment object'),
@@ -27,9 +24,6 @@ const schema = Joi.object().keys({
 interface Pin {
   hashId: string;
   pinGroupHashId: string;
-  pinGroup?: {
-    name: string;
-  }
   name: string;
   fields: FieldsFromServer;
   deviceFields: FieldsFromServer;
