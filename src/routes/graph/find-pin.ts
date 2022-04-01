@@ -4,6 +4,7 @@ import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 import { schema as pinSchema, Pin } from '../../models/pin';
 
 import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../../comms/table-controller';
+import { PinGroup } from '../../models/pin-group';
 
 interface Query extends TableQuery {
   includeDeleted?: boolean;
@@ -23,6 +24,7 @@ interface EffectiveRequest {
 
 interface ResponseRow {
   pin: Pin;
+  pinGroup: Pick<PinGroup, 'name'>;
 }
 
 interface Response {
@@ -43,6 +45,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       .description('This is the last page if nextPageOffset is null'),
     rows: Joi.array().items(Joi.object().keys({
       pin: pinSchema.required(),
+      pinGroup: Joi.object().keys({
+        name: Joi.string().required().example('My location'),
+      }).required(),
     })).required(),
   }),
   description: 'Search through pins',
