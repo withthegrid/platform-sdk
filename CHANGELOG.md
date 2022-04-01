@@ -1,3 +1,10 @@
+## [17.41.0](https://github.com/withthegrid/platform-sdk/compare/v17.40.1...v17.41.0) (2022-04-01)
+
+
+### Features
+
+* **pin:** add pinGroupName to model ([#139](https://github.com/withthegrid/platform-sdk/issues/139)) ([9dfe796](https://github.com/withthegrid/platform-sdk/commit/9dfe796b520e1694382608039d4a12c1082bdcd9))
+
 ### [17.40.1](https://github.com/withthegrid/platform-sdk/compare/v17.40.0...v17.40.1) (2022-03-30)
 
 
