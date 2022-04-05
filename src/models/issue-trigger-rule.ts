@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-export type IssueTriggerRule = {
+export interface IssueTriggerRule {
   deviceTypeHashId?: string;
   priorityLevel: 1 | 2;
   missedReports: number;
