@@ -1,3 +1,4 @@
+import * as analytics from './analytics/analytics-tables';
 import * as analyticsPanel from './analytics-panel';
 import * as analyticsQuery from './analytics-query';
 import * as analyticsVisualisation from './analytics-visualisation';
@@ -63,6 +64,7 @@ import * as userSubscription from './user-subscription';
 import * as webRequest from './web-request';
 
 export {
+  analytics,
   analyticsPanel,
   analyticsQuery,
   analyticsVisualisation,

@@ -132,7 +132,7 @@ interface AnalyticsQuery {
   limitBy?: Limit;
   offset?: string;
   sort: { columnIndex: number, descending: boolean }[];
-  rowsPerPage: number;
+  rowsPerPage?: number;
 }
 
 export {
@@ -143,4 +143,7 @@ export {
   Limit,
   TimeGranularity,
   Field,
+  AggregatedColumn,
+  UnaggregatedColumn,
+  TimeGroupColumn,
 };
