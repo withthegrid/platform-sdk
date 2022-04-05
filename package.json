@@ -60,7 +60,7 @@
     "joi-to-swagger": "6.0.1",
     "widdershins": "^4.0.1",
     "@apidevtools/swagger-parser": "^10.0.3",
-    "redoc-cli": "0.13.9"
+    "redoc-cli": "0.13.10"
   },
   "engines": {
     "node": ">=8.0.0"
