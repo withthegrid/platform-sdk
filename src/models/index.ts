@@ -22,6 +22,7 @@ import * as fileToServer from './file-to-server';
 import * as grid from './grid';
 import * as issue from './issue';
 import * as issueComment from './issue-comment';
+import * as issueTriggerRule from './issue-trigger-rule';
 import * as label from './label';
 import * as locale from './locale';
 import * as log from './log';
@@ -87,6 +88,7 @@ export {
   grid,
   issue,
   issueComment,
+  issueTriggerRule,
   label,
   locale,
   log,
