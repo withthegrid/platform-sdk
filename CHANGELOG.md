@@ -1,3 +1,10 @@
+## [17.42.0](https://github.com/withthegrid/platform-sdk/compare/v17.41.0...v17.42.0) (2022-04-06)
+
+
+### Features
+
+* **issue-trigger-rules:** add model and controller ([#126](https://github.com/withthegrid/platform-sdk/issues/126)) ([ff66169](https://github.com/withthegrid/platform-sdk/commit/ff6616967700bfd8c94cf30f83f6eee4e643992c))
+
 ## [17.41.0](https://github.com/withthegrid/platform-sdk/compare/v17.40.1...v17.41.0) (2022-04-01)
 
 
