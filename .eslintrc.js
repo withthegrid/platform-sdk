@@ -46,7 +46,19 @@ module.exports = {
     'no-undef': 'off',
     'no-dupe-class-members': 'off',
     'lines-between-class-members': 'off',
-    'import/no-extraneous-dependencies': ['error', { devDependencies: ['/commands/**/*.ts', '/release/**/*.ts', '**/*.test.ts', '/test/**/*.ts', '/src/types/**/**.d.ts'] }],
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: [
+          '/commands/**/*.ts',
+          '/release/**/*.ts',
+          '/documentation/**/*.ts',
+          '**/*.test.ts',
+          '/test/**/*.ts',
+          '/src/types/**/**.d.ts',
+        ],
+      },
+    ],
   },
   settings: {
     'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],
@@ -62,9 +74,9 @@ module.exports = {
   },
   overrides: [{
     files: [
-      'src/**/*.{ts,tsx}',
-      'test/**/*.{ts,tsx}',
-      'commands/**/*.{ts,tsx}',
+      '**/*.{ts,tsx}',
+      // 'test/**/*.{ts,tsx}',
+      // 'commands/**/*.{ts,tsx}',
     ],
     extends: ['plugin:@typescript-eslint/recommended'],
     rules: {

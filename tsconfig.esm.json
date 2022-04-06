@@ -1,8 +1,7 @@
 {
   "extends": "./tsconfig",
   "compilerOptions": {
-    "module": "commonjs",
-    "outDir": "cjs"
+    "outDir": "esm",
   },
   "include": [
     "src/**/*",
