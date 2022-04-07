@@ -1,3 +1,10 @@
+### [17.42.1](https://github.com/withthegrid/platform-sdk/compare/v17.42.0...v17.42.1) (2022-04-07)
+
+
+### Bug Fixes
+
+* documentation linting ([#154](https://github.com/withthegrid/platform-sdk/issues/154)) ([44cd7e2](https://github.com/withthegrid/platform-sdk/commit/44cd7e2dd7f9b52f529e3819e127a07d95148761))
+
 ## [17.42.0](https://github.com/withthegrid/platform-sdk/compare/v17.41.0...v17.42.0) (2022-04-06)
 
 
