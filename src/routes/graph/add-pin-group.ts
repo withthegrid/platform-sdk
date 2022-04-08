@@ -31,7 +31,10 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     symbolKey: Joi.string().required().example('cp-pole'),
     geometry: Joi.object().keys({
       type: Joi.string().valid('Point').required().example('Point'),
-      coordinates: Joi.array().length(2).items(Joi.number())
+      coordinates: Joi.array().length(2).items(
+        Joi.number().min(-180).max(180).required(),
+        Joi.number().min(-90).max(90).required(),
+      )
         .description('[lon, lat] in WGS84')
         .example([4.884707950517225, 52.37502141913572]),
     }).allow(null).required(),

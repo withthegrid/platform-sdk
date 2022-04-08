@@ -55,7 +55,10 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       geometry: Joi.object().keys({
         type: Joi.string().valid('LineString').required().example('LineString'),
         coordinates: Joi.array().min(2).max(5000)
-          .items(Joi.array().length(2).items(Joi.number()).description('[lon, lat] in WGS84'))
+          .items(Joi.array().length(2).items(
+            Joi.number().min(-180).max(180).required(),
+            Joi.number().min(-90).max(90).required(),
+          ).description('[lon, lat] in WGS84'))
           .required()
           .example([
             [4.884707950517225, 52.37502141913572],
@@ -73,7 +76,10 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
         type: Joi.string().valid('MultiLineString').required(),
         coordinates: Joi.array().min(1).max(500)
           .items(Joi.array().min(2).max(5000)
-            .items(Joi.array().length(2).items(Joi.number()).description('[lon, lat] in WGS84')))
+            .items(Joi.array().length(2).items(
+              Joi.number().min(-180).max(180).required(),
+              Joi.number().min(-90).max(90).required(),
+            ).description('[lon, lat] in WGS84')))
           .required(),
       }).required(),
       fields: fieldsToServerFullSchema.required().example({ id: 'My line' }),
