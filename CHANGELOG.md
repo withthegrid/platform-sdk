@@ -1,3 +1,10 @@
+### [17.42.2](https://github.com/withthegrid/platform-sdk/compare/v17.42.1...v17.42.2) (2022-04-08)
+
+
+### Bug Fixes
+
+* only allow coordinates within the upper and lower bound of longi… ([#155](https://github.com/withthegrid/platform-sdk/issues/155)) ([9c36b54](https://github.com/withthegrid/platform-sdk/commit/9c36b54c78621cd286c8565ae98ff620b78fc63b))
+
 ### [17.42.1](https://github.com/withthegrid/platform-sdk/compare/v17.42.0...v17.42.1) (2022-04-07)
 
 
