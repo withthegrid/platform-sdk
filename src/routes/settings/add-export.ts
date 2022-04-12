@@ -40,7 +40,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       Joi.object().keys({
         type: Joi.string().required().valid('analyticsQuery').example('analyticsQuery'),
         query: analyticsQuerySchema.required(),
-        dashboardId: Joi.string().required().example(''),
+        dashboardId: Joi.string().required().example('xd2rd4'),
         widgetName: Joi.string().required().example('Widget name'),
       }).required(),
     ).required(),
