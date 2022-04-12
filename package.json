@@ -12,8 +12,8 @@
     "type": "git",
     "url": "https://github.com/withthegrid/platform-sdk.git"
   },
-  "main": "cjs/src/index.js",
-  "module": "esm/src/index.js",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
   "scripts": {
     "start": "npm run watch-ts",
     "test": "jest",
