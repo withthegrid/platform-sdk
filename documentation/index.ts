@@ -1,11 +1,8 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import j2s, { ComponentsSchema } from 'joi-to-swagger';
 import { AnySchema, ObjectSchema, Schema } from 'joi';
 import path from 'path';
 import fs from 'fs';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import * as widdershins from 'widdershins';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import SwaggerParser from '@apidevtools/swagger-parser';
 import {
   apiVersion,
@@ -173,7 +170,7 @@ function determineMethodsContent(routesToDocument: RouteToDocument[], tag: strin
     return `"description": "${description !== undefined ? description : ''}${right !== undefined ? ` ${rightsString}` : ''}",`;
   }
 
-  const methodContentParts: string [] = [];
+  const methodContentParts: string[] = [];
   tags.add(tag);
   routesToDocument.forEach((route) => {
     methodContentParts.push(`"${route.method}": {
@@ -237,9 +234,9 @@ function determineSchemaSpecifications(schemaSpecifications: (ComponentsSchema |
   const setOfSchemas: Set<string> = new Set<string>();
   const convertedSchemaSpecifications: string[] = [];
   schemaSpecifications.forEach((schemaSpecification) => {
-    if (schemaSpecification !== undefined && schemaSpecification.schemas !== undefined) {
-      const schemas = schemaSpecification.schemas!;
-      const schemaNames = Object.getOwnPropertyNames(schemaSpecification.schemas);
+    const schemas = schemaSpecification?.schemas;
+    if (schemas !== undefined) {
+      const schemaNames = Object.getOwnPropertyNames(schemas);
       schemaNames.forEach((schemaName: string) => {
         if (!setOfSchemas.has(schemaName)) {
           setOfSchemas.add(schemaName);
@@ -330,8 +327,8 @@ async function go() {
     let match = matches.next();
     do {
       const method = match.value[1];
-      const url: string = `/${match.value[2].replaceAll('_', '/')}`;
-      const codeSamples: {lang: string, label: string, source: string}[] = [];
+      const url = `/${match.value[2].replaceAll('_', '/')}`;
+      const codeSamples: { lang: string, label: string, source: string }[] = [];
       const index = match.value.index;
       const substr = str.substring(index);
       const codeStringMatches = substr.matchAll(/(```)(shell|http|javascript|ruby|python|php|java|go)((.*(\n|\r\n))+?)(```)/g);

@@ -10,7 +10,10 @@ const schema = (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
   mapLayers: Joi.array().items(mapLayerSchema).min(1).required(),
   boundingBox: Joi.object().keys({
     type: Joi.string().valid('LineString').required().example('LineString'),
-    coordinates: Joi.array().length(2).items(Joi.array().length(2).items(Joi.number())).required()
+    coordinates: Joi.array().length(2).items(Joi.array().length(2).items(
+      Joi.number().min(-180).max(180).required(),
+      Joi.number().min(-90).max(90).required(),
+    )).required()
       .example([[3.3135576, 47.9747658], [5.1288442202798, 51.8145997]]),
   }).allow(null)
     .required()

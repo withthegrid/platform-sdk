@@ -9,6 +9,7 @@ import * as environment from './environment/routes';
 import * as graph from './graph/routes';
 import * as issue from './issue/routes';
 import * as issueComment from './issue-comment/routes';
+import * as issueTriggerRule from './issue-trigger-rule/routes';
 import * as label from './label/routes';
 import * as measurement from './measurement/routes';
 import * as measurementFilter from './measurement-filter/routes';
@@ -37,6 +38,7 @@ export {
   graph,
   issue,
   issueComment,
+  issueTriggerRule,
   label,
   measurement,
   measurementFilter,

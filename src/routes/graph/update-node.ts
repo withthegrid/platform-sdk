@@ -30,7 +30,10 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   body: Joi.object().keys({
     geometry: Joi.object().keys({
       type: Joi.string().valid('Point').required(),
-      coordinates: Joi.array().length(2).items(Joi.number())
+      coordinates: Joi.array().length(2).items(
+        Joi.number().min(-180).max(180).required(),
+        Joi.number().min(-90).max(90).required(),
+      )
         .description('[lon, lat] in WGS84'),
     }).example({
       type: 'Point',

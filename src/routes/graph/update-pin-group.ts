@@ -39,7 +39,10 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     symbolKey: Joi.string().example('cp-rect'),
     geometry: Joi.object().keys({
       type: Joi.string().valid('Point').required(),
-      coordinates: Joi.array().length(2).items(Joi.number()),
+      coordinates: Joi.array().length(2).items(
+        Joi.number().min(-180).max(180).required(),
+        Joi.number().min(-90).max(90).required(),
+      ),
     }).allow(null),
     fields: fieldsToServerUpdateSchema,
     mapLayer: Joi.string().invalid('nodes'),
