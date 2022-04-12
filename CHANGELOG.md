@@ -1,3 +1,10 @@
+### [17.42.4](https://github.com/withthegrid/platform-sdk/compare/v17.42.3...v17.42.4) (2022-04-12)
+
+
+### Bug Fixes
+
+* removed /src folder from package.json for cjs and esm ([#157](https://github.com/withthegrid/platform-sdk/issues/157)) ([90d8093](https://github.com/withthegrid/platform-sdk/commit/90d8093089ce5bbdcfb118926ad6644de1a8aa0a))
+
 ### [17.42.3](https://github.com/withthegrid/platform-sdk/compare/v17.42.2...v17.42.3) (2022-04-12)
 
 
