@@ -1,3 +1,10 @@
+### [17.42.6](https://github.com/withthegrid/platform-sdk/compare/v17.42.5...v17.42.6) (2022-04-13)
+
+
+### Bug Fixes
+
+* command type not showing for dropped commands ([#165](https://github.com/withthegrid/platform-sdk/issues/165)) ([435c2c7](https://github.com/withthegrid/platform-sdk/commit/435c2c7f6332d87404fd98ce889114219954a44f))
+
 ### [17.42.5](https://github.com/withthegrid/platform-sdk/compare/v17.42.4...v17.42.5) (2022-04-13)
 
 
