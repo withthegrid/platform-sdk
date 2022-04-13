@@ -35,7 +35,7 @@ type AllActivities = DropCommand
   | ExpectNextReportBefore;
 
 const schema = (apiVersion: number): Joi.AlternativesSchema => Joi.alternatives().try(
-  dropCommandSchema,
+  dropCommandSchema(apiVersion),
   handleCommandDueSchema(apiVersion),
   handleDeletedCommandSchema(apiVersion),
   handleIncomingRequestSchema(apiVersion),

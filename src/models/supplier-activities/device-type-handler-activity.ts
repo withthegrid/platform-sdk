@@ -19,7 +19,7 @@ type DeviceTypeHandlerActivity = DropCommand
   | ExpectNextReportBefore;
 
 const schema = (apiVersion: number): Joi.AlternativesSchema => Joi.alternatives().try(
-  dropCommandSchema,
+  dropCommandSchema(apiVersion),
   increaseReportingCounterSchema,
   markCommandAsSentSchema(apiVersion),
   parseReportSchema(apiVersion),
