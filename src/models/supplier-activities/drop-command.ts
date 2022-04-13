@@ -13,11 +13,11 @@ interface DropCommand extends SupplierActivity<'dropCommand'> {
   };
 }
 
-const schema = supplierActivityConstructor(
+const schema = (apiVersion: number): Joi.ObjectSchema => supplierActivityConstructor(
   'dropCommand',
   Joi.object().keys({
     command: commandSchema,
-    commandType: commandTypeSchema,
+    commandType: commandTypeSchema(apiVersion),
     removeFromScheduledCommands: Joi.boolean().required().example(true),
     markAsDeleted: Joi.boolean().required().example(false),
   }).required(),
