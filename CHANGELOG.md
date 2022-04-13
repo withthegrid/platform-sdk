@@ -1,3 +1,10 @@
+### [17.42.5](https://github.com/withthegrid/platform-sdk/compare/v17.42.4...v17.42.5) (2022-04-13)
+
+
+### Bug Fixes
+
+* **deps:** bump urijs from 1.19.10 to 1.19.11 ([#163](https://github.com/withthegrid/platform-sdk/issues/163)) ([98d1ccc](https://github.com/withthegrid/platform-sdk/commit/98d1cccfc67da096e91f40050a51682a6db57f43))
+
 ### [17.42.4](https://github.com/withthegrid/platform-sdk/compare/v17.42.3...v17.42.4) (2022-04-12)
 
 
