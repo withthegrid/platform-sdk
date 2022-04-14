@@ -1,3 +1,10 @@
+### [17.42.7](https://github.com/withthegrid/platform-sdk/compare/v17.42.6...v17.42.7) (2022-04-14)
+
+
+### Bug Fixes
+
+* error in analytics dashboard with edge form fields ([#167](https://github.com/withthegrid/platform-sdk/issues/167)) ([f5e4cc4](https://github.com/withthegrid/platform-sdk/commit/f5e4cc469162abc9681762ccb8612fb79a15f0c4))
+
 ### [17.42.6](https://github.com/withthegrid/platform-sdk/compare/v17.42.5...v17.42.6) (2022-04-13)
 
 
