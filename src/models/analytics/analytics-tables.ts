@@ -239,6 +239,8 @@ const analyticsTables: Record<TableKeys, AnalyticsTable> = {
         hashId: 'ID',
         level: 'Condition',
         mapLayer: 'Map layer',
+        fields: 'Form fields',
+        field: 'Form field',
         createdAt: 'Created at',
         updatedAt: 'Updated at',
         deletedAt: 'Deleted at',
@@ -247,6 +249,8 @@ const analyticsTables: Record<TableKeys, AnalyticsTable> = {
         hashId: 'ID',
         level: 'Conditie',
         mapLayer: 'Kaartlaag',
+        fields: 'Formuliervelden',
+        field: 'Formulierveld',
         createdAt: 'Aangemaakt op',
         updatedAt: 'Bijgewerkt op',
         deletedAt: 'Verwijderd op',
@@ -268,12 +272,16 @@ const analyticsTables: Record<TableKeys, AnalyticsTable> = {
     fieldsWithTranslations: {
       en: {
         hashId: 'ID',
+        fields: 'Form fields',
+        field: 'Form field',
         createdAt: 'Created at',
         updatedAt: 'Updated at',
         deletedAt: 'Deleted at',
       },
       nl: {
         hashId: 'ID',
+        fields: 'Formuliervelden',
+        field: 'Formulierveld',
         createdAt: 'Aangemaakt op',
         updatedAt: 'Bijgewerkt op',
         deletedAt: 'Verwijderd op',
@@ -672,9 +680,9 @@ function getColumnPlaceholder(
       if (formFieldKey === 'id') {
         return `${analyticsTables[tableName].tableText[userLocale]}:${formFieldKey}`;
       }
-      return `${analyticsTables[tableName].tableText[userLocale]}:${analyticsTables[tableName].fieldsWithTranslations[userLocale][formFieldName].toLowerCase()} "${formFieldKey}"`;
+      return `${analyticsTables[tableName].tableText[userLocale]}:${analyticsTables[tableName].fieldsWithTranslations[userLocale][formFieldName]?.toLowerCase()} "${formFieldKey}"`;
     }
-    return `${analyticsTables[tableName].tableText[userLocale]}:${analyticsTables[tableName].fieldsWithTranslations[userLocale][remainder].toLowerCase()}`;
+    return `${analyticsTables[tableName].tableText[userLocale]}:${analyticsTables[tableName].fieldsWithTranslations[userLocale][remainder]?.toLowerCase()}`;
   }
 
   let aggregateText;
@@ -694,9 +702,9 @@ function getColumnPlaceholder(
         if (formFieldKey === 'id') {
           return `${aggregateText}${conditionMarker}(${analyticsTables[tableName].tableText[userLocale]}:${formFieldKey})`;
         }
-        return `${aggregateText}${conditionMarker}(${analyticsTables[tableName].tableText[userLocale]}:${analyticsTables[tableName].fieldsWithTranslations[userLocale][formFieldName].toLowerCase()} "${formFieldKey}")`;
+        return `${aggregateText}${conditionMarker}(${analyticsTables[tableName].tableText[userLocale]}:${analyticsTables[tableName].fieldsWithTranslations[userLocale][formFieldName]?.toLowerCase()} "${formFieldKey}")`;
       }
-      return `${aggregateText}${conditionMarker}(${analyticsTables[tableName].tableText[userLocale]}:${analyticsTables[tableName].fieldsWithTranslations[userLocale][remainder].toLowerCase()})`;
+      return `${aggregateText}${conditionMarker}(${analyticsTables[tableName].tableText[userLocale]}:${analyticsTables[tableName].fieldsWithTranslations[userLocale][remainder]?.toLowerCase()})`;
     }
     return `${aggregateText}${conditionMarker}(${column.field.expression})`;
   }
