@@ -1,3 +1,10 @@
+### [17.42.9](https://github.com/withthegrid/platform-sdk/compare/v17.42.8...v17.42.9) (2022-04-19)
+
+
+### Bug Fixes
+
+* trigger a new release ([#176](https://github.com/withthegrid/platform-sdk/issues/176)) ([55eccd9](https://github.com/withthegrid/platform-sdk/commit/55eccd9e1fbcd841d62358fde8d4de288cc391bb))
+
 ### [17.42.8](https://github.com/withthegrid/platform-sdk/compare/v17.42.7...v17.42.8) (2022-04-19)
 
 
