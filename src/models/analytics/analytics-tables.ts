@@ -549,7 +549,7 @@ const analyticsTables: Record<TableKeys, AnalyticsTable> = {
         deletedAt: 'Verwijderd op',
       },
     },
-    tableKey: '',
+    tableKey: 'quantity',
     tableText: {
       en: 'Quantity',
       nl: 'Kwantiteit',
@@ -626,7 +626,7 @@ const analyticsTables: Record<TableKeys, AnalyticsTable> = {
         deletedAt: 'Verwijderd op',
       },
     },
-    tableKey: '',
+    tableKey: 'threshold',
     tableText: {
       en: 'Port issue trigger',
       nl: 'Poort issue trigger',
