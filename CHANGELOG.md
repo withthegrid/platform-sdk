@@ -1,3 +1,10 @@
+### [17.42.8](https://github.com/withthegrid/platform-sdk/compare/v17.42.7...v17.42.8) (2022-04-19)
+
+
+### Bug Fixes
+
+* error in analytics dashboard with quantity fields ([#174](https://github.com/withthegrid/platform-sdk/issues/174)) ([8b27e30](https://github.com/withthegrid/platform-sdk/commit/8b27e30f8e07c632519dc9298181e85e31b1779d))
+
 ### [17.42.7](https://github.com/withthegrid/platform-sdk/compare/v17.42.6...v17.42.7) (2022-04-14)
 
 
