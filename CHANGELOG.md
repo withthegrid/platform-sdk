@@ -1,3 +1,12 @@
+### [17.42.10](https://github.com/withthegrid/platform-sdk/compare/v17.42.9...v17.42.10) (2022-04-26)
+
+
+### Bug Fixes
+
+* empty commit to trigger deploy ([#185](https://github.com/withthegrid/platform-sdk/issues/185)) ([89d0336](https://github.com/withthegrid/platform-sdk/commit/89d0336c7bc697d28b2d5bd74d7014a1c8ef69f3))
+* empty commit to trigger deploy ([#187](https://github.com/withthegrid/platform-sdk/issues/187)) ([8f2a88a](https://github.com/withthegrid/platform-sdk/commit/8f2a88adad3356af04b1cdcc118830178f08bcaf))
+* trivial change to readme ([#188](https://github.com/withthegrid/platform-sdk/issues/188)) ([7f1feaf](https://github.com/withthegrid/platform-sdk/commit/7f1feaf75837aa7db1f39d9be789b532ceae6aab))
+
 ### [17.42.9](https://github.com/withthegrid/platform-sdk/compare/v17.42.8...v17.42.9) (2022-04-19)
 
 
