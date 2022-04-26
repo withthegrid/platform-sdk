@@ -63,6 +63,7 @@ type TableKeys =
   | 'deviceType'
   | 'edge'
   | 'grid'
+  | 'gridPinGroup'
   | 'issue'
   | 'measurement'
   | 'performanceMonth'
@@ -291,6 +292,36 @@ const analyticsTables: Record<TableKeys, AnalyticsTable> = {
     tableText: {
       en: 'Group',
       nl: 'Groep',
+    },
+  },
+  gridPinGroup: {
+    fields: [
+      'hashId',
+      'sort',
+      'createdAt',
+      'updatedAt',
+      'deletedAt',
+    ],
+    fieldsWithTranslations: {
+      en: {
+        hashId: 'ID',
+        sort: 'Sort',
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        deletedAt: 'Deleted at',
+      },
+      nl: {
+        hashId: 'ID',
+        sort: 'Sortering',
+        createdAt: 'Aangemaakt op',
+        updatedAt: 'Bijgewerkt op',
+        deletedAt: 'Verwijderd op',
+      },
+    },
+    tableKey: 'gridPinGroup',
+    tableText: {
+      en: 'Group-Location',
+      nl: 'Groep-Locatie',
     },
   },
   issue: {
