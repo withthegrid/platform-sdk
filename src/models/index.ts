@@ -62,6 +62,7 @@ import * as translations from './translations';
 import * as updatableFieldConfigurations from './fields/updatable-field-configurations';
 import * as user from './user';
 import * as userSubscription from './user-subscription';
+import * as webhookShim from './webhook-shim';
 import * as webRequest from './web-request';
 
 export {
@@ -130,4 +131,5 @@ export {
   user,
   userSubscription,
   webRequest,
+  webhookShim,
 };
