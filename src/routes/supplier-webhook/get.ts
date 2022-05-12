@@ -14,7 +14,7 @@ interface Response {
   identifier: string;
   url: string;
   subscriptionHashId?: string;
-  shimable?: number;
+  shimable: number;
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSupplier = {
