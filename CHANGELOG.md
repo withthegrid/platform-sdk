@@ -1,3 +1,10 @@
+### [17.42.11](https://github.com/withthegrid/platform-sdk/compare/v17.42.10...v17.42.11) (2022-05-12)
+
+
+### Bug Fixes
+
+* undefined response in error ([#200](https://github.com/withthegrid/platform-sdk/issues/200)) ([ec2ed46](https://github.com/withthegrid/platform-sdk/commit/ec2ed4663ee3c7c82d8c1bccb03f2d8accf5113f)), closes [withthegrid/platform-client#1156](https://github.com/withthegrid/platform-client/issues/1156)
+
 ### [17.42.10](https://github.com/withthegrid/platform-sdk/compare/v17.42.9...v17.42.10) (2022-04-26)
 
 
