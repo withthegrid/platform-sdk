@@ -13,7 +13,7 @@ const identifierExample = `function (command) {
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('z812a63'),
   name: Joi.string().required().example('My webhook'),
-  shimable: Joi.number().required().example(0),
+  shimmable: Joi.number().required().example(0),
   createdAt: Joi.date().required().example('2019-12-31T15:23Z'),
 })
   .tag('supplierWebhook')
@@ -23,7 +23,7 @@ const schema = Joi.object().keys({
 interface SupplierWebhook {
   hashId: string;
   name: string;
-  shimable: number;
+  shimmable: number;
   createdAt: Date;
 }
 

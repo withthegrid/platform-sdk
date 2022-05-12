@@ -8,7 +8,7 @@ interface Request {
   body: {
     name?: string;
     identifier?: string;
-    shimable?: number;
+    shimmable?: number;
   };
 }
 
@@ -23,7 +23,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
   body: Joi.object().keys({
     name: Joi.string().example('My webhook'),
     identifier: Joi.string().max(1000000).description('A javascript function that returns deviceType and identifier. See the chapter "User defined code"'),
-    shimable: Joi.number().example(0),
+    shimmable: Joi.number().example(0),
   }).required(),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
   description: 'Update the properties of a webhook.',

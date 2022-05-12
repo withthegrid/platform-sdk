@@ -7,7 +7,7 @@ interface Request {
   body: {
     name: string;
     identifier: string;
-    shimable: number;
+    shimmable: number;
   };
 }
 
@@ -22,7 +22,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
   path: '/',
   body: Joi.object().keys({
     name: Joi.string().required().example('My webhook'),
-    shimable: Joi.number().required().example(0),
+    shimmable: Joi.number().required().example(0),
     identifier: Joi.string().max(1000000).required().example(identifierExample)
       .description('A javascript function that returns deviceType and identifier. See the chapter "User defined code"'),
   }).required(),
