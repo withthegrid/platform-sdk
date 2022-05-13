@@ -3,7 +3,6 @@ import * as deleteRoute from './delete';
 import * as find from './find';
 import * as get from './get';
 import * as update from './update';
-
 import Comms from '../../comms';
 import controllerGenerator, { Result } from '../../comms/controller';
 import TableController from '../../comms/table-controller';

@@ -31,6 +31,8 @@ const schema = (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     .example(365)
     .min(1)
     .max(9999),
+  enforceTwoFactorAuthentication: Joi.boolean().allow(null).required().example(false)
+    .description('Describes if users need to have two factor authentication enabled in order to access this environment.'),
   expiresAt: Joi.date().allow(null).required().example(null),
   createdAt: Joi.date().required().example('2019-12-31T15:23Z'),
 })
@@ -56,6 +58,7 @@ interface Environment {
   locale: Locale;
   defaultGraphRange: string;
   measurementsExpirationDays: number;
+  enforceTwoFactorAuthentication: boolean | null;
   expiresAt: Date | null;
   createdAt: Date;
 }

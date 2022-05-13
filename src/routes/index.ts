@@ -26,6 +26,7 @@ import SupplierActivityRoute from './supplier-activity';
 import SupplierCertificateRoute from './supplier-certificate';
 import SupplierReportTypeRoute from './supplier-report-type';
 import SupplierWebhookRoute from './supplier-webhook';
+import TwoFactorAuthenticationRoute from './twofactorauthentication';
 import UserRoute from './user';
 
 class Routes {
@@ -81,6 +82,8 @@ class Routes {
 
   supplierWebhook: SupplierWebhookRoute;
 
+  twoFactorAuthentication: TwoFactorAuthenticationRoute;
+
   user: UserRoute;
 
   constructor(readonly comms: Comms) {
@@ -110,6 +113,7 @@ class Routes {
     this.supplierCertificate = new SupplierCertificateRoute(comms);
     this.supplierReportType = new SupplierReportTypeRoute(comms);
     this.supplierWebhook = new SupplierWebhookRoute(comms);
+    this.twoFactorAuthentication = new TwoFactorAuthenticationRoute(comms);
     this.user = new UserRoute(comms);
   }
 }
@@ -142,5 +146,6 @@ export {
   SupplierCertificateRoute,
   SupplierReportTypeRoute,
   SupplierWebhookRoute,
+  TwoFactorAuthenticationRoute,
   UserRoute,
 };
