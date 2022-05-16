@@ -12,6 +12,7 @@ import * as device from './device';
 import * as deviceType from './device-type';
 import * as edge from './edge';
 import * as environment from './environment';
+import * as environmentWebhook from './environment-webhook';
 import * as environmentReportType from './environment-report-type';
 import * as exportRequest from './export-request';
 import * as fieldsFromServer from './fields/fields-from-server';
@@ -62,7 +63,6 @@ import * as translations from './translations';
 import * as updatableFieldConfigurations from './fields/updatable-field-configurations';
 import * as user from './user';
 import * as userSubscription from './user-subscription';
-import * as webhookShim from './webhook-shim';
 import * as webRequest from './web-request';
 
 export {
@@ -80,6 +80,7 @@ export {
   deviceType,
   edge,
   environment,
+  environmentWebhook,
   environmentReportType,
   exportRequest,
   fieldsFromServer,
@@ -131,5 +132,4 @@ export {
   user,
   userSubscription,
   webRequest,
-  webhookShim,
 };
