@@ -70,6 +70,23 @@ describe('analytics-tables placeholders', () => {
         });
       });
     });
+
+    describe('when the field is an object', () => {
+      it('then it returns the \'expression\' placeholder', () => {
+        // arrange
+        const column = {
+          field: Object.create(null),
+        } as UnaggregatedColumn;
+
+        // act
+        const nlPlaceholder = getColumnPlaceholder(column, 'nl');
+        const enPlaceholder = getColumnPlaceholder(column, 'en');
+
+        // assert
+        expect(nlPlaceholder).toEqual('Berekening');
+        expect(enPlaceholder).toEqual('Calculation');
+      });
+    });
   });
 
   describe('given I ask for a column with a type (aggregated)', () => {
@@ -83,6 +100,30 @@ describe('analytics-tables placeholders', () => {
         expected: {
           nl: 'Een(Poort:device formulierveld "devTyChannelFormField")',
           en: 'Any(Port:device form field "devTyChannelFormField")',
+        },
+      },
+      {
+        name: 'any with \'id\' field',
+        column: {
+          type: 'any',
+          field: 'pin.fields.id',
+        },
+        expected: {
+          nl: 'Een(Poort:id)',
+          en: 'Any(Port:id)',
+        },
+      },
+      {
+        name: 'any with expression',
+        column: {
+          type: 'any',
+          field: {
+            expression: 'stub-expression',
+          },
+        },
+        expected: {
+          nl: 'Een(stub-expression)',
+          en: 'Any(stub-expression)',
         },
       },
       {
