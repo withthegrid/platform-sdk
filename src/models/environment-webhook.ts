@@ -10,11 +10,11 @@ const schema = Joi.object().keys({
   .meta({ className: 'webhookShim' })
   .description('Shared webhook');
 
-interface WebhookShim {
+interface EnvironmentWebhook {
   supplier_webhook_id: string;
   client_id: string;
   token: string;
   createdAt: Date;
 }
 
-export { schema, WebhookShim };
+export { schema, EnvironmentWebhook };
