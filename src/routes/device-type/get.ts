@@ -17,6 +17,7 @@ interface Response {
   commandTypes: CommandType[];
   subscriptionHashId?: string;
   chartQuantities: Quantity[];
+  shimmable: number;
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
@@ -33,6 +34,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
     commandTypes: Joi.array().items(commandTypeSchema(apiVersion)).required(),
     subscriptionHashId: Joi.string().description('If the user is subscribed to (email) alerts on this object, this key is present'),
     chartQuantities: Joi.array().items(quantitySchema).required(),
+    shimmable: Joi.number().integer().required(),
   }).required(),
   description: 'Get a specific device type identified by its hashId',
 };
