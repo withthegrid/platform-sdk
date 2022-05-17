@@ -2,6 +2,7 @@ import * as validatePassword from './validate-password';
 import * as validateGoogleAuthenticatorCode from './validate-google-authenticator-code';
 import * as removeSecret from './remove-secret';
 import * as getQRCode from './get-qr-code';
+import * as getSettings from './get-settings';
 
 import Comms from '../../comms';
 
@@ -41,7 +42,7 @@ class TwoFactorAuthenticationRoute {
     >(
       validateGoogleAuthenticatorCode.controllerGeneratorOptions,
       TwoFactorAuthenticationRoute.routerPath,
-      false,
+      TwoFactorAuthenticationRoute.auth,
       this.comms,
     )(parameters);
 
@@ -56,7 +57,7 @@ class TwoFactorAuthenticationRoute {
     >(
       removeSecret.controllerGeneratorOptions,
       TwoFactorAuthenticationRoute.routerPath,
-      TwoFactorAuthenticationRoute.auth,
+      true,
       this.comms,
     )(parameters);
 
@@ -71,7 +72,22 @@ class TwoFactorAuthenticationRoute {
     >(
       getQRCode.controllerGeneratorOptions,
       TwoFactorAuthenticationRoute.routerPath,
-      TwoFactorAuthenticationRoute.auth,
+      true,
+      this.comms,
+    )(parameters);
+
+  getSettings = (parameters: getSettings.Request):
+    Result<
+      getSettings.EffectiveRequest,
+      getSettings.Response
+    > => controllerGenerator<
+      getSettings.Request,
+      getSettings.EffectiveRequest,
+      getSettings.Response
+    >(
+      getSettings.controllerGeneratorOptions,
+      TwoFactorAuthenticationRoute.routerPath,
+      true,
       this.comms,
     )(parameters);
 }

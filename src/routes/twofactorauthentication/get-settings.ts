@@ -4,25 +4,25 @@ import { ControllerGeneratorOptions } from '../../comms/controller';
 interface Request {
   query: {
     email: string;
-    password: string;
   };
 }
 
 interface Response {
-  isCorrectPassword: boolean;
+  hasTwoFAEnabled: boolean;
+  isAllowedTurnOffTwoFA: boolean;
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
   method: 'get',
-  path: '/validate-password',
+  path: '/get-settings',
   query: Joi.object().keys({
     email: Joi.string().required(),
-    password: Joi.string().required(),
   }).required(),
   response: Joi.object().keys({
-    isCorrectPassword: Joi.boolean().required(),
+    hasTwoFAEnabled: Joi.boolean().required(),
+    isAllowedTurnOffTwoFA: Joi.boolean().required(),
   }).required(),
-  right: { },
+  right: {},
 };
 
 export {
