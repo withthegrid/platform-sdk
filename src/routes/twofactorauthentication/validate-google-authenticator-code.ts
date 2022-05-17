@@ -5,6 +5,7 @@ interface Request {
   query: {
     email: string;
     code: string;
+    secret: string | null;
   };
 }
 
@@ -19,6 +20,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   query: Joi.object().keys({
     email: Joi.string().email({ tlds: false }).required(),
     code: Joi.string().max(255).required(),
+    secret: Joi.string().allow(null).required(),
   }),
   response: Joi.object().keys({
     isCorrect: Joi.boolean().required(),

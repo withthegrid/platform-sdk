@@ -9,6 +9,7 @@ interface Request {
 
 interface Response {
   qrcode: string | null;
+  secret: string | null;
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptions = {
@@ -19,6 +20,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptions = {
   }).required(),
   response: Joi.object().keys({
     qrcode: Joi.string().allow(null).required(),
+    secret: Joi.string().allow(null).required(),
   }).required(),
   right: {},
 };
