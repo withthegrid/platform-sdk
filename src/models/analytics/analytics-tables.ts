@@ -79,6 +79,24 @@ type AnalyticsTable = {
   tableText: Record<keyof Translations, PluralizedTranslation>;
 }
 
+type FormatterFn<R> = (tableText: Record<keyof Translations, Translation>) => R;
+type Tuple<T, U> = [T, U];
+
+interface AnalyticsTableHelpers {
+  getTableName: (tableKey: TableKeys) =>
+    Record<keyof Translations, PluralizedTranslation> & {
+      format: <R>(formatter: FormatterFn<R>) => R
+      getField: (fieldKey: string) => Record<keyof Translations, Translation> & {
+        format: <R>(formatter: FormatterFn<R>) => R
+      }
+    };
+  getTableNameAndField: (key: `${TableKeys}.${string}`) => Tuple<
+    Record<keyof Translations, PluralizedTranslation>,
+    Record<keyof Translations, Translation>
+  >;
+  getTranslationString: (tr: Translation, opts?: { plural?: boolean }) => string;
+}
+
 type TableKeys =
   | 'clientReportType'
   | 'command'
@@ -112,7 +130,16 @@ function defaultThresholdValue(
   };
 }
 
-const analyticsTables: Record<TableKeys, AnalyticsTable> = {
+function getTranslationString(tr: Translation, opts?: { plural?: boolean }): string {
+  const pluralization = opts !== undefined
+    && opts.plural === true ? 'plural' : 'singular';
+
+  return isSimpleTranslation(tr)
+    ? tr
+    : tr[pluralization];
+}
+
+const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
   clientReportType: {
     fields: ['hashId', 'name', 'createdAt', 'deletedAt'],
     fieldsWithTranslations: {
@@ -760,14 +787,36 @@ const analyticsTables: Record<TableKeys, AnalyticsTable> = {
   },
 };
 
-function getTranslationString(tr: Translation, opts?: { plural?: boolean }): string {
-  const pluralization = opts !== undefined
-    && opts.plural === true ? 'plural' : 'singular';
+const analyticsTables: Record<TableKeys, AnalyticsTable> & AnalyticsTableHelpers = {
+  ...analyticsTablesL10n,
+  getTableName: (tableKey) => ({
+    ...analyticsTablesL10n[tableKey].tableText,
+    format: (formatter) => formatter(analyticsTables[tableKey].tableText),
+    getField: (field) => {
+      const result: Record<keyof Translations, Translation> = Object.create({});
+      const fieldWithTranslations = analyticsTables[tableKey].fieldsWithTranslations;
 
-  return isSimpleTranslation(tr)
-    ? tr
-    : tr[pluralization];
-}
+      Object.entries(fieldWithTranslations).forEach((
+        [locale, translations]: [keyof Translations, Record<string, Translation>],
+      ) => {
+        result[locale] = translations[field];
+      });
+
+      return {
+        ...result,
+        format: (formatter) => formatter(result),
+      };
+    },
+  }),
+  getTableNameAndField: (key) => {
+    const [tableKey, fieldKey] = key.split('.', 2) as [TableKeys, string];
+    const table = analyticsTables.getTableName(tableKey);
+    const field = analyticsTables.getTableName(tableKey).getField(fieldKey);
+
+    return [table, field];
+  },
+  getTranslationString,
+};
 
 function matchColumn<R>(
   column: UnaggregatedColumn | AggregatedColumn | TimeGroupColumn,
@@ -874,4 +923,6 @@ export {
   analyticsTables,
   TableKeys,
   getColumnPlaceholder,
+  getTranslationString,
+  FormatterFn,
 };

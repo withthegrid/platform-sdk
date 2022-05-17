@@ -187,3 +187,132 @@ describe('analytics-tables placeholders', () => {
     });
   });
 });
+
+describe('pluralization keys', () => {
+  describe('given a table key', () => {
+    describe('when I ask for the table name translation of said key', () => {
+      it('then it returns the l10n keys', () => {
+        // act
+        const tableName = analyticsTables.getTableName('clientReportType');
+
+        // assert
+        expect(tableName).toHaveProperty('en');
+        expect(tableName).toHaveProperty('nl');
+        expect(tableName).toHaveProperty('en.singular', 'Report type');
+        expect(tableName).toHaveProperty('en.plural', 'Report types');
+        expect(tableName).toHaveProperty('nl.singular', 'Rapportsoort');
+        expect(tableName).toHaveProperty('nl.plural', 'Rapportsoorten');
+      });
+
+      describe('and when I ask to format the result', () => {
+        it('then it returns the formatted result', () => {
+          // arrange
+          const formatterSpy = jest.fn().mockImplementation(
+            // dummy formatting
+            (tr) => `${tr.en.singular} | ${tr.nl.plural}`,
+          );
+          const tableName = analyticsTables.getTableName('clientReportType');
+
+          // act
+          const formatted = tableName.format(formatterSpy);
+
+          // assert
+          expect(formatterSpy).toHaveBeenCalledTimes(1);
+          expect(formatterSpy).toHaveBeenCalledWith(analyticsTables.clientReportType.tableText);
+          expect(formatted).toEqual('Report type | Rapportsoorten');
+        });
+      });
+
+      describe('and when I ask for the translation of a field', () => {
+        it('then it returns the l10n keys (pluralized)', () => {
+          // arrange
+          const tableName = analyticsTables.getTableName('clientReportType');
+
+          // act
+          const field = tableName.getField('name');
+
+          // assert
+          expect(field).toHaveProperty('en');
+          expect(field).toHaveProperty('nl');
+          expect(field).toHaveProperty('en.singular', 'Name');
+          expect(field).toHaveProperty('en.plural', 'Names');
+          expect(field).toHaveProperty('nl.singular', 'Naam');
+          expect(field).toHaveProperty('nl.plural', 'Namen');
+        });
+
+        it('then it returns the l10n keys (not pluralized)', () => {
+          // arrange
+          const tableName = analyticsTables.getTableName('clientReportType');
+
+          // act
+          const field = tableName.getField('createdAt');
+
+          // assert
+          expect(field).toHaveProperty('en', 'Created at');
+          expect(field).toHaveProperty('nl', 'Aangemaakt op');
+        });
+
+        describe('and when I ask to format the result', () => {
+          it('then it returns the formatted result (pluralized)', () => {
+            // arrange
+            const formatterSpy = jest.fn().mockImplementation(
+              // dummy formatting
+              (tr) => `${tr.en.singular} | ${tr.nl.plural}`,
+            );
+            const tableName = analyticsTables.getTableName('clientReportType');
+            const field = tableName.getField('name');
+
+            // act
+            const formatted = field.format(formatterSpy);
+
+            // assert
+            expect(formatterSpy).toHaveBeenCalledTimes(1);
+            expect(formatterSpy).toHaveBeenCalledWith({
+              en: { singular: 'Name', plural: 'Names' },
+              nl: { singular: 'Naam', plural: 'Namen' },
+            });
+            expect(formatted).toEqual('Name | Namen');
+          });
+
+          it('then it returns the formatted result (not pluralized)', () => {
+            // arrange
+            const formatterSpy = jest.fn().mockImplementation(
+              // dummy formatting
+              (tr) => `${tr.en} | ${tr.nl}`,
+            );
+            const tableName = analyticsTables.getTableName('clientReportType');
+            const field = tableName.getField('createdAt');
+
+            // act
+            const formatted = field.format(formatterSpy);
+
+            // assert
+            expect(formatterSpy).toHaveBeenCalledTimes(1);
+            expect(formatterSpy).toHaveBeenCalledWith({
+              en: 'Created at',
+              nl: 'Aangemaakt op',
+            });
+            expect(formatted).toEqual('Created at | Aangemaakt op');
+          });
+        });
+      });
+    });
+  });
+
+  describe('given a tableKey:fieldKey key', () => {
+    describe('when I ask for the translation of the combined keys', () => {
+      it('then it return all the l10nKeys', () => {
+        // act
+        const [table, field] = analyticsTables.getTableNameAndField('clientReportType.name');
+
+        // assert
+        expect(table).toBeDefined();
+        expect(field).toBeDefined();
+
+        // took random assertions from before
+        expect(table).toHaveProperty('en.singular', 'Report type');
+        expect(field).toHaveProperty('nl.plural', 'Namen');
+      });
+    });
+  });
+});
