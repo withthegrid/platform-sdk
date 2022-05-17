@@ -1,6 +1,6 @@
 import { localesKeys, LocalesKeys } from '../../src/models/translations';
 import { AggregatedColumn, UnaggregatedColumn } from '../../src/models/analytics-query';
-import { getColumnPlaceholder } from '../../src/models/analytics/analytics-tables';
+import { analyticsTables, getColumnPlaceholder } from '../../src/models/analytics/analytics-tables';
 
 describe('analytics-tables placeholders', () => {
   describe('given the column type is undefined (unaggregated)', () => {

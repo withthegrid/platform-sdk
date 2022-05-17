@@ -6,6 +6,9 @@ import {
 } from '../translations';
 import {
   AggregatedColumn,
+  Field,
+  isTimeGroupColumn,
+  isUnaggregatedColumn,
   TimeGroupColumn,
   UnaggregatedColumn,
 } from '../analytics-query';
@@ -73,8 +76,8 @@ type AnalyticsTable = {
     Record<string, Translation>
   >;
   tableKey: Translation;
-  tableText: Record<keyof Translations, Translation>;
-};
+  tableText: Record<keyof Translations, PluralizedTranslation>;
+}
 
 type TableKeys =
   | 'clientReportType'
@@ -108,6 +111,7 @@ function defaultThresholdValue(
     plural: `Issue Trigger ${value[locale]} (${condition})`,
   };
 }
+
 const analyticsTables: Record<TableKeys, AnalyticsTable> = {
   clientReportType: {
     fields: ['hashId', 'name', 'createdAt', 'deletedAt'],
@@ -765,76 +769,109 @@ function getTranslationString(tr: Translation, opts?: { plural?: boolean }): str
     : tr[pluralization];
 }
 
+function matchColumn<R>(
+  column: UnaggregatedColumn | AggregatedColumn | TimeGroupColumn,
+  fns: {
+    onUnaggregatedColumn: (unaggregatedColumn: UnaggregatedColumn) => R,
+    onAggregatedColumnWithField: (
+      aggregatedColumn: AggregatedColumn,
+      field: Field,
+    ) => R,
+    onAggregatedColumnWithoutField: (aggregatedColumn: AggregatedColumn) => R,
+    onTimeGroupColumn: (timeGroupColumn: TimeGroupColumn) => R,
+  },
+): R {
+  if (isUnaggregatedColumn(column)) {
+    return fns.onUnaggregatedColumn(column);
+  }
+
+  if (isTimeGroupColumn(column)) {
+    return fns.onTimeGroupColumn(column);
+  }
+
+  if ('field' in column) {
+    return fns.onAggregatedColumnWithField(column, column.field);
+  }
+
+  return fns.onAggregatedColumnWithoutField(column);
+}
+
 function getColumnPlaceholder(
   column: UnaggregatedColumn | AggregatedColumn | TimeGroupColumn,
   userLocale: keyof Translations,
 ): string {
   const tl = t[userLocale];
+  const conditionMarker = 'condition' in column ? '*' : '';
 
-  if (column.type === undefined) {
-    if (typeof column.field === 'object') {
-      return tl.expression.singular;
-    }
-    const tableName: TableKeys = column.field.split('.', 1)[0] as TableKeys;
-    const remainder = column.field.slice(tableName.length + 1);
+  const parseField = (field: string): {
+    tableName: TableKeys,
+    remainder: string,
+    tableText: string,
+  } => {
+    const tableName = field.split('.', 1)[0] as TableKeys;
+    const remainder = field.slice(tableName.length + 1);
     const tableText = analyticsTables[tableName].tableText[userLocale];
 
-    if (remainder.indexOf('.') !== -1) {
-      const formFieldName = remainder.slice(0, remainder.indexOf('.') - 1);
-      const formFieldKey = remainder.slice(remainder.indexOf('.') + 1);
-      if (formFieldKey === 'id') {
-        return `${getTranslationString(tableText)}:${formFieldKey}`;
-      }
-      const field = analyticsTables[tableName].fieldsWithTranslations[userLocale][
-        formFieldName
-      ];
-      return `${
-        getTranslationString(tableText)
-      }:${getTranslationString(field)?.toLowerCase()} "${formFieldKey}"`;
-    }
-    const fieldRemainder = analyticsTables[tableName].fieldsWithTranslations[userLocale][
-      remainder
-    ];
-    return `${
-      getTranslationString(tableText)
-    }:${getTranslationString(fieldRemainder)?.toLowerCase()}`;
-  }
+    return { tableName, remainder, tableText: getTranslationString(tableText) };
+  };
 
-  const aggregateText = getTranslationString(column.type === 'timeGroup'
-    ? tl.granularities[column.granularity]
-    : tl.aggregations[column.type]);
+  const parseFormField = (field: string): { name: string, key: string } => {
+    const name = field.slice(0, field.indexOf('.') - 1);
+    const key = field.slice(field.indexOf('.') + 1);
+    return { name, key };
+  };
 
-  const conditionMarker = 'condition' in column ? '*' : '';
-  if ('field' in column) {
-    if (typeof column.field === 'string') {
-      const tableName: TableKeys = column.field.split('.', 1)[0] as TableKeys;
-      const remainder = column.field.slice(tableName.length + 1);
-      const tableText = analyticsTables[tableName].tableText[userLocale];
-      if (remainder.indexOf('.') !== -1) {
-        const formFieldName = remainder.slice(0, remainder.indexOf('.') - 1);
-        const formFieldKey = remainder.slice(remainder.indexOf('.') + 1);
-        if (formFieldKey === 'id') {
-          return `${aggregateText}${conditionMarker}(${getTranslationString(tableText)}:${formFieldKey})`;
-        }
-        const formField = analyticsTables[tableName].fieldsWithTranslations[userLocale][
-          formFieldName
-        ];
-        return `${aggregateText}${conditionMarker}(${
-          getTranslationString(tableText)
-        }:${getTranslationString(formField)?.toLowerCase()} "${formFieldKey}")`;
-      }
-      const formFieldRemainder = analyticsTables[tableName].fieldsWithTranslations[userLocale][
-        remainder
-      ];
-      return `${aggregateText}${conditionMarker}(${
-        getTranslationString(tableText)
-      }:${getTranslationString(formFieldRemainder)?.toLowerCase()})`;
+  const placeholderFromField = (field: string): string => {
+    const { tableName, remainder, tableText } = parseField(field);
+
+    if (remainder.includes('.')) {
+      const { name, key } = parseFormField(remainder);
+
+      return key === 'id'
+        ? `${tableText}:${key}`
+        : `${tableText}:${
+          getTranslationString(
+            analyticsTables[tableName].fieldsWithTranslations[userLocale][name],
+          ).toLowerCase()
+        } "${key}"`;
     }
-    return `${aggregateText}${conditionMarker}(${column.field.expression})`;
-  }
-  return `${aggregateText}${conditionMarker}`;
+
+    return `${tableText}:${
+      getTranslationString(
+        analyticsTables[tableName].fieldsWithTranslations[userLocale][remainder],
+      ).toLowerCase()
+    }`;
+  };
+
+  return matchColumn<string>(column, {
+    onUnaggregatedColumn: (unaggregatedColumn) => {
+      if (typeof unaggregatedColumn.field === 'object') {
+        return tl.expression.singular;
+      }
+      return placeholderFromField(unaggregatedColumn.field);
+    },
+    onTimeGroupColumn: (timeGroupColumn) => {
+      const aggregateText = getTranslationString(tl.granularities[timeGroupColumn.granularity]);
+      const placeholder = placeholderFromField(timeGroupColumn.field);
+      return `${aggregateText}${conditionMarker}(${placeholder})`;
+    },
+    onAggregatedColumnWithField: (aggregatedColumn, field) => {
+      const aggregateText = getTranslationString(tl.aggregations[aggregatedColumn.type]);
+      const placeholder = typeof field === 'string'
+        ? placeholderFromField(field)
+        : field.expression;
+      return `${aggregateText}${conditionMarker}(${placeholder})`;
+    },
+    onAggregatedColumnWithoutField: (aggregatedColumn) => {
+      const aggregateText = getTranslationString(tl.aggregations[aggregatedColumn.type]);
+      return `${aggregateText}${conditionMarker}`;
+    },
+  });
 }
 
 export {
-  AnalyticsTable, analyticsTables, TableKeys, getColumnPlaceholder,
+  AnalyticsTable,
+  analyticsTables,
+  TableKeys,
+  getColumnPlaceholder,
 };
