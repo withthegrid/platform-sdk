@@ -35,7 +35,7 @@ interface Request {
       }[];
     }[];
     commandTypeHashIds?: string[];
-    shimmable: number;
+    shimmable: boolean;
   };
 }
 
@@ -77,7 +77,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
       })).required(),
     })),
     commandTypeHashIds: Joi.array().items(Joi.string()).description('The hashIds of the command types a user can schedule for this device'),
-    shimmable: Joi.number().integer().required(),
+    shimmable: Joi.boolean().required().example(false),
   }).required(),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
   description: 'Update the settings of a device type.',
