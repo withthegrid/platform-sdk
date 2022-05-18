@@ -55,7 +55,7 @@ const conditionSchema = Joi.object().keys({
 const schema = Joi.object().keys({
   source: Joi.string().example('pinGroup').required(),
   columns: Joi.array().items(Joi.alternatives().try(
-    Joi.object().keys({ field: fieldSchema, name: Joi.string() }).required(),
+    Joi.object().keys({ field: fieldSchema, name: Joi.string(), dataTypeHint: Joi.string().valid('string', 'integer', 'number', 'boolean') }).required(),
     Joi.object().keys({ type: Joi.string().valid('count', 'share').required(), condition: conditionSchema, name: Joi.string() }).required(),
     Joi.object().keys({
       type: Joi.string().valid('sum', 'mean', 'min', 'max', 'any').required(),
@@ -123,7 +123,7 @@ type AggregatedColumn =
 
 type TimeGroupColumn = { type: 'timeGroup', field: string; granularity: TimeGranularity, name?: string };
 
-type UnaggregatedColumn = { type: undefined, field: Field, name?: string };
+type UnaggregatedColumn = { type: undefined, field: Field, name?: string, dataTypeHint?: undefined | 'string' | 'integer' | 'boolean' | 'number' };
 
 interface AnalyticsQuery {
   source: string;
