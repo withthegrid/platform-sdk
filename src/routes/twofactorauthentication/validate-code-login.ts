@@ -4,18 +4,25 @@ import { ControllerGeneratorOptionsWithoutClientOrSupplier } from '../../comms/c
 interface Request {
   query: {
     email: string;
+    code: string;
   };
 }
 
-type Response = void;
+interface Response {
+  isCorrect: boolean;
+}
 
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSupplier = {
-  method: 'post',
-  path: '/remove-secret',
+  method: 'get',
+  path: '/validate-code-login',
+  right: { },
   query: Joi.object().keys({
-    email: Joi.string().required(),
+    email: Joi.string().email({ tlds: false }).required(),
+    code: Joi.string().max(255).required(),
+  }),
+  response: Joi.object().keys({
+    isCorrect: Joi.boolean().required(),
   }).required(),
-  right: {},
 };
 
 export {

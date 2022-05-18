@@ -1,8 +1,10 @@
 import * as validatePassword from './validate-password';
-import * as validateGoogleAuthenticatorCode from './validate-google-authenticator-code';
+import * as validateCode from './validate-code';
 import * as removeSecret from './remove-secret';
 import * as getQRCode from './get-qr-code';
 import * as getSettings from './get-settings';
+import * as validatePasswordLogin from './validate-password-login';
+import * as validateCodeLogin from './validate-code-login';
 
 import Comms from '../../comms';
 
@@ -11,7 +13,8 @@ import controllerGenerator, { Result } from '../../comms/controller';
 class TwoFactorAuthenticationRoute {
   static routerPath = 'two-factor-authentication';
 
-  static auth = false;
+  static authenticated = true;
+  static unauthenticated = false;
 
   constructor(readonly comms: Comms) {
   }
@@ -27,22 +30,22 @@ class TwoFactorAuthenticationRoute {
     >(
       validatePassword.controllerGeneratorOptions,
       TwoFactorAuthenticationRoute.routerPath,
-      TwoFactorAuthenticationRoute.auth,
+      TwoFactorAuthenticationRoute.authenticated,
       this.comms,
     )(parameters);
 
-  validateGoogleAuthenticatorCode = (parameters: validateGoogleAuthenticatorCode.Request):
+  validateCode = (parameters: validateCode.Request):
     Result<
-      validateGoogleAuthenticatorCode.EffectiveRequest,
-      validateGoogleAuthenticatorCode.Response
+      validateCode.EffectiveRequest,
+      validateCode.Response
     > => controllerGenerator<
-      validateGoogleAuthenticatorCode.Request,
-      validateGoogleAuthenticatorCode.EffectiveRequest,
-      validateGoogleAuthenticatorCode.Response
+      validateCode.Request,
+      validateCode.EffectiveRequest,
+      validateCode.Response
     >(
-      validateGoogleAuthenticatorCode.controllerGeneratorOptions,
+      validateCode.controllerGeneratorOptions,
       TwoFactorAuthenticationRoute.routerPath,
-      TwoFactorAuthenticationRoute.auth,
+      TwoFactorAuthenticationRoute.authenticated,
       this.comms,
     )(parameters);
 
@@ -57,7 +60,7 @@ class TwoFactorAuthenticationRoute {
     >(
       removeSecret.controllerGeneratorOptions,
       TwoFactorAuthenticationRoute.routerPath,
-      true,
+      TwoFactorAuthenticationRoute.authenticated,
       this.comms,
     )(parameters);
 
@@ -72,7 +75,7 @@ class TwoFactorAuthenticationRoute {
     >(
       getQRCode.controllerGeneratorOptions,
       TwoFactorAuthenticationRoute.routerPath,
-      true,
+      TwoFactorAuthenticationRoute.authenticated,
       this.comms,
     )(parameters);
 
@@ -87,7 +90,37 @@ class TwoFactorAuthenticationRoute {
     >(
       getSettings.controllerGeneratorOptions,
       TwoFactorAuthenticationRoute.routerPath,
-      true,
+      TwoFactorAuthenticationRoute.authenticated,
+      this.comms,
+    )(parameters);
+
+  validatePasswordLogin = (parameters: validatePasswordLogin.Request):
+    Result<
+      validatePasswordLogin.EffectiveRequest,
+      validatePasswordLogin.Response
+    > => controllerGenerator<
+      validatePasswordLogin.Request,
+      validatePasswordLogin.EffectiveRequest,
+      validatePasswordLogin.Response
+    >(
+      validatePasswordLogin.controllerGeneratorOptions,
+      TwoFactorAuthenticationRoute.routerPath,
+      TwoFactorAuthenticationRoute.unauthenticated,
+      this.comms,
+    )(parameters);
+
+  validateCodeLogin = (parameters: validateCodeLogin.Request):
+    Result<
+      validateCodeLogin.EffectiveRequest,
+      validateCodeLogin.Response
+    > => controllerGenerator<
+      validateCodeLogin.Request,
+      validateCodeLogin.EffectiveRequest,
+      validateCodeLogin.Response
+    >(
+      validateCodeLogin.controllerGeneratorOptions,
+      TwoFactorAuthenticationRoute.routerPath,
+      TwoFactorAuthenticationRoute.unauthenticated,
       this.comms,
     )(parameters);
 }

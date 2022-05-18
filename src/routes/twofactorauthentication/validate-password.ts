@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithoutClientOrSupplier } from '../../comms/controller';
 
 interface Request {
   query: {
@@ -12,7 +12,7 @@ interface Response {
   isCorrectPassword: boolean;
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSupplier = {
   method: 'get',
   path: '/validate-password',
   query: Joi.object().keys({

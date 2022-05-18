@@ -4,18 +4,27 @@ import { ControllerGeneratorOptionsWithoutClientOrSupplier } from '../../comms/c
 interface Request {
   query: {
     email: string;
+    password: string;
   };
 }
 
-type Response = void;
+interface Response {
+  isCorrectPassword: boolean;
+  hasTwoFAEnabled: boolean;
+}
 
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSupplier = {
-  method: 'post',
-  path: '/remove-secret',
+  method: 'get',
+  path: '/validate-password-login',
   query: Joi.object().keys({
     email: Joi.string().required(),
+    password: Joi.string().required(),
   }).required(),
-  right: {},
+  response: Joi.object().keys({
+    isCorrectPassword: Joi.boolean().required(),
+    hasTwoFAEnabled: Joi.boolean().required(),
+  }).required(),
+  right: { },
 };
 
 export {

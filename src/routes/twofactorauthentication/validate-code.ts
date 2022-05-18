@@ -1,11 +1,11 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptions } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithoutClientOrSupplier } from '../../comms/controller';
 
 interface Request {
   query: {
     email: string;
     code: string;
-    secret: string | null;
+    secret: string;
   };
 }
 
@@ -13,10 +13,10 @@ interface Response {
   isCorrect: boolean;
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptions = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSupplier = {
   method: 'get',
-  path: '/validate-google-authenticator-code',
-  right: { environment: 'USERS', supplier: 'ENVIRONMENT_ADMIN' },
+  path: '/validate-code',
+  right: { },
   query: Joi.object().keys({
     email: Joi.string().email({ tlds: false }).required(),
     code: Joi.string().max(255).required(),

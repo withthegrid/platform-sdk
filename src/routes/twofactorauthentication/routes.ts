@@ -1,13 +1,17 @@
 import * as validatePassword from './validate-password';
-import * as validateGoogleAuthenticatorCode from './validate-google-authenticator-code';
+import * as validateCode from './validate-code';
 import * as removeSecret from './remove-secret';
 import * as getQRCode from './get-qr-code';
 import * as getSettings from './get-settings';
+import * as validatePasswordLogin from './validate-password-login';
+import * as validateCodeLogin from './validate-code-login';
 
 export {
   validatePassword,
-  validateGoogleAuthenticatorCode,
+  validateCode,
   removeSecret,
   getQRCode,
   getSettings,
+  validatePasswordLogin,
+  validateCodeLogin,
 };
