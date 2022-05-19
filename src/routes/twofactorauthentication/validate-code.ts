@@ -18,12 +18,12 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSuppl
   path: '/validate-code',
   right: { },
   query: Joi.object().keys({
-    email: Joi.string().email({ tlds: false }).required(),
-    code: Joi.string().max(255).required(),
-    secret: Joi.string().allow(null).required(),
+    email: Joi.string().email({ tlds: false }).required().example('test@test.com'),
+    code: Joi.string().max(255).required().example('123456'),
+    secret: Joi.string().allow(null).required().example('aaaaaaaaaaaaaaaaaaaaaaaa'),
   }),
   response: Joi.object().keys({
-    isCorrect: Joi.boolean().required(),
+    isCorrect: Joi.boolean().required().example('true'),
   }).required(),
 };
 

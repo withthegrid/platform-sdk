@@ -16,11 +16,11 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSuppl
   method: 'get',
   path: '/get-settings',
   query: Joi.object().keys({
-    email: Joi.string().required(),
+    email: Joi.string().required().example('test@test.com'),
   }).required(),
   response: Joi.object().keys({
-    hasTwoFAEnabled: Joi.boolean().required(),
-    isAllowedTurnOffTwoFA: Joi.boolean().required(),
+    hasTwoFAEnabled: Joi.boolean().required().example(true),
+    isAllowedTurnOffTwoFA: Joi.boolean().required().example(true),
   }).required(),
   right: {},
 };

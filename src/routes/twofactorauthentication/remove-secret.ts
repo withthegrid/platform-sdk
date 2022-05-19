@@ -13,7 +13,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSuppl
   method: 'post',
   path: '/remove-secret',
   query: Joi.object().keys({
-    email: Joi.string().required(),
+    email: Joi.string().required().example('test@test.com'),
   }).required(),
   right: {},
 };

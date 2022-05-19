@@ -16,11 +16,11 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSuppl
   method: 'get',
   path: '/validate-password',
   query: Joi.object().keys({
-    email: Joi.string().required(),
-    password: Joi.string().required(),
+    email: Joi.string().required().example('test@test.com'),
+    password: Joi.string().required().example('iampassword'),
   }).required(),
   response: Joi.object().keys({
-    isCorrectPassword: Joi.boolean().required(),
+    isCorrectPassword: Joi.boolean().required().example(true),
   }).required(),
   right: { },
 };

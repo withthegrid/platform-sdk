@@ -14,7 +14,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSuppl
   path: '/send-lost-app-request',
   right: {},
   query: Joi.object().keys({
-    email: Joi.string().required(),
+    email: Joi.string().required().example('test@test.com'),
   }).required(),
 };
 
