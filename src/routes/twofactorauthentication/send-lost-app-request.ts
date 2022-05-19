@@ -7,22 +7,15 @@ interface Request {
   };
 }
 
-interface Response {
-  hasTwoFAEnabled: boolean;
-  isAllowedTurnOffTwoFA: boolean;
-}
+type Response = void;
 
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSupplier = {
-  method: 'get',
-  path: '/get-settings',
+  method: 'post',
+  path: '/send-lost-app-request',
+  right: {},
   query: Joi.object().keys({
     email: Joi.string().required(),
   }).required(),
-  response: Joi.object().keys({
-    hasTwoFAEnabled: Joi.boolean().required(),
-    isAllowedTurnOffTwoFA: Joi.boolean().required(),
-  }).required(),
-  right: {},
 };
 
 export {

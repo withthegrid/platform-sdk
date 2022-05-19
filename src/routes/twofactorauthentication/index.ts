@@ -5,6 +5,7 @@ import * as getQRCode from './get-qr-code';
 import * as getSettings from './get-settings';
 import * as validatePasswordLogin from './validate-password-login';
 import * as validateCodeLogin from './validate-code-login';
+import * as sendLostAppRequest from './send-lost-app-request';
 
 import Comms from '../../comms';
 
@@ -119,6 +120,21 @@ class TwoFactorAuthenticationRoute {
       validateCodeLogin.Response
     >(
       validateCodeLogin.controllerGeneratorOptions,
+      TwoFactorAuthenticationRoute.routerPath,
+      TwoFactorAuthenticationRoute.unauthenticated,
+      this.comms,
+    )(parameters);
+
+  sendLostAppRequest = (parameters: sendLostAppRequest.Request):
+    Result<
+      sendLostAppRequest.EffectiveRequest,
+      sendLostAppRequest.Response
+    > => controllerGenerator<
+      sendLostAppRequest.Request,
+      sendLostAppRequest.EffectiveRequest,
+      sendLostAppRequest.Response
+    >(
+      sendLostAppRequest.controllerGeneratorOptions,
       TwoFactorAuthenticationRoute.routerPath,
       TwoFactorAuthenticationRoute.unauthenticated,
       this.comms,

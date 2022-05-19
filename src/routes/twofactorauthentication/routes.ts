@@ -5,6 +5,7 @@ import * as getQRCode from './get-qr-code';
 import * as getSettings from './get-settings';
 import * as validatePasswordLogin from './validate-password-login';
 import * as validateCodeLogin from './validate-code-login';
+import * as sendLostAppRequest from './send-lost-app-request';
 
 export {
   validatePassword,
@@ -14,4 +15,5 @@ export {
   getSettings,
   validatePasswordLogin,
   validateCodeLogin,
+  sendLostAppRequest,
 };
