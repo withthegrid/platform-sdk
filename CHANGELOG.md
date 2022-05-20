@@ -1,3 +1,10 @@
+### [17.42.12](https://github.com/withthegrid/platform-sdk/compare/v17.42.11...v17.42.12) (2022-05-20)
+
+
+### Bug Fixes
+
+* add type information for form fields in analytics ([#211](https://github.com/withthegrid/platform-sdk/issues/211)) ([893ec72](https://github.com/withthegrid/platform-sdk/commit/893ec72cfc36fcf9356a1fc9f2900c37be30bf06)), closes [withthegrid/platform-client#1151](https://github.com/withthegrid/platform-client/issues/1151)
+
 ### [17.42.11](https://github.com/withthegrid/platform-sdk/compare/v17.42.10...v17.42.11) (2022-05-12)
 
 
