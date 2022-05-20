@@ -62,6 +62,7 @@ const schema = Joi.object().keys({
       condition: conditionSchema,
       field: fieldSchema,
       name: Joi.string(),
+      dataTypeHint: Joi.string().valid('string', 'integer', 'number', 'boolean'),
     }).required(),
     Joi.object().keys({
       type: Joi.string().valid('timeGroup').required(),
@@ -118,8 +119,17 @@ interface Limit {
 }
 
 type AggregatedColumn =
-  { type: 'count' | 'share'; condition?: Condition, name?: string }
-  | { type: 'sum' | 'mean' | 'min' | 'max' | 'any'; condition?: Condition; field: Field, name?: string };
+  {
+    type: 'count' | 'share';
+    condition?: Condition;
+    name?: string;
+  } | {
+    type: 'sum' | 'mean' | 'min' | 'max' | 'any';
+    condition?: Condition;
+    field: Field;
+    name?: string;
+    dataTypeHint?: undefined | 'string' | 'integer' | 'boolean' | 'number';
+  };
 
 type TimeGroupColumn = { type: 'timeGroup', field: string; granularity: TimeGranularity, name?: string };
 
