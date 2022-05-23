@@ -6,7 +6,7 @@ function createGeneralInformationMd(): string {
 
 This document provides information on how to access the withthegrid application programmatically.
 
-Programmatic access to the application requires a machine account. Almost everything a user can do in the user interface of the application, can also be done with a machine account. To obtain one, contact us at info@withthegrid.com.
+Programmatic access to the application requires a machine account. Almost everything a user can do in the user interface of the application, can also be done with a machine account. To obtain one, contact us at <a href="mailto:info@withthegrid.com">info&#x40;withthegrid.com</a>.
 Our programmatic interface is a REST JSON API that is accessible through HTTPS. Next to the raw HTTP queries (with examples in cURL), we provide a Javascript(Typescript) SDK. Select in the top bar whether you want to see the documentation for cURL or the Javascript SDK.
 To add the SDK to your javascript package, type \`\`\`npm i @withthegrid/platform-sdk\`\`\` into your console.
 
