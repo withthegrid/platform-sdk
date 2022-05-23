@@ -1,3 +1,10 @@
+### [17.42.13](https://github.com/withthegrid/platform-sdk/compare/v17.42.12...v17.42.13) (2022-05-23)
+
+
+### Bug Fixes
+
+* mail encoding in the documentation keeps changing ([#214](https://github.com/withthegrid/platform-sdk/issues/214)) ([79feefc](https://github.com/withthegrid/platform-sdk/commit/79feefca210d2e571de66620ef6fdebf7c7e6d5f))
+
 ### [17.42.12](https://github.com/withthegrid/platform-sdk/compare/v17.42.11...v17.42.12) (2022-05-20)
 
 
