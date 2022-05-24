@@ -135,9 +135,19 @@ type TimeGroupColumn = { type: 'timeGroup', field: string; granularity: TimeGran
 
 type UnaggregatedColumn = { type: undefined, field: Field, name?: string, dataTypeHint?: undefined | 'string' | 'integer' | 'boolean' | 'number' };
 
+type Column = UnaggregatedColumn | AggregatedColumn | TimeGroupColumn
+
+function isUnaggregatedColumn(column: Column): column is UnaggregatedColumn {
+  return column.type === undefined;
+}
+
+function isTimeGroupColumn(column: Column): column is TimeGroupColumn {
+  return column.type === 'timeGroup';
+}
+
 interface AnalyticsQuery {
   source: string;
-  columns: (UnaggregatedColumn | AggregatedColumn | TimeGroupColumn)[];
+  columns: (Column)[];
   filter?: Condition;
   limitBy?: Limit;
   offset?: string;
@@ -155,5 +165,7 @@ export {
   Field,
   AggregatedColumn,
   UnaggregatedColumn,
+  isUnaggregatedColumn,
   TimeGroupColumn,
+  isTimeGroupColumn,
 };
