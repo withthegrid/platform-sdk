@@ -3,9 +3,6 @@ import * as validateCode from './validate-code';
 import * as removeSecret from './remove-secret';
 import * as getQRCode from './get-qr-code';
 import * as getSettings from './get-settings';
-import * as validatePasswordLogin from './validate-password-login';
-import * as validateCodeLogin from './validate-code-login';
-import * as sendLostAppRequest from './send-lost-app-request';
 
 import Comms from '../../comms';
 
@@ -15,7 +12,6 @@ class TwoFactorAuthenticationRoute {
   static routerPath = 'two-factor-authentication';
 
   static authenticated = true;
-  static unauthenticated = false;
 
   constructor(readonly comms: Comms) {
   }
@@ -92,51 +88,6 @@ class TwoFactorAuthenticationRoute {
       getSettings.controllerGeneratorOptions,
       TwoFactorAuthenticationRoute.routerPath,
       TwoFactorAuthenticationRoute.authenticated,
-      this.comms,
-    )(parameters);
-
-  validatePasswordLogin = (parameters: validatePasswordLogin.Request):
-    Result<
-      validatePasswordLogin.EffectiveRequest,
-      validatePasswordLogin.Response
-    > => controllerGenerator<
-      validatePasswordLogin.Request,
-      validatePasswordLogin.EffectiveRequest,
-      validatePasswordLogin.Response
-    >(
-      validatePasswordLogin.controllerGeneratorOptions,
-      TwoFactorAuthenticationRoute.routerPath,
-      TwoFactorAuthenticationRoute.unauthenticated,
-      this.comms,
-    )(parameters);
-
-  validateCodeLogin = (parameters: validateCodeLogin.Request):
-    Result<
-      validateCodeLogin.EffectiveRequest,
-      validateCodeLogin.Response
-    > => controllerGenerator<
-      validateCodeLogin.Request,
-      validateCodeLogin.EffectiveRequest,
-      validateCodeLogin.Response
-    >(
-      validateCodeLogin.controllerGeneratorOptions,
-      TwoFactorAuthenticationRoute.routerPath,
-      TwoFactorAuthenticationRoute.unauthenticated,
-      this.comms,
-    )(parameters);
-
-  sendLostAppRequest = (parameters: sendLostAppRequest.Request):
-    Result<
-      sendLostAppRequest.EffectiveRequest,
-      sendLostAppRequest.Response
-    > => controllerGenerator<
-      sendLostAppRequest.Request,
-      sendLostAppRequest.EffectiveRequest,
-      sendLostAppRequest.Response
-    >(
-      sendLostAppRequest.controllerGeneratorOptions,
-      TwoFactorAuthenticationRoute.routerPath,
-      TwoFactorAuthenticationRoute.unauthenticated,
       this.comms,
     )(parameters);
 }
