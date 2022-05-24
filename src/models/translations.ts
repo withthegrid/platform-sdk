@@ -29,14 +29,11 @@ const isPluralizedTranslation = (tr: Translation): tr is PluralizedTranslation =
 
 const localesKeys = ['en', 'nl'] as const;
 
-type LocalesKeys = typeof localesKeys[number];
-
 type Translations = Record<typeof localesKeys[number], Translation>
 
 export {
   schema,
   localesKeys,
-  LocalesKeys,
   Translations,
   Translation,
   SimpleTranslation,

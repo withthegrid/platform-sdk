@@ -1,4 +1,5 @@
-import { localesKeys, LocalesKeys } from '../../src/models/translations';
+import { localesKeys } from '../../src/models/translations';
+import { Locale } from '../../src/models/locale';
 import { AggregatedColumn, UnaggregatedColumn } from '../../src/models/analytics-query';
 import { analyticsTables, getColumnPlaceholder } from '../../src/models/analytics/analytics-tables';
 
@@ -39,7 +40,7 @@ describe('analytics-tables placeholders', () => {
 
         Object.entries(expected).forEach(([locale, expectedPlaceholder]) => {
           // act
-          const placeholder = getColumnPlaceholder(column, locale as LocalesKeys);
+          const placeholder = getColumnPlaceholder(column, locale as Locale);
 
           // assert
           expect(placeholder).toEqual(expectedPlaceholder);
@@ -63,7 +64,7 @@ describe('analytics-tables placeholders', () => {
 
         Object.entries(expected).forEach(([locale, expectedPlaceholder]) => {
           // act
-          const placeholder = getColumnPlaceholder(column, locale as LocalesKeys);
+          const placeholder = getColumnPlaceholder(column, locale as Locale);
 
           // assert
           expect(placeholder).toEqual(expectedPlaceholder);
@@ -178,7 +179,7 @@ describe('analytics-tables placeholders', () => {
         // act
         const placeholder = getColumnPlaceholder(
           column as AggregatedColumn,
-          locale as LocalesKeys,
+          locale as Locale,
         );
 
         // assert
