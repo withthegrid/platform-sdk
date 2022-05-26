@@ -4,7 +4,6 @@ import * as removeSecret from './remove-secret';
 import * as getQRCode from './get-qr-code';
 
 import Comms from '../../comms';
-
 import controllerGenerator, { Result } from '../../comms/controller';
 
 class TwoFactorAuthenticationRoute {
