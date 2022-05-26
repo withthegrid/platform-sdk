@@ -13,6 +13,8 @@ const schema = Joi.object().keys({
   company: Joi.string().allow(null).default(null),
   rights: Joi.array().items(Joi.string()).required().example(['STATIC', 'USERS'])
     .description('See the getting started section about rights'),
+  isSecretActive: Joi.boolean().allow(null).required().example(true)
+    .description('Is true if user has 2FA enabled'),
 })
   .description('A human that has access to the withthegrid application')
   .tag('user')
@@ -27,6 +29,7 @@ interface User {
   phone: string | null;
   company: string | null;
   rights: string[];
+  isSecretActive: boolean | null;
 }
 
 export { schema, User };

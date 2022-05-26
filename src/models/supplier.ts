@@ -3,8 +3,8 @@ import Joi from 'joi';
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('f1a4w1'),
   name: Joi.string().required().example('My connectivity environment'),
-  enforceTwoFactorAuthentication: Joi.boolean().allow(null).required().example(false)
-    .description('Describes if users need to have two factor authentication enabled in order to access this environment.'),
+  enforceTwoFactorAuthentication: Joi.boolean().required().example(false)
+    .description('Determines whether users need to have two factor authentication enabled in order to access this environment.'),
   createdAt: Joi.date().required().example('2019-12-31T15:23Z'),
 })
   .tag('supplier')
@@ -14,7 +14,7 @@ const schema = Joi.object().keys({
 interface Supplier {
   hashId: string;
   name: string;
-  enforceTwoFactorAuthentication: boolean | null;
+  enforceTwoFactorAuthentication: boolean;
   createdAt: Date;
 }
 

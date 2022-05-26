@@ -3,26 +3,24 @@ import { ControllerGeneratorOptionsWithoutClientOrSupplier } from '../../comms/c
 
 interface Request {
   query: {
-    email: string;
+    code: string;
   };
 }
 
 interface Response {
-  qrcode: string | null;
-  secret: string | null;
+  isCorrect: boolean;
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSupplier = {
   method: 'get',
-  path: '/get-qr-code',
+  path: '/validate-code',
+  right: { },
   query: Joi.object().keys({
-    email: Joi.string().required().example('test@test.com'),
-  }).required(),
+    code: Joi.string().max(255).required().example('123456'),
+  }),
   response: Joi.object().keys({
-    qrcode: Joi.string().allow(null).required().example(''),
-    secret: Joi.string().allow(null).required().example('aaaaaaaaaaaaaaaaaaaaaaa'),
+    isCorrect: Joi.boolean().required().example('true'),
   }).required(),
-  right: {},
 };
 
 export {

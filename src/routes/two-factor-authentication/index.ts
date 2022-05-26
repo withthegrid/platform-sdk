@@ -2,7 +2,6 @@ import * as validatePassword from './validate-password';
 import * as validateCode from './validate-code';
 import * as removeSecret from './remove-secret';
 import * as getQRCode from './get-qr-code';
-import * as getSettings from './get-settings';
 
 import Comms from '../../comms';
 
@@ -71,21 +70,6 @@ class TwoFactorAuthenticationRoute {
       getQRCode.Response
     >(
       getQRCode.controllerGeneratorOptions,
-      TwoFactorAuthenticationRoute.routerPath,
-      TwoFactorAuthenticationRoute.authenticated,
-      this.comms,
-    )(parameters);
-
-  getSettings = (parameters: getSettings.Request):
-    Result<
-      getSettings.EffectiveRequest,
-      getSettings.Response
-    > => controllerGenerator<
-      getSettings.Request,
-      getSettings.EffectiveRequest,
-      getSettings.Response
-    >(
-      getSettings.controllerGeneratorOptions,
       TwoFactorAuthenticationRoute.routerPath,
       TwoFactorAuthenticationRoute.authenticated,
       this.comms,

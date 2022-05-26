@@ -26,7 +26,7 @@ import SupplierActivityRoute from './supplier-activity';
 import SupplierCertificateRoute from './supplier-certificate';
 import SupplierReportTypeRoute from './supplier-report-type';
 import SupplierWebhookRoute from './supplier-webhook';
-import TwoFactorAuthenticationRoute from './twofactorauthentication';
+import TwoFactorAuthenticationRoute from './two-factor-authentication';
 import UserRoute from './user';
 
 class Routes {
