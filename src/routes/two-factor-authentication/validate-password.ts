@@ -3,7 +3,6 @@ import { ControllerGeneratorOptionsWithoutClientOrSupplier } from '../../comms/c
 
 interface Request {
   query: {
-    email: string;
     password: string;
   };
 }
@@ -16,7 +15,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSuppl
   method: 'get',
   path: '/validate-password',
   query: Joi.object().keys({
-    email: Joi.string().required().example('test@test.com'),
     password: Joi.string().required().example('iampassword'),
   }).required(),
   response: Joi.object().keys({
