@@ -21,6 +21,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSuppl
     isCorrectPassword: Joi.boolean().required().example(true),
   }).required(),
   right: { },
+  description: 'Checks whether user entered correct password',
 };
 
 export {

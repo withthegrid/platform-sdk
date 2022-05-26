@@ -1,7 +1,7 @@
 import * as validatePassword from './validate-password';
 import * as validateCode from './validate-code';
 import * as removeSecret from './remove-secret';
-import * as getQRCode from './get-qr-code';
+import * as getKeyuri from './get-keyuri';
 
 import Comms from '../../comms';
 import controllerGenerator, { Result } from '../../comms/controller';
@@ -59,16 +59,16 @@ class TwoFactorAuthenticationRoute {
       this.comms,
     )(parameters);
 
-  getQRCode = (parameters: getQRCode.Request):
+  getKeyuri = (parameters: getKeyuri.Request):
     Result<
-      getQRCode.EffectiveRequest,
-      getQRCode.Response
+      getKeyuri.EffectiveRequest,
+      getKeyuri.Response
     > => controllerGenerator<
-      getQRCode.Request,
-      getQRCode.EffectiveRequest,
-      getQRCode.Response
+      getKeyuri.Request,
+      getKeyuri.EffectiveRequest,
+      getKeyuri.Response
     >(
-      getQRCode.controllerGeneratorOptions,
+      getKeyuri.controllerGeneratorOptions,
       TwoFactorAuthenticationRoute.routerPath,
       TwoFactorAuthenticationRoute.authenticated,
       this.comms,

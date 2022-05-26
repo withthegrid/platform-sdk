@@ -12,7 +12,7 @@ interface Response {
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSupplier = {
-  method: 'get',
+  method: 'post',
   path: '/validate-code',
   right: { },
   query: Joi.object().keys({
@@ -21,6 +21,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSuppl
   response: Joi.object().keys({
     isCorrect: Joi.boolean().required().example('true'),
   }).required(),
+  description: 'Checks whether user entered correct code from authenticator app',
 };
 
 export {

@@ -5,19 +5,19 @@ type Request = Record<string, undefined> | undefined;
 type EffectiveRequest = Record<string, undefined>;
 
 interface Response {
-  qrcode: string;
+  keyuri: string;
   secret: string;
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSupplier = {
   method: 'get',
-  path: '/get-qr-code',
+  path: '/get-keyuri',
   response: Joi.object().keys({
-    qrcode: Joi.string().allow(null).required().example(''),
+    keyuri: Joi.string().allow(null).required().example(''),
     secret: Joi.string().allow(null).required().example(''),
   }).required(),
   right: {},
-  description: 'Generates a QR code for user to scan in authentication app',
+  description: 'Generates a secret and keyuri for user to set up 2FA',
 };
 
 export {

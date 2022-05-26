@@ -8,6 +8,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSuppl
   method: 'post',
   path: '/remove-secret',
   right: {},
+  description: 'Turns off 2FA for user',
 };
 
 export {
