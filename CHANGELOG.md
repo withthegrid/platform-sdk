@@ -1,3 +1,31 @@
+### [17.42.14](https://github.com/withthegrid/platform-sdk/compare/v17.42.13...v17.42.14) (2022-05-24)
+
+
+### Bug Fixes
+
+* Trivial change to readme ([#223](https://github.com/withthegrid/platform-sdk/issues/223)) ([74ba6a9](https://github.com/withthegrid/platform-sdk/commit/74ba6a9f5e95e4642617caddbfd0cdd81400f5b8))
+
+### [17.42.13](https://github.com/withthegrid/platform-sdk/compare/v17.42.12...v17.42.13) (2022-05-23)
+
+
+### Bug Fixes
+
+* mail encoding in the documentation keeps changing ([#214](https://github.com/withthegrid/platform-sdk/issues/214)) ([79feefc](https://github.com/withthegrid/platform-sdk/commit/79feefca210d2e571de66620ef6fdebf7c7e6d5f))
+
+### [17.42.12](https://github.com/withthegrid/platform-sdk/compare/v17.42.11...v17.42.12) (2022-05-20)
+
+
+### Bug Fixes
+
+* add type information for form fields in analytics ([#211](https://github.com/withthegrid/platform-sdk/issues/211)) ([893ec72](https://github.com/withthegrid/platform-sdk/commit/893ec72cfc36fcf9356a1fc9f2900c37be30bf06)), closes [withthegrid/platform-client#1151](https://github.com/withthegrid/platform-client/issues/1151)
+
+### [17.42.11](https://github.com/withthegrid/platform-sdk/compare/v17.42.10...v17.42.11) (2022-05-12)
+
+
+### Bug Fixes
+
+* undefined response in error ([#200](https://github.com/withthegrid/platform-sdk/issues/200)) ([ec2ed46](https://github.com/withthegrid/platform-sdk/commit/ec2ed4663ee3c7c82d8c1bccb03f2d8accf5113f)), closes [withthegrid/platform-client#1156](https://github.com/withthegrid/platform-client/issues/1156)
+
 ### [17.42.10](https://github.com/withthegrid/platform-sdk/compare/v17.42.9...v17.42.10) (2022-04-26)
 
 

@@ -99,7 +99,7 @@ class Comms {
       if (Axios.isCancel(e)) {
         throw new CommsCanceledError();
       }
-      if (e.response !== undefined) {
+      if (typeof e.response === 'object' && e.response !== null) {
         if (e.response.status === 401) {
           throw new AuthenticationError(e.response.data.key, e.response.data.message);
         }

@@ -55,13 +55,14 @@ const conditionSchema = Joi.object().keys({
 const schema = Joi.object().keys({
   source: Joi.string().example('pinGroup').required(),
   columns: Joi.array().items(Joi.alternatives().try(
-    Joi.object().keys({ field: fieldSchema, name: Joi.string() }).required(),
+    Joi.object().keys({ field: fieldSchema, name: Joi.string(), dataTypeHint: Joi.string().valid('string', 'integer', 'number', 'boolean') }).required(),
     Joi.object().keys({ type: Joi.string().valid('count', 'share').required(), condition: conditionSchema, name: Joi.string() }).required(),
     Joi.object().keys({
       type: Joi.string().valid('sum', 'mean', 'min', 'max', 'any').required(),
       condition: conditionSchema,
       field: fieldSchema,
       name: Joi.string(),
+      dataTypeHint: Joi.string().valid('string', 'integer', 'number', 'boolean'),
     }).required(),
     Joi.object().keys({
       type: Joi.string().valid('timeGroup').required(),
@@ -118,16 +119,35 @@ interface Limit {
 }
 
 type AggregatedColumn =
-  { type: 'count' | 'share'; condition?: Condition, name?: string }
-  | { type: 'sum' | 'mean' | 'min' | 'max' | 'any'; condition?: Condition; field: Field, name?: string };
+  {
+    type: 'count' | 'share';
+    condition?: Condition;
+    name?: string;
+  } | {
+    type: 'sum' | 'mean' | 'min' | 'max' | 'any';
+    condition?: Condition;
+    field: Field;
+    name?: string;
+    dataTypeHint?: undefined | 'string' | 'integer' | 'boolean' | 'number';
+  };
 
 type TimeGroupColumn = { type: 'timeGroup', field: string; granularity: TimeGranularity, name?: string };
 
-type UnaggregatedColumn = { type: undefined, field: Field, name?: string };
+type UnaggregatedColumn = { type: undefined, field: Field, name?: string, dataTypeHint?: undefined | 'string' | 'integer' | 'boolean' | 'number' };
+
+type Column = UnaggregatedColumn | AggregatedColumn | TimeGroupColumn
+
+function isUnaggregatedColumn(column: Column): column is UnaggregatedColumn {
+  return column.type === undefined;
+}
+
+function isTimeGroupColumn(column: Column): column is TimeGroupColumn {
+  return column.type === 'timeGroup';
+}
 
 interface AnalyticsQuery {
   source: string;
-  columns: (UnaggregatedColumn | AggregatedColumn | TimeGroupColumn)[];
+  columns: (Column)[];
   filter?: Condition;
   limitBy?: Limit;
   offset?: string;
@@ -145,5 +165,7 @@ export {
   Field,
   AggregatedColumn,
   UnaggregatedColumn,
+  isUnaggregatedColumn,
   TimeGroupColumn,
+  isTimeGroupColumn,
 };

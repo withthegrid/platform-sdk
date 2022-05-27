@@ -1,22 +1,43 @@
-import { Translations } from '../translations';
-import { AggregatedColumn, TimeGroupColumn, UnaggregatedColumn } from '../analytics-query';
+import {
+  Translations,
+  Translation,
+  PluralizedTranslation,
+  isSimpleTranslation,
+} from '../translations';
+import {
+  AggregatedColumn,
+  Field,
+  isTimeGroupColumn,
+  isUnaggregatedColumn,
+  TimeGroupColumn,
+  UnaggregatedColumn,
+} from '../analytics-query';
 
-const t = {
+type L10nKeys = Record<
+  keyof Translations,
+  {
+    expression: PluralizedTranslation,
+    granularities: Record<string, Translation>,
+    aggregations: Record<string, Translation>,
+  }
+>;
+
+const t: L10nKeys = {
   en: {
-    expression: 'Calculation',
+    expression: { singular: 'Calculation', plural: 'Calculations' },
     granularities: {
-      hour: 'Hour',
-      day: 'Day',
-      week: 'Week',
-      month: 'Month',
-      year: 'Year',
+      hour: { singular: 'Hour', plural: 'Hours' },
+      day: { singular: 'Day', plural: 'Days' },
+      week: { singular: 'Week', plural: 'Weeks' },
+      month: { singular: 'Month', plural: 'Months' },
+      year: { singular: 'Year', plural: 'Years' },
       hourOfTheDay: 'HourOfDay',
       dayOfTheWeek: 'DayOfWeek',
       monthOfTheYear: 'MonthOfYear',
     },
     aggregations: {
-      count: 'Count',
-      share: 'Percentage',
+      count: { singular: 'Count', plural: 'Counts' },
+      share: { singular: 'Percentage', plural: 'Percentages' },
       sum: 'Sum',
       mean: 'Mean',
       min: 'Min',
@@ -25,20 +46,20 @@ const t = {
     },
   },
   nl: {
-    expression: 'Berekening',
+    expression: { singular: 'Berekening', plural: 'Berekeningen' },
     granularities: {
-      hour: 'Uur',
-      day: 'Dag',
-      week: 'Week',
-      month: 'Maand',
-      year: 'Jaar',
+      hour: { singular: 'Uur', plural: 'Uren' },
+      day: { singular: 'Dag', plural: 'Dagen' },
+      week: { singular: 'Week', plural: 'Weken' },
+      month: { singular: 'Maand', plural: 'Maanden' },
+      year: { singular: 'Jaar', plural: 'Jaren' },
       hourOfTheDay: 'UurVanDag',
       dayOfTheWeek: 'DagVanJaar',
       monthOfTheYear: 'MaandVanJaar',
     },
     aggregations: {
-      count: 'Aantal',
-      share: 'Percentage',
+      count: { singular: 'Aantal', plural: 'Aantallen' },
+      share: { singular: 'Percentage', plural: 'Percentages' },
       sum: 'Som',
       mean: 'Gemiddelde',
       min: 'Min',
@@ -49,14 +70,35 @@ const t = {
 };
 
 type AnalyticsTable = {
-  fields: string[]
-  fieldsWithTranslations: Record<keyof Translations, Record<string, string>>
-  tableKey: string,
-  tableText: Record<keyof Translations, string>,
-};
+  fields: string[];
+  fieldsWithTranslations: Record<
+    keyof Translations,
+    Record<string, Translation>
+  >;
+  tableKey: Translation;
+  tableText: Record<keyof Translations, PluralizedTranslation>;
+}
+
+type FormatterFn<R> = (tableText: Record<keyof Translations, Translation>) => R;
+type Tuple<T, U> = [T, U];
+
+interface AnalyticsTableHelpers {
+  getTableName: (tableKey: TableKeys) =>
+    Record<keyof Translations, PluralizedTranslation> & {
+      format: <R>(formatter: FormatterFn<R>) => R
+      getField: (fieldKey: string) => Record<keyof Translations, Translation> & {
+        format: <R>(formatter: FormatterFn<R>) => R
+      }
+    };
+  getTableNameAndField: (key: `${TableKeys}.${string}`) => Tuple<
+    Record<keyof Translations, PluralizedTranslation>,
+    Record<keyof Translations, Translation>
+  >;
+  getTranslationString: (tr: Translation, opts?: { plural?: boolean }) => string;
+}
 
 type TableKeys =
-  'clientReportType'
+  | 'clientReportType'
   | 'command'
   | 'commandType'
   | 'device'
@@ -74,77 +116,85 @@ type TableKeys =
   | 'threshold'
   | 'user';
 
-const analyticsTables: Record<TableKeys, AnalyticsTable> = {
+function defaultThresholdValue(
+  condition: string,
+  { locale, isDefault }: { locale: 'en' | 'nl'; isDefault: boolean },
+) {
+  const value = isDefault
+    ? { en: 'default value', nl: 'standaard waarde' }
+    : { en: 'value', nl: 'waarde' };
+
+  return {
+    singular: `Issue Trigger ${value[locale]} (${condition})`,
+    plural: `Issue Trigger ${value[locale]} (${condition})`,
+  };
+}
+
+function getTranslationString(tr: Translation, opts?: { plural?: boolean }): string {
+  const pluralization = opts !== undefined
+    && opts.plural === true ? 'plural' : 'singular';
+
+  return isSimpleTranslation(tr)
+    ? tr
+    : tr[pluralization];
+}
+
+const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
   clientReportType: {
-    fields: [
-      'hashId',
-      'name',
-      'createdAt',
-      'deletedAt',
-    ],
+    fields: ['hashId', 'name', 'createdAt', 'deletedAt'],
     fieldsWithTranslations: {
       en: {
-        hashId: 'ID',
-        name: 'Name',
+        hashId: { singular: 'ID', plural: 'IDs' },
+        name: { singular: 'Name', plural: 'Names' },
         createdAt: 'Created at',
         deletedAt: 'Deleted at',
       },
       nl: {
-        hashId: 'ID',
-        name: 'Naam',
+        hashId: { singular: 'ID', plural: 'IDs' },
+        name: { singular: 'Naam', plural: 'Namen' },
         createdAt: 'Aangemaakt op',
         deletedAt: 'Verwijderd op',
       },
     },
     tableKey: 'clientReportType',
     tableText: {
-      en: 'Report type',
-      nl: 'Rapportsoort',
+      en: { singular: 'Report type', plural: 'Report types' },
+      nl: { singular: 'Rapportsoort', plural: 'Rapportsoorten' },
     },
   },
   command: {
-    fields: [
-      'hashId',
-      'createdAt',
-      'deletedAt',
-    ],
+    fields: ['hashId', 'createdAt', 'deletedAt'],
     fieldsWithTranslations: {
       en: {
-        hashId: 'ID',
+        hashId: { singular: 'ID', plural: 'IDs' },
         createdAt: 'Created at',
         deletedAt: 'Deleted at',
       },
       nl: {
-        hashId: 'ID',
+        hashId: { singular: 'ID', plural: 'IDs' },
         createdAt: 'Aangemaakt op',
         deletedAt: 'Verwijderd op',
       },
     },
     tableKey: 'command',
     tableText: {
-      en: 'Command',
-      nl: 'Opdracht',
+      en: { singular: 'Command', plural: 'Commands' },
+      nl: { singular: 'Opdracht', plural: 'Opdrachten' },
     },
   },
   commandType: {
-    fields: [
-      'hashId',
-      'name',
-      'createdAt',
-      'updatedAt',
-      'deletedAt',
-    ],
+    fields: ['hashId', 'name', 'createdAt', 'updatedAt', 'deletedAt'],
     fieldsWithTranslations: {
       en: {
-        hashId: 'ID',
-        name: 'Name',
+        hashId: { singular: 'ID', plural: 'IDs' },
+        name: { singular: 'Name', plural: 'Names' },
         createdAt: 'Created at',
         updatedAt: 'Updated at',
         deletedAt: 'Deleted at',
       },
       nl: {
-        hashId: 'ID',
-        name: 'Naam',
+        hashId: { singular: 'ID', plural: 'IDs' },
+        name: { singular: 'Naam', plural: 'Namen' },
         createdAt: 'Aangemaakt op',
         updatedAt: 'Bijgewerkt op',
         deletedAt: 'Verwijderd op',
@@ -152,8 +202,8 @@ const analyticsTables: Record<TableKeys, AnalyticsTable> = {
     },
     tableKey: 'commandType',
     tableText: {
-      en: 'Command type',
-      nl: 'Opdracht-soort',
+      en: { singular: 'Command type', plural: 'Command types' },
+      nl: { singular: 'Opdracht-soort', plural: 'Opdracht-soorten' },
     },
   },
   device: {
@@ -169,23 +219,24 @@ const analyticsTables: Record<TableKeys, AnalyticsTable> = {
     ],
     fieldsWithTranslations: {
       en: {
-        hashId: 'ID',
-        fields: 'Form fields',
-        field: 'Form field',
+        hashId: { singular: 'ID', plural: 'IDs' },
+        field: { singular: 'Form field', plural: 'Form fields' },
         nextReportBefore: 'Next report before',
         lastOnlineAt: 'Last online at',
-        missedReports: 'Missed reports',
+        missedReports: { singular: 'Missed report', plural: 'Missed reports' },
         createdAt: 'Created at',
         updatedAt: 'Updated at',
         deletedAt: 'Deleted at',
       },
       nl: {
-        hashId: 'ID',
-        fields: 'Formuliervelden',
-        field: 'Formulierveld',
+        hashId: { singular: 'ID', plural: 'IDs' },
+        field: { singular: 'Formulierveld', plural: 'Formuliervelden' },
         nextReportBefore: 'Volgend rapport voor',
         lastOnlineAt: 'Laatst online op',
-        missedReports: 'Gemiste rapporten',
+        missedReports: {
+          singular: 'Gemiste rapport',
+          plural: 'Gemiste rapporten',
+        },
         createdAt: 'Aangemaakt op',
         updatedAt: 'Bijgewerkt op',
         deletedAt: 'Verwijderd op',
@@ -193,29 +244,23 @@ const analyticsTables: Record<TableKeys, AnalyticsTable> = {
     },
     tableKey: 'device',
     tableText: {
-      en: 'Device',
-      nl: 'Device',
+      en: { singular: 'Device', plural: 'Devices' },
+      nl: { singular: 'Device', plural: 'Devices' },
     },
   },
   deviceType: {
-    fields: [
-      'hashId',
-      'name',
-      'createdAt',
-      'updatedAt',
-      'deletedAt',
-    ],
+    fields: ['hashId', 'name', 'createdAt', 'updatedAt', 'deletedAt'],
     fieldsWithTranslations: {
       en: {
-        hashId: 'ID',
-        name: 'Name',
+        hashId: { singular: 'ID', plural: 'IDs' },
+        name: { singular: 'Name', plural: 'Names' },
         createdAt: 'Created at',
         updatedAt: 'Updated at',
         deletedAt: 'Deleted at',
       },
       nl: {
-        hashId: 'ID',
-        name: 'Naam',
+        hashId: { singular: 'ID', plural: 'IDs' },
+        name: { singular: 'Naam', plural: 'Namen' },
         createdAt: 'Aangemaakt op',
         updatedAt: 'Bijgewerkt op',
         deletedAt: 'Verwijderd op',
@@ -223,8 +268,8 @@ const analyticsTables: Record<TableKeys, AnalyticsTable> = {
     },
     tableKey: 'deviceType',
     tableText: {
-      en: 'Device type',
-      nl: 'Device-soort',
+      en: { singular: 'Device type', plural: 'Device types' },
+      nl: { singular: 'Device-soort', plural: 'Device-soorten' },
     },
   },
   edge: {
@@ -234,24 +279,23 @@ const analyticsTables: Record<TableKeys, AnalyticsTable> = {
       'mapLayer',
       'createdAt',
       'updatedAt',
-      'deletedAt'],
+      'deletedAt',
+    ],
     fieldsWithTranslations: {
       en: {
-        hashId: 'ID',
-        level: 'Condition',
-        mapLayer: 'Map layer',
-        fields: 'Form fields',
-        field: 'Form field',
+        hashId: { singular: 'ID', plural: 'IDs' },
+        level: { singular: 'Condition', plural: 'Conditions' },
+        mapLayer: { singular: 'Map layer', plural: 'Map layers' },
+        field: { singular: 'Form field', plural: 'Form fields' },
         createdAt: 'Created at',
         updatedAt: 'Updated at',
         deletedAt: 'Deleted at',
       },
       nl: {
-        hashId: 'ID',
-        level: 'Conditie',
-        mapLayer: 'Kaartlaag',
-        fields: 'Formuliervelden',
-        field: 'Formulierveld',
+        hashId: { singular: 'ID', plural: 'IDs' },
+        level: { singular: 'Conditie', plural: 'Condities' },
+        mapLayer: { singular: 'Kaartlaag', plural: 'Kaartlagen' },
+        field: { singular: 'Formulierveld', plural: 'Formuliervelden' },
         createdAt: 'Aangemaakt op',
         updatedAt: 'Bijgewerkt op',
         deletedAt: 'Verwijderd op',
@@ -259,30 +303,23 @@ const analyticsTables: Record<TableKeys, AnalyticsTable> = {
     },
     tableKey: 'edge',
     tableText: {
-      en: 'Line',
-      nl: 'Lijn',
+      en: { singular: 'Line', plural: 'Lines' },
+      nl: { singular: 'Lijn', plural: 'Lijnen' },
     },
   },
   grid: {
-    fields: [
-      'hashId',
-      'createdAt',
-      'updatedAt',
-      'deletedAt',
-    ],
+    fields: ['hashId', 'createdAt', 'updatedAt', 'deletedAt'],
     fieldsWithTranslations: {
       en: {
-        hashId: 'ID',
-        fields: 'Form fields',
-        field: 'Form field',
+        hashId: { singular: 'ID', plural: 'IDs' },
+        field: { singular: 'Form field', plural: 'Form fields' },
         createdAt: 'Created at',
         updatedAt: 'Updated at',
         deletedAt: 'Deleted at',
       },
       nl: {
-        hashId: 'ID',
-        fields: 'Formuliervelden',
-        field: 'Formulierveld',
+        hashId: { singular: 'ID', plural: 'IDs' },
+        field: { singular: 'Formulierveld', plural: 'Formuliervelden' },
         createdAt: 'Aangemaakt op',
         updatedAt: 'Bijgewerkt op',
         deletedAt: 'Verwijderd op',
@@ -290,29 +327,23 @@ const analyticsTables: Record<TableKeys, AnalyticsTable> = {
     },
     tableKey: 'grid',
     tableText: {
-      en: 'Group',
-      nl: 'Groep',
+      en: { singular: 'Group', plural: 'Groups' },
+      nl: { singular: 'Groep', plural: 'Groepen' },
     },
   },
   gridPinGroup: {
-    fields: [
-      'hashId',
-      'sort',
-      'createdAt',
-      'updatedAt',
-      'deletedAt',
-    ],
+    fields: ['hashId', 'sort', 'createdAt', 'updatedAt', 'deletedAt'],
     fieldsWithTranslations: {
       en: {
-        hashId: 'ID',
-        sort: 'Sort',
+        hashId: { singular: 'ID', plural: 'IDs' },
+        sort: { singular: 'Sort', plural: 'Sorts' },
         createdAt: 'Created at',
         updatedAt: 'Updated at',
         deletedAt: 'Deleted at',
       },
       nl: {
-        hashId: 'ID',
-        sort: 'Sortering',
+        hashId: { singular: 'ID', plural: 'IDs' },
+        sort: { singular: 'Sortering', plural: 'Sorteringen' },
         createdAt: 'Aangemaakt op',
         updatedAt: 'Bijgewerkt op',
         deletedAt: 'Verwijderd op',
@@ -320,8 +351,8 @@ const analyticsTables: Record<TableKeys, AnalyticsTable> = {
     },
     tableKey: 'gridPinGroup',
     tableText: {
-      en: 'Group-Location',
-      nl: 'Groep-Locatie',
+      en: { singular: 'Group-Location', plural: 'Group-Locations' },
+      nl: { singular: 'Groep-Locatie', plural: 'Groep-Locaties' },
     },
   },
   issue: {
@@ -338,10 +369,10 @@ const analyticsTables: Record<TableKeys, AnalyticsTable> = {
     ],
     fieldsWithTranslations: {
       en: {
-        hashId: 'ID',
-        title: 'Title',
-        level: 'Priority',
-        typeKey: 'Type',
+        hashId: { singular: 'ID', plural: 'IDs' },
+        title: { singular: 'Title', plural: 'Titles' },
+        level: { singular: 'Priority', plural: 'Priorities' },
+        typeKey: { singular: 'Type', plural: 'Types' },
         startAt: 'Started at',
         endAt: 'Ended at',
         createdAt: 'Created at',
@@ -349,10 +380,10 @@ const analyticsTables: Record<TableKeys, AnalyticsTable> = {
         deletedAt: 'Deleted at',
       },
       nl: {
-        hashId: 'ID',
-        title: 'Titel',
-        level: 'Prioriteit',
-        typeKey: 'Type',
+        hashId: { singular: 'ID', plural: 'IDs' },
+        title: { singular: 'Titel', plural: 'Titels' },
+        level: { singular: 'Prioriteit', plural: 'Prioriteiten' },
+        typeKey: { singular: 'Type', plural: 'Types' },
         startAt: 'Begon op',
         endAt: 'Eindigde op',
         createdAt: 'Aangemaakt op',
@@ -362,8 +393,8 @@ const analyticsTables: Record<TableKeys, AnalyticsTable> = {
     },
     tableKey: 'issue',
     tableText: {
-      en: 'Issue',
-      nl: 'Issue',
+      en: { singular: 'Issue', plural: 'Issues' },
+      nl: { singular: 'Issue', plural: 'Issues' },
     },
   },
   measurement: {
@@ -381,24 +412,24 @@ const analyticsTables: Record<TableKeys, AnalyticsTable> = {
     ],
     fieldsWithTranslations: {
       en: {
-        hashId: 'ID',
-        channelIndex: 'Sensor channel',
-        orderOfMagnitude: 'Exponent',
-        significand: 'Significand',
-        performance: 'Condition',
-        value: 'Value',
+        hashId: { singular: 'ID', plural: 'IDs' },
+        channelIndex: { singular: 'Sensor channel', plural: 'Sensor channels' },
+        orderOfMagnitude: { singular: 'Exponent', plural: 'Exponents' },
+        significand: { singular: 'Significand', plural: 'Significands' },
+        performance: { singular: 'Condition', plural: 'Conditions' },
+        value: { singular: 'Value', plural: 'Values' },
         generatedAt: 'Measured at',
         createdAt: 'Created at',
         updatedAt: 'Updated at',
         deletedAt: 'Deleted at',
       },
       nl: {
-        hashId: 'ID',
-        channelIndex: 'Sensorkanaal',
-        orderOfMagnitude: 'Exponent',
-        significand: 'Significant',
-        performance: 'Conditie',
-        value: 'Waarde',
+        hashId: { singular: 'ID', plural: 'IDs' },
+        channelIndex: { singular: 'Sensorkanaal', plural: 'Sensorkanaalen' },
+        orderOfMagnitude: { singular: 'Exponent', plural: 'Exponents' },
+        significand: { singular: 'Significant', plural: 'Significands' },
+        performance: { singular: 'Conditie', plural: 'Condities' },
+        value: { singular: 'Waarde', plural: 'Waarden' },
         generatedAt: 'Gemeten op',
         createdAt: 'Aangemaakt op',
         updatedAt: 'Bijgewerkt op',
@@ -407,8 +438,8 @@ const analyticsTables: Record<TableKeys, AnalyticsTable> = {
     },
     tableKey: 'measurement',
     tableText: {
-      en: 'Measurement',
-      nl: 'Meting',
+      en: { singular: 'Measurement', plural: 'Measurements' },
+      nl: { singular: 'Meting', plural: 'Metingen' },
     },
   },
   performanceMonth: {
@@ -425,32 +456,47 @@ const analyticsTables: Record<TableKeys, AnalyticsTable> = {
     ],
     fieldsWithTranslations: {
       en: {
-        hashId: 'ID',
-        month: 'Month',
-        expected: 'Expected reports',
-        received: 'Received reports',
-        good: 'Healthy measurements',
-        serious: 'Serious measurements',
-        critical: 'Critical measurements',
+        hashId: { singular: 'ID', plural: 'IDs' },
+        month: t.en.granularities.month as Translation,
+        expected: { singular: 'Expected report', plural: 'Expected reports' },
+        received: { singular: 'Received report', plural: 'Received reports' },
+        good: {
+          singular: 'Healthy measurement',
+          plural: 'Healthy measurements',
+        },
+        serious: {
+          singular: 'Serious measurement',
+          plural: 'Serious measurements',
+        },
+        critical: {
+          singular: 'Critical measurement',
+          plural: 'Critical measurements',
+        },
         createdAt: 'Created at',
         updatedAt: 'Updated at',
       },
       nl: {
-        hashId: 'ID',
-        month: 'Maand',
-        expected: 'Verwachte rapporten',
-        received: 'Ontvangen rapporten',
-        good: 'Gezonde metingen',
-        serious: 'Serieuze metingen',
-        critical: 'Kritieke metingen',
+        hashId: { singular: 'ID', plural: 'IDs' },
+        month: t.nl.granularities.month as Translation,
+        expected: {
+          singular: 'Verwachte rapport',
+          plural: 'Verwachte rapporten',
+        },
+        received: {
+          singular: 'Ontvangen rapport',
+          plural: 'Ontvangen rapporten',
+        },
+        good: { singular: 'Gezonde meting', plural: 'Gezonde metingen' },
+        serious: { singular: 'Serieuze meting', plural: 'Serieuze metingen' },
+        critical: { singular: 'Kritieke meting', plural: 'Kritieke metingen' },
         createdAt: 'Aangemaakt op',
         updatedAt: 'Bijgewerkt op',
       },
     },
     tableKey: 'performanceMonth',
     tableText: {
-      en: 'Condition',
-      nl: 'Conditie',
+      en: { singular: 'Condition', plural: 'Conditions' },
+      nl: { singular: 'Conditie', plural: 'Condities' },
     },
   },
   pin: {
@@ -464,21 +510,25 @@ const analyticsTables: Record<TableKeys, AnalyticsTable> = {
     ],
     fieldsWithTranslations: {
       en: {
-        hashId: 'ID',
-        level: 'Condition',
-        deviceFields: 'Device form fields',
-        deviceField: 'Device form field',
-        field: 'Form field',
+        hashId: { singular: 'ID', plural: 'IDs' },
+        level: { singular: 'Condition', plural: 'Conditions' },
+        deviceField: {
+          singular: 'Device form field',
+          plural: 'Device form fields',
+        },
+        field: { singular: 'Form field', plural: 'Form fields' },
         createdAt: 'Created at',
         updatedAt: 'Updated at',
         deletedAt: 'Deleted at',
       },
       nl: {
-        hashId: 'ID',
-        level: 'Conditie',
-        deviceFields: 'Device formuliervelden',
-        deviceField: 'Device formulierveld',
-        field: 'Formulierveld',
+        hashId: { singular: 'ID', plural: 'IDs' },
+        level: { singular: 'Conditie', plural: 'Condities' },
+        deviceField: {
+          singular: 'Device formulierveld',
+          plural: 'Device formuliervelden',
+        },
+        field: { singular: 'Formulierveld', plural: 'Formuliervelden' },
         createdAt: 'Aangemaakt op',
         updatedAt: 'Bijgewerkt op',
         deletedAt: 'Verwijderd op',
@@ -486,8 +536,8 @@ const analyticsTables: Record<TableKeys, AnalyticsTable> = {
     },
     tableKey: 'pin',
     tableText: {
-      en: 'Port',
-      nl: 'Poort',
+      en: { singular: 'Port', plural: 'Ports' },
+      nl: { singular: 'Poort', plural: 'Poorten' },
     },
   },
   pinGroup: {
@@ -504,29 +554,31 @@ const analyticsTables: Record<TableKeys, AnalyticsTable> = {
     ],
     fieldsWithTranslations: {
       en: {
-        hashId: 'ID',
-        latitude: 'Latitude',
-        longitude: 'Longitude',
-        level: 'Condition',
-        mapLayer: 'Map layer',
-        deviceFields: 'Device form fields',
-        deviceField: 'Device form field',
-        fields: 'Form fields',
-        field: 'Form field',
+        hashId: { singular: 'ID', plural: 'IDs' },
+        latitude: { singular: 'Latitude', plural: 'Latitudes' },
+        longitude: { singular: 'Longitude', plural: 'Longitudes' },
+        level: { singular: 'Condition', plural: 'Conditions' },
+        mapLayer: { singular: 'Map layer', plural: 'Map layers' },
+        deviceField: {
+          singular: 'Device form field',
+          plural: 'Device form fields',
+        },
+        field: { singular: 'Form field', plural: 'Form fields' },
         createdAt: 'Created at',
         updatedAt: 'Updated at',
         deletedAt: 'Deleted at',
       },
       nl: {
-        hashId: 'ID',
-        latitude: 'Breedtegraad',
-        longitude: 'Lengtegraad',
-        level: 'Conditie',
-        mapLayer: 'Kaartlaag',
-        deviceFields: 'Device formuliervelden',
-        deviceField: 'Device formulierveld',
-        fields: 'Formuliervelden',
-        field: 'Formulierveld',
+        hashId: { singular: 'ID', plural: 'IDs' },
+        latitude: { singular: 'Breedtegraad', plural: 'Breedtegraden' },
+        longitude: { singular: 'Lengtegraad', plural: 'Lengtegraden' },
+        level: { singular: 'Conditie', plural: 'Condities' },
+        mapLayer: { singular: 'Kaartlaag', plural: 'Kaartlagen' },
+        deviceField: {
+          singular: 'Device formulierveld',
+          plural: 'Device formuliervelden',
+        },
+        field: { singular: 'Formulierveld', plural: 'Formuliervelden' },
         createdAt: 'Aangemaakt op',
         updatedAt: 'Bijgewerkt op',
         deletedAt: 'Verwijderd op',
@@ -534,8 +586,8 @@ const analyticsTables: Record<TableKeys, AnalyticsTable> = {
     },
     tableKey: 'pinGroup',
     tableText: {
-      en: 'Location',
-      nl: 'Locatie',
+      en: { singular: 'Location', plural: 'Locations' },
+      nl: { singular: 'Locatie', plural: 'Locaties' },
     },
   },
   quantity: {
@@ -554,27 +606,51 @@ const analyticsTables: Record<TableKeys, AnalyticsTable> = {
     ],
     fieldsWithTranslations: {
       en: {
-        hashId: 'ID',
-        name: 'Name',
-        color: 'Color',
-        unit: 'Unit',
-        defaultCriticallyLowThresholdValue: 'Issue trigger default value (critically low)',
-        defaultLowThresholdValue: 'Issue trigger default value (low)',
-        defaultHighThresholdValue: 'Issue trigger default value (high)',
-        defaultCriticallyHighThresholdValue: 'Issue trigger default value (critically high)',
+        hashId: { singular: 'ID', plural: 'IDs' },
+        name: { singular: 'Name', plural: 'Names' },
+        color: { singular: 'Color', plural: 'Colors' },
+        unit: { singular: 'Unit', plural: 'Units' },
+        defaultCriticallyLowThresholdValue: defaultThresholdValue(
+          'critically low',
+          { locale: 'en', isDefault: true },
+        ),
+        defaultLowThresholdValue: defaultThresholdValue('low', {
+          locale: 'en',
+          isDefault: true,
+        }),
+        defaultHighThresholdValue: defaultThresholdValue('high', {
+          locale: 'en',
+          isDefault: true,
+        }),
+        defaultCriticallyHighThresholdValue: defaultThresholdValue(
+          'critically high',
+          { locale: 'en', isDefault: true },
+        ),
         createdAt: 'Created at',
         updatedAt: 'Updated at',
         deletedAt: 'Deleted at',
       },
       nl: {
-        hashId: 'ID',
-        name: 'Naam',
-        color: 'Kleur',
-        unit: 'Eenheid',
-        defaultCriticallyLowThresholdValue: 'Issue trigger standaard waarde (kritiek laag)',
-        defaultLowThresholdValue: 'Issue trigger standaard waarde (laag)',
-        defaultHighThresholdValue: 'Issue trigger standaard waarde (hoog)',
-        defaultCriticallyHighThresholdValue: 'Issue trigger standaard waarde (kritiek hoog)',
+        hashId: { singular: 'ID', plural: 'IDs' },
+        name: { singular: 'Naam', plural: 'Namen' },
+        color: { singular: 'Kleur', plural: 'Kleuren' },
+        unit: { singular: 'Eenheid', plural: 'Eenheden' },
+        defaultCriticallyLowThresholdValue: defaultThresholdValue(
+          'kritiek laag',
+          { locale: 'nl', isDefault: true },
+        ),
+        defaultLowThresholdValue: defaultThresholdValue('laag', {
+          locale: 'nl',
+          isDefault: true,
+        }),
+        defaultHighThresholdValue: defaultThresholdValue('hoog', {
+          locale: 'nl',
+          isDefault: true,
+        }),
+        defaultCriticallyHighThresholdValue: defaultThresholdValue(
+          'kritiek hoog',
+          { locale: 'nl', isDefault: true },
+        ),
         createdAt: 'Aangemaakt op',
         updatedAt: 'Bijgewerkt op',
         deletedAt: 'Verwijderd op',
@@ -582,8 +658,8 @@ const analyticsTables: Record<TableKeys, AnalyticsTable> = {
     },
     tableKey: 'quantity',
     tableText: {
-      en: 'Quantity',
-      nl: 'Kwantiteit',
+      en: { singular: 'Quantity', plural: 'Quantities' },
+      nl: { singular: 'Kwantiteit', plural: 'Kwantiteiten' },
     },
   },
   report: {
@@ -598,20 +674,18 @@ const analyticsTables: Record<TableKeys, AnalyticsTable> = {
     ],
     fieldsWithTranslations: {
       en: {
-        hashId: 'ID',
-        userHashId: 'User ID',
-        fields: 'Form fields',
-        field: 'Form field',
+        hashId: { singular: 'ID', plural: 'IDs' },
+        userHashId: { singular: 'User ID', plural: 'User IDs' },
+        field: { singular: 'Form field', plural: 'Form fields' },
         generatedAt: 'Measured at',
         createdAt: 'Created at',
         updatedAt: 'Updated at',
         deletedAt: 'Deleted at',
       },
       nl: {
-        hashId: 'ID',
-        userHashId: 'Gebruikers ID',
-        fields: 'Formuliervelden',
-        field: 'Formulierveld',
+        hashId: { singular: 'ID', plural: 'IDs' },
+        userHashId: { singular: 'Gebruikers ID', plural: 'Gebruikers IDs' },
+        field: { singular: 'Formulierveld', plural: 'Formuliervelden' },
         generatedAt: 'Gemeten op',
         createdAt: 'Aangemaakt op',
         updatedAt: 'Bijgewerkt op',
@@ -620,8 +694,8 @@ const analyticsTables: Record<TableKeys, AnalyticsTable> = {
     },
     tableKey: 'report',
     tableText: {
-      en: 'Report',
-      nl: 'Rapport',
+      en: { singular: 'Report', plural: 'Reports' },
+      nl: { singular: 'Rapport', plural: 'Rapporten' },
     },
   },
   threshold: {
@@ -637,21 +711,45 @@ const analyticsTables: Record<TableKeys, AnalyticsTable> = {
     ],
     fieldsWithTranslations: {
       en: {
-        hashId: 'ID',
-        criticallyLowValue: 'Issue trigger value (critically low)',
-        lowValue: 'Issue trigger value (low)',
-        highValue: 'Issue trigger value (high)',
-        criticallyHighValue: 'Issue trigger value (critically high)',
+        hashId: { singular: 'ID', plural: 'IDs' },
+        criticallyLowValue: defaultThresholdValue('critically low', {
+          locale: 'en',
+          isDefault: false,
+        }),
+        lowValue: defaultThresholdValue('low', {
+          locale: 'en',
+          isDefault: false,
+        }),
+        highValue: defaultThresholdValue('high', {
+          locale: 'en',
+          isDefault: false,
+        }),
+        criticallyHighValue: defaultThresholdValue('critically high', {
+          locale: 'en',
+          isDefault: false,
+        }),
         createdAt: 'Created at',
         updatedAt: 'Updated at',
         deletedAt: 'Deleted at',
       },
       nl: {
-        hashId: 'ID',
-        criticallyLowValue: 'Issue trigger waarde (kritiek laag)',
-        lowValue: 'Issue trigger waarde (laag)',
-        highValue: 'Issue trigger waarde (hoog)',
-        criticallyHighValue: 'Issue trigger waarde (kritiek hoog)',
+        hashId: { singular: 'ID', plural: 'IDs' },
+        criticallyLowValue: defaultThresholdValue('kritiek laag', {
+          locale: 'nl',
+          isDefault: false,
+        }),
+        lowValue: defaultThresholdValue('laag', {
+          locale: 'nl',
+          isDefault: false,
+        }),
+        highValue: defaultThresholdValue('hoog', {
+          locale: 'nl',
+          isDefault: false,
+        }),
+        criticallyHighValue: defaultThresholdValue('kritiek hoog', {
+          locale: 'nl',
+          isDefault: false,
+        }),
         createdAt: 'Aangemaakt op',
         updatedAt: 'Bijgewerkt op',
         deletedAt: 'Verwijderd op',
@@ -659,29 +757,23 @@ const analyticsTables: Record<TableKeys, AnalyticsTable> = {
     },
     tableKey: 'threshold',
     tableText: {
-      en: 'Port issue trigger',
-      nl: 'Poort issue trigger',
+      en: { singular: 'Port issue trigger', plural: 'Port issue triggers' },
+      nl: { singular: 'Poort issue trigger', plural: 'Poort issue triggers' },
     },
   },
   user: {
-    fields: [
-      'hashId',
-      'name',
-      'createdAt',
-      'updatedAt',
-      'deletedAt',
-    ],
+    fields: ['hashId', 'name', 'createdAt', 'updatedAt', 'deletedAt'],
     fieldsWithTranslations: {
       en: {
-        hashId: 'ID',
-        name: 'Name',
+        hashId: { singular: 'ID', plural: 'IDs' },
+        name: { singular: 'Name', plural: 'Names' },
         createdAt: 'Created at',
         updatedAt: 'Updated at',
         deletedAt: 'Deleted at',
       },
       nl: {
-        hashId: 'ID',
-        name: 'Naam',
+        hashId: { singular: 'ID', plural: 'IDs' },
+        name: { singular: 'Naam', plural: 'Namen' },
         createdAt: 'Aangemaakt op',
         updatedAt: 'Bijgewerkt op',
         deletedAt: 'Verwijderd op',
@@ -689,59 +781,148 @@ const analyticsTables: Record<TableKeys, AnalyticsTable> = {
     },
     tableKey: 'user',
     tableText: {
-      en: 'User',
-      nl: 'Gebruiker',
+      en: { singular: 'User', plural: 'Users' },
+      nl: { singular: 'Gebruiker', plural: 'Gebruikers' },
     },
   },
 };
+
+const analyticsTables: Record<TableKeys, AnalyticsTable> & AnalyticsTableHelpers = {
+  ...analyticsTablesL10n,
+  getTableName: (tableKey) => ({
+    ...analyticsTablesL10n[tableKey].tableText,
+    format: (formatter) => formatter(analyticsTables[tableKey].tableText),
+    getField: (field) => {
+      const result: Record<keyof Translations, Translation> = Object.create({});
+      const fieldWithTranslations = analyticsTables[tableKey].fieldsWithTranslations;
+
+      Object.entries(fieldWithTranslations).forEach((
+        [locale, translations]: [keyof Translations, Record<string, Translation>],
+      ) => {
+        result[locale] = translations[field];
+      });
+
+      return {
+        ...result,
+        format: (formatter) => formatter(result),
+      };
+    },
+  }),
+  getTableNameAndField: (key) => {
+    const [tableKey, fieldKey] = key.split('.', 2) as [TableKeys, string];
+    const table = analyticsTables.getTableName(tableKey);
+    const field = analyticsTables.getTableName(tableKey).getField(fieldKey);
+
+    return [table, field];
+  },
+  getTranslationString,
+};
+
+function matchColumn<R>(
+  column: UnaggregatedColumn | AggregatedColumn | TimeGroupColumn,
+  fns: {
+    onUnaggregatedColumn: (unaggregatedColumn: UnaggregatedColumn) => R,
+    onAggregatedColumnWithField: (
+      aggregatedColumn: AggregatedColumn,
+      field: Field,
+    ) => R,
+    onAggregatedColumnWithoutField: (aggregatedColumn: AggregatedColumn) => R,
+    onTimeGroupColumn: (timeGroupColumn: TimeGroupColumn) => R,
+  },
+): R {
+  if (isUnaggregatedColumn(column)) {
+    return fns.onUnaggregatedColumn(column);
+  }
+
+  if (isTimeGroupColumn(column)) {
+    return fns.onTimeGroupColumn(column);
+  }
+
+  if ('field' in column) {
+    return fns.onAggregatedColumnWithField(column, column.field);
+  }
+
+  return fns.onAggregatedColumnWithoutField(column);
+}
 
 function getColumnPlaceholder(
   column: UnaggregatedColumn | AggregatedColumn | TimeGroupColumn,
   userLocale: keyof Translations,
 ): string {
-  if (column.type === undefined) {
-    if (typeof column.field === 'object') {
-      return t[userLocale].expression;
-    }
-    const tableName: TableKeys = (column.field.split('.', 1)[0] as TableKeys);
-    const remainder = column.field.slice(tableName.length + 1);
-    if (remainder.indexOf('.') !== -1) {
-      const formFieldName = remainder.slice(0, remainder.indexOf('.') - 1);
-      const formFieldKey = remainder.slice(remainder.indexOf('.') + 1);
-      if (formFieldKey === 'id') {
-        return `${analyticsTables[tableName].tableText[userLocale]}:${formFieldKey}`;
-      }
-      return `${analyticsTables[tableName].tableText[userLocale]}:${analyticsTables[tableName].fieldsWithTranslations[userLocale][formFieldName]?.toLowerCase()} "${formFieldKey}"`;
-    }
-    return `${analyticsTables[tableName].tableText[userLocale]}:${analyticsTables[tableName].fieldsWithTranslations[userLocale][remainder]?.toLowerCase()}`;
-  }
-
-  let aggregateText;
-  if (column.type === 'timeGroup') {
-    aggregateText = t[userLocale].granularities[column.granularity];
-  } else {
-    aggregateText = t[userLocale].aggregations[column.type];
-  }
+  const tl = t[userLocale];
   const conditionMarker = 'condition' in column ? '*' : '';
-  if ('field' in column) {
-    if (typeof column.field === 'string') {
-      const tableName: TableKeys = (column.field.split('.', 1)[0] as TableKeys);
-      const remainder = column.field.slice(tableName.length + 1);
-      if (remainder.indexOf('.') !== -1) {
-        const formFieldName = remainder.slice(0, remainder.indexOf('.') - 1);
-        const formFieldKey = remainder.slice(remainder.indexOf('.') + 1);
-        if (formFieldKey === 'id') {
-          return `${aggregateText}${conditionMarker}(${analyticsTables[tableName].tableText[userLocale]}:${formFieldKey})`;
-        }
-        return `${aggregateText}${conditionMarker}(${analyticsTables[tableName].tableText[userLocale]}:${analyticsTables[tableName].fieldsWithTranslations[userLocale][formFieldName]?.toLowerCase()} "${formFieldKey}")`;
-      }
-      return `${aggregateText}${conditionMarker}(${analyticsTables[tableName].tableText[userLocale]}:${analyticsTables[tableName].fieldsWithTranslations[userLocale][remainder]?.toLowerCase()})`;
+
+  const parseField = (field: string): {
+    tableName: TableKeys,
+    remainder: string,
+    tableText: string,
+  } => {
+    const tableName = field.split('.', 1)[0] as TableKeys;
+    const remainder = field.slice(tableName.length + 1);
+    const tableText = analyticsTables[tableName].tableText[userLocale];
+
+    return { tableName, remainder, tableText: getTranslationString(tableText) };
+  };
+
+  const parseFormField = (field: string): { name: string, key: string } => {
+    const name = field.slice(0, field.indexOf('.') - 1);
+    const key = field.slice(field.indexOf('.') + 1);
+    return { name, key };
+  };
+
+  const placeholderFromField = (field: string): string => {
+    const { tableName, remainder, tableText } = parseField(field);
+
+    if (remainder.includes('.')) {
+      const { name, key } = parseFormField(remainder);
+
+      return key === 'id'
+        ? `${tableText}:${key}`
+        : `${tableText}:${
+          getTranslationString(
+            analyticsTables[tableName].fieldsWithTranslations[userLocale][name],
+          ).toLowerCase()
+        } "${key}"`;
     }
-    return `${aggregateText}${conditionMarker}(${column.field.expression})`;
-  }
-  return `${aggregateText}${conditionMarker}`;
+
+    return `${tableText}:${
+      getTranslationString(
+        analyticsTables[tableName].fieldsWithTranslations[userLocale][remainder],
+      ).toLowerCase()
+    }`;
+  };
+
+  return matchColumn<string>(column, {
+    onUnaggregatedColumn: (unaggregatedColumn) => {
+      if (typeof unaggregatedColumn.field === 'object') {
+        return tl.expression.singular;
+      }
+      return placeholderFromField(unaggregatedColumn.field);
+    },
+    onTimeGroupColumn: (timeGroupColumn) => {
+      const aggregateText = getTranslationString(tl.granularities[timeGroupColumn.granularity]);
+      const placeholder = placeholderFromField(timeGroupColumn.field);
+      return `${aggregateText}${conditionMarker}(${placeholder})`;
+    },
+    onAggregatedColumnWithField: (aggregatedColumn, field) => {
+      const aggregateText = getTranslationString(tl.aggregations[aggregatedColumn.type]);
+      const placeholder = typeof field === 'string'
+        ? placeholderFromField(field)
+        : field.expression;
+      return `${aggregateText}${conditionMarker}(${placeholder})`;
+    },
+    onAggregatedColumnWithoutField: (aggregatedColumn) => {
+      const aggregateText = getTranslationString(tl.aggregations[aggregatedColumn.type]);
+      return `${aggregateText}${conditionMarker}`;
+    },
+  });
 }
 
 export {
-  AnalyticsTable, analyticsTables, TableKeys, getColumnPlaceholder,
+  AnalyticsTable,
+  analyticsTables,
+  TableKeys,
+  getColumnPlaceholder,
+  getTranslationString,
+  FormatterFn,
 };
