@@ -12,6 +12,7 @@ import * as device from './device';
 import * as deviceType from './device-type';
 import * as edge from './edge';
 import * as environment from './environment';
+import * as environmentWebhook from './environment-webhook';
 import * as environmentReportType from './environment-report-type';
 import * as exportRequest from './export-request';
 import * as fieldsFromServer from './fields/fields-from-server';
@@ -79,6 +80,7 @@ export {
   deviceType,
   edge,
   environment,
+  environmentWebhook,
   environmentReportType,
   exportRequest,
   fieldsFromServer,
