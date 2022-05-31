@@ -1,3 +1,10 @@
+### [17.42.15](https://github.com/withthegrid/platform-sdk/compare/v17.42.14...v17.42.15) (2022-05-31)
+
+
+### Bug Fixes
+
+* **analytics-tables:** breaking change on (device)fields ([#229](https://github.com/withthegrid/platform-sdk/issues/229)) ([354d8fe](https://github.com/withthegrid/platform-sdk/commit/354d8fedf8f6b1479f4444224231d18ab5bea80e)), closes [withthegrid/platform-client#1246](https://github.com/withthegrid/platform-client/issues/1246)
+
 ### [17.42.14](https://github.com/withthegrid/platform-sdk/compare/v17.42.13...v17.42.14) (2022-05-24)
 
 
