@@ -33,6 +33,20 @@ describe('analytics-tables placeholders', () => {
             en: 'Measurement:value',
           },
         },
+        {
+          field: 'pin.deviceFields',
+          expected: {
+            nl: 'Poort:device formulierveld',
+            en: 'Port:device form field',
+          },
+        },
+        {
+          field: 'device.fields',
+          expected: {
+            nl: 'Device:formulierveld',
+            en: 'Device:form field',
+          },
+        },
       ])('then it returns me a simple placeholder ($field)', ({ field, expected }) => {
         // arrange
         expect.assertions(localesKeys.length);
@@ -51,10 +65,10 @@ describe('analytics-tables placeholders', () => {
     describe('when I ask for a formField placeholder', () => {
       it.each([
         {
-          field: 'pin.deviceFields.devTyChannelFormField',
+          field: 'pin.deviceFields.naam',
           expected: {
-            nl: 'Poort:device formulierveld "devTyChannelFormField"',
-            en: 'Port:device form field "devTyChannelFormField"',
+            nl: 'Poort:device formulierveld "naam"',
+            en: 'Port:device form field "naam"',
           },
         },
       ])('then it returns me a form field placeholder ($field)', ({ field, expected }) => {
@@ -96,11 +110,11 @@ describe('analytics-tables placeholders', () => {
         name: 'any',
         column: {
           type: 'any',
-          field: 'pin.deviceFields.devTyChannelFormField',
+          field: 'pin.deviceFields.naam',
         },
         expected: {
-          nl: 'Een(Poort:device formulierveld "devTyChannelFormField")',
-          en: 'Any(Port:device form field "devTyChannelFormField")',
+          nl: 'Een(Poort:device formulierveld "naam")',
+          en: 'Any(Port:device form field "naam")',
         },
       },
       {

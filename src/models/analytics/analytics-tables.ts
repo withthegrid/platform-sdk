@@ -220,7 +220,7 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
     fieldsWithTranslations: {
       en: {
         hashId: { singular: 'ID', plural: 'IDs' },
-        field: { singular: 'Form field', plural: 'Form fields' },
+        fields: { singular: 'Form field', plural: 'Form fields' },
         nextReportBefore: 'Next report before',
         lastOnlineAt: 'Last online at',
         missedReports: { singular: 'Missed report', plural: 'Missed reports' },
@@ -230,7 +230,7 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
       },
       nl: {
         hashId: { singular: 'ID', plural: 'IDs' },
-        field: { singular: 'Formulierveld', plural: 'Formuliervelden' },
+        fields: { singular: 'Formulierveld', plural: 'Formuliervelden' },
         nextReportBefore: 'Volgend rapport voor',
         lastOnlineAt: 'Laatst online op',
         missedReports: {
@@ -286,7 +286,7 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
         hashId: { singular: 'ID', plural: 'IDs' },
         level: { singular: 'Condition', plural: 'Conditions' },
         mapLayer: { singular: 'Map layer', plural: 'Map layers' },
-        field: { singular: 'Form field', plural: 'Form fields' },
+        fields: { singular: 'Form field', plural: 'Form fields' },
         createdAt: 'Created at',
         updatedAt: 'Updated at',
         deletedAt: 'Deleted at',
@@ -295,7 +295,7 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
         hashId: { singular: 'ID', plural: 'IDs' },
         level: { singular: 'Conditie', plural: 'Condities' },
         mapLayer: { singular: 'Kaartlaag', plural: 'Kaartlagen' },
-        field: { singular: 'Formulierveld', plural: 'Formuliervelden' },
+        fields: { singular: 'Formulierveld', plural: 'Formuliervelden' },
         createdAt: 'Aangemaakt op',
         updatedAt: 'Bijgewerkt op',
         deletedAt: 'Verwijderd op',
@@ -312,14 +312,14 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
     fieldsWithTranslations: {
       en: {
         hashId: { singular: 'ID', plural: 'IDs' },
-        field: { singular: 'Form field', plural: 'Form fields' },
+        fields: { singular: 'Form field', plural: 'Form fields' },
         createdAt: 'Created at',
         updatedAt: 'Updated at',
         deletedAt: 'Deleted at',
       },
       nl: {
         hashId: { singular: 'ID', plural: 'IDs' },
-        field: { singular: 'Formulierveld', plural: 'Formuliervelden' },
+        fields: { singular: 'Formulierveld', plural: 'Formuliervelden' },
         createdAt: 'Aangemaakt op',
         updatedAt: 'Bijgewerkt op',
         deletedAt: 'Verwijderd op',
@@ -512,11 +512,11 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
       en: {
         hashId: { singular: 'ID', plural: 'IDs' },
         level: { singular: 'Condition', plural: 'Conditions' },
-        deviceField: {
+        deviceFields: {
           singular: 'Device form field',
           plural: 'Device form fields',
         },
-        field: { singular: 'Form field', plural: 'Form fields' },
+        fields: { singular: 'Form field', plural: 'Form fields' },
         createdAt: 'Created at',
         updatedAt: 'Updated at',
         deletedAt: 'Deleted at',
@@ -524,11 +524,11 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
       nl: {
         hashId: { singular: 'ID', plural: 'IDs' },
         level: { singular: 'Conditie', plural: 'Condities' },
-        deviceField: {
+        deviceFields: {
           singular: 'Device formulierveld',
           plural: 'Device formuliervelden',
         },
-        field: { singular: 'Formulierveld', plural: 'Formuliervelden' },
+        fields: { singular: 'Formulierveld', plural: 'Formuliervelden' },
         createdAt: 'Aangemaakt op',
         updatedAt: 'Bijgewerkt op',
         deletedAt: 'Verwijderd op',
@@ -559,11 +559,11 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
         longitude: { singular: 'Longitude', plural: 'Longitudes' },
         level: { singular: 'Condition', plural: 'Conditions' },
         mapLayer: { singular: 'Map layer', plural: 'Map layers' },
-        deviceField: {
+        deviceFields: {
           singular: 'Device form field',
           plural: 'Device form fields',
         },
-        field: { singular: 'Form field', plural: 'Form fields' },
+        fields: { singular: 'Form field', plural: 'Form fields' },
         createdAt: 'Created at',
         updatedAt: 'Updated at',
         deletedAt: 'Deleted at',
@@ -574,11 +574,11 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
         longitude: { singular: 'Lengtegraad', plural: 'Lengtegraden' },
         level: { singular: 'Conditie', plural: 'Condities' },
         mapLayer: { singular: 'Kaartlaag', plural: 'Kaartlagen' },
-        deviceField: {
+        deviceFields: {
           singular: 'Device formulierveld',
           plural: 'Device formuliervelden',
         },
-        field: { singular: 'Formulierveld', plural: 'Formuliervelden' },
+        fields: { singular: 'Formulierveld', plural: 'Formuliervelden' },
         createdAt: 'Aangemaakt op',
         updatedAt: 'Bijgewerkt op',
         deletedAt: 'Verwijderd op',
@@ -676,7 +676,7 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
       en: {
         hashId: { singular: 'ID', plural: 'IDs' },
         userHashId: { singular: 'User ID', plural: 'User IDs' },
-        field: { singular: 'Form field', plural: 'Form fields' },
+        fields: { singular: 'Form field', plural: 'Form fields' },
         generatedAt: 'Measured at',
         createdAt: 'Created at',
         updatedAt: 'Updated at',
@@ -685,7 +685,7 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
       nl: {
         hashId: { singular: 'ID', plural: 'IDs' },
         userHashId: { singular: 'Gebruikers ID', plural: 'Gebruikers IDs' },
-        field: { singular: 'Formulierveld', plural: 'Formuliervelden' },
+        fields: { singular: 'Formulierveld', plural: 'Formuliervelden' },
         generatedAt: 'Gemeten op',
         createdAt: 'Aangemaakt op',
         updatedAt: 'Bijgewerkt op',
@@ -865,7 +865,7 @@ function getColumnPlaceholder(
   };
 
   const parseFormField = (field: string): { name: string, key: string } => {
-    const name = field.slice(0, field.indexOf('.') - 1);
+    const name = field.slice(0, field.indexOf('.'));
     const key = field.slice(field.indexOf('.') + 1);
     return { name, key };
   };
