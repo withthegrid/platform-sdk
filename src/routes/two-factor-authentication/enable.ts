@@ -2,26 +2,21 @@ import Joi from 'joi';
 import { ControllerGeneratorOptionsWithoutClientOrSupplier } from '../../comms/controller';
 
 interface Request {
-  query: {
+  body: {
     code: string;
   };
 }
 
-interface Response {
-  isCorrect: boolean;
-}
+type Response = void;
 
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSupplier = {
   method: 'post',
-  path: '/validate-code',
+  path: '/enable',
   right: { },
-  query: Joi.object().keys({
+  body: Joi.object().keys({
     code: Joi.string().max(255).required().example('123456'),
   }),
-  response: Joi.object().keys({
-    isCorrect: Joi.boolean().required().example('true'),
-  }).required(),
-  description: 'Checks whether user entered correct code from authenticator app',
+  description: 'Checks whether user entered correct code from authenticator app and enables 2FA for user',
 };
 
 export {

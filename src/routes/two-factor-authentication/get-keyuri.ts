@@ -1,8 +1,11 @@
 import Joi from 'joi';
 import { ControllerGeneratorOptionsWithoutClientOrSupplier } from '../../comms/controller';
 
-type Request = Record<string, undefined> | undefined;
-type EffectiveRequest = Record<string, undefined>;
+interface Request {
+  query: {
+    password: string;
+  },
+}
 
 interface Response {
   keyuri: string;
@@ -12,9 +15,12 @@ interface Response {
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSupplier = {
   method: 'get',
   path: '/get-keyuri',
+  query: Joi.object().keys({
+    password: Joi.string().required().example('imapassword'),
+  }).required(),
   response: Joi.object().keys({
-    keyuri: Joi.string().allow(null).required().example(''),
-    secret: Joi.string().allow(null).required().example(''),
+    keyuri: Joi.string().allow(null).required().example('iamkeyuri'),
+    secret: Joi.string().allow(null).required().example('iamsecret'),
   }).required(),
   right: {},
   description: 'Generates a secret and keyuri for user to set up 2FA',
@@ -23,6 +29,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSuppl
 export {
   controllerGeneratorOptions,
   Request,
-  EffectiveRequest,
+  Request as EffectiveRequest,
   Response,
 };

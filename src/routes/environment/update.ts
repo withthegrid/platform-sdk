@@ -23,7 +23,7 @@ interface Request {
     locale?: Locale;
     defaultGraphRange?: string;
     measurementsExpirationDays?: number;
-    enforceTwoFactorAuthentication?: boolean | null;
+    enforceTwoFactorAuthentication?: boolean;
   };
 }
 
@@ -53,7 +53,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
         .example(365)
         .min(1)
         .max(9999),
-      enforceTwoFactorAuthentication: Joi.boolean().allow(null).example(false)
+      enforceTwoFactorAuthentication: Joi.boolean().example(false)
         .description('Describes if users need to have two factor authentication enabled in order to access this environment.'),
     }).required();
   },

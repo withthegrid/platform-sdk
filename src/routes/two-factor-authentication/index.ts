@@ -1,6 +1,5 @@
-import * as validatePassword from './validate-password';
-import * as validateCode from './validate-code';
-import * as removeSecret from './remove-secret';
+import * as enable from './enable';
+import * as disableSecret from './disable-secret';
 import * as getKeyuri from './get-keyuri';
 
 import Comms from '../../comms';
@@ -14,46 +13,31 @@ class TwoFactorAuthenticationRoute {
   constructor(readonly comms: Comms) {
   }
 
-  validatePassword = (parameters: validatePassword.Request):
+  enable = (parameters: enable.Request):
     Result<
-      validatePassword.EffectiveRequest,
-      validatePassword.Response
+      enable.EffectiveRequest,
+      enable.Response
     > => controllerGenerator<
-      validatePassword.Request,
-      validatePassword.EffectiveRequest,
-      validatePassword.Response
+      enable.Request,
+      enable.EffectiveRequest,
+      enable.Response
     >(
-      validatePassword.controllerGeneratorOptions,
+      enable.controllerGeneratorOptions,
       TwoFactorAuthenticationRoute.routerPath,
       TwoFactorAuthenticationRoute.authenticated,
       this.comms,
     )(parameters);
 
-  validateCode = (parameters: validateCode.Request):
+  disableSecret = (parameters: disableSecret.Request):
     Result<
-      validateCode.EffectiveRequest,
-      validateCode.Response
+      disableSecret.EffectiveRequest,
+      disableSecret.Response
     > => controllerGenerator<
-      validateCode.Request,
-      validateCode.EffectiveRequest,
-      validateCode.Response
+      disableSecret.Request,
+      disableSecret.EffectiveRequest,
+      disableSecret.Response
     >(
-      validateCode.controllerGeneratorOptions,
-      TwoFactorAuthenticationRoute.routerPath,
-      TwoFactorAuthenticationRoute.authenticated,
-      this.comms,
-    )(parameters);
-
-  removeSecret = (parameters: removeSecret.Request):
-    Result<
-      removeSecret.EffectiveRequest,
-      removeSecret.Response
-    > => controllerGenerator<
-      removeSecret.Request,
-      removeSecret.EffectiveRequest,
-      removeSecret.Response
-    >(
-      removeSecret.controllerGeneratorOptions,
+      disableSecret.controllerGeneratorOptions,
       TwoFactorAuthenticationRoute.routerPath,
       TwoFactorAuthenticationRoute.authenticated,
       this.comms,
