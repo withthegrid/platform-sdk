@@ -1,3 +1,10 @@
+### [17.42.14](https://github.com/withthegrid/platform-sdk/compare/v17.42.13...v17.42.14) (2022-05-24)
+
+
+### Bug Fixes
+
+* Trivial change to readme ([#223](https://github.com/withthegrid/platform-sdk/issues/223)) ([74ba6a9](https://github.com/withthegrid/platform-sdk/commit/74ba6a9f5e95e4642617caddbfd0cdd81400f5b8))
+
 ### [17.42.13](https://github.com/withthegrid/platform-sdk/compare/v17.42.12...v17.42.13) (2022-05-23)
 
 
