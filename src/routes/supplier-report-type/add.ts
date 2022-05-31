@@ -1,10 +1,11 @@
 import Joi from 'joi';
 import { ControllerGeneratorOptionsWithSupplier } from '../../comms/controller';
 import { schema as baseFieldConfigurationSchema, BaseFieldConfiguration } from '../../models/fields/base-field-configuration';
+import { schema as stringOrTranslationsSchema, StringOrTranslations } from '../../models/string-or-translations';
 
 interface Request {
   body: {
-    name: string;
+    name: StringOrTranslations;
     fieldConfigurations: {
       pinGroup: BaseFieldConfiguration[];
       pin: BaseFieldConfiguration[];
@@ -23,7 +24,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
   method: 'post',
   path: '/',
   body: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
-    name: Joi.string().required().example('Temperature'),
+    name: stringOrTranslationsSchema.required().example('Temperature'),
     fieldConfigurations: Joi.object().keys({
       pinGroup: Joi.array().items(baseFieldConfigurationSchema(apiVersion)).required(),
       pin: Joi.array().items(baseFieldConfigurationSchema(apiVersion)).required(),

@@ -1,10 +1,11 @@
 import Joi from 'joi';
 
 import { schema as baseFieldConfigurationSchema, BaseFieldConfiguration } from './fields/base-field-configuration';
+import { schema as stringOrTranslationsSchema, StringOrTranslations } from './string-or-translations';
 
 const schema = (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
   hashId: Joi.string().required().example('l19a7s'),
-  name: Joi.string().required().example('Temperature and inclination'),
+  name: stringOrTranslationsSchema.required().example('Temperature and inclination'),
   fieldConfigurations: Joi.object().keys({
     pinGroup: Joi.array().items(baseFieldConfigurationSchema(apiVersion)).required(),
     pin: Joi.array().items(baseFieldConfigurationSchema(apiVersion)).required(),
@@ -18,7 +19,7 @@ const schema = (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
 
 interface SupplierReportType {
   hashId: string;
-  name: string;
+  name: StringOrTranslations;
   fieldConfigurations: {
     pinGroup: BaseFieldConfiguration[];
     pin: BaseFieldConfiguration[];
