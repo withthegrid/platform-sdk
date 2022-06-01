@@ -58,7 +58,7 @@ interface Environment {
   locale: Locale;
   defaultGraphRange: string;
   measurementsExpirationDays: number;
-  enforceTwoFactorAuthentication?: boolean;
+  enforceTwoFactorAuthentication: boolean;
   expiresAt: Date | null;
   createdAt: Date;
 }

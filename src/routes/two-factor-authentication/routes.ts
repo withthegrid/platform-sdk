@@ -1,9 +1,9 @@
 import * as enable from './enable';
-import * as disableSecret from './disable-secret';
+import * as disable from './disable';
 import * as getKeyuri from './get-keyuri';
 
 export {
   enable,
-  disableSecret,
+  disable,
   getKeyuri,
 };

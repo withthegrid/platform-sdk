@@ -2,7 +2,7 @@ import Joi from 'joi';
 import { ControllerGeneratorOptionsWithoutClientOrSupplier } from '../../comms/controller';
 
 interface Request {
-  query: {
+  body: {
     password: string;
   },
 }
@@ -10,9 +10,9 @@ type Response = void;
 
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSupplier = {
   method: 'post',
-  path: '/disable-secret',
+  path: '/disable',
   right: {},
-  query: Joi.object().keys({
+  body: Joi.object().keys({
     password: Joi.string().required().example('imapassword'),
   }).required(),
   description: 'Turns off 2FA for user',

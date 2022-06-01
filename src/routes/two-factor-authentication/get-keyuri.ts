@@ -2,7 +2,7 @@ import Joi from 'joi';
 import { ControllerGeneratorOptionsWithoutClientOrSupplier } from '../../comms/controller';
 
 interface Request {
-  query: {
+  body: {
     password: string;
   },
 }
@@ -13,9 +13,9 @@ interface Response {
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSupplier = {
-  method: 'get',
+  method: 'post',
   path: '/get-keyuri',
-  query: Joi.object().keys({
+  body: Joi.object().keys({
     password: Joi.string().required().example('imapassword'),
   }).required(),
   response: Joi.object().keys({

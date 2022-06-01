@@ -1,5 +1,5 @@
 import * as enable from './enable';
-import * as disableSecret from './disable-secret';
+import * as disable from './disable';
 import * as getKeyuri from './get-keyuri';
 
 import Comms from '../../comms';
@@ -28,16 +28,16 @@ class TwoFactorAuthenticationRoute {
       this.comms,
     )(parameters);
 
-  disableSecret = (parameters: disableSecret.Request):
+  disable = (parameters: disable.Request):
     Result<
-      disableSecret.EffectiveRequest,
-      disableSecret.Response
+      disable.EffectiveRequest,
+      disable.Response
     > => controllerGenerator<
-      disableSecret.Request,
-      disableSecret.EffectiveRequest,
-      disableSecret.Response
+      disable.Request,
+      disable.EffectiveRequest,
+      disable.Response
     >(
-      disableSecret.controllerGeneratorOptions,
+      disable.controllerGeneratorOptions,
       TwoFactorAuthenticationRoute.routerPath,
       TwoFactorAuthenticationRoute.authenticated,
       this.comms,
