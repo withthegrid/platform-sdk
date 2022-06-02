@@ -48,7 +48,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       deviceHashId: Joi.string().allow(null).required().example('j1iha9'),
       fields: fieldsFromServerSchema.required().example({ id: 'My report' }),
       type: environmentReportTypeSchema(apiVersion).required(),
-      quantities: Joi.array().items(quantitySchema).required()
+      quantities: Joi.array().items(quantitySchema(apiVersion)).required()
         .description('Only includes the quantities used in the report, not the quantities that are available in the report type (only relevant for report types of type human)'),
       pinGroupHashId: Joi.string().allow(null).required().example('dao97'),
       userName: Joi.string().allow(null).required().example(null)

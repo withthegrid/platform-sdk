@@ -42,7 +42,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     upperbound: Joi.date().allow(null).required().example('2019-12-01T00:00Z'),
     observations: Joi.array().items(Joi.object().keys({
       measurement: measurementSchema(apiVersion).required(),
-      quantity: quantitySchema.required(),
+      quantity: quantitySchema(apiVersion).required(),
     })).required(),
   }),
 };

@@ -25,8 +25,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClientAndSupplie
   right: { environment: 'READ', supplier: 'ENVIRONMENT_ADMIN' },
   response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     reportTypes: Joi.array().items(environmentReportTypeSchema(apiVersion)).required(),
-    quantity: quantitySchema.required(),
-    linkedSupplierQuantities: Joi.array().items(quantitySchema).required(),
+    quantity: quantitySchema(apiVersion).required(),
+    linkedSupplierQuantities: Joi.array().items(quantitySchema(apiVersion)).required(),
   }).required(),
   description: 'Get a specific quantity identified by its hashId',
 };

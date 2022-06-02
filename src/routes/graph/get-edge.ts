@@ -32,7 +32,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     hashId: Joi.string().required().example('ka08d'),
   }).required(),
   right: { environment: 'READ' },
-  response: Joi.object().keys({
+  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     edge: edgeSchema.required(),
     pins: Joi.array().items(pinSchema).required(),
     pinGroups: Joi.array().items(pinGroupSchema).required(),
@@ -40,7 +40,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     nextReportBefore: Joi.array().items(Joi.date().allow(null).example('2019-12-31T15:25Z')).required(),
     thresholds: Joi.array().items(Joi.object().keys({
       value: thresholdSchema.required(),
-      quantity: quantitySchema.required(),
+      quantity: quantitySchema(apiVersion).required(),
     })).required(),
     photo: Joi.string().allow(null).required().description('download link for photo.')
       .example('https://api.withthegrid.com/file/yr969d...'),

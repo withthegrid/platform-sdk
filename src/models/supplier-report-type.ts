@@ -1,11 +1,14 @@
 import Joi from 'joi';
 
 import { schema as baseFieldConfigurationSchema, BaseFieldConfiguration } from './fields/base-field-configuration';
-import { schema as stringOrTranslationsSchema, StringOrTranslations } from './string-or-translations';
+import {
+  stringBeforeV7ElseStringOrTranslationSchema,
+  StringOrTranslations,
+} from './string-or-translations';
 
 const schema = (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
   hashId: Joi.string().required().example('l19a7s'),
-  name: stringOrTranslationsSchema.required().example('Temperature and inclination'),
+  name: stringBeforeV7ElseStringOrTranslationSchema(apiVersion).required().example('Temperature and inclination'),
   fieldConfigurations: Joi.object().keys({
     pinGroup: Joi.array().items(baseFieldConfigurationSchema(apiVersion)).required(),
     pin: Joi.array().items(baseFieldConfigurationSchema(apiVersion)).required(),

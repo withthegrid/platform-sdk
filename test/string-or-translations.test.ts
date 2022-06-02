@@ -13,3 +13,11 @@ test('test get translated string out of stringOrTranslations object', () => {
   expect(getTranslatedString(stringOrTranslation, 'en')).toEqual('stringEN');
   expect(getTranslatedString(stringOrTranslation, 'nl')).toEqual('stringNL');
 });
+
+test('test get non translated string out an object with only english', () => {
+  const stringOrTranslation: StringOrTranslations = {
+    en: 'stringEN',
+  };
+  expect(getTranslatedString(stringOrTranslation, 'en')).toEqual('stringEN');
+  expect(getTranslatedString(stringOrTranslation, 'nl')).toEqual('stringEN');
+});

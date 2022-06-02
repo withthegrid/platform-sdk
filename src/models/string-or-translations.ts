@@ -9,10 +9,19 @@ const schema = Joi.alternatives(
   .tag('stringOrTranslations')
   .meta({ className: 'stringOrTranslations' });
 
+const stringBeforeV7ElseStringOrTranslationSchema = (apiVersion: number): Joi.AnySchema => {
+  if (apiVersion <= 6) {
+    return Joi.string();
+  }
+  return schema;
+};
+
 type StringOrTranslations = string | Translations;
 
+function getTranslatedString(name: null, locale: Locale): string
+function getTranslatedString(name: StringOrTranslations, locale: Locale): string
 function getTranslatedString(
-  name: StringOrTranslations,
+  name: StringOrTranslations | null,
   locale: Locale,
 ): string {
   if (name === null) {
@@ -32,4 +41,5 @@ export {
   schema,
   StringOrTranslations,
   getTranslatedString,
+  stringBeforeV7ElseStringOrTranslationSchema,
 };

@@ -45,12 +45,12 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClientAndSupplie
       includeDeleted: Joi.boolean().default(false),
       deviceQuantityMode: Joi.boolean().default(false),
     }),
-  response: Joi.object().keys({
+  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     nextPageOffset: Joi.string().allow(null).example(null).required()
       .description('This is the last page if nextPageOffset is null'),
     rows: Joi.array().items(Joi.object().keys({
-      quantity: quantitySchema.required(),
-      environmentQuantity: quantitySchema,
+      quantity: quantitySchema(apiVersion).required(),
+      environmentQuantity: quantitySchema(apiVersion),
     })).required(),
   }),
   description: 'Search through quantities',
