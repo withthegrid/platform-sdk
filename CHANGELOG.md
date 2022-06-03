@@ -1,3 +1,10 @@
+### [17.42.16](https://github.com/withthegrid/platform-sdk/compare/v17.42.15...v17.42.16) (2022-06-03)
+
+
+### Bug Fixes
+
+* axios error ([#232](https://github.com/withthegrid/platform-sdk/issues/232)) ([97ace04](https://github.com/withthegrid/platform-sdk/commit/97ace0441551a73b60aecd02fde41f36a90d042d)), closes [#231](https://github.com/withthegrid/platform-sdk/issues/231)
+
 ### [17.42.15](https://github.com/withthegrid/platform-sdk/compare/v17.42.14...v17.42.15) (2022-05-31)
 
 
