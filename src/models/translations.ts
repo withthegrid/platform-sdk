@@ -29,7 +29,8 @@ const isPluralizedTranslation = (tr: Translation): tr is PluralizedTranslation =
 
 const localesKeys = ['en', 'nl'] as const;
 
-type Translations = Record<typeof localesKeys[number], Translation>
+type LocaleKey = typeof localesKeys[number];
+type Translations = { [P in LocaleKey]?: SimpleTranslation; } & { en: SimpleTranslation };
 
 export {
   schema,
