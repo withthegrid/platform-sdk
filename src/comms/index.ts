@@ -5,6 +5,7 @@ import Axios, {
   CancelTokenSource,
   AxiosRequestConfig,
   Method,
+  AxiosError,
 } from 'axios';
 
 import CommsRequestError from '../errors/comms-request';
@@ -96,37 +97,48 @@ class Comms {
         // is a wtg error already, eg. from axios interceptors
         throw e;
       }
-      if (Axios.isCancel(e)) {
-        throw new CommsCanceledError();
-      }
-      if (typeof e.response === 'object' && e.response !== null) {
-        if (e.response.status === 401) {
-          throw new AuthenticationError(e.response.data.key, e.response.data.message);
+      if (Axios.isAxiosError(e)) {
+        if (Axios.isCancel(e)) {
+          throw new CommsCanceledError();
         }
-        if (e.response.status === 403 && e.response.data.key === 'outdated_client_error') {
-          throw new OutdatedClientError();
-        }
-        if (e.response.status === 402) {
-          throw new BillingError(e.response.data.key, e.response.data.message);
-        }
+        if (e.response !== undefined) {
+          const responseData = e.response.data;
+          let rawKey: unknown;
+          let rawMessage: unknown;
+          if (typeof responseData === 'object' && responseData !== null) {
+            rawKey = (responseData as Record<string, unknown>)?.key;
+            rawMessage = (responseData as Record<string, unknown>)?.message;
+          }
+          const key = typeof rawKey === 'string' ? rawKey : 'unknown';
+          const message = typeof rawMessage === 'string' ? rawMessage : 'unknown';
+          if (e.response.status === 401) {
+            throw new AuthenticationError(key, message);
+          }
+          if (e.response.status === 403 && key === 'outdated_client_error') {
+            throw new OutdatedClientError();
+          }
+          if (e.response.status === 402) {
+            throw new BillingError(key, message);
+          }
 
-        throw new CommsResponseError(
-          e.response.data,
-          e.response.status,
-          e.response.headers,
-          method,
-          path,
-          params,
-          data,
-        );
-      }
-      if (e.request !== undefined) {
-        throw new CommsRequestError(
-          method,
-          path,
-          params,
-          data,
-        );
+          throw new CommsResponseError(
+            e.response.data,
+            e.response.status,
+            e.response.headers,
+            method,
+            path,
+            params,
+            data,
+          );
+        }
+        if (e.code === AxiosError.ERR_NETWORK && e.request !== undefined) {
+          throw new CommsRequestError(
+            method,
+            path,
+            params,
+            data,
+          );
+        }
       }
       throw new CommsError(e.message);
     }
