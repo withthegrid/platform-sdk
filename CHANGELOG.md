@@ -1,3 +1,10 @@
+## [17.43.0](https://github.com/withthegrid/platform-sdk/compare/v17.42.16...v17.43.0) (2022-06-08)
+
+
+### Features
+
+* two factor authentication ([#212](https://github.com/withthegrid/platform-sdk/issues/212)) ([401a1db](https://github.com/withthegrid/platform-sdk/commit/401a1db18e0b9ce636b35492177e6d30a394ba02)), closes [withthegrid/platform#884](https://github.com/withthegrid/platform/issues/884)
+
 ### [17.42.16](https://github.com/withthegrid/platform-sdk/compare/v17.42.15...v17.42.16) (2022-06-03)
 
 
