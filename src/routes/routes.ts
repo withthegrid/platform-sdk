@@ -24,6 +24,7 @@ import * as supplierActivity from './supplier-activity/routes';
 import * as supplierCertificate from './supplier-certificate/routes';
 import * as supplierReportType from './supplier-report-type/routes';
 import * as supplierWebhook from './supplier-webhook/routes';
+import * as twoFactorAuthentication from './two-factor-authentication/routes';
 import * as user from './user/routes';
 
 export {
@@ -53,5 +54,6 @@ export {
   supplierCertificate,
   supplierReportType,
   supplierWebhook,
+  twoFactorAuthentication,
   user,
 };

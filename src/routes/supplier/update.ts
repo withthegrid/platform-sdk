@@ -4,6 +4,7 @@ import { ControllerGeneratorOptionsWithSupplier } from '../../comms/controller';
 interface Request {
   body: {
     name?: string;
+    enforceTwoFactorAuthentication?: boolean;
   };
 }
 
@@ -14,6 +15,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
   path: '/',
   body: Joi.object().keys({
     name: Joi.string().example('My connectivity environment'),
+    enforceTwoFactorAuthentication: Joi.boolean().example(false)
+      .description('Describes if users need to have two factor authentication enabled in order to access this environment.'),
   }).required(),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
 };
