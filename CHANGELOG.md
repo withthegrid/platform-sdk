@@ -1,3 +1,10 @@
+### [17.43.1](https://github.com/withthegrid/platform-sdk/compare/v17.43.0...v17.43.1) (2022-06-09)
+
+
+### Bug Fixes
+
+* return JWT in 2fa.enable ([06dfc9c](https://github.com/withthegrid/platform-sdk/commit/06dfc9c4500fe29b07d53bd05b20b91753d61d2c))
+
 ## [17.43.0](https://github.com/withthegrid/platform-sdk/compare/v17.42.16...v17.43.0) (2022-06-08)
 
 
