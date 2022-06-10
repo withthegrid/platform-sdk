@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ControllerGeneratorOptionsWithoutClientOrSupplier } from '../../comms/controller';
+import { ControllerGeneratorOptionsWithSupplier } from '../../comms/controller';
 
 import { schema as supplierCertificateSchema, SupplierCertificate, identifierExample } from '../../models/supplier-certificate';
 
@@ -15,13 +15,13 @@ interface Response {
   subscriptionHashId?: string;
 }
 
-const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSupplier = {
+const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
   method: 'get',
   path: '/:hashId',
   params: Joi.object().keys({
     hashId: Joi.string().required().example('f1a4w1'),
   }).required(),
-  right: {}, // supplierHashId in header is irrelevant
+  right: { supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
     certificate: supplierCertificateSchema.required(),
     identifier: Joi.string().max(1000000).required().example(identifierExample)
