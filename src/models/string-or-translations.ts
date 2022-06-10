@@ -11,8 +11,6 @@ const schema = Joi.alternatives(
 
 type StringOrTranslations = string | Translations;
 
-function getTranslatedString(name: null, locale: Locale): string
-function getTranslatedString(name: StringOrTranslations, locale: Locale): string
 function getTranslatedString(
   name: StringOrTranslations | null,
   locale: Locale,
