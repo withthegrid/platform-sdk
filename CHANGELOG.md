@@ -1,3 +1,10 @@
+### [17.43.2](https://github.com/withthegrid/platform-sdk/compare/v17.43.1...v17.43.2) (2022-06-10)
+
+
+### Bug Fixes
+
+* supplierCertificate.get and supplierWebhook.get require supplier ([dbbdc5e](https://github.com/withthegrid/platform-sdk/commit/dbbdc5ea129bf379fa704a901e16ea260f51b790))
+
 ### [17.43.1](https://github.com/withthegrid/platform-sdk/compare/v17.43.0...v17.43.1) (2022-06-09)
 
 
