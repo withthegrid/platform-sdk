@@ -1,3 +1,10 @@
+## [17.44.0](https://github.com/withthegrid/platform-sdk/compare/v17.43.2...v17.44.0) (2022-06-14)
+
+
+### Features
+
+* step 4 migration for multi-language support connectivity ([#237](https://github.com/withthegrid/platform-sdk/issues/237)) ([3a9689e](https://github.com/withthegrid/platform-sdk/commit/3a9689eb1fe59d68dcf645aa3ce9072db4bd2b01)), closes [withthegrid/platform#1255](https://github.com/withthegrid/platform/issues/1255)
+
 ### [17.43.2](https://github.com/withthegrid/platform-sdk/compare/v17.43.1...v17.43.2) (2022-06-10)
 
 
