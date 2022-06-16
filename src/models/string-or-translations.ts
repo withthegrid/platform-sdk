@@ -18,8 +18,6 @@ const stringBeforeV7ElseStringOrTranslationSchema = (apiVersion: number): Joi.An
 
 type StringOrTranslations = string | Translations;
 
-function getTranslatedString(name: StringOrTranslations | null, locale: Locale): string
-function getTranslatedString(name: StringOrTranslations, locale: Locale): string
 function getTranslatedString(
   name: StringOrTranslations | null,
   locale: Locale,
