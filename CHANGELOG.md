@@ -1,3 +1,31 @@
+## [17.44.0](https://github.com/withthegrid/platform-sdk/compare/v17.43.2...v17.44.0) (2022-06-14)
+
+
+### Features
+
+* step 4 migration for multi-language support connectivity ([#237](https://github.com/withthegrid/platform-sdk/issues/237)) ([3a9689e](https://github.com/withthegrid/platform-sdk/commit/3a9689eb1fe59d68dcf645aa3ce9072db4bd2b01)), closes [withthegrid/platform#1255](https://github.com/withthegrid/platform/issues/1255)
+
+### [17.43.2](https://github.com/withthegrid/platform-sdk/compare/v17.43.1...v17.43.2) (2022-06-10)
+
+
+### Bug Fixes
+
+* supplierCertificate.get and supplierWebhook.get require supplier ([dbbdc5e](https://github.com/withthegrid/platform-sdk/commit/dbbdc5ea129bf379fa704a901e16ea260f51b790))
+
+### [17.43.1](https://github.com/withthegrid/platform-sdk/compare/v17.43.0...v17.43.1) (2022-06-09)
+
+
+### Bug Fixes
+
+* return JWT in 2fa.enable ([06dfc9c](https://github.com/withthegrid/platform-sdk/commit/06dfc9c4500fe29b07d53bd05b20b91753d61d2c))
+
+## [17.43.0](https://github.com/withthegrid/platform-sdk/compare/v17.42.16...v17.43.0) (2022-06-08)
+
+
+### Features
+
+* two factor authentication ([#212](https://github.com/withthegrid/platform-sdk/issues/212)) ([401a1db](https://github.com/withthegrid/platform-sdk/commit/401a1db18e0b9ce636b35492177e6d30a394ba02)), closes [withthegrid/platform#884](https://github.com/withthegrid/platform/issues/884)
+
 ### [17.42.16](https://github.com/withthegrid/platform-sdk/compare/v17.42.15...v17.42.16) (2022-06-03)
 
 
