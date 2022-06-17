@@ -1,3 +1,10 @@
+## [17.46.0](https://github.com/withthegrid/platform-sdk/compare/v17.45.0...v17.46.0) (2022-06-17)
+
+
+### Features
+
+* allow overriding locale in suggestions.find ([402d527](https://github.com/withthegrid/platform-sdk/commit/402d5272fbfbdbf789564573542524b0516a44a9))
+
 ## [17.45.0](https://github.com/withthegrid/platform-sdk/compare/v17.44.0...v17.45.0) (2022-06-17)
 
 
