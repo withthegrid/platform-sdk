@@ -1,4 +1,5 @@
 import Joi from 'joi';
+import { Locale, schema as localeSchema } from '../../models/locale';
 import { ControllerGeneratorOptionsWithClientAndSupplier } from '../../comms/controller';
 
 const suggestionTypes = [
@@ -21,6 +22,7 @@ type SuggestionType = (typeof suggestionTypes)[number];
 interface Request {
   query: {
     search: string;
+    locale?: Locale
     type: SuggestionType;
     rowsPerPage: number;
     offset?: string;
@@ -38,6 +40,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClientAndSupplie
   path: '/',
   query: Joi.object().keys({
     search: Joi.string().allow('').required().example('v1.1.0'),
+    locale: localeSchema,
     type: Joi.string().valid(...suggestionTypes).required().example('issue.title'),
     offset: Joi.string().example('Installed v1.1.0-rc3')
       .description('To retrieve the next page, provide last item of the array'),
