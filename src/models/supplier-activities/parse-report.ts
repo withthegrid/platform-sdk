@@ -34,7 +34,7 @@ const schema = (apiVersion: number): Joi.ObjectSchema => supplierActivityConstru
     // commandHashId: Joi.string().allow(null).required().example(null),
     observations: Joi.array().items(Joi.object().keys({
       measurement: measurementSchema(apiVersion).required(),
-      quantity: quantitySchema.required(),
+      quantity: quantitySchema(apiVersion).required(),
     })),
     fields: fieldsFromServerSchema.example({}),
   }).required(),

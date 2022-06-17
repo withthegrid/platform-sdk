@@ -1,10 +1,11 @@
 import Joi from 'joi';
 import { ControllerGeneratorOptionsWithSupplier } from '../../comms/controller';
 import { schema as baseFieldConfigurationSchema, BaseFieldConfiguration } from '../../models/fields/base-field-configuration';
+import { schema as stringOrTranslationsSchema, StringOrTranslations } from '../../models/string-or-translations';
 
 interface Request {
   body: {
-    name: string;
+    name: StringOrTranslations;
     start?: 'required' | 'optional' | 'disabled';
     end?: 'required' | 'optional' | 'disabled';
     fieldConfigurations: BaseFieldConfiguration[];
@@ -25,7 +26,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
   method: 'post',
   path: '/',
   body: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
-    name: Joi.string().required().example('Measurement cycle'),
+    name: stringOrTranslationsSchema.required().example('Measurement cycle'),
     start: Joi.string().valid('required', 'optional', 'disabled').default('optional').description('\'required\': user must provide command.startAt. \'optional\': user can provide command.startAt or a delay for the command to start after it is sent to the device. \'disabled\': user cannot provide command.startAt nor a delay.'),
     end: Joi.string().valid('required', 'optional', 'disabled').default('disabled').description('\'required\': user must provide command.endAt. \'optional\': user can provide command.endAt. \'disabled\': user cannot provide command.endAt.'),
     fieldConfigurations: Joi.array().items(baseFieldConfigurationSchema(apiVersion)).required()

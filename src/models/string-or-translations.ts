@@ -9,6 +9,13 @@ const schema = Joi.alternatives(
   .tag('stringOrTranslations')
   .meta({ className: 'stringOrTranslations' });
 
+const stringBeforeV7ElseStringOrTranslationSchema = (apiVersion: number): Joi.AnySchema => {
+  if (apiVersion <= 6) {
+    return Joi.string();
+  }
+  return schema;
+};
+
 type StringOrTranslations = string | Translations;
 
 function getTranslatedString(
@@ -32,4 +39,5 @@ export {
   schema,
   StringOrTranslations,
   getTranslatedString,
+  stringBeforeV7ElseStringOrTranslationSchema,
 };

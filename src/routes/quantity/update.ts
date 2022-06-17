@@ -1,13 +1,14 @@
 import Joi from 'joi';
 import { ControllerGeneratorOptionsWithClientAndSupplier } from '../../comms/controller';
 import { schema as siNumberSchema, SiNumber } from '../../models/si-number';
+import { schema as stringOrTranslationsSchema, StringOrTranslations } from '../../models/string-or-translations';
 
 interface Request {
   params: {
     hashId: string;
   };
   body: {
-    name?: string;
+    name?: StringOrTranslations;
     color?: string;
     unit?: string;
     defaultOrderOfMagnitude?: number;
@@ -29,7 +30,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClientAndSupplie
     hashId: Joi.string().required().example('sajia1'),
   }).required(),
   body: Joi.object().keys({
-    name: Joi.string().example('Temperature'),
+    name: stringOrTranslationsSchema.example('Temperature'),
     color: Joi.string().example('#ff00ff'),
     unit: Joi.string().example('K').description('Will be displayed with an SI-prefix (eg. k or M) if relevant'),
     defaultOrderOfMagnitude: Joi.number().integer().min(-128).max(127)

@@ -1,10 +1,11 @@
 import Joi from 'joi';
 
 import { schema as baseFieldConfigurationSchema, BaseFieldConfiguration } from './fields/base-field-configuration';
+import { stringBeforeV7ElseStringOrTranslationSchema, StringOrTranslations } from './string-or-translations';
 
 const schema = (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
   hashId: Joi.string().required().example('x18a92'),
-  name: Joi.string().required().example('Measurement cycle'),
+  name: stringBeforeV7ElseStringOrTranslationSchema(apiVersion).required().example('Measurement cycle'),
   start: Joi.string().valid('required', 'optional', 'disabled').required().example('required')
     .description('\'required\': user must provide command.startAt. \'optional\': user can provide command.startAt or a delay for the command to start after it is sent to the device. \'disabled\': user cannot provide command.startAt nor a delay.'),
   end: Joi.string().valid('required', 'optional', 'disabled').required().example('disabled')
@@ -22,7 +23,7 @@ const schema = (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
 
 interface CommandType {
   hashId: string;
-  name: string;
+  name: StringOrTranslations;
   start: 'required' | 'optional' | 'disabled';
   end: 'required' | 'optional' | 'disabled';
   fieldConfigurations: BaseFieldConfiguration[];

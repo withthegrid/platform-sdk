@@ -1,9 +1,13 @@
 import Joi from 'joi';
 import { schema as siNumberSchema, SiNumber } from './si-number';
+import {
+  stringBeforeV7ElseStringOrTranslationSchema,
+  StringOrTranslations,
+} from './string-or-translations';
 
-const schema = Joi.object().keys({
+const schema = (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
   hashId: Joi.string().required().example('sajia1'),
-  name: Joi.string().required().example('Temperature'),
+  name: stringBeforeV7ElseStringOrTranslationSchema(apiVersion).required().example('Temperature'),
   color: Joi.string().required().example('#ff00ff'),
   unit: Joi.string().required().example('K').description('Will be displayed with an SI-prefix (eg. k or M) if relevant'),
   defaultOrderOfMagnitude: Joi.number().integer().min(-128).max(127)
@@ -20,7 +24,7 @@ const schema = Joi.object().keys({
 
 interface Quantity {
   hashId: string;
-  name: string;
+  name: StringOrTranslations;
   color: string;
   unit: string;
   defaultOrderOfMagnitude: number;

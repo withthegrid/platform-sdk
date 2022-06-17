@@ -36,7 +36,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     reportTypes: Joi.array().items(environmentReportTypeSchema(apiVersion)).required(),
     grid: gridSchema.allow(null).required(),
     pinGroups: Joi.array().items(pinGroupSchema).required(),
-    quantities: Joi.array().items(quantitySchema).required(),
+    quantities: Joi.array().items(quantitySchema(apiVersion)).required(),
     fieldKeys: Joi.array().items(Joi.string().example('id')).required(),
     pinFieldKeys: Joi.array().items(Joi.string().example('id')).required(),
     edgeFieldKeys: Joi.array().items(Joi.string().example('id')).required(),

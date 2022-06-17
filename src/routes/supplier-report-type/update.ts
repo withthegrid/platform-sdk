@@ -4,13 +4,14 @@ import {
   schema as updatableFieldConfigurationsSchema,
   UpdatableFieldConfigurations,
 } from '../../models/fields/updatable-field-configurations';
+import { schema as stringOrTranslationsSchema, StringOrTranslations } from '../../models/string-or-translations';
 
 interface Request {
   params: {
     hashId: string;
   };
   body: {
-    name?: string;
+    name?: StringOrTranslations;
     fieldConfigurations?: {
       pinGroup?: UpdatableFieldConfigurations;
       pin?: UpdatableFieldConfigurations;
@@ -30,7 +31,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
     hashId: Joi.string().required().example('y124as'),
   }).required(),
   body: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
-    name: Joi.string().example('Temperature'),
+    name: stringOrTranslationsSchema.example('Temperature'),
     fieldConfigurations: Joi.object().keys({
       pinGroup: updatableFieldConfigurationsSchema(apiVersion),
       pin: updatableFieldConfigurationsSchema(apiVersion),

@@ -55,7 +55,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     measurementCycle: Joi.valid(null).default(null), // for legacy purposes only
     thresholds: Joi.array().items(Joi.object().keys({
       value: thresholdSchema.required(),
-      quantity: quantitySchema.required(),
+      quantity: quantitySchema(apiVersion).required(),
     })).required(),
     photo: Joi.string().allow(null).required().description('download link for photo.')
       .example('https://api.withthegrid.com/file/yr969d...'),

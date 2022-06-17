@@ -24,7 +24,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   right: { environment: 'READ' },
   response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     reportType: environmentReportTypeSchema(apiVersion).required(),
-    quantities: Joi.array().items(quantitySchema).required(),
+    quantities: Joi.array().items(quantitySchema(apiVersion)).required(),
   }).required(),
   description: 'Get a specific report type identified by its hashId. For report types of type \'human\', quantities that used to be in the report type but are now deleted from it are not included. Report types of type \'device\' do not contain any quantities.',
 };
