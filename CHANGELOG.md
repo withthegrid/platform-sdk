@@ -1,3 +1,10 @@
+## [17.45.0](https://github.com/withthegrid/platform-sdk/compare/v17.44.0...v17.45.0) (2022-06-17)
+
+
+### Features
+
+* add multilanguage names for connectivity environment ([#228](https://github.com/withthegrid/platform-sdk/issues/228)) ([0a9e334](https://github.com/withthegrid/platform-sdk/commit/0a9e3340265b0630d34d2508bdce9983e39da6f8)), closes [withthegrid/platform#1255](https://github.com/withthegrid/platform/issues/1255)
+
 ## [17.44.0](https://github.com/withthegrid/platform-sdk/compare/v17.43.2...v17.44.0) (2022-06-14)
 
 
