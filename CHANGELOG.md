@@ -1,3 +1,10 @@
+### [17.46.1](https://github.com/withthegrid/platform-sdk/compare/v17.46.0...v17.46.1) (2022-07-01)
+
+
+### Bug Fixes
+
+* **comms:** handle more axios errors kinds ([#247](https://github.com/withthegrid/platform-sdk/issues/247)) ([272c67a](https://github.com/withthegrid/platform-sdk/commit/272c67a8d593776a5c1c8009465faacb8f9924ae)), closes [withthegrid/platform-client#1320](https://github.com/withthegrid/platform-client/issues/1320)
+
 ## [17.46.0](https://github.com/withthegrid/platform-sdk/compare/v17.45.0...v17.46.0) (2022-06-17)
 
 
