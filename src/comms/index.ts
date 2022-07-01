@@ -131,7 +131,15 @@ class Comms {
             data,
           );
         }
-        if (e.code === AxiosError.ERR_NETWORK && e.request !== undefined) {
+        const axiosNetworkErrorCodes = [
+          AxiosError.ERR_NETWORK,
+          AxiosError.ETIMEDOUT,
+          AxiosError.ECONNABORTED,
+        ];
+        const { code, request } = e;
+        if (code !== undefined
+          && request !== undefined
+          && axiosNetworkErrorCodes.includes(code)) {
           throw new CommsRequestError(
             method,
             path,
