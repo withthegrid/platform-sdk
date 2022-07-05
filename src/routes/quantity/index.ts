@@ -2,6 +2,7 @@ import * as add from './add';
 import * as deleteRoute from './delete';
 import * as find from './find';
 import * as get from './get';
+import * as merge from './merge';
 import * as update from './update';
 
 import Comms from '../../comms';
@@ -65,6 +66,18 @@ class QuantityRoute {
       get.Response
     >(
       get.controllerGeneratorOptions,
+      QuantityRoute.routerPath,
+      QuantityRoute.auth,
+      this.comms,
+    )(parameters);
+
+  merge = (parameters: merge.Request):
+    Result<merge.EffectiveRequest, merge.Response> => controllerGenerator<
+      merge.Request,
+      merge.EffectiveRequest,
+      merge.Response
+    >(
+      merge.controllerGeneratorOptions,
       QuantityRoute.routerPath,
       QuantityRoute.auth,
       this.comms,
