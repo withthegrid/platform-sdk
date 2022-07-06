@@ -2,6 +2,9 @@ import Joi from 'joi';
 import { ControllerGeneratorOptionsWithClientAndSupplier } from '../../comms/controller';
 
 interface Request {
+  params: {
+    sourceQuantityHashId: string;
+  },
   body: {
     targetQuantityHashId: string;
   };
