@@ -51,6 +51,7 @@ const schema = Joi.object().keys({
         }).required(),
       }))).required(),
     }).allow(null).required(),
+    pskIdentityHint: Joi.string().allow('').example('=d37d7&&dhdkf2'),
   }).required(),
   response: Joi.object().keys({
     statusCode: Joi.number().required().example(200),
@@ -100,6 +101,7 @@ interface WebRequest {
         };
       }[][];
     } | null;
+    pskIdentityHint?: string;
   };
   response: {
     statusCode: number;
