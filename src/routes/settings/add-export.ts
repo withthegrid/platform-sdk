@@ -45,13 +45,14 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       }).required(),
       Joi.object().keys({
         type: Joi.string().required().valid('chart').example('chart'),
-        startAt: Joi.date().required().example('2019-12-31T15:23Z'),
-        endAt: Joi.date().required().example('2021-01-01T00:00Z').description('Up to not including'),
+        from: Joi.date().required().example('2019-12-31T15:23Z'),
+        to: Joi.date().required().example('2021-01-01T00:00Z').description('Up to not including'),
         series: Joi.array().max(40).items(Joi.object().keys({
           pinHashId: Joi.string().required().example('e13d57'),
           quantityHashId: Joi.string().required().example('sajia1'),
         })).required(),
         highResolution: Joi.boolean().default(false),
+        title: Joi.string().required().example('Chart name'),
       }),
     ).required(),
     delimiter: Joi.string().valid(',', ';').required().example(','),
