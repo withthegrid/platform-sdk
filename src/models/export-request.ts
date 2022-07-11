@@ -24,7 +24,18 @@ interface AnalyticsQueryContent {
   widgetName: string;
 }
 
-type Content = AllContent | MeasurementFilterContent | AnalyticsQueryContent;
+interface ChartContent {
+  type: 'chart',
+  startAt: Date;
+  endAt: Date;
+  highResolution: boolean;
+  series: {
+    quantityHashId: string;
+    pinHashId: string;
+  }[];
+}
+
+type Content = AllContent | MeasurementFilterContent | AnalyticsQueryContent | ChartContent;
 const contentSchemaAlternatives = [
   Joi.object().keys({
     type: Joi.string().required().valid('all').example('all'),
@@ -45,6 +56,16 @@ const contentSchemaAlternatives = [
     query: analyticsQuerySchema.required(),
     dashboardId: Joi.string().required().example('xd2rd4'),
     widgetName: Joi.string().required().example('Widget name'),
+  }),
+  Joi.object().keys({
+    type: Joi.string().required().valid('chart').example('chart'),
+    startAt: Joi.date().required().example('2019-12-31T15:23Z'),
+    endAt: Joi.date().required().example('2021-01-01T00:00Z').description('Up to not including'),
+    series: Joi.array().max(40).items(Joi.object().keys({
+      pinHashId: Joi.string().required().example('e13d57'),
+      quantityHashId: Joi.string().required().example('sajia1'),
+    })).required(),
+    highResolution: Joi.boolean().default(false),
   }),
 ];
 
@@ -77,6 +98,7 @@ export {
   AllContent,
   MeasurementFilterContent,
   AnalyticsQueryContent,
+  ChartContent,
   Content,
   contentSchemaAlternatives,
 };
