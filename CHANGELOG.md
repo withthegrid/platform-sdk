@@ -1,3 +1,17 @@
+### [17.46.2](https://github.com/withthegrid/platform-sdk/compare/v17.46.1...v17.46.2) (2022-07-08)
+
+
+### Bug Fixes
+
+* supplier activities have invalid schema ([#252](https://github.com/withthegrid/platform-sdk/issues/252)) ([b7c27dc](https://github.com/withthegrid/platform-sdk/commit/b7c27dce997f6ca88166e8228f83c1b46cd9ecd8)), closes [withthegrid/platform#1369](https://github.com/withthegrid/platform/issues/1369)
+
+### [17.46.1](https://github.com/withthegrid/platform-sdk/compare/v17.46.0...v17.46.1) (2022-07-01)
+
+
+### Bug Fixes
+
+* **comms:** handle more axios errors kinds ([#247](https://github.com/withthegrid/platform-sdk/issues/247)) ([272c67a](https://github.com/withthegrid/platform-sdk/commit/272c67a8d593776a5c1c8009465faacb8f9924ae)), closes [withthegrid/platform-client#1320](https://github.com/withthegrid/platform-client/issues/1320)
+
 ## [17.46.0](https://github.com/withthegrid/platform-sdk/compare/v17.45.0...v17.46.0) (2022-06-17)
 
 
