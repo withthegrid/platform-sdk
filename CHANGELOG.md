@@ -1,3 +1,10 @@
+## [17.46.3](https://github.com/withthegrid/platform-sdk/compare/v17.46.2...v17.46.3) (2022-07-13)
+
+
+### Bug Fixes
+
+* **deps:** bump semver-regex from 3.1.3 to 3.1.4 ([020c87a](https://github.com/withthegrid/platform-sdk/commit/020c87af7bd41b2c0e85c7014cb86775af309c9b))
+
 ### [17.46.2](https://github.com/withthegrid/platform-sdk/compare/v17.46.1...v17.46.2) (2022-07-08)
 
 
