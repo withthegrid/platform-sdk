@@ -46,7 +46,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClientAndSupplie
       environmentReportTypeHashIds: Joi.array().items(Joi.string()).description('Limit results to provided report type hashIds. Only valid when requesting for an environment (not a supplier)'),
       includeDeleted: Joi.boolean().default(false),
       deviceQuantityMode: Joi.boolean().default(false),
-      excludeHashIds: Joi.array().items(Joi.string().example('sajia1')).description('Exclude quantities'),
+      excludeHashIds: Joi.array().items(Joi.string().example(['sajia1'])).description('Exclude quantities'),
     }),
   response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     nextPageOffset: Joi.string().allow(null).example(null).required()
