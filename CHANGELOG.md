@@ -1,3 +1,17 @@
+## [17.46.4](https://github.com/withthegrid/platform-sdk/compare/v17.46.3...v17.46.4) (2022-07-14)
+
+
+### Bug Fixes
+
+* **deps:** bump npm from 8.3.1 to 8.14.0 ([45b2c33](https://github.com/withthegrid/platform-sdk/commit/45b2c33941391eed08a97bb974032973f1568bb5))
+
+## [17.46.3](https://github.com/withthegrid/platform-sdk/compare/v17.46.2...v17.46.3) (2022-07-13)
+
+
+### Bug Fixes
+
+* **deps:** bump semver-regex from 3.1.3 to 3.1.4 ([020c87a](https://github.com/withthegrid/platform-sdk/commit/020c87af7bd41b2c0e85c7014cb86775af309c9b))
+
 ### [17.46.2](https://github.com/withthegrid/platform-sdk/compare/v17.46.1...v17.46.2) (2022-07-08)
 
 
