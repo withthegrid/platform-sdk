@@ -41,6 +41,11 @@ describe('link replacement', () => {
         ['command #eyr9dr', a('commands/eyr9dr', 'command #eyr9dr')],
         ['Command #eyr9dr', a('commands/eyr9dr', 'command #eyr9dr')],
         ['opdracht #eyr9dr', a('commands/eyr9dr', 'opdracht #eyr9dr')],
+
+        // multi and combined
+        ['issue #eyr9dr and report #eyr9dr', `${a('issues/eyr9dr', 'issue #eyr9dr')} and ${a('reports/eyr9dr', 'report #eyr9dr')}`],
+        ['issue #eyr9dr and command #eyr9dr', `${a('issues/eyr9dr', 'issue #eyr9dr')} and ${a('commands/eyr9dr', 'command #eyr9dr')}`],
+        ['issue #eyr9dr and command #eyr9dr and report #eyr9dr', `${a('issues/eyr9dr', 'issue #eyr9dr')} and ${a('commands/eyr9dr', 'command #eyr9dr')} and ${a('reports/eyr9dr', 'report #eyr9dr')}`],
       ])('(%s) -> (%s)', (input, expected) => {
         // act
         const replaced = replaceLinks(DUMMY_ENV_HASHID, input);

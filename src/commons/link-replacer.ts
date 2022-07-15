@@ -38,7 +38,7 @@ export const replaceLinks = (
     const [entity, regex] = matchers[i];
     const matches = text.match(regex);
     if (matches !== null) {
-      return text.replace(regex, (match, _key, hashid) => {
+      text = text.replaceAll(regex, (match, _key, hashid) => {
         const url = `#/e/${environmentHashId}/${entity}/${hashid}`;
         return `<a href="${url}">${match.toLowerCase()}</a>`;
       });
