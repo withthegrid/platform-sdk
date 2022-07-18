@@ -32,7 +32,7 @@ describe('link replacement', () => {
         ['Report #eyr9dr', a('reports/eyr9dr', 'report #eyr9dr')],
         [
           'condition report #eyr9dr',
-          `condition ${a('reports/eyr9dr', 'report #eyr9dr')}`,
+          `${a('reports/eyr9dr', 'condition report #eyr9dr')}`,
         ],
         ['rapport #eyr9dr', a('reports/eyr9dr', 'rapport #eyr9dr')],
         ['meetrapport #eyr9dr', a('reports/eyr9dr', 'meetrapport #eyr9dr')],

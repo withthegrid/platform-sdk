@@ -1,5 +1,5 @@
 const issue = ['issue'] as const;
-const report = ['report', 'rapport', 'meetrapport'] as const;
+const report = ['condition report', 'report', 'rapport', 'meetrapport'] as const;
 const command = ['command', 'opdracht'] as const;
 
 // the regexp have been verified on https://makenowjust-labs.github.io/recheck
