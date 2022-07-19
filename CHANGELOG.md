@@ -1,3 +1,10 @@
+## [17.46.5](https://github.com/withthegrid/platform-sdk/compare/v17.46.4...v17.46.5) (2022-07-19)
+
+
+### Bug Fixes
+
+* **link-replacer:** add common helper to replace link references ([#259](https://github.com/withthegrid/platform-sdk/issues/259)) ([5f2ae4a](https://github.com/withthegrid/platform-sdk/commit/5f2ae4aae5c28049b5c16ba54f4e56d13023d4d9)), closes [withthegrid/platform-client#1368](https://github.com/withthegrid/platform-client/issues/1368)
+
 ## [17.46.4](https://github.com/withthegrid/platform-sdk/compare/v17.46.3...v17.46.4) (2022-07-14)
 
 
