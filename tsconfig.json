@@ -19,6 +19,9 @@
         "src/types/*"
       ]
     },
+    "lib": [
+      "ES2021.String"
+    ]
   },
   "include": [
     "src/**/*",

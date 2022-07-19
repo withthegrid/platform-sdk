@@ -27,7 +27,7 @@
     "build:open-api-file": "ts-node -P tsconfig.cjs.json --files ./documentation/",
     "build:redoc-index-html": "redoc-cli bundle ./documentation/redoc.json --output ./docs/index.html -t ./documentation/html-template.hbs",
     "prepare": "npm run build",
-    "lint": "npm run build:cjs && eslint --ext .ts src",
+    "lint": "npm run build:cjs && eslint --ext .ts src test",
     "release": "ts-node -P tsconfig.cjs.json release/"
   },
   "author": "Rob Everhardt <rob@withthegrid.com>",
