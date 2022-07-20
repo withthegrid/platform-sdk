@@ -5,6 +5,7 @@ import Routes, * as IndividualRoutes from './routes';
 
 import * as models from './models';
 import * as routes from './routes/routes';
+import * as commons from './commons';
 
 import { Response as MachineLoginResponse } from './routes/authentication/machine-login';
 
@@ -72,6 +73,7 @@ export { default as errors } from './errors';
 export {
   routes,
   models,
+  commons,
   Routes,
   IndividualRoutes,
   Joi,
