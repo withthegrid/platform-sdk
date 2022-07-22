@@ -1,3 +1,10 @@
+## [17.47.0](https://github.com/withthegrid/platform-sdk/compare/v17.46.5...v17.47.0) (2022-07-22)
+
+
+### Features
+
+* **exports:** export location graph ([68c2388](https://github.com/withthegrid/platform-sdk/commit/68c2388941490e08647127fc07babecad64f46e2))
+
 ## [17.46.5](https://github.com/withthegrid/platform-sdk/compare/v17.46.4...v17.46.5) (2022-07-19)
 
 
