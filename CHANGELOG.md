@@ -1,3 +1,10 @@
+## [17.48.0](https://github.com/withthegrid/platform-sdk/compare/v17.47.0...v17.48.0) (2022-07-26)
+
+
+### Features
+
+* **commands:** add deleteMulti endpoint types ([#251](https://github.com/withthegrid/platform-sdk/issues/251)) ([fe34211](https://github.com/withthegrid/platform-sdk/commit/fe342115f3ebc3e0fc6b25d1e895ad44c66b773f))
+
 ## [17.47.0](https://github.com/withthegrid/platform-sdk/compare/v17.46.5...v17.47.0) (2022-07-22)
 
 
