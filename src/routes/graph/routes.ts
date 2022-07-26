@@ -14,14 +14,12 @@ import * as findGrid from './find-grid';
 import * as findPinGroup from './find-pin-group';
 import * as findPin from './find-pin';
 import * as findNode from './find-node';
-import * as getEdgeMeasurements from './get-edge-measurements';
 import * as getEdge from './get-edge';
 import * as getGrid from './get-grid';
 import * as getPinGroupPerformance from './get-pin-group-performance';
 import * as getPinGroup from './get-pin-group';
 import * as getPinQuantities from './get-pin-quantities';
 import * as getNode from './get-node';
-import * as getPinMeasurements from './get-pin-measurements';
 import * as getPin from './get-pin';
 import * as getTile from './get-tile';
 import * as setNotification from './set-notification';
@@ -50,14 +48,12 @@ export {
   findPinGroup,
   findPin,
   findNode,
-  getEdgeMeasurements,
   getEdge,
   getGrid,
   getPinGroupPerformance,
   getPinGroup,
   getPinQuantities,
   getNode,
-  getPinMeasurements,
   getPin,
   getTile,
   setNotification,
