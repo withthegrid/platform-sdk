@@ -1,5 +1,6 @@
 import * as add from './add';
 import * as deleteRoute from './delete';
+import * as deleteMulti from './deleteMulti';
 import * as find from './find';
 import * as get from './get';
 
@@ -34,6 +35,18 @@ class CommandRoute {
       deleteRoute.Response
     >(
       deleteRoute.controllerGeneratorOptions,
+      CommandRoute.routerPath,
+      CommandRoute.auth,
+      this.comms,
+    )(parameters);
+
+  deleteMulti = (parameters: deleteMulti.Request):
+    Result<deleteMulti.EffectiveRequest, deleteMulti.Response> => controllerGenerator<
+      deleteMulti.Request,
+      deleteMulti.EffectiveRequest,
+      deleteMulti.Response
+    >(
+      deleteMulti.controllerGeneratorOptions,
       CommandRoute.routerPath,
       CommandRoute.auth,
       this.comms,
