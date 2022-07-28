@@ -65,7 +65,7 @@ import * as userSubscription from './user-subscription';
 import * as webRequest from './web-request';
 import * as domainIdentityProvider from './domain-identity-provider';
 import * as identityProvider from './identity-provider';
-import * as identityProviderClient from './identity-provider-client';
+import * as identityProviderRole from './identity-provider-role';
 
 export {
   analytics,
@@ -96,7 +96,7 @@ export {
   issueComment,
   issueTriggerRule,
   identityProvider,
-  identityProviderClient,
+  identityProviderRole,
   label,
   locale,
   log,
