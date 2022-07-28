@@ -14,14 +14,12 @@ import * as findGrid from './find-grid';
 import * as findPinGroup from './find-pin-group';
 import * as findPin from './find-pin';
 import * as findNode from './find-node';
-import * as getEdgeMeasurements from './get-edge-measurements';
 import * as getEdge from './get-edge';
 import * as getGrid from './get-grid';
 import * as getPinGroupPerformance from './get-pin-group-performance';
 import * as getPinGroup from './get-pin-group';
 import * as getPinQuantities from './get-pin-quantities';
 import * as getNode from './get-node';
-import * as getPinMeasurements from './get-pin-measurements';
 import * as getPin from './get-pin';
 import * as getTile from './get-tile';
 import * as setNotification from './set-notification';
@@ -285,21 +283,6 @@ class GraphRoute {
       parameters,
     );
 
-  getEdgeMeasurements = (parameters: getEdgeMeasurements.Request):
-    Result<
-      getEdgeMeasurements.EffectiveRequest,
-      getEdgeMeasurements.Response
-    > => controllerGenerator<
-      getEdgeMeasurements.Request,
-      getEdgeMeasurements.EffectiveRequest,
-      getEdgeMeasurements.Response
-    >(
-      getEdgeMeasurements.controllerGeneratorOptions,
-      GraphRoute.routerPath,
-      GraphRoute.auth,
-      this.comms,
-    )(parameters);
-
   getEdge = (parameters: getEdge.Request):
     Result<getEdge.EffectiveRequest, getEdge.Response> => controllerGenerator<
       getEdge.Request,
@@ -358,18 +341,6 @@ class GraphRoute {
       getNode.Response
     >(
       getNode.controllerGeneratorOptions,
-      GraphRoute.routerPath,
-      GraphRoute.auth,
-      this.comms,
-    )(parameters);
-
-  getPinMeasurements = (parameters: getPinMeasurements.Request):
-    Result<getPinMeasurements.EffectiveRequest, getPinMeasurements.Response> => controllerGenerator<
-      getPinMeasurements.Request,
-      getPinMeasurements.EffectiveRequest,
-      getPinMeasurements.Response
-    >(
-      getPinMeasurements.controllerGeneratorOptions,
       GraphRoute.routerPath,
       GraphRoute.auth,
       this.comms,
