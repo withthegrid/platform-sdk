@@ -179,8 +179,8 @@ describe('analytics-tables placeholders', () => {
           },
         },
         expected: {
-          nl: 'Min*(Meting:waarde)',
-          en: 'Min*(Measurement:value)',
+          nl: 'Min(Meting:waarde)',
+          en: 'Min(Measurement:value)',
         },
       },
     ])('then it returns me the placeholder ($name)', ({
