@@ -1,3 +1,10 @@
+## [17.49.0](https://github.com/withthegrid/platform-sdk/compare/v17.48.0...v17.49.0) (2022-08-01)
+
+
+### Features
+
+* **analytics:** improved UI of filtered aggregated column ([#270](https://github.com/withthegrid/platform-sdk/issues/270)) ([e1f9b15](https://github.com/withthegrid/platform-sdk/commit/e1f9b1512e4ad19c4080ccd4da3de5b3f4ec82ee))
+
 ## [17.48.0](https://github.com/withthegrid/platform-sdk/compare/v17.47.0...v17.48.0) (2022-07-26)
 
 
