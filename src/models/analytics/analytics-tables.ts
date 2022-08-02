@@ -850,7 +850,6 @@ function getColumnPlaceholder(
   userLocale: keyof Translations,
 ): string {
   const tl = t[userLocale];
-  const conditionMarker = 'condition' in column ? '*' : '';
 
   const parseField = (field: string): {
     tableName: TableKeys,
@@ -902,18 +901,18 @@ function getColumnPlaceholder(
     onTimeGroupColumn: (timeGroupColumn) => {
       const aggregateText = getTranslationString(tl.granularities[timeGroupColumn.granularity]);
       const placeholder = placeholderFromField(timeGroupColumn.field);
-      return `${aggregateText}${conditionMarker}(${placeholder})`;
+      return `${aggregateText}(${placeholder})`;
     },
     onAggregatedColumnWithField: (aggregatedColumn, field) => {
       const aggregateText = getTranslationString(tl.aggregations[aggregatedColumn.type]);
       const placeholder = typeof field === 'string'
         ? placeholderFromField(field)
         : field.expression;
-      return `${aggregateText}${conditionMarker}(${placeholder})`;
+      return `${aggregateText}(${placeholder})`;
     },
     onAggregatedColumnWithoutField: (aggregatedColumn) => {
       const aggregateText = getTranslationString(tl.aggregations[aggregatedColumn.type]);
-      return `${aggregateText}${conditionMarker}`;
+      return `${aggregateText}`;
     },
   });
 }

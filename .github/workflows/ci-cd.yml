@@ -20,6 +20,9 @@ jobs:
       - name: Lint code
         run: npm run lint
         timeout-minutes: 5
+      - name: Test code
+        run: npm run test
+        timeout-minutes: 1
       - name: Create a release
         if: github.event_name == 'push'
         run: npm run release

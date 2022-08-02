@@ -1,3 +1,66 @@
+## [17.50.0](https://github.com/withthegrid/platform-sdk/compare/v17.49.1...v17.50.0) (2022-08-02)
+
+
+### Features
+
+* login a user over sso part 1 (logging in) ([#269](https://github.com/withthegrid/platform-sdk/issues/269)) ([4aea2f6](https://github.com/withthegrid/platform-sdk/commit/4aea2f6bd070c956105b739551d3028e7f60283a))
+
+## [17.49.1](https://github.com/withthegrid/platform-sdk/compare/v17.49.0...v17.49.1) (2022-08-02)
+
+
+### Bug Fixes
+
+* **deps:** bump qs from 6.10.3 to 6.11.0 ([03959ed](https://github.com/withthegrid/platform-sdk/commit/03959ed49f8de695ba494276bd980c2acc9bef24))
+
+## [17.49.0](https://github.com/withthegrid/platform-sdk/compare/v17.48.0...v17.49.0) (2022-08-01)
+
+
+### Features
+
+* **analytics:** improved UI of filtered aggregated column ([#270](https://github.com/withthegrid/platform-sdk/issues/270)) ([e1f9b15](https://github.com/withthegrid/platform-sdk/commit/e1f9b1512e4ad19c4080ccd4da3de5b3f4ec82ee))
+
+## [17.48.0](https://github.com/withthegrid/platform-sdk/compare/v17.47.0...v17.48.0) (2022-07-26)
+
+
+### Features
+
+* **commands:** add deleteMulti endpoint types ([#251](https://github.com/withthegrid/platform-sdk/issues/251)) ([fe34211](https://github.com/withthegrid/platform-sdk/commit/fe342115f3ebc3e0fc6b25d1e895ad44c66b773f))
+
+## [17.47.0](https://github.com/withthegrid/platform-sdk/compare/v17.46.5...v17.47.0) (2022-07-22)
+
+
+### Features
+
+* **exports:** export location graph ([68c2388](https://github.com/withthegrid/platform-sdk/commit/68c2388941490e08647127fc07babecad64f46e2))
+
+## [17.46.5](https://github.com/withthegrid/platform-sdk/compare/v17.46.4...v17.46.5) (2022-07-19)
+
+
+### Bug Fixes
+
+* **link-replacer:** add common helper to replace link references ([#259](https://github.com/withthegrid/platform-sdk/issues/259)) ([5f2ae4a](https://github.com/withthegrid/platform-sdk/commit/5f2ae4aae5c28049b5c16ba54f4e56d13023d4d9)), closes [withthegrid/platform-client#1368](https://github.com/withthegrid/platform-client/issues/1368)
+
+## [17.46.4](https://github.com/withthegrid/platform-sdk/compare/v17.46.3...v17.46.4) (2022-07-14)
+
+
+### Bug Fixes
+
+* **deps:** bump npm from 8.3.1 to 8.14.0 ([45b2c33](https://github.com/withthegrid/platform-sdk/commit/45b2c33941391eed08a97bb974032973f1568bb5))
+
+## [17.46.3](https://github.com/withthegrid/platform-sdk/compare/v17.46.2...v17.46.3) (2022-07-13)
+
+
+### Bug Fixes
+
+* **deps:** bump semver-regex from 3.1.3 to 3.1.4 ([020c87a](https://github.com/withthegrid/platform-sdk/commit/020c87af7bd41b2c0e85c7014cb86775af309c9b))
+
+### [17.46.2](https://github.com/withthegrid/platform-sdk/compare/v17.46.1...v17.46.2) (2022-07-08)
+
+
+### Bug Fixes
+
+* supplier activities have invalid schema ([#252](https://github.com/withthegrid/platform-sdk/issues/252)) ([b7c27dc](https://github.com/withthegrid/platform-sdk/commit/b7c27dce997f6ca88166e8228f83c1b46cd9ecd8)), closes [withthegrid/platform#1369](https://github.com/withthegrid/platform/issues/1369)
+
 ### [17.46.1](https://github.com/withthegrid/platform-sdk/compare/v17.46.0...v17.46.1) (2022-07-01)
 
 

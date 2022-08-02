@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
-import { AllContent, AnalyticsQueryContent } from '../../models/export-request';
+import { AllContent, AnalyticsQueryContent, ChartContent } from '../../models/export-request';
 import { schema as analyticsQuerySchema } from '../../models/analytics-query';
 
 interface MeasurementFilterContentByHashId {
@@ -11,7 +11,7 @@ interface MeasurementFilterContentByHashId {
 // AllContent is still a reference to settings/add-export.ts
 interface Request {
   body: {
-    content: AllContent | MeasurementFilterContentByHashId | AnalyticsQueryContent;
+    content: AllContent | MeasurementFilterContentByHashId | AnalyticsQueryContent | ChartContent;
     delimiter: ',' | ';';
     rowDelimiter: '\n' | '\r\n';
   };
@@ -43,6 +43,17 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
         dashboardId: Joi.string().required().example('xd2rd4'),
         widgetName: Joi.string().required().example('Widget name'),
       }).required(),
+      Joi.object().keys({
+        type: Joi.string().required().valid('chart').example('chart'),
+        from: Joi.date().required().example('2019-12-31T15:23Z'),
+        to: Joi.date().required().example('2021-01-01T00:00Z').description('Up to not including'),
+        series: Joi.array().max(40).items(Joi.object().keys({
+          pinHashId: Joi.string().required().example('e13d57'),
+          quantityHashId: Joi.string().required().example('sajia1'),
+        })).required(),
+        highResolution: Joi.boolean().default(false),
+        title: Joi.string().required().example('Chart name'),
+      }),
     ).required(),
     delimiter: Joi.string().valid(',', ';').required().example(','),
     rowDelimiter: Joi.string().valid('\n', '\r\n').required().example('\n'),
