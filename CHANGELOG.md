@@ -1,3 +1,24 @@
+## [17.49.0](https://github.com/withthegrid/platform-sdk/compare/v17.48.0...v17.49.0) (2022-08-01)
+
+
+### Features
+
+* **analytics:** improved UI of filtered aggregated column ([#270](https://github.com/withthegrid/platform-sdk/issues/270)) ([e1f9b15](https://github.com/withthegrid/platform-sdk/commit/e1f9b1512e4ad19c4080ccd4da3de5b3f4ec82ee))
+
+## [17.48.0](https://github.com/withthegrid/platform-sdk/compare/v17.47.0...v17.48.0) (2022-07-26)
+
+
+### Features
+
+* **commands:** add deleteMulti endpoint types ([#251](https://github.com/withthegrid/platform-sdk/issues/251)) ([fe34211](https://github.com/withthegrid/platform-sdk/commit/fe342115f3ebc3e0fc6b25d1e895ad44c66b773f))
+
+## [17.47.0](https://github.com/withthegrid/platform-sdk/compare/v17.46.5...v17.47.0) (2022-07-22)
+
+
+### Features
+
+* **exports:** export location graph ([68c2388](https://github.com/withthegrid/platform-sdk/commit/68c2388941490e08647127fc07babecad64f46e2))
+
 ## [17.46.5](https://github.com/withthegrid/platform-sdk/compare/v17.46.4...v17.46.5) (2022-07-19)
 
 
