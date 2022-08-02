@@ -63,6 +63,9 @@ import * as updatableFieldConfigurations from './fields/updatable-field-configur
 import * as user from './user';
 import * as userSubscription from './user-subscription';
 import * as webRequest from './web-request';
+import * as domainIdentityProvider from './domain-identity-provider';
+import * as identityProvider from './identity-provider';
+import * as identityProviderRole from './identity-provider-role';
 
 export {
   analytics,
@@ -77,6 +80,7 @@ export {
   commandType,
   device,
   deviceType,
+  domainIdentityProvider,
   edge,
   environment,
   environmentReportType,
@@ -91,6 +95,8 @@ export {
   issue,
   issueComment,
   issueTriggerRule,
+  identityProvider,
+  identityProviderRole,
   label,
   locale,
   log,
