@@ -1,3 +1,10 @@
+## [17.49.1](https://github.com/withthegrid/platform-sdk/compare/v17.49.0...v17.49.1) (2022-08-02)
+
+
+### Bug Fixes
+
+* **deps:** bump qs from 6.10.3 to 6.11.0 ([03959ed](https://github.com/withthegrid/platform-sdk/commit/03959ed49f8de695ba494276bd980c2acc9bef24))
+
 ## [17.49.0](https://github.com/withthegrid/platform-sdk/compare/v17.48.0...v17.49.0) (2022-08-01)
 
 
