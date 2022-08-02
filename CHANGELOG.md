@@ -1,3 +1,10 @@
+## [17.51.0](https://github.com/withthegrid/platform-sdk/compare/v17.50.0...v17.51.0) (2022-08-02)
+
+
+### Features
+
+* removed inGrid comparison operator ([#248](https://github.com/withthegrid/platform-sdk/issues/248)) ([7ccc5a3](https://github.com/withthegrid/platform-sdk/commit/7ccc5a36ae112bb20133984df21ddc79c39c1d50))
+
 ## [17.50.0](https://github.com/withthegrid/platform-sdk/compare/v17.49.1...v17.50.0) (2022-08-02)
 
 
