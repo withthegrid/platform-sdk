@@ -1,14 +1,15 @@
 import Joi from 'joi';
 
-const colorSchema = Joi.object().keys({
-  primary: Joi.string().required().example('#ff00ff'),
-  secondary: Joi.string().required().example('#ff00ff'),
-  accent: Joi.string().required().example('#ff00ff'),
-  error: Joi.string().required().example('#ff00ff'),
-  warning: Joi.string().required().example('#ff00ff'),
-  info: Joi.string().required().example('#ff00ff'),
-  success: Joi.string().required().example('#ff00ff'),
-  neutral: Joi.string().required().example('#ff00ff'),
+const colorSchema = Joi.string().required().example('#ff00ff').regex(/^#([0-9a-f]{3}|[0-9a-f]{6})$/i);
+const colorsSchema = Joi.object().keys({
+  primary: colorSchema,
+  secondary: colorSchema,
+  accent: colorSchema,
+  error: colorSchema,
+  warning: colorSchema,
+  info: colorSchema,
+  success: colorSchema,
+  neutral: colorSchema,
 });
 
 /**
@@ -16,8 +17,8 @@ const colorSchema = Joi.object().keys({
  */
 export const themeSchema = Joi.object().keys({
   name: Joi.string().example('My new theme').required(),
-  light: colorSchema.required(),
-  dark: colorSchema.optional(),
+  light: colorsSchema.required(),
+  dark: colorsSchema.optional(),
 });
 
 type Colors = {
