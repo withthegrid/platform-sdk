@@ -16,7 +16,6 @@ const colorsSchema = Joi.object().keys({
  * @internal
  */
 export const themeSchema = Joi.object().keys({
-  name: Joi.string().example('My new theme').required(),
   light: colorsSchema.required(),
   dark: colorsSchema.optional(),
 });
@@ -36,7 +35,6 @@ type Colors = {
  * @internal
  */
 export type Theme = {
-  name: string;
   light: Colors;
   dark?: Colors;
 };
