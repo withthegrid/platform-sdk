@@ -1,3 +1,10 @@
+## [17.52.0](https://github.com/withthegrid/platform-sdk/compare/v17.51.1...v17.52.0) (2022-08-10)
+
+
+### Features
+
+* **command:** add createdByUserName to get response ([#279](https://github.com/withthegrid/platform-sdk/issues/279)) ([88852b1](https://github.com/withthegrid/platform-sdk/commit/88852b1e88474d9511f91faa9ab1984f326579a6))
+
 ## [17.51.1](https://github.com/withthegrid/platform-sdk/compare/v17.51.0...v17.51.1) (2022-08-03)
 
 
