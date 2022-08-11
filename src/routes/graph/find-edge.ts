@@ -6,6 +6,7 @@ import { schema as edgeSchema, Edge } from '../../models/edge';
 import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../../comms/table-controller';
 
 interface Query extends TableQuery {
+  location?: { latitude: number, longitude: number},
   includeDeleted?: boolean;
   boundingBox?: [number, number, number, number];
 }
@@ -15,6 +16,7 @@ type Request = {
 } | undefined;
 
 interface EffectiveQuery extends EffectiveTableQuery {
+  location?: { latitude: number, longitude: number},
   includeDeleted: boolean;
   boundingBox?: [number, number, number, number];
 }
@@ -35,8 +37,12 @@ interface Response {
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'get',
   path: '/edge',
-  query: tableQuerySchemaGenerator(Joi.string().valid('hashId', 'name').default('hashId'))
+  query: tableQuerySchemaGenerator(Joi.string().valid('hashId', 'name', 'proximity').default('hashId'))
     .keys({
+      location: Joi.object().keys({
+        latitude: Joi.number().required(),
+        longitude: Joi.number().required(),
+      }),
       includeDeleted: Joi.boolean().default(false),
       boundingBox: Joi.array()
         .items(Joi.number())
