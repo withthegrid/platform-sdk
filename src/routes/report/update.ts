@@ -31,7 +31,7 @@ interface Request {
   body: {
     generatedAt?: Date;
     fields?: FieldsToServerUpdate;
-    measurements: ReportUpdate[];
+    measurements?: ReportUpdate[];
   };
 }
 
@@ -77,7 +77,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
           .example(true)
           .description('Do not compare to thresholds'),
       }),
-    )).required(),
+    )),
     fields: fieldsToServerUpdateSchema,
   }).required(),
   right: { environment: 'REPORTS' },
