@@ -1,3 +1,10 @@
+## [17.52.1](https://github.com/withthegrid/platform-sdk/compare/v17.52.0...v17.52.1) (2022-08-15)
+
+
+### Bug Fixes
+
+* platform client 1432 sort edges by proximity ([#286](https://github.com/withthegrid/platform-sdk/issues/286)) ([9bcd382](https://github.com/withthegrid/platform-sdk/commit/9bcd38218584179e4d92d375c06e173c7a97576d))
+
 ## [17.52.0](https://github.com/withthegrid/platform-sdk/compare/v17.51.1...v17.52.0) (2022-08-10)
 
 
