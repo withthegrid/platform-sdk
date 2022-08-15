@@ -85,7 +85,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     }),
   )).required(),
   right: { environment: 'STATIC' },
-  description: 'Updates the geoemtries of one or more nodes, pin groups and or edges',
+  description: 'Updates the geometries of one or more nodes, pin groups and or edges',
 };
 
 export {
