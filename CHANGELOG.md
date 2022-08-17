@@ -1,3 +1,10 @@
+## [17.53.0](https://github.com/withthegrid/platform-sdk/compare/v17.52.1...v17.53.0) (2022-08-17)
+
+
+### Features
+
+* add theme to environments models and update ([#276](https://github.com/withthegrid/platform-sdk/issues/276)) ([50041a5](https://github.com/withthegrid/platform-sdk/commit/50041a5fab6dc444888b194035e5a8a0eb39547b))
+
 ## [17.52.1](https://github.com/withthegrid/platform-sdk/compare/v17.52.0...v17.52.1) (2022-08-15)
 
 
