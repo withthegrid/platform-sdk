@@ -1,3 +1,10 @@
+## [17.54.0](https://github.com/withthegrid/platform-sdk/compare/v17.53.0...v17.54.0) (2022-08-18)
+
+
+### Features
+
+* unit property of quantities made optional ([#290](https://github.com/withthegrid/platform-sdk/issues/290)) ([8dfa7bc](https://github.com/withthegrid/platform-sdk/commit/8dfa7bc321fa1cf0f321435d1db97d8c9a74a8e1))
+
 ## [17.53.0](https://github.com/withthegrid/platform-sdk/compare/v17.52.1...v17.53.0) (2022-08-17)
 
 
