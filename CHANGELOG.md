@@ -1,3 +1,11 @@
+## [17.54.1](https://github.com/withthegrid/platform-sdk/compare/v17.54.0...v17.54.1) (2022-08-18)
+
+
+### Bug Fixes
+
+* trigger release ([#297](https://github.com/withthegrid/platform-sdk/issues/297)) ([d396fb6](https://github.com/withthegrid/platform-sdk/commit/d396fb647db526c04c5e3bb0d3a10e148bc27a4f))
+* trigger release ([#298](https://github.com/withthegrid/platform-sdk/issues/298)) ([1c440fe](https://github.com/withthegrid/platform-sdk/commit/1c440fe034b3f47cd68a03939e0d89200bc3cff0))
+
 ## [17.54.0](https://github.com/withthegrid/platform-sdk/compare/v17.53.0...v17.54.0) (2022-08-18)
 
 
