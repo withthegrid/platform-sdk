@@ -6,6 +6,7 @@ import { schema as edgeSchema, Edge } from '../../models/edge';
 import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../../comms/table-controller';
 
 interface Query extends TableQuery {
+  coordinates?: [number, number],
   includeDeleted?: boolean;
   boundingBox?: [number, number, number, number];
 }
@@ -15,6 +16,7 @@ type Request = {
 } | undefined;
 
 interface EffectiveQuery extends EffectiveTableQuery {
+  coordinates?: [number, number],
   includeDeleted: boolean;
   boundingBox?: [number, number, number, number];
 }
@@ -35,8 +37,14 @@ interface Response {
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'get',
   path: '/edge',
-  query: tableQuerySchemaGenerator(Joi.string().valid('hashId', 'name').default('hashId'))
+  query: tableQuerySchemaGenerator(Joi.string().valid('hashId', 'name', 'proximity').default('hashId'))
     .keys({
+      coordinates: Joi.array().length(2).items(
+        Joi.number().min(-180).max(180).required(),
+        Joi.number().min(-90).max(90).required(),
+      )
+        .example([4.884707950517225, 52.37502141913572])
+        .description('[lon, lat] in WGS84'),
       includeDeleted: Joi.boolean().default(false),
       boundingBox: Joi.array()
         .items(Joi.number())

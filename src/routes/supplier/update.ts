@@ -1,10 +1,12 @@
 import Joi from 'joi';
 import { ControllerGeneratorOptionsWithSupplier } from '../../comms/controller';
+import { Theme, themeSchema } from '../../commons/theme';
 
 interface Request {
   body: {
     name?: string;
     enforceTwoFactorAuthentication?: boolean;
+    theme: Theme | null;
   };
 }
 
@@ -17,6 +19,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
     name: Joi.string().example('My connectivity environment'),
     enforceTwoFactorAuthentication: Joi.boolean().example(false)
       .description('Describes if users need to have two factor authentication enabled in order to access this environment.'),
+    theme: themeSchema.allow(null),
   }).required(),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
 };

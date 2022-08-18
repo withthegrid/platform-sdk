@@ -8,6 +8,7 @@ import {
 import { schema as environmentSchema, Environment } from '../../models/environment';
 import { Locale, schema as localeSchema } from '../../models/locale';
 import { MapLayer, schema as mapLayerSchema } from '../../models/map-layer';
+import { themeSchema, Theme } from '../../commons/theme';
 
 interface Request {
   body: {
@@ -24,6 +25,7 @@ interface Request {
     defaultGraphRange?: string;
     measurementsExpirationDays?: number;
     enforceTwoFactorAuthentication?: boolean;
+    theme: Theme | null;
   };
 }
 
@@ -55,6 +57,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
         .max(9999),
       enforceTwoFactorAuthentication: Joi.boolean().example(false)
         .description('Describes if users need to have two factor authentication enabled in order to access this environment.'),
+      theme: themeSchema.allow(null),
     }).required();
   },
   right: { environment: 'ENVIRONMENT_ADMIN' },
