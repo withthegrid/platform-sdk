@@ -1,3 +1,10 @@
+## [17.55.0](https://github.com/withthegrid/platform-sdk/compare/v17.54.1...v17.55.0) (2022-08-18)
+
+
+### Features
+
+* measurements become optional for report.update ([#288](https://github.com/withthegrid/platform-sdk/issues/288)) ([4a9efad](https://github.com/withthegrid/platform-sdk/commit/4a9efad0ebd1641c5504f540321c88e1aab88ba8))
+
 ## [17.54.1](https://github.com/withthegrid/platform-sdk/compare/v17.54.0...v17.54.1) (2022-08-18)
 
 
