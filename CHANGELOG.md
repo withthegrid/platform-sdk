@@ -1,3 +1,10 @@
+## [17.55.1](https://github.com/withthegrid/platform-sdk/compare/v17.55.0...v17.55.1) (2022-08-23)
+
+
+### Bug Fixes
+
+* **documentation:** generate fileFromServer component ([#304](https://github.com/withthegrid/platform-sdk/issues/304)) ([47afde3](https://github.com/withthegrid/platform-sdk/commit/47afde30d3e43c5cb100197f9a4a6a5d5e3a1004))
+
 ## [17.55.0](https://github.com/withthegrid/platform-sdk/compare/v17.54.1...v17.55.0) (2022-08-18)
 
 
