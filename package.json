@@ -61,7 +61,7 @@
     "semantic-release": "^19.0.5",
     "ts-jest": "^27.1.4",
     "ts-node": "^10.8.0",
-    "typescript": "^4.6.4",
+    "typescript": "^4.8.2",
     "typescript-json-schema": "^0.54.0",
     "widdershins": "^4.0.1"
   },
