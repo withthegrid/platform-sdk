@@ -17,7 +17,7 @@
   "scripts": {
     "start": "npm run watch-ts",
     "test": "jest",
-    "build": "npm run build:esm && npm run build:cjs && npm run build:json && npm run build:documentation",
+    "build": "npm run build:esm && npm run build:cjs && npm run build:json",
     "build:cjs": "rimraf -rf cjs/ && tsc -p tsconfig.cjs.json",
     "build:esm": "rimraf -rf esm/ && tsc -p tsconfig.esm.json",
     "build:json": "rimraf -rf json/ && npm run build:json:field-configuration && npm run build:json:field-configurations",
