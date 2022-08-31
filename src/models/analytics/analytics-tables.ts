@@ -102,6 +102,8 @@ type TableKeys =
   | 'command'
   | 'commandType'
   | 'device'
+  | 'deviceLink'
+  | 'deviceInstallationUser'
   | 'deviceType'
   | 'edge'
   | 'grid'
@@ -246,6 +248,54 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
     tableText: {
       en: { singular: 'Device', plural: 'Devices' },
       nl: { singular: 'Device', plural: 'Devices' },
+    },
+  },
+  deviceLink: {
+    fields: ['hashId', 'linkUpdatedAt', 'createdAt', 'updatedAt', 'deletedAt'],
+    fieldsWithTranslations: {
+      en: {
+        hashId: { singular: 'ID', plural: 'IDs' },
+        linkUpdatedAt: 'Configuration updated at',
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        deletedAt: 'Deleted at',
+      },
+      nl: {
+        hashId: { singular: 'ID', plural: 'IDs' },
+        linkUpdatedAt: 'Configuratie bijgewerkt op',
+        createdAt: 'Aangemaakt op',
+        updatedAt: 'Bijgewerkt op',
+        deletedAt: 'Verwijderd op',
+      },
+    },
+    tableKey: 'deviceLink',
+    tableText: {
+      en: { singular: 'Device link', plural: 'Device links' },
+      nl: { singular: 'Device koppeling', plural: 'Device koppelingen' },
+    },
+  },
+  deviceInstallationUser: {
+    fields: ['hashId', 'name', 'createdAt', 'updatedAt', 'deletedAt'],
+    fieldsWithTranslations: {
+      en: {
+        hashId: { singular: 'ID', plural: 'IDs' },
+        name: { singular: 'Name', plural: 'Names' },
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        deletedAt: 'Deleted at',
+      },
+      nl: {
+        hashId: { singular: 'ID', plural: 'IDs' },
+        name: { singular: 'Naam', plural: 'Namen' },
+        createdAt: 'Aangemaakt op',
+        updatedAt: 'Bijgewerkt op',
+        deletedAt: 'Verwijderd op',
+      },
+    },
+    tableKey: 'deviceInstallationUser',
+    tableText: {
+      en: { singular: 'Device installation user', plural: 'Device installation users' },
+      nl: { singular: 'Device installatie gebruiker', plural: 'Device installatie gebruikers' },
     },
   },
   deviceType: {
