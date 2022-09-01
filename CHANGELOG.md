@@ -1,3 +1,53 @@
+## [17.55.1](https://github.com/withthegrid/platform-sdk/compare/v17.55.0...v17.55.1) (2022-08-23)
+
+
+### Bug Fixes
+
+* **documentation:** generate fileFromServer component ([#304](https://github.com/withthegrid/platform-sdk/issues/304)) ([47afde3](https://github.com/withthegrid/platform-sdk/commit/47afde30d3e43c5cb100197f9a4a6a5d5e3a1004))
+
+## [17.55.0](https://github.com/withthegrid/platform-sdk/compare/v17.54.1...v17.55.0) (2022-08-18)
+
+
+### Features
+
+* measurements become optional for report.update ([#288](https://github.com/withthegrid/platform-sdk/issues/288)) ([4a9efad](https://github.com/withthegrid/platform-sdk/commit/4a9efad0ebd1641c5504f540321c88e1aab88ba8))
+
+## [17.54.1](https://github.com/withthegrid/platform-sdk/compare/v17.54.0...v17.54.1) (2022-08-18)
+
+
+### Bug Fixes
+
+* trigger release ([#297](https://github.com/withthegrid/platform-sdk/issues/297)) ([d396fb6](https://github.com/withthegrid/platform-sdk/commit/d396fb647db526c04c5e3bb0d3a10e148bc27a4f))
+* trigger release ([#298](https://github.com/withthegrid/platform-sdk/issues/298)) ([1c440fe](https://github.com/withthegrid/platform-sdk/commit/1c440fe034b3f47cd68a03939e0d89200bc3cff0))
+
+## [17.54.0](https://github.com/withthegrid/platform-sdk/compare/v17.53.0...v17.54.0) (2022-08-18)
+
+
+### Features
+
+* unit property of quantities made optional ([#290](https://github.com/withthegrid/platform-sdk/issues/290)) ([8dfa7bc](https://github.com/withthegrid/platform-sdk/commit/8dfa7bc321fa1cf0f321435d1db97d8c9a74a8e1))
+
+## [17.53.0](https://github.com/withthegrid/platform-sdk/compare/v17.52.1...v17.53.0) (2022-08-17)
+
+
+### Features
+
+* add theme to environments models and update ([#276](https://github.com/withthegrid/platform-sdk/issues/276)) ([50041a5](https://github.com/withthegrid/platform-sdk/commit/50041a5fab6dc444888b194035e5a8a0eb39547b))
+
+## [17.52.1](https://github.com/withthegrid/platform-sdk/compare/v17.52.0...v17.52.1) (2022-08-15)
+
+
+### Bug Fixes
+
+* platform client 1432 sort edges by proximity ([#286](https://github.com/withthegrid/platform-sdk/issues/286)) ([9bcd382](https://github.com/withthegrid/platform-sdk/commit/9bcd38218584179e4d92d375c06e173c7a97576d))
+
+## [17.52.0](https://github.com/withthegrid/platform-sdk/compare/v17.51.1...v17.52.0) (2022-08-10)
+
+
+### Features
+
+* **command:** add createdByUserName to get response ([#279](https://github.com/withthegrid/platform-sdk/issues/279)) ([88852b1](https://github.com/withthegrid/platform-sdk/commit/88852b1e88474d9511f91faa9ab1984f326579a6))
+
 ## [17.51.1](https://github.com/withthegrid/platform-sdk/compare/v17.51.0...v17.51.1) (2022-08-03)
 
 

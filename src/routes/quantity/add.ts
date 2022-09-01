@@ -7,7 +7,7 @@ interface Request {
   body: {
     name: StringOrTranslations;
     color: string;
-    unit: string;
+    unit: string | null;
     defaultOrderOfMagnitude: number;
     defaultCriticallyLowThreshold: SiNumber | null;
     defaultLowThreshold: SiNumber | null;
@@ -28,7 +28,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClientAndSupplie
   body: Joi.object().keys({
     name: stringOrTranslationsSchema.required().example('Temperature'),
     color: Joi.string().default('#ff00ff').example('#ff00ff'),
-    unit: Joi.string().required().example('K').description('Will be displayed with an SI-prefix (eg. k or M) if relevant'),
+    unit: Joi.string().allow(null).default(null).example('K')
+      .description('Will be displayed with an SI-prefix (eg. k or M) if relevant'),
     defaultOrderOfMagnitude: Joi.number().integer().min(-128).max(127)
       .default(0)
       .example(3)

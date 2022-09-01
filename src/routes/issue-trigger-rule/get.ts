@@ -23,7 +23,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   right: { environment: 'READ' },
   response: (apiVersion: number) => Joi.object().keys({
     issueTriggerRule: issueTriggerRuleSchema,
-    deviceType: deviceTypeSchema(apiVersion).optional(),
+    deviceType: deviceTypeSchema(apiVersion),
   }),
   description: 'Gets a specific issue trigger rule by its priorityLevel and/or deviceTypeHashId.',
 };

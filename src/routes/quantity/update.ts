@@ -10,7 +10,7 @@ interface Request {
   body: {
     name?: StringOrTranslations;
     color?: string;
-    unit?: string;
+    unit?: string | null;
     defaultOrderOfMagnitude?: number;
     defaultCriticallyLowThreshold?: SiNumber | null;
     defaultLowThreshold?: SiNumber | null;
@@ -32,7 +32,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClientAndSupplie
   body: Joi.object().keys({
     name: stringOrTranslationsSchema.example('Temperature'),
     color: Joi.string().example('#ff00ff'),
-    unit: Joi.string().example('K').description('Will be displayed with an SI-prefix (eg. k or M) if relevant'),
+    unit: Joi.string().allow(null).example('K').description('Will be displayed with an SI-prefix (eg. k or M) if relevant'),
     defaultOrderOfMagnitude: Joi.number().integer().min(-128).max(127)
       .example(3)
       .description('Defines default order of magnitude to be selected at manual report form'),

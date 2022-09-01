@@ -8,7 +8,7 @@ import { schema as siNumberSchema, SiNumber } from '../../models/si-number';
 
 type RequestQuantity = {
   name: string;
-  unit: string;
+  unit: string | null;
   defaultOrderOfMagnitude: number;
   defaultCriticallyLowThreshold: SiNumber | null;
   defaultLowThreshold: SiNumber | null;
@@ -53,7 +53,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     quantities: Joi.array().items(Joi.alternatives().try(
       Joi.object().keys({
         name: Joi.string().required().example('Temperature'),
-        unit: Joi.string().required().example('K').description('Will be displayed with an SI-prefix (eg. k or M) if relevant'),
+        unit: Joi.string().allow(null).default(null).example('K')
+          .description('Will be displayed with an SI-prefix (eg. k or M) if relevant'),
         defaultOrderOfMagnitude: Joi.number().integer().min(-128).max(127)
           .example(3)
           .default(0)

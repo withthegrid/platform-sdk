@@ -13,6 +13,7 @@ interface Request {
 interface Response {
   command: Command;
   commandType: CommandType;
+  createdByUserName?: string;
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithClientAndSupplier = {
@@ -25,6 +26,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClientAndSupplie
   response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     command: commandSchema.required(),
     commandType: commandTypeSchema(apiVersion).required(),
+    createdByUserName: Joi.string().example('John Doe'),
   }).required(),
   description: 'Get a specific command identified by its hashId',
 };

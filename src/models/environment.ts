@@ -3,6 +3,7 @@ import Joi from 'joi';
 import { schema as baseFieldConfigurationSchema, BaseFieldConfiguration } from './fields/base-field-configuration';
 import { Locale, schema as localeSchema } from './locale';
 import { MapLayer, schema as mapLayerSchema } from './map-layer';
+import { themeSchema, Theme } from '../commons/theme';
 
 const schema = (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
   hashId: Joi.string().required().example('f1a4w1'),
@@ -33,6 +34,7 @@ const schema = (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     .max(9999),
   enforceTwoFactorAuthentication: Joi.boolean().required().example(false)
     .description('Determines whether users need to have two factor authentication enabled in order to access this environment.'),
+  theme: themeSchema.allow(null),
   expiresAt: Joi.date().allow(null).required().example(null),
   createdAt: Joi.date().required().example('2019-12-31T15:23Z'),
 })
@@ -59,6 +61,7 @@ interface Environment {
   defaultGraphRange: string;
   measurementsExpirationDays: number;
   enforceTwoFactorAuthentication: boolean;
+  theme: Theme | null;
   expiresAt: Date | null;
   createdAt: Date;
 }
