@@ -1,3 +1,10 @@
+## [17.56.0](https://github.com/withthegrid/platform-sdk/compare/v17.55.1...v17.56.0) (2022-09-01)
+
+
+### Features
+
+* merge quantities ([#253](https://github.com/withthegrid/platform-sdk/issues/253)) ([50de6ef](https://github.com/withthegrid/platform-sdk/commit/50de6ef4bbc439a508194a3e4d0392ed4d3d68a0))
+
 ## [17.55.1](https://github.com/withthegrid/platform-sdk/compare/v17.55.0...v17.55.1) (2022-08-23)
 
 
