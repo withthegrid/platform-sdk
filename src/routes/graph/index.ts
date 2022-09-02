@@ -28,6 +28,7 @@ import * as updateEdge from './update-edge';
 import * as updateGrid from './update-grid';
 import * as updateLocations from './update-locations';
 import * as updatePinGroup from './update-pin-group';
+import * as updatePinGroups from './update-pin-groups';
 import * as updateNode from './update-node';
 import * as updatePin from './update-pin';
 
@@ -437,6 +438,18 @@ class GraphRoute {
       updatePinGroup.Response
     >(
       updatePinGroup.controllerGeneratorOptions,
+      GraphRoute.routerPath,
+      GraphRoute.auth,
+      this.comms,
+    )(parameters);
+
+  updatePinGroups = (parameters: updatePinGroups.Request):
+    Result<updatePinGroups.EffectiveRequest, updatePinGroups.Response> => controllerGenerator<
+      updatePinGroups.Request,
+      updatePinGroups.EffectiveRequest,
+      updatePinGroups.Response
+    >(
+      updatePinGroups.controllerGeneratorOptions,
       GraphRoute.routerPath,
       GraphRoute.auth,
       this.comms,
