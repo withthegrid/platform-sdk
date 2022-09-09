@@ -38,6 +38,8 @@ const schema = (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     })).required(),
   })).required(),
   commandTypeHashIds: Joi.array().items(Joi.string().example('x18a92')).required().description('The hashIds of the command types a user can schedule for this device'),
+  identifierFieldKey: Joi.string().allow(null).default(null).example('fieldKey')
+    .description('Chosen field will serve as an identifier for device instead of hashId'),
 }).tag('deviceType')
   .meta({ className: 'deviceType' })
   .description('Information about the type of device');
@@ -68,6 +70,7 @@ interface DeviceType {
     }[];
   }[];
   commandTypeHashIds: string[];
+  identifierFieldKey: string | null;
 }
 
 export {

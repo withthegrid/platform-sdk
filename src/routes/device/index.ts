@@ -7,6 +7,7 @@ import * as link from './link';
 import * as unclaim from './unclaim';
 import * as unlink from './unlink';
 import * as update from './update';
+import * as updateMultipleDevices from './update-multiple-devices';
 
 import Comms from '../../comms';
 import controllerGenerator, { Result } from '../../comms/controller';
@@ -129,6 +130,19 @@ class DeviceRoute {
       update.Response
     >(
       update.controllerGeneratorOptions,
+      DeviceRoute.routerPath,
+      DeviceRoute.auth,
+      this.comms,
+    )(parameters);
+
+  updateMultipleDevices = (parameters: updateMultipleDevices.Request):
+    Result<updateMultipleDevices.EffectiveRequest,
+      updateMultipleDevices.Response> => controllerGenerator<
+      updateMultipleDevices.Request,
+      updateMultipleDevices.EffectiveRequest,
+      updateMultipleDevices.Response
+    >(
+      updateMultipleDevices.controllerGeneratorOptions,
       DeviceRoute.routerPath,
       DeviceRoute.auth,
       this.comms,
