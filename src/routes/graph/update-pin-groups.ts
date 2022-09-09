@@ -20,7 +20,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     hashIds: Joi.array().items(Joi.string()).required(),
     mapLayer: Joi.object().keys({
       key: Joi.string().invalid('nodes'),
-      includeEdges: Joi.boolean(),
+      includeEdges: Joi.boolean().default(false),
     }),
   }).required(),
   right: { environment: 'STATIC' },
