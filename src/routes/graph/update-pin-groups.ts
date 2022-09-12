@@ -15,7 +15,7 @@ type Response = void;
 
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'post',
-  path: '/update-pin-groups/:hashId',
+  path: '/pin-groups',
   body: Joi.object().keys({
     hashIds: Joi.array().items(Joi.string()).required(),
     mapLayer: Joi.object().keys({
