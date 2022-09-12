@@ -7,7 +7,7 @@ import * as link from './link';
 import * as unclaim from './unclaim';
 import * as unlink from './unlink';
 import * as update from './update';
-import * as updateMultipleDevices from './update-multiple-devices';
+import * as updateDevices from './update-devices';
 
 export {
   claim,
@@ -19,5 +19,5 @@ export {
   unclaim,
   unlink,
   update,
-  updateMultipleDevices,
+  updateDevices,
 };

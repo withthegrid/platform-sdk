@@ -12,7 +12,7 @@ type Response = void;
 
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
   method: 'post',
-  path: '/update-multiple-devices',
+  path: '/devices',
   body: Joi.object().keys({
     deviceTypeHashId: Joi.string().required().example('j1iha9'),
     identifierFieldKey: Joi.string().allow(null).required().example('formFieldKey'),
