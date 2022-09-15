@@ -7,6 +7,8 @@ const graphVisualisationSchema = Joi.object().keys({
     .required(),
   forceOrdinal: Joi.boolean().example(false).required(),
   showAllXAxisLabels: Joi.boolean().example(false).default(false),
+  yMin: Joi.number().allow(null).example(10).default(null),
+  yMax: Joi.number().allow(null).example(10).default(null),
 });
 
 const mapVisualisationSchema = Joi.object().keys({
@@ -45,6 +47,8 @@ interface GraphVisualisation {
   xAxisColumnIndex: number | null;
   forceOrdinal: boolean;
   showAllXAxisLabels: boolean;
+  yMin: number | null;
+  yMax: number | null;
 }
 
 interface MapsVisualisation {
