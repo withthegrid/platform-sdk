@@ -69,6 +69,53 @@ const t: L10nKeys = {
   },
 };
 
+const td: L10nKeys = {
+  en: {
+    expression: { singular: 'calculation', plural: 'calculations' },
+    granularities: {
+      hour: { singular: 'hour', plural: 'hours' },
+      day: { singular: 'day', plural: 'days' },
+      week: { singular: 'week', plural: 'weeks' },
+      month: { singular: 'month', plural: 'months' },
+      year: { singular: 'year', plural: 'years' },
+      hourOfTheDay: 'hour of day',
+      dayOfTheWeek: 'day of week',
+      monthOfTheYear: 'month of year',
+    },
+    aggregations: {
+      count: { singular: 'count', plural: 'counts' },
+      share: { singular: 'percentage', plural: 'percentages' },
+      sum: 'sum of',
+      mean: 'mean',
+      min: 'minimal',
+      max: 'maximal',
+      any: 'any',
+    },
+  },
+  nl: {
+    expression: { singular: 'berekening', plural: 'berekeningen' },
+    granularities: {
+      hour: { singular: 'uur', plural: 'uren' },
+      day: { singular: 'dag', plural: 'dagen' },
+      week: { singular: 'week', plural: 'weken' },
+      month: { singular: 'maand', plural: 'maanden' },
+      year: { singular: 'jaar', plural: 'jaren' },
+      hourOfTheDay: 'uur van dag',
+      dayOfTheWeek: 'dag van jaar',
+      monthOfTheYear: 'maand van jaar',
+    },
+    aggregations: {
+      count: { singular: 'aantal', plural: 'aantallen' },
+      share: { singular: 'percentage', plural: 'percentages' },
+      sum: 'som van',
+      mean: 'gemiddelde',
+      min: 'minimaal',
+      max: 'maximaal',
+      any: 'een',
+    },
+  },
+};
+
 type AnalyticsTable = {
   fields: string[];
   fieldsWithTranslations: Record<
@@ -845,50 +892,48 @@ function matchColumn<R>(
   return fns.onAggregatedColumnWithoutField(column);
 }
 
+function getTableText(field: string, userLocale: keyof Translations): string {
+  const tableName = field.split('.', 1)[0] as TableKeys;
+  const tableText = analyticsTables[tableName].tableText[userLocale];
+  return getTranslationString(tableText);
+}
+
+function parseFormField(field: string): { name: string, key: string } {
+  const name = field.slice(0, field.indexOf('.'));
+  const key = field.slice(field.indexOf('.') + 1);
+  return { name, key };
+}
+
+function getFieldName(
+  field: string,
+  userLocale: keyof Translations,
+): string {
+  const [tableName, remainder] = field.split('.', 2) as [TableKeys, string];
+  if (remainder.includes('.')) {
+    const { name, key } = parseFormField(remainder);
+
+    return key === 'id'
+      ? key
+      : `${getTranslationString(
+        analyticsTables[tableName].fieldsWithTranslations[userLocale][name],
+      ).toLowerCase()
+      } "${key}"`;
+  }
+
+  return getTranslationString(
+    analyticsTables[tableName].fieldsWithTranslations[userLocale][remainder],
+  ).toLowerCase();
+}
+
 function getColumnPlaceholder(
   column: UnaggregatedColumn | AggregatedColumn | TimeGroupColumn,
   userLocale: keyof Translations,
 ): string {
   const tl = t[userLocale];
 
-  const parseField = (field: string): {
-    tableName: TableKeys,
-    remainder: string,
-    tableText: string,
-  } => {
-    const tableName = field.split('.', 1)[0] as TableKeys;
-    const remainder = field.slice(tableName.length + 1);
-    const tableText = analyticsTables[tableName].tableText[userLocale];
-
-    return { tableName, remainder, tableText: getTranslationString(tableText) };
-  };
-
-  const parseFormField = (field: string): { name: string, key: string } => {
-    const name = field.slice(0, field.indexOf('.'));
-    const key = field.slice(field.indexOf('.') + 1);
-    return { name, key };
-  };
-
   const placeholderFromField = (field: string): string => {
-    const { tableName, remainder, tableText } = parseField(field);
-
-    if (remainder.includes('.')) {
-      const { name, key } = parseFormField(remainder);
-
-      return key === 'id'
-        ? `${tableText}:${key}`
-        : `${tableText}:${
-          getTranslationString(
-            analyticsTables[tableName].fieldsWithTranslations[userLocale][name],
-          ).toLowerCase()
-        } "${key}"`;
-    }
-
-    return `${tableText}:${
-      getTranslationString(
-        analyticsTables[tableName].fieldsWithTranslations[userLocale][remainder],
-      ).toLowerCase()
-    }`;
+    const tableText = getTableText(field, userLocale);
+    return `${tableText}:${getFieldName(field, userLocale)}`;
   };
 
   return matchColumn<string>(column, {
@@ -917,11 +962,60 @@ function getColumnPlaceholder(
   });
 }
 
+function getFieldDescription(
+  field: string,
+  userLocale: keyof Translations,
+  withTable = false,
+): string {
+  const tableText = getTableText(field, userLocale);
+  const fieldName = getFieldName(field, userLocale).toLowerCase();
+  return withTable ? `${tableText.toLowerCase()} ${fieldName}` : fieldName;
+}
+
+function getColumnDescription(
+  column: UnaggregatedColumn | AggregatedColumn | TimeGroupColumn,
+  userLocale: keyof Translations,
+  withTable = false,
+): string {
+  const tdl = td[userLocale];
+
+  if (column.name !== undefined) {
+    return column.name;
+  }
+
+  return matchColumn<string>(column, {
+    onUnaggregatedColumn: (unaggregatedColumn) => {
+      if (typeof unaggregatedColumn.field === 'object') {
+        return tdl.expression.singular;
+      }
+      return getFieldDescription(unaggregatedColumn.field, userLocale, withTable);
+    },
+    onTimeGroupColumn: (timeGroupColumn) => {
+      const aggregateText = getTranslationString(tdl.granularities[timeGroupColumn.granularity]);
+      const placeholder = getFieldDescription(timeGroupColumn.field, userLocale, withTable);
+      return `${placeholder} (${aggregateText})`;
+    },
+    onAggregatedColumnWithField: (aggregatedColumn, field) => {
+      const aggregateText = getTranslationString(tdl.aggregations[aggregatedColumn.type]);
+      const placeholder = typeof field === 'string'
+        ? getFieldDescription(field, userLocale, withTable)
+        : field.expression;
+      return `${aggregateText} ${placeholder}`;
+    },
+    onAggregatedColumnWithoutField: (aggregatedColumn) => {
+      const aggregateText = getTranslationString(tdl.aggregations[aggregatedColumn.type]);
+      return `${aggregateText}`;
+    },
+  });
+}
+
 export {
   AnalyticsTable,
   analyticsTables,
   TableKeys,
   getColumnPlaceholder,
+  getColumnDescription,
+  getFieldDescription,
   getTranslationString,
   FormatterFn,
 };
