@@ -28,6 +28,7 @@ import * as updateEdge from './update-edge';
 import * as updateGrid from './update-grid';
 import * as updateLocations from './update-locations';
 import * as updatePinGroup from './update-pin-group';
+import * as updatePinGroups from './update-pin-groups';
 import * as updateNode from './update-node';
 import * as updatePin from './update-pin';
 
@@ -62,6 +63,7 @@ export {
   updateGrid,
   updateLocations,
   updatePinGroup,
+  updatePinGroups,
   updateNode,
   updatePin,
 };
