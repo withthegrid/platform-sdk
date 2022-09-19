@@ -1,3 +1,10 @@
+## [17.57.0](https://github.com/withthegrid/platform-sdk/compare/v17.56.0...v17.57.0) (2022-09-19)
+
+
+### Features
+
+* **groups:** added possibility to move all locations of group to another map layer ([#287](https://github.com/withthegrid/platform-sdk/issues/287)) ([df0530c](https://github.com/withthegrid/platform-sdk/commit/df0530c80af163957f2667266187d98145b716f4))
+
 ## [17.56.0](https://github.com/withthegrid/platform-sdk/compare/v17.55.1...v17.56.0) (2022-09-01)
 
 
