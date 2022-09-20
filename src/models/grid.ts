@@ -1,9 +1,11 @@
 import Joi from 'joi';
 import { schema as fieldsFromServerSchema, FieldsFromServer } from './fields/fields-from-server';
 
+type GridType = 'node' | 'pinGroup'| 'pin';
+
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('naud51'),
-  typeKey: Joi.string().valid('node', 'pinGroup').required().example('pinGroup'),
+  typeKey: Joi.string().valid('node', 'pinGroup', 'pin').required().example('pinGroup'),
   name: Joi.string().required().example('My grid'),
   fields: fieldsFromServerSchema.required().example({ id: 'My grid' })
     .description('The field configuration is stored in the fieldConfigurations key of the monitoring environment object'),
@@ -15,10 +17,10 @@ const schema = Joi.object().keys({
 
 interface Grid {
   hashId: string;
-  typeKey: 'node' | 'pinGroup';
+  typeKey: 'node' | 'pinGroup'| 'pin';
   name: string;
   fields: FieldsFromServer;
   deletedAt: Date | null;
 }
 
-export { schema, Grid };
+export { schema, Grid, GridType };

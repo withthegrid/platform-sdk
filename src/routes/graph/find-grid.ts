@@ -7,7 +7,7 @@ import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../.
 
 interface Query extends TableQuery {
   includeDeleted?: boolean;
-  type?: 'pinGroup' | 'node';
+  type?: 'pinGroup' | 'node' | 'pin';
 }
 
 type Request = {
@@ -16,7 +16,7 @@ type Request = {
 
 interface EffectiveQuery extends EffectiveTableQuery {
   includeDeleted: boolean;
-  type?: 'pinGroup' | 'node';
+  type?: 'pinGroup' | 'node' | 'pin';
 }
 
 interface EffectiveRequest {
@@ -39,7 +39,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   query: tableQuerySchemaGenerator(Joi.string().valid('hashId', 'name').default('hashId'))
     .keys({
       includeDeleted: Joi.boolean().default(false),
-      type: Joi.string().valid('node', 'pinGroup'),
+      type: Joi.string().valid('node', 'pinGroup', 'pin'),
     }),
   right: { environment: 'READ' },
   response: Joi.object().keys({

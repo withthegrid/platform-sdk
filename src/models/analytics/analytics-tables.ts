@@ -106,6 +106,7 @@ type TableKeys =
   | 'edge'
   | 'grid'
   | 'gridPinGroup'
+  | 'gridPin'
   | 'issue'
   | 'measurement'
   | 'performanceMonth'
@@ -355,6 +356,30 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
       nl: { singular: 'Groep-Locatie', plural: 'Groep-Locaties' },
     },
   },
+  gridPin: {
+    fields: ['hashId', 'sort', 'createdAt', 'updatedAt', 'deletedAt'],
+    fieldsWithTranslations: {
+      en: {
+        hashId: { singular: 'ID', plural: 'IDs' },
+        sort: { singular: 'Sort', plural: 'Sorts' },
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        deletedAt: 'Deleted at',
+      },
+      nl: {
+        hashId: { singular: 'ID', plural: 'IDs' },
+        sort: { singular: 'Sortering', plural: 'Sorteringen' },
+        createdAt: 'Aangemaakt op',
+        updatedAt: 'Bijgewerkt op',
+        deletedAt: 'Verwijderd op',
+      },
+    },
+    tableKey: 'gridPin',
+    tableText: {
+      en: { singular: 'Group-Port', plural: 'Group-Ports' },
+      nl: { singular: 'Groep-Poort', plural: 'Groep-Poorten' },
+    },
+  },
   issue: {
     fields: [
       'hashId',
@@ -504,6 +529,8 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
       'hashId',
       'level',
       'deviceFields',
+      'pinGroupSort',
+      'edgeSort',
       'createdAt',
       'updatedAt',
       'deletedAt',
@@ -520,6 +547,8 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
         createdAt: 'Created at',
         updatedAt: 'Updated at',
         deletedAt: 'Deleted at',
+        pinGroupSort: 'Order in pin group',
+        edgeSort: 'Order in edge',
       },
       nl: {
         hashId: { singular: 'ID', plural: 'IDs' },
@@ -532,6 +561,8 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
         createdAt: 'Aangemaakt op',
         updatedAt: 'Bijgewerkt op',
         deletedAt: 'Verwijderd op',
+        pinGroupSort: 'NL Order in pin group',
+        edgeSort: 'NL Order in pin group',
       },
     },
     tableKey: 'pin',
