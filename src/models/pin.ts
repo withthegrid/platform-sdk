@@ -15,6 +15,8 @@ const schema = Joi.object().keys({
   edgeHashId: Joi.string().allow(null).default(null),
   nodeHashId: Joi.string().allow(null).default(null),
   typeKey: Joi.string().allow(null).default(null),
+  pinGroupSort: Joi.number().integer().allow(null).default(null),
+  edgeSort: Joi.number().integer().allow(null).default(null),
   deletedAt: Joi.date().allow(null).required().example('2019-12-31T15:23Z'),
 })
   .description('A port. Always part of a pin group. All measurements are recorded at pin level. When a device is connected to a pin group, its channels are to be connected to the pins of the pin group.')
@@ -31,6 +33,8 @@ interface Pin {
   typeKey: string | null;
   edgeHashId: string | null;
   nodeHashId: string | null;
+  pinGroupSort: number | null;
+  edgeSort: number | null;
   deletedAt: Date | null;
 }
 

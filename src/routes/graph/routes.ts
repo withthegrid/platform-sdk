@@ -31,6 +31,7 @@ import * as updatePinGroup from './update-pin-group';
 import * as updatePinGroups from './update-pin-groups';
 import * as updateNode from './update-node';
 import * as updatePin from './update-pin';
+import * as orderPins from './order-pins';
 
 export {
   addEdge,
@@ -66,4 +67,5 @@ export {
   updatePinGroups,
   updateNode,
   updatePin,
+  orderPins,
 };

@@ -31,6 +31,7 @@ import * as updatePinGroup from './update-pin-group';
 import * as updatePinGroups from './update-pin-groups';
 import * as updateNode from './update-node';
 import * as updatePin from './update-pin';
+import * as orderPins from './order-pins';
 
 import Comms from '../../comms';
 import controllerGenerator, { Result } from '../../comms/controller';
@@ -87,6 +88,18 @@ class GraphRoute {
       addNode.Response
     >(
       addNode.controllerGeneratorOptions,
+      GraphRoute.routerPath,
+      GraphRoute.auth,
+      this.comms,
+    )(parameters);
+
+  orderPins = (parameters: orderPins.Request):
+    Result<orderPins.EffectiveRequest, orderPins.Response> => controllerGenerator<
+    orderPins.Request,
+    orderPins.EffectiveRequest,
+    orderPins.Response
+    >(
+      orderPins.controllerGeneratorOptions,
       GraphRoute.routerPath,
       GraphRoute.auth,
       this.comms,
