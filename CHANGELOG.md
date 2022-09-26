@@ -1,3 +1,10 @@
+## [17.58.0](https://github.com/withthegrid/platform-sdk/compare/v17.57.0...v17.58.0) (2022-09-26)
+
+
+### Features
+
+* give insight into who connected a device ([#310](https://github.com/withthegrid/platform-sdk/issues/310)) ([c35bdb2](https://github.com/withthegrid/platform-sdk/commit/c35bdb204fb089836065cf41b9bbfb389a929309)), closes [withthegrid/platform#878](https://github.com/withthegrid/platform/issues/878)
+
 ## [17.57.0](https://github.com/withthegrid/platform-sdk/compare/v17.56.0...v17.57.0) (2022-09-19)
 
 
