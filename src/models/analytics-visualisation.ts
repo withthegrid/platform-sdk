@@ -1,15 +1,27 @@
 import Joi from 'joi';
 
-const graphVisualisationSchema = Joi.object().keys({
-  type: Joi.string().example('line').valid('line', 'scatter', 'stacked-bar', 'clustered-bar').required(),
+const baseGraphVisualisationSchema = Joi.object().keys({
   colors: Joi.array().items(Joi.string().example('#202f0c')).required(),
   xAxisColumnIndex: Joi.number().integer().example(null).allow(null)
     .required(),
   forceOrdinal: Joi.boolean().example(false).required(),
   showAllXAxisLabels: Joi.boolean().example(false).default(false),
+});
+
+const lineChartGraphVisualisationSchema = baseGraphVisualisationSchema.keys({
+  type: Joi.string().example('line').valid('line', 'scatter').required(),
   yMin: Joi.number().allow(null).example(10).default(null),
   yMax: Joi.number().allow(null).example(10).default(null),
 });
+
+const barChartGraphVisualisationSchema = baseGraphVisualisationSchema.keys({
+  type: Joi.string().example('line').valid('stacked-bar', 'clustered-bar').required(),
+});
+
+const graphVisualisationSchema = Joi.alternatives().try(
+  lineChartGraphVisualisationSchema,
+  barChartGraphVisualisationSchema,
+);
 
 const mapVisualisationSchema = Joi.object().keys({
   type: Joi.string().example('map').valid('map').required(),
@@ -37,18 +49,27 @@ const schema = Joi.alternatives().try(
   .tag('analyticsVisualisation')
   .meta({ className: 'analyticsVisualisation' });
 
-interface TableAnalyticsVisualisation {
-  type: 'table';
-}
-
-interface GraphVisualisation {
-  type: 'line' | 'scatter' | 'stacked-bar' | 'clustered-bar';
+interface BaseChart {
   colors: string[];
   xAxisColumnIndex: number | null;
   forceOrdinal: boolean;
   showAllXAxisLabels: boolean;
+}
+
+interface LineChart extends BaseChart {
+  type: 'line' | 'scatter';
   yMin: number | null;
   yMax: number | null;
+}
+
+interface BarChart extends BaseChart {
+  type: 'stacked-bar' | 'clustered-bar';
+}
+
+type GraphVisualisation = LineChart | BarChart;
+
+interface TableAnalyticsVisualisation {
+  type: 'table';
 }
 
 interface MapsVisualisation {
