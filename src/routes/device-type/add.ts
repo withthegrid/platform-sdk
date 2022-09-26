@@ -30,6 +30,7 @@ interface Request {
       }[];
     }[];
     commandTypeHashIds: string[];
+    identifierFieldKey?: string | null;
   };
 }
 
@@ -75,6 +76,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
       })).required(),
     })),
     commandTypeHashIds: Joi.array().items(Joi.string().example('x18a92')).required().description('The hashIds of the command types a user can schedule for this device'),
+    identifierFieldKey: Joi.string().allow(null).example('deviceFormFieldKey').description('Value from form field with this key will be displayed as device identifier insetad of hashId'),
   }).required(),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
