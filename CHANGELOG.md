@@ -1,3 +1,10 @@
+## [17.59.0](https://github.com/withthegrid/platform-sdk/compare/v17.58.0...v17.59.0) (2022-09-26)
+
+
+### Features
+
+* **device types:** added user facing identifier for devices ([#316](https://github.com/withthegrid/platform-sdk/issues/316)) ([b898dd5](https://github.com/withthegrid/platform-sdk/commit/b898dd50d4c6d707101d859be113322b6c5a83b0))
+
 ## [17.58.0](https://github.com/withthegrid/platform-sdk/compare/v17.57.0...v17.58.0) (2022-09-26)
 
 
