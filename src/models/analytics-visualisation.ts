@@ -49,24 +49,24 @@ const schema = Joi.alternatives().try(
   .tag('analyticsVisualisation')
   .meta({ className: 'analyticsVisualisation' });
 
-interface BaseChart {
+type BaseChart = {
   colors: string[];
   xAxisColumnIndex: number | null;
   forceOrdinal: boolean;
   showAllXAxisLabels: boolean;
 }
 
-interface LineChart extends BaseChart {
+type LineChartVisualisation = BaseChart & {
   type: 'line' | 'scatter';
   yMin: number | null;
   yMax: number | null;
 }
 
-interface BarChart extends BaseChart {
+type BarChartVisualisation = BaseChart & {
   type: 'stacked-bar' | 'clustered-bar';
 }
 
-type GraphVisualisation = LineChart | BarChart;
+type GraphVisualisation = LineChartVisualisation | BarChartVisualisation;
 
 interface TableAnalyticsVisualisation {
   type: 'table';
@@ -86,6 +86,8 @@ type AnalyticsVisualisation = TableAnalyticsVisualisation | GraphVisualisation |
 export {
   schema,
   AnalyticsVisualisation,
+  LineChartVisualisation,
+  BarChartVisualisation,
   GraphVisualisation,
   TableAnalyticsVisualisation,
   MapsVisualisation,
