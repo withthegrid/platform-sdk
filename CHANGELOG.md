@@ -1,3 +1,10 @@
+## [17.60.0](https://github.com/withthegrid/platform-sdk/compare/v17.59.0...v17.60.0) (2022-09-29)
+
+
+### Features
+
+* **analytics:** allowed to set yMin and yMax for line charts ([#323](https://github.com/withthegrid/platform-sdk/issues/323)) ([8dc8130](https://github.com/withthegrid/platform-sdk/commit/8dc8130834faf18ccbceb9ea8a3463b0d701bd6d))
+
 ## [17.59.0](https://github.com/withthegrid/platform-sdk/compare/v17.58.0...v17.59.0) (2022-09-26)
 
 
