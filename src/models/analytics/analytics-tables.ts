@@ -255,14 +255,14 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
     fieldsWithTranslations: {
       en: {
         hashId: { singular: 'ID', plural: 'IDs' },
-        linkUpdatedAt: 'Configuration updated at',
+        linkUpdatedAt: 'Device channel configuration updated at',
         createdAt: 'Created at',
         updatedAt: 'Updated at',
         deletedAt: 'Deleted at',
       },
       nl: {
         hashId: { singular: 'ID', plural: 'IDs' },
-        linkUpdatedAt: 'Configuratie bijgewerkt op',
+        linkUpdatedAt: 'Device kanaal configuratie bijgewerkt op',
         createdAt: 'Aangemaakt op',
         updatedAt: 'Bijgewerkt op',
         deletedAt: 'Verwijderd op',
@@ -294,8 +294,8 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
     },
     tableKey: 'deviceInstallationUser',
     tableText: {
-      en: { singular: 'Device installation user', plural: 'Device installation users' },
-      nl: { singular: 'Device installatie gebruiker', plural: 'Device installatie gebruikers' },
+      en: { singular: 'Device installation/configuration user', plural: 'Device installation/configuration users' },
+      nl: { singular: 'Device installatie/configuratie gebruiker', plural: 'Device installatie/configuratie gebruikers' },
     },
   },
   deviceType: {
