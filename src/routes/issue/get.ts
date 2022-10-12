@@ -18,15 +18,23 @@ interface Response {
   issue: Issue;
   userName: string | null;
   assignedUserName: string | null;
-  quantities: Quantity[];
+  quantities: Quantity[]; // TODO 221010 Rob: deprecated
   mentionedUsers: { hashId: string; name: string }[];
+  pinGroup: PinGroup;
+  pins: Pin[];
+  automation: {
+    type: 'missing'
+  } | {
+    type: 'thresholds'
+    quantities: Quantity[];
+  } | null;
   labels: Label[];
   comments: {
     comment: IssueComment;
     userName: string | null;
   }[];
   subscribed: boolean;
-  links: {
+  links: { // TODO 221010 Rob: deprecated
     pinGroup: PinGroup;
     pin: Pin | null;
   }[];
@@ -44,11 +52,24 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     userName: Joi.string().max(255).allow(null).required()
       .example('John Doe'),
     assignedUserName: Joi.string().allow(null).required().example(null),
-    quantities: Joi.array().items(quantitySchema(apiVersion)).required(),
+    quantities: Joi.array().items(quantitySchema(apiVersion))
+      .required(), // TODO 221010 Rob: deprecated
     mentionedUsers: Joi.array().items(Joi.object().keys({
       hashId: Joi.string().required().example('ba5qq1'),
       name: Joi.string().max(255).required().example('Jane Doe'),
     })).required(),
+    pinGroup: pinGroupSchema.required(),
+    pins: Joi.array().items(pinSchema).required().description('When empty, all pins are affected'),
+    automation: Joi.alternatives().try(
+      Joi.object({
+        type: Joi.string().valid('missing').required(),
+      }).required(),
+      Joi.object({
+        type: Joi.string().valid('thresholds').required(),
+        quantities: Joi.array().items(quantitySchema(apiVersion)).required(),
+      }).required(),
+    ).allow(null),
+
     labels: Joi.array().items(labelSchema).required(),
     comments: Joi.array().items(Joi.object().keys({
       comment: issueCommentSchema.required(),
@@ -56,7 +77,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
         .example('John Doe'),
     })).required(),
     subscribed: Joi.boolean().required().example(false),
-    links: Joi.array().items(Joi.object().keys({
+    links: Joi.array().items(Joi.object().keys({ // TODO 221010 Rob: deprecated
       pinGroup: pinGroupSchema.required(),
       pin: pinSchema.allow(null).required(),
     })).required(),
