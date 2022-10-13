@@ -5,7 +5,7 @@ const schema = Joi.object().keys({
   userHashId: Joi.string().allow(null).required().example('b45zo0'),
   assignedUserHashId: Joi.string().allow(null).required().example(null),
   title: Joi.string().required().example('Temperature is too high'),
-  pinGroupHashId: Joi.string().required().example('dao97'),
+  pinGroupHashId: Joi.string().allow(null).required().example('dao97'), // TODO 221010 Rob: non-null in next release
   level: Joi.number().integer().valid(0, 1, 2).required()
     .example(0),
   typeKey: Joi.string().valid('missing', 'incorrect', 'unexpected', 'unrelated'), // TODO 221010 Rob: deprecated
@@ -27,7 +27,7 @@ interface Issue {
   userHashId: string | null;
   assignedUserHashId: string | null;
   title: string;
-  pinGroupHashId: string;
+  pinGroupHashId: string | null;
   level: 0 | 1 | 2;
   typeKey?: 'missing' | 'incorrect' | 'unexpected' | 'unrelated';
   startAt?: Date;
