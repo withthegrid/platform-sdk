@@ -6,15 +6,15 @@ const command = ['command', 'opdracht'] as const;
 const matchers = [
   [
     'issues',
-    new RegExp(`(?<key>${issue.join('|')}) #(?<hashid>[\\w]{6,})`, 'gi'),
+    new RegExp(`(?<key>${issue.join('|')}) #(?<hashid>[a-z2-9]{6,})`, 'gi'),
   ],
   [
     'reports',
-    new RegExp(`(?<key>${report.join('|')}) #(?<hashid>[\\w]{6,})`, 'gi'),
+    new RegExp(`(?<key>${report.join('|')}) #(?<hashid>[a-z2-9]{6,})`, 'gi'),
   ],
   [
     'commands',
-    new RegExp(`(?<key>${command.join('|')}) #(?<hashid>[\\w]{6,})`, 'gi'),
+    new RegExp(`(?<key>${command.join('|')}) #(?<hashid>[a-z2-9]{6,})`, 'gi'),
   ],
 ];
 
