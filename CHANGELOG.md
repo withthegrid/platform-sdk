@@ -1,3 +1,10 @@
+## [17.60.1](https://github.com/withthegrid/platform-sdk/compare/v17.60.0...v17.60.1) (2022-10-14)
+
+
+### Bug Fixes
+
+* only part of conditierapport in issue hyperlinked ([#348](https://github.com/withthegrid/platform-sdk/issues/348)) ([f3e1f4d](https://github.com/withthegrid/platform-sdk/commit/f3e1f4d382577f7e83cbdc3a591900f6930cbffc)), closes [withthegrid/platform#1643](https://github.com/withthegrid/platform/issues/1643)
+
 ## [17.60.0](https://github.com/withthegrid/platform-sdk/compare/v17.59.0...v17.60.0) (2022-09-29)
 
 
