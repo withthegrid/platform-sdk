@@ -32,7 +32,7 @@
   },
   "author": "Rob Everhardt <rob@withthegrid.com>",
   "dependencies": {
-    "axios": "^0.27.2",
+    "axios": "^1.1.2",
     "joi": "^17.6.3",
     "minimist": "^1.2.7",
     "qs": "^6.10.3"
