@@ -5,12 +5,12 @@ const schema = Joi.object().keys({
   userHashId: Joi.string().allow(null).required().example('b45zo0'),
   assignedUserHashId: Joi.string().allow(null).required().example(null),
   title: Joi.string().required().example('Temperature is too high'),
-  pinGroupHashId: Joi.string().allow(null).required().example('dao97'), // TODO 221010 Rob: non-null in next release
+  pinGroupHashId: Joi.string().allow(null).required().example('dao97'), // TODO withthegrid/platform#1586 Rob: non-null in next release
   level: Joi.number().integer().valid(0, 1, 2).required()
     .example(0),
-  typeKey: Joi.string().valid('missing', 'incorrect', 'unexpected', 'unrelated'), // TODO 221010 Rob: deprecated
-  startAt: Joi.date(), // TODO 221010 Rob: deprecated
-  endAt: Joi.date().allow(null).description('If null, the issue is still open'), // TODO 221010 Rob: deprecated
+  typeKey: Joi.string().valid('missing', 'incorrect', 'unexpected', 'unrelated'), // TODO withthegrid/platform#1586 Rob: deprecated
+  startAt: Joi.date(), // TODO withthegrid/platform#1586 Rob: deprecated
+  endAt: Joi.date().allow(null).description('If null, the issue is still open'), // TODO withthegrid/platform#1586 Rob: deprecated
   closedAt: Joi.date().required().allow(null)
     .example(null)
     .description('If null, the issue is still open'),

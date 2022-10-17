@@ -18,7 +18,7 @@ interface Response {
   issue: Issue;
   userName: string | null;
   assignedUserName: string | null;
-  quantities: Quantity[]; // TODO 221010 Rob: deprecated
+  quantities: Quantity[]; // TODO withthegrid/platform#1586 Rob: deprecated
   mentionedUsers: { hashId: string; name: string }[];
   pinGroup: PinGroup;
   pins: Pin[];
@@ -34,7 +34,7 @@ interface Response {
     userName: string | null;
   }[];
   subscribed: boolean;
-  links: { // TODO 221010 Rob: deprecated
+  links: { // TODO withthegrid/platform#1586 Rob: deprecated
     pinGroup: PinGroup;
     pin: Pin | null;
   }[];
@@ -53,7 +53,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       .example('John Doe'),
     assignedUserName: Joi.string().allow(null).required().example(null),
     quantities: Joi.array().items(quantitySchema(apiVersion))
-      .required(), // TODO 221010 Rob: deprecated
+      .required(), // TODO withthegrid/platform#1586 Rob: deprecated
     mentionedUsers: Joi.array().items(Joi.object().keys({
       hashId: Joi.string().required().example('ba5qq1'),
       name: Joi.string().max(255).required().example('Jane Doe'),
@@ -77,7 +77,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
         .example('John Doe'),
     })).required(),
     subscribed: Joi.boolean().required().example(false),
-    links: Joi.array().items(Joi.object().keys({ // TODO 221010 Rob: deprecated
+    links: Joi.array().items(Joi.object().keys({ // TODO withthegrid/platform#1586 Rob: deprecated
       pinGroup: pinGroupSchema.required(),
       pin: pinSchema.allow(null).required(),
     })).required(),
