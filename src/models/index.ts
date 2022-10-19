@@ -56,7 +56,7 @@ import * as supplierActivitySetDeviceFields from './supplier-activities/set-devi
 import * as supplierCertificate from './supplier-certificate';
 import * as supplierReportType from './supplier-report-type';
 import * as supplierWebhook from './supplier-webhook';
-import * as threshold from './threshold';
+import * as measurementThreshold from './measurement-threshold';
 import * as userEnvironmentSettings from './user-environment-settings';
 import * as translations from './translations';
 import * as updatableFieldConfigurations from './fields/updatable-field-configurations';
@@ -129,7 +129,7 @@ export {
   supplierCertificate,
   supplierReportType,
   supplierWebhook,
-  threshold,
+  measurementThreshold,
   translations,
   userEnvironmentSettings,
   updatableFieldConfigurations,

@@ -13,6 +13,7 @@ import * as issueTriggerRule from './issue-trigger-rule/routes';
 import * as label from './label/routes';
 import * as measurement from './measurement/routes';
 import * as measurementFilter from './measurement-filter/routes';
+import * as measurementThreshold from './measurement-threshold/routes';
 import * as quantity from './quantity/routes';
 import * as report from './report/routes';
 import * as reportType from './report-type/routes';
@@ -43,6 +44,7 @@ export {
   label,
   measurement,
   measurementFilter,
+  measurementThreshold,
   quantity,
   report,
   reportType,

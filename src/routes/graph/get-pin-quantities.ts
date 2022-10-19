@@ -2,7 +2,7 @@ import Joi from 'joi';
 import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 
 import { schema as quantitySchema, Quantity } from '../../models/quantity';
-import { schema as thresholdSchema, Threshold } from '../../models/threshold';
+import { schema as measurementThresholdSchema, MeasurementThreshold } from '../../models/measurement-threshold';
 
 interface Request {
   params: {
@@ -12,7 +12,7 @@ interface Request {
 
 interface ResponseRow {
   quantity: Quantity;
-  pinThreshold: Threshold | null;
+  pinThreshold: MeasurementThreshold | null;
 }
 
 interface Response {
@@ -29,7 +29,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     rows: Joi.array().items(Joi.object().keys({
       quantity: quantitySchema(apiVersion).required(),
-      pinThreshold: thresholdSchema.allow(null).required(),
+      pinThreshold: measurementThresholdSchema.allow(null).required(),
     })).required(),
   }).required(),
   description: 'Get a specific pin quantities by its hashId',

@@ -40,7 +40,8 @@ interface Response {
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithClientAndSupplier = {
   method: 'get',
   path: '/quantities',
-  right: { environment: 'READ', supplier: 'ENVIRONMENT_ADMIN' },
+  // rights to be updated to 'Threshold' which will be added soon
+  right: { environment: 'ISSUES', supplier: 'ENVIRONMENT_ADMIN' },
   query: tableQuerySchemaGenerator(Joi.string().valid('name', 'hashId').default('hashId'))
     .keys({
       environmentReportTypeHashIds: Joi.array().items(Joi.string()).description('Limit results to provided report type hashIds. Only valid when requesting for an environment (not a supplier)'),
