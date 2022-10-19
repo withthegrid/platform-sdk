@@ -11,6 +11,7 @@ import DeviceTypeRoute from './device-type';
 import GraphRoute from './graph';
 import IssueRoute from './issue';
 import IssueCommentRoute from './issue-comment';
+import ConnectivityThresholdRoute from './connectivity-threshold';
 import IssueTriggerRuleRoute from './issue-trigger-rule';
 import LabelRoute from './label';
 import MeasurementRoute from './measurement';
@@ -52,6 +53,8 @@ class Routes {
   issue: IssueRoute;
 
   issueComment: IssueCommentRoute;
+
+  connectivityThreshold: ConnectivityThresholdRoute;
 
   issueTriggerRule: IssueTriggerRuleRoute;
 
@@ -101,6 +104,7 @@ class Routes {
     this.graph = new GraphRoute(comms);
     this.issue = new IssueRoute(comms);
     this.issueComment = new IssueCommentRoute(comms);
+    this.connectivityThreshold = new ConnectivityThresholdRoute(comms);
     this.issueTriggerRule = new IssueTriggerRuleRoute(comms);
     this.label = new LabelRoute(comms);
     this.measurement = new MeasurementRoute(comms);
@@ -135,6 +139,7 @@ export {
   GraphRoute,
   IssueRoute,
   IssueCommentRoute,
+  ConnectivityThresholdRoute,
   IssueTriggerRuleRoute,
   LabelRoute,
   MeasurementRoute,

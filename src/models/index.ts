@@ -23,6 +23,7 @@ import * as fileToServer from './file-to-server';
 import * as grid from './grid';
 import * as issue from './issue';
 import * as issueComment from './issue-comment';
+import * as connectivityThreshold from './connectivity-threshold';
 import * as issueTriggerRule from './issue-trigger-rule';
 import * as label from './label';
 import * as locale from './locale';
@@ -94,6 +95,7 @@ export {
   grid,
   issue,
   issueComment,
+  connectivityThreshold,
   issueTriggerRule,
   identityProvider,
   identityProviderRole,

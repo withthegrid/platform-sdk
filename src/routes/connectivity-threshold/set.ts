@@ -1,15 +1,13 @@
-// TODO withthegrid/platform-client/issues/1370 Gabriel: deprecated
-
 import Joi from 'joi';
-import { IssueTriggerRule, schema as issueTriggerRuleSchema } from '../../models/issue-trigger-rule';
+import { ConnectivityThreshold, schema as connectivityThresholdSchema } from '../../models/connectivity-threshold';
 import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 
 type Request = {
-  query: Pick<IssueTriggerRule, 'priorityLevel' | 'deviceTypeHashId'>;
+  query: Pick<ConnectivityThreshold, 'priorityLevel' | 'deviceTypeHashId'>;
   body: {
-    issueTriggerRule: {
-      missedReports: IssueTriggerRule['missedReports'];
-      offlineForSeconds: IssueTriggerRule['offlineForSeconds'];
+    connectivityThreshold: {
+      missedReports: ConnectivityThreshold['missedReports'];
+      offlineForSeconds: ConnectivityThreshold['offlineForSeconds'];
     } | null;
   };
 }
@@ -20,18 +18,18 @@ type Response = void;
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'post',
   path: '/',
-  query: issueTriggerRuleSchema.keys({
+  query: connectivityThresholdSchema.keys({
     missedReports: Joi.disallow(),
     offlineForSeconds: Joi.disallow(),
   }),
   body: Joi.object().keys({
-    issueTriggerRule: issueTriggerRuleSchema.keys({
+    connectivityThreshold: connectivityThresholdSchema.keys({
       priorityLevel: Joi.disallow(),
       deviceTypeHashId: Joi.disallow(),
     }).allow(null),
   }).required(),
   right: { environment: 'ENVIRONMENT_ADMIN' },
-  description: 'Creates or updates an issue trigger rule override.',
+  description: 'Creates or updates a connectivity threshold.',
 };
 
 export {

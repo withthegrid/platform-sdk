@@ -1,8 +1,6 @@
-// TODO withthegrid/platform-client/issues/1370 Gabriel: deprecated
-
 import Joi from 'joi';
 
-export interface IssueTriggerRule {
+export interface ConnectivityThreshold {
   deviceTypeHashId?: string;
   priorityLevel: 1 | 2;
   missedReports: number;

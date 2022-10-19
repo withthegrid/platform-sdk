@@ -1,5 +1,3 @@
-// TODO withthegrid/platform-client/issues/1370 Gabriel: deprecated
-
 import TableController from '../../comms/table-controller';
 import Comms from '../../comms';
 import controllerGenerator, { Result } from '../../comms/controller';
@@ -7,8 +5,8 @@ import {
   set, find,
 } from './routes';
 
-export default class IssueTriggerRuleRoute {
-  static routerPath = 'issue-trigger-rule';
+export default class ConnectivityThresholdRoute {
+  static routerPath = 'connectivity-threshold';
   static auth = true;
 
   constructor(private readonly comms: Comms) {}
@@ -20,8 +18,8 @@ export default class IssueTriggerRuleRoute {
       set.Response
     >(
       set.controllerGeneratorOptions,
-      IssueTriggerRuleRoute.routerPath,
-      IssueTriggerRuleRoute.auth,
+      ConnectivityThresholdRoute.routerPath,
+      ConnectivityThresholdRoute.auth,
       this.comms,
     )(parameters);
   }
@@ -34,8 +32,8 @@ export default class IssueTriggerRuleRoute {
         find.Response
       >(
         find.controllerGeneratorOptions,
-        IssueTriggerRuleRoute.routerPath,
-        IssueTriggerRuleRoute.auth,
+        ConnectivityThresholdRoute.routerPath,
+        ConnectivityThresholdRoute.auth,
         this.comms,
       )(parameters);
   }

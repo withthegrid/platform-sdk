@@ -1,28 +1,26 @@
-// TODO withthegrid/platform-client/issues/1370 Gabriel: deprecated
-
 import Joi from 'joi';
 import { EffectiveTableQuery, TableQuery, tableQuerySchemaGenerator } from '../../comms/table-controller';
 import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
-import { IssueTriggerRule, schema as issueTriggerRuleSchema } from '../../models/issue-trigger-rule';
+import { ConnectivityThreshold, schema as connectivityThresholdSchema } from '../../models/connectivity-threshold';
 import { DeviceType, schema as deviceTypeSchema } from '../../models/device-type';
 
-type IssueTriggerRuleQueryFields = {
-  priorityLevel?: IssueTriggerRule['priorityLevel'];
-  deviceTypeHashId?: IssueTriggerRule['deviceTypeHashId'];
+type ConnectivityThresholdQueryFields = {
+  priorityLevel?: ConnectivityThreshold['priorityLevel'];
+  deviceTypeHashId?: ConnectivityThreshold['deviceTypeHashId'];
 };
 
-type Query = TableQuery & IssueTriggerRuleQueryFields;
+type Query = TableQuery & ConnectivityThresholdQueryFields;
 
 type Request = {
   query?: Query
 } | undefined;
 
-type EffectiveQuery = EffectiveTableQuery & IssueTriggerRuleQueryFields;
+type EffectiveQuery = EffectiveTableQuery & ConnectivityThresholdQueryFields;
 
 type EffectiveRequest = { query: EffectiveQuery };
 
 type ResponseRow = {
-  issueTriggerRule: IssueTriggerRule;
+  connectivityThreshold: ConnectivityThreshold;
   deviceType?: DeviceType;
 };
 
@@ -44,12 +42,12 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       .description('This is the last page if nextPageOffset is null'),
     rows: Joi.array().items(
       Joi.object().keys({
-        issueTriggerRule: issueTriggerRuleSchema,
+        connectivityThreshold: connectivityThresholdSchema,
         deviceType: deviceTypeSchema(apiVersion).optional(),
       }),
     ),
   }),
-  description: 'Returns all found issue trigger rules for an environment.',
+  description: 'Returns all found connectivity thresholds for an environment.',
 };
 
 export {

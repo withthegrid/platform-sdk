@@ -59,7 +59,7 @@ interface Response {
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'get',
   path: '/',
-  query: tableQuerySchemaGenerator(Joi.string().valid('quantityName', 'pinGroupName', 'hashId').default('quantityName ')).keys({
+  query: tableQuerySchemaGenerator(Joi.string().valid('quantityName', 'pinGroupName', 'hashId').default('quantityName')).keys({
     quantityHashId: Joi.string().allow(null).default(null),
     pinGroupHashId: Joi.string().allow(null).default(null),
     edgeHashId: Joi.string().allow(null).default(null),
