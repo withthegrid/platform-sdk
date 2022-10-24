@@ -1,3 +1,10 @@
+## [17.61.0](https://github.com/withthegrid/platform-sdk/compare/v17.60.1...v17.61.0) (2022-10-24)
+
+
+### Features
+
+* platform 1586 issues ([#347](https://github.com/withthegrid/platform-sdk/issues/347)) ([a61dfba](https://github.com/withthegrid/platform-sdk/commit/a61dfba3662c7a92e6e87257e1c6176b439baa2e)), closes [withthegrid/platform#1586](https://github.com/withthegrid/platform/issues/1586)
+
 ## [17.60.1](https://github.com/withthegrid/platform-sdk/compare/v17.60.0...v17.60.1) (2022-10-14)
 
 
