@@ -32,8 +32,9 @@ interface ResponseRow {
   issue: Issue;
   userName: string | null;
   assignedUserName: string | null;
+  pinGroup: PinGroup;
   subscribed: boolean;
-  links: {
+  links: { // TODO withthegrid/platform#1586 Rob: deprecated
     pinGroup: PinGroup;
     pin: Pin | null;
   }[];
@@ -63,7 +64,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       userName: Joi.string().max(255).allow(null).required()
         .example('John Doe'),
       assignedUserName: Joi.string().allow(null).required().example(null),
+      pinGroup: pinGroupSchema.required(),
       subscribed: Joi.boolean().required().example(false),
+      // TODO withthegrid/platform#1586 Rob: deprecated
       links: Joi.array().min(1).items(Joi.object().keys({
         pinGroup: pinGroupSchema.required(),
         pin: pinSchema.allow(null).required(),

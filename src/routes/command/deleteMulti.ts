@@ -45,11 +45,11 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClientAndSupplie
     })
     .required(),
   response: Joi.array().items(
-    Joi.alternatives([validResponseSchema, errorResponseSchema]),
+    Joi.alternatives().try(validResponseSchema, errorResponseSchema),
   ),
   right: { environment: 'SENSORS', supplier: 'ENVIRONMENT_ADMIN' },
   description:
-      'Delete multiple commands. Will return an array showing which commands were deleted or not.',
+    'Delete multiple commands. Will return an array showing which commands were deleted or not.',
 };
 
 export {
