@@ -65,7 +65,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     typeKey: Joi.string().valid('missing', 'incorrect', 'unexpected', 'unrelated'), // TODO withthegrid/platform#1586 Rob: deprecated
     comment: Joi.string().max(65536).allow('').required()
       .example('This looks serious.'),
-    quantityHashIds: Joi.array().items(Joi.string()).max(10), // TODO withthegrid/platform#1586 Rob: deprecated
+    // TODO withthegrid/platform#1586 Rob: deprecated
+    quantityHashIds: Joi.array().items(Joi.string()).max(10),
     labelHashIds: Joi.array().items(Joi.string()).max(10).default([])
       .example(['u98a24']),
     startAt: Joi.date(), // TODO withthegrid/platform#1586 Rob: deprecated

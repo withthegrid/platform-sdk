@@ -67,7 +67,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     ).allow(null),
     assignedUserHashId: Joi.string().allow(null),
     pinHashId: Joi.string().allow(null), // TODO withthegrid/platform#1586 Rob: deprecated
-    quantityHashIds: Joi.array().items(Joi.string()).max(10), // TODO withthegrid/platform#1586 Rob: deprecated
+    // TODO withthegrid/platform#1586 Rob: deprecated
+    quantityHashIds: Joi.array().items(Joi.string()).max(10),
     labelHashIds: Joi.array().items(Joi.string()).max(10),
     closed: Joi.boolean(),
     level: Joi.number().valid(0, 1, 2),
