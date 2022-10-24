@@ -1,20 +1,20 @@
 const issue = ['issue'] as const;
-const report = ['condition report', 'report', 'rapport', 'meetrapport'] as const;
+const report = ['condition report', 'report', 'measurement report', 'rapport', 'meetrapport', 'conditierapport'] as const;
 const command = ['command', 'opdracht'] as const;
 
 // the regexp have been verified on https://makenowjust-labs.github.io/recheck
 const matchers = [
   [
     'issues',
-    new RegExp(`(?<key>${issue.join('|')}) #(?<hashid>[\\w\\d]{6,})`, 'gi'),
+    new RegExp(`(?<key>${issue.join('|')}) #(?<hashid>[a-z2-9]{6,})`, 'gi'),
   ],
   [
     'reports',
-    new RegExp(`(?<key>${report.join('|')}) #(?<hashid>[\\w\\d]{6,})`, 'gi'),
+    new RegExp(`(?<key>${report.join('|')}) #(?<hashid>[a-z2-9]{6,})`, 'gi'),
   ],
   [
     'commands',
-    new RegExp(`(?<key>${command.join('|')}) #(?<hashid>[\\w\\d]{6,})`, 'gi'),
+    new RegExp(`(?<key>${command.join('|')}) #(?<hashid>[a-z2-9]{6,})`, 'gi'),
   ],
 ];
 
