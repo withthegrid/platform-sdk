@@ -40,7 +40,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     bodySchema,
     Joi.array().items(bodySchema).required(),
   ).required(),
-  right: { environment: 'ISSUES' },
+  right: { environment: 'THRESHOLDS' },
   response: Joi.object().keys({
     hashId: Joi.alternatives().try(
       Joi.string().allow(null).required().example('tap192')

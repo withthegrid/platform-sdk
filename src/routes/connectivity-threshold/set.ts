@@ -28,7 +28,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       deviceTypeHashId: Joi.disallow(),
     }).allow(null),
   }).required(),
-  right: { environment: 'ENVIRONMENT_ADMIN' },
+  right: { environment: 'THRESHOLDS' },
   description: 'Creates or updates a connectivity threshold.',
 };
 
