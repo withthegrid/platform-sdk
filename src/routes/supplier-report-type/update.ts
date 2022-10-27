@@ -31,7 +31,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
     hashId: Joi.string().required().example('y124as'),
   }).required(),
   body: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
-    name: stringOrTranslationsSchema.example('Temperature'),
+    name: stringOrTranslationsSchema().example('Temperature'),
     fieldConfigurations: Joi.object().keys({
       pinGroup: updatableFieldConfigurationsSchema(apiVersion),
       pin: updatableFieldConfigurationsSchema(apiVersion),

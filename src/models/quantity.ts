@@ -1,13 +1,13 @@
 import Joi from 'joi';
 import { schema as siNumberSchema, SiNumber } from './si-number';
 import {
-  stringBeforeV7ElseStringOrTranslationSchema,
+  versionedStringOrStringOrTranslationSchema,
   StringOrTranslations,
 } from './string-or-translations';
 
 const schema = (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
   hashId: Joi.string().required().example('sajia1'),
-  name: stringBeforeV7ElseStringOrTranslationSchema(apiVersion).required().example('Temperature'),
+  name: versionedStringOrStringOrTranslationSchema(apiVersion).required().example('Temperature'),
   color: Joi.string().required().example('#ff00ff'),
   unit: (
     apiVersion >= 8

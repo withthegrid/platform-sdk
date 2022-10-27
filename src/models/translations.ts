@@ -1,16 +1,16 @@
 import Joi from 'joi';
 
 const translationStringSchema = Joi.string().allow('').required();
-const translationSchema = (example: string) => Joi.alternatives().try(
+const translationSchema = (example: string, limit = 9999) => Joi.alternatives().try(
   Joi.object({
-    plural: translationStringSchema,
-    singular: translationStringSchema,
+    plural: translationStringSchema.max(limit),
+    singular: translationStringSchema.max(limit),
   }),
-  translationStringSchema.example(example),
+  translationStringSchema.example(example).max(limit),
 );
-const schema = Joi.object().keys({
-  en: translationSchema('English string'),
-  nl: translationSchema('Nederlandse string'),
+const schema = (limit = 9999): Joi.AnySchema => Joi.object().keys({
+  en: translationSchema('English string', limit),
+  nl: translationSchema('Nederlandse string', limit),
 })
   .tag('translations')
   .meta({ className: 'translations' });

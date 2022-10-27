@@ -9,7 +9,7 @@ import * as commons from './commons';
 
 import { Response as MachineLoginResponse } from './routes/authentication/machine-login';
 
-const apiVersion = 8;
+const apiVersion = 9;
 
 class PlatformSdk {
   protected comms: Comms;
