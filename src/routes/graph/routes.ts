@@ -1,5 +1,7 @@
 import * as addEdge from './add-edge';
 import * as addGrid from './add-grid';
+import * as addPinGrid from './add-pin-grid';
+import * as addPinGroupGrid from './add-pin-group-grid';
 import * as addPinGroup from './add-pin-group';
 import * as addNode from './add-node';
 import * as addPin from './add-pin';
@@ -16,6 +18,8 @@ import * as findPin from './find-pin';
 import * as findNode from './find-node';
 import * as getEdge from './get-edge';
 import * as getGrid from './get-grid';
+import * as getPinGrid from './get-pin-grid';
+import * as getPinGroupGrid from './get-pin-group-grid';
 import * as getPinGroupPerformance from './get-pin-group-performance';
 import * as getPinGroup from './get-pin-group';
 import * as getPinQuantities from './get-pin-quantities';
@@ -26,6 +30,8 @@ import * as setNotification from './set-notification';
 import * as setThreshold from './set-threshold';
 import * as updateEdge from './update-edge';
 import * as updateGrid from './update-grid';
+import * as updatePinGrid from './update-pin-grid';
+import * as updatePinGroupGrid from './update-pin-group-grid';
 import * as updateLocations from './update-locations';
 import * as updatePinGroup from './update-pin-group';
 import * as updatePinGroups from './update-pin-groups';
@@ -35,6 +41,8 @@ import * as updatePin from './update-pin';
 export {
   addEdge,
   addGrid,
+  addPinGrid,
+  addPinGroupGrid,
   addPinGroup,
   addNode,
   addPin,
@@ -51,6 +59,8 @@ export {
   findNode,
   getEdge,
   getGrid,
+  getPinGrid,
+  getPinGroupGrid,
   getPinGroupPerformance,
   getPinGroup,
   getPinQuantities,
@@ -61,6 +71,8 @@ export {
   setThreshold,
   updateEdge,
   updateGrid,
+  updatePinGrid,
+  updatePinGroupGrid,
   updateLocations,
   updatePinGroup,
   updatePinGroups,
