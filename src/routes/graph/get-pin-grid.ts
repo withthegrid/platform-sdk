@@ -13,10 +13,6 @@ interface Request {
 interface Response {
   grid: Grid;
   pins: Pin[];
-  lastReports: {
-    pinHashId: string;
-    generatedAt: Date;
-  }[];
   photo: string | null;
 }
 
@@ -30,10 +26,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   response: Joi.object().keys({
     grid: gridSchema.required(),
     pins: Joi.array().items(pinSchema).required(),
-    lastReports: Joi.array().items(Joi.object({
-      pinHashId: Joi.string().required().example('dao97'),
-      generatedAt: Joi.date().required().example('2019-12-31T15:23Z'),
-    })).required(),
     photo: Joi.string().allow(null).required().description('download link for photo.')
       .example('https://api.withthegrid.com/file/yr969d...'),
   }).required(),
