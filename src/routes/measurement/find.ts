@@ -11,7 +11,6 @@ interface Query extends TableQuery {
   reportTypeHashIds: string[]; // max 20
   gridHashId?: string;
   pinGroupHashIds?: string[]; // max 50
-  pinHashIds?: string[]; // max 50
   quantityHashIds?: string[]; // max 64
   fieldKeys?: string[]; // max 20
   pinFieldKeys?: string[];
@@ -29,7 +28,6 @@ interface EffectiveQuery extends EffectiveTableQuery {
   reportTypeHashIds: string[];
   gridHashId?: string;
   pinGroupHashIds?: string[];
-  pinHashIds?: string[];
   quantityHashIds: string[];
   fieldKeys: string[];
   since?: Date; // including
@@ -87,7 +85,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       .default([]),
     gridHashId: Joi.string(),
     pinGroupHashIds: Joi.array().min(1).max(50).items(Joi.string().example('dao97')),
-    pinHashIds: Joi.array().min(1).max(50).items(Joi.string().example('qy39y9')),
     quantityHashIds: Joi.array().min(1).max(64).items(Joi.string().example('sajia1'))
       .default([]),
     fieldKeys: Joi.array().max(20).items(Joi.string().example('id')).default([]),
