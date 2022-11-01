@@ -1,8 +1,6 @@
 import Joi from 'joi';
 import { schema as fieldsFromServerSchema, FieldsFromServer } from './fields/fields-from-server';
 
-type GridType = 'node' | 'pinGroup'| 'pin';
-
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('naud51'),
   typeKey: Joi.string().valid('node', 'pinGroup', 'pin').required().example('pinGroup'),
@@ -23,4 +21,4 @@ interface Grid {
   deletedAt: Date | null;
 }
 
-export { schema, Grid, GridType };
+export { schema, Grid };

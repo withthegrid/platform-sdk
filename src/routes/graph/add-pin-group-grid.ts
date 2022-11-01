@@ -4,8 +4,6 @@ import { schema as fieldsToServerFullSchema, FieldsToServerFull } from '../../mo
 
 import { schema as gridSchema, Grid } from '../../models/grid';
 
-// TODO srieding deprecated remove after https://github.com/withthegrid/platform-client/issues/1565
-// scope: entire file.
 interface Request {
   body: {
   fields: FieldsToServerFull;

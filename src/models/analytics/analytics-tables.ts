@@ -402,8 +402,8 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
     },
     tableKey: 'gridPinGroup',
     tableText: {
-      en: { singular: 'Group-Location', plural: 'Group-Locations' },
-      nl: { singular: 'Groep-Locatie', plural: 'Groep-Locaties' },
+      en: { singular: 'Location-group', plural: 'Location-groups' },
+      nl: { singular: 'Locatie-groep', plural: 'Locatie-groepen' },
     },
   },
   gridPin: {
@@ -426,8 +426,8 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
     },
     tableKey: 'gridPin',
     tableText: {
-      en: { singular: 'Group-Port', plural: 'Group-Ports' },
-      nl: { singular: 'Groep-Poort', plural: 'Groep-Poorten' },
+      en: { singular: 'Port-group', plural: 'Port-groups' },
+      nl: { singular: 'Poort-groep', plural: 'Poort-groepen' },
     },
   },
   issue: {

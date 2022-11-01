@@ -5,8 +5,6 @@ import { schema as fieldsToServerUpdateSchema, FieldsToServerUpdate } from '../.
 import { schema as gridSchema, Grid } from '../../models/grid';
 import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
 
-// TODO srieding deprecated remove after https://github.com/withthegrid/platform-client/issues/1565
-// scope: entire file.
 interface Request {
   params: {
     hashId: string;
@@ -29,7 +27,7 @@ interface Response {
 
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'post',
-  path: '/grid/:hashId',
+  path: '/pin-group-grid/:hashId',
   params: Joi.object().keys({
     hashId: Joi.string().required().example('naud51'),
   }).required(),
