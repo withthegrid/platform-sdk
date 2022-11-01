@@ -2,7 +2,7 @@ import Joi from 'joi';
 import { schema as translationsSchema, Translations } from './translations';
 import { Locale } from './locale';
 
-const schema = Joi.alternatives(
+const schema = Joi.alternatives().try(
   Joi.string().example('untranslated string').meta({ className: 'untranslatedString' }),
   translationsSchema,
 )

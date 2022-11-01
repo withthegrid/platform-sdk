@@ -1,13 +1,13 @@
 import Joi from 'joi';
 
 const translationStringSchema = Joi.string().allow('').required();
-const translationSchema = (example: string) => Joi.alternatives([
+const translationSchema = (example: string) => Joi.alternatives().try(
   Joi.object({
     plural: translationStringSchema,
     singular: translationStringSchema,
   }),
   translationStringSchema.example(example),
-]);
+);
 const schema = Joi.object().keys({
   en: translationSchema('English string'),
   nl: translationSchema('Nederlandse string'),

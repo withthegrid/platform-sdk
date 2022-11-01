@@ -10,6 +10,7 @@ jobs:
   ci:
     if: ${{ github.ref == 'refs/heads/main' || github.event_name == 'pull_request'}}
     runs-on: ubuntu-latest
+    concurrency: deploy
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2

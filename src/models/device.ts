@@ -12,6 +12,8 @@ const schema = Joi.object().keys({
   nextReportBefore: Joi.date().allow(null).required().example('2019-12-31T15:25Z'),
   lastOnlineAt: Joi.date().allow(null).required().example('2019-12-31T15:23Z'),
   validated: Joi.boolean().required().example(true),
+  userFacingIdentifier: Joi.string().allow(null).default(null).example('Field value')
+    .description('A value of field, specified as identifierFieldKey'),
 })
   .description('A single device, that can be installed at a location and report measurements from one or more ports at that location')
   .tag('device')
@@ -26,6 +28,7 @@ interface Device {
   nextReportBefore: Date | null;
   lastOnlineAt: Date | null;
   validated: boolean;
+  userFacingIdentifier: string | null;
 }
 
 export { schema, Device };

@@ -10,7 +10,7 @@ const commonBaseFieldConfigurationSchema = Joi.object().keys({
   name: stringOrTranslationsSchema.required(),
   showIf: Joi.object().keys({
     key: Joi.string().required(),
-    value: Joi.alternatives(
+    value: Joi.alternatives().try(
       Joi.string().allow('').strict(),
       Joi.number().strict(),
       Joi.boolean().strict(),

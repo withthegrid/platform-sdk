@@ -5,12 +5,13 @@ const schema = Joi.object().keys({
   userHashId: Joi.string().allow(null).required().example('b45zo0'),
   assignedUserHashId: Joi.string().allow(null).required().example(null),
   title: Joi.string().required().example('Temperature is too high'),
+  pinGroupHashId: Joi.string().allow(null).required().example('dao97'), // TODO withthegrid/platform#1586 Rob: non-null in next release
   level: Joi.number().integer().valid(0, 1, 2).required()
     .example(0),
-  typeKey: Joi.string().valid('missing', 'incorrect', 'unexpected', 'unrelated').required()
-    .example('missing'),
-  startAt: Joi.date().required().example('2019-12-31T15:23Z'),
-  endAt: Joi.date().required().allow(null)
+  typeKey: Joi.string().valid('missing', 'incorrect', 'unexpected', 'unrelated'), // TODO withthegrid/platform#1586 Rob: deprecated
+  startAt: Joi.date(), // TODO withthegrid/platform#1586 Rob: deprecated
+  endAt: Joi.date().allow(null).description('If null, the issue is still open'), // TODO withthegrid/platform#1586 Rob: deprecated
+  closedAt: Joi.date().required().allow(null)
     .example(null)
     .description('If null, the issue is still open'),
   createdAt: Joi.date().required().example('2019-12-31T15:23Z'),
@@ -26,10 +27,12 @@ interface Issue {
   userHashId: string | null;
   assignedUserHashId: string | null;
   title: string;
+  pinGroupHashId: string | null;
   level: 0 | 1 | 2;
-  typeKey: 'missing' | 'incorrect' | 'unexpected' | 'unrelated';
-  startAt: Date;
-  endAt: Date | null;
+  typeKey?: 'missing' | 'incorrect' | 'unexpected' | 'unrelated';
+  startAt?: Date;
+  endAt?: Date | null;
+  closedAt: Date | null;
   createdAt: Date;
   updatedAt: Date;
   deletedAt?: Date | null;

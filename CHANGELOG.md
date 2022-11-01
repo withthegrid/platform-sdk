@@ -1,3 +1,38 @@
+## [17.61.0](https://github.com/withthegrid/platform-sdk/compare/v17.60.1...v17.61.0) (2022-10-24)
+
+
+### Features
+
+* platform 1586 issues ([#347](https://github.com/withthegrid/platform-sdk/issues/347)) ([a61dfba](https://github.com/withthegrid/platform-sdk/commit/a61dfba3662c7a92e6e87257e1c6176b439baa2e)), closes [withthegrid/platform#1586](https://github.com/withthegrid/platform/issues/1586)
+
+## [17.60.1](https://github.com/withthegrid/platform-sdk/compare/v17.60.0...v17.60.1) (2022-10-14)
+
+
+### Bug Fixes
+
+* only part of conditierapport in issue hyperlinked ([#348](https://github.com/withthegrid/platform-sdk/issues/348)) ([f3e1f4d](https://github.com/withthegrid/platform-sdk/commit/f3e1f4d382577f7e83cbdc3a591900f6930cbffc)), closes [withthegrid/platform#1643](https://github.com/withthegrid/platform/issues/1643)
+
+## [17.60.0](https://github.com/withthegrid/platform-sdk/compare/v17.59.0...v17.60.0) (2022-09-29)
+
+
+### Features
+
+* **analytics:** allowed to set yMin and yMax for line charts ([#323](https://github.com/withthegrid/platform-sdk/issues/323)) ([8dc8130](https://github.com/withthegrid/platform-sdk/commit/8dc8130834faf18ccbceb9ea8a3463b0d701bd6d))
+
+## [17.59.0](https://github.com/withthegrid/platform-sdk/compare/v17.58.0...v17.59.0) (2022-09-26)
+
+
+### Features
+
+* **device types:** added user facing identifier for devices ([#316](https://github.com/withthegrid/platform-sdk/issues/316)) ([b898dd5](https://github.com/withthegrid/platform-sdk/commit/b898dd50d4c6d707101d859be113322b6c5a83b0))
+
+## [17.58.0](https://github.com/withthegrid/platform-sdk/compare/v17.57.0...v17.58.0) (2022-09-26)
+
+
+### Features
+
+* give insight into who connected a device ([#310](https://github.com/withthegrid/platform-sdk/issues/310)) ([c35bdb2](https://github.com/withthegrid/platform-sdk/commit/c35bdb204fb089836065cf41b9bbfb389a929309)), closes [withthegrid/platform#878](https://github.com/withthegrid/platform/issues/878)
+
 ## [17.57.0](https://github.com/withthegrid/platform-sdk/compare/v17.56.0...v17.57.0) (2022-09-19)
 
 

@@ -1,5 +1,3 @@
-import qs from 'qs';
-
 import Axios, {
   AxiosInstance,
   CancelTokenSource,
@@ -28,7 +26,6 @@ class Comms {
         Pragma: 'no-cache', // required for internet explorer
       },
       baseURL,
-      paramsSerializer: (params) => qs.stringify(params, { strictNullHandling: true }),
     });
 
     axios.defaults.headers.common['Api-Version'] = `${apiVersion}`;
@@ -97,10 +94,10 @@ class Comms {
         // is a wtg error already, eg. from axios interceptors
         throw e;
       }
+      if (Axios.isCancel(e)) {
+        throw new CommsCanceledError();
+      }
       if (Axios.isAxiosError(e)) {
-        if (Axios.isCancel(e)) {
-          throw new CommsCanceledError();
-        }
         if (e.response !== undefined) {
           const responseData = e.response.data;
           let rawKey: unknown;
