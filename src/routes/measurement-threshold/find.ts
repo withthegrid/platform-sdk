@@ -97,7 +97,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       }).required(),
     })).required(),
   }),
-  description: 'Search through environment thresholds and measurement thresholds',
+  description: 'Search through measurement thresholds on environment and pin level',
 };
 
 export {
