@@ -359,11 +359,12 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
     },
   },
   grid: {
-    fields: ['hashId', 'createdAt', 'updatedAt', 'deletedAt'],
+    fields: ['hashId', 'typeKey', 'createdAt', 'updatedAt', 'deletedAt'],
     fieldsWithTranslations: {
       en: {
         hashId: { singular: 'ID', plural: 'IDs' },
         fields: { singular: 'Form field', plural: 'Form fields' },
+        typeKey: 'Type',
         createdAt: 'Created at',
         updatedAt: 'Updated at',
         deletedAt: 'Deleted at',
@@ -371,6 +372,7 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
       nl: {
         hashId: { singular: 'ID', plural: 'IDs' },
         fields: { singular: 'Formulierveld', plural: 'Formuliervelden' },
+        typeKey: 'Soort',
         createdAt: 'Aangemaakt op',
         updatedAt: 'Bijgewerkt op',
         deletedAt: 'Verwijderd op',
