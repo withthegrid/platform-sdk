@@ -34,13 +34,6 @@ interface EffectiveRequest {
   query: EffectiveQuery;
 }
 
-interface Threshold {
-  criticallyLow: SiNumber | null;
-  low: SiNumber | null;
-  high: SiNumber | null;
-  criticallyHigh: SiNumber | null;
-}
-
 interface ResponseRow {
   quantity: Pick<Quantity, 'name' | 'hashId'>;
   location: {
@@ -89,12 +82,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
           hashId: Joi.string().required().example('ka08d'),
         }).allow(null),
       }).allow(null),
-      threshold: Joi.object().keys({
-        criticallyLow: siNumberSchema.allow(null).required(),
-        low: siNumberSchema.allow(null).required(),
-        high: siNumberSchema.allow(null).required(),
-        criticallyHigh: siNumberSchema.allow(null).required(),
-      }).required(),
+      threshold: thresholdSchema.required(),
     })).required(),
   }),
   description: 'Search through measurement thresholds on environment and pin level',
