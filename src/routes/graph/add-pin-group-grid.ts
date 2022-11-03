@@ -23,7 +23,7 @@ interface Response {
 
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'post',
-  path: '/grid',
+  path: '/pin-group-grid',
   body: Joi.object().keys({
     fields: fieldsToServerFullSchema.required().example({ id: 'My grid' }),
     photo: Joi.string().description('Should be a dataurl'),
