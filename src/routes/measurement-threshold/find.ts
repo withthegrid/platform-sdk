@@ -60,12 +60,12 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     type: Joi.string().valid('quantity', 'port'),
   }),
   right: { environment: 'THRESHOLDS' },
-  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
+  response: Joi.object().keys({
     nextPageOffset: Joi.string().allow(null).example(null).required()
       .description('This is the last page if nextPageOffset is null'),
     rows: Joi.array().items(Joi.object().keys({
       quantity: Joi.object().keys({
-        name: stringBeforeV7ElseStringOrTranslationSchema(apiVersion).required().example('Temperature'),
+        name: stringOrTranslations.required().example('Temperature'),
         hashId: Joi.string().required().example('wasd2'),
       }).required(),
       location: Joi.object().keys({
