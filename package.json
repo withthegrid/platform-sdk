@@ -53,7 +53,6 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
     "jest": "^29.2.2",
-    "joi-to-json": "^2.6.1",
     "joi-to-swagger": "6.1.1",
     "redoc-cli": "^0.13.20",
     "rimraf": "^3.0.2",
