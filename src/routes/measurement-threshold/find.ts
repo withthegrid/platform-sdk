@@ -7,27 +7,17 @@ import { PinGroup } from '../../models/pin-group';
 
 import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../../comms/table-controller';
 import { Quantity } from '../../models/quantity';
-import { stringBeforeV7ElseStringOrTranslationSchema } from '../../models/string-or-translations';
-import { schema as siNumberSchema, SiNumber } from '../../models/si-number';
+import { schema as stringOrTranslations } from '../../models/string-or-translations';
+import { schema as thresholdSchema, Threshold } from '../../models/threshold';
 
 interface Query extends TableQuery {
-  quantityHashId?: string | null;
-  pinGroupHashId?: string | null;
-  edgeHashId?: string | null;
-  pinHashId?: string | null;
   type?: 'quantity' | 'port';
 }
-
 type Request = {
   query?: Query;
 } | undefined;
-
 interface EffectiveQuery extends EffectiveTableQuery {
-    quantityHashId?: string | null;
-    pinGroupHashId?: string | null;
-    edgeHashId?: string | null;
-    pinHashId?: string | null;
-    type: 'quantity' | 'port';
+  type?: 'quantity' | 'port';
 }
 
 interface EffectiveRequest {
@@ -52,11 +42,7 @@ interface Response {
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'get',
   path: '/',
-  query: tableQuerySchemaGenerator(Joi.string().valid('quantityName', 'pinGroupName', 'hashId').default('quantityName')).keys({
-    quantityHashId: Joi.string().allow(null).default(null),
-    pinGroupHashId: Joi.string().allow(null).default(null),
-    edgeHashId: Joi.string().allow(null).default(null),
-    pinHashId: Joi.string().allow(null).default(null),
+  query: tableQuerySchemaGenerator(Joi.string().valid('quantityName', 'pinGroupName').default('quantityName')).keys({
     type: Joi.string().valid('quantity', 'port'),
   }),
   right: { environment: 'THRESHOLDS' },
