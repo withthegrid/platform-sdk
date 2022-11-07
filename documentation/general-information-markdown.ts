@@ -27,16 +27,18 @@ In *connectivity environments*, developers of devices and external systems can:
 To interact with the API you can make HTTP requests to the routes in the left-hand menu. Most of these need authentication.
 Obtain a JSON webtoken from the [Login route](#tag/authentication). The following rights exist for the *monitoring environments*:
 
-| Right       | Description               |
-|------------ | ------------------------- |
-| READ        | View (except audit trail) |
-| STATIC      | Modify static data        |
-| ISSUES      | Manage issues             |
-| AUDIT_TRAIL | View audit trail          |
-| USERS       | Manage users              |
-| EXPORT      | Export data               |
-| SENSORS     | Manage devices            |
-| REPORTS     | Manage condition reports  |
+| Right             | Description                                    |
+|------------------ | -------------------------------------          |
+| READ              | View (except audit trail)                      |
+| STATIC            | Modify static data                             |
+| ISSUES            | Manage issues                                  |
+| AUDIT_TRAIL       | View audit trail                               |
+| USERS             | Manage users                                   |
+| EXPORT            | Export data                                    |
+| SENSORS           | Manage devices                                 |
+| REPORTS           | Manage condition reports                       |
+| THRESHOLDS        | View measurement issue triggers                |
+| ENVIRONMENT_ADMIN | Update configuration of the environment        |
 
 For the *connectivity environments* there is only one right: ENVIRONMENT_ADMIN.
 

@@ -4,7 +4,7 @@ import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 import { schema as edgeSchema, Edge } from '../../models/edge';
 import { schema as pinSchema, Pin } from '../../models/pin';
 import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
-import { schema as thresholdSchema, Threshold } from '../../models/threshold';
+import { schema as measurementThresholdSchema, MeasurementThreshold } from '../../models/measurement-threshold';
 import { schema as quantitySchema, Quantity } from '../../models/quantity';
 
 interface Request {
@@ -19,7 +19,7 @@ interface Response {
   pinGroups: PinGroup[];
   nextReportBefore: Array<Date | null>;
   thresholds: {
-    value: Threshold;
+    value: MeasurementThreshold;
     quantity: Quantity;
   }[];
   photo: string | null;
@@ -39,7 +39,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     measurementCycles: Joi.array().items(Joi.valid(null)).default([]), // for legacy purposes only
     nextReportBefore: Joi.array().items(Joi.date().allow(null).example('2019-12-31T15:25Z')).required(),
     thresholds: Joi.array().items(Joi.object().keys({
-      value: thresholdSchema.required(),
+      value: measurementThresholdSchema.required(),
       quantity: quantitySchema(apiVersion).required(),
     })).required(),
     photo: Joi.string().allow(null).required().description('download link for photo.')

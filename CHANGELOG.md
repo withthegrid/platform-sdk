@@ -1,3 +1,10 @@
+## [17.62.0](https://github.com/withthegrid/platform-sdk/compare/v17.61.0...v17.62.0) (2022-11-07)
+
+
+### Features
+
+* add measurement and connectivity thresholds ([94f3149](https://github.com/withthegrid/platform-sdk/commit/94f314965d1e2d9952fa49a601756e4f57aff94b))
+
 ## [17.61.0](https://github.com/withthegrid/platform-sdk/compare/v17.60.1...v17.61.0) (2022-10-24)
 
 

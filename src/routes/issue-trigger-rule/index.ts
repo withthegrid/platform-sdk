@@ -1,8 +1,10 @@
+// TODO withthegrid/platform-client/issues/1370 Gabriel: deprecated
+
 import TableController from '../../comms/table-controller';
 import Comms from '../../comms';
 import controllerGenerator, { Result } from '../../comms/controller';
 import {
-  set, get, find,
+  set, find,
 } from './routes';
 
 export default class IssueTriggerRuleRoute {
@@ -18,19 +20,6 @@ export default class IssueTriggerRuleRoute {
       set.Response
     >(
       set.controllerGeneratorOptions,
-      IssueTriggerRuleRoute.routerPath,
-      IssueTriggerRuleRoute.auth,
-      this.comms,
-    )(parameters);
-  }
-
-  public get(parameters: get.Request): Result<get.EffectiveRequest, get.Response> {
-    return controllerGenerator<
-      get.Request,
-      get.EffectiveRequest,
-      get.Response
-    >(
-      get.controllerGeneratorOptions,
       IssueTriggerRuleRoute.routerPath,
       IssueTriggerRuleRoute.auth,
       this.comms,
