@@ -107,6 +107,8 @@ type TableKeys =
   | 'deviceType'
   | 'edge'
   | 'grid'
+  | 'pinGrid'
+  | 'pinGroupGrid'
   | 'gridPinGroup'
   | 'gridPin'
   | 'issue'
@@ -359,12 +361,11 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
     },
   },
   grid: {
-    fields: ['hashId', 'typeKey', 'createdAt', 'updatedAt', 'deletedAt'],
+    fields: ['hashId', 'createdAt', 'updatedAt', 'deletedAt'],
     fieldsWithTranslations: {
       en: {
         hashId: { singular: 'ID', plural: 'IDs' },
         fields: { singular: 'Form field', plural: 'Form fields' },
-        typeKey: 'Type',
         createdAt: 'Created at',
         updatedAt: 'Updated at',
         deletedAt: 'Deleted at',
@@ -372,7 +373,6 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
       nl: {
         hashId: { singular: 'ID', plural: 'IDs' },
         fields: { singular: 'Formulierveld', plural: 'Formuliervelden' },
-        typeKey: 'Soort',
         createdAt: 'Aangemaakt op',
         updatedAt: 'Bijgewerkt op',
         deletedAt: 'Verwijderd op',
@@ -382,6 +382,57 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
     tableText: {
       en: { singular: 'Group', plural: 'Groups' },
       nl: { singular: 'Groep', plural: 'Groepen' },
+    },
+  },
+  pinGroupGrid: {
+    fields: ['hashId', 'createdAt', 'updatedAt', 'deletedAt'],
+    fieldsWithTranslations: {
+      en: {
+        hashId: { singular: 'ID', plural: 'IDs' },
+        fields: { singular: 'Form field', plural: 'Form fields' },
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        deletedAt: 'Deleted at',
+      },
+      nl: {
+        hashId: { singular: 'ID', plural: 'IDs' },
+        fields: { singular: 'Formulierveld', plural: 'Formuliervelden' },
+        createdAt: 'Aangemaakt op',
+        updatedAt: 'Bijgewerkt op',
+        deletedAt: 'Verwijderd op',
+      },
+    },
+    tableKey: 'pinGroupGrid',
+    tableText: {
+      en: { singular: 'Group', plural: 'Groups' },
+      nl: { singular: 'Groep', plural: 'Groepen' },
+      // TODO #1565 gabriel: replace the naming above with the following
+      // en: { singular: 'Location Group', plural: 'Location Groups' },
+      // nl: { singular: 'Locatie Groep', plural: 'Locatie Groepen' },
+    },
+  },
+  pinGrid: {
+    fields: ['hashId', 'createdAt', 'updatedAt', 'deletedAt'],
+    fieldsWithTranslations: {
+      en: {
+        hashId: { singular: 'ID', plural: 'IDs' },
+        fields: { singular: 'Form field', plural: 'Form fields' },
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        deletedAt: 'Deleted at',
+      },
+      nl: {
+        hashId: { singular: 'ID', plural: 'IDs' },
+        fields: { singular: 'Formulierveld', plural: 'Formuliervelden' },
+        createdAt: 'Aangemaakt op',
+        updatedAt: 'Bijgewerkt op',
+        deletedAt: 'Verwijderd op',
+      },
+    },
+    tableKey: 'pinGrid',
+    tableText: {
+      en: { singular: 'Port group', plural: 'Port groups' },
+      nl: { singular: 'Poort groep', plural: 'Poort groepen' },
     },
   },
   gridPinGroup: {
@@ -404,8 +455,8 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
     },
     tableKey: 'gridPinGroup',
     tableText: {
-      en: { singular: 'Location-group', plural: 'Location-groups' },
-      nl: { singular: 'Locatie-groep', plural: 'Locatie-groepen' },
+      en: { singular: 'Group-Location', plural: 'Group-Locations' },
+      nl: { singular: 'Groep-Locatie', plural: 'Groep-Locaties' },
     },
   },
   gridPin: {
@@ -428,8 +479,8 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
     },
     tableKey: 'gridPin',
     tableText: {
-      en: { singular: 'Port-group', plural: 'Port-groups' },
-      nl: { singular: 'Poort-groep', plural: 'Poort-groepen' },
+      en: { singular: 'Group-Port', plural: 'Group-Ports' },
+      nl: { singular: 'Groep-Port', plural: 'Groep-Poorten' },
     },
   },
   issue: {
