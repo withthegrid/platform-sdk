@@ -1,3 +1,5 @@
+// TODO withthegrid/platform-client/issues/1370 Gabriel: deprecated
+
 import Joi from 'joi';
 import { IssueTriggerRule, schema as issueTriggerRuleSchema } from '../../models/issue-trigger-rule';
 import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';

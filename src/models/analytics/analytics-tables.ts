@@ -115,7 +115,7 @@ type TableKeys =
   | 'pinGroup'
   | 'quantity'
   | 'report'
-  | 'threshold'
+  | 'measurementThreshold'
   | 'user';
 
 function defaultThresholdValue(
@@ -748,7 +748,7 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
       nl: { singular: 'Rapport', plural: 'Rapporten' },
     },
   },
-  threshold: {
+  measurementThreshold: {
     fields: [
       'hashId',
       'criticallyLowValue',
@@ -805,7 +805,7 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
         deletedAt: 'Verwijderd op',
       },
     },
-    tableKey: 'threshold',
+    tableKey: 'measurementThreshold',
     tableText: {
       en: { singular: 'Port issue trigger', plural: 'Port issue triggers' },
       nl: { singular: 'Poort issue trigger', plural: 'Poort issue triggers' },

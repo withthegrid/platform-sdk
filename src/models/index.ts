@@ -23,6 +23,7 @@ import * as fileToServer from './file-to-server';
 import * as grid from './grid';
 import * as issue from './issue';
 import * as issueComment from './issue-comment';
+import * as connectivityThreshold from './connectivity-threshold';
 import * as issueTriggerRule from './issue-trigger-rule';
 import * as label from './label';
 import * as locale from './locale';
@@ -56,7 +57,7 @@ import * as supplierActivitySetDeviceFields from './supplier-activities/set-devi
 import * as supplierCertificate from './supplier-certificate';
 import * as supplierReportType from './supplier-report-type';
 import * as supplierWebhook from './supplier-webhook';
-import * as threshold from './threshold';
+import * as measurementThreshold from './measurement-threshold';
 import * as userEnvironmentSettings from './user-environment-settings';
 import * as translations from './translations';
 import * as updatableFieldConfigurations from './fields/updatable-field-configurations';
@@ -94,6 +95,7 @@ export {
   grid,
   issue,
   issueComment,
+  connectivityThreshold,
   issueTriggerRule,
   identityProvider,
   identityProviderRole,
@@ -129,7 +131,7 @@ export {
   supplierCertificate,
   supplierReportType,
   supplierWebhook,
-  threshold,
+  measurementThreshold,
   translations,
   userEnvironmentSettings,
   updatableFieldConfigurations,

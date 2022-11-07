@@ -7,7 +7,7 @@ import { schema as edgeSchema, Edge } from '../../models/edge';
 import { schema as gridSchema, Grid } from '../../models/grid';
 import { schema as deviceSchema, Device } from '../../models/device';
 import { schema as deviceTypeSchema, DeviceType } from '../../models/device-type';
-import { schema as thresholdSchema, Threshold } from '../../models/threshold';
+import { schema as measurementThresholdSchema, MeasurementThreshold } from '../../models/measurement-threshold';
 import { schema as quantitySchema, Quantity } from '../../models/quantity';
 
 interface Request {
@@ -29,7 +29,7 @@ interface Response {
   }[] | null;
   nextReportBefore: Date | null;
   thresholds: {
-    value: Threshold;
+    value: MeasurementThreshold;
     quantity: Quantity;
   }[];
   photo: string | null;
@@ -54,7 +54,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     })).required().allow(null),
     measurementCycle: Joi.valid(null).default(null), // for legacy purposes only
     thresholds: Joi.array().items(Joi.object().keys({
-      value: thresholdSchema.required(),
+      value: measurementThresholdSchema.required(),
       quantity: quantitySchema(apiVersion).required(),
     })).required(),
     photo: Joi.string().allow(null).required().description('download link for photo.')

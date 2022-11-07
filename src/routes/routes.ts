@@ -9,10 +9,12 @@ import * as environment from './environment/routes';
 import * as graph from './graph/routes';
 import * as issue from './issue/routes';
 import * as issueComment from './issue-comment/routes';
+import * as connectivityThreshold from './connectivity-threshold/routes';
 import * as issueTriggerRule from './issue-trigger-rule/routes';
 import * as label from './label/routes';
 import * as measurement from './measurement/routes';
 import * as measurementFilter from './measurement-filter/routes';
+import * as measurementThreshold from './measurement-threshold/routes';
 import * as quantity from './quantity/routes';
 import * as report from './report/routes';
 import * as reportType from './report-type/routes';
@@ -39,10 +41,12 @@ export {
   graph,
   issue,
   issueComment,
+  connectivityThreshold,
   issueTriggerRule,
   label,
   measurement,
   measurementFilter,
+  measurementThreshold,
   quantity,
   report,
   reportType,

@@ -11,6 +11,7 @@ import DeviceTypeRoute from './device-type';
 import GraphRoute from './graph';
 import IssueRoute from './issue';
 import IssueCommentRoute from './issue-comment';
+import ConnectivityThresholdRoute from './connectivity-threshold';
 import IssueTriggerRuleRoute from './issue-trigger-rule';
 import LabelRoute from './label';
 import MeasurementRoute from './measurement';
@@ -22,6 +23,7 @@ import SettingsRoute from './settings';
 import SubscriptionRoute from './subscription';
 import SuggestionsRoute from './suggestions';
 import SupplierRoute from './supplier';
+import MeasurementThresholdRoute from './measurement-threshold';
 import SupplierActivityRoute from './supplier-activity';
 import SupplierCertificateRoute from './supplier-certificate';
 import SupplierReportTypeRoute from './supplier-report-type';
@@ -52,6 +54,8 @@ class Routes {
 
   issueComment: IssueCommentRoute;
 
+  connectivityThreshold: ConnectivityThresholdRoute;
+
   issueTriggerRule: IssueTriggerRuleRoute;
 
   label: LabelRoute;
@@ -59,6 +63,8 @@ class Routes {
   measurement: MeasurementRoute;
 
   measurementFilter: MeasurementFilterRoute;
+
+  measurementThreshold: MeasurementThresholdRoute;
 
   quantity: QuantityRoute;
 
@@ -98,10 +104,12 @@ class Routes {
     this.graph = new GraphRoute(comms);
     this.issue = new IssueRoute(comms);
     this.issueComment = new IssueCommentRoute(comms);
+    this.connectivityThreshold = new ConnectivityThresholdRoute(comms);
     this.issueTriggerRule = new IssueTriggerRuleRoute(comms);
     this.label = new LabelRoute(comms);
     this.measurement = new MeasurementRoute(comms);
     this.measurementFilter = new MeasurementFilterRoute(comms);
+    this.measurementThreshold = new MeasurementThresholdRoute(comms);
     this.quantity = new QuantityRoute(comms);
     this.report = new ReportRoute(comms);
     this.reportType = new ReportTypeRoute(comms);
@@ -131,10 +139,12 @@ export {
   GraphRoute,
   IssueRoute,
   IssueCommentRoute,
+  ConnectivityThresholdRoute,
   IssueTriggerRuleRoute,
   LabelRoute,
   MeasurementRoute,
   MeasurementFilterRoute,
+  MeasurementThresholdRoute,
   QuantityRoute,
   ReportRoute,
   ReportTypeRoute,

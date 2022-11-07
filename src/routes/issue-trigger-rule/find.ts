@@ -1,3 +1,5 @@
+// TODO withthegrid/platform-client/issues/1370 Gabriel: deprecated
+
 import Joi from 'joi';
 import { EffectiveTableQuery, TableQuery, tableQuerySchemaGenerator } from '../../comms/table-controller';
 import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
