@@ -406,7 +406,7 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
     tableText: {
       en: { singular: 'Group', plural: 'Groups' },
       nl: { singular: 'Groep', plural: 'Groepen' },
-      // TODO #1565 gabriel: replace the naming above with the following
+      // TODO gabriel: replace the naming above after the release and migration with the following
       // en: { singular: 'Location Group', plural: 'Location Groups' },
       // nl: { singular: 'Locatie Groep', plural: 'Locatie Groepen' },
     },
