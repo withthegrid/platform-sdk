@@ -480,7 +480,7 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
     tableKey: 'gridPin',
     tableText: {
       en: { singular: 'Group-Port', plural: 'Group-Ports' },
-      nl: { singular: 'Groep-Port', plural: 'Groep-Poorten' },
+      nl: { singular: 'Groep-Poort', plural: 'Groep-Poorten' },
     },
   },
   issue: {
@@ -1005,18 +1005,16 @@ function getColumnPlaceholder(
 
       return key === 'id'
         ? `${tableText}:${key}`
-        : `${tableText}:${
-          getTranslationString(
-            analyticsTables[tableName].fieldsWithTranslations[userLocale][name],
-          ).toLowerCase()
+        : `${tableText}:${getTranslationString(
+          analyticsTables[tableName].fieldsWithTranslations[userLocale][name],
+        ).toLowerCase()
         } "${key}"`;
     }
 
-    return `${tableText}:${
-      getTranslationString(
-        analyticsTables[tableName].fieldsWithTranslations[userLocale][remainder],
-      ).toLowerCase()
-    }`;
+    return `${tableText}:${getTranslationString(
+      analyticsTables[tableName].fieldsWithTranslations[userLocale][remainder],
+    ).toLowerCase()
+      }`;
   };
 
   return matchColumn<string>(column, {
