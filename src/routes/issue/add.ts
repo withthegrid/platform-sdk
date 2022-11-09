@@ -55,7 +55,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
         type: Joi.string().valid('thresholds').required(),
         quantityHashIds: Joi.array().items(Joi.string())
           .min(1)
-          .max(15)
+          .max(10)
           .required()
           .example(['sajia1']),
       }),
