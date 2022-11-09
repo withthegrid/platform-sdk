@@ -1,3 +1,10 @@
+## [17.63.1](https://github.com/withthegrid/platform-sdk/compare/v17.63.0...v17.63.1) (2022-11-09)
+
+
+### Bug Fixes
+
+* **issue.add:** reduce automation.quantity max to match update ([#369](https://github.com/withthegrid/platform-sdk/issues/369)) ([14cc680](https://github.com/withthegrid/platform-sdk/commit/14cc6808b4a56846131e5f2b5056f03eff670f19))
+
 ## [17.63.0](https://github.com/withthegrid/platform-sdk/compare/v17.62.0...v17.63.0) (2022-11-09)
 
 
