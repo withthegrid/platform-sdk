@@ -1013,8 +1013,7 @@ function getColumnPlaceholder(
 
     return `${tableText}:${getTranslationString(
       analyticsTables[tableName].fieldsWithTranslations[userLocale][remainder],
-    ).toLowerCase()
-      }`;
+    ).toLowerCase()}`;
   };
 
   return matchColumn<string>(column, {
