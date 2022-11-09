@@ -1,3 +1,10 @@
+## [17.63.0](https://github.com/withthegrid/platform-sdk/compare/v17.62.0...v17.63.0) (2022-11-09)
+
+
+### Features
+
+* platform 868 order and group pins ([#327](https://github.com/withthegrid/platform-sdk/issues/327)) ([99ce094](https://github.com/withthegrid/platform-sdk/commit/99ce094795a7e376243f056a361f2b7e57ddd222))
+
 ## [17.62.0](https://github.com/withthegrid/platform-sdk/compare/v17.61.0...v17.62.0) (2022-11-07)
 
 
