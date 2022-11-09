@@ -4,6 +4,8 @@ import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 import { schema as gridSchema, Grid } from '../../models/grid';
 import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
 
+// TODO srieding deprecated remove after https://github.com/withthegrid/platform-client/issues/1565
+// scope: entire file.
 interface Request {
   params: {
     hashId: string;

@@ -107,7 +107,10 @@ type TableKeys =
   | 'deviceType'
   | 'edge'
   | 'grid'
+  | 'pinGrid'
+  | 'pinGroupGrid'
   | 'gridPinGroup'
+  | 'gridPin'
   | 'issue'
   | 'measurement'
   | 'performanceMonth'
@@ -381,6 +384,57 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
       nl: { singular: 'Groep', plural: 'Groepen' },
     },
   },
+  pinGroupGrid: {
+    fields: ['hashId', 'createdAt', 'updatedAt', 'deletedAt'],
+    fieldsWithTranslations: {
+      en: {
+        hashId: { singular: 'ID', plural: 'IDs' },
+        fields: { singular: 'Form field', plural: 'Form fields' },
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        deletedAt: 'Deleted at',
+      },
+      nl: {
+        hashId: { singular: 'ID', plural: 'IDs' },
+        fields: { singular: 'Formulierveld', plural: 'Formuliervelden' },
+        createdAt: 'Aangemaakt op',
+        updatedAt: 'Bijgewerkt op',
+        deletedAt: 'Verwijderd op',
+      },
+    },
+    tableKey: 'pinGroupGrid',
+    tableText: {
+      en: { singular: 'Group', plural: 'Groups' },
+      nl: { singular: 'Groep', plural: 'Groepen' },
+      // TODO gabriel: replace the naming above after the release and migration with the following
+      // en: { singular: 'Location Group', plural: 'Location Groups' },
+      // nl: { singular: 'Locatie Groep', plural: 'Locatie Groepen' },
+    },
+  },
+  pinGrid: {
+    fields: ['hashId', 'createdAt', 'updatedAt', 'deletedAt'],
+    fieldsWithTranslations: {
+      en: {
+        hashId: { singular: 'ID', plural: 'IDs' },
+        fields: { singular: 'Form field', plural: 'Form fields' },
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        deletedAt: 'Deleted at',
+      },
+      nl: {
+        hashId: { singular: 'ID', plural: 'IDs' },
+        fields: { singular: 'Formulierveld', plural: 'Formuliervelden' },
+        createdAt: 'Aangemaakt op',
+        updatedAt: 'Bijgewerkt op',
+        deletedAt: 'Verwijderd op',
+      },
+    },
+    tableKey: 'pinGrid',
+    tableText: {
+      en: { singular: 'Port group', plural: 'Port groups' },
+      nl: { singular: 'Poort groep', plural: 'Poort groepen' },
+    },
+  },
   gridPinGroup: {
     fields: ['hashId', 'sort', 'createdAt', 'updatedAt', 'deletedAt'],
     fieldsWithTranslations: {
@@ -403,6 +457,30 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
     tableText: {
       en: { singular: 'Group-Location', plural: 'Group-Locations' },
       nl: { singular: 'Groep-Locatie', plural: 'Groep-Locaties' },
+    },
+  },
+  gridPin: {
+    fields: ['hashId', 'sort', 'createdAt', 'updatedAt', 'deletedAt'],
+    fieldsWithTranslations: {
+      en: {
+        hashId: { singular: 'ID', plural: 'IDs' },
+        sort: { singular: 'Sort', plural: 'Sorts' },
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        deletedAt: 'Deleted at',
+      },
+      nl: {
+        hashId: { singular: 'ID', plural: 'IDs' },
+        sort: { singular: 'Sortering', plural: 'Sorteringen' },
+        createdAt: 'Aangemaakt op',
+        updatedAt: 'Bijgewerkt op',
+        deletedAt: 'Verwijderd op',
+      },
+    },
+    tableKey: 'gridPin',
+    tableText: {
+      en: { singular: 'Group-Port', plural: 'Group-Ports' },
+      nl: { singular: 'Groep-Poort', plural: 'Groep-Poorten' },
     },
   },
   issue: {
@@ -927,18 +1005,15 @@ function getColumnPlaceholder(
 
       return key === 'id'
         ? `${tableText}:${key}`
-        : `${tableText}:${
-          getTranslationString(
-            analyticsTables[tableName].fieldsWithTranslations[userLocale][name],
-          ).toLowerCase()
+        : `${tableText}:${getTranslationString(
+          analyticsTables[tableName].fieldsWithTranslations[userLocale][name],
+        ).toLowerCase()
         } "${key}"`;
     }
 
-    return `${tableText}:${
-      getTranslationString(
-        analyticsTables[tableName].fieldsWithTranslations[userLocale][remainder],
-      ).toLowerCase()
-    }`;
+    return `${tableText}:${getTranslationString(
+      analyticsTables[tableName].fieldsWithTranslations[userLocale][remainder],
+    ).toLowerCase()}`;
   };
 
   return matchColumn<string>(column, {
