@@ -1,3 +1,10 @@
+## [17.63.2](https://github.com/withthegrid/platform-sdk/compare/v17.63.1...v17.63.2) (2022-11-10)
+
+
+### Bug Fixes
+
+* **label:** limit name length ([#371](https://github.com/withthegrid/platform-sdk/issues/371)) ([b3a7ff2](https://github.com/withthegrid/platform-sdk/commit/b3a7ff27c3ca9b51a020354a3dfd23894b4d49db))
+
 ## [17.63.1](https://github.com/withthegrid/platform-sdk/compare/v17.63.0...v17.63.1) (2022-11-09)
 
 

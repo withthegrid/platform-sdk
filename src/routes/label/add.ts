@@ -16,7 +16,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'post',
   path: '/',
   body: Joi.object().keys({
-    name: Joi.string().required().example('Fix this month'),
+    name: Joi.string().required().example('Fix this month').max(255),
     color: Joi.string().pattern(/^#[a-fA-F\d]{6}$/).required().description('#, followed by six hexadecimal characters')
       .example('#ff0000'),
   }).required(),
