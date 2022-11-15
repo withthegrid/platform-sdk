@@ -9,6 +9,7 @@ import { schema as quantitySchema, Quantity } from '../quantity';
 
 import { schema as supplierReportTypeSchema, SupplierReportType } from '../supplier-report-type';
 import { schema as fieldsFromServerSchema, FieldsFromServer } from '../fields/fields-from-server';
+import { schema as getDeviceFieldsSchema, GetDeviceFields } from './get-device-fields';
 
 interface ParseReport extends SupplierActivity<'parseReport'> {
   triggerData: {
@@ -22,7 +23,7 @@ interface ParseReport extends SupplierActivity<'parseReport'> {
     }[];
     fields?: FieldsFromServer;
   };
-  activities: (SetDeviceFields | ScheduleCommand)[];
+  activities: (SetDeviceFields | ScheduleCommand | GetDeviceFields)[];
 }
 
 const schema = (apiVersion: number): Joi.ObjectSchema => supplierActivityConstructor(
@@ -40,6 +41,7 @@ const schema = (apiVersion: number): Joi.ObjectSchema => supplierActivityConstru
   }).required(),
   Joi.alternatives().try(
     setDeviceFieldsSchema,
+    getDeviceFieldsSchema,
     scheduleCommandSchema(apiVersion),
   ),
 )

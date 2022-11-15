@@ -7,6 +7,7 @@ import { schema as markCommandAsSentSchema, MarkCommandAsSent } from './mark-com
 import { schema as parseReportSchema, ParseReport } from './parse-report';
 import { schema as sendRequestSchema, SendRequest } from './send-request';
 import { schema as setDeviceFieldsSchema, SetDeviceFields } from './set-device-fields';
+import { schema as getDeviceFieldsSchema, GetDeviceFields } from './get-device-fields';
 import { schema as expectNextReportBeforeSchema, ExpectNextReportBefore } from './expect-next-report-before';
 
 type DeviceTypeHandlerActivity = DropCommand
@@ -16,6 +17,7 @@ type DeviceTypeHandlerActivity = DropCommand
   | ScheduleCommand
   | SendRequest
   | SetDeviceFields
+  | GetDeviceFields
   | ExpectNextReportBefore;
 
 const schema = (apiVersion: number): Joi.AlternativesSchema => Joi.alternatives().try(
@@ -26,6 +28,7 @@ const schema = (apiVersion: number): Joi.AlternativesSchema => Joi.alternatives(
   scheduleCommandSchema(apiVersion),
   sendRequestSchema,
   setDeviceFieldsSchema,
+  getDeviceFieldsSchema,
   expectNextReportBeforeSchema,
 );
 

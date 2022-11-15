@@ -54,6 +54,7 @@ import * as supplierActivityParseReport from './supplier-activities/parse-report
 import * as supplierActivityScheduleCommand from './supplier-activities/schedule-command';
 import * as supplierActivitySendRequest from './supplier-activities/send-request';
 import * as supplierActivitySetDeviceFields from './supplier-activities/set-device-fields';
+import * as supplierActivityGetDeviceFields from './supplier-activities/get-device-fields';
 import * as supplierCertificate from './supplier-certificate';
 import * as supplierReportType from './supplier-report-type';
 import * as supplierWebhook from './supplier-webhook';
@@ -128,6 +129,7 @@ export {
   supplierActivityScheduleCommand,
   supplierActivitySendRequest,
   supplierActivitySetDeviceFields,
+  supplierActivityGetDeviceFields,
   supplierCertificate,
   supplierReportType,
   supplierWebhook,
