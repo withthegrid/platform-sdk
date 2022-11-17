@@ -25,7 +25,7 @@ interface EffectiveRequest {
 }
 
 interface ResponseRow {
-  quantity: Pick<Quantity, 'name' | 'hashId'>;
+  quantity: Pick<Quantity, 'name' | 'hashId' | 'unit'>;
   location: {
     pinGroup: Pick<PinGroup, 'name' | 'hashId'>;
     pin: Pick<Pin, 'name' | 'hashId'>;
@@ -53,6 +53,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       quantity: Joi.object().keys({
         name: stringOrTranslations.required().example('Temperature'),
         hashId: Joi.string().required().example('wasd2'),
+        unit: Joi.string().allow(null).default(null)
+          .example('K')
+          .description('Will be displayed with an SI-prefix (eg. k or M) if relevant'),
       }).required(),
       location: Joi.object().keys({
         pinGroup: Joi.object().keys({
