@@ -1,3 +1,17 @@
+## [17.65.0](https://github.com/withthegrid/platform-sdk/compare/v17.64.0...v17.65.0) (2022-11-17)
+
+
+### Features
+
+* **label:** add get endpoint ([#376](https://github.com/withthegrid/platform-sdk/issues/376)) ([ff765a5](https://github.com/withthegrid/platform-sdk/commit/ff765a5c62da3aab1f58b2e34098044c924559fa))
+
+## [17.64.0](https://github.com/withthegrid/platform-sdk/compare/v17.63.2...v17.64.0) (2022-11-14)
+
+
+### Features
+
+* drop anomalous columns ([#370](https://github.com/withthegrid/platform-sdk/issues/370)) ([91b938d](https://github.com/withthegrid/platform-sdk/commit/91b938d7e3147ca9240a7c5fba8c086dd1aca0ed)), closes [withthegrid/platform#1714](https://github.com/withthegrid/platform/issues/1714)
+
 ## [17.63.2](https://github.com/withthegrid/platform-sdk/compare/v17.63.1...v17.63.2) (2022-11-10)
 
 
