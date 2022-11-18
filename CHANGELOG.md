@@ -1,3 +1,10 @@
+## [17.66.0](https://github.com/withthegrid/platform-sdk/compare/v17.65.0...v17.66.0) (2022-11-18)
+
+
+### Features
+
+* **mthresholds:** return quantity unit ([6b5a9ec](https://github.com/withthegrid/platform-sdk/commit/6b5a9ec0e89f5cc427b807a68f7daddf74baa72a))
+
 ## [17.65.0](https://github.com/withthegrid/platform-sdk/compare/v17.64.0...v17.65.0) (2022-11-17)
 
 
