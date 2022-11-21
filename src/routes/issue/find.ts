@@ -11,6 +11,7 @@ interface Query extends TableQuery {
   pinGroupHashId?: string | null;
   edgeHashId?: string | null;
   gridHashId?: string | null;
+  labelHashId?: string | null;
   mapLayers?: string[] | null;
 }
 
@@ -22,6 +23,8 @@ interface EffectiveQuery extends EffectiveTableQuery {
   pinGroupHashId: string | null;
   edgeHashId: string | null;
   gridHashId: string | null;
+  labelHashId: string | null;
+  mapLayers: string[] | null;
 }
 
 interface EffectiveRequest {
@@ -53,6 +56,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       pinGroupHashId: Joi.string().allow(null).default(null),
       edgeHashId: Joi.string().allow(null).default(null),
       gridHashId: Joi.string().allow(null).default(null),
+      labelHashId: Joi.string().allow(null).default(null),
       mapLayers: Joi.array().items(Joi.string()).allow(null).default(null),
     }),
   right: { environment: 'READ' },
