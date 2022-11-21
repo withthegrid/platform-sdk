@@ -24,14 +24,29 @@ interface ControllerGeneratorOptions {
 type ControllerGeneratorOptionsWithoutClientOrSupplier = ControllerGeneratorOptions
   & { right: Record<string, never> };
 
+type ENVIRONMENT_ADMIN = 'ENVIRONMENT_ADMIN';
+type EnvironmentRights = 'READ'
+  | 'STATIC'
+  | 'ISSUES'
+  | 'AUDIT_TRAIL'
+  | 'USERS'
+  | 'EXPORT'
+  | 'SENSORS'
+  | 'REPORTS'
+  | 'THRESHOLDS'
+  | 'IMPORTS'
+  | ENVIRONMENT_ADMIN;
+
+type SupplierRights = ENVIRONMENT_ADMIN;
+
 type ControllerGeneratorOptionsWithClient = ControllerGeneratorOptions
-  & { right: { environment: string } };
+  & { right: { environment: EnvironmentRights } };
 
 type ControllerGeneratorOptionsWithSupplier = ControllerGeneratorOptions
-  & { right: { supplier: string } };
+  & { right: { supplier: SupplierRights } };
 
 type ControllerGeneratorOptionsWithClientAndSupplier = ControllerGeneratorOptions
-  & { right: { environment: string; supplier: string } };
+  & { right: { environment: EnvironmentRights; supplier: SupplierRights } };
 
 type RequestParams = Record<string, string | number>;
 
