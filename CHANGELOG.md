@@ -1,3 +1,10 @@
+## [17.67.2](https://github.com/withthegrid/platform-sdk/compare/v17.67.1...v17.67.2) (2022-11-21)
+
+
+### Bug Fixes
+
+* issue.find links response is optional ([74ed9cd](https://github.com/withthegrid/platform-sdk/commit/74ed9cd7ca73cb4fb717367ebcb6ecc888ea4662))
+
 ## [17.67.1](https://github.com/withthegrid/platform-sdk/compare/v17.67.0...v17.67.1) (2022-11-21)
 
 
