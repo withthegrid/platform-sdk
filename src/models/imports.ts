@@ -15,20 +15,37 @@ type BaseImport = {
   deletedAt: Date | null
 }
 
+/**
+  * The import is being processed. There is no link available at that time.
+  */
 type ProcessingImport = BaseImport & {
   state: 'processing'
 }
 
+/**
+  * The processing of the import failed early.
+  * There could be several reasons for this such as invalid file format
+  */
 type InvalidImport = BaseImport & {
   state: 'invalid'
+  errors: Array<string>
 }
 
+/**
+  * The processing of the import failed on one or more rows.
+  * There is a link available for the provided XLSX file where failed rows
+  * have an exaplanation of the error.
+  */
 type ErroredImport = BaseImport & {
   state: 'errored'
   link: string
   processedAt: Date
 }
 
+/**
+  * The processing of the import is successful for all rows.
+  * There is a link available for the provided XLSX file.
+  */
 type SuccessfulImport = BaseImport & {
   state: 'success'
   link: string
@@ -59,6 +76,9 @@ const processingImportSchema = baseImportSchema.keys({
 
 const invalidImportSchema = baseImportSchema.keys({
   state: Joi.string().valid('invalid').required().example('invalid'),
+  errors: Joi.array().items(
+    Joi.string().required().example('The provided XLSX file is malformed'),
+  ).required(),
 });
 
 const erroredImportSchema = baseImportSchema.keys({
