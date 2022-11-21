@@ -7,7 +7,7 @@ import * as device from './device/routes';
 import * as deviceType from './device-type/routes';
 import * as environment from './environment/routes';
 import * as graph from './graph/routes';
-import * as imports from './imports/routes';
+import * as importRequest from './import-request/routes';
 import * as issue from './issue/routes';
 import * as issueComment from './issue-comment/routes';
 import * as connectivityThreshold from './connectivity-threshold/routes';
@@ -40,7 +40,7 @@ export {
   deviceType,
   environment,
   graph,
-  imports,
+  importRequest,
   issue,
   issueComment,
   connectivityThreshold,
