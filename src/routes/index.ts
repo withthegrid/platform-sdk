@@ -9,6 +9,7 @@ import CommandTypeRoute from './command-type';
 import DeviceRoute from './device';
 import DeviceTypeRoute from './device-type';
 import GraphRoute from './graph';
+import ImportsRoute from './imports';
 import IssueRoute from './issue';
 import IssueCommentRoute from './issue-comment';
 import ConnectivityThresholdRoute from './connectivity-threshold';
@@ -49,6 +50,8 @@ class Routes {
   environment: EnvironmentRoute;
 
   graph: GraphRoute;
+
+  imports: ImportsRoute;
 
   issue: IssueRoute;
 
@@ -102,6 +105,7 @@ class Routes {
     this.deviceType = new DeviceTypeRoute(comms);
     this.environment = new EnvironmentRoute(comms);
     this.graph = new GraphRoute(comms);
+    this.imports = new ImportsRoute(comms);
     this.issue = new IssueRoute(comms);
     this.issueComment = new IssueCommentRoute(comms);
     this.connectivityThreshold = new ConnectivityThresholdRoute(comms);
@@ -137,6 +141,7 @@ export {
   DeviceTypeRoute,
   EnvironmentRoute,
   GraphRoute,
+  ImportsRoute,
   IssueRoute,
   IssueCommentRoute,
   ConnectivityThresholdRoute,
