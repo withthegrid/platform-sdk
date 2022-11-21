@@ -12,7 +12,7 @@ type BaseImport = {
   hashId: string
   createdAt: Date
   updatedAt: Date
-  deletedAt: Date | null
+  deletedAt?: Date | null
 }
 
 /**
@@ -49,7 +49,7 @@ type ErroredImport = BaseImport & {
 type SuccessfulImport = BaseImport & {
   state: 'success'
   link: string
-  processedAt: string
+  processedAt: Date
 }
 
 type Import = ProcessingImport
@@ -78,14 +78,17 @@ const invalidImportSchema = baseImportSchema.keys({
   state: Joi.string().valid('invalid').required().example('invalid'),
   errors: Joi.array().items(
     Joi.string().required().example('The provided XLSX file is malformed'),
-  ).required(),
+  )
+    .required()
+    .min(1),
 });
 
 const erroredImportSchema = baseImportSchema.keys({
   state: Joi.string().valid('errored').required().example('errored'),
   link: Joi
     .string()
-    .description('Only available at status available')
+    .description('Link to the import file with errors on failed rows')
+    .required()
     .example('https://api.withthegrid.com/file/dp53ly?sig=53516c7771191b37352e6636e1d34c3d1038a25157dd9a16d995b2c470e37492&rt=client&rh=wyvzy7&uh=y33lmy'),
   processedAt: Joi.date().required().example('2019-12-31T15:23Z'),
 });
@@ -94,7 +97,8 @@ const successfulImportSchema = baseImportSchema.keys({
   state: Joi.string().valid('success').required().example('success'),
   link: Joi
     .string()
-    .description('Only available at status available')
+    .description('Link to the import file')
+    .required()
     .example('https://api.withthegrid.com/file/dp53ly?sig=53516c7771191b37352e6636e1d34c3d1038a25157dd9a16d995b2c470e37492&rt=client&rh=wyvzy7&uh=y33lmy'),
   processedAt: Joi.date().required().example('2019-12-31T15:23Z'),
 });
