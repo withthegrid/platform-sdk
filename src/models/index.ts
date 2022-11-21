@@ -21,6 +21,7 @@ import * as fieldToServerFull from './fields/field-to-server-full';
 import * as fileFromServer from './file-from-server';
 import * as fileToServer from './file-to-server';
 import * as grid from './grid';
+import * as imports from './imports';
 import * as issue from './issue';
 import * as issueComment from './issue-comment';
 import * as connectivityThreshold from './connectivity-threshold';
@@ -93,6 +94,7 @@ export {
   fileFromServer,
   fileToServer,
   grid,
+  imports,
   issue,
   issueComment,
   connectivityThreshold,
