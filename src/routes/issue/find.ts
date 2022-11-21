@@ -34,7 +34,7 @@ interface ResponseRow {
   assignedUserName: string | null;
   pinGroup: PinGroup;
   subscribed: boolean;
-  links: { // TODO withthegrid/platform#1586 Rob: deprecated
+  links?: { // TODO withthegrid/platform#1586 Rob: deprecated
     pinGroup: PinGroup;
     pin: Pin | null;
   }[];
@@ -70,7 +70,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       links: Joi.array().min(1).items(Joi.object().keys({
         pinGroup: pinGroupSchema.required(),
         pin: pinSchema.allow(null).required(),
-      })).required(),
+      })),
     })).required(),
   }).required(),
   description: 'Search through issues',
