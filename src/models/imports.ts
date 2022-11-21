@@ -34,7 +34,7 @@ type InvalidImport = BaseImport & {
 /**
   * The processing of the import failed on one or more rows.
   * There is a link available for the provided XLSX file where failed rows
-  * have an exaplanation of the error.
+  * have an explanation of the error.
   */
 type ErroredImport = BaseImport & {
   state: 'errored'
