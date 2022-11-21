@@ -1,3 +1,10 @@
+## [17.68.0](https://github.com/withthegrid/platform-sdk/compare/v17.67.2...v17.68.0) (2022-11-21)
+
+
+### Features
+
+* labelHashId in issue.find ([1c2228b](https://github.com/withthegrid/platform-sdk/commit/1c2228b208d5df1d5d3453d4811961f9e6b7cc19))
+
 ## [17.67.2](https://github.com/withthegrid/platform-sdk/compare/v17.67.1...v17.67.2) (2022-11-21)
 
 
