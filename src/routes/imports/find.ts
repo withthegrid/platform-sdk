@@ -1,9 +1,7 @@
 import Joi from 'joi';
 import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
-
-import { importSchema, Import } from '../../models/imports';
-
 import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../../comms/table-controller';
+import { importSchema, Import } from '../../models/imports';
 
 type Query = TableQuery;
 
