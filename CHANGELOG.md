@@ -1,3 +1,10 @@
+## [17.67.1](https://github.com/withthegrid/platform-sdk/compare/v17.67.0...v17.67.1) (2022-11-21)
+
+
+### Bug Fixes
+
+* drop deprecated issue columns from analytics ([b382160](https://github.com/withthegrid/platform-sdk/commit/b38216052e18b0291b550e169b69bef5efb4cfaf)), closes [withthegrid/platform#1586](https://github.com/withthegrid/platform/issues/1586)
+
 ## [17.67.0](https://github.com/withthegrid/platform-sdk/compare/v17.66.0...v17.67.0) (2022-11-21)
 
 
