@@ -1,3 +1,10 @@
+## [17.67.0](https://github.com/withthegrid/platform-sdk/compare/v17.66.0...v17.67.0) (2022-11-21)
+
+
+### Features
+
+* automation and closedAt in issue analytics table ([3590ac9](https://github.com/withthegrid/platform-sdk/commit/3590ac9ba61110497abda9115ad869c108b80cf0)), closes [withthegrid/platform#1586](https://github.com/withthegrid/platform/issues/1586)
+
 ## [17.66.0](https://github.com/withthegrid/platform-sdk/compare/v17.65.0...v17.66.0) (2022-11-18)
 
 
