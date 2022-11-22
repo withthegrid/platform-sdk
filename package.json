@@ -60,7 +60,7 @@
     "ts-jest": "^29.0.3",
     "ts-node": "^10.8.0",
     "typescript": "^4.8.4",
-    "typescript-json-schema": "^0.54.0",
+    "typescript-json-schema": "^0.55.0",
     "widdershins": "^4.0.1"
   },
   "engines": {
