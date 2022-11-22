@@ -9,6 +9,10 @@ type Template = {
   reportTypeHashIds: Array<EnvironmentReportType['hashId']>,
 }
 
+// kept internal for now, but not excluded for an export later down the road
+const IMPORT_STATES = ['processing', 'invalid', 'errored', 'success'] as const;
+type ImportStates = typeof IMPORT_STATES[number];
+
 type BaseImportRequest = {
   name: string
   hashId: string
@@ -16,6 +20,7 @@ type BaseImportRequest = {
   createdAt: Date
   updatedAt: Date
   deletedAt?: Date | null
+  state: ImportStates
 }
 
 /**
@@ -121,6 +126,7 @@ const importRequestSchema = (
 export {
   templateSchema,
   Template,
+  ImportStates,
   ProcessingImportRequest,
   InvalidImportRequest,
   ErroredImportRequest,
