@@ -2,6 +2,7 @@ import Joi from 'joi';
 import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../../comms/table-controller';
 import { importRequestSchema, ImportRequest } from '../../models/import-request';
+import { User } from '../../models/user';
 
 type Query = TableQuery;
 
@@ -16,7 +17,9 @@ interface EffectiveRequest {
 }
 
 interface ResponseRow {
-  import: ImportRequest,
+  import: ImportRequest & {
+    createdByUsername: User['name'];
+  };
 }
 
 interface Response {
