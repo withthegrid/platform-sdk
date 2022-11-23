@@ -10,7 +10,7 @@ type Template = {
 }
 
 // kept internal for now, but not excluded for an export later down the road
-const IMPORT_STATES = ['processing', 'invalid', 'errored', 'success'] as const;
+const IMPORT_STATES = ['processing', 'invalid', 'errored', 'success', 'waiting', 'deleted'] as const;
 type ImportStates = typeof IMPORT_STATES[number];
 
 type BaseImportRequest = {
@@ -60,10 +60,29 @@ type SuccessfulImportRequest = BaseImportRequest & {
   processedAt: Date
 }
 
+/**
+ * The import is old and got deleted.
+ * There is no longer file available for downloading.
+ */
+type DeletedImportRequest = BaseImportRequest & {
+  state: 'deleted'
+  processedAt: Date
+}
+
+/**
+ * The import was accepted by the server but the processing has not started yet.
+ */
+type WaitingImportRequest = BaseImportRequest & {
+  state: 'waiting'
+  file: FileFromServer
+}
+
 type ImportRequest = ProcessingImportRequest
   | InvalidImportRequest
   | ErroredImportRequest
   | SuccessfulImportRequest
+  | DeletedImportRequest
+  | WaitingImportRequest
 
 const templateSchema = Joi.object().keys({
   pinGroupHashIds: Joi.array().items(Joi.string().required().example('5x2znek')).required(),
@@ -137,4 +156,5 @@ export {
   invalidImportRequestSchema,
   erroredImportRequestSchema,
   successfulImportRequestSchema,
+  baseImportRequestSchema,
 };
