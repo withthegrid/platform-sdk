@@ -133,6 +133,20 @@ const successfulImportRequestSchema = (
   processedAt: Joi.date().required().example('2019-12-31T15:23Z'),
 });
 
+const deletedImportRequestSchema = (
+  extraKeys?: Joi.PartialSchemaMap<any>,
+): Joi.ObjectSchema => baseImportRequestSchema(extraKeys).keys({
+  state: Joi.string().valid('deleted').required().example('deleted'),
+  processedAt: Joi.date().required().example('2019-12-31T15:23Z'),
+});
+
+const waitingImportRequestSchema = (
+  extraKeys?: Joi.PartialSchemaMap<any>,
+): Joi.ObjectSchema => baseImportRequestSchema(extraKeys).keys({
+  state: Joi.string().valid('waiting').required().example('waiting'),
+  file: fileFromServer.required(),
+});
+
 const importRequestSchema = (
   extraKeys?: Joi.PartialSchemaMap<any>,
 ): Joi.AlternativesSchema => Joi.alternatives().try(
@@ -140,6 +154,8 @@ const importRequestSchema = (
   invalidImportRequestSchema(extraKeys),
   erroredImportRequestSchema(extraKeys),
   successfulImportRequestSchema(extraKeys),
+  deletedImportRequestSchema(extraKeys),
+  waitingImportRequestSchema(extraKeys),
 ).required();
 
 export {
