@@ -166,6 +166,8 @@ export {
   InvalidImportRequest,
   ErroredImportRequest,
   SuccessfulImportRequest,
+  WaitingImportRequest,
+  DeletedImportRequest,
   ImportRequest,
   importRequestSchema,
   processingImportRequestSchema,
@@ -173,4 +175,6 @@ export {
   erroredImportRequestSchema,
   successfulImportRequestSchema,
   baseImportRequestSchema,
+  waitingImportRequestSchema,
+  deletedImportRequestSchema,
 };
