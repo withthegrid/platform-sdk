@@ -3,8 +3,8 @@ import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 import { User } from '../../models/user';
 import { FileToServer, schema as fileToServer } from '../../models/file-to-server';
 import {
-  ProcessingImportRequest,
-  processingImportRequestSchema,
+  WaitingImportRequest,
+  waitingImportRequestSchema,
   InvalidImportRequest,
   invalidImportRequestSchema,
 } from '../../models/import-request';
@@ -13,7 +13,7 @@ type Request = {
   body: Required<FileToServer>;
 }
 
-type Response = (ProcessingImportRequest | InvalidImportRequest) & {
+type Response = (WaitingImportRequest | InvalidImportRequest) & {
   createdByUsername: User['name'];
 };
 
@@ -25,7 +25,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     .required(),
   right: { environment: 'IMPORTS' },
   response: Joi.alternatives().try(
-    processingImportRequestSchema({
+    waitingImportRequestSchema({
       createdByUsername: Joi.string().required().example('John Doe'),
     }),
     invalidImportRequestSchema({
