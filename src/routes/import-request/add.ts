@@ -5,15 +5,13 @@ import { FileToServer, schema as fileToServer } from '../../models/file-to-serve
 import {
   WaitingImportRequest,
   waitingImportRequestSchema,
-  InvalidImportRequest,
-  invalidImportRequestSchema,
 } from '../../models/import-request';
 
 type Request = {
   body: Required<FileToServer>;
 }
 
-type Response = (WaitingImportRequest | InvalidImportRequest) & {
+type Response = (WaitingImportRequest) & {
   createdByUsername: User['name'];
 };
 
@@ -24,14 +22,10 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     .options({ presence: 'required' })
     .required(),
   right: { environment: 'IMPORTS' },
-  response: Joi.alternatives().try(
+  response:
     waitingImportRequestSchema({
       createdByUsername: Joi.string().required().example('John Doe'),
     }),
-    invalidImportRequestSchema({
-      createdByUsername: Joi.string().required().example('John Doe'),
-    }),
-  ),
   description: 'Uploads an import file',
 };
 
