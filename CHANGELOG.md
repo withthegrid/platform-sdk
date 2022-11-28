@@ -1,3 +1,38 @@
+## [17.68.0](https://github.com/withthegrid/platform-sdk/compare/v17.67.2...v17.68.0) (2022-11-21)
+
+
+### Features
+
+* labelHashId in issue.find ([1c2228b](https://github.com/withthegrid/platform-sdk/commit/1c2228b208d5df1d5d3453d4811961f9e6b7cc19))
+
+## [17.67.2](https://github.com/withthegrid/platform-sdk/compare/v17.67.1...v17.67.2) (2022-11-21)
+
+
+### Bug Fixes
+
+* issue.find links response is optional ([74ed9cd](https://github.com/withthegrid/platform-sdk/commit/74ed9cd7ca73cb4fb717367ebcb6ecc888ea4662))
+
+## [17.67.1](https://github.com/withthegrid/platform-sdk/compare/v17.67.0...v17.67.1) (2022-11-21)
+
+
+### Bug Fixes
+
+* drop deprecated issue columns from analytics ([b382160](https://github.com/withthegrid/platform-sdk/commit/b38216052e18b0291b550e169b69bef5efb4cfaf)), closes [withthegrid/platform#1586](https://github.com/withthegrid/platform/issues/1586)
+
+## [17.67.0](https://github.com/withthegrid/platform-sdk/compare/v17.66.0...v17.67.0) (2022-11-21)
+
+
+### Features
+
+* automation and closedAt in issue analytics table ([3590ac9](https://github.com/withthegrid/platform-sdk/commit/3590ac9ba61110497abda9115ad869c108b80cf0)), closes [withthegrid/platform#1586](https://github.com/withthegrid/platform/issues/1586)
+
+## [17.66.0](https://github.com/withthegrid/platform-sdk/compare/v17.65.0...v17.66.0) (2022-11-18)
+
+
+### Features
+
+* **mthresholds:** return quantity unit ([6b5a9ec](https://github.com/withthegrid/platform-sdk/commit/6b5a9ec0e89f5cc427b807a68f7daddf74baa72a))
+
 ## [17.65.0](https://github.com/withthegrid/platform-sdk/compare/v17.64.0...v17.65.0) (2022-11-17)
 
 
