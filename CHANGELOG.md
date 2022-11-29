@@ -1,3 +1,10 @@
+## [17.69.0](https://github.com/withthegrid/platform-sdk/compare/v17.68.0...v17.69.0) (2022-11-29)
+
+
+### Features
+
+* **formField:** add hashId type ([e52cf1a](https://github.com/withthegrid/platform-sdk/commit/e52cf1a006cd2fee7dfe919311a2cfa3cdf22da6))
+
 ## [17.68.0](https://github.com/withthegrid/platform-sdk/compare/v17.67.2...v17.68.0) (2022-11-21)
 
 
