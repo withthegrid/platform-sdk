@@ -45,7 +45,7 @@
     "@types/qs": "^6.9.7",
     "@types/semantic-release": "^17.2.3",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
-    "@typescript-eslint/parser": "^5.44.0",
+    "@typescript-eslint/parser": "^5.45.0",
     "conventional-changelog-conventionalcommits": "^5.0.0",
     "conventional-changelog-writer": "^5.0.1",
     "conventional-commits-parser": "^3.2.4",
