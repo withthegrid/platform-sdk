@@ -20,8 +20,8 @@ const commonBaseFieldConfigurationSchema = Joi.object().keys({
 });
 
 const prefixesMixin = {
-  prefix: stringOrTranslationsSchema.description('Not available for inputTypes \'radio\', \'switch\', \'checkbox\', \'file\' and \'files\''),
-  suffix: stringOrTranslationsSchema.description('Not available for inputTypes \'radio\', \'switch\', \'checkbox\', \'file\' and \'files\''),
+  prefix: stringOrTranslationsSchema.description('Not available for inputTypes \'radio\', \'switch\', \'checkbox\', \'pinHashId\', \'pinGroupHashId\', \'file\' and \'files\''),
+  suffix: stringOrTranslationsSchema.description('Not available for inputTypes \'radio\', \'switch\', \'checkbox\', \'pinHashId\', \'pinGroupHashId\', \'file\' and \'files\''),
 };
 
 const schema = (apiVersion: number): Joi.AlternativesSchema => {
@@ -178,6 +178,12 @@ const schema = (apiVersion: number): Joi.AlternativesSchema => {
       inputType: Joi.string().valid('file', 'files').required(),
       ...deprecatedValueOptions,
     }),
+    commonBaseFieldConfigurationSchema.keys({
+      type: Joi.string().valid('hashId').default('hashId').required(),
+      inputType: Joi.string().valid('pinGroupHashId', 'pinHashId').default('pinGroupHashId').required(),
+      ...deprecatedDefaultValue,
+
+    }),
   )
     .tag('baseFieldConfiguration')
     .description('Defines which data can be stored in form fields.');
@@ -306,6 +312,11 @@ interface FieldConfigurationFiles extends SharedBaseFieldConfiguration {
   inputType: 'files';
 }
 
+interface FieldConfigurationHashIdSelect extends SharedBaseFieldConfiguration {
+  inputType: 'pinGroupHashId' | 'pinHashId';
+  type: 'hashId';
+}
+
 type BaseFieldConfiguration = FieldConfigurationStringText
   | FieldConfigurationStringSelect
   | FieldConfigurationStringRadio
@@ -317,7 +328,8 @@ type BaseFieldConfiguration = FieldConfigurationStringText
   | FieldConfigurationBooleanSelect
   | FieldConfigurationBooleanRadio
   | FieldConfigurationFile
-  | FieldConfigurationFiles;
+  | FieldConfigurationFiles
+  | FieldConfigurationHashIdSelect;
 
 type BaseFieldConfigurations = BaseFieldConfiguration[];
 
