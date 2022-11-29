@@ -1,3 +1,10 @@
+## [17.70.0](https://github.com/withthegrid/platform-sdk/compare/v17.69.0...v17.70.0) (2022-11-29)
+
+
+### Features
+
+* **anlytics:** update automation type strings ([#390](https://github.com/withthegrid/platform-sdk/issues/390)) ([ea88a41](https://github.com/withthegrid/platform-sdk/commit/ea88a416a18427c5b9f668804214536d99de26e1))
+
 ## [17.69.0](https://github.com/withthegrid/platform-sdk/compare/v17.68.0...v17.69.0) (2022-11-29)
 
 
