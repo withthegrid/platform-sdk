@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
-import { FileFromServer, schema as fileToServer } from '../../models/file-from-server';
+import { FileFromServer, schema as fileFromServer } from '../../models/file-from-server';
 import { Template } from '../../models/import-request';
 
 type Request = {
@@ -25,7 +25,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       .description('A list of report type HashIDs'),
   }).required(),
   right: { environment: 'IMPORTS' },
-  response: fileToServer.required(),
+  response: fileFromServer.required(),
   description: 'Generates an import template',
 };
 
