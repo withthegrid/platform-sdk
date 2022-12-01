@@ -1,3 +1,10 @@
+## [17.71.0](https://github.com/withthegrid/platform-sdk/compare/v17.70.0...v17.71.0) (2022-12-01)
+
+
+### Features
+
+* add tableController to measurement-threshold ([#384](https://github.com/withthegrid/platform-sdk/issues/384)) ([f4e8e08](https://github.com/withthegrid/platform-sdk/commit/f4e8e085b97542075058294ccee3e3296c7e7997))
+
 ## [17.70.0](https://github.com/withthegrid/platform-sdk/compare/v17.69.0...v17.70.0) (2022-11-29)
 
 
