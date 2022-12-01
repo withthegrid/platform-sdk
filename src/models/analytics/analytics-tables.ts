@@ -104,7 +104,6 @@ type TableKeys =
   | 'device'
   | 'deviceLink'
   | 'deviceInstallationUser'
-  | 'issueAssignedUser'
   | 'deviceType'
   | 'edge'
   | 'grid'
@@ -113,6 +112,7 @@ type TableKeys =
   | 'gridPinGroup'
   | 'gridPin'
   | 'issue'
+  | 'issueAssignedUser'
   | 'measurement'
   | 'performanceMonth'
   | 'pin'
@@ -300,24 +300,6 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
     tableText: {
       en: { singular: 'Device installation/configuration user', plural: 'Device installation/configuration users' },
       nl: { singular: 'Device installatie/configuratie gebruiker', plural: 'Device installatie/configuratie gebruikers' },
-    },
-  },
-  issueAssignedUser: {
-    fields: ['hashId', 'name'],
-    fieldsWithTranslations: {
-      en: {
-        hashId: { singular: 'ID', plural: 'IDs' },
-        name: { singular: 'Name', plural: 'Names' },
-      },
-      nl: {
-        hashId: { singular: 'ID', plural: 'IDs' },
-        name: { singular: 'Naam', plural: 'Namen' },
-      },
-    },
-    tableKey: 'issueAssignedUser',
-    tableText: {
-      en: { singular: 'Issue assigned user', plural: 'Issue assigned users' },
-      nl: { singular: 'Issue toegewezen aan gebruiker', plural: 'Issue toegewezen aan gebruikers' },
     },
   },
   deviceType: {
@@ -520,7 +502,7 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
         title: { singular: 'Title', plural: 'Titles' },
         level: { singular: 'Priority', plural: 'Priorities' },
         automation: { singular: 'Automation type', plural: 'Automation types' },
-        assignedUserId: { singular: 'Assigned user', plural: 'Assigned users' },
+        assignedUserId: { singular: 'Assigned user ID', plural: 'Assigned user IDs' },
         closedAt: 'Closed at',
         createdAt: 'Created at',
         updatedAt: 'Updated at',
@@ -534,7 +516,7 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
         startAt: 'Begon op',
         endAt: 'Eindigde op',
         automation: { singular: 'Automatisering type', plural: 'Automatisering types' },
-        assignedUserId: { singular: 'Toegewezen aan', plural: 'Toegewezen aan' },
+        assignedUserId: { singular: 'Toegewezen aan ID', plural: 'Toegewezen aan IDs' },
         closedAt: 'Gesloten op',
         createdAt: 'Aangemaakt op',
         updatedAt: 'Bijgewerkt op',
@@ -545,6 +527,24 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
     tableText: {
       en: { singular: 'Issue', plural: 'Issues' },
       nl: { singular: 'Issue', plural: 'Issues' },
+    },
+  },
+  issueAssignedUser: {
+    fields: ['hashId', 'name'],
+    fieldsWithTranslations: {
+      en: {
+        hashId: { singular: 'ID', plural: 'IDs' },
+        name: { singular: 'Name', plural: 'Names' },
+      },
+      nl: {
+        hashId: { singular: 'ID', plural: 'IDs' },
+        name: { singular: 'Naam', plural: 'Namen' },
+      },
+    },
+    tableKey: 'issueAssignedUser',
+    tableText: {
+      en: { singular: 'Issue assigned user', plural: 'Issue assigned users' },
+      nl: { singular: 'Issue toegewezen aan gebruiker', plural: 'Issue toegewezen aan gebruikers' },
     },
   },
   measurement: {
