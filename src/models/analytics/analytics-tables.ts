@@ -104,6 +104,7 @@ type TableKeys =
   | 'device'
   | 'deviceLink'
   | 'deviceInstallationUser'
+  | 'issueAssignedUser'
   | 'deviceType'
   | 'edge'
   | 'grid'
@@ -301,6 +302,24 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
       nl: { singular: 'Device installatie/configuratie gebruiker', plural: 'Device installatie/configuratie gebruikers' },
     },
   },
+  issueAssignedUser: {
+    fields: ['hashId', 'name'],
+    fieldsWithTranslations: {
+      en: {
+        hashId: { singular: 'ID', plural: 'IDs' },
+        name: { singular: 'Name', plural: 'Names' },
+      },
+      nl: {
+        hashId: { singular: 'ID', plural: 'IDs' },
+        name: { singular: 'Naam', plural: 'Namen' },
+      },
+    },
+    tableKey: 'issueAssignedUser',
+    tableText: {
+      en: { singular: 'Issue assigned user', plural: 'Issue assigned users' },
+      nl: { singular: 'Issue toegewezen aan gebruiker', plural: 'Issue toegewezen aan gebruikers' },
+    },
+  },
   deviceType: {
     fields: ['hashId', 'name', 'createdAt', 'updatedAt', 'deletedAt'],
     fieldsWithTranslations: {
@@ -489,6 +508,7 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
       'title',
       'level',
       'automation',
+      'assignedUserId',
       'closedAt',
       'createdAt',
       'updatedAt',
@@ -500,6 +520,7 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
         title: { singular: 'Title', plural: 'Titles' },
         level: { singular: 'Priority', plural: 'Priorities' },
         automation: { singular: 'Automation type', plural: 'Automation types' },
+        assignedUserId: { singular: 'Assigned user', plural: 'Assigned users' },
         closedAt: 'Closed at',
         createdAt: 'Created at',
         updatedAt: 'Updated at',
@@ -513,6 +534,7 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
         startAt: 'Begon op',
         endAt: 'Eindigde op',
         automation: { singular: 'Automatisering type', plural: 'Automatisering types' },
+        assignedUserId: { singular: 'Toegewezen aan', plural: 'Toegewezen aan' },
         closedAt: 'Gesloten op',
         createdAt: 'Aangemaakt op',
         updatedAt: 'Bijgewerkt op',
