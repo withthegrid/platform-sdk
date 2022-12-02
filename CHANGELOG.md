@@ -1,3 +1,10 @@
+## [17.72.0](https://github.com/withthegrid/platform-sdk/compare/v17.71.0...v17.72.0) (2022-12-02)
+
+
+### Features
+
+* **analytics:** add issueAssignedUser table ([#391](https://github.com/withthegrid/platform-sdk/issues/391)) ([5e2a1e3](https://github.com/withthegrid/platform-sdk/commit/5e2a1e3ac3b32a523e3e191e42f420260d5b18cf))
+
 ## [17.71.0](https://github.com/withthegrid/platform-sdk/compare/v17.70.0...v17.71.0) (2022-12-01)
 
 
