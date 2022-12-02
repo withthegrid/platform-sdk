@@ -544,7 +544,7 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
     tableKey: 'issueAssignedUser',
     tableText: {
       en: { singular: 'Issue assigned user', plural: 'Issue assigned users' },
-      nl: { singular: 'Issue toegewezen aan gebruiker', plural: 'Issue toegewezen aan gebruikers' },
+      nl: { singular: 'Issue toegewezen aan', plural: 'Issue toegewezen aan' },
     },
   },
   measurement: {
