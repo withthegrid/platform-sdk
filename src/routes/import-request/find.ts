@@ -30,7 +30,7 @@ interface Response {
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'get',
   path: '/',
-  query: tableQuerySchemaGenerator(Joi.string().valid('hashId', 'name', 'state').default('name')),
+  query: tableQuerySchemaGenerator(Joi.string().valid('hashId', 'name', 'state', 'updatedAt', 'createdAt').default('name')),
   right: { environment: 'USERS', supplier: 'ENVIRONMENT_ADMIN' },
   response: Joi.object().keys({
     nextPageOffset: Joi.string().allow(null).example(null).required()

@@ -17,12 +17,16 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       Joi.string().required().example('5x2znek'),
     )
       .required()
-      .description('A list of location HashIDs'),
+      .description('A list of location HashIDs')
+      .min(1)
+      .max(200),
     reportTypeHashIds: Joi.array().items(
       Joi.string().required().example('5x2znek'),
     )
       .required()
-      .description('A list of report type HashIDs'),
+      .description('A list of report type HashIDs')
+      .min(1)
+      .max(5),
   }).required(),
   right: { environment: 'IMPORTS' },
   response: fileFromServer.required(),
