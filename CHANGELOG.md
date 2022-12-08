@@ -1,3 +1,31 @@
+## [17.72.0](https://github.com/withthegrid/platform-sdk/compare/v17.71.0...v17.72.0) (2022-12-02)
+
+
+### Features
+
+* **analytics:** add issueAssignedUser table ([#391](https://github.com/withthegrid/platform-sdk/issues/391)) ([5e2a1e3](https://github.com/withthegrid/platform-sdk/commit/5e2a1e3ac3b32a523e3e191e42f420260d5b18cf))
+
+## [17.71.0](https://github.com/withthegrid/platform-sdk/compare/v17.70.0...v17.71.0) (2022-12-01)
+
+
+### Features
+
+* add tableController to measurement-threshold ([#384](https://github.com/withthegrid/platform-sdk/issues/384)) ([f4e8e08](https://github.com/withthegrid/platform-sdk/commit/f4e8e085b97542075058294ccee3e3296c7e7997))
+
+## [17.70.0](https://github.com/withthegrid/platform-sdk/compare/v17.69.0...v17.70.0) (2022-11-29)
+
+
+### Features
+
+* **anlytics:** update automation type strings ([#390](https://github.com/withthegrid/platform-sdk/issues/390)) ([ea88a41](https://github.com/withthegrid/platform-sdk/commit/ea88a416a18427c5b9f668804214536d99de26e1))
+
+## [17.69.0](https://github.com/withthegrid/platform-sdk/compare/v17.68.0...v17.69.0) (2022-11-29)
+
+
+### Features
+
+* **formField:** add hashId type ([e52cf1a](https://github.com/withthegrid/platform-sdk/commit/e52cf1a006cd2fee7dfe919311a2cfa3cdf22da6))
+
 ## [17.68.0](https://github.com/withthegrid/platform-sdk/compare/v17.67.2...v17.68.0) (2022-11-21)
 
 

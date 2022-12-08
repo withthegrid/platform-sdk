@@ -112,6 +112,7 @@ type TableKeys =
   | 'gridPinGroup'
   | 'gridPin'
   | 'issue'
+  | 'issueAssignedUser'
   | 'measurement'
   | 'performanceMonth'
   | 'pin'
@@ -489,6 +490,7 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
       'title',
       'level',
       'automation',
+      'assignedUserId',
       'closedAt',
       'createdAt',
       'updatedAt',
@@ -499,7 +501,8 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
         hashId: { singular: 'ID', plural: 'IDs' },
         title: { singular: 'Title', plural: 'Titles' },
         level: { singular: 'Priority', plural: 'Priorities' },
-        automation: { singular: 'Type', plural: 'Types' },
+        automation: { singular: 'Automation type', plural: 'Automation types' },
+        assignedUserId: { singular: 'Assigned user ID', plural: 'Assigned user IDs' },
         closedAt: 'Closed at',
         createdAt: 'Created at',
         updatedAt: 'Updated at',
@@ -512,7 +515,8 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
         typeKey: { singular: 'Type', plural: 'Types' },
         startAt: 'Begon op',
         endAt: 'Eindigde op',
-        automation: { singular: 'Type', plural: 'Types' },
+        automation: { singular: 'Automatisering type', plural: 'Automatisering types' },
+        assignedUserId: { singular: 'Toegewezen aan ID', plural: 'Toegewezen aan IDs' },
         closedAt: 'Gesloten op',
         createdAt: 'Aangemaakt op',
         updatedAt: 'Bijgewerkt op',
@@ -523,6 +527,24 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
     tableText: {
       en: { singular: 'Issue', plural: 'Issues' },
       nl: { singular: 'Issue', plural: 'Issues' },
+    },
+  },
+  issueAssignedUser: {
+    fields: ['hashId', 'name'],
+    fieldsWithTranslations: {
+      en: {
+        hashId: { singular: 'ID', plural: 'IDs' },
+        name: { singular: 'Name', plural: 'Names' },
+      },
+      nl: {
+        hashId: { singular: 'ID', plural: 'IDs' },
+        name: { singular: 'Naam', plural: 'Namen' },
+      },
+    },
+    tableKey: 'issueAssignedUser',
+    tableText: {
+      en: { singular: 'Issue assigned user', plural: 'Issue assigned users' },
+      nl: { singular: 'Issue toegewezen aan', plural: 'Issue toegewezen aan' },
     },
   },
   measurement: {
