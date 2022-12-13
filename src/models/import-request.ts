@@ -3,10 +3,16 @@ import { PinGroup } from './pin-group';
 import { EnvironmentReportType } from './environment-report-type';
 import { User } from './user';
 import { FileFromServer, schema as fileFromServer } from './file-from-server';
+import { SupplierReportType } from './supplier-report-type';
+
+type ReportType = {
+  hashId: EnvironmentReportType['hashId'] | SupplierReportType['hashId'],
+  type: 'human' | 'device',
+}
 
 type Template = {
   pinGroupHashIds: Array<PinGroup['hashId']>,
-  reportTypeHashIds: Array<EnvironmentReportType['hashId']>,
+  reportTypes: Array<ReportType>,
 }
 
 // kept internal for now, but not excluded for an export later down the road
@@ -84,9 +90,13 @@ type ImportRequest = ProcessingImportRequest
   | DeletedImportRequest
   | WaitingImportRequest
 
+const reportTypeSchema = Joi.object().keys({
+  hashId: Joi.string().required().example('5x2znek'),
+  type: Joi.string().valid('human', 'device').example('human').required(),
+});
 const templateSchema = Joi.object().keys({
   pinGroupHashIds: Joi.array().items(Joi.string().required().example('5x2znek')).required(),
-  reportTypeHashIds: Joi.array().items(Joi.string().required().example('5x2znek')).required(),
+  reportTypes: Joi.array().items(reportTypeSchema).required(),
 });
 
 const baseImportRequestSchema = (
