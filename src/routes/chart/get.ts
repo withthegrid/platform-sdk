@@ -17,8 +17,11 @@ interface Response {
   series: {
     pinHashId: string;
     quantityHashId: string;
-    linkHashId: string;
-    measurementsSummary: {time: Date, value: number}[];
+    measurementsSummary: {
+      time: Date;
+      value: number;
+      linkHashId: string;
+    }[];
   }[];
 }
 
@@ -39,10 +42,10 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     series: Joi.array().items(Joi.object().keys({
       pinHashId: Joi.string().required().example('e13d57'),
       quantityHashId: Joi.string().required().example('sajia1'),
-      linkHashId: Joi.string().required().example('po177'),
       measurementsSummary: Joi.array().items({
         time: Joi.date().required().example('2019-12-31T15:23Z'),
         value: Joi.number().required().example(0.5),
+        linkHashId: Joi.string().required().example('po177'),
       }).required(),
     })).required(),
   }).required(),
