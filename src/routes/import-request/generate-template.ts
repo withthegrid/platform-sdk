@@ -9,10 +9,6 @@ type Request = {
 
 type Response = FileFromServer;
 
-const reportTypeSchema = Joi.object().keys({
-  hashId: Joi.string().required().example('5x2znek'),
-  type: Joi.string().valid('human', 'device').example('human').required(),
-});
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'post',
   path: '/template',
@@ -24,9 +20,11 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       .description('A list of location HashIDs')
       .min(1)
       .max(200),
-    reportTypes: Joi.array().items(reportTypeSchema)
+    reportTypeHashIds: Joi.array().items(
+      Joi.string().required().example('5x2znek').description('Can\t be a device report type'),
+    )
       .required()
-      .description('A list of report types')
+      .description('A list of report type HashIDs')
       .min(1)
       .max(5),
   }).required(),
