@@ -15,7 +15,7 @@ interface NewMeasurement {
 }
 
 interface UpdatedMeasurement {
-  measurementHashId: string;
+  linkHashId: string;
   generatedAt: Date;
   orderOfMagnitude: number;
   significand: number;
@@ -49,7 +49,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     generatedAt: Joi.date().example('2019-12-31T15:23Z').description('The timestamp of the report itself. If not provided, the timestamp of the most recent measurement is taken. If no measurements are present, the existing generatedAt of the report is used.'),
     measurements: Joi.array().items(Joi.alternatives().try(
       Joi.object().keys({
-        measurementHashId: Joi.string().required().example('po177'),
+        linkHashId: Joi.string().required().example('a1b2c3'),
         generatedAt: Joi.date().required().example('2019-12-31T15:23Z'),
         orderOfMagnitude: Joi.number().integer().min(-128).max(127)
           .required()
