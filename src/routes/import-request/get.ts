@@ -23,10 +23,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       .example('5x2znek')
       .description('The HashID for the import to be retrieved'),
   }).required(),
-  right: { environment: 'IMPORTS' },
-  response: importRequestSchema({
-    createdByUsername: Joi.string().required().example('John Doe'),
-  }),
+  right: { environment: 'IMPORT' },
+  response: importRequestSchema,
   description: 'Returns an import',
 };
 

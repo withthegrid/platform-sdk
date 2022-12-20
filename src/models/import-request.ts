@@ -13,168 +13,45 @@ type Template = {
 const IMPORT_STATES = ['processing', 'invalid', 'errored', 'success', 'waiting', 'deleted'] as const;
 type ImportStates = typeof IMPORT_STATES[number];
 
-type BaseImportRequest = {
+type ImportRequest = {
   name: string
   hashId: string
-  createdByHashId: User['hashId']
+  userHashId: User['hashId']
+  state: ImportStates
+  errors: Array<string> | null
+  file?: FileFromServer | null
+  processedAt: Date | null
+  createdByUsername: string
   createdAt: Date
   updatedAt: Date
   deletedAt?: Date | null
-  state: ImportStates
 }
-
-/**
-  * The import is being processed. There is no file available at that time.
-  */
-type ProcessingImportRequest = BaseImportRequest & {
-  state: 'processing'
-}
-
-/**
-  * The processing of the import failed early.
-  * There could be several reasons for this such as invalid file format
-  */
-type InvalidImportRequest = BaseImportRequest & {
-  state: 'invalid'
-  errors: Array<string>
-}
-
-/**
-  * The processing of the import failed on one or more rows.
-  * There is a file available for the provided XLSX file where failed rows
-  * have an explanation of the error.
-  */
-type ErroredImportRequest = BaseImportRequest & {
-  state: 'errored'
-  file: FileFromServer
-  processedAt: Date
-}
-
-/**
-  * The processing of the import is successful for all rows.
-  * There is a file available for the provided XLSX file.
-  */
-type SuccessfulImportRequest = BaseImportRequest & {
-  state: 'success'
-  file: FileFromServer
-  processedAt: Date
-}
-
-/**
- * The import is old and got deleted.
- * There is no longer file available for downloading.
- */
-type DeletedImportRequest = BaseImportRequest & {
-  state: 'deleted'
-  processedAt: Date
-}
-
-/**
- * The import was accepted by the server but the processing has not started yet.
- */
-type WaitingImportRequest = BaseImportRequest & {
-  state: 'waiting'
-  file: FileFromServer
-}
-
-type ImportRequest = ProcessingImportRequest
-  | InvalidImportRequest
-  | ErroredImportRequest
-  | SuccessfulImportRequest
-  | DeletedImportRequest
-  | WaitingImportRequest
 
 const templateSchema = Joi.object().keys({
   pinGroupHashIds: Joi.array().items(Joi.string().required().example('5x2znek')).required(),
   reportTypeHashIds: Joi.array().items(Joi.string().required().example('5x2znek')).required(),
 });
 
-const baseImportRequestSchema = (
-  extraKeys?: Joi.PartialSchemaMap<any>,
-): Joi.ObjectSchema => Joi.object().keys({
+const importRequestSchema = Joi.object().keys({
+  state: Joi.string().valid(...IMPORT_STATES).required().example('processing'),
   hashId: Joi.string().required().example('5x2znek'),
   name: Joi.string().required().example('Q2 Import Temperature').max(255),
-  createdByHashId: Joi.string().required().example('5x2znek'),
+  userHashId: Joi.string().required().example('5x2znek'),
   createdAt: Joi.date().required().example('2019-12-31T15:23Z'),
   updatedAt: Joi.date().required().example('2019-12-31T15:23Z'),
   deletedAt: Joi.date().allow(null),
-}).keys(extraKeys);
-
-const processingImportRequestSchema = (
-  extraKeys?: Joi.PartialSchemaMap<any>,
-): Joi.ObjectSchema => baseImportRequestSchema(extraKeys).keys({
-  state: Joi.string().valid('processing').required().example('processing'),
-});
-
-const invalidImportRequestSchema = (
-  extraKeys?: Joi.PartialSchemaMap<any>,
-): Joi.ObjectSchema => baseImportRequestSchema(extraKeys).keys({
-  state: Joi.string().valid('invalid').required().example('invalid'),
+  createdByUsername: Joi.string().required().example('John Doe'),
   errors: Joi.array().items(
     Joi.string().required().example('The provided XLSX file is malformed'),
-  )
-    .required()
-    .min(1),
+  ).allow(null),
+  file: fileFromServer.allow(null),
+  processedAt: Joi.date().example('2019-12-31T15:23Z').allow(null),
 });
-
-const erroredImportRequestSchema = (
-  extraKeys?: Joi.PartialSchemaMap<any>,
-): Joi.ObjectSchema => baseImportRequestSchema(extraKeys).keys({
-  state: Joi.string().valid('errored').required().example('errored'),
-  file: fileFromServer.required(),
-  processedAt: Joi.date().required().example('2019-12-31T15:23Z'),
-});
-
-const successfulImportRequestSchema = (
-  extraKeys?: Joi.PartialSchemaMap<any>,
-): Joi.ObjectSchema => baseImportRequestSchema(extraKeys).keys({
-  state: Joi.string().valid('success').required().example('success'),
-  file: fileFromServer.required(),
-  processedAt: Joi.date().required().example('2019-12-31T15:23Z'),
-});
-
-const deletedImportRequestSchema = (
-  extraKeys?: Joi.PartialSchemaMap<any>,
-): Joi.ObjectSchema => baseImportRequestSchema(extraKeys).keys({
-  state: Joi.string().valid('deleted').required().example('deleted'),
-  processedAt: Joi.date().required().example('2019-12-31T15:23Z'),
-});
-
-const waitingImportRequestSchema = (
-  extraKeys?: Joi.PartialSchemaMap<any>,
-): Joi.ObjectSchema => baseImportRequestSchema(extraKeys).keys({
-  state: Joi.string().valid('waiting').required().example('waiting'),
-  file: fileFromServer.required(),
-});
-
-const importRequestSchema = (
-  extraKeys?: Joi.PartialSchemaMap<any>,
-): Joi.AlternativesSchema => Joi.alternatives().try(
-  processingImportRequestSchema(extraKeys),
-  invalidImportRequestSchema(extraKeys),
-  erroredImportRequestSchema(extraKeys),
-  successfulImportRequestSchema(extraKeys),
-  deletedImportRequestSchema(extraKeys),
-  waitingImportRequestSchema(extraKeys),
-).required();
 
 export {
   templateSchema,
   Template,
   ImportStates,
-  ProcessingImportRequest,
-  InvalidImportRequest,
-  ErroredImportRequest,
-  SuccessfulImportRequest,
-  WaitingImportRequest,
-  DeletedImportRequest,
   ImportRequest,
   importRequestSchema,
-  processingImportRequestSchema,
-  invalidImportRequestSchema,
-  erroredImportRequestSchema,
-  successfulImportRequestSchema,
-  baseImportRequestSchema,
-  waitingImportRequestSchema,
-  deletedImportRequestSchema,
 };

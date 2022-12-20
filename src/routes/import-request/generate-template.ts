@@ -28,7 +28,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       .min(1)
       .max(5),
   }).required(),
-  right: { environment: 'IMPORTS' },
+  right: { environment: 'IMPORT' },
   response: fileFromServer.required(),
   description: 'Generates an import template',
 };

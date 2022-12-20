@@ -36,9 +36,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     nextPageOffset: Joi.string().allow(null).example(null).required()
       .description('This is the last page if nextPageOffset is null'),
     rows: Joi.array().items(Joi.object().keys({
-      import: importRequestSchema({
-        createdByUsername: Joi.string().required().example('John Doe'),
-      }).required(),
+      import: importRequestSchema.required(),
     })).required(),
   }),
   description: 'Search through imports wihtin a monitoring environment',

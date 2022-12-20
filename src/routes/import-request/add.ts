@@ -1,17 +1,16 @@
-import Joi from 'joi';
 import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 import { User } from '../../models/user';
 import { FileToServer, schema as fileToServer } from '../../models/file-to-server';
 import {
-  WaitingImportRequest,
-  waitingImportRequestSchema,
+  ImportRequest,
+  importRequestSchema,
 } from '../../models/import-request';
 
 type Request = {
   body: Required<FileToServer>;
 }
 
-type Response = (WaitingImportRequest) & {
+type Response = (ImportRequest) & {
   createdByUsername: User['name'];
 };
 
@@ -21,11 +20,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   body: fileToServer
     .options({ presence: 'required' })
     .required(),
-  right: { environment: 'IMPORTS' },
+  right: { environment: 'IMPORT' },
   response:
-    waitingImportRequestSchema({
-      createdByUsername: Joi.string().required().example('John Doe'),
-    }),
+    importRequestSchema,
   description: 'Uploads an import file',
 };
 

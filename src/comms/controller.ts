@@ -34,7 +34,7 @@ type EnvironmentRights = 'READ'
   | 'SENSORS'
   | 'REPORTS'
   | 'THRESHOLDS'
-  | 'IMPORTS'
+  | 'IMPORT'
   | ENVIRONMENT_ADMIN;
 
 type SupplierRights = ENVIRONMENT_ADMIN;
