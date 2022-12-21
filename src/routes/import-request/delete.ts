@@ -17,7 +17,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       .string()
       .required()
       .example('5x2znek')
-      .description('The HashID of the import to be deleted'),
+      .description('The hashId of the import to be deleted'),
   }).required(),
   right: { environment: 'IMPORT' },
   description: 'Deletes an import',

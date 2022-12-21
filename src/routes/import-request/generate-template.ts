@@ -17,14 +17,14 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       Joi.string().required().example('5x2znek'),
     )
       .required()
-      .description('A list of location HashIDs')
+      .description('A list of location hashIds')
       .min(1)
       .max(200),
     reportTypeHashIds: Joi.array().items(
       Joi.string().required().example('5x2znek').description('Can\t be a device report type'),
     )
       .required()
-      .description('A list of report type HashIDs')
+      .description('A list of report type hashIds')
       .min(1)
       .max(5),
   }).required(),

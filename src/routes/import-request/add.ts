@@ -1,5 +1,5 @@
+import Joi from 'joi';
 import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
-import { User } from '../../models/user';
 import { FileToServer, schema as fileToServer } from '../../models/file-to-server';
 import {
   ImportRequest,
@@ -10,19 +10,23 @@ type Request = {
   body: Required<FileToServer>;
 }
 
-type Response = (ImportRequest) & {
-  createdByUsername: User['name'];
-};
+interface Response {
+  importRequest: ImportRequest;
+  createdByUserName: string;
+}
 
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'post',
   path: '/',
   body: fileToServer
-    .options({ presence: 'required' })
+    .options({ presence: 'required' }) // Makes the inner fields required.
     .required(),
   right: { environment: 'IMPORT' },
   response:
-    importRequestSchema,
+    Joi.object().keys({
+      importRequest: importRequestSchema.required(),
+      createdByUserName: Joi.string().required().example('John Doe'),
+    }).required(),
   description: 'Uploads an import file',
 };
 

@@ -21,7 +21,6 @@ type ImportRequest = {
   errors: Array<string> | null
   file?: FileFromServer | null
   processedAt: Date | null
-  createdByUsername: string
   createdAt: Date
   updatedAt: Date
   deletedAt?: Date | null
@@ -40,7 +39,6 @@ const importRequestSchema = Joi.object().keys({
   createdAt: Joi.date().required().example('2019-12-31T15:23Z'),
   updatedAt: Joi.date().required().example('2019-12-31T15:23Z'),
   deletedAt: Joi.date().allow(null),
-  createdByUsername: Joi.string().required().example('John Doe'),
   errors: Joi.array().items(
     Joi.string().required().example('The provided XLSX file is malformed'),
   ).allow(null),

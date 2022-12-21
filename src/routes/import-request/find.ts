@@ -2,7 +2,6 @@ import Joi from 'joi';
 import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../../comms/table-controller';
 import { importRequestSchema, ImportRequest } from '../../models/import-request';
-import { User } from '../../models/user';
 
 type Query = TableQuery;
 
@@ -17,9 +16,8 @@ interface EffectiveRequest {
 }
 
 interface ResponseRow {
-  import: ImportRequest & {
-    createdByUsername: User['name'];
-  };
+  importRequest: ImportRequest;
+  createdByUserName: string;
 }
 
 interface Response {
@@ -36,7 +34,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     nextPageOffset: Joi.string().allow(null).example(null).required()
       .description('This is the last page if nextPageOffset is null'),
     rows: Joi.array().items(Joi.object().keys({
-      import: importRequestSchema.required(),
+      importRequest: importRequestSchema.required(),
+      createdByUserName: Joi.string().required().example('John Doe'),
     })).required(),
   }),
   description: 'Search through imports wihtin a monitoring environment',
