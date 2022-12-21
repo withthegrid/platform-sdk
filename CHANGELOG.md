@@ -1,3 +1,10 @@
+## [17.73.0](https://github.com/withthegrid/platform-sdk/compare/v17.72.0...v17.73.0) (2022-12-21)
+
+
+### Features
+
+* **imports:** add import models and endpoints ([#378](https://github.com/withthegrid/platform-sdk/issues/378)) ([ef63c18](https://github.com/withthegrid/platform-sdk/commit/ef63c187ec9b25b935a1d942def0f47db62deafc))
+
 ## [17.72.0](https://github.com/withthegrid/platform-sdk/compare/v17.71.0...v17.72.0) (2022-12-02)
 
 
