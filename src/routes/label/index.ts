@@ -2,12 +2,13 @@ import * as add from './add';
 import * as deleteRoute from './delete';
 import * as find from './find';
 import * as update from './update';
+import * as get from './get';
 
 import Comms from '../../comms';
 import controllerGenerator, { Result } from '../../comms/controller';
 import TableController from '../../comms/table-controller';
 
-class IssueRoute {
+class LabelRoute {
   static routerPath = 'label';
 
   static auth = true;
@@ -22,8 +23,8 @@ class IssueRoute {
       add.Response
     >(
       add.controllerGeneratorOptions,
-      IssueRoute.routerPath,
-      IssueRoute.auth,
+      LabelRoute.routerPath,
+      LabelRoute.auth,
       this.comms,
     )(parameters);
 
@@ -34,8 +35,8 @@ class IssueRoute {
       deleteRoute.Response
     >(
       deleteRoute.controllerGeneratorOptions,
-      IssueRoute.routerPath,
-      IssueRoute.auth,
+      LabelRoute.routerPath,
+      LabelRoute.auth,
       this.comms,
     )(parameters);
 
@@ -46,8 +47,8 @@ class IssueRoute {
       find.Response
     >(
       find.controllerGeneratorOptions,
-      IssueRoute.routerPath,
-      IssueRoute.auth,
+      LabelRoute.routerPath,
+      LabelRoute.auth,
       this.comms,
     )(parameters);
 
@@ -64,10 +65,22 @@ class IssueRoute {
       update.Response
     >(
       update.controllerGeneratorOptions,
-      IssueRoute.routerPath,
-      IssueRoute.auth,
+      LabelRoute.routerPath,
+      LabelRoute.auth,
+      this.comms,
+    )(parameters);
+
+  get = (parameters: get.Request):
+    Result<get.EffectiveRequest, get.Response> => controllerGenerator<
+      get.Request,
+      get.EffectiveRequest,
+      get.Response
+    >(
+      get.controllerGeneratorOptions,
+      LabelRoute.routerPath,
+      LabelRoute.auth,
       this.comms,
     )(parameters);
 }
 
-export default IssueRoute;
+export default LabelRoute;

@@ -1,3 +1,80 @@
+## [17.73.0](https://github.com/withthegrid/platform-sdk/compare/v17.72.0...v17.73.0) (2022-12-21)
+
+
+### Features
+
+* **imports:** add import models and endpoints ([#378](https://github.com/withthegrid/platform-sdk/issues/378)) ([ef63c18](https://github.com/withthegrid/platform-sdk/commit/ef63c187ec9b25b935a1d942def0f47db62deafc))
+
+## [17.72.0](https://github.com/withthegrid/platform-sdk/compare/v17.71.0...v17.72.0) (2022-12-02)
+
+
+### Features
+
+* **analytics:** add issueAssignedUser table ([#391](https://github.com/withthegrid/platform-sdk/issues/391)) ([5e2a1e3](https://github.com/withthegrid/platform-sdk/commit/5e2a1e3ac3b32a523e3e191e42f420260d5b18cf))
+
+## [17.71.0](https://github.com/withthegrid/platform-sdk/compare/v17.70.0...v17.71.0) (2022-12-01)
+
+
+### Features
+
+* add tableController to measurement-threshold ([#384](https://github.com/withthegrid/platform-sdk/issues/384)) ([f4e8e08](https://github.com/withthegrid/platform-sdk/commit/f4e8e085b97542075058294ccee3e3296c7e7997))
+
+## [17.70.0](https://github.com/withthegrid/platform-sdk/compare/v17.69.0...v17.70.0) (2022-11-29)
+
+
+### Features
+
+* **anlytics:** update automation type strings ([#390](https://github.com/withthegrid/platform-sdk/issues/390)) ([ea88a41](https://github.com/withthegrid/platform-sdk/commit/ea88a416a18427c5b9f668804214536d99de26e1))
+
+## [17.69.0](https://github.com/withthegrid/platform-sdk/compare/v17.68.0...v17.69.0) (2022-11-29)
+
+
+### Features
+
+* **formField:** add hashId type ([e52cf1a](https://github.com/withthegrid/platform-sdk/commit/e52cf1a006cd2fee7dfe919311a2cfa3cdf22da6))
+
+## [17.68.0](https://github.com/withthegrid/platform-sdk/compare/v17.67.2...v17.68.0) (2022-11-21)
+
+
+### Features
+
+* labelHashId in issue.find ([1c2228b](https://github.com/withthegrid/platform-sdk/commit/1c2228b208d5df1d5d3453d4811961f9e6b7cc19))
+
+## [17.67.2](https://github.com/withthegrid/platform-sdk/compare/v17.67.1...v17.67.2) (2022-11-21)
+
+
+### Bug Fixes
+
+* issue.find links response is optional ([74ed9cd](https://github.com/withthegrid/platform-sdk/commit/74ed9cd7ca73cb4fb717367ebcb6ecc888ea4662))
+
+## [17.67.1](https://github.com/withthegrid/platform-sdk/compare/v17.67.0...v17.67.1) (2022-11-21)
+
+
+### Bug Fixes
+
+* drop deprecated issue columns from analytics ([b382160](https://github.com/withthegrid/platform-sdk/commit/b38216052e18b0291b550e169b69bef5efb4cfaf)), closes [withthegrid/platform#1586](https://github.com/withthegrid/platform/issues/1586)
+
+## [17.67.0](https://github.com/withthegrid/platform-sdk/compare/v17.66.0...v17.67.0) (2022-11-21)
+
+
+### Features
+
+* automation and closedAt in issue analytics table ([3590ac9](https://github.com/withthegrid/platform-sdk/commit/3590ac9ba61110497abda9115ad869c108b80cf0)), closes [withthegrid/platform#1586](https://github.com/withthegrid/platform/issues/1586)
+
+## [17.66.0](https://github.com/withthegrid/platform-sdk/compare/v17.65.0...v17.66.0) (2022-11-18)
+
+
+### Features
+
+* **mthresholds:** return quantity unit ([6b5a9ec](https://github.com/withthegrid/platform-sdk/commit/6b5a9ec0e89f5cc427b807a68f7daddf74baa72a))
+
+## [17.65.0](https://github.com/withthegrid/platform-sdk/compare/v17.64.0...v17.65.0) (2022-11-17)
+
+
+### Features
+
+* **label:** add get endpoint ([#376](https://github.com/withthegrid/platform-sdk/issues/376)) ([ff765a5](https://github.com/withthegrid/platform-sdk/commit/ff765a5c62da3aab1f58b2e34098044c924559fa))
+
 ## [17.64.0](https://github.com/withthegrid/platform-sdk/compare/v17.63.2...v17.64.0) (2022-11-14)
 
 
