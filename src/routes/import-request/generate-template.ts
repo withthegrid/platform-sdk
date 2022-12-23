@@ -14,14 +14,21 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   path: '/template',
   body: Joi.object().keys({
     pinGroupHashIds: Joi.array().items(
-      Joi.string().required().example('5x2znek'),
+      Joi.string().example('dao97'),
     )
       .required()
       .description('A list of location hashIds')
-      .min(1)
+      .min(0)
       .max(200),
+    pinGroupGridHashIds: Joi.array().items(
+      Joi.string().example('naud51'),
+    )
+      .required()
+      .min(0)
+      .description('A list of location group hashIds')
+      .max(10),
     reportTypeHashIds: Joi.array().items(
-      Joi.string().required().example('5x2znek').description('Can\t be a device report type'),
+      Joi.string().required().example('l19a7s').description('Can\t be a device report type'),
     )
       .required()
       .description('A list of report type hashIds')

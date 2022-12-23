@@ -3,9 +3,11 @@ import { PinGroup } from './pin-group';
 import { EnvironmentReportType } from './environment-report-type';
 import { User } from './user';
 import { FileFromServer, schema as fileFromServer } from './file-from-server';
+import { Grid } from './grid';
 
 type Template = {
   pinGroupHashIds: Array<PinGroup['hashId']>,
+  pinGroupGridHashIds: Array<Grid['hashId']>;
   reportTypeHashIds: Array<EnvironmentReportType['hashId']>,
 }
 
