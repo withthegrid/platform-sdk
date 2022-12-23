@@ -821,7 +821,7 @@
                             "items": {
                               "type": "object",
                               "properties": {
-                                "time": {
+                                "generatedAt": {
                                   "type": "string",
                                   "format": "date-time",
                                   "example": "2019-12-31T15:23Z"
@@ -830,16 +830,11 @@
                                   "type": "number",
                                   "format": "float",
                                   "example": 0.5
-                                },
-                                "linkHashId": {
-                                  "type": "string",
-                                  "example": "po177"
                                 }
                               },
                               "required": [
-                                "time",
-                                "value",
-                                "linkHashId"
+                                "generatedAt",
+                                "value"
                               ],
                               "additionalProperties": false
                             }
@@ -18100,91 +18095,46 @@
                   "measurements": {
                     "type": "array",
                     "items": {
-                      "anyOf": [
-                        {
-                          "type": "object",
-                          "properties": {
-                            "measurementHashId": {
-                              "type": "string",
-                              "example": "po177"
-                            },
-                            "generatedAt": {
-                              "type": "string",
-                              "format": "date-time",
-                              "example": "2019-12-31T15:23Z"
-                            },
-                            "orderOfMagnitude": {
-                              "type": "integer",
-                              "minimum": -128,
-                              "maximum": 127,
-                              "description": "The measured value is significand * 10 ^ orderOfMagnitude. It has as many significant figures as the significand has (except when the significand is 0, then the number of significant figures is not defined)",
-                              "example": -3
-                            },
-                            "significand": {
-                              "type": "integer",
-                              "minimum": -2147483648,
-                              "maximum": 2147483647,
-                              "description": "The measured value is significand * 10 ^ orderOfMagnitude. It has as many significant figures as the significand has (except when the significand is 0, then the number of significant figures is not defined)",
-                              "example": -1400
-                            },
-                            "doNotCompareToThresholds": {
-                              "type": "boolean",
-                              "description": "Do not compare to thresholds",
-                              "example": true,
-                              "default": false
-                            }
-                          },
-                          "required": [
-                            "measurementHashId",
-                            "generatedAt",
-                            "orderOfMagnitude",
-                            "significand"
-                          ],
-                          "additionalProperties": false
+                      "type": "object",
+                      "properties": {
+                        "pinHashId": {
+                          "type": "string",
+                          "example": "e13d57"
                         },
-                        {
-                          "type": "object",
-                          "properties": {
-                            "pinHashId": {
-                              "type": "string",
-                              "example": "e13d57"
-                            },
-                            "quantityHashId": {
-                              "type": "string"
-                            },
-                            "generatedAt": {
-                              "type": "string",
-                              "format": "date-time"
-                            },
-                            "orderOfMagnitude": {
-                              "type": "integer",
-                              "minimum": -128,
-                              "maximum": 127,
-                              "description": "The measured value is significand * 10 ^ orderOfMagnitude. It has as many significant figures as the significand has (except when the significand is 0, then the number of significant figures is not defined)"
-                            },
-                            "significand": {
-                              "type": "integer",
-                              "minimum": -2147483648,
-                              "maximum": 2147483647,
-                              "description": "The measured value is significand * 10 ^ orderOfMagnitude. It has as many significant figures as the significand has (except when the significand is 0, then the number of significant figures is not defined)"
-                            },
-                            "doNotCompareToThresholds": {
-                              "type": "boolean",
-                              "description": "Do not compare to thresholds",
-                              "example": true,
-                              "default": false
-                            }
-                          },
-                          "required": [
-                            "pinHashId",
-                            "quantityHashId",
-                            "generatedAt",
-                            "orderOfMagnitude",
-                            "significand"
-                          ],
-                          "additionalProperties": false
+                        "quantityHashId": {
+                          "type": "string"
+                        },
+                        "generatedAt": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "orderOfMagnitude": {
+                          "type": "integer",
+                          "minimum": -128,
+                          "maximum": 127,
+                          "description": "The measured value is significand * 10 ^ orderOfMagnitude. It has as many significant figures as the significand has (except when the significand is 0, then the number of significant figures is not defined)"
+                        },
+                        "significand": {
+                          "type": "integer",
+                          "minimum": -2147483648,
+                          "maximum": 2147483647,
+                          "description": "The measured value is significand * 10 ^ orderOfMagnitude. It has as many significant figures as the significand has (except when the significand is 0, then the number of significant figures is not defined)"
+                        },
+                        "doNotCompareToThresholds": {
+                          "type": "boolean",
+                          "description": "Do not compare to thresholds",
+                          "example": true,
+                          "default": false
                         }
-                      ]
+                      },
+                      "required": [
+                        "pinHashId",
+                        "quantityHashId",
+                        "generatedAt",
+                        "orderOfMagnitude",
+                        "significand"
+                      ],
+                      "additionalProperties": false
                     }
                   },
                   "fields": {
@@ -54886,10 +54836,6 @@
       "measurement": {
         "type": "object",
         "properties": {
-          "hashId": {
-            "type": "string",
-            "example": "po177"
-          },
           "generatedAt": {
             "type": "string",
             "format": "date-time",
@@ -54936,7 +54882,6 @@
           }
         },
         "required": [
-          "hashId",
           "generatedAt",
           "channelIndex",
           "reportHashId",
