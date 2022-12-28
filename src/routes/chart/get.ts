@@ -1,8 +1,6 @@
 import Joi from 'joi';
 import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 
-import { schema as measurementSchema, Measurement } from '../../models/measurement';
-
 interface Request {
   query: {
     startAt: Date;
@@ -19,7 +17,10 @@ interface Response {
   series: {
     pinHashId: string;
     quantityHashId: string;
-    measurements: Measurement[];
+    measurementsSummary: {
+      generatedAt: Date;
+      value: number;
+    }[];
   }[];
 }
 
@@ -36,11 +37,14 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     })).required(),
     highResolution: Joi.boolean().default(false),
   }).required(),
-  response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
+  response: Joi.object().keys({
     series: Joi.array().items(Joi.object().keys({
       pinHashId: Joi.string().required().example('e13d57'),
       quantityHashId: Joi.string().required().example('sajia1'),
-      measurements: Joi.array().items(measurementSchema(apiVersion)).required(),
+      measurementsSummary: Joi.array().items({
+        generatedAt: Joi.date().required().example('2019-12-31T15:23Z'),
+        value: Joi.number().required().example(0.5),
+      }).required(),
     })).required(),
   }).required(),
   description: 'Get the measurement data for one or more time series for a specified period',
