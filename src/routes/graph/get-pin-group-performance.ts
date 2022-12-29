@@ -23,11 +23,6 @@ type Response = {
     expected: number;
     received: number;
   };
-  measurements: {
-    good: number;
-    serious: number;
-    critical: number;
-  };
 }[];
 
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
@@ -49,11 +44,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       expected: Joi.number().integer().required().example(9),
       received: Joi.number().integer().required().example(8),
     }).required(),
-    measurements: Joi.object().keys({
-      good: Joi.number().integer().required().example(10),
-      serious: Joi.number().integer().required().example(10),
-      critical: Joi.number().integer().required().example(10),
-    }),
   })).required(),
   description: 'Get the performance of a device linked to a specific pin group identified by its hashId',
 };
