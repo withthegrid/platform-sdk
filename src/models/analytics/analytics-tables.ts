@@ -114,7 +114,8 @@ type TableKeys =
   | 'issue'
   | 'issueAssignedUser'
   | 'measurement'
-  | 'performanceMonth'
+  | 'pinGroupConnectivitySummaryMonth'
+  | 'timeseriesSummaryMonth'
   | 'pin'
   | 'pinGroup'
   | 'quantity'
@@ -583,41 +584,19 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
       nl: { singular: 'Meting', plural: 'Metingen' },
     },
   },
-  performanceMonth: {
+  pinGroupConnectivitySummaryMonth: {
     fields: [
-      'hashId',
       'month',
       'expected',
       'received',
-      'good',
-      'serious',
-      'critical',
-      'createdAt',
-      'updatedAt',
     ],
     fieldsWithTranslations: {
       en: {
-        hashId: { singular: 'ID', plural: 'IDs' },
         month: t.en.granularities.month as Translation,
         expected: { singular: 'Expected report', plural: 'Expected reports' },
         received: { singular: 'Received report', plural: 'Received reports' },
-        good: {
-          singular: 'Healthy measurement',
-          plural: 'Healthy measurements',
-        },
-        serious: {
-          singular: 'Serious measurement',
-          plural: 'Serious measurements',
-        },
-        critical: {
-          singular: 'Critical measurement',
-          plural: 'Critical measurements',
-        },
-        createdAt: 'Created at',
-        updatedAt: 'Updated at',
       },
       nl: {
-        hashId: { singular: 'ID', plural: 'IDs' },
         month: t.nl.granularities.month as Translation,
         expected: {
           singular: 'Verwachte rapport',
@@ -627,17 +606,93 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
           singular: 'Ontvangen rapport',
           plural: 'Ontvangen rapporten',
         },
-        good: { singular: 'Gezonde meting', plural: 'Gezonde metingen' },
-        serious: { singular: 'Serieuze meting', plural: 'Serieuze metingen' },
-        critical: { singular: 'Kritieke meting', plural: 'Kritieke metingen' },
-        createdAt: 'Aangemaakt op',
-        updatedAt: 'Bijgewerkt op',
       },
     },
-    tableKey: 'performanceMonth',
+    tableKey: 'pinGroupConnectivitySummaryMonth',
     tableText: {
-      en: { singular: 'Condition', plural: 'Conditions' },
-      nl: { singular: 'Conditie', plural: 'Condities' },
+      en: { singular: 'Location connectivity', plural: 'Location connectivity' },
+      nl: { singular: 'Locatie-connectiviteit', plural: 'Locatie connectiviteit' },
+    },
+  },
+  timeseriesSummaryMonth: {
+    fields: [
+      'month',
+      'count',
+      'sum',
+      'min',
+      'max',
+      'countSerious',
+      'countCritical',
+      'countIgnored',
+    ],
+    fieldsWithTranslations: {
+      en: {
+        month: t.en.granularities.month as Translation,
+        count: {
+          singular: 'Count of measurements',
+          plural: 'Count of measurements',
+        },
+        sum: {
+          singular: 'Sum',
+          plural: 'Sum',
+        },
+        min: {
+          singular: 'Minimum',
+          plural: 'Minimum',
+        },
+        max: {
+          singular: 'Maximum',
+          plural: 'Maximum',
+        },
+        countSerious: {
+          singular: 'Count of serious measurements',
+          plural: 'Count of serious measurements',
+        },
+        countCritical: {
+          singular: 'Count of critical measurements',
+          plural: 'Count of critical measurements',
+        },
+        countIgnored: {
+          singular: 'Count of measurements not compared to issue trigger',
+          plural: 'Count of measurements not compared to issue trigger',
+        },
+      },
+      nl: {
+        month: t.nl.granularities.month as Translation,
+        count: {
+          singular: 'Aantal metingen',
+          plural: 'Aantal metingen',
+        },
+        sum: {
+          singular: 'Som',
+          plural: 'Som',
+        },
+        min: {
+          singular: 'Minimum',
+          plural: 'Minimum',
+        },
+        max: {
+          singular: 'Maximum',
+          plural: 'Maximum',
+        },
+        countSerious: {
+          singular: 'Aantal serieuze measurements',
+          plural: 'Aantal serieuze measurements',
+        },
+        countCritical: {
+          singular: 'Aantal kritieke metingen',
+          plural: 'Aantal kritieke metingen',
+        },
+        countIgnored: {
+          singular: 'Aantal metingen niet vergeleken met issue trigger',
+          plural: 'Aantal metingen niet vergeleken met issue trigger',
+        },
+      },
+    },
+    tableKey: 'timeseriesSummaryMonth',
+    tableText: {
+      en: { singular: 'Monthly timeseries statistics', plural: 'Monthly timeseries statistics' },
+      nl: { singular: 'Maandelijkse tijdsreeks statistieken', plural: 'Maandelijkse tijdsreeks statistieken' },
     },
   },
   pin: {
