@@ -610,8 +610,8 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
     },
     tableKey: 'pinGroupConnectivitySummaryMonth',
     tableText: {
-      en: { singular: 'Location connectivity', plural: 'Location connectivity' },
-      nl: { singular: 'Locatie-connectiviteit', plural: 'Locatie connectiviteit' },
+      en: { singular: 'Monthly location connectivity statistic', plural: 'Monthly location connectivity statistics' },
+      nl: { singular: 'Maandelijkse locatie-connectiviteit statistiek', plural: 'Monthly locatie-connectiviteit statistieken' },
     },
   },
   timeseriesSummaryMonth: {
@@ -691,8 +691,8 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
     },
     tableKey: 'timeseriesSummaryMonth',
     tableText: {
-      en: { singular: 'Monthly timeseries statistics', plural: 'Monthly timeseries statistics' },
-      nl: { singular: 'Maandelijkse tijdsreeks statistieken', plural: 'Maandelijkse tijdsreeks statistieken' },
+      en: { singular: 'Monthly timeseries statistic', plural: 'Monthly timeseries statistics' },
+      nl: { singular: 'Maandelijkse tijdsreeks statistiek', plural: 'Maandelijkse tijdsreeks statistieken' },
     },
   },
   pin: {
