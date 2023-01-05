@@ -9,10 +9,6 @@ interface Request {
   };
   body: {
     title?: string;
-    links?: { // TODO withthegrid/platform#1586 Rob: deprecated
-      pinGroupHashId: string;
-      pinHashId: string | null;
-    }[];
     pinGroupHashId?: string;
     pinHashIds: string[];
     automation?: {
@@ -22,13 +18,9 @@ interface Request {
       quantityHashIds: string[];
     } | null;
     assignedUserHashId?: string | null;
-    quantityHashIds?: string[]; // TODO withthegrid/platform#1586 Rob: deprecated
     labelHashIds?: string[];
     closed?: boolean;
     level?: 0 | 1 | 2;
-    typeKey?: 'missing' | 'incorrect' | 'unexpected' | 'unrelated'; // TODO withthegrid/platform#1586 Rob: deprecated
-    startAt?: Date; // TODO withthegrid/platform#1586 Rob: deprecated
-    endAt?: Date | null; // TODO withthegrid/platform#1586 Rob: deprecated
   };
 }
 
@@ -45,10 +37,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     hashId: Joi.string().required().example('c19aid'),
   }).required(),
   body: Joi.object().keys({
-    links: Joi.array().min(1).max(20).items(Joi.object().keys({
-      pinGroupHashId: Joi.string().required().example('dao97'),
-      pinHashId: Joi.string().allow(null).required().example(null),
-    })), // TODO withthegrid/platform#1586 Rob: deprecated
     title: Joi.string().max(100).example('Temperature is too high'),
     pinGroupHashId: Joi.string(),
     pinHashIds: Joi.array().items(Joi.string()).description('When empty, all pins are affected'),
@@ -66,15 +54,9 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       }),
     ).allow(null),
     assignedUserHashId: Joi.string().allow(null),
-    pinHashId: Joi.string().allow(null), // TODO withthegrid/platform#1586 Rob: deprecated
-    // TODO withthegrid/platform#1586 Rob: deprecated
-    quantityHashIds: Joi.array().items(Joi.string()).max(10),
     labelHashIds: Joi.array().items(Joi.string()).max(10),
     closed: Joi.boolean(),
     level: Joi.number().valid(0, 1, 2),
-    typeKey: Joi.string().valid('missing', 'incorrect', 'unexpected', 'unrelated'), // TODO withthegrid/platform#1586 Rob: deprecated
-    startAt: Joi.date(), // TODO withthegrid/platform#1586 Rob: deprecated
-    endAt: Joi.date().allow(null), // TODO withthegrid/platform#1586 Rob: deprecated
   }).required(),
   right: { environment: 'ISSUES' },
   response: Joi.object().keys({
