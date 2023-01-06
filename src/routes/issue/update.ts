@@ -10,7 +10,7 @@ interface Request {
   body: {
     title?: string;
     pinGroupHashId?: string;
-    pinHashIds: string[];
+    pinHashIds?: string[];
     automation?: {
       type: 'missing'
     } | {
