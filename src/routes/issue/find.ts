@@ -3,7 +3,6 @@ import { ControllerGeneratorOptionsWithClient } from '../../comms/controller';
 
 import { schema as issueSchema, Issue } from '../../models/issue';
 import { schema as pinGroupSchema, PinGroup } from '../../models/pin-group';
-import { schema as pinSchema, Pin } from '../../models/pin';
 
 import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../../comms/table-controller';
 
@@ -37,10 +36,6 @@ interface ResponseRow {
   assignedUserName: string | null;
   pinGroup: PinGroup;
   subscribed: boolean;
-  links?: { // TODO withthegrid/platform#1586 Rob: deprecated
-    pinGroup: PinGroup;
-    pin: Pin | null;
-  }[];
 }
 
 interface Response {
@@ -70,11 +65,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       assignedUserName: Joi.string().allow(null).required().example(null),
       pinGroup: pinGroupSchema.required(),
       subscribed: Joi.boolean().required().example(false),
-      // TODO withthegrid/platform#1586 Rob: deprecated
-      links: Joi.array().min(1).items(Joi.object().keys({
-        pinGroup: pinGroupSchema.required(),
-        pin: pinSchema.allow(null).required(),
-      })),
     })).required(),
   }).required(),
   description: 'Search through issues',

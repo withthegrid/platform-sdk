@@ -3,7 +3,6 @@ import Joi from 'joi';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const schema = (apiVersion: number): Joi.ObjectSchema => {
   const model = Joi.object().keys({
-    hashId: Joi.string().required().example('po177'),
     generatedAt: Joi.date().required().example('2019-12-31T15:23Z'),
     channelIndex: Joi.number().integer().allow(null).required()
       .description('The channel of the installed device. When null, the measurement is not taken by a device but manually entered')
@@ -32,7 +31,6 @@ const schema = (apiVersion: number): Joi.ObjectSchema => {
 };
 
 interface Measurement {
-  hashId: string;
   generatedAt: Date;
   channelIndex: number | null;
   channelMeasurementIndex: number | null;
