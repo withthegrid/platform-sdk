@@ -18,9 +18,8 @@ interface Response {
     pinHashId: string;
     quantityHashId: string;
     measurementsSummary: {
-      time: Date;
+      generatedAt: Date;
       value: number;
-      linkHashId: string;
     }[];
   }[];
 }
@@ -43,9 +42,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       pinHashId: Joi.string().required().example('e13d57'),
       quantityHashId: Joi.string().required().example('sajia1'),
       measurementsSummary: Joi.array().items({
-        time: Joi.date().required().example('2019-12-31T15:23Z'),
+        generatedAt: Joi.date().required().example('2019-12-31T15:23Z'),
         value: Joi.number().required().example(0.5),
-        linkHashId: Joi.string().required().example('po177'),
       }).required(),
     })).required(),
   }).required(),

@@ -18,7 +18,6 @@ interface Response {
   issue: Issue;
   userName: string | null;
   assignedUserName: string | null;
-  quantities: Quantity[]; // TODO withthegrid/platform#1586 Rob: deprecated
   mentionedUsers: { hashId: string; name: string }[];
   pinGroup: PinGroup;
   pins: Pin[];
@@ -34,10 +33,6 @@ interface Response {
     userName: string | null;
   }[];
   subscribed: boolean;
-  links: { // TODO withthegrid/platform#1586 Rob: deprecated
-    pinGroup: PinGroup;
-    pin: Pin | null;
-  }[];
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
@@ -52,8 +47,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     userName: Joi.string().max(255).allow(null).required()
       .example('John Doe'),
     assignedUserName: Joi.string().allow(null).required().example(null),
-    quantities: Joi.array().items(quantitySchema(apiVersion))
-      .required(), // TODO withthegrid/platform#1586 Rob: deprecated
     mentionedUsers: Joi.array().items(Joi.object().keys({
       hashId: Joi.string().required().example('ba5qq1'),
       name: Joi.string().max(255).required().example('Jane Doe'),
@@ -77,10 +70,6 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
         .example('John Doe'),
     })).required(),
     subscribed: Joi.boolean().required().example(false),
-    links: Joi.array().items(Joi.object().keys({ // TODO withthegrid/platform#1586 Rob: deprecated
-      pinGroup: pinGroupSchema.required(),
-      pin: pinSchema.allow(null).required(),
-    })).required(),
   }),
   description: 'Get a specific issue identified by its hashId',
 };
