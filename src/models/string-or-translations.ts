@@ -24,7 +24,7 @@ const versionedStringOrStringOrTranslationSchema = (apiVersion: number): Joi.Any
   // [min, max, schema]
   // range being [x;y)
   const ranges: [number, number, Joi.AnySchema][] = [
-    [9, 9999, schema(255)],
+    [9, Infinity, schema(255)],
     [8, 9, schema()],
     [0, 7, Joi.string()],
   ];
