@@ -55,7 +55,7 @@
     "jest": "^29.3.1",
     "joi-to-swagger": "6.2.0",
     "redoc-cli": "^0.13.20",
-    "rimraf": "^3.0.2",
+    "rimraf": "^4.1.0",
     "semantic-release": "^20.0.2",
     "ts-jest": "^29.0.3",
     "ts-node": "^10.8.0",
