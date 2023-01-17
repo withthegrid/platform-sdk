@@ -2,12 +2,23 @@ import Joi from 'joi';
 import { schema as translationsSchema, Translations } from './translations';
 import { Locale } from './locale';
 
-const schema = (limit = 9999): Joi.AnySchema => Joi.alternatives().try(
-  Joi.string().example('untranslated string').meta({ className: 'untranslatedString' }).max(limit),
-  translationsSchema(limit),
-)
-  .tag('stringOrTranslations')
-  .meta({ className: 'stringOrTranslations' });
+const schema = (limit?: number): Joi.AnySchema => {
+  if (limit !== undefined) {
+    return Joi.alternatives().try(
+      Joi.string().example('untranslated string').meta({ className: 'untranslatedString' }).max(limit),
+      translationsSchema(limit),
+    )
+      .tag('stringOrTranslations')
+      .meta({ className: 'stringOrTranslations' });
+  }
+
+  return Joi.alternatives().try(
+    Joi.string().example('untranslated string').meta({ className: 'untranslatedString' }),
+    translationsSchema(),
+  )
+    .tag('stringOrTranslations')
+    .meta({ className: 'stringOrTranslations' });
+};
 
 const versionedStringOrStringOrTranslationSchema = (apiVersion: number): Joi.AnySchema => {
   // [min, max, schema]

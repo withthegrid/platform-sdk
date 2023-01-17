@@ -1,19 +1,43 @@
 import Joi from 'joi';
 
 const translationStringSchema = Joi.string().allow('').required();
-const translationSchema = (example: string, limit = 9999) => Joi.alternatives().try(
-  Joi.object({
-    plural: translationStringSchema.max(limit),
-    singular: translationStringSchema.max(limit),
-  }),
-  translationStringSchema.example(example).max(limit),
-);
-const schema = (limit = 9999): Joi.AnySchema => Joi.object().keys({
-  en: translationSchema('English string', limit),
-  nl: translationSchema('Nederlandse string', limit),
-})
-  .tag('translations')
-  .meta({ className: 'translations' });
+const translationSchema = (example: string, limit?: number): Joi.AnySchema => {
+  if (limit !== undefined) {
+    return Joi.alternatives().try(
+      Joi.object({
+        plural: translationStringSchema.max(limit),
+        singular: translationStringSchema.max(limit),
+      }),
+      translationStringSchema.example(example).max(limit),
+    );
+  }
+
+  return Joi.alternatives().try(
+    Joi.object({
+      plural: translationStringSchema,
+      singular: translationStringSchema,
+    }),
+    translationStringSchema.example(example),
+  );
+};
+
+const schema = (limit?: number): Joi.AnySchema => {
+  if (limit !== undefined) {
+    return Joi.object().keys({
+      en: translationSchema('English string', limit),
+      nl: translationSchema('Nederlandse string', limit),
+    })
+      .tag('translations')
+      .meta({ className: 'translations' });
+  }
+
+  return Joi.object().keys({
+    en: translationSchema('English string'),
+    nl: translationSchema('Nederlandse string'),
+  })
+    .tag('translations')
+    .meta({ className: 'translations' });
+};
 
 type SimpleTranslation = string
 type PluralizedTranslation = Record<'plural' | 'singular', string>
