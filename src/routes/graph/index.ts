@@ -1,5 +1,4 @@
 import * as addEdge from './add-edge';
-import * as addGrid from './add-grid';
 import * as addPinGrid from './add-pin-grid';
 import * as addPinGroupGrid from './add-pin-group-grid';
 import * as addPinGroup from './add-pin-group';
@@ -17,7 +16,6 @@ import * as findPinGroup from './find-pin-group';
 import * as findPin from './find-pin';
 import * as findNode from './find-node';
 import * as getEdge from './get-edge';
-import * as getGrid from './get-grid';
 import * as getPinGrid from './get-pin-grid';
 import * as getPinGroupGrid from './get-pin-group-grid';
 import * as getPinGroupPerformance from './get-pin-group-performance';
@@ -29,7 +27,6 @@ import * as getTile from './get-tile';
 import * as setNotification from './set-notification';
 import * as setThreshold from './set-threshold';
 import * as updateEdge from './update-edge';
-import * as updateGrid from './update-grid';
 import * as updatePinGrid from './update-pin-grid';
 import * as updatePinGroupGrid from './update-pin-group-grid';
 import * as updateLocations from './update-locations';
@@ -57,20 +54,6 @@ class GraphRoute {
       addEdge.Response
     >(
       addEdge.controllerGeneratorOptions,
-      GraphRoute.routerPath,
-      GraphRoute.auth,
-      this.comms,
-    )(parameters);
-
-  // TODO srieding deprecated remove after https://github.com/withthegrid/platform-client/issues/1565
-  // scope: Next method
-  addGrid = (parameters: addGrid.Request):
-    Result<addGrid.EffectiveRequest, addGrid.Response> => controllerGenerator<
-      addGrid.Request,
-      addGrid.EffectiveRequest,
-      addGrid.Response
-    >(
-      addGrid.controllerGeneratorOptions,
       GraphRoute.routerPath,
       GraphRoute.auth,
       this.comms,
@@ -328,20 +311,6 @@ class GraphRoute {
       this.comms,
     )(parameters);
 
-  // TODO srieding deprecated remove after https://github.com/withthegrid/platform-client/issues/1565
-  // scope: Next method
-  getGrid = (parameters: getGrid.Request):
-    Result<getGrid.EffectiveRequest, getGrid.Response> => controllerGenerator<
-      getGrid.Request,
-      getGrid.EffectiveRequest,
-      getGrid.Response
-    >(
-      getGrid.controllerGeneratorOptions,
-      GraphRoute.routerPath,
-      GraphRoute.auth,
-      this.comms,
-    )(parameters);
-
   getPinGrid = (parameters: getPinGrid.Request):
     Result<getPinGrid.EffectiveRequest, getPinGrid.Response> => controllerGenerator<
     getPinGrid.Request,
@@ -460,20 +429,6 @@ class GraphRoute {
       updateEdge.Response
     >(
       updateEdge.controllerGeneratorOptions,
-      GraphRoute.routerPath,
-      GraphRoute.auth,
-      this.comms,
-    )(parameters);
-
-  // TODO srieding deprecated remove after https://github.com/withthegrid/platform-client/issues/1565
-  // scope: Next method
-  updateGrid = (parameters: updateGrid.Request):
-    Result<updateGrid.EffectiveRequest, updateGrid.Response> => controllerGenerator<
-      updateGrid.Request,
-      updateGrid.EffectiveRequest,
-      updateGrid.Response
-    >(
-      updateGrid.controllerGeneratorOptions,
       GraphRoute.routerPath,
       GraphRoute.auth,
       this.comms,

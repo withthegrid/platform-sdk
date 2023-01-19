@@ -13,9 +13,7 @@ const schema = Joi.object().keys({
 })
   .tag('grid')
   .meta({ className: 'grid' })
-  // TODO gabriel complete description 'In the GUI, only pinGroup and pin grids...' after https://github.com/withthegrid/platform-client/issues/1565
-  // scope: Next description
-  .description('A collection of locations (pinGroups), port (pins) or nodes. In the GUI, only pinGroup grids are used.');
+  .description('A collection of locations (pinGroups), port (pins) or nodes. In the GUI, only pinGroup and pin grids are used.');
 
 interface Grid {
   hashId: string;
