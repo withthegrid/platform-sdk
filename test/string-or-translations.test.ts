@@ -80,25 +80,7 @@ describe('versionedStringOrStringOrTranslationSchema', () => {
     });
   });
 
-  describe('given an api version of 7 and above (but below 9)', () => {
-    describe('when I provide a string longer than 255 chars', () => {
-      test('it is a valid schema', () => {
-        const result = versionedStringOrStringOrTranslationSchema(8).validate(longStr);
-
-        expect(result.error).not.toBeDefined();
-      });
-    });
-
-    describe('when I provide an object where one of (or both) string is longer than 255 chars', () => {
-      test('it is a valid schema', () => {
-        const result = versionedStringOrStringOrTranslationSchema(8).validate(longObj);
-
-        expect(result.error).not.toBeDefined();
-      });
-    });
-  });
-
-  describe('given an api version of 6 (incl.) and below', () => {
+  describe('given an api version below version 9', () => {
     describe('when I provide a string longer than 255 chars', () => {
       test('it is a valid schema', () => {
         const result = versionedStringOrStringOrTranslationSchema(6).validate(longStr);

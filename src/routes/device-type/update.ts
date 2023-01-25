@@ -49,18 +49,18 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
     hashId: Joi.string().required().example('wasd2'),
   }).required(),
   body: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
-    name: stringOrTranslationsSchema().example('Cathodic protection device').description('This name is also visible in monitoring environments. To get a uniform user experience, please provide the name in English'),
+    name: stringOrTranslationsSchema(255).example('Cathodic protection device').description('This name is also visible in monitoring environments. To get a uniform user experience, please provide the name in English'),
     eventHandler: Joi.string().max(1000000).description('A javascript function that handles events. See the chapter "User defined code"'),
     fieldConfigurations: updatableFieldConfigurationsSchema(apiVersion),
     pinGroupFieldConfigurations: updatableFieldConfigurationsSchema(apiVersion)
       .description('Defines deviceFields on the location (pinGroup) the device is connected to. Can be used in monitoring report type functions. See the chapter on open fields on how to use this'),
     channels: Joi.array().items(Joi.object().keys({
-      name: stringOrTranslationsSchema().required().example('Red wire').description('This name is also visible in environments. To get a uniform user experience, please provide the name in English'),
+      name: stringOrTranslationsSchema(255).required().example('Red wire').description('This name is also visible in environments. To get a uniform user experience, please provide the name in English'),
       pinFieldConfigurations: updatableFieldConfigurationsSchema(apiVersion).required()
         .description('Defines deviceFields on the pin the channel is connected to. Can be used in report type functions. See the chapter on open fields on how to use this'),
-      defaultPinName: stringOrTranslationsSchema().example('Anode').description('If undefined, the channel cannot be linked to a pin'),
+      defaultPinName: stringOrTranslationsSchema(255).example('Anode').description('If undefined, the channel cannot be linked to a pin'),
       charts: Joi.array().items(Joi.object().keys({
-        title: stringOrTranslationsSchema().allow(null).example('Red wire charts').required(),
+        title: stringOrTranslationsSchema(255).allow(null).example('Red wire charts').required(),
         series: Joi.array().items(Joi.object().keys({
           quantityHashId: Joi.string().example('x18a92').required(),
           color: Joi.string().example('#ff00ff').allow(null)
@@ -69,7 +69,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
       })),
     })).description('All measurements are registered on a channel. When a device is installed at a location (pinGroup), its channels are connected to the ports (pins) of the location (pinGroup). Be careful when altering channels that it does still make sense for already installed devices and historic condition reports. It is therefore not allowed to delete channels (therefore it is required that the array is not shorter than the existing channel array).'),
     charts: Joi.array().items(Joi.object().keys({
-      title: stringOrTranslationsSchema().allow(null).example('Cathodic protection charts').required(),
+      title: stringOrTranslationsSchema(255).allow(null).example('Cathodic protection charts').required(),
       series: Joi.array().items(Joi.object().keys({
         channelIndex: Joi.number().integer().required(),
         quantityHashId: Joi.string().example('x18a92').required(),

@@ -21,18 +21,8 @@ const schema = (limit?: number): Joi.AnySchema => {
 };
 
 const versionedStringOrStringOrTranslationSchema = (apiVersion: number): Joi.AnySchema => {
-  // [min, max, schema]
-  // range being [x;y)
-  const ranges: [number, number, Joi.AnySchema][] = [
-    [9, Infinity, schema(255)],
-    [8, 9, schema()],
-    [0, 7, Joi.string()],
-  ];
-  for (let i = 0, len = ranges.length; i < len; i += 1) {
-    const [min, max, appliedSchema] = ranges[i];
-    if (apiVersion >= min && apiVersion < max) {
-      return appliedSchema;
-    }
+  if (apiVersion <= 6) {
+    return Joi.string();
   }
   return schema(255);
 };

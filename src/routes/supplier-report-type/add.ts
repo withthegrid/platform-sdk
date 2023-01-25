@@ -24,7 +24,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
   method: 'post',
   path: '/',
   body: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
-    name: stringOrTranslationsSchema().required().example('Temperature'),
+    name: stringOrTranslationsSchema(255).required().example('Temperature'),
     fieldConfigurations: Joi.object().keys({
       pinGroup: Joi.array().items(baseFieldConfigurationSchema(apiVersion)).required(),
       pin: Joi.array().items(baseFieldConfigurationSchema(apiVersion)).required(),
