@@ -3,6 +3,7 @@ import * as deleteRoute from './delete';
 import * as find from './find';
 import * as get from './get';
 import * as update from './update';
+import * as getIdByTimeseriesPoint from './get-id-by-timeseries-point';
 
 import Comms from '../../comms';
 import controllerGenerator, { Result } from '../../comms/controller';
@@ -77,6 +78,21 @@ class ReportRoute {
       update.Response
     >(
       update.controllerGeneratorOptions,
+      ReportRoute.routerPath,
+      ReportRoute.auth,
+      this.comms,
+    )(parameters);
+
+  getIdByTimeseriesPoint = (parameters: getIdByTimeseriesPoint.Request):
+    Result<
+      getIdByTimeseriesPoint.EffectiveRequest,
+      getIdByTimeseriesPoint.Response
+    > => controllerGenerator<
+      getIdByTimeseriesPoint.Request,
+      getIdByTimeseriesPoint.EffectiveRequest,
+      getIdByTimeseriesPoint.Response
+    >(
+      getIdByTimeseriesPoint.controllerGeneratorOptions,
       ReportRoute.routerPath,
       ReportRoute.auth,
       this.comms,
