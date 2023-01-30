@@ -29,7 +29,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
     hashId: Joi.string().required().example('x18a92'),
   }).required(),
   body: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
-    name: stringOrTranslationsSchema.example('Measurement cycle'),
+    name: stringOrTranslationsSchema(255).example('Measurement cycle'),
     start: Joi.string().valid('required', 'optional', 'disabled').description('\'required\': user must provide command.startAt. \'optional\': user can provide command.startAt or a delay for the command to start after it is sent to the device. \'disabled\': user cannot provide command.startAt nor a delay.'),
     end: Joi.string().valid('required', 'optional', 'disabled').description('\'required\': user must provide command.endAt. \'optional\': user can provide command.endAt. \'disabled\': user cannot provide command.endAt.'),
     fieldConfigurations: updatableFieldConfigurationsSchema(apiVersion).description('See the chapter on open fields on how to use this'),

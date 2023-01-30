@@ -32,8 +32,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     hashId: Joi.string().required().example('k8gh3'),
   }).required(),
   body: Joi.object().keys({
-    name: Joi.string().example('South'),
-    description: Joi.string().allow(''),
+    name: Joi.string().example('South').max(100),
+    description: Joi.string().allow('').max(255),
     period: Joi.alternatives().try(
       Joi.string().valid('lastMonth', 'lastQuarter', 'lastYear').required(),
       Joi.object().keys({
