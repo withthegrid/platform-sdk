@@ -7,7 +7,7 @@ import { themeSchema, Theme } from '../commons/theme';
 
 const schema = (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
   hashId: Joi.string().required().example('f1a4w1'),
-  name: Joi.string().required().example('My monitoring environment'),
+  name: Joi.string().required().example('My monitoring environment').max(255),
   mapLayers: Joi.array().items(mapLayerSchema).min(1).required(),
   boundingBox: Joi.object().keys({
     type: Joi.string().valid('LineString').required().example('LineString'),

@@ -2,8 +2,13 @@ import Joi from 'joi';
 
 const schema = Joi.object().keys({
   hashId: Joi.string().required().example('k8gh3'),
-  name: Joi.string().required().example('North'),
-  description: Joi.string().required().allow('').example('Temperatures in the North'),
+  name: Joi.string().required().example('North').max(100),
+  description: Joi
+    .string()
+    .required()
+    .allow('')
+    .example('Temperatures in the North')
+    .max(255),
   period: Joi.alternatives().try(
     Joi.string().valid('lastMonth', 'lastQuarter', 'lastYear').required().example('lastMonth'),
     Joi.object().keys({

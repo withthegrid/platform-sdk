@@ -26,7 +26,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClientAndSupplie
   method: 'post',
   path: '/',
   body: Joi.object().keys({
-    name: stringOrTranslationsSchema.required().example('Temperature'),
+    name: stringOrTranslationsSchema(255).required().example('Temperature'),
     color: Joi.string().default('#ff00ff').example('#ff00ff'),
     unit: Joi.string().allow(null).default(null).example('K')
       .description('Will be displayed with an SI-prefix (eg. k or M) if relevant'),

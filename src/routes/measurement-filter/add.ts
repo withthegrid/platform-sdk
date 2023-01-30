@@ -28,8 +28,13 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'post',
   path: '/',
   body: Joi.object().keys({
-    name: Joi.string().required().example('North'),
-    description: Joi.string().required().allow('').example('Temperatures in the North'),
+    name: Joi.string().required().example('North').max(100),
+    description: Joi
+      .string()
+      .required()
+      .allow('')
+      .example('Temperatures in the North')
+      .max(255),
     period: Joi.alternatives().try(
       Joi.string().valid('lastMonth', 'lastQuarter', 'lastYear').required().example('lastMonth'),
       Joi.object().keys({

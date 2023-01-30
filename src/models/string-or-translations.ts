@@ -2,18 +2,29 @@ import Joi from 'joi';
 import { schema as translationsSchema, Translations } from './translations';
 import { Locale } from './locale';
 
-const schema = Joi.alternatives().try(
-  Joi.string().example('untranslated string').meta({ className: 'untranslatedString' }),
-  translationsSchema,
-)
-  .tag('stringOrTranslations')
-  .meta({ className: 'stringOrTranslations' });
+const schema = (limit?: number): Joi.AnySchema => {
+  if (limit !== undefined) {
+    return Joi.alternatives().try(
+      Joi.string().example('untranslated string').meta({ className: 'untranslatedString' }).max(limit),
+      translationsSchema(limit),
+    )
+      .tag('stringOrTranslations')
+      .meta({ className: 'stringOrTranslations' });
+  }
 
-const stringBeforeV7ElseStringOrTranslationSchema = (apiVersion: number): Joi.AnySchema => {
+  return Joi.alternatives().try(
+    Joi.string().example('untranslated string').meta({ className: 'untranslatedString' }),
+    translationsSchema(),
+  )
+    .tag('stringOrTranslations')
+    .meta({ className: 'stringOrTranslations' });
+};
+
+const versionedStringOrStringOrTranslationSchema = (apiVersion: number): Joi.AnySchema => {
   if (apiVersion <= 6) {
     return Joi.string();
   }
-  return schema;
+  return schema(255);
 };
 
 type StringOrTranslations = string | Translations;
@@ -39,5 +50,5 @@ export {
   schema,
   StringOrTranslations,
   getTranslatedString,
-  stringBeforeV7ElseStringOrTranslationSchema,
+  versionedStringOrStringOrTranslationSchema,
 };
