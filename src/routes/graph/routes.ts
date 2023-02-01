@@ -27,7 +27,6 @@ import * as getNode from './get-node';
 import * as getPin from './get-pin';
 import * as getTile from './get-tile';
 import * as setNotification from './set-notification';
-import * as setThreshold from './set-threshold';
 import * as updateEdge from './update-edge';
 import * as updateGrid from './update-grid';
 import * as updatePinGrid from './update-pin-grid';
@@ -68,7 +67,6 @@ export {
   getPin,
   getTile,
   setNotification,
-  setThreshold,
   updateEdge,
   updateGrid,
   updatePinGrid,
