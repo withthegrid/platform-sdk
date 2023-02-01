@@ -405,11 +405,8 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
     },
     tableKey: 'pinGroupGrid',
     tableText: {
-      en: { singular: 'Group', plural: 'Groups' },
-      nl: { singular: 'Groep', plural: 'Groepen' },
-      // TODO gabriel: replace the naming above after the release and migration with the following
-      // en: { singular: 'Location Group', plural: 'Location Groups' },
-      // nl: { singular: 'Locatie Groep', plural: 'Locatie Groepen' },
+      en: { singular: 'Location Group', plural: 'Location Groups' },
+      nl: { singular: 'Locatie Groep', plural: 'Locatie Groepen' },
     },
   },
   pinGrid: {
