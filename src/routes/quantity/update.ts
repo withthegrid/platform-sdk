@@ -30,7 +30,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClientAndSupplie
     hashId: Joi.string().required().example('sajia1'),
   }).required(),
   body: Joi.object().keys({
-    name: stringOrTranslationsSchema.example('Temperature'),
+    name: stringOrTranslationsSchema(255).example('Temperature'),
     color: Joi.string().example('#ff00ff'),
     unit: Joi.string().allow(null).example('K').description('Will be displayed with an SI-prefix (eg. k or M) if relevant'),
     defaultOrderOfMagnitude: Joi.number().integer().min(-128).max(127)

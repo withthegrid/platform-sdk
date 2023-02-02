@@ -51,7 +51,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       .description('This is the last page if nextPageOffset is null'),
     rows: Joi.array().items(Joi.object().keys({
       quantity: Joi.object().keys({
-        name: stringOrTranslations.required().example('Temperature'),
+        name: stringOrTranslations().required().example('Temperature'),
         hashId: Joi.string().required().example('wasd2'),
         unit: Joi.string().allow(null).default(null)
           .example('K')

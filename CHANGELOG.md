@@ -1,3 +1,14 @@
+## [18.0.0](https://github.com/withthegrid/platform-sdk/compare/v17.73.1...v18.0.0) (2023-01-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **quantity:** localised entities names are now limited in length
+
+### Bug Fixes
+
+* **quantity:** add several name length limits ([#356](https://github.com/withthegrid/platform-sdk/issues/356)) ([4eb8bd5](https://github.com/withthegrid/platform-sdk/commit/4eb8bd51d04028b85b45d2fb1becac19660ad154))
+
 ## [17.73.1](https://github.com/withthegrid/platform-sdk/compare/v17.73.0...v17.73.1) (2022-12-23)
 
 
