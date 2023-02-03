@@ -49,7 +49,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     pinGroup: pinGroupSchema.required(),
     pins: Joi.array().items(Joi.object().keys({
       pin: pinSchema,
-      grids: Joi.array().items(gridSchema),
+      grids: Joi.array().items(gridSchema).required(),
     })).required(),
     edges: Joi.array().items(edgeSchema).required(),
     device: deviceSchema.allow(null).required(),

@@ -49,7 +49,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   right: { environment: 'STATIC' },
   response: Joi.object().keys({
     pin: pinSchema.required(),
-    grids: Joi.array().items(gridSchema),
+    grids: Joi.array().items(gridSchema).required(),
   }).required(),
   description: 'Create a pin within a pin group',
 };

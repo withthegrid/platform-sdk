@@ -33,7 +33,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   }).required(),
   response: Joi.object().keys({
     pin: pinSchema.required(),
-    grids: Joi.array().items(gridSchema),
+    grids: Joi.array().items(gridSchema).required(),
   }).required(),
   right: { environment: 'STATIC' },
   description: 'Updates a specific pin',
