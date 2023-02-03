@@ -20,7 +20,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSuppl
   method: 'post',
   path: '/',
   body: Joi.object().keys({
-    name: Joi.string().required().example('My monitoring environment'),
+    name: Joi.string().required().example('My monitoring environment').max(255),
   }).required(),
   right: {}, // everyone can add an environment
   response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({

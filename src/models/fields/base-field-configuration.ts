@@ -7,7 +7,7 @@ import {
 
 const commonBaseFieldConfigurationSchema = Joi.object().keys({
   key: Joi.string().pattern(/^[a-z][a-zA-Z\d]*$/).required().example('id'),
-  name: stringOrTranslationsSchema.required(),
+  name: stringOrTranslationsSchema().required(),
   showIf: Joi.object().keys({
     key: Joi.string().required(),
     value: Joi.alternatives().try(
@@ -16,12 +16,14 @@ const commonBaseFieldConfigurationSchema = Joi.object().keys({
       Joi.boolean().strict(),
     ).required(),
   }).description('Show this field if other field with provided key is set to provided value. Referenced field must exists already'),
-  hint: stringOrTranslationsSchema.allow('').description('As shown near the input field'),
+  hint: stringOrTranslationsSchema().allow('').description('As shown near the input field'),
 });
 
 const prefixesMixin = {
-  prefix: stringOrTranslationsSchema.description('Not available for inputTypes \'radio\', \'switch\', \'checkbox\', \'pinHashId\', \'pinGroupHashId\', \'file\' and \'files\''),
-  suffix: stringOrTranslationsSchema.description('Not available for inputTypes \'radio\', \'switch\', \'checkbox\', \'pinHashId\', \'pinGroupHashId\', \'file\' and \'files\''),
+  prefix: stringOrTranslationsSchema()
+    .description('Not available for inputTypes \'radio\', \'switch\', \'checkbox\', \'pinHashId\', \'pinGroupHashId\', \'file\' and \'files\''),
+  suffix: stringOrTranslationsSchema()
+    .description('Not available for inputTypes \'radio\', \'switch\', \'checkbox\', \'pinHashId\', \'pinGroupHashId\', \'file\' and \'files\''),
 };
 
 const schema = (apiVersion: number): Joi.AlternativesSchema => {
@@ -68,7 +70,7 @@ const schema = (apiVersion: number): Joi.AlternativesSchema => {
       type: Joi.string().valid('string').default('string'),
       defaultValue: Joi.string().allow(''),
       valueOptions: Joi.array().min(1).items(Joi.object().keys({
-        text: stringOrTranslationsSchema.required(),
+        text: stringOrTranslationsSchema().required(),
         value: Joi.string().allow('').required(),
       })).required(),
       inputType: Joi.string().valid('select').default('select'),
@@ -78,7 +80,7 @@ const schema = (apiVersion: number): Joi.AlternativesSchema => {
       type: Joi.string().valid('string').default('string'),
       ...deprecatedDefaultValue,
       valueOptions: Joi.array().min(1).items(Joi.object().keys({
-        text: stringOrTranslationsSchema.required(),
+        text: stringOrTranslationsSchema().required(),
         value: Joi.string().allow('').required(),
       })).required(),
       inputType: Joi.string().valid('radio').required(),
@@ -109,7 +111,7 @@ const schema = (apiVersion: number): Joi.AlternativesSchema => {
       type: Joi.string().valid('number').default('number'),
       defaultValue: Joi.number(),
       valueOptions: Joi.array().min(1).items(Joi.object().keys({
-        text: stringOrTranslationsSchema.required(),
+        text: stringOrTranslationsSchema().required(),
         value: Joi.number().required(),
       })).required(),
       inputType: Joi.string().valid('select').default('select'),
@@ -120,7 +122,7 @@ const schema = (apiVersion: number): Joi.AlternativesSchema => {
       type: Joi.string().valid('integer').required(),
       defaultValue: Joi.number().integer(),
       valueOptions: Joi.array().min(1).items(Joi.object().keys({
-        text: stringOrTranslationsSchema.required(),
+        text: stringOrTranslationsSchema().required(),
         value: Joi.number().integer().required(),
       })).required(),
       inputType: Joi.string().valid('select').default('select'),
@@ -130,7 +132,7 @@ const schema = (apiVersion: number): Joi.AlternativesSchema => {
       type: Joi.string().valid('number').default('number'),
       ...deprecatedDefaultValue,
       valueOptions: Joi.array().min(1).items(Joi.object().keys({
-        text: stringOrTranslationsSchema.required(),
+        text: stringOrTranslationsSchema().required(),
         value: Joi.number().required(),
       })).required(),
       inputType: Joi.string().valid('radio').required(),
@@ -140,7 +142,7 @@ const schema = (apiVersion: number): Joi.AlternativesSchema => {
       type: Joi.string().valid('integer').required(),
       ...deprecatedDefaultValue,
       valueOptions: Joi.array().min(1).items(Joi.object().keys({
-        text: stringOrTranslationsSchema.required(),
+        text: stringOrTranslationsSchema().required(),
         value: Joi.number().integer().required(),
       })).required(),
       inputType: Joi.string().valid('radio').required(),
@@ -158,7 +160,7 @@ const schema = (apiVersion: number): Joi.AlternativesSchema => {
       type: Joi.string().valid('boolean').default('boolean'),
       defaultValue: Joi.boolean(),
       valueOptions: Joi.array().min(1).items(Joi.object().keys({
-        text: stringOrTranslationsSchema.required(),
+        text: stringOrTranslationsSchema().required(),
         value: Joi.boolean().required(),
       })).required(),
       inputType: Joi.string().valid('select').default('select'),
@@ -168,7 +170,7 @@ const schema = (apiVersion: number): Joi.AlternativesSchema => {
       type: Joi.string().valid('boolean').default('boolean'),
       ...deprecatedDefaultValue,
       valueOptions: Joi.array().min(1).items(Joi.object().keys({
-        text: stringOrTranslationsSchema.required(),
+        text: stringOrTranslationsSchema().required(),
         value: Joi.boolean().required(),
       })).required(),
       inputType: Joi.string().valid('radio').required(),
