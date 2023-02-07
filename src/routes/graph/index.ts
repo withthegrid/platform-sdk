@@ -25,7 +25,6 @@ import * as getNode from './get-node';
 import * as getPin from './get-pin';
 import * as getTile from './get-tile';
 import * as setNotification from './set-notification';
-import * as setThreshold from './set-threshold';
 import * as updateEdge from './update-edge';
 import * as updatePinGrid from './update-pin-grid';
 import * as updatePinGroupGrid from './update-pin-group-grid';
@@ -405,18 +404,6 @@ class GraphRoute {
       setNotification.Response
     >(
       setNotification.controllerGeneratorOptions,
-      GraphRoute.routerPath,
-      GraphRoute.auth,
-      this.comms,
-    )(parameters);
-
-  setThreshold = (parameters: setThreshold.Request):
-    Result<setThreshold.EffectiveRequest, setThreshold.Response> => controllerGenerator<
-      setThreshold.Request,
-      setThreshold.EffectiveRequest,
-      setThreshold.Response
-    >(
-      setThreshold.controllerGeneratorOptions,
       GraphRoute.routerPath,
       GraphRoute.auth,
       this.comms,
