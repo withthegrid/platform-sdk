@@ -3,7 +3,7 @@ import { ControllerGeneratorOptionsWithoutClientOrSupplier } from '../../comms/c
 
 interface Request {
   body: {
-    theme: string;
+    theme?: string;
     feedback: string;
   };
 }
@@ -15,8 +15,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSuppl
   path: '/',
   right: {},
   body: Joi.object().keys({
-    theme: Joi.string().example('Email theme'),
-    feedback: Joi.string().required().example('Text with feedback about withthegrid'),
+    theme: Joi.string().allow(null).example('Email theme').max(255),
+    feedback: Joi.string().required().example('Text with feedback about withthegrid').max(1000),
   }).required(),
   description: 'Send email with feedback',
 };
