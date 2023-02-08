@@ -13,7 +13,6 @@ import ImportRequestRoute from './import-request';
 import IssueRoute from './issue';
 import IssueCommentRoute from './issue-comment';
 import ConnectivityThresholdRoute from './connectivity-threshold';
-import IssueTriggerRuleRoute from './issue-trigger-rule';
 import LabelRoute from './label';
 import MeasurementRoute from './measurement';
 import MeasurementFilterRoute from './measurement-filter';
@@ -58,8 +57,6 @@ class Routes {
   issueComment: IssueCommentRoute;
 
   connectivityThreshold: ConnectivityThresholdRoute;
-
-  issueTriggerRule: IssueTriggerRuleRoute;
 
   label: LabelRoute;
 
@@ -109,7 +106,6 @@ class Routes {
     this.issue = new IssueRoute(comms);
     this.issueComment = new IssueCommentRoute(comms);
     this.connectivityThreshold = new ConnectivityThresholdRoute(comms);
-    this.issueTriggerRule = new IssueTriggerRuleRoute(comms);
     this.label = new LabelRoute(comms);
     this.measurement = new MeasurementRoute(comms);
     this.measurementFilter = new MeasurementFilterRoute(comms);
@@ -145,7 +141,6 @@ export {
   IssueRoute,
   IssueCommentRoute,
   ConnectivityThresholdRoute,
-  IssueTriggerRuleRoute,
   LabelRoute,
   MeasurementRoute,
   MeasurementFilterRoute,
