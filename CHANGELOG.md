@@ -1,3 +1,10 @@
+## [18.0.1](https://github.com/withthegrid/platform-sdk/compare/v18.0.0...v18.0.1) (2023-02-08)
+
+
+### Bug Fixes
+
+* remove deprecated routes ([#450](https://github.com/withthegrid/platform-sdk/issues/450)) ([5783524](https://github.com/withthegrid/platform-sdk/commit/5783524a9a6c9e1e0cd1302894e46ed764b28c61))
+
 ## [18.0.0](https://github.com/withthegrid/platform-sdk/compare/v17.73.1...v18.0.0) (2023-01-30)
 
 
