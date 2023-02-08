@@ -1,3 +1,10 @@
+## [18.1.0](https://github.com/withthegrid/platform-sdk/compare/v18.0.1...v18.1.0) (2023-02-08)
+
+
+### Features
+
+* **feedback:** obtain feedback from users ([5d3386f](https://github.com/withthegrid/platform-sdk/commit/5d3386f9df2bd1a8ee716c6945aa8827259dd347))
+
 ## [18.0.1](https://github.com/withthegrid/platform-sdk/compare/v18.0.0...v18.0.1) (2023-02-08)
 
 
