@@ -1,4 +1,5 @@
 import * as addExport from './add-export';
+import * as feedback from './feedback';
 import * as findExportRequest from './find-export-request';
 import * as findLog from './find-log';
 import * as get from './get';
@@ -24,6 +25,18 @@ class SettingsRoute {
       addExport.Response
     >(
       addExport.controllerGeneratorOptions,
+      SettingsRoute.routerPath,
+      SettingsRoute.auth,
+      this.comms,
+    )(parameters);
+
+  feedback = (parameters: feedback.Request):
+    Result<feedback.EffectiveRequest, feedback.Response> => controllerGenerator<
+      feedback.Request,
+      feedback.EffectiveRequest,
+      feedback.Response
+    >(
+      feedback.controllerGeneratorOptions,
       SettingsRoute.routerPath,
       SettingsRoute.auth,
       this.comms,
