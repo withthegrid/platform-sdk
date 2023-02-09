@@ -1,3 +1,10 @@
+## [18.2.0](https://github.com/withthegrid/platform-sdk/compare/v18.1.0...v18.2.0) (2023-02-09)
+
+
+### Features
+
+* **port groups:** added possibility to edit port groups from port details dialog ([9396889](https://github.com/withthegrid/platform-sdk/commit/939688904541a17c1a18c7b175046c18e8436b0a))
+
 ## [18.1.0](https://github.com/withthegrid/platform-sdk/compare/v18.0.1...v18.1.0) (2023-02-08)
 
 
