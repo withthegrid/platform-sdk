@@ -1,3 +1,10 @@
+## [18.2.1](https://github.com/withthegrid/platform-sdk/compare/v18.2.0...v18.2.1) (2023-02-13)
+
+
+### Bug Fixes
+
+* **add-pin:** match TS request with Joi schema ([#460](https://github.com/withthegrid/platform-sdk/issues/460)) ([ae61b2c](https://github.com/withthegrid/platform-sdk/commit/ae61b2ce06059bcbbc15f54d6c5f22fd75d289dd))
+
 ## [18.2.0](https://github.com/withthegrid/platform-sdk/compare/v18.1.0...v18.2.0) (2023-02-09)
 
 
