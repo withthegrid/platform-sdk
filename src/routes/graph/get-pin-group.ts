@@ -18,7 +18,10 @@ interface Request {
 
 interface Response {
   pinGroup: PinGroup;
-  pins: Pin[];
+  pins: {
+    pin: Pin,
+    grids: Grid[],
+  }[];
   edges: Edge[];
   grids: Grid[];
   device: Device | null;
@@ -44,7 +47,10 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   right: { environment: 'READ' },
   response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     pinGroup: pinGroupSchema.required(),
-    pins: Joi.array().items(pinSchema).required(),
+    pins: Joi.array().items(Joi.object().keys({
+      pin: pinSchema,
+      grids: Joi.array().items(gridSchema).required(),
+    })).required(),
     edges: Joi.array().items(edgeSchema).required(),
     device: deviceSchema.allow(null).required(),
     deviceType: deviceTypeSchema(apiVersion).allow(null).required(),
