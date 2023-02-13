@@ -13,7 +13,7 @@ interface Request {
     fields: FieldsToServerFull;
     typeKey?: string | null;
     edgeHashId?: string | null;
-    pinGridsHashIds?: string[];
+    pinGridsHashIds?: string[] | null;
   };
 }
 
@@ -25,7 +25,7 @@ interface EffectiveRequest {
     fields: FieldsToServerFull;
     typeKey: string | null;
     edgeHashId: string | null;
-    pinGridsHashIds: string[];
+    pinGridsHashIds: string[] | null;
   };
 }
 
