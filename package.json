@@ -1,6 +1,6 @@
 {
   "name": "@withthegrid/platform-sdk",
-  "version": "18.2.0",
+  "version": "18.2.2",
   "description": "SDK for withthegrid application",
   "license": "MIT",
   "files": [
@@ -33,7 +33,7 @@
   "author": "Rob Everhardt <rob@withthegrid.com>",
   "dependencies": {
     "axios": "^1.2.6",
-    "joi": "^17.7.0",
+    "joi": "^17.7.1",
     "minimist": "^1.2.7"
   },
   "devDependencies": {
@@ -44,8 +44,8 @@
     "@types/node": "^18.13.0",
     "@types/qs": "^6.9.7",
     "@types/semantic-release": "^20.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.51.0",
-    "@typescript-eslint/parser": "^5.51.0",
+    "@typescript-eslint/eslint-plugin": "^5.52.0",
+    "@typescript-eslint/parser": "^5.52.0",
     "conventional-changelog-conventionalcommits": "^5.0.0",
     "conventional-changelog-writer": "^5.0.1",
     "conventional-commits-parser": "^3.2.4",
