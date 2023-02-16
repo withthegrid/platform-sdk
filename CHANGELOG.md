@@ -1,3 +1,10 @@
+## [18.2.4](https://github.com/withthegrid/platform-sdk/compare/v18.2.3...v18.2.4) (2023-02-16)
+
+
+### Bug Fixes
+
+* trigger build after failed release. ([#466](https://github.com/withthegrid/platform-sdk/issues/466)) ([197bcca](https://github.com/withthegrid/platform-sdk/commit/197bcca0e940f0917a7b4bbaa97bf4e7a77c916c))
+
 ## [18.2.3](https://github.com/withthegrid/platform-sdk/compare/v18.2.2...v18.2.3) (2023-02-16)
 
 
