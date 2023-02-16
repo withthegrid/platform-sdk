@@ -12,7 +12,7 @@ type Response = void;
 
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSupplier = {
   method: 'post',
-  path: '/',
+  path: '/feedback',
   right: {},
   body: Joi.object().keys({
     theme: Joi.string().allow(null).example('Email theme').max(255),
