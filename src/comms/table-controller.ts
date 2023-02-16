@@ -109,7 +109,7 @@ class TableController<RowImplementation> {
    * controller)
    *
    * Be sure that the response contains full pages, otherwise you will see at
-   * least 1 page with less rows
+   * least 1 page with fewer rows
    */
   add(
     response: Response<RowImplementation>,
