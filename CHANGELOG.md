@@ -1,3 +1,10 @@
+## [18.2.2](https://github.com/withthegrid/platform-sdk/compare/v18.2.1...v18.2.2) (2023-02-16)
+
+
+### Bug Fixes
+
+* **feedback:** change path to avoid route collision ([#464](https://github.com/withthegrid/platform-sdk/issues/464)) ([8135a6b](https://github.com/withthegrid/platform-sdk/commit/8135a6b4d35cb308f2a578fc82fbbf4a29b8028d))
+
 ## [18.2.1](https://github.com/withthegrid/platform-sdk/compare/v18.2.0...v18.2.1) (2023-02-13)
 
 
