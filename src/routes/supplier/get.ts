@@ -12,6 +12,7 @@ interface Request {
 interface Response {
   supplier: Supplier;
   supplierRights: string[];
+  environmentLogo: string | null;
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSupplier = {
@@ -25,6 +26,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSuppl
     supplier: supplierSchema.required(),
     supplierRights: Joi.array().items(Joi.string()).required().example(['STATIC', 'USERS'])
       .description('See the getting started section about rights'),
+    environmentLogo: Joi.string().allow(null).required().description('download link for photo.')
+      .example('https://api.withthegrid.com/file/yr969d...'),
   }).required(),
   description: 'Get a specific connectivity environment identified by its hashId',
 };

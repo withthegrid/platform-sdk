@@ -7,6 +7,7 @@ interface Request {
     name?: string;
     enforceTwoFactorAuthentication?: boolean;
     theme: Theme | null;
+    environmentLogo?: string | null;
   };
 }
 
@@ -20,6 +21,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithSupplier = {
     enforceTwoFactorAuthentication: Joi.boolean().example(false)
       .description('Describes if users need to have two factor authentication enabled in order to access this environment.'),
     theme: themeSchema.allow(null),
+    environmentLogo: Joi.string().allow(null).description('Should be a dataurl. Null clears the photo'),
   }).required(),
   right: { supplier: 'ENVIRONMENT_ADMIN' },
 };
