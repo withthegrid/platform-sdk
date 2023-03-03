@@ -13,7 +13,8 @@ interface Request {
 interface Response {
   environment: Environment;
   environmentRights: string[];
-  userEnvironmentSettings: UserEnvironmentSettings,
+  userEnvironmentSettings: UserEnvironmentSettings;
+  environmentLogo: string | null;
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSupplier = {
@@ -28,6 +29,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSuppl
     environmentRights: Joi.array().items(Joi.string()).required().example(['STATIC', 'USERS'])
       .description('See the getting started section about rights'),
     userEnvironmentSettings: userEnvironmentSettingsSchema.required(),
+    environmentLogo: Joi.string().allow(null).required().description('download link for photo.')
+      .example('https://api.withthegrid.com/file/yr969d...'),
   }).required(),
   description: 'Get a specific monitoring environment identified by its hashId',
 };

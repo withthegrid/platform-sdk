@@ -13,6 +13,7 @@ interface Response {
   environmentRights?: string[];
   userEnvironmentSettings?: UserEnvironmentSettings,
   user: User;
+  environmentLogo?: string | null;
 }
 
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSupplier = {
@@ -25,6 +26,8 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithoutClientOrSuppl
       .description('See the getting started section about rights'),
     userEnvironmentSettings: userEnvironmentSettingsSchema,
     user: userSchema.required(),
+    environmentLogo: Joi.string().allow(null).description('download link for photo.')
+      .example('https://api.withthegrid.com/file/yr969d...'),
   }).required(),
   description: 'Get information about the logged in user',
 };
