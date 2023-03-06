@@ -1,6 +1,6 @@
 {
   "name": "@withthegrid/platform-sdk",
-  "version": "18.2.2",
+  "version": "18.2.4",
   "description": "SDK for withthegrid application",
   "license": "MIT",
   "files": [
@@ -33,26 +33,26 @@
   "author": "Rob Everhardt <rob@withthegrid.com>",
   "dependencies": {
     "axios": "^1.2.6",
-    "joi": "^17.7.0",
-    "minimist": "^1.2.7"
+    "joi": "^17.7.1",
+    "minimist": "^1.2.8"
   },
   "devDependencies": {
     "@apidevtools/swagger-parser": "^10.1.0",
     "@semantic-release/changelog": "^6.0.2",
     "@semantic-release/git": "^10.0.1",
     "@types/jest": "^29.2.6",
-    "@types/node": "^18.13.0",
+    "@types/node": "^18.14.2",
     "@types/qs": "^6.9.7",
     "@types/semantic-release": "^20.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.51.0",
-    "@typescript-eslint/parser": "^5.51.0",
+    "@typescript-eslint/eslint-plugin": "^5.54.0",
+    "@typescript-eslint/parser": "^5.52.0",
     "conventional-changelog-conventionalcommits": "^5.0.0",
     "conventional-changelog-writer": "^5.0.1",
     "conventional-commits-parser": "^3.2.4",
     "eslint": "^8.33.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.27.5",
-    "jest": "^29.4.1",
+    "jest": "^29.4.3",
     "joi-to-swagger": "6.2.0",
     "redoc-cli": "^0.13.20",
     "rimraf": "^4.1.2",
