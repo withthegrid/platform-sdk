@@ -55,7 +55,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
       panel: charts(apiVersion),
     }).required()).required(),
   }),
-  description: 'Get multiple chart panels from pinGroups, grids, edges and pins',
+  description: 'Get multiple chart panels from pinGroups and grids',
 };
 
 export {
