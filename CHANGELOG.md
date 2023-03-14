@@ -1,3 +1,10 @@
+## [18.3.0](https://github.com/withthegrid/platform-sdk/compare/v18.2.4...v18.3.0) (2023-03-14)
+
+
+### Features
+
+* **panels:** get and update multiple panels ([#476](https://github.com/withthegrid/platform-sdk/issues/476)) ([e31a404](https://github.com/withthegrid/platform-sdk/commit/e31a4046df05d795462e88e11bb79e285104e440))
+
 ## [18.2.4](https://github.com/withthegrid/platform-sdk/compare/v18.2.3...v18.2.4) (2023-02-16)
 
 
