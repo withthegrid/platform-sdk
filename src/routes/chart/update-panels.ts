@@ -22,10 +22,10 @@ type Panel = {
 };
 
 type Request = {
-  body: Record<KindsResources, Array<{
+  body: Partial<Record<KindsResources, Array<{
     hashId: HashId,
     panel: Panel,
-  }>>
+  }>>>
 };
 
 type Response = void;
@@ -50,11 +50,11 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     pinGroups: Joi.array().items(Joi.object().keys({
       hashId: Joi.string().required().example('dao97'),
       panel: panel.required(),
-    }).required()).required(),
+    }).required()),
     pins: Joi.array().items(Joi.object().keys({
       hashId: Joi.string().required().example('e13d57'),
       panel: panel.required(),
-    }).required()).required(),
+    }).required()),
   }).required(),
   right: { environment: 'REPORTS' },
   description: 'Update multiple chart panels',
