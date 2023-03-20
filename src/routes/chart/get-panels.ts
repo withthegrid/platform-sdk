@@ -13,7 +13,7 @@ const kindsResources = ['pinGroups', 'pins'] as const;
 type KindsResources = typeof kindsResources[number];
 
 // We make eveything Partial because having everything required but allowing an empty array does not
-// work. The reason is that coming from the consummer, having empty array(s) is valid, then the
+// work. The reason is that coming from the consumer, having empty array(s) is valid, then the
 // query goes through axios, which strips the empty query arrays. Later, when the platform receives
 // the query and validated the requests, the requests does not validates against the schema anymore.
 // One alternative would be to add a paramSerializer to axios to force to produce a query param for
