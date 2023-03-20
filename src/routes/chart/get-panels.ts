@@ -13,7 +13,7 @@ const kindsResources = ['pinGroups', 'pins'] as const;
 type KindsResources = typeof kindsResources[number];
 
 type Request = {
-  query: Record<KindsHashIds, Array<HashId>>;
+  query: Partial<Record<KindsHashIds, Array<HashId>>>;
 }
 
 type Panel = {
@@ -24,10 +24,10 @@ type Panel = {
   },
 };
 
-type Response = Record<KindsResources, Array<{
+type Response = Partial<Record<KindsResources, Array<{
   hashId: HashId,
   panel: Panel,
-}>>;
+}>>>;
 
 const charts = (apiVersion: number) => Joi.object().keys({
   lastMode: Joi.string().valid('manual', 'automatic').example('automatic').required(),
@@ -41,19 +41,19 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'get',
   path: '/panels',
   query: Joi.object().keys({
-    pinGroupHashIds: Joi.array().items(Joi.string()).max(30).required(),
-    pinHashIds: Joi.array().items(Joi.string()).max(30).required(),
+    pinGroupHashIds: Joi.array().items(Joi.string()).max(30),
+    pinHashIds: Joi.array().items(Joi.string()).max(30),
   }).required(),
   right: { environment: 'READ' },
   response: (apiVersion: number): Joi.ObjectSchema => Joi.object().keys({
     pinGroups: Joi.array().items(Joi.object().keys({
       hashId: Joi.string().required().example('dao97'),
       panel: charts(apiVersion),
-    }).required()).required(),
+    }).required()),
     pins: Joi.array().items(Joi.object().keys({
       hashId: Joi.string().required().example('e13d57'),
       panel: charts(apiVersion),
-    }).required()).required(),
+    }).required()),
   }),
   description: 'Get multiple chart panels from pinGroups and grids',
 };
