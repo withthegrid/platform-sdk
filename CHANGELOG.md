@@ -1,3 +1,10 @@
+## [18.3.1](https://github.com/withthegrid/platform-sdk/compare/v18.3.0...v18.3.1) (2023-03-20)
+
+
+### Bug Fixes
+
+* **chart.getPanels:** make the query params optional ([#477](https://github.com/withthegrid/platform-sdk/issues/477)) ([6fc8754](https://github.com/withthegrid/platform-sdk/commit/6fc87543c4e29874c2ba3a347a81cd3895a79f73))
+
 ## [18.3.0](https://github.com/withthegrid/platform-sdk/compare/v18.2.4...v18.3.0) (2023-03-14)
 
 
