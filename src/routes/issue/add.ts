@@ -51,7 +51,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     ).allow(null)
       .required()
       .example(null),
-    title: Joi.string().max(100).required().example('Temperature is too high'),
+    title: Joi.string().max(255).required().example('Temperature is too high'),
     level: Joi.number().valid(0, 1, 2).required().example(0),
     comment: Joi.string().max(65536).allow('').required()
       .example('This looks serious.'),
