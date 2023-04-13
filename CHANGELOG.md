@@ -1,3 +1,38 @@
+## [18.3.0](https://github.com/withthegrid/platform-sdk/compare/v18.2.4...v18.3.0) (2023-03-14)
+
+
+### Features
+
+* **panels:** get and update multiple panels ([#476](https://github.com/withthegrid/platform-sdk/issues/476)) ([e31a404](https://github.com/withthegrid/platform-sdk/commit/e31a4046df05d795462e88e11bb79e285104e440))
+
+## [18.2.4](https://github.com/withthegrid/platform-sdk/compare/v18.2.3...v18.2.4) (2023-02-16)
+
+
+### Bug Fixes
+
+* trigger build after failed release. ([#466](https://github.com/withthegrid/platform-sdk/issues/466)) ([197bcca](https://github.com/withthegrid/platform-sdk/commit/197bcca0e940f0917a7b4bbaa97bf4e7a77c916c))
+
+## [18.2.3](https://github.com/withthegrid/platform-sdk/compare/v18.2.2...v18.2.3) (2023-02-16)
+
+
+### Bug Fixes
+
+* **suggestions:** suggest grids based on subtype ([#459](https://github.com/withthegrid/platform-sdk/issues/459)) ([e9801cf](https://github.com/withthegrid/platform-sdk/commit/e9801cf7d61c91891a92bc42b3e8795c39561aee))
+
+## [18.2.2](https://github.com/withthegrid/platform-sdk/compare/v18.2.1...v18.2.2) (2023-02-16)
+
+
+### Bug Fixes
+
+* **feedback:** change path to avoid route collision ([#464](https://github.com/withthegrid/platform-sdk/issues/464)) ([8135a6b](https://github.com/withthegrid/platform-sdk/commit/8135a6b4d35cb308f2a578fc82fbbf4a29b8028d))
+
+## [18.2.1](https://github.com/withthegrid/platform-sdk/compare/v18.2.0...v18.2.1) (2023-02-13)
+
+
+### Bug Fixes
+
+* **add-pin:** match TS request with Joi schema ([#460](https://github.com/withthegrid/platform-sdk/issues/460)) ([ae61b2c](https://github.com/withthegrid/platform-sdk/commit/ae61b2ce06059bcbbc15f54d6c5f22fd75d289dd))
+
 ## [18.2.0](https://github.com/withthegrid/platform-sdk/compare/v18.1.0...v18.2.0) (2023-02-09)
 
 

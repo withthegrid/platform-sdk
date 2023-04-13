@@ -37,7 +37,7 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
     hashId: Joi.string().required().example('c19aid'),
   }).required(),
   body: Joi.object().keys({
-    title: Joi.string().max(100).example('Temperature is too high'),
+    title: Joi.string().max(255).example('Temperature is too high'),
     pinGroupHashId: Joi.string(),
     pinHashIds: Joi.array().items(Joi.string()).description('When empty, all pins are affected'),
     automation: Joi.alternatives().try(

@@ -14,6 +14,7 @@ import BaseError from '../errors/base';
 import BillingError from '../errors/billing';
 import OutdatedClientError from '../errors/outdated-client';
 import AuthenticationError from '../errors/authentication';
+import NoSecondaryConnectionError from '../errors/no-secondary-connection';
 
 class Comms {
   axios: AxiosInstance;
@@ -116,6 +117,9 @@ class Comms {
           }
           if (e.response.status === 402) {
             throw new BillingError(key, message);
+          }
+          if (e.response.status === 503 && key === 'no_secondary_connection_error') {
+            throw new NoSecondaryConnectionError();
           }
 
           throw new CommsResponseError(

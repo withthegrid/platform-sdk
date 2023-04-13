@@ -116,10 +116,12 @@ type TableKeys =
   | 'measurement'
   | 'pinGroupConnectivitySummaryMonth'
   | 'timeseriesSummaryMonth'
+  | 'timeseriesSummaryWeek'
   | 'pin'
   | 'pinGroup'
   | 'quantity'
   | 'report'
+  | 'eventSummaryMonth'
   | 'measurementThreshold'
   | 'user';
 
@@ -689,6 +691,87 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
       nl: { singular: 'Maandelijkse tijdsreeks statistiek', plural: 'Maandelijkse tijdsreeks statistieken' },
     },
   },
+  timeseriesSummaryWeek: {
+    fields: [
+      'week',
+      'count',
+      'sum',
+      'min',
+      'max',
+      'countSerious',
+      'countCritical',
+      'countIgnored',
+    ],
+    fieldsWithTranslations: {
+      en: {
+        week: t.en.granularities.week as Translation,
+        count: {
+          singular: 'Count of measurements',
+          plural: 'Count of measurements',
+        },
+        sum: {
+          singular: 'Sum',
+          plural: 'Sum',
+        },
+        min: {
+          singular: 'Minimum',
+          plural: 'Minimum',
+        },
+        max: {
+          singular: 'Maximum',
+          plural: 'Maximum',
+        },
+        countSerious: {
+          singular: 'Count of serious measurements',
+          plural: 'Count of serious measurements',
+        },
+        countCritical: {
+          singular: 'Count of critical measurements',
+          plural: 'Count of critical measurements',
+        },
+        countIgnored: {
+          singular: 'Count of measurements not compared to issue trigger',
+          plural: 'Count of measurements not compared to issue trigger',
+        },
+      },
+      nl: {
+        week: t.nl.granularities.week as Translation,
+        count: {
+          singular: 'Aantal metingen',
+          plural: 'Aantal metingen',
+        },
+        sum: {
+          singular: 'Som',
+          plural: 'Som',
+        },
+        min: {
+          singular: 'Minimum',
+          plural: 'Minimum',
+        },
+        max: {
+          singular: 'Maximum',
+          plural: 'Maximum',
+        },
+        countSerious: {
+          singular: 'Aantal serieuze measurements',
+          plural: 'Aantal serieuze measurements',
+        },
+        countCritical: {
+          singular: 'Aantal kritieke metingen',
+          plural: 'Aantal kritieke metingen',
+        },
+        countIgnored: {
+          singular: 'Aantal metingen niet vergeleken met issue trigger',
+          plural: 'Aantal metingen niet vergeleken met issue trigger',
+        },
+      },
+    },
+    tableKey: 'timeseriesSummaryWeek',
+    tableText: {
+      en: { singular: 'Weekly timeseries statistic', plural: 'Weekly timeseries statistics' },
+      nl: { singular: 'Wekelijkse tijdsreeks statistiek', plural: 'Wekelijkse tijdsreeks statistieken' },
+    },
+  },
   pin: {
     fields: [
       'hashId',
@@ -949,6 +1032,30 @@ const analyticsTablesL10n: Record<TableKeys, AnalyticsTable> = {
     tableText: {
       en: { singular: 'Port issue trigger', plural: 'Port issue triggers' },
       nl: { singular: 'Poort issue trigger', plural: 'Poort issue triggers' },
+    },
+  },
+  eventSummaryMonth: {
+    fields: ['month', 'count'],
+    fieldsWithTranslations: {
+      en: {
+        month: t.en.granularities.month as Translation,
+        count: {
+          singular: 'Count of reports',
+          plural: 'Count of reports',
+        },
+      },
+      nl: {
+        month: t.nl.granularities.month as Translation,
+        count: {
+          singular: 'Aantal rapporten',
+          plural: 'Aantal rapporten',
+        },
+      },
+    },
+    tableKey: 'eventSummaryMonth',
+    tableText: {
+      en: { singular: 'Report summary', plural: 'Report summaries' },
+      nl: { singular: 'Rapport samenvatting', plural: 'Rapport samenvattingen' },
     },
   },
   user: {

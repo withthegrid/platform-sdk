@@ -7,6 +7,7 @@ import CommsResponse from './comms-response';
 import Comms from './comms';
 import OutdatedClient from './outdated-client';
 import Parsing from './parsing';
+import NoSecondaryConnection from './no-secondary-connection';
 
 export default {
   Authentication,
@@ -18,4 +19,5 @@ export default {
   Comms,
   OutdatedClient,
   Parsing,
+  NoSecondaryConnection,
 };
