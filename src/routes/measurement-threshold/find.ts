@@ -9,6 +9,7 @@ import { TableQuery, EffectiveTableQuery, tableQuerySchemaGenerator } from '../.
 import { Quantity } from '../../models/quantity';
 import { schema as stringOrTranslations } from '../../models/string-or-translations';
 import { schema as thresholdSchema, Threshold } from '../../models/threshold';
+import { Grid } from '../../models/grid';
 
 interface Query extends TableQuery {
   type?: 'quantity' | 'port';
@@ -30,7 +31,9 @@ interface ResponseRow {
     pinGroup: Pick<PinGroup, 'name' | 'hashId'>;
     pin: Pick<Pin, 'name' | 'hashId'>;
     edge: Pick<Edge, 'name' | 'hashId'> | null;
-    } | null;
+  } | null;
+  pinGroupGrid: Pick<Grid, 'name' | 'hashId'> | null;
+  pinGrid: Pick<Grid, 'name' | 'hashId'> | null;
   threshold: Threshold;
 }
 
@@ -42,7 +45,7 @@ interface Response {
 const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
   method: 'get',
   path: '/',
-  query: tableQuerySchemaGenerator(Joi.string().valid('quantityName', 'pinGroupName').default('quantityName')).keys({
+  query: tableQuerySchemaGenerator(Joi.string().valid('quantityName', 'pinGroupName', 'pinGroupGridName', 'pinGridName').default('quantityName')).keys({
     type: Joi.string().valid('quantity', 'port'),
   }),
   right: { environment: 'THRESHOLDS' },
@@ -70,6 +73,14 @@ const controllerGeneratorOptions: ControllerGeneratorOptionsWithClient = {
           name: Joi.string().required().example('My line'),
           hashId: Joi.string().required().example('ka08d'),
         }).allow(null),
+      }).allow(null),
+      pinGroupGrid: Joi.object().keys({
+        name: Joi.string().required().example('My location group'),
+        hashId: Joi.string().required().example('naud51'),
+      }).allow(null),
+      pinGrid: Joi.object().keys({
+        name: Joi.string().required().example('My port group'),
+        hashId: Joi.string().required().example('naud51'),
       }).allow(null),
       threshold: thresholdSchema.required(),
     })).required(),
